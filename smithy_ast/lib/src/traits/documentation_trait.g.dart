@@ -66,7 +66,9 @@ class DocumentationTraitBuilder
   bool? get isSynthetic => _$this._isSynthetic;
   set isSynthetic(bool? isSynthetic) => _$this._isSynthetic = isSynthetic;
 
-  DocumentationTraitBuilder();
+  DocumentationTraitBuilder() {
+    DocumentationTrait._init(this);
+  }
 
   DocumentationTraitBuilder get _$this {
     final $v = _$v;

@@ -18,6 +18,7 @@ abstract class ShortShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ShortShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   @override

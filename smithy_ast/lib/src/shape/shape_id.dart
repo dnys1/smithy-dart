@@ -8,8 +8,12 @@ abstract class ShapeId implements Built<ShapeId, ShapeIdBuilder> {
   factory ShapeId([void Function(ShapeIdBuilder) updates]) = _$ShapeId;
   ShapeId._();
 
-  factory ShapeId.parse(String id) =>
-      (serializer as ShapeIdSerializer).deserialize(serializers, id);
+  factory ShapeId.parse(String id) => ShapeId(
+        (b) => b
+          ..namespace = id.split('#').first
+          ..name = id.split('#')[1]
+          ..member = id.contains('\$') ? id.split('\$').last : null,
+      );
 
   static final ShapeId empty = ShapeId((b) => b
     ..namespace = ''
@@ -38,14 +42,7 @@ class ShapeIdSerializer extends PrimitiveSerializer<ShapeId> {
   @override
   ShapeId deserialize(Serializers serializers, Object serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    serialized as String;
-    return ShapeId(
-      (b) => b
-        ..namespace = serialized.split('#').first
-        ..name = serialized.split('#')[1]
-        ..member =
-            serialized.contains('\$') ? serialized.split('\$').last : null,
-    );
+    return ShapeId.parse(serialized as String);
   }
 
   @override

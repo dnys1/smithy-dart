@@ -18,13 +18,12 @@ class _$ApplyShapeSerializer implements StructuredSerializer<ApplyShape> {
   Iterable<Object?> serialize(Serializers serializers, ApplyShape object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'shapeId',
-      serializers.serialize(object.shapeId,
-          specifiedType: const FullType(ShapeId)),
       'traits',
       serializers.serialize(object.traits,
-          specifiedType: const FullType(
-              BuiltMap, const [const FullType(String), const FullType(Trait)])),
+          specifiedType: const FullType(TraitMap)),
+      'type',
+      serializers.serialize(object.type,
+          specifiedType: const FullType(ShapeType)),
     ];
 
     return result;
@@ -41,14 +40,13 @@ class _$ApplyShapeSerializer implements StructuredSerializer<ApplyShape> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'shapeId':
-          result.shapeId.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ShapeId))! as ShapeId);
-          break;
         case 'traits':
-          result.traits.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltMap,
-                  const [const FullType(String), const FullType(Trait)]))!);
+          result.traits = serializers.deserialize(value,
+              specifiedType: const FullType(TraitMap)) as TraitMap;
+          break;
+        case 'type':
+          result.type = serializers.deserialize(value,
+              specifiedType: const FullType(ShapeType)) as ShapeType;
           break;
       }
     }
@@ -61,14 +59,19 @@ class _$ApplyShape extends ApplyShape {
   @override
   final ShapeId shapeId;
   @override
-  final BuiltMap<String, Trait> traits;
+  final TraitMap traits;
+  @override
+  final ShapeType type;
 
   factory _$ApplyShape([void Function(ApplyShapeBuilder)? updates]) =>
       (new ApplyShapeBuilder()..update(updates)).build();
 
-  _$ApplyShape._({required this.shapeId, required this.traits}) : super._() {
+  _$ApplyShape._(
+      {required this.shapeId, required this.traits, required this.type})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(shapeId, 'ApplyShape', 'shapeId');
     BuiltValueNullFieldError.checkNotNull(traits, 'ApplyShape', 'traits');
+    BuiltValueNullFieldError.checkNotNull(type, 'ApplyShape', 'type');
   }
 
   @override
@@ -83,34 +86,41 @@ class _$ApplyShape extends ApplyShape {
     if (identical(other, this)) return true;
     return other is ApplyShape &&
         shapeId == other.shapeId &&
-        traits == other.traits;
+        traits == other.traits &&
+        type == other.type;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, shapeId.hashCode), traits.hashCode));
+    return $jf(
+        $jc($jc($jc(0, shapeId.hashCode), traits.hashCode), type.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('ApplyShape')
           ..add('shapeId', shapeId)
-          ..add('traits', traits))
+          ..add('traits', traits)
+          ..add('type', type))
         .toString();
   }
 }
 
-class ApplyShapeBuilder implements Builder<ApplyShape, ApplyShapeBuilder> {
+class ApplyShapeBuilder
+    implements Builder<ApplyShape, ApplyShapeBuilder>, ShapeBuilder {
   _$ApplyShape? _$v;
 
   ShapeIdBuilder? _shapeId;
   ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
 
-  MapBuilder<String, Trait>? _traits;
-  MapBuilder<String, Trait> get traits =>
-      _$this._traits ??= new MapBuilder<String, Trait>();
-  set traits(MapBuilder<String, Trait>? traits) => _$this._traits = traits;
+  TraitMap? _traits;
+  TraitMap? get traits => _$this._traits;
+  set traits(covariant TraitMap? traits) => _$this._traits = traits;
+
+  ShapeType? _type;
+  ShapeType? get type => _$this._type;
+  set type(covariant ShapeType? type) => _$this._type = type;
 
   ApplyShapeBuilder() {
     ApplyShape._init(this);
@@ -120,14 +130,15 @@ class ApplyShapeBuilder implements Builder<ApplyShape, ApplyShapeBuilder> {
     final $v = _$v;
     if ($v != null) {
       _shapeId = $v.shapeId.toBuilder();
-      _traits = $v.traits.toBuilder();
+      _traits = $v.traits;
+      _type = $v.type;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(ApplyShape other) {
+  void replace(covariant ApplyShape other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ApplyShape;
   }
@@ -142,14 +153,17 @@ class ApplyShapeBuilder implements Builder<ApplyShape, ApplyShapeBuilder> {
     _$ApplyShape _$result;
     try {
       _$result = _$v ??
-          new _$ApplyShape._(shapeId: shapeId.build(), traits: traits.build());
+          new _$ApplyShape._(
+              shapeId: shapeId.build(),
+              traits: BuiltValueNullFieldError.checkNotNull(
+                  traits, 'ApplyShape', 'traits'),
+              type: BuiltValueNullFieldError.checkNotNull(
+                  type, 'ApplyShape', 'type'));
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'shapeId';
         shapeId.build();
-        _$failedField = 'traits';
-        traits.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'ApplyShape', _$failedField, e.toString());

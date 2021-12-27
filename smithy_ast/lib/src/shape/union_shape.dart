@@ -20,6 +20,7 @@ abstract class UnionShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(UnionShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   @override

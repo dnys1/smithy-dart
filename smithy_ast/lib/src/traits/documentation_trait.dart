@@ -18,10 +18,13 @@ abstract class DocumentationTrait
 
   static final id = ShapeId.parse('smithy.api#documentation');
 
-  String get value;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(DocumentationTraitBuilder b) {
+    b.isSynthetic = false;
+  }
 
   @override
-  String getValue() => value;
+  String get value;
 
   @override
   ShapeId getShapeId() => id;

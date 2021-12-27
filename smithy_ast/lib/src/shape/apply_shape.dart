@@ -10,17 +10,19 @@ import 'package:smithy_ast/src/traits/trait.dart';
 
 part 'apply_shape.g.dart';
 
-abstract class ApplyShape implements Built<ApplyShape, ApplyShapeBuilder> {
+abstract class ApplyShape
+    implements Shape, Built<ApplyShape, ApplyShapeBuilder> {
   factory ApplyShape([void Function(ApplyShapeBuilder) updates]) = _$ApplyShape;
   ApplyShape._();
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ApplyShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
-  ShapeId get shapeId;
-  BuiltMap<String, Trait> get traits;
+  @override
+  R accept<R>(ShapeVisitor<R> visitor) => throw UnimplementedError();
 
   Map<String, Object?> toJson() {
     return serializers.serializeWith(ApplyShape.serializer, this)

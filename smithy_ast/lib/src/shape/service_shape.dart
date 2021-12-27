@@ -21,6 +21,7 @@ abstract class ServiceShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ServiceShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   String? get version;

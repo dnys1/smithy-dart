@@ -6,6 +6,7 @@ import 'package:smithy_ast/src/shape/big_integer_shape.dart';
 import 'package:smithy_ast/src/shape/blob_shape.dart';
 import 'package:smithy_ast/src/shape/boolean_shape.dart';
 import 'package:smithy_ast/src/shape/byte_shape.dart';
+import 'package:smithy_ast/src/shape/collection_shape.dart';
 import 'package:smithy_ast/src/shape/document_shape.dart';
 import 'package:smithy_ast/src/shape/double_shape.dart';
 import 'package:smithy_ast/src/shape/float_shape.dart';
@@ -63,6 +64,7 @@ final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())
       ..add(ShapeMapSerializer())
       ..add(ShapeSerializer())
-      ..addAll(Trait.serializers.values)
-      ..add(TraitMapSerializer()))
+      ..add(NamedMembersMapSerializer())
+      ..add(TraitMapSerializer())
+      ..addAll(Trait.serializers.values))
     .build();

@@ -51,14 +51,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new SetBuilder<ShapeRef>())
       ..addBuilderFactory(
           const FullType(BuiltMap,
-              const [const FullType(String), const FullType(MemberShape)]),
-          () => new MapBuilder<String, MemberShape>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap,
-              const [const FullType(String), const FullType(MemberShape)]),
-          () => new MapBuilder<String, MemberShape>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap,
               const [const FullType(String), const FullType(ShapeRef)]),
           () => new MapBuilder<String, ShapeRef>())
       ..addBuilderFactory(

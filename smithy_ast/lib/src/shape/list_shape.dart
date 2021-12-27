@@ -20,6 +20,7 @@ abstract class ListShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ListShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   @override

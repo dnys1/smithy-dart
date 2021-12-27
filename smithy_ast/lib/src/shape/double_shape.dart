@@ -19,6 +19,7 @@ abstract class DoubleShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(DoubleShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   @override

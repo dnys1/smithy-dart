@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:smithy_ast/src/shape/collection_shape.dart';
+import 'package:smithy_ast/src/shape/list_shape.dart';
 import 'package:smithy_ast/src/shape/map_shape.dart';
 import 'package:smithy_ast/src/shape/member_shape.dart';
 import 'package:smithy_ast/src/shape/operation_shape.dart';
@@ -10,6 +12,7 @@ import 'package:smithy_ast/src/shape/shape_ref.dart';
 import 'package:smithy_ast/src/shape/string_shape.dart';
 import 'package:smithy_ast/src/shape/structure_shape.dart';
 import 'package:smithy_ast/src/smithy_ast.dart';
+import 'package:smithy_ast/src/traits/documentation_trait.dart';
 import 'package:smithy_ast/src/traits/required_trait.dart';
 import 'package:test/test.dart';
 
@@ -80,36 +83,49 @@ void main() {
         expect(decoded, equals(expected));
       });
 
-      // test('Member', () {
-      //   const json = '''
-      //   {
-      //       "smithy": "1.0",
-      //       "shapes": {
-      //           "smithy.example#MyList": {
-      //               "type": "list",
-      //               "member": {
-      //                   "target": "smithy.api#String",
-      //                   "traits": {
-      //                       "smithy.api#documentation": "Member documentation"
-      //                   }
-      //               }
-      //           }
-      //       }
-      //   }''';
+      test('Member', () {
+        const json = '''
+        {
+            "smithy": "1.0",
+            "shapes": {
+                "smithy.example#MyList": {
+                    "type": "list",
+                    "member": {
+                        "target": "smithy.api#String",
+                        "traits": {
+                            "smithy.api#documentation": "Member documentation"
+                        }
+                    }
+                }
+            }
+        }''';
 
-      //   final listId = ShapeId((b) => b..namespace='smithy.example'..name='MyList');
+        final listId = ShapeId((b) => b
+          ..namespace = 'smithy.example'
+          ..name = 'MyList');
 
-      //   final memberShape = MemberShape((b) {
-      //     b.target..namespace='smithy.api'..name='String';
-      //     b.traits.addAll({
+        final memberShape = MemberShape((b) {
+          b
+            ..target.replace(ShapeId.parse('smithy.api#String'))
+            ..traits = TraitMap({
+              DocumentationTrait.id:
+                  DocumentationTrait((b) => b..value = 'Member documentation')
+            });
+        });
 
-      //     })
-      //   })
+        final expected = SmithyAst((b) => b
+          ..version = '1.0'
+          ..shapes = ShapeMap({
+            listId: ListShape(
+              (b) => b
+                ..shapeId.replace(listId)
+                ..member.replace(memberShape),
+            )
+          }));
 
-      //   final expected = SmithyAst((b) => b..version='1.0'..shapes = ShapeMap({
-      //     listId: ListShape((b) => b..shapeId.replace(listId)..member)
-      //   }))
-      // });
+        final decoded = SmithyAst.fromJson(jsonDecode(json));
+        expect(decoded, equals(expected));
+      });
 
       test('17.7 Map shape', () {
         const json = '''
@@ -194,17 +210,19 @@ void main() {
           ..shapes = ShapeMap({
             structureId: StructureShape((b) => b
               ..shapeId.replace(structureId)
-              ..members.addAll({
+              ..members = NamedMembersMap({
                 'stringMember': MemberShape((b) => b
                   ..shapeId.replace(
-                      structureId.rebuild((b) => b.member = 'stringMember'))
+                      ShapeId.empty.rebuild((b) => b.member = 'stringMember'))
                   ..target.replace(stringId)
+                  ..memberName = 'stringMember'
                   ..traits = TraitMap({
                     requiredId: RequiredTrait(),
                   })),
                 'numberMember': MemberShape((b) => b
                   ..shapeId.replace(
-                      structureId.rebuild((b) => b.member = 'numberMember'))
+                      ShapeId.empty.rebuild((b) => b.member = 'numberMember'))
+                  ..memberName = 'numberMember'
                   ..target.replace(integerId)),
               }))
           }));

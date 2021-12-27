@@ -23,8 +23,7 @@ class _$UnionShapeSerializer implements StructuredSerializer<UnionShape> {
           specifiedType: const FullType(TraitMap)),
       'members',
       serializers.serialize(object.members,
-          specifiedType: const FullType(BuiltMap,
-              const [const FullType(String), const FullType(MemberShape)])),
+          specifiedType: const FullType(NamedMembersMap)),
     ];
 
     return result;
@@ -46,11 +45,9 @@ class _$UnionShapeSerializer implements StructuredSerializer<UnionShape> {
               specifiedType: const FullType(TraitMap)) as TraitMap;
           break;
         case 'members':
-          result.members.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltMap, const [
-                const FullType(String),
-                const FullType(MemberShape)
-              ]))!);
+          result.members = serializers.deserialize(value,
+                  specifiedType: const FullType(NamedMembersMap))
+              as NamedMembersMap;
           break;
       }
     }
@@ -65,7 +62,7 @@ class _$UnionShape extends UnionShape {
   @override
   final TraitMap traits;
   @override
-  final BuiltMap<String, MemberShape> members;
+  final NamedMembersMap members;
 
   factory _$UnionShape([void Function(UnionShapeBuilder)? updates]) =>
       (new UnionShapeBuilder()..update(updates)).build();
@@ -122,11 +119,9 @@ class UnionShapeBuilder
   TraitMap? get traits => _$this._traits;
   set traits(covariant TraitMap? traits) => _$this._traits = traits;
 
-  MapBuilder<String, MemberShape>? _members;
-  MapBuilder<String, MemberShape> get members =>
-      _$this._members ??= new MapBuilder<String, MemberShape>();
-  set members(covariant MapBuilder<String, MemberShape>? members) =>
-      _$this._members = members;
+  NamedMembersMap? _members;
+  NamedMembersMap? get members => _$this._members;
+  set members(covariant NamedMembersMap? members) => _$this._members = members;
 
   UnionShapeBuilder() {
     UnionShape._init(this);
@@ -137,7 +132,7 @@ class UnionShapeBuilder
     if ($v != null) {
       _shapeId = $v.shapeId.toBuilder();
       _traits = $v.traits;
-      _members = $v.members.toBuilder();
+      _members = $v.members;
       _$v = null;
     }
     return this;
@@ -163,15 +158,13 @@ class UnionShapeBuilder
               shapeId: shapeId.build(),
               traits: BuiltValueNullFieldError.checkNotNull(
                   traits, 'UnionShape', 'traits'),
-              members: members.build());
+              members: BuiltValueNullFieldError.checkNotNull(
+                  members, 'UnionShape', 'members'));
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'shapeId';
         shapeId.build();
-
-        _$failedField = 'members';
-        members.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'UnionShape', _$failedField, e.toString());

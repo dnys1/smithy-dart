@@ -19,6 +19,7 @@ abstract class BigDecimalShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(BigDecimalShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   @override

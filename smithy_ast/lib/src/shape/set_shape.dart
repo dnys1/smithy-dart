@@ -19,6 +19,7 @@ abstract class SetShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(SetShapeBuilder b) {
     b.shapeId.replace(ShapeId.empty);
+    b.traits ??= TraitMap({});
   }
 
   @override

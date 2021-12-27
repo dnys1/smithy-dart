@@ -7,6 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(ApplyShape.serializer)
       ..add(BigDecimalShape.serializer)
       ..add(BigIntegerShape.serializer)
       ..add(BlobShape.serializer)

@@ -11,7 +11,10 @@ abstract class ShapeId implements Built<ShapeId, ShapeIdBuilder> {
   factory ShapeId.parse(String id) => ShapeId(
         (b) => b
           ..namespace = id.split('#').first
-          ..name = id.split('#')[1]
+          ..name = id.substring(
+            id.indexOf('#') + 1,
+            id.contains('\$') ? id.indexOf('\$') : id.length,
+          )
           ..member = id.contains('\$') ? id.split('\$').last : null,
       );
 

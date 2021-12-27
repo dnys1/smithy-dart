@@ -2,9 +2,11 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
+import 'package:smithy_ast/src/shape/collection_shape.dart';
 import 'package:smithy_ast/src/shape/shape.dart';
 import 'package:smithy_ast/src/shape/shape_id.dart';
 import 'package:collection/collection.dart';
+import 'package:smithy_ast/src/shape/shape_type.dart';
 
 import 'serializers.dart';
 
@@ -48,17 +50,46 @@ class ShapeMapSerializer extends StructuredSerializer<ShapeMap> {
   ShapeMap deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final shapeMap = ShapeMap({});
+    final applyTraits = ShapeMap({});
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final shapeId = serializers.deserializeWith(
           ShapeId.serializer, iterator.current as String) as ShapeId;
       iterator.moveNext();
-      final Object? value = iterator.current;
-      shapeMap[shapeId] = serializers
+      final Map<String, Object?> value = (iterator.current as Map).cast();
+      final String type = value['type'] as String;
+      final Shape shape = serializers
           .deserializeWith(Shape.serializer,
               StandardJsonPlugin().beforeDeserialize(value, FullType(Shape)))!
           .rebuild((b) => b.shapeId.replace(shapeId));
+      if (ShapeType.valueOf(type) == ShapeType.apply) {
+        applyTraits[shapeId] = shape;
+      } else {
+        shapeMap[shapeId] = shape;
+      }
     }
+
+    // Apply traits to shape map
+    applyTraits.forEach((memberId, apply) {
+      final shapeId = memberId.rebuild((b) => b.member = null);
+      shapeMap.update(shapeId, (shape) {
+        final member = memberId.member;
+        if (member != null) {
+          if (shape is HasNamedMembers) {
+            (shape as HasNamedMembers).members.update(
+                  member,
+                  (member) => member..traits.addAll(apply.traits),
+                );
+          } else {
+            throw ArgumentError('Invalid member type');
+          }
+        } else {
+          shape = shape.rebuild((b) => b..traits!.addAll(apply.traits));
+        }
+        return shape;
+      });
+    });
+
     return shapeMap;
   }
 

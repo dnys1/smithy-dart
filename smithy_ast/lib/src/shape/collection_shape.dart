@@ -65,9 +65,9 @@ class NamedMembersMapSerializer extends StructuredSerializer<NamedMembersMap> {
   String get wireName => 'NamedMembersMap';
 }
 
-abstract class HasMembers implements CollectionShape {
-  BuiltList<MemberShape> get members => BuiltList([member]);
-}
+// abstract class HasMembers implements CollectionShape {
+//   BuiltList<MemberShape> get members => BuiltList([member]);
+// }
 
 /// Abstract class representing Set and List shapes.
 abstract class CollectionShape implements Shape {

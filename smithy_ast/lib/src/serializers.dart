@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
+import 'package:smithy_ast/src/shape/apply_shape.dart';
 import 'package:smithy_ast/src/shape/big_decimal_shape.dart';
 import 'package:smithy_ast/src/shape/big_integer_shape.dart';
 import 'package:smithy_ast/src/shape/blob_shape.dart';
@@ -37,6 +38,7 @@ part 'serializers.g.dart';
   SmithyAst,
   Shape,
   ShapeId,
+  ApplyShape,
   BigDecimalShape,
   BigIntegerShape,
   BlobShape,

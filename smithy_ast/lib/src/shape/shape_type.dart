@@ -1,4 +1,5 @@
 import 'package:smithy_ast/src/serializers.dart';
+import 'package:smithy_ast/src/shape/apply_shape.dart';
 import 'package:smithy_ast/src/shape/big_decimal_shape.dart';
 import 'package:smithy_ast/src/shape/big_integer_shape.dart';
 import 'package:smithy_ast/src/shape/blob_shape.dart';
@@ -33,9 +34,11 @@ enum Category {
   simple,
   aggregate,
   service,
+  apply,
 }
 
 class ShapeType extends EnumClass {
+  static const ShapeType apply = _$apply;
   static const ShapeType blob = _$blob;
   static const ShapeType boolean = _$boolean;
   static const ShapeType string = _$string;
@@ -79,6 +82,8 @@ class ShapeType extends EnumClass {
 extension ShapeTypeX on ShapeType {
   Category get category {
     switch (this) {
+      case ShapeType.apply:
+        return Category.apply;
       case ShapeType.blob:
       case ShapeType.boolean:
       case ShapeType.string:
@@ -110,6 +115,8 @@ extension ShapeTypeX on ShapeType {
 
   Type get type {
     switch (this) {
+      case ShapeType.apply:
+        return ApplyShape;
       case ShapeType.bigDecimal:
         return BigDecimalShape;
       case ShapeType.bigInteger:

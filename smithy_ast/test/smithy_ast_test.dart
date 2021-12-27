@@ -231,6 +231,53 @@ void main() {
             SmithyAst.fromJson(jsonDecode(json) as Map<String, Object?>);
         expect(decoded, equals(expected));
       });
+
+      test('Apply', () {
+        const json = r'''
+        {
+          "smithy": "1.0",
+          "shapes": {
+              "smithy.example#Struct": {
+                  "type": "structure",
+                  "members": {
+                      "foo": {
+                          "target": "smithy.api#String"
+                      }
+                  }
+              },
+              "smithy.example#Struct$foo": {
+                  "type": "apply",
+                  "traits": {
+                      "smithy.api#documentation": "My documentation string"
+                  }
+              }
+          }
+      }''';
+
+        final structId = ShapeId.parse('smithy.example#Struct');
+        final stringId = ShapeId.parse('smithy.api#String');
+
+        final expected = SmithyAst((b) => b
+          ..version = '1.0'
+          ..shapes = ShapeMap({
+            structId: StructureShape((b) => b
+              ..shapeId.replace(structId)
+              ..members = NamedMembersMap({
+                'foo': MemberShape((b) => b
+                  ..shapeId.member = 'foo'
+                  ..memberName = 'foo'
+                  ..target.replace(stringId)
+                  ..traits = TraitMap({
+                    DocumentationTrait.id: DocumentationTrait(
+                        (b) => b..value = 'My documentation string')
+                  }))
+              }))
+          }));
+
+        final decoded = SmithyAst.fromJson(jsonDecode(json));
+
+        expect(decoded, equals(expected));
+      });
     });
   });
 }

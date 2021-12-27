@@ -6,6 +6,7 @@ part of 'shape_type.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const ShapeType _$apply = const ShapeType._('apply');
 const ShapeType _$blob = const ShapeType._('blob');
 const ShapeType _$boolean = const ShapeType._('boolean');
 const ShapeType _$string = const ShapeType._('string');
@@ -31,6 +32,8 @@ const ShapeType _$operation = const ShapeType._('operation');
 
 ShapeType _$shapeTypeValueOf(String name) {
   switch (name) {
+    case 'apply':
+      return _$apply;
     case 'blob':
       return _$blob;
     case 'boolean':
@@ -82,6 +85,7 @@ ShapeType _$shapeTypeValueOf(String name) {
 
 final BuiltSet<ShapeType> _$shapeTypeValues =
     new BuiltSet<ShapeType>(const <ShapeType>[
+  _$apply,
   _$blob,
   _$boolean,
   _$string,

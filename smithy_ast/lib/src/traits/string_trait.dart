@@ -1,7 +1,7 @@
 import 'package:built_value/serializer.dart';
 import 'package:smithy_ast/src/traits/trait.dart';
 
-abstract class StringTrait implements Trait {
+abstract class StringTrait implements SimpleTrait {
   @override
   String get value;
 }

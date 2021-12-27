@@ -7,7 +7,6 @@ import 'package:smithy_ast/src/shape/shape_id.dart';
 import 'package:smithy_ast/src/shape/shape_ref.dart';
 import 'package:smithy_ast/src/shape/shape_type.dart';
 import 'package:smithy_ast/src/shape/shape_visitor.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
 
 part 'resource_shape.g.dart';
 

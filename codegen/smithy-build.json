@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "projections": {
+    "goldens": {
+      "plugins": {
+        "dart-codegen": {
+          "debug": true,
+          "name": "goldens",
+          "version": "0.1.0"
+        }
+      }
+    }
+  }
+}

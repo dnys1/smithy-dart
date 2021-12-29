@@ -1,0 +1,29 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'config.dart';
+
+// **************************************************************************
+// CliGenerator
+// **************************************************************************
+
+CodegenConfig _$parseCodegenConfigResult(ArgResults result) => CodegenConfig(
+    output: result['output'] as String,
+    inputFile: result['input-file'] as String?,
+    connect: result['connect'] as String?);
+
+ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
+  ..addOption('output',
+      abbr: 'o',
+      help:
+          'The directory to store generated files. Defaults to the current directory.',
+      defaultsTo: '.')
+  ..addOption('input-file', abbr: 'f', help: 'The input model JSON file.')
+  ..addOption('connect',
+      abbr: 'c', help: 'Address of gRPC server to connect to.');
+
+final _$parserForCodegenConfig = _$populateCodegenConfigParser(ArgParser());
+
+CodegenConfig parseCodegenConfig(List<String> args) {
+  final result = _$parserForCodegenConfig.parse(args);
+  return _$parseCodegenConfigResult(result);
+}

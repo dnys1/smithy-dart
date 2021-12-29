@@ -1,0 +1,11 @@
+name: complex_package
+version: 1.2.3
+description: A very complex package.
+repository: https://github.com/example/repo
+issue_tracker: https://github.com/example/repo/issues
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  smithy: ^0.1.0

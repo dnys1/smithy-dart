@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+service RemoteCodegen {
+    // Generate code for a particular service.
+    rpc CodegenService(ServiceRequest) returns (ServiceResult);
+}
+
+message ServiceRequest {
+    // The unique service name.
+    string serviceName = 1;
+
+    // The Smithy AST of a model with just the shapes in the closure.
+    string closureJson = 2;
+}
+
+message ServiceResult {
+    // Whether the operation was successful.
+    bool success = 1;
+
+    // The error, if success=true.
+    string error = 2;
+
+    // A map of namespaces to their generated definition file.
+    map<string, string> libraries = 3;
+}

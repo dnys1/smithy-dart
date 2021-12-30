@@ -1,0 +1,3 @@
+[submodule "playground/smithy"]
+	path = playground/smithy
+	url = https://github.com/awslabs/smithy.git

@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/exception.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
@@ -10,6 +11,7 @@ class CodegenContext {
     required this.shapes,
     required this.packageName,
     required this.serviceName,
+    this.pubspec,
   });
 
   /// The service closure's shape map.
@@ -20,6 +22,10 @@ class CodegenContext {
 
   /// The name of the service being generated.
   final String serviceName;
+
+  /// The pubspec of the package being generated. If included, dependencies will
+  /// be added as needed during code generation.
+  final Pubspec? pubspec;
 
   /// Returns the symbol or [Reference] for [shapeId].
   Reference symbolFor(ShapeId shapeId, {Shape? parentShape}) {

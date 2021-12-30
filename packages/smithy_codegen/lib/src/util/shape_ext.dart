@@ -1,6 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/model/smithy_library.dart';
+import 'package:smithy_codegen/src/service/codegen.pb.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 
 extension ShapeUtils on Shape {
@@ -27,9 +29,36 @@ extension ShapeUtils on Shape {
 
   /// The absolute `package` path of the library generated for this shape.
   String libraryUrl(String packageName, String serviceName) {
-    if (this is ServiceShape) {
-      return 'package:$packageName/src/${serviceName.snakeCase}.dart';
+    final smithyLibrary = this.smithyLibrary(packageName, serviceName);
+    return 'package:$packageName/${smithyLibrary.libRelativePath}';
+  }
+
+  /// The library directive name for this shape.
+  String libraryName(String packageName, String serviceName) {
+    return smithyLibrary(packageName, serviceName).libraryName;
+  }
+
+  /// The library type generated for this shape.
+  SmithyLibrary_LibraryType get libraryType {
+    switch (getType()) {
+      case ShapeType.service:
+        return SmithyLibrary_LibraryType.CLIENT;
+      case ShapeType.structure:
+      case ShapeType.union:
+        return SmithyLibrary_LibraryType.MODEL;
+      default:
+        return isEnum
+            ? SmithyLibrary_LibraryType.MODEL
+            : throw ArgumentError('Invalid shape type: ${getType()}');
     }
-    return 'package:$packageName/src/${serviceName.snakeCase}/${shapeId.name.snakeCase}.dart';
+  }
+
+  /// The smithy library for this shape.
+  SmithyLibrary smithyLibrary(String packageName, String serviceName) {
+    return SmithyLibrary()
+      ..packageName = packageName
+      ..serviceName = serviceName
+      ..libraryType = libraryType
+      ..filename = shapeId.name.snakeCase;
   }
 }

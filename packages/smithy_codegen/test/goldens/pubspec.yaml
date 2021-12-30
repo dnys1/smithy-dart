@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   smithy:
-    path: ../smithy
+    path: ../../../smithy
 
 dev_dependencies:
   lints: ^1.0.0

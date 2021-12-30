@@ -134,7 +134,9 @@ class SmithyAstBuilder implements Builder<SmithyAst, SmithyAstBuilder> {
   ShapeMap? get shapes => _$this._shapes;
   set shapes(ShapeMap? shapes) => _$this._shapes = shapes;
 
-  SmithyAstBuilder();
+  SmithyAstBuilder() {
+    SmithyAst._init(this);
+  }
 
   SmithyAstBuilder get _$this {
     final $v = _$v;

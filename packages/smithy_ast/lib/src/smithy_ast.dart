@@ -28,6 +28,11 @@ abstract class SmithyAst implements Built<SmithyAst, SmithyAstBuilder> {
   factory SmithyAst([void Function(SmithyAstBuilder) updates]) = _$SmithyAst;
   SmithyAst._();
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SmithyAstBuilder b) {
+    b.version = '1.0';
+  }
+
   @BuiltValueField(wireName: 'smithy')
   String get version;
   BuiltMap<String, Object?> get metadata;

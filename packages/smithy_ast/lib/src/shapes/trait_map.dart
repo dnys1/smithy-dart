@@ -6,6 +6,10 @@ import 'package:smithy_ast/src/traits/trait.dart';
 class TraitMap extends DelegatingMap<ShapeId, Trait> {
   const TraitMap(Map<ShapeId, Trait> traits) : super(traits);
 
+  /// Creates a [TraitMap] from [traits].
+  factory TraitMap.fromTraits(Iterable<Trait> traits) =>
+      TraitMap({for (var trait in traits) trait.getShapeId(): trait});
+
   @override
   bool operator ==(Object? other) =>
       identical(this, other) ||

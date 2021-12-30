@@ -113,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  build_version:
+    dependency: "direct main"
+    description:
+      name: build_version
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   built_collection:
     dependency: "direct main"
     description:
@@ -225,13 +232,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  goldens:
-    dependency: "direct dev"
-    description:
-      path: "../goldens"
-      relative: true
-    source: path
-    version: "1.0.0"
   googleapis_auth:
     dependency: transitive
     description:
@@ -331,7 +331,7 @@ packages:
     source: hosted
     version: "0.12.11"
   meta:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: meta
       url: "https://pub.dartlang.org"
@@ -387,14 +387,14 @@ packages:
     source: hosted
     version: "2.0.1"
   pub_semver:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
   pubspec_parse:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: pubspec_parse
       url: "https://pub.dartlang.org"
@@ -596,5 +596,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  yaml_edit:
+    dependency: "direct main"
+    description:
+      name: yaml_edit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
 sdks:
   dart: ">=2.15.0 <3.0.0"

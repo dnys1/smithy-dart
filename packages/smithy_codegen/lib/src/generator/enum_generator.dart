@@ -36,7 +36,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
   Class get _classDefinition => Class((c) {
         final docs = shape.docs;
         if (docs != null) {
-          c.docs.add(docs);
+          c.docs.add(formatDocs(docs));
         }
         c
           ..name = className
@@ -48,8 +48,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
           ..fields.addAll([
             ..._variantFields,
             _valuesField,
-          ])
-          ..methods.add(_toString);
+          ]);
       });
 
   /// The private constructor which is used internally.
@@ -101,15 +100,21 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
   /// Enumerated value fields, as `static const` properties.
   Iterable<Field> get _variantFields =>
       sortedDefinitions.mapIndexed((index, definition) {
-        return Field((f) => f
-          ..static = true
-          ..modifier = FieldModifier.constant
-          ..name = definition.variantName
-          ..assignment = symbol.newInstanceNamed('_', [
-            literalNum(index),
-            literalString(definition.variantName),
-            literalString(definition.value),
-          ]).code);
+        return Field((f) {
+          final docs = definition.documentation;
+          if (docs != null) {
+            f.docs.add(formatDocs(docs));
+          }
+          f
+            ..static = true
+            ..modifier = FieldModifier.constant
+            ..name = definition.variantName
+            ..assignment = symbol.newInstanceNamed('_', [
+              literalNum(index),
+              literalString(definition.variantName),
+              literalString(definition.value),
+            ]).code;
+        });
       });
 
   /// The static `values` field with all enum values.
@@ -118,20 +123,11 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
           ..static = true
           ..modifier = FieldModifier.constant
           ..name = 'values'
+          ..docs.add('/// All values of [$className].')
           ..assignment = literalList(
             sortedDefinitions.map((e) => symbol.property(e.variantName)),
             symbol,
           ).code,
-      );
-
-  /// The `toString` override.
-  Method get _toString => Method(
-        (m) => m
-          ..annotations.add(refer('override'))
-          ..returns = DartTypes.core.string
-          ..name = 'toString'
-          ..lambda = true
-          ..body = refer('value').code,
       );
 
   /// Adds helper functions `byName` and `byValue` via an extension.
@@ -144,6 +140,11 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
         (m) => m
           ..returns = symbol
           ..name = 'byName'
+          ..docs.addAll([
+            '/// Returns the value of [$className] whose name matches [name].',
+            '/// ',
+            '/// Throws a `StateError` if no matching value is found.',
+          ])
           ..requiredParameters.add(Parameter((p) => p
             ..type = DartTypes.core.string
             ..name = 'name'))
@@ -153,7 +154,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
               (c) => c
                 ..lambda = true
                 ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                ..body = refer('el').equalTo(refer('name')).code,
+                ..body =
+                    refer('el').property('name').equalTo(refer('name')).code,
             ).closure,
           ]).code,
       ),
@@ -163,6 +165,11 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
         (m) => m
           ..returns = symbol
           ..name = 'byValue'
+          ..docs.addAll([
+            '/// Returns the value of [$className] whose value matches [value].',
+            '/// ',
+            '/// Throws a `StateError` if no matching value is found.',
+          ])
           ..requiredParameters.add(Parameter((p) => p
             ..type = DartTypes.core.string
             ..name = 'value'))

@@ -7,6 +7,14 @@ import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';
 import 'package:smithy_codegen/src/generator/visitors/default.dart';
 
+/// Wrapper over [Library] with context for its creation.
+class ShapeLibrary {
+  const ShapeLibrary(this.shape, this.library);
+
+  final Shape shape;
+  final Library library;
+}
+
 /// Visits shapes to create libraries as needed. Only certain shape types are
 /// given their own library file.
 class LibraryVisitor extends DefaultVisitor<Library> {

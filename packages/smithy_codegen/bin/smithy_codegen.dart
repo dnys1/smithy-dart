@@ -18,24 +18,27 @@ void main(List<String> args) async {
 
   if (config.server) {
     // Connect server at local port.
-    final server = Server([RemoteCodegenService()]);
+    final server = Server([CodegenService()]);
     await server.serve(address: InternetAddress.loopbackIPv4, port: 0);
 
     // Write the port to stdout so that clients can connect.
     stdout.writeln(server.port);
-  } else {
-    // Read from stdin
-    final json = stdin.readLineSync(encoding: utf8);
-    if (json == null) {
-      usage();
-    }
-    final SmithyAst ast;
-    try {
-      ast = parseAstJson(json);
-    } catch (e) {
-      stderr.writeln(e.toString());
-      usage();
-    }
+    return;
+  }
+
+  // Read from stdin or inputFile, depending on configuration.
+  final String? json = config.inputFile != null
+      ? File(config.inputFile!).readAsStringSync()
+      : stdin.readLineSync(encoding: utf8);
+  if (json == null) {
+    usage();
+  }
+  final SmithyAst ast;
+  try {
+    ast = parseAstJson(json);
+  } catch (e) {
+    stderr.writeln(e.toString());
+    usage();
   }
 }
 

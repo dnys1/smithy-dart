@@ -66,6 +66,9 @@ class _Core {
   /// Creates an [core.Object] reference.
   Reference get object => const Reference('Object', _url);
 
+  /// Creates a [core.override] reference.
+  Reference get override => const Reference('override', _url);
+
   /// Creates a [core.Set] reference.
   Reference set(Reference ref) => TypeReference(
         (t) => t

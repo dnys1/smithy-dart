@@ -10,7 +10,7 @@ class MyEnum extends _i0.SmithyEnum<MyEnum> {
   const MyEnum._(int index, String name, String value)
       : super(index, name, value);
 
-  const MyEnum.unknown(String value) : super.unknown(value);
+  const MyEnum.sdkUnknown(String value) : super.sdkUnknown(value);
 
   /// Documentation for BAR
   static const bar = MyEnum._(0, 'bar', 'BAR');
@@ -27,13 +27,10 @@ class MyEnum extends _i0.SmithyEnum<MyEnum> {
 }
 
 extension $MyEnum on List<MyEnum> {
-  MyEnum? byName(String? name) => firstWhereOrNull((el) => el.name == name);
+  MyEnum byName(String name) => firstWhere((el) => el.name == name);
 
-  MyEnum? byValue(String? value) {
-    if (value == null) return null;
-    return firstWhere(
-      (el) => el.value == value,
-      orElse: () => MyEnum.unknown(value),
-    );
-  }
+  MyEnum byValue(String value) => firstWhere(
+        (el) => el.value == value,
+        orElse: () => MyEnum.sdkUnknown(value),
+      );
 }

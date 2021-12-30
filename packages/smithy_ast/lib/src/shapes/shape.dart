@@ -1,5 +1,6 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:collection/collection.dart';
 import 'package:smithy_ast/src/shapes/shape_visitor.dart';
 import 'package:smithy_ast/src/shapes/trait_map.dart';
 import 'package:smithy_ast/src/traits/trait.dart';
@@ -27,6 +28,9 @@ abstract class Shape {
 }
 
 extension ShapeUtils on Shape {
+  /// Returns the trait of type [T], if it exists on the shape.
+  T? getTrait<T extends Trait>() => traits.values.whereType<T>().firstOrNull;
+
   /// Whether the shape has a trait of type [T].
   bool hasTrait<T extends Trait>() => traits.values.any((t) => t is T);
 

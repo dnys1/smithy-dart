@@ -2,3 +2,5 @@
 library smithy_codegen;
 
 export 'src/config.dart';
+export 'src/generate.dart';
+export 'src/generator/context.dart';

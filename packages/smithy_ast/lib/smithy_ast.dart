@@ -54,3 +54,6 @@ export 'src/traits/examples_trait.dart';
 export 'src/traits/required_trait.dart';
 export 'src/traits/string_trait.dart';
 export 'src/traits/trait.dart';
+
+// Util
+export 'src/util/shape_ext.dart';

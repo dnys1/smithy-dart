@@ -5,5 +5,5 @@ plugins {
 }
 
 java {
-    sourceSets.getByName("main").resources.srcDir("../../proto")
+    sourceSets.getByName("main").resources.srcDir("../../protos")
 }

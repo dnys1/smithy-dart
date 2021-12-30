@@ -10,6 +10,11 @@ abstract class EnumDefinition
       _$EnumDefinition;
   EnumDefinition._();
 
+  @BuiltValueHook(finalizeBuilder: true)
+  static void _init(EnumDefinitionBuilder b) {
+    b.deprecated ??= false;
+  }
+
   String get value;
   String? get documentation;
   BuiltList<String> get tags;

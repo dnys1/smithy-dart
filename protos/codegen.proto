@@ -6,11 +6,14 @@ service RemoteCodegen {
 }
 
 message ServiceRequest {
+    // The package name being generated.
+    string packageName = 1;
+
     // The unique service name.
-    string serviceName = 1;
+    string serviceName = 2;
 
     // The Smithy AST of a model with just the shapes in the closure.
-    string closureJson = 2;
+    string closureJson = 3;
 }
 
 message ServiceResult {

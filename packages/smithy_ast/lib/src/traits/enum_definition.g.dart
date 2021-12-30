@@ -212,6 +212,7 @@ class EnumDefinitionBuilder
 
   @override
   _$EnumDefinition build() {
+    EnumDefinition._init(this);
     _$EnumDefinition _$result;
     try {
       _$result = _$v ??

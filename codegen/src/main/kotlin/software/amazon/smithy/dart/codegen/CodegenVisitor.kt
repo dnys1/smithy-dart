@@ -143,13 +143,6 @@ class CodegenVisitor(context: PluginContext) {
     }
 
     fun execute() {
-        // Generate a port to start the server on
-        val port = Random(Instant.now().epochSecond).nextInt(1024, 65536)
-        val channel = ManagedChannelBuilder.forAddress("localhost", port)
-            .idleTimeout(15, TimeUnit.SECONDS)
-            .usePlaintext()
-            .build()
-
         // Activate server
         logger.info("Activating codegen server...")
         val activateCommand = ProcessBuilder()
@@ -163,11 +156,17 @@ class CodegenVisitor(context: PluginContext) {
         logger.info("Successfully activated codegen server.")
 
         // Start server process
-        logger.info("Starting codegen server at localhost:${port}...")
+        logger.info("Starting codegen server...")
         val server = ProcessBuilder()
-            .command("dart", "pub", "global", "run", "smithy_codegen", "--connect", "http://localhost:${port}")
+            .command("dart", "pub", "global", "run", "smithy_codegen", "--server")
             .start()
+        val portStr = server.inputStream.bufferedReader().readLine()
+        val port = portStr.toIntOrNull() ?: throw Exception("Could not parse port: $portStr")
 
+        val channel = ManagedChannelBuilder.forAddress("localhost", port)
+            .idleTimeout(15, TimeUnit.SECONDS)
+            .usePlaintext()
+            .build()
         val client = RemoteCodegenClient(channel)
 
         val dependencies = mutableSetOf<SymbolDependency>()
@@ -197,6 +196,7 @@ class CodegenVisitor(context: PluginContext) {
             if (!result.success) {
                 throw Exception(result.error)
             }
+            logger.info("Successfully generated client for $serviceName.")
 
             // Write library file
             val libraryNamespace = DartNamespace(

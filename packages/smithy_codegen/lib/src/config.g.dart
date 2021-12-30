@@ -9,7 +9,7 @@ part of 'config.dart';
 CodegenConfig _$parseCodegenConfigResult(ArgResults result) => CodegenConfig(
     output: result['output'] as String,
     inputFile: result['input-file'] as String?,
-    connect: result['connect'] as String?);
+    server: result['server'] as bool);
 
 ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
   ..addOption('output',
@@ -18,8 +18,8 @@ ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
           'The directory to store generated files. Defaults to the current directory.',
       defaultsTo: '.')
   ..addOption('input-file', abbr: 'f', help: 'The input model JSON file.')
-  ..addOption('connect',
-      abbr: 'c', help: 'Address of gRPC server to connect to.');
+  ..addFlag('server',
+      abbr: 's', help: 'Starts a gRPC server for accepting commands.');
 
 final _$parserForCodegenConfig = _$populateCodegenConfigParser(ArgParser());
 

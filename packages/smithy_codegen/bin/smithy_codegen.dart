@@ -16,14 +16,13 @@ void main(List<String> args) async {
     usage();
   }
 
-  final connectUri = config.connectUri;
-  if (connectUri != null) {
-    // Connect server at the given port
+  if (config.server) {
+    // Connect server at local port.
     final server = Server([RemoteCodegenService()]);
-    await server.serve(
-      address: InternetAddress.loopbackIPv4,
-      port: connectUri.port,
-    );
+    await server.serve(address: InternetAddress.loopbackIPv4, port: 0);
+
+    // Write the port to stdout so that clients can connect.
+    stdout.writeln(server.port);
   } else {
     // Read from stdin
     final json = stdin.readLineSync(encoding: utf8);

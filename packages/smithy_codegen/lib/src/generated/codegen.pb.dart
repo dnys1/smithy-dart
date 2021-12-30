@@ -11,17 +11,22 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 class ServiceRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ServiceRequest', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'serviceName', protoName: 'serviceName')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'closureJson', protoName: 'closureJson')
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'packageName', protoName: 'packageName')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'serviceName', protoName: 'serviceName')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'closureJson', protoName: 'closureJson')
     ..hasRequiredFields = false
   ;
 
   ServiceRequest._() : super();
   factory ServiceRequest({
+    $core.String? packageName,
     $core.String? serviceName,
     $core.String? closureJson,
   }) {
     final _result = create();
+    if (packageName != null) {
+      _result.packageName = packageName;
+    }
     if (serviceName != null) {
       _result.serviceName = serviceName;
     }
@@ -52,22 +57,31 @@ class ServiceRequest extends $pb.GeneratedMessage {
   static ServiceRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get serviceName => $_getSZ(0);
+  $core.String get packageName => $_getSZ(0);
   @$pb.TagNumber(1)
-  set serviceName($core.String v) { $_setString(0, v); }
+  set packageName($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasServiceName() => $_has(0);
+  $core.bool hasPackageName() => $_has(0);
   @$pb.TagNumber(1)
-  void clearServiceName() => clearField(1);
+  void clearPackageName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get closureJson => $_getSZ(1);
+  $core.String get serviceName => $_getSZ(1);
   @$pb.TagNumber(2)
-  set closureJson($core.String v) { $_setString(1, v); }
+  set serviceName($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasClosureJson() => $_has(1);
+  $core.bool hasServiceName() => $_has(1);
   @$pb.TagNumber(2)
-  void clearClosureJson() => clearField(2);
+  void clearServiceName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get closureJson => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set closureJson($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasClosureJson() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearClosureJson() => clearField(3);
 }
 
 class ServiceResult extends $pb.GeneratedMessage {

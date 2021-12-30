@@ -13,7 +13,7 @@ class CodegenConfig {
   const CodegenConfig({
     required this.output,
     this.inputFile,
-    this.connect,
+    required this.server,
   });
 
   @CliOption(
@@ -27,14 +27,15 @@ class CodegenConfig {
   @CliOption(abbr: 'f', help: 'The input model JSON file.')
   final String? inputFile;
 
-  @CliOption(abbr: 'c', help: 'Address of gRPC server to connect to.')
-  final String? connect;
+  @CliOption(
+    abbr: 's',
+    defaultsTo: false,
+    help: 'Starts a gRPC server for accepting commands.',
+  )
+  final bool server;
 }
 
 extension ConfigOptions on CodegenConfig {
-  /// The connect URI, if available.
-  Uri? get connectUri => connect == null ? null : Uri.parse(connect!);
-
   /// The output directory as a file URI.
   Uri get outputUri => path.toUri(output);
 

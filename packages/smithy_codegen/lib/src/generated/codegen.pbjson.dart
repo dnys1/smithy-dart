@@ -12,13 +12,14 @@ import 'dart:typed_data' as $typed_data;
 const ServiceRequest$json = const {
   '1': 'ServiceRequest',
   '2': const [
-    const {'1': 'serviceName', '3': 1, '4': 1, '5': 9, '10': 'serviceName'},
-    const {'1': 'closureJson', '3': 2, '4': 1, '5': 9, '10': 'closureJson'},
+    const {'1': 'packageName', '3': 1, '4': 1, '5': 9, '10': 'packageName'},
+    const {'1': 'serviceName', '3': 2, '4': 1, '5': 9, '10': 'serviceName'},
+    const {'1': 'closureJson', '3': 3, '4': 1, '5': 9, '10': 'closureJson'},
   ],
 };
 
 /// Descriptor for `ServiceRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List serviceRequestDescriptor = $convert.base64Decode('Cg5TZXJ2aWNlUmVxdWVzdBIgCgtzZXJ2aWNlTmFtZRgBIAEoCVILc2VydmljZU5hbWUSIAoLY2xvc3VyZUpzb24YAiABKAlSC2Nsb3N1cmVKc29u');
+final $typed_data.Uint8List serviceRequestDescriptor = $convert.base64Decode('Cg5TZXJ2aWNlUmVxdWVzdBIgCgtwYWNrYWdlTmFtZRgBIAEoCVILcGFja2FnZU5hbWUSIAoLc2VydmljZU5hbWUYAiABKAlSC3NlcnZpY2VOYW1lEiAKC2Nsb3N1cmVKc29uGAMgASgJUgtjbG9zdXJlSnNvbg==');
 @$core.Deprecated('Use serviceResultDescriptor instead')
 const ServiceResult$json = const {
   '1': 'ServiceResult',

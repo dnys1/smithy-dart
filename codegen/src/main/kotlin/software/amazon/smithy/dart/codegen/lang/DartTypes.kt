@@ -5,12 +5,6 @@
 
 package software.amazon.smithy.dart.codegen.lang
 
-import software.amazon.smithy.codegen.core.Symbol
-import software.amazon.smithy.codegen.core.SymbolReference
-import software.amazon.smithy.dart.codegen.model.SymbolProperty.BUILT_IN_KEY
-import software.amazon.smithy.dart.codegen.model.buildSymbol
-import sun.jvm.hotspot.debugger.cdbg.Sym
-
 /**
  * Test if a string is a valid Dart identifier
  *
@@ -26,17 +20,6 @@ fun isValidDartIdentifier(s: String): Boolean {
     }
     return true
 }
-
-/**
- * Flag indicating if this symbol is a Kotlin built-in symbol
- */
-val Symbol.isBuiltIn: Boolean
-    get() = getProperty(BUILT_IN_KEY).orElse(false) == true
-
-/**
- * Escape characters in strings to ensure they are treated as pure literals.
- */
-fun String.toEscapedLiteral(): String = replace("\$", "\\$")
 
 /**
  * Return true if string is valid package namespace, false otherwise.

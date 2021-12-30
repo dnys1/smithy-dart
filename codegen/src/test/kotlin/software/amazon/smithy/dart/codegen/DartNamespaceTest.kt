@@ -1,6 +1,8 @@
-package software.amazon.smithy.dart.codegen.model
+package software.amazon.smithy.dart.codegen
 
 import org.junit.jupiter.api.Test
+import software.amazon.smithy.dart.codegen.model.DartNamespace
+import software.amazon.smithy.dart.codegen.model.LibraryType
 import kotlin.test.assertEquals
 
 class DartNamespaceTest {

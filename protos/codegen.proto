@@ -1,28 +1,55 @@
 syntax = "proto3";
 
-service RemoteCodegen {
-    // Generate code for a particular service.
-    rpc CodegenService(ServiceRequest) returns (ServiceResult);
+service CodegenService {
+    // Generate code for a model closure.
+    rpc Codegen(CodegenRequest) returns (CodegenResponse);
 }
 
-message ServiceRequest {
-    // The package name being generated.
+// Metadata about the Smithy library being generated.
+message SmithyLibrary {
+    // The package name.
     string packageName = 1;
 
     // The unique service name.
     string serviceName = 2;
 
-    // The Smithy AST of a model with just the shapes in the closure.
-    string closureJson = 3;
+    // The type of library.
+    enum LibraryType {
+        MODEL = 0;
+        CLIENT = 1;
+        SERVICE = 2;
+    }
+    LibraryType libraryType = 3;
+
+    // The name of the file.
+    string filename = 4;
 }
 
-message ServiceResult {
+message CodegenRequest {
+    /// The plugin settings.
+    map<string, string> settings = 1;
+
+    /// The name of the service being generated.
+    string serviceName = 2;
+
+    // The Smithy AST of a model with just the shapes being generated.
+    string json = 3;
+}
+
+message CodegenResponse {
     // Whether the operation was successful.
     bool success = 1;
 
-    // The error, if success=true.
+    // The error, if `success == true`.
     string error = 2;
 
-    // A map of namespaces to their generated definition file.
-    map<string, string> libraries = 3;
+    // The pubspec YAML.
+    string pubspec = 3;
+
+    // Libraries and their generated definition file.
+    message Library {
+        SmithyLibrary metadata = 1;
+        string definition = 2;
+    }
+    repeated Library libraries = 4;
 }

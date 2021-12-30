@@ -1,7 +1,7 @@
 package software.amazon.smithy.dart.codegen.model
 
 import software.amazon.smithy.codegen.core.CodegenException
-import software.amazon.smithy.dart.codegen.core.DartSymbolProvider
+import software.amazon.smithy.dart.codegen.CodegenVisitor
 import software.amazon.smithy.dart.codegen.model.traits.OperationInput
 import software.amazon.smithy.dart.codegen.model.traits.OperationOutput
 import software.amazon.smithy.dart.codegen.model.traits.SYNTHETIC_NAMESPACE
@@ -78,7 +78,7 @@ object OperationNormalizer {
         val shapes = Walker(model).iterateShapes(model.expectShape(service))
         val shapesResultingInType = shapes.asSequence().filter {
             // remove trait definitions (which are also structures)
-            !it.hasTrait<Trait>() && DartSymbolProvider.isTypeGeneratedForShape(it)
+            !it.hasTrait<Trait>() && CodegenVisitor.isTypeGeneratedForShape(it)
         }.toList()
 
         val possibleConflicts = shapesResultingInType.filter { it.id.name in newNames }

@@ -3,9 +3,6 @@ package software.amazon.smithy.dart.codegen
 import software.amazon.smithy.codegen.core.CodegenException
 import software.amazon.smithy.dart.codegen.core.capitalize
 import software.amazon.smithy.dart.codegen.lang.isValidPackageName
-import software.amazon.smithy.dart.codegen.model.Environment
-import software.amazon.smithy.dart.codegen.model.Pubspec
-import software.amazon.smithy.dart.codegen.model.semver.Version
 import software.amazon.smithy.dart.codegen.utils.getOrNull
 import software.amazon.smithy.dart.codegen.utils.toSmithyIDL
 import software.amazon.smithy.model.Model
@@ -27,7 +24,6 @@ const val PACKAGE_PUBLISH_TO = "publish_to"
 const val PACKAGE_REPOSITORY = "repository"
 const val PACKAGE_ISSUE_TRACKER = "issue_tracker"
 const val PACKAGE_SDK_VERSION = "sdk_version"
-const val DEBUG = "debug"
 
 /**
  * Settings for the Dart code generator.
@@ -37,8 +33,7 @@ const val DEBUG = "debug"
  */
 class DartSettings(
     val services: List<ShapeId>,
-    val pubspec: Pubspec,
-    val debug: Boolean = false,
+    val map: Map<String, String>,
 ) {
     /**
      * Get the corresponding [ServiceShape] from a model.
@@ -85,30 +80,26 @@ class DartSettings(
                 throw CodegenException("Invalid package name, is empty or has invalid characters: '$packageName'")
             }
 
-            val version = Version.parse(config.expectStringMember(PACKAGE_VERSION).value)
+            val version = config.expectStringMember(PACKAGE_VERSION).value
             val desc = config.getStringMemberOrDefault(PACKAGE_DESCRIPTION, "${packageName.capitalize()} models")
-            val homepage = config.getStringMember(PACKAGE_HOMEPAGE).getOrNull()?.value
-            val publishTo = config.getStringMember(PACKAGE_PUBLISH_TO).getOrNull()?.value
-            val repository = config.getStringMember(PACKAGE_REPOSITORY).getOrNull()?.value
-            val issueTracker = config.getStringMember(PACKAGE_ISSUE_TRACKER).getOrNull()?.value
-            val sdkVersion = config.getStringMember(PACKAGE_SDK_VERSION).getOrNull()?.value
-            val debug = config.getBooleanMember(DEBUG).getOrNull()?.value ?: false
+            val homepage = config.getStringMember(PACKAGE_HOMEPAGE).getOrNull()?.value ?: ""
+            val publishTo = config.getStringMember(PACKAGE_PUBLISH_TO).getOrNull()?.value ?: ""
+            val repository = config.getStringMember(PACKAGE_REPOSITORY).getOrNull()?.value ?: ""
+            val issueTracker = config.getStringMember(PACKAGE_ISSUE_TRACKER).getOrNull()?.value ?: ""
+            val sdkVersion = config.getStringMember(PACKAGE_SDK_VERSION).getOrNull()?.value ?: ""
 
             return DartSettings(
                 serviceIds,
-                Pubspec(
-                    packageName,
-                    version,
-                    desc,
-                    homepage,
-                    publishTo,
-                    repository,
-                    issueTracker,
-                    environment = Environment(
-                        if (sdkVersion != null) Version.parse(sdkVersion) else Version(2, 12, 0)
-                    ),
+                mapOf(
+                    PACKAGE_NAME to packageName,
+                    PACKAGE_VERSION to version,
+                    PACKAGE_DESCRIPTION to desc,
+                    PACKAGE_HOMEPAGE to homepage,
+                    PACKAGE_PUBLISH_TO to publishTo,
+                    PACKAGE_REPOSITORY to repository,
+                    PACKAGE_ISSUE_TRACKER to issueTracker,
+                    PACKAGE_SDK_VERSION to sdkVersion,
                 ),
-                debug,
             )
         }
 

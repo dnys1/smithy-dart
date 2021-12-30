@@ -1,34 +1,38 @@
 package software.amazon.smithy.dart.codegen
 
 import Codegen
-import RemoteCodegenGrpcKt
+import CodegenServiceGrpcKt
+import codegenRequest
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import kotlinx.coroutines.runBlocking
-import serviceRequest
 import software.amazon.smithy.build.FileManifest
 import software.amazon.smithy.build.PluginContext
-import software.amazon.smithy.codegen.core.SymbolDependency
-import software.amazon.smithy.dart.codegen.core.DartDelegator
 import software.amazon.smithy.dart.codegen.core.snakeCase
-import software.amazon.smithy.dart.codegen.model.DartNamespace
-import software.amazon.smithy.dart.codegen.model.LibraryType
 import software.amazon.smithy.dart.codegen.model.OperationNormalizer
+import software.amazon.smithy.dart.codegen.model.isEnum
 import software.amazon.smithy.model.Model
 import software.amazon.smithy.model.neighbor.Walker
 import software.amazon.smithy.model.node.Node
 import software.amazon.smithy.model.shapes.ModelSerializer
 import software.amazon.smithy.model.shapes.ServiceShape
+import software.amazon.smithy.model.shapes.Shape
 import software.amazon.smithy.model.shapes.ShapeId
 import software.amazon.smithy.model.transform.ModelTransformer
 import java.io.Closeable
-import java.time.Instant
 import java.util.concurrent.TimeUnit
 import java.util.logging.Logger
-import kotlin.random.Random
 
 class CodegenVisitor(context: PluginContext) {
     companion object {
+        /**
+         * Determines if a new Dart type is generated for a given shape. Generally only structures, unions, and enums
+         * result in a type being generated. Strings, ints, etc are mapped to builtins
+         */
+        fun isTypeGeneratedForShape(shape: Shape): Boolean =
+            // pretty much anything we visit in CodegenVisitor (we don't care about service shape here though)
+            shape.isEnum || shape.isStructureShape || shape.isUnionShape
+
         /**
          * Create unique library names for each service if there are conflicting values. Note: This does not affect any
          * generated type names, only their library (file) names - which must be unique.
@@ -128,11 +132,6 @@ class CodegenVisitor(context: PluginContext) {
      */
     private val services: List<ServiceShape>
 
-    /**
-     * Dart project utilities helper.
-     */
-    private val project = DartProject(settings.pubspec.name, fileManifest, settings)
-
     init {
         val resolvedModel = context.model
 
@@ -169,19 +168,14 @@ class CodegenVisitor(context: PluginContext) {
             .build()
         val client = RemoteCodegenClient(channel)
 
-        val dependencies = mutableSetOf<SymbolDependency>()
         val serviceNames = resolveServiceNames(services.map(ServiceShape::getId))
 
-        // Walk each service closure and generate top-level library files accordingly
+        // Send each service closure to the Dart code generator
         for (service in services) {
             logger.info("Generating Dart client for service $service")
             logger.info("Walking shapes from $service to find shapes to generate")
 
             val serviceName: String = serviceNames[service.id]!!
-            val symbolProvider =
-                DartCodegenPlugin.createSymbolProvider(model, settings.pubspec.name, service.id, serviceName)
-            val writers = DartDelegator(settings, model, fileManifest, symbolProvider)
-
             val modelWithoutTraits = ModelTransformer.create().getModelWithoutTraitShapes(model)
             val serviceClosureShapes = Walker(modelWithoutTraits).walkShapes(service)
             val serviceClosureJson = Node.printJson(ModelSerializer.builder().shapeFilter {
@@ -191,45 +185,54 @@ class CodegenVisitor(context: PluginContext) {
             }.build().serialize(modelWithoutTraits))
 
             val result = runBlocking {
-                client.codegen(serviceName, serviceClosureJson)
+                client.codegen(settings.map, serviceName, serviceClosureJson)
             }
             if (!result.success) {
                 throw Exception(result.error)
             }
             logger.info("Successfully generated client for $serviceName.")
 
-            // Write library file
-            val libraryNamespace = DartNamespace(
-                settings.pubspec.name,
-                serviceName,
-                LibraryType.Service,
-                serviceName,
-            )
-            project.writeLibraryFile(libraryNamespace, writers.libraries.toList())
+            result.librariesList.forEach { library ->
+                fileManifest.writeFile(library.metadata.path, library.definition)
+            }
 
-            dependencies.addAll(writers.dependencies)
-            writers.flushWriters()
+            if (!fileManifest.hasFile("pubspec.yaml")) {
+                fileManifest.writeFile("pubspec.yaml", result.pubspec)
+            }
         }
-
-        // Write build files
-        project.writePubspec(dependencies.toList())
 
         server.destroy()
     }
 }
 
+/**
+ * The project relative path.
+ */
+val Codegen.SmithyLibrary.path: String
+    get() = when (libraryType) {
+        Codegen.SmithyLibrary.LibraryType.SERVICE -> "lib/${filename}.dart"
+        Codegen.SmithyLibrary.LibraryType.CLIENT -> "lib/src/${serviceName}/${filename}.dart"
+        Codegen.SmithyLibrary.LibraryType.MODEL -> "lib/${serviceName}/model/${filename}.dart"
+        else -> throw Exception("Unknown library type: $libraryType")
+    }
+
+/**
+ * Client for connecting to Dart codegen server.
+ */
 class RemoteCodegenClient(private val channel: ManagedChannel) : Closeable {
-    private val stub = RemoteCodegenGrpcKt.RemoteCodegenCoroutineStub(channel)
+    private val stub = CodegenServiceGrpcKt.CodegenServiceCoroutineStub(channel)
 
     suspend fun codegen(
+        settings: Map<String, String>,
         serviceName: String,
-        closureJson: String
-    ): Codegen.ServiceResult {
-        val request = serviceRequest {
+        json: String
+    ): Codegen.CodegenResponse {
+        val request = codegenRequest {
+            this.settings.putAll(settings)
             this.serviceName = serviceName
-            this.closureJson = closureJson
+            this.json = json
         }
-        return stub.codegenService(request)
+        return stub.codegen(request)
     }
 
     override fun close() {

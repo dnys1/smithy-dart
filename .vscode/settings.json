@@ -1,0 +1,5 @@
+{
+    "files.exclude": {
+        "codegen/build/**": true
+    }
+}

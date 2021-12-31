@@ -1,9 +1,14 @@
-namespace com.test
+namespace com.test.common
+
+service Test {
+    version: "1.0.0",
+    operations: [GetFoo]
+}
 
 structure Qux { }
 
 @documentation("This *is* documentation about the shape.")
-structure MyStruct {
+structure GetFooInput {
     foo: String,
     object: String,
     @documentation("This *is* documentation about the member.")
@@ -11,4 +16,8 @@ structure MyStruct {
     baz: Integer,
     Quux: Qux,
     byteValue: Byte
+}
+
+operation GetFoo {
+    input: GetFooInput
 }

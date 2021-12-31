@@ -8,8 +8,10 @@ environment:
 
 dependencies:
   smithy:
-    path: ../../../smithy
+    path: ../smithy
 
 dev_dependencies:
   lints: ^1.0.0
+  smithy_codegen:
+    path: ../smithy_codegen
   test: ^1.16.0

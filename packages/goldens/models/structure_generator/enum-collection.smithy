@@ -1,20 +1,12 @@
 /// Test: Generates collection types for maps with enum values
 
 $version: "1"
-namespace com.test
+namespace com.test.enum_collection
 
-/// use aws.protocols#restJson1
-
-/// @restJson1
-/// service Example {
-///     version: "1.0.0",
-///     operations: [GetFoo]
-/// }
-
-/// @http(method: "POST", uri: "/input/list")
-/// operation GetFoo {
-///     input: GetFooInput
-/// }
+service Test {
+    version: "1.0.0",
+    operations: [GetFoo]
+}
 
 @enum([
     {
@@ -28,10 +20,13 @@ namespace com.test
 ])
 string MyEnum
 
-@sparse
 map EnumMap {
     key: String,
     value: MyEnum
+}
+
+operation GetFoo {
+    input: GetFooInput
 }
 
 structure GetFooInput {

@@ -8,7 +8,7 @@ class TraitMap extends DelegatingMap<ShapeId, Trait> {
 
   /// Creates a [TraitMap] from [traits].
   factory TraitMap.fromTraits(Iterable<Trait> traits) =>
-      TraitMap({for (var trait in traits) trait.getShapeId(): trait});
+      TraitMap({for (var trait in traits) trait.shapeId: trait});
 
   @override
   bool operator ==(Object? other) =>
@@ -23,27 +23,22 @@ class TraitMapSerializer extends StructuredSerializer<TraitMap> {
   @override
   TraitMap deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final shapeMap = TraitMap({});
+    final traitMap = TraitMap({});
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final shapeId = serializers.deserializeWith(
           ShapeId.serializer, iterator.current as String) as ShapeId;
       iterator.moveNext();
       final Object? value = iterator.current;
-      shapeMap[shapeId] =
-          serializers.deserializeWith(Trait.serializers[shapeId]!, value)!;
+      traitMap[shapeId] = Trait.fromJson(shapeId, value);
     }
-    return shapeMap;
+    return traitMap;
   }
 
   @override
   Iterable<Object?> serialize(Serializers serializers, TraitMap object,
       {FullType specifiedType = FullType.unspecified}) sync* {
-    for (var entry in object.entries) {
-      final shapeId = entry.key;
-      yield shapeId.absoluteName;
-      yield serializers.serializeWith(Trait.serializers[shapeId]!, entry.value);
-    }
+    throw UnimplementedError();
   }
 
   @override

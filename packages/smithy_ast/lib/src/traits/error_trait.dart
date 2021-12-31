@@ -1,28 +1,16 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/string_trait.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
-part 'error_trait.g.dart';
+/// Indicates that a structure can be used as an error.
+class ErrorTrait extends StringTrait {
+  const ErrorTrait(String value) : super(id, value);
 
-abstract class ErrorTrait
-    with StringTrait
-    implements Built<ErrorTrait, ErrorTraitBuilder> {
-  factory ErrorTrait([void Function(ErrorTraitBuilder) updates]) = _$ErrorTrait;
-  ErrorTrait._();
+  factory ErrorTrait.fromJson(Object? json) => ErrorTrait(json as String);
 
-  static final id = ShapeId.parse('smithy.api#error');
+  static const id = ShapeId(namespace: 'smithy.api', name: 'error');
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ErrorTraitBuilder b) {
-    b.isSynthetic = false;
-  }
+  int get defaultHttpStatusCode => isClientError ? 400 : 500;
 
-  @override
-  ShapeId getShapeId() => id;
+  bool get isClientError => value == 'client';
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ErrorTrait> get serializer =>
-      StringTraitSerializer((value) => ErrorTrait((b) => b.value = value));
+  bool get isServerError => value == 'server';
 }

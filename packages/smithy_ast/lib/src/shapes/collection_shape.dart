@@ -39,7 +39,7 @@ class NamedMembersMapSerializer extends StructuredSerializer<NamedMembersMap> {
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final memberName = iterator.current as String;
-      final shapeId = ShapeId.empty.rebuild((b) => b.member = memberName);
+      final shapeId = ShapeId.empty.replace(member: memberName);
       iterator.moveNext();
       final Object? value = iterator.current;
       membersMap[memberName] = serializers
@@ -48,7 +48,7 @@ class NamedMembersMapSerializer extends StructuredSerializer<NamedMembersMap> {
               StandardJsonPlugin()
                   .beforeDeserialize(value, FullType(MemberShape)))!
           .rebuild((b) => b
-            ..shapeId.replace(shapeId)
+            ..shapeId = shapeId
             ..memberName = memberName);
     }
     return membersMap;

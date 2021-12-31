@@ -300,9 +300,9 @@ class ResourceShapeBuilder
   set collectionOperations(covariant Set<ShapeRef>? collectionOperations) =>
       _$this._collectionOperations = collectionOperations;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -335,7 +335,7 @@ class ResourceShapeBuilder
       _delete = $v.delete.toBuilder();
       _list = $v.list.toBuilder();
       _collectionOperations = $v.collectionOperations;
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _resources = $v.resources.toBuilder();
       _operations = $v.operations.toBuilder();
@@ -372,7 +372,8 @@ class ResourceShapeBuilder
                   collectionOperations,
                   'ResourceShape',
                   'collectionOperations'),
-              shapeId: shapeId.build(),
+              shapeId: BuiltValueNullFieldError.checkNotNull(
+                  shapeId, 'ResourceShape', 'shapeId'),
               traits: BuiltValueNullFieldError.checkNotNull(
                   traits, 'ResourceShape', 'traits'),
               resources: resources.build(),
@@ -394,9 +395,6 @@ class ResourceShapeBuilder
         delete.build();
         _$failedField = 'list';
         list.build();
-
-        _$failedField = 'shapeId';
-        shapeId.build();
 
         _$failedField = 'resources';
         resources.build();

@@ -9,8 +9,8 @@ part of 'shape.dart';
 abstract class ShapeBuilder {
   void replace(Shape other);
   void update(void Function(ShapeBuilder) updates);
-  ShapeIdBuilder get shapeId;
-  set shapeId(ShapeIdBuilder? shapeId);
+  ShapeId? get shapeId;
+  set shapeId(ShapeId? shapeId);
 
   TraitMap? get traits;
   set traits(TraitMap? traits);

@@ -1,53 +1,91 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'examples_trait.g.dart';
 
-abstract class ExamplesTrait
-    implements Trait, Built<ExamplesTrait, ExamplesTraitBuilder> {
-  factory ExamplesTrait([void Function(ExamplesTraitBuilder) updates]) =
-      _$ExamplesTrait;
-  ExamplesTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class ExamplesTrait with AWSSerializable implements Trait<ExamplesTrait> {
+  const ExamplesTrait({
+    required this.examples,
+  });
+
+  factory ExamplesTrait.fromJson(Object? json) =>
+      _$ExamplesTraitFromJson((json as Map).cast());
 
   static final id = ShapeId.parse('smithy.api#examples');
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ExamplesTraitBuilder b) {
-    b.isSynthetic = false;
-  }
+  final List<Example> examples;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  BuiltList<Example> get examples;
+  @override
+  List<Object?> get props => [examples];
 
-  static Serializer<ExamplesTrait> get serializer => _$examplesTraitSerializer;
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$ExamplesTraitToJson(this);
+
+  @override
+  ExamplesTrait get value => this;
 }
 
-abstract class Example implements Built<Example, ExampleBuilder> {
-  factory Example([void Function(ExampleBuilder) updates]) = _$Example;
-  Example._();
+@JsonSerializable()
+class Example with AWSEquatable<Example>, AWSSerializable {
+  const Example({
+    required this.title,
+    this.documentation,
+    required this.input,
+    required this.output,
+    this.error,
+  });
 
-  String get title;
-  String? get documentation;
-  String get input;
-  String get output;
-  ErrorExample? get error;
+  factory Example.fromJson(Map<String, Object?> json) =>
+      _$ExampleFromJson(json);
 
-  static Serializer<Example> get serializer => _$exampleSerializer;
+  final String title;
+  final String? documentation;
+  final Object input;
+  final Object output;
+  final ErrorExample? error;
+
+  @override
+  List<Object?> get props => [
+        title,
+        documentation,
+        input,
+        output,
+        error,
+      ];
+
+  @override
+  Map<String, Object?> toJson() => _$ExampleToJson(this);
 }
 
-abstract class ErrorExample
-    implements Built<ErrorExample, ErrorExampleBuilder> {
-  factory ErrorExample([void Function(ErrorExampleBuilder) updates]) =
-      _$ErrorExample;
-  ErrorExample._();
+@ShapeIdConverter()
+@JsonSerializable()
+class ErrorExample with AWSEquatable<ErrorExample>, AWSSerializable {
+  const ErrorExample({
+    required this.shapeId,
+    required this.content,
+  });
 
-  ShapeId get shapeId;
-  String get content;
+  factory ErrorExample.fromJson(Map<String, Object?> json) =>
+      _$ErrorExampleFromJson(json);
 
-  static Serializer<ErrorExample> get serializer => _$errorExampleSerializer;
+  final ShapeId shapeId;
+  final Object content;
+
+  @override
+  List<Object?> get props => [
+        shapeId,
+        content,
+      ];
+
+  @override
+  Map<String, Object?> toJson() => _$ErrorExampleToJson(this);
 }

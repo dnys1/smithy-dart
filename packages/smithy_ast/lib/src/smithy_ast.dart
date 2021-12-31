@@ -66,7 +66,7 @@ class ShapeMapSerializer extends StructuredSerializer<ShapeMap> {
       final Shape shape = serializers
           .deserializeWith(Shape.serializer,
               StandardJsonPlugin().beforeDeserialize(value, FullType(Shape)))!
-          .rebuild((b) => b.shapeId.replace(shapeId));
+          .rebuild((b) => b.shapeId = shapeId);
       if (ShapeType.valueOf(type) == ShapeType.apply) {
         applyTraits[shapeId] = shape;
       } else {
@@ -76,7 +76,7 @@ class ShapeMapSerializer extends StructuredSerializer<ShapeMap> {
 
     // Apply traits to shape map
     applyTraits.forEach((memberId, apply) {
-      final shapeId = memberId.rebuild((b) => b.member = null);
+      final shapeId = memberId.replace(member: null);
       shapeMap.update(shapeId, (shape) {
         final member = memberId.member;
         if (member != null) {

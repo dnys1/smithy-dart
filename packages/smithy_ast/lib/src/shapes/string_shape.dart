@@ -16,7 +16,7 @@ abstract class StringShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(StringShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

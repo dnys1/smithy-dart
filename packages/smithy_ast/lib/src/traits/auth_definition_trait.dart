@@ -1,36 +1,35 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/annotation_trait.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'auth_definition_trait.g.dart';
 
-/// This trait is attached to another trait to define an auth scheme.
-abstract class AuthDefinitionTrait
-    with SimpleTrait, AnnotationTrait
-    implements Built<AuthDefinitionTrait, AuthDefinitionTraitBuilder> {
-  factory AuthDefinitionTrait(
-          [void Function(AuthDefinitionTraitBuilder) updates]) =
-      _$AuthDefinitionTrait;
-  AuthDefinitionTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class AuthDefinitionTrait
+    with AWSSerializable
+    implements Trait<AuthDefinitionTrait> {
+  const AuthDefinitionTrait(this.traits);
+
+  factory AuthDefinitionTrait.fromJson(Object? json) =>
+      _$AuthDefinitionTraitFromJson((json as Map).cast());
 
   static final id = ShapeId.parse('smithy.api#authDefinition');
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(AuthDefinitionTraitBuilder b) {
-    b.isSynthetic = false;
-  }
+  final List<ShapeId> traits;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  /// The list of shape IDs that auth implementations must know about in order
-  /// to successfully utilize the auth scheme.
-  BuiltList<Trait> get traits;
+  @override
+  List<Object?> get props => [traits];
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<AuthDefinitionTrait> get serializer =>
-      AnnotationTraitSerializer(AuthDefinitionTrait.new);
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$AuthDefinitionTraitToJson(this);
+
+  @override
+  AuthDefinitionTrait get value => this;
 }

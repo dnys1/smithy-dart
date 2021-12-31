@@ -1,26 +1,36 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'enum_definition.g.dart';
 
-abstract class EnumDefinition
-    implements Built<EnumDefinition, EnumDefinitionBuilder> {
-  factory EnumDefinition([void Function(EnumDefinitionBuilder) updates]) =
-      _$EnumDefinition;
-  EnumDefinition._();
+@JsonSerializable(includeIfNull: false)
+class EnumDefinition with AWSEquatable<EnumDefinition>, AWSSerializable {
+  const EnumDefinition({
+    required this.value,
+    this.name,
+    this.documentation,
+    this.tags = const [],
+    this.deprecated,
+  });
 
-  @BuiltValueHook(finalizeBuilder: true)
-  static void _init(EnumDefinitionBuilder b) {
-    b.deprecated ??= false;
-  }
+  factory EnumDefinition.fromJson(Map<String, Object?> json) =>
+      _$EnumDefinitionFromJson(json);
 
-  String get value;
-  String? get documentation;
-  BuiltList<String> get tags;
-  String? get name;
-  bool get deprecated;
+  final String value;
+  final String? name;
+  final String? documentation;
+  final List<String> tags;
+  final bool? deprecated;
 
-  static Serializer<EnumDefinition> get serializer =>
-      _$enumDefinitionSerializer;
+  @override
+  List<Object?> get props => [
+        value,
+        name,
+        documentation,
+        tags,
+        deprecated,
+      ];
+
+  @override
+  Map<String, Object?> toJson() => _$EnumDefinitionToJson(this);
 }

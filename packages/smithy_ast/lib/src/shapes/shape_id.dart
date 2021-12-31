@@ -1,44 +1,63 @@
-import 'package:built_value/built_value.dart';
+import 'package:aws_common/aws_common.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/serializers.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'shape_id.g.dart';
+class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
+  const ShapeId({
+    required this.namespace,
+    required this.name,
+    this.member,
+  });
 
-abstract class ShapeId implements Built<ShapeId, ShapeIdBuilder> {
-  factory ShapeId([void Function(ShapeIdBuilder) updates]) = _$ShapeId;
-  ShapeId._();
+  static const empty = ShapeId(namespace: '', name: '');
+  static final serializer = ShapeIdSerializer();
 
-  factory ShapeId.parse(String id) => ShapeId(
-        (b) => b
-          ..namespace = id.split('#').first
-          ..name = id.substring(
-            id.indexOf('#') + 1,
-            id.contains('\$') ? id.indexOf('\$') : id.length,
-          )
-          ..member = id.contains('\$') ? id.split('\$').last : null,
+  factory ShapeId.parse(String shapeId) => ShapeId(
+        namespace: shapeId.split('#').first,
+        name: shapeId.substring(
+          shapeId.indexOf('#') + 1,
+          shapeId.contains('\$') ? shapeId.indexOf('\$') : shapeId.length,
+        ),
+        member: shapeId.contains('\$') ? shapeId.split('\$').last : null,
       );
 
-  static final ShapeId empty = ShapeId((b) => b
-    ..namespace = ''
-    ..name = '');
+  final String namespace;
+  final String name;
+  final String? member;
 
-  String get namespace;
-  String get name;
-  String? get member;
   String get absoluteName =>
       '$namespace#$name' + (member == null ? '' : '\$$member');
 
-  Map<String, Object?> toJson() {
-    return serializers.serializeWith(ShapeId.serializer, this)
-        as Map<String, Object?>;
+  ShapeId replace({
+    String? namespace,
+    String? name,
+    Object? member = const Object(),
+  }) {
+    return ShapeId(
+      namespace: namespace ?? this.namespace,
+      name: name ?? this.name,
+      member: (member is String ? member : null) ?? this.member,
+    );
   }
 
-  static ShapeId fromJson(Map<String, Object?> json) {
-    return serializers.deserializeWith(ShapeId.serializer, json) as ShapeId;
-  }
+  @override
+  List<Object?> get props => [namespace, name, member];
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ShapeId> get serializer => ShapeIdSerializer();
+  @override
+  String toJson() => absoluteName;
+
+  @override
+  String toString() => absoluteName;
+}
+
+class ShapeIdConverter implements JsonConverter<ShapeId, String> {
+  const ShapeIdConverter();
+
+  @override
+  ShapeId fromJson(String json) => ShapeId.parse(json);
+
+  @override
+  String toJson(ShapeId object) => object.toJson();
 }
 
 class ShapeIdSerializer extends PrimitiveSerializer<ShapeId> {

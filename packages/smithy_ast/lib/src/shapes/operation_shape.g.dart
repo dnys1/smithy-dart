@@ -167,9 +167,9 @@ class OperationShapeBuilder
   set errors(covariant ListBuilder<ShapeRef>? errors) =>
       _$this._errors = errors;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -185,7 +185,7 @@ class OperationShapeBuilder
       _input = $v.input?.toBuilder();
       _output = $v.output?.toBuilder();
       _errors = $v.errors.toBuilder();
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -212,7 +212,8 @@ class OperationShapeBuilder
               input: _input?.build(),
               output: _output?.build(),
               errors: errors.build(),
-              shapeId: shapeId.build(),
+              shapeId: BuiltValueNullFieldError.checkNotNull(
+                  shapeId, 'OperationShape', 'shapeId'),
               traits: BuiltValueNullFieldError.checkNotNull(
                   traits, 'OperationShape', 'traits'));
     } catch (_) {
@@ -224,8 +225,6 @@ class OperationShapeBuilder
         _output?.build();
         _$failedField = 'errors';
         errors.build();
-        _$failedField = 'shapeId';
-        shapeId.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'OperationShape', _$failedField, e.toString());

@@ -95,9 +95,9 @@ class FloatShapeBuilder
     implements Builder<FloatShape, FloatShapeBuilder>, ShapeBuilder {
   _$FloatShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -110,7 +110,7 @@ class FloatShapeBuilder
   FloatShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -130,24 +130,12 @@ class FloatShapeBuilder
 
   @override
   _$FloatShape build() {
-    _$FloatShape _$result;
-    try {
-      _$result = _$v ??
-          new _$FloatShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'FloatShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'FloatShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$FloatShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'FloatShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'FloatShape', 'traits'));
     replace(_$result);
     return _$result;
   }

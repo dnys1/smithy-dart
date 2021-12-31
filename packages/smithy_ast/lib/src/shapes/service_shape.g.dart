@@ -205,9 +205,9 @@ class ServiceShapeBuilder
       _$this._errors ??= new SetBuilder<ShapeRef>();
   set errors(covariant SetBuilder<ShapeRef>? errors) => _$this._errors = errors;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -235,7 +235,7 @@ class ServiceShapeBuilder
       _version = $v.version;
       _rename = $v.rename.toBuilder();
       _errors = $v.errors.toBuilder();
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _resources = $v.resources.toBuilder();
       _operations = $v.operations.toBuilder();
@@ -264,7 +264,8 @@ class ServiceShapeBuilder
               version: version,
               rename: rename.build(),
               errors: errors.build(),
-              shapeId: shapeId.build(),
+              shapeId: BuiltValueNullFieldError.checkNotNull(
+                  shapeId, 'ServiceShape', 'shapeId'),
               traits: BuiltValueNullFieldError.checkNotNull(
                   traits, 'ServiceShape', 'traits'),
               resources: resources.build(),
@@ -276,8 +277,6 @@ class ServiceShapeBuilder
         rename.build();
         _$failedField = 'errors';
         errors.build();
-        _$failedField = 'shapeId';
-        shapeId.build();
 
         _$failedField = 'resources';
         resources.build();

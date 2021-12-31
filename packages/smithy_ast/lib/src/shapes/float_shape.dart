@@ -15,7 +15,7 @@ abstract class FloatShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(FloatShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

@@ -97,9 +97,9 @@ class DocumentShapeBuilder
     implements Builder<DocumentShape, DocumentShapeBuilder>, ShapeBuilder {
   _$DocumentShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -112,7 +112,7 @@ class DocumentShapeBuilder
   DocumentShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -132,24 +132,12 @@ class DocumentShapeBuilder
 
   @override
   _$DocumentShape build() {
-    _$DocumentShape _$result;
-    try {
-      _$result = _$v ??
-          new _$DocumentShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'DocumentShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'DocumentShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$DocumentShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'DocumentShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'DocumentShape', 'traits'));
     replace(_$result);
     return _$result;
   }

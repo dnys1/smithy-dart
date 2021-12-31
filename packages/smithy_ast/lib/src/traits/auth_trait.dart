@@ -1,29 +1,33 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'auth_trait.g.dart';
 
-/// Specifies the auth schemes supported by default for operations bound to a
-/// service.
-abstract class AuthTrait implements Trait, Built<AuthTrait, AuthTraitBuilder> {
-  factory AuthTrait([void Function(AuthTraitBuilder) updates]) = _$AuthTrait;
-  AuthTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class AuthTrait with AWSSerializable implements Trait<AuthTrait> {
+  const AuthTrait(this.values);
+
+  factory AuthTrait.fromJson(Object? json) =>
+      _$AuthTraitFromJson((json as Map).cast());
 
   static final id = ShapeId.parse('smithy.api#auth');
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(AuthTraitBuilder b) {
-    b.isSynthetic = false;
-  }
+  final Set<ShapeId> values;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  /// The auth scheme trait values.
-  BuiltSet<ShapeId> get values;
+  @override
+  List<Object?> get props => [values];
 
-  static Serializer<AuthTrait> get serializer => _$authTraitSerializer;
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$AuthTraitToJson(this);
+
+  @override
+  AuthTrait get value => this;
 }

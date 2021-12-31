@@ -100,9 +100,9 @@ class TimestampShapeBuilder
     implements Builder<TimestampShape, TimestampShapeBuilder>, ShapeBuilder {
   _$TimestampShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -115,7 +115,7 @@ class TimestampShapeBuilder
   TimestampShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -135,24 +135,12 @@ class TimestampShapeBuilder
 
   @override
   _$TimestampShape build() {
-    _$TimestampShape _$result;
-    try {
-      _$result = _$v ??
-          new _$TimestampShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'TimestampShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'TimestampShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$TimestampShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'TimestampShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'TimestampShape', 'traits'));
     replace(_$result);
     return _$result;
   }

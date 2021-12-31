@@ -17,7 +17,7 @@ abstract class MemberShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MemberShapeBuilder b) {
     b
-      ..shapeId.replace(ShapeId.empty)
+      ..shapeId = ShapeId.empty
       ..memberName = ''
       ..traits = TraitMap({});
   }

@@ -16,7 +16,7 @@ abstract class BooleanShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(BooleanShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

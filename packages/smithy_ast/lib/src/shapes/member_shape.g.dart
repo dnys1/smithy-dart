@@ -44,8 +44,8 @@ class _$MemberShapeSerializer implements StructuredSerializer<MemberShape> {
       final Object? value = iterator.current;
       switch (key) {
         case 'target':
-          result.target.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ShapeId))! as ShapeId);
+          result.target = serializers.deserialize(value,
+              specifiedType: const FullType(ShapeId)) as ShapeId;
           break;
         case 'memberName':
           result.memberName = serializers.deserialize(value,
@@ -128,18 +128,18 @@ class MemberShapeBuilder
     implements Builder<MemberShape, MemberShapeBuilder>, ShapeBuilder {
   _$MemberShape? _$v;
 
-  ShapeIdBuilder? _target;
-  ShapeIdBuilder get target => _$this._target ??= new ShapeIdBuilder();
-  set target(covariant ShapeIdBuilder? target) => _$this._target = target;
+  ShapeId? _target;
+  ShapeId? get target => _$this._target;
+  set target(covariant ShapeId? target) => _$this._target = target;
 
   String? _memberName;
   String? get memberName => _$this._memberName;
   set memberName(covariant String? memberName) =>
       _$this._memberName = memberName;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -152,9 +152,9 @@ class MemberShapeBuilder
   MemberShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _target = $v.target.toBuilder();
+      _target = $v.target;
       _memberName = $v.memberName;
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -174,30 +174,16 @@ class MemberShapeBuilder
 
   @override
   _$MemberShape build() {
-    _$MemberShape _$result;
-    try {
-      _$result = _$v ??
-          new _$MemberShape._(
-              target: target.build(),
-              memberName: BuiltValueNullFieldError.checkNotNull(
-                  memberName, 'MemberShape', 'memberName'),
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'MemberShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'target';
-        target.build();
-
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'MemberShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$MemberShape._(
+            target: BuiltValueNullFieldError.checkNotNull(
+                target, 'MemberShape', 'target'),
+            memberName: BuiltValueNullFieldError.checkNotNull(
+                memberName, 'MemberShape', 'memberName'),
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'MemberShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'MemberShape', 'traits'));
     replace(_$result);
     return _$result;
   }

@@ -15,7 +15,7 @@ abstract class BlobShape implements Shape, Built<BlobShape, BlobShapeBuilder> {
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(BlobShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

@@ -16,7 +16,7 @@ abstract class TimestampShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TimestampShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

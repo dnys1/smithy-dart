@@ -95,9 +95,9 @@ class LongShapeBuilder
     implements Builder<LongShape, LongShapeBuilder>, ShapeBuilder {
   _$LongShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -110,7 +110,7 @@ class LongShapeBuilder
   LongShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -130,24 +130,12 @@ class LongShapeBuilder
 
   @override
   _$LongShape build() {
-    _$LongShape _$result;
-    try {
-      _$result = _$v ??
-          new _$LongShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'LongShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'LongShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$LongShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'LongShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'LongShape', 'traits'));
     replace(_$result);
     return _$result;
   }

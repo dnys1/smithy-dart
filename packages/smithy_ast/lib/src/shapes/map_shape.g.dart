@@ -134,9 +134,9 @@ class MapShapeBuilder
   ShapeRefBuilder get value => _$this._value ??= new ShapeRefBuilder();
   set value(covariant ShapeRefBuilder? value) => _$this._value = value;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -151,7 +151,7 @@ class MapShapeBuilder
     if ($v != null) {
       _key = $v.key.toBuilder();
       _value = $v.value.toBuilder();
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -177,7 +177,8 @@ class MapShapeBuilder
           new _$MapShape._(
               key: key.build(),
               value: value.build(),
-              shapeId: shapeId.build(),
+              shapeId: BuiltValueNullFieldError.checkNotNull(
+                  shapeId, 'MapShape', 'shapeId'),
               traits: BuiltValueNullFieldError.checkNotNull(
                   traits, 'MapShape', 'traits'));
     } catch (_) {
@@ -187,8 +188,6 @@ class MapShapeBuilder
         key.build();
         _$failedField = 'value';
         value.build();
-        _$failedField = 'shapeId';
-        shapeId.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'MapShape', _$failedField, e.toString());

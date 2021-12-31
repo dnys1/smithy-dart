@@ -1,27 +1,37 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/enum_definition.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'enum_trait.g.dart';
 
-abstract class EnumTrait implements Trait, Built<EnumTrait, EnumTraitBuilder> {
-  factory EnumTrait([void Function(EnumTraitBuilder) updates]) = _$EnumTrait;
-  EnumTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class EnumTrait with AWSSerializable implements Trait<EnumTrait> {
+  const EnumTrait({
+    required this.definitions,
+  });
+
+  factory EnumTrait.fromJson(Object? json) =>
+      _$EnumTraitFromJson((json as Map).cast());
 
   static final id = ShapeId.parse('smithy.api#enum');
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EnumTraitBuilder b) {
-    b.isSynthetic = false;
-  }
+  final List<EnumDefinition> definitions;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  BuiltList<EnumDefinition> get definitions;
+  @override
+  List<Object?> get props => [
+        definitions,
+      ];
 
-  static Serializer<EnumTrait> get serializer => _$enumTraitSerializer;
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$EnumTraitToJson(this);
+
+  @override
+  EnumTrait get value => this;
 }

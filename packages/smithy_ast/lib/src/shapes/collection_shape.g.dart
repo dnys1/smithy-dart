@@ -12,8 +12,8 @@ abstract class CollectionShapeBuilder implements ShapeBuilder {
   MemberShapeBuilder get member;
   set member(covariant MemberShapeBuilder? member);
 
-  ShapeIdBuilder get shapeId;
-  set shapeId(covariant ShapeIdBuilder? shapeId);
+  ShapeId? get shapeId;
+  set shapeId(covariant ShapeId? shapeId);
 
   TraitMap? get traits;
   set traits(covariant TraitMap? traits);

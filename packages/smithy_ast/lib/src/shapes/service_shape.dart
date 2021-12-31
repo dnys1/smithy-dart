@@ -19,7 +19,7 @@ abstract class ServiceShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ServiceShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

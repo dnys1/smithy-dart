@@ -1,24 +1,48 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'cors_trait.g.dart';
 
-abstract class CorsTrait implements Trait, Built<CorsTrait, CorsTraitBuilder> {
-  factory CorsTrait([void Function(CorsTraitBuilder) updates]) = _$CorsTrait;
-  CorsTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class CorsTrait with AWSSerializable implements Trait<CorsTrait> {
+  const CorsTrait({
+    this.origin = CorsTrait.defaultOrigin,
+    this.maxAge = CorsTrait.defaultMaxAge,
+    this.additionalAllowedHeaders = const {},
+    this.additionalExposedHeaders = const {},
+  });
+
+  factory CorsTrait.fromJson(Object? json) =>
+      _$CorsTraitFromJson((json as Map).cast());
 
   static final id = ShapeId.parse('smithy.api#cors');
+  static const defaultOrigin = '*';
+  static const defaultMaxAge = 600;
+
+  final String origin;
+  final int maxAge;
+  final Set<String> additionalAllowedHeaders;
+  final Set<String> additionalExposedHeaders;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  String get origin;
-  int get maxAge;
-  BuiltSet<String> get additionalAllowedHeaders;
-  BuiltSet<String> get additionalExposedHeaders;
+  @override
+  List<Object?> get props => [
+        origin,
+        maxAge,
+        additionalAllowedHeaders,
+        additionalExposedHeaders,
+      ];
 
-  static Serializer<CorsTrait> get serializer => _$corsTraitSerializer;
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$CorsTraitToJson(this);
+
+  @override
+  CorsTrait get value => this;
 }

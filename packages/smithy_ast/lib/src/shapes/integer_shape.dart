@@ -16,7 +16,7 @@ abstract class IntegerShape
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(IntegerShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

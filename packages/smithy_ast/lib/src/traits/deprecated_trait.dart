@@ -1,24 +1,40 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:aws_common/aws_common.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'deprecated_trait.g.dart';
 
-abstract class DeprecatedTrait
-    implements Trait, Built<DeprecatedTrait, DeprecatedTraitBuilder> {
-  factory DeprecatedTrait([void Function(DeprecatedTraitBuilder) updates]) =
-      _$DeprecatedTrait;
-  DeprecatedTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class DeprecatedTrait with AWSSerializable implements Trait<DeprecatedTrait> {
+  const DeprecatedTrait({
+    this.since,
+    this.message,
+  });
 
-  static final ShapeId id = ShapeId.parse('smithy.api#deprecated');
+  factory DeprecatedTrait.fromJson(Object? json) =>
+      _$DeprecatedTraitFromJson((json as Map).cast());
+
+  static final id = ShapeId.parse('smithy.api#deprecated');
+
+  final String? since;
+  final String? message;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  String get since;
-  String get message;
+  @override
+  List<Object?> get props => [
+        since,
+        message,
+      ];
 
-  static Serializer<DeprecatedTrait> get serializer =>
-      _$deprecatedTraitSerializer;
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$DeprecatedTraitToJson(this);
+
+  @override
+  DeprecatedTrait get value => this;
 }

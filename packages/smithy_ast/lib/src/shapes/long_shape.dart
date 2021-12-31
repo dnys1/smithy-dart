@@ -14,7 +14,7 @@ abstract class LongShape implements Shape, Built<LongShape, LongShapeBuilder> {
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(LongShapeBuilder b) {
-    b.shapeId.replace(ShapeId.empty);
+    b.shapeId = ShapeId.empty;
     b.traits ??= TraitMap({});
   }
 

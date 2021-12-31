@@ -101,9 +101,9 @@ class BigIntegerShapeBuilder
     implements Builder<BigIntegerShape, BigIntegerShapeBuilder>, ShapeBuilder {
   _$BigIntegerShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -116,7 +116,7 @@ class BigIntegerShapeBuilder
   BigIntegerShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -136,24 +136,12 @@ class BigIntegerShapeBuilder
 
   @override
   _$BigIntegerShape build() {
-    _$BigIntegerShape _$result;
-    try {
-      _$result = _$v ??
-          new _$BigIntegerShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'BigIntegerShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'BigIntegerShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$BigIntegerShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'BigIntegerShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'BigIntegerShape', 'traits'));
     replace(_$result);
     return _$result;
   }

@@ -1,30 +1,13 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/annotation_trait.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
-part 'event_payload_trait.g.dart';
+/// Marks a structure member of an event as the event payload.
+///
+/// This trait can targets members of a structure marked with the event trait
+/// that targets a blob or structure.
+class EventPayloadTrait extends AnnotationTrait {
+  const EventPayloadTrait() : super(id);
 
-abstract class EventPayloadTrait
-    with SimpleTrait, AnnotationTrait
-    implements Built<EventPayloadTrait, EventPayloadTraitBuilder> {
-  factory EventPayloadTrait([void Function(EventPayloadTraitBuilder) updates]) =
-      _$EventPayloadTrait;
-  EventPayloadTrait._();
+  const EventPayloadTrait.fromJson(Object? json) : super(id);
 
-  static final id = ShapeId.parse('smithy.api#eventPayload');
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EventPayloadTraitBuilder b) {
-    b.isSynthetic = false;
-  }
-
-  @override
-  ShapeId getShapeId() => id;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<EventPayloadTrait> get serializer =>
-      AnnotationTraitSerializer(EventPayloadTrait.new);
+  static const id = ShapeId(namespace: 'smithy.api', name: 'eventPayload');
 }

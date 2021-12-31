@@ -1,27 +1,32 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'endpoint_trait.g.dart';
 
-abstract class EndpointTrait
-    implements Trait, Built<EndpointTrait, EndpointTraitBuilder> {
-  factory EndpointTrait([void Function(EndpointTraitBuilder) updates]) =
-      _$EndpointTrait;
-  EndpointTrait._();
+@ShapeIdConverter()
+@JsonSerializable()
+class EndpointTrait implements Trait<EndpointTrait> {
+  const EndpointTrait(this.hostPrefix);
+
+  factory EndpointTrait.fromJson(Object? json) =>
+      _$EndpointTraitFromJson((json as Map).cast());
 
   static final id = ShapeId.parse('smithy.api#endpoint');
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EndpointTraitBuilder b) {
-    b.isSynthetic = false;
-  }
+  final String hostPrefix;
 
   @override
-  ShapeId getShapeId() => id;
+  bool get isSynthetic => false;
 
-  String get hostPrefix;
+  @override
+  List<Object?> get props => [hostPrefix];
 
-  static Serializer<EndpointTrait> get serializer => _$endpointTraitSerializer;
+  @override
+  ShapeId get shapeId => id;
+
+  @override
+  Map<String, Object?> toJson() => _$EndpointTraitToJson(this);
+
+  @override
+  EndpointTrait get value => this;
 }

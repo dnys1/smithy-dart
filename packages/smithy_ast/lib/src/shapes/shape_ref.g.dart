@@ -38,8 +38,8 @@ class _$ShapeRefSerializer implements StructuredSerializer<ShapeRef> {
       final Object? value = iterator.current;
       switch (key) {
         case 'target':
-          result.target.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ShapeId))! as ShapeId);
+          result.target = serializers.deserialize(value,
+              specifiedType: const FullType(ShapeId)) as ShapeId;
           break;
       }
     }
@@ -87,16 +87,16 @@ class _$ShapeRef extends ShapeRef {
 class ShapeRefBuilder implements Builder<ShapeRef, ShapeRefBuilder> {
   _$ShapeRef? _$v;
 
-  ShapeIdBuilder? _target;
-  ShapeIdBuilder get target => _$this._target ??= new ShapeIdBuilder();
-  set target(ShapeIdBuilder? target) => _$this._target = target;
+  ShapeId? _target;
+  ShapeId? get target => _$this._target;
+  set target(ShapeId? target) => _$this._target = target;
 
   ShapeRefBuilder();
 
   ShapeRefBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _target = $v.target.toBuilder();
+      _target = $v.target;
       _$v = null;
     }
     return this;
@@ -115,20 +115,10 @@ class ShapeRefBuilder implements Builder<ShapeRef, ShapeRefBuilder> {
 
   @override
   _$ShapeRef build() {
-    _$ShapeRef _$result;
-    try {
-      _$result = _$v ?? new _$ShapeRef._(target: target.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'target';
-        target.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'ShapeRef', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$ShapeRef._(
+            target: BuiltValueNullFieldError.checkNotNull(
+                target, 'ShapeRef', 'target'));
     replace(_$result);
     return _$result;
   }

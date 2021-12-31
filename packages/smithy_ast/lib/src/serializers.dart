@@ -70,6 +70,5 @@ final Serializers serializers = (_$serializers.toBuilder()
       ..add(ShapeMapSerializer())
       ..add(ShapeSerializer())
       ..add(NamedMembersMapSerializer())
-      ..add(TraitMapSerializer())
-      ..addAll(Trait.serializers.values))
+      ..add(TraitMapSerializer()))
     .build();

@@ -111,9 +111,9 @@ class UnionShapeBuilder
     implements Builder<UnionShape, UnionShapeBuilder>, ShapeBuilder {
   _$UnionShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -130,7 +130,7 @@ class UnionShapeBuilder
   UnionShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _members = $v.members;
       _$v = null;
@@ -151,26 +151,14 @@ class UnionShapeBuilder
 
   @override
   _$UnionShape build() {
-    _$UnionShape _$result;
-    try {
-      _$result = _$v ??
-          new _$UnionShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'UnionShape', 'traits'),
-              members: BuiltValueNullFieldError.checkNotNull(
-                  members, 'UnionShape', 'members'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'UnionShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$UnionShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'UnionShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'UnionShape', 'traits'),
+            members: BuiltValueNullFieldError.checkNotNull(
+                members, 'UnionShape', 'members'));
     replace(_$result);
     return _$result;
   }

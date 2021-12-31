@@ -115,9 +115,9 @@ class StructureShapeBuilder
     implements Builder<StructureShape, StructureShapeBuilder>, ShapeBuilder {
   _$StructureShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -134,7 +134,7 @@ class StructureShapeBuilder
   StructureShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _members = $v.members;
       _$v = null;
@@ -155,26 +155,14 @@ class StructureShapeBuilder
 
   @override
   _$StructureShape build() {
-    _$StructureShape _$result;
-    try {
-      _$result = _$v ??
-          new _$StructureShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'StructureShape', 'traits'),
-              members: BuiltValueNullFieldError.checkNotNull(
-                  members, 'StructureShape', 'members'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'StructureShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$StructureShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'StructureShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'StructureShape', 'traits'),
+            members: BuiltValueNullFieldError.checkNotNull(
+                members, 'StructureShape', 'members'));
     replace(_$result);
     return _$result;
   }

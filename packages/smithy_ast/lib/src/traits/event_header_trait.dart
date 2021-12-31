@@ -1,30 +1,13 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/traits/annotation_trait.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
-part 'event_header_trait.g.dart';
+/// Marks a structure member of an event as an event header.
+///
+/// This trait can targets members of a structure marked with the event
+/// trait that targets blob, boolean, integer, long, string, or timestamp.
+class EventHeaderTrait extends AnnotationTrait {
+  const EventHeaderTrait() : super(id);
 
-abstract class EventHeaderTrait
-    with SimpleTrait, AnnotationTrait
-    implements Built<EventHeaderTrait, EventHeaderTraitBuilder> {
-  factory EventHeaderTrait([void Function(EventHeaderTraitBuilder) updates]) =
-      _$EventHeaderTrait;
-  EventHeaderTrait._();
+  const EventHeaderTrait.fromJson(Object? json) : super(id);
 
-  static final id = ShapeId.parse('smithy.api#eventHeader');
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EventHeaderTraitBuilder b) {
-    b.isSynthetic = false;
-  }
-
-  @override
-  ShapeId getShapeId() => id;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<EventHeaderTrait> get serializer =>
-      AnnotationTraitSerializer(EventHeaderTrait.new);
+  static const id = ShapeId(namespace: 'smithy.api', name: 'eventHeader');
 }

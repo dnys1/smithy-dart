@@ -95,9 +95,9 @@ class ByteShapeBuilder
     implements Builder<ByteShape, ByteShapeBuilder>, ShapeBuilder {
   _$ByteShape? _$v;
 
-  ShapeIdBuilder? _shapeId;
-  ShapeIdBuilder get shapeId => _$this._shapeId ??= new ShapeIdBuilder();
-  set shapeId(covariant ShapeIdBuilder? shapeId) => _$this._shapeId = shapeId;
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   TraitMap? _traits;
   TraitMap? get traits => _$this._traits;
@@ -110,7 +110,7 @@ class ByteShapeBuilder
   ByteShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _shapeId = $v.shapeId.toBuilder();
+      _shapeId = $v.shapeId;
       _traits = $v.traits;
       _$v = null;
     }
@@ -130,24 +130,12 @@ class ByteShapeBuilder
 
   @override
   _$ByteShape build() {
-    _$ByteShape _$result;
-    try {
-      _$result = _$v ??
-          new _$ByteShape._(
-              shapeId: shapeId.build(),
-              traits: BuiltValueNullFieldError.checkNotNull(
-                  traits, 'ByteShape', 'traits'));
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'shapeId';
-        shapeId.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'ByteShape', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$ByteShape._(
+            shapeId: BuiltValueNullFieldError.checkNotNull(
+                shapeId, 'ByteShape', 'shapeId'),
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'ByteShape', 'traits'));
     replace(_$result);
     return _$result;
   }

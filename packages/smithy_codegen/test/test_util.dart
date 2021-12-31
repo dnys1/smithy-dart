@@ -38,7 +38,7 @@ Map<String, String> loadGoldens(String groupName, String testName) {
   final dir = Directory.fromUri(dirUri);
 
   final libraries = <String, String>{};
-  for (final entity in dir.listSync()) {
+  for (final entity in dir.listSync(recursive: true)) {
     final libraryName = path.basenameWithoutExtension(entity.path);
     final libraryDefinition = File.fromUri(entity.uri).readAsStringSync();
     libraries[libraryName] = libraryDefinition;

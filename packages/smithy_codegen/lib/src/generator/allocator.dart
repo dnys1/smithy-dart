@@ -20,7 +20,7 @@ class SmithyAllocator implements Allocator {
 
   final Library library;
   String get libraryUrl {
-    final smithyLibrary = smithyLibraryFromName(library.name!);
+    final smithyLibrary = SmithyLibraryX.fromLibraryName(library.name!);
     return 'package:${smithyLibrary.packageName}/${smithyLibrary.libRelativePath}';
   }
 

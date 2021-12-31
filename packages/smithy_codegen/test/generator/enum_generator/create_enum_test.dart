@@ -6,15 +6,15 @@ void main() {
   testGolden('EnumGenerator', 'Create Enum', [
     StringShape(
       (s) => s
-        ..shapeId.replace(ShapeId.parse('com.test#MyEnum'))
+        ..shapeId = ShapeId.parse('com.test#MyEnum')
         ..traits = TraitMap.fromTraits([
-          EnumTrait((t) => t
-            ..definitions.addAll([
-              EnumDefinition((d) => d..value = 'FOO_BAZ@-. XAP - . '),
-              EnumDefinition((d) => d
-                ..value = 'BAR'
-                ..documentation = 'Documentation for BAR'),
-            ]))
+          EnumTrait(definitions: [
+            EnumDefinition(value: 'FOO_BAZ@-. XAP - . '),
+            EnumDefinition(
+              value: 'BAR',
+              documentation: 'Documentation for BAR',
+            ),
+          ])
         ]),
     )
   ]);

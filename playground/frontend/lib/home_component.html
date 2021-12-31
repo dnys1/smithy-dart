@@ -1,0 +1,38 @@
+<header class="header row">
+  <div class="leading">
+    <h2>Smithy Dart</h2>
+    <img src="/images/logo_dart_192px.svg" height="40px" />
+  </div>
+  <div class="trailing">
+    <div [class.hide]="!isLoading">
+      <fo-load-indicator></fo-load-indicator>
+    </div>
+    <div class="button-container" [class.busy]="isLoading">
+      <button (click)="transform" #button>
+        <span>Transform</span>
+        <fo-icon icon="play_arrow" [material]="true"></fo-icon>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="explorer" class="row">
+  <div id="editor" class="m6 col">
+    <editor
+      [readOnly]="false"
+      [text]="editorText"
+      (textChange)="updateText($event)"
+    ></editor>
+  </div>
+  <div id="output" class="m6 col">
+    <div *ngIf="errorText != null">
+      <span class="error" [innerText]="errorText"></span>
+    </div>
+    <editor
+      *ngIf="errorText == null"
+      [readOnly]="true"
+      [(text)]="outputText"
+      #output
+    ></editor>
+  </div>
+</div>
+

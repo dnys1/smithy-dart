@@ -1,8 +1,14 @@
-import 'dart:html';
+import 'package:angular/angular.dart';
+import 'package:smithy_playground/home_component.template.dart' as home;
+import 'package:smithy_playground/service/transform_service.dart';
 
-const distributionUrl = String.fromEnvironment('DISTRIBUTION_URL');
-const apiUrl = String.fromEnvironment('API_URL');
+import 'main.template.dart' as ng;
 
 void main() {
-  querySelector('#output')?.text = '$distributionUrl\n$apiUrl';
+  runApp(home.HomeComponentNgFactory, createInjector: injector);
 }
+
+@GenerateInjector([
+  ClassProvider(TransformerService),
+])
+final InjectorFactory injector = ng.injector$Injector;

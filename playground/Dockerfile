@@ -1,18 +1,21 @@
+# Build Lambda handler
 FROM golang:1.17 AS lambda
 WORKDIR /app
-COPY backend/lambda .
+COPY lambda .
 
 RUN go env -w GOPROXY=direct
 RUN go mod download
 
 RUN go build -o handler .
 
+# Build Smithy CLI using latest JDK
 FROM gradle:7-jdk17 AS cli
 WORKDIR /build
 COPY smithy .
 
 RUN ./gradlew --no-daemon :smithy-cli:runtime --stacktrace
 
+# Run Lambda handler with Smithy CLI in container
 FROM amazonlinux:2
 
 COPY --from=lambda /app/handler /usr/local/bin

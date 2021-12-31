@@ -4,4 +4,8 @@ import * as cdk from "aws-cdk-lib";
 import { PlaygroundStack } from "../lib/playground-stack";
 
 const app = new cdk.App();
-new PlaygroundStack(app, "PlaygroundStack", {});
+new PlaygroundStack(app, "PlaygroundStack", {
+  env: {
+    region: "us-west-2",
+  },
+});

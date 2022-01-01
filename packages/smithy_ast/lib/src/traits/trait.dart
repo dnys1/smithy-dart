@@ -1,6 +1,7 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_ast/src/traits/dynamic_trait.dart';
 import 'package:smithy_ast/src/traits/external_documentation_trait.dart';
 import 'package:smithy_ast/src/traits/host_label_trait.dart';
 import 'package:smithy_ast/src/traits/http/http_api_key_auth_trait.dart';
@@ -17,9 +18,10 @@ abstract class Trait<TraitValue extends Object>
     with AWSEquatable<Trait<TraitValue>>, AWSSerializable {
   const Trait(this.shapeId, this.value);
 
-  static Trait fromJson(ShapeId shapeId, Object? jsonValue) {
+  static Trait fromJson(ShapeId shapeId, Object jsonValue) {
     if (!serializers.containsKey(shapeId)) {
-      throw ArgumentError('No serializer found for $shapeId');
+      print('No serializer found for $shapeId');
+      return DynamicTrait(shapeId, jsonValue);
     }
     return serializers[shapeId]!(jsonValue);
   }
@@ -62,7 +64,56 @@ abstract class Trait<TraitValue extends Object>
     ExternalDocumentationTrait.id: ExternalDocumentationTrait.fromJson,
     HostLabelTrait.id: HostLabelTrait.fromJson,
     HttpApiKeyAuthTrait.id: HttpApiKeyAuthTrait.fromJson,
+    HttpBasicAuthTrait.id: HttpBasicAuthTrait.fromJson,
+    HttpBearerAuthTrait.id: HttpBearerAuthTrait.fromJson,
+    HttpChecksumRequiredTrait.id: HttpChecksumRequiredTrait.fromJson,
+    HttpDigestAuthTrait.id: HttpDigestAuthTrait.fromJson,
+    HttpErrorTrait.id: HttpErrorTrait.fromJson,
+    HttpHeaderTrait.id: HttpHeaderTrait.fromJson,
+    HttpLabelTrait.id: HttpLabelTrait.fromJson,
+    HttpPayloadTrait.id: HttpPayloadTrait.fromJson,
+    HttpPrefixHeadersTrait.id: HttpPrefixHeadersTrait.fromJson,
+    HttpQueryParamsTrait.id: HttpQueryParamsTrait.fromJson,
+    HttpQueryTrait.id: HttpQueryTrait.fromJson,
+    HttpResponseCodeTrait.id: HttpResponseCodeTrait.fromJson,
+    HttpTrait.id: HttpTrait.fromJson,
+    IdRefTrait.id: IdRefTrait.fromJson,
+    IdempotencyTokenTrait.id: IdempotencyTokenTrait.fromJson,
+    IdempotentTrait.id: IdempotentTrait.fromJson,
+    InputTrait.id: InputTrait.fromJson,
+    InternalTrait.id: InternalTrait.fromJson,
+    JsonNameTrait.id: JsonNameTrait.fromJson,
+    LengthTrait.id: LengthTrait.fromJson,
+    MediaTypeTrait.id: MediaTypeTrait.fromJson,
+    NoReplaceTrait.id: NoReplaceTrait.fromJson,
+    OptionalAuthTrait.id: OptionalAuthTrait.fromJson,
+    OutputTrait.id: OutputTrait.fromJson,
+    PaginatedTrait.id: PaginatedTrait.fromJson,
+    PatternTrait.id: PatternTrait.fromJson,
+    PrivateTrait.id: PrivateTrait.fromJson,
+    ProtocolDefinitionTrait.id: ProtocolDefinitionTrait.fromJson,
+    RangeTrait.id: RangeTrait.fromJson,
+    ReadonlyTrait.id: ReadonlyTrait.fromJson,
+    RecommendedTrait.id: RecommendedTrait.fromJson,
+    ReferencesTrait.id: ReferencesTrait.fromJson,
     RequiredTrait.id: RequiredTrait.fromJson,
+    RequiresLengthTrait.id: RequiresLengthTrait.fromJson,
+    ResourceIdentifierTrait.id: ResourceIdentifierTrait.fromJson,
+    RetryableTrait.id: RetryableTrait.fromJson,
+    SensitiveTrait.id: SensitiveTrait.fromJson,
+    SinceTrait.id: SinceTrait.fromJson,
+    SparseTrait.id: SparseTrait.fromJson,
+    StreamingTrait.id: StreamingTrait.fromJson,
+    SuppressTrait.id: SuppressTrait.fromJson,
+    TagsTrait.id: TagsTrait.fromJson,
+    TimestampFormatTrait.id: TimestampFormatTrait.fromJson,
+    TitleTrait.id: TitleTrait.fromJson,
+    UnitTypeTrait.id: UnitTypeTrait.fromJson,
+    UnstableTrait.id: UnstableTrait.fromJson,
+    XmlAttributeTrait.id: XmlAttributeTrait.fromJson,
+    XmlFlattenedTrait.id: XmlFlattenedTrait.fromJson,
+    XmlNameTrait.id: XmlNameTrait.fromJson,
+    XmlNamespaceTrait.id: XmlNamespaceTrait.fromJson,
   };
 }
 

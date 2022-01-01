@@ -1,4 +1,5 @@
 import {
+  Aws,
   CfnOutput,
   Duration,
   IgnoreMode,
@@ -7,12 +8,19 @@ import {
   StackProps,
 } from "aws-cdk-lib";
 import { Cors, LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
+import { DnsValidatedCertificate } from "aws-cdk-lib/aws-certificatemanager";
 import {
   CloudFrontAllowedMethods,
   CloudFrontWebDistribution,
   OriginAccessIdentity,
+  SecurityPolicyProtocol,
+  SSLMethod,
+  ViewerCertificate,
 } from "aws-cdk-lib/aws-cloudfront";
+import { Metric } from "aws-cdk-lib/aws-cloudwatch";
 import { Code, Function, Handler, Runtime } from "aws-cdk-lib/aws-lambda";
+import { ARecord, HostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
+import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import {
   BlockPublicAccess,
   Bucket,
@@ -42,13 +50,30 @@ export class PlaygroundStack extends Stack {
       }
     });
 
+    const zone = HostedZone.fromLookup(this, 'Zone', { domainName: 'dillonnys.com' });
+    const siteDomain = 'smithy-playground.dillonnys.com';
+
     const originAccessId = new OriginAccessIdentity(
       this,
-      "OriginAccessIdentity"
+      "OriginAccessIdentity", {
+      comment: `OAI for ${id}`
+    }
     );
 
+    const certificate = new DnsValidatedCertificate(this, 'SiteCertificate', {
+      domainName: siteDomain,
+      hostedZone: zone,
+      region: 'us-east-1',
+    });
+
+    const viewerCertificate = ViewerCertificate.fromAcmCertificate(certificate, {
+      sslMethod: SSLMethod.SNI,
+      securityPolicy: SecurityPolicyProtocol.TLS_V1_2_2021,
+      aliases: [siteDomain]
+    });
+
     const websiteBucket = new Bucket(this, "WebsiteBucket", {
-      bucketName: "smithy-playground-web",
+      bucketName: siteDomain,
       autoDeleteObjects: true,
       removalPolicy: RemovalPolicy.DESTROY,
       publicReadAccess: false,
@@ -57,8 +82,9 @@ export class PlaygroundStack extends Stack {
     });
 
     websiteBucket.grantRead(originAccessId);
-    
+
     const distribution = new CloudFrontWebDistribution(this, "WebsiteDistribution", {
+      viewerCertificate,
       originConfigs: [
         {
           s3OriginSource: {
@@ -73,6 +99,16 @@ export class PlaygroundStack extends Stack {
         }
       ],
     });
+    
+    new ARecord(this, 'SiteAliasRecord', {
+      recordName: siteDomain,
+      target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
+      zone,
+    });
+
+    new CfnOutput(this, 'BucketName', {
+      value: websiteBucket.bucketName,
+    })
 
     new CfnOutput(this, "ApiUrl", {
       value: gateway.url,

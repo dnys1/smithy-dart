@@ -16,9 +16,7 @@ COPY smithy .
 RUN ./gradlew --no-daemon :smithy-cli:runtime --stacktrace
 
 # Run Lambda handler with Smithy CLI in container
-FROM amazonlinux:2
-
-COPY --from=lambda /app/handler /usr/local/bin
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
 
 WORKDIR /smithy
 COPY --from=cli /build/smithy-cli/build/image/smithy-cli-linux-x86_64 .
@@ -29,5 +27,7 @@ RUN SMITHY_OPTS="-XX:DumpLoadedClassList=/smithy/lib/smithy.lst" \
     smithy validate
 RUN SMITHY_OPTS="-Xshare:dump -XX:SharedArchiveFile=/smithy/lib/smithy.jsa -XX:SharedClassListFile=/smithy/lib/smithy.lst" \
     smithy validate
+
+COPY --from=lambda /app/handler /usr/local/bin
 
 CMD "handler"

@@ -27,12 +27,16 @@
     <div *ngIf="errorText != null">
       <span class="error" [innerText]="errorText"></span>
     </div>
-    <editor
-      *ngIf="errorText == null"
-      [readOnly]="true"
-      [(text)]="outputText"
-      #output
-    ></editor>
+    <div id="outputs" *ngIf="errorText == null">
+      <fo-tab-panel>
+        <fo-tab *ngFor="let name of outputs.keys" [label]="name">
+          <editor
+            [readOnly]="true"
+            [text]="outputs[name]!.doc"
+            [lang]="outputs[name]!.lang"
+          ></editor>
+        </fo-tab>
+      </fo-tab-panel>
+    </div>
   </div>
 </div>
-

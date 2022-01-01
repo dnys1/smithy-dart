@@ -11,6 +11,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape> {
 
   @override
   Library generate() {
-    throw UnimplementedError();
+    return builder.build();
   }
 }

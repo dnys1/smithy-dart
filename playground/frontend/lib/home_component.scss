@@ -5,7 +5,20 @@
 
 @include thresholds($medium-width-threshold, $large-width-threshold);
 @include fo-colors($dart-blue, #008898, #f77);
-@include fo-load-indicator-colors(white, $dart-blue);
+
+// Using mixin does not work.
+// @include fo-load-indicator-colors(white, $dart-blue);
+::ng-deep fo-load-indicator {
+  .spinner {
+      .circleCore {
+          background-color: $dart-blue !important;
+      }
+      .circleBorder {
+          background: white !important;
+          background: linear-gradient(0deg, transparent 33%, white 100%) !important;
+      }
+  }
+}
 
 @mixin height-full($padding) {
   height: calc(100vh - $padding);
@@ -210,4 +223,8 @@ h4 {
       font-size: 1em !important;
     }
   }
+}
+
+#outputs {
+  height: 100%;
 }

@@ -2,7 +2,6 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy_ast/src/shapes/collection_shape.dart';
 import 'package:smithy_ast/src/shapes/member_shape.dart';
-import 'package:smithy_ast/src/shapes/shape.dart';
 import 'package:smithy_ast/src/shapes/shape_id.dart';
 import 'package:smithy_ast/src/shapes/shape_type.dart';
 import 'package:smithy_ast/src/shapes/shape_visitor.dart';

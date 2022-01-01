@@ -1,10 +1,9 @@
 import 'package:grpc/grpc.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/parse.dart';
-import 'package:smithy_codegen/src/service/codegen.pbgrpc.dart';
 import 'package:smithy_codegen/src/util/pubspec.dart';
-import 'package:yaml_edit/yaml_edit.dart';
+
+import 'service/codegen.pbgrpc.dart';
 
 /// Handles requests from a remote codgen client, such as the Smithy plugin.
 class CodegenService extends CodegenServiceBase {

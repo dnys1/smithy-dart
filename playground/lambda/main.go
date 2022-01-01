@@ -18,11 +18,16 @@ import (
 
 var (
 	ErrInvalidIDL = errors.New("invalid IDL")
+
+	corsHeaders = map[string]string{
+		"Access-Control-Allow-Origin": "*",
+	}
 )
 
 func badRequest(format string, a ...interface{}) (*events.APIGatewayProxyResponse, error) {
 	return &events.APIGatewayProxyResponse{
 		StatusCode: http.StatusBadRequest,
+		Headers:    corsHeaders,
 		Body:       fmt.Sprintf(format, a...),
 	}, nil
 }
@@ -30,6 +35,7 @@ func badRequest(format string, a ...interface{}) (*events.APIGatewayProxyRespons
 func internalServerError(format string, a ...interface{}) (*events.APIGatewayProxyResponse, error) {
 	return &events.APIGatewayProxyResponse{
 		StatusCode: http.StatusInternalServerError,
+		Headers:    corsHeaders,
 		Body:       fmt.Sprintf(format, a...),
 	}, nil
 }
@@ -83,6 +89,7 @@ func HandleRequest(ctx context.Context, event *events.APIGatewayProxyRequest) (*
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
+		Headers:    corsHeaders,
 		Body:       string(b),
 	}, nil
 }

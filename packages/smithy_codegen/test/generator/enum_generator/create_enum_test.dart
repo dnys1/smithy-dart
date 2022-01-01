@@ -7,8 +7,8 @@ void main() {
     StringShape(
       (s) => s
         ..shapeId = ShapeId.parse('com.test#MyEnum')
-        ..traits = TraitMap.fromTraits([
-          EnumTrait(definitions: [
+        ..traits = TraitMap.fromTraits(const [
+          EnumTrait([
             EnumDefinition(value: 'FOO_BAZ@-. XAP - . '),
             EnumDefinition(
               value: 'BAR',

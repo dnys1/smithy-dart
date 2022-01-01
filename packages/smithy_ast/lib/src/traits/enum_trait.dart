@@ -7,12 +7,11 @@ part 'enum_trait.g.dart';
 @ShapeIdConverter()
 @JsonSerializable()
 class EnumTrait with AWSSerializable implements Trait<EnumTrait> {
-  const EnumTrait({
-    required this.definitions,
-  });
+  const EnumTrait(this.definitions);
 
-  factory EnumTrait.fromJson(Object? json) =>
-      _$EnumTraitFromJson((json as Map).cast());
+  factory EnumTrait.fromJson(Object? json) => _$EnumTraitFromJson({
+        'definitions': json as List,
+      });
 
   static final id = ShapeId.parse('smithy.api#enum');
 
@@ -22,9 +21,7 @@ class EnumTrait with AWSSerializable implements Trait<EnumTrait> {
   bool get isSynthetic => false;
 
   @override
-  List<Object?> get props => [
-        definitions,
-      ];
+  List<Object?> get props => [definitions];
 
   @override
   ShapeId get shapeId => id;

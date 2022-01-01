@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
-import 'package:smithy_codegen/src/service/codegen.pbgrpc.dart';
+import 'package:smithy_codegen/src/service/codegen.pb.dart';
 
 extension SmithyLibraryX on SmithyLibrary {
   /// Creates a [SmithyLibrary] with sanitized inputs.

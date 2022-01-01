@@ -6,6 +6,7 @@ import { PlaygroundStack } from "../lib/playground-stack";
 const app = new cdk.App();
 new PlaygroundStack(app, "PlaygroundStack", {
   env: {
-    region: "us-west-2",
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION,
   },
 });

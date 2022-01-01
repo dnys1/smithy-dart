@@ -1,5 +1,5 @@
 import 'package:smithy_codegen/src/model/smithy_library.dart';
-import 'package:smithy_codegen/src/service/codegen.pbgrpc.dart';
+import 'package:smithy_codegen/src/service/codegen.pb.dart';
 import 'package:test/test.dart';
 
 void main() {

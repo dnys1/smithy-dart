@@ -2,6 +2,8 @@ import 'package:aws_common/aws_common.dart';
 import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+const coreNamespace = 'smithy.api';
+
 class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
   const ShapeId({
     required this.namespace,
@@ -48,6 +50,9 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
 
   @override
   String toString() => absoluteName;
+
+  /// Whether this shape represents a core/built-in shape.
+  bool get isCoreShape => namespace == coreNamespace;
 }
 
 class ShapeIdConverter implements JsonConverter<ShapeId, String> {

@@ -24,7 +24,6 @@ import 'package:smithy_ast/src/shapes/set_shape.dart';
 import 'package:smithy_ast/src/shapes/shape.dart';
 import 'package:smithy_ast/src/shapes/shape_id.dart';
 import 'package:smithy_ast/src/shapes/shape_ref.dart';
-import 'package:smithy_ast/src/shapes/shape_type.dart';
 import 'package:smithy_ast/src/shapes/short_shape.dart';
 import 'package:smithy_ast/src/shapes/string_shape.dart';
 import 'package:smithy_ast/src/shapes/structure_shape.dart';
@@ -32,7 +31,6 @@ import 'package:smithy_ast/src/shapes/timestamp_shape.dart';
 import 'package:smithy_ast/src/shapes/trait_map.dart';
 import 'package:smithy_ast/src/shapes/union_shape.dart';
 import 'package:smithy_ast/src/smithy_ast.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
 
 part 'serializers.g.dart';
 
@@ -67,6 +65,7 @@ part 'serializers.g.dart';
 @internal
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())
+      ..add(ShapeIdSerializer())
       ..add(ShapeMapSerializer())
       ..add(ShapeSerializer())
       ..add(NamedMembersMapSerializer())

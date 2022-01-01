@@ -13,21 +13,21 @@ import 'package:stream_transform/stream_transform.dart';
 class EditorComponent implements AfterContentInit {
   CodeMirror? _editor;
 
-  final StreamController<String> _schemaController = StreamController();
-  final Element editorElement;
+  final StreamController<String> _outputController = StreamController();
+  final Element _hostEl;
 
-  EditorComponent(this.editorElement);
+  EditorComponent(this._hostEl);
 
   @Input()
   bool readOnly = false;
 
-  final Completer<void> _onInit = Completer();
-  Future<void> get onInit => _onInit.future;
+  @Input()
+  String? lang;
 
   @override
   void ngAfterContentInit() {
     _editor = CodeMirror.fromElement(
-      editorElement,
+      _hostEl,
       options: <String, dynamic>{
         'lineNumbers': !readOnly,
         'autoCloseBrackets': true,
@@ -39,24 +39,28 @@ class EditorComponent implements AfterContentInit {
           'Ctrl-/': 'toggleComment',
           'Tab': 'insertSoftTab'
         },
+        if (lang != null) 'mode': lang,
       },
     );
     _editor!.callArgs('setSize', <String>['100%', '100%']);
-    _schemaController.addStream(
-      _editor!.onChange.map((dynamic event) {
-        return _editor!.getDoc()?.getValue('\n') ?? '';
-      }).cast<String>(),
-    );
     if (readOnly) {
       _editor!.setReadOnly(true, true);
     } else {
-      _editor!.getDoc()!.setValue(_text ?? '');
+      _outputController.addStream(
+        _editor!.onChange.map((dynamic event) {
+          return _editor!.getDoc()?.getValue('\n') ?? '';
+        }).cast<String>(),
+      );
     }
-    _onInit.complete();
+    _editor!.getDoc()!.setValue(_text ?? '');
   }
 
   String? _text;
 
+  /// Returns one of:
+  /// 1. The initial text, if available
+  /// 2. The document text, if created
+  /// 3. An empty string
   String get text => _text ?? _editor?.getDoc()?.getValue('\n') ?? '';
 
   @Input()
@@ -65,9 +69,13 @@ class EditorComponent implements AfterContentInit {
       return;
     }
     var doc = _editor?.getDoc();
+
     if (doc == null) {
+      // Sets the initial text (before content has initialized).
       _text = text;
     } else {
+      // Sets the editor text while preserving cursor position (would reset
+      // otherwise).
       var cursorPos = doc.getCursor();
       doc.setValue(text);
       doc.setCursor(cursorPos);
@@ -77,5 +85,5 @@ class EditorComponent implements AfterContentInit {
 
   @Output()
   Stream<String> get textChange =>
-      _schemaController.stream.debounce(const Duration(milliseconds: 400));
+      _outputController.stream.debounce(const Duration(milliseconds: 400));
 }

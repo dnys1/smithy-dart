@@ -1,10 +1,19 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_playground/editor/editor_component.dart';
 import 'package:smithy_playground/service/transform_service.dart';
 import 'package:fo_components/fo_components.dart';
+
+class TransformOutput {
+  const TransformOutput(this.lang, this.doc);
+
+  final String lang;
+  final String doc;
+}
 
 @Component(
   selector: 'home',
@@ -22,37 +31,25 @@ import 'package:fo_components/fo_components.dart';
     FoRadioGroupComponent,
     FoDropdownSelectComponent,
     FoLoadIndicatorComponent,
+    FoTabComponent,
+    FoTabPanelComponent,
   ],
 )
-class HomeComponent implements OnInit, AfterContentInit {
-  HomeComponent(this.transformService, this._changeDetectorRef);
+class HomeComponent implements AfterContentInit {
+  HomeComponent(this.transformService, this._ref);
 
+  final ChangeDetectorRef _ref;
   final TransformerService transformService;
-  final ChangeDetectorRef _changeDetectorRef;
 
-  String editorText = '';
-  String outputText = '';
+  final LinkedHashMap<String, TransformOutput> outputs = LinkedHashMap();
+
+  String editorText = defaultText;
   String? errorText;
-  bool isModalShown = false;
 
   @ViewChild('button')
   ButtonElement? buttonElement;
 
-  @ViewChild('dropdown')
-  TemplateRef? dropdownTemplate;
-
-  int? innerWidth;
-  bool get showHeaderDropdown => innerWidth != null && innerWidth! >= 600;
-
   bool isLoading = false;
-
-  @override
-  void ngOnInit() {
-    innerWidth = window.innerWidth;
-    window.onResize.listen((event) {
-      innerWidth = window.innerWidth;
-    });
-  }
 
   Future<void> transform() async {
     if (isLoading) {
@@ -61,8 +58,33 @@ class HomeComponent implements OnInit, AfterContentInit {
     setBusy(true);
     try {
       final response = await transformService.transform(editorText);
-      outputText = response.ast.trim();
-      errorText = response.errors.trim();
+      final error = response.errors.trim();
+      errorText = error.isEmpty ? null : error;
+
+      if (errorText != null) {
+        return;
+      }
+
+      final astStr = response.ast.trim();
+      outputs['AST'] = TransformOutput('application/json', astStr);
+
+      // Code generate libraries for AST
+      try {
+        final ast = parseAstJson(astStr);
+        final libraries = generateForAst(
+          ast,
+          packageName: 'example',
+          serviceName: 'MyService',
+        );
+        print('Outputted libraries: $libraries');
+        libraries.forEach((lib, definition) {
+          outputs[lib.filename + '.dart'] = TransformOutput('dart', definition);
+        });
+      } catch (e, st) {
+        window.console.error(e);
+        window.console.error(st);
+        errorText = e.toString();
+      }
     } on TransformException catch (e) {
       window.console.error(e);
       errorText = e.message;
@@ -76,6 +98,7 @@ class HomeComponent implements OnInit, AfterContentInit {
 
   void setBusy(bool busy) {
     isLoading = busy;
+    _ref.markForCheck();
   }
 
   @override
@@ -85,10 +108,44 @@ class HomeComponent implements OnInit, AfterContentInit {
 
   void updateText(String text) {
     editorText = text;
-    _changeDetectorRef.markForCheck();
-  }
-
-  void showModal() {
-    isModalShown = true;
   }
 }
+
+const defaultText = '''
+namespace com.test
+
+service MyService {
+  version: "1.0.0",
+  operations: ["GetFoo"]
+}
+
+@enum([
+  {
+    value: "rawValue1",
+    name: "Variant1"
+  },
+  {
+    value: "rawValue2",
+    name: "Variant2"
+  }
+])
+string MyEnum
+
+union MyUnion {
+  anInt: Integer,
+  aLong: Long
+}
+
+operation GetFoo {
+  input: GetFooInput,
+  output: GetFooOutput
+}
+
+structure GetFooInput {
+  input: MyEnum
+}
+
+structure GetFooOutput {
+  output: MyUnion
+}
+''';

@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/parse.dart';
 import 'package:grpc/grpc.dart';
 import 'package:smithy_codegen/src/server.dart';
 

@@ -1,11 +1,6 @@
 // Extended from recase v4.0 (https://github.com/techniboogie-dart/recase) to
 // include changes related to acronym preservation.
 
-final RegExp _upperAlphaRegex = RegExp(r'[A-Z]');
-final RegExp _acronymRegex = RegExp(r'^JSON|AWS|IP|ID');
-
-final _symbolSet = {' ', '.', '/', '_', '\\', '-'};
-
 /// An instance of text to be re-cased.
 class ReCase {
   final String originalText;

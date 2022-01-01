@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:build_cli_annotations/build_cli_annotations.dart';
 import 'package:path/path.dart' as path;
 
@@ -38,7 +36,4 @@ class CodegenConfig {
 extension ConfigOptions on CodegenConfig {
   /// The output directory as a file URI.
   Uri get outputUri => path.toUri(output);
-
-  /// The output directory.
-  Directory get outputDir => Directory.fromUri(outputUri);
 }

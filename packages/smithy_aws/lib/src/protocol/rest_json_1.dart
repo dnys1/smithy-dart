@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:smithy/smithy.dart';
 
 class RestJson1Protocol<Input extends JsonPayload, Output> extends HttpProtocol<

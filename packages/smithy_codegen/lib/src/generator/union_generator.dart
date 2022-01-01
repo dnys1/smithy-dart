@@ -63,7 +63,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..type = MethodType.getter
           ..name = member.variantName
           ..lambda = true
-          ..body = literalNull.statement,
+          ..body = literalNull.code,
       );
     }
   }
@@ -76,16 +76,17 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..type = MethodType.getter
           ..name = 'value'
           ..lambda = true
-          ..body = sortedMembers
-              .fold<Expression?>(null, (ref, m) {
-                final memberRef = refer(m.variantName);
-                if (ref == null) {
-                  return memberRef;
-                }
-                return ref.ifNullThen(memberRef);
-              })!
-              .nullChecked
-              .statement,
+          ..body = Block.of([
+            const Code('('),
+            sortedMembers.fold<Expression?>(null, (ref, m) {
+              final memberRef = refer(m.variantName);
+              if (ref == null) {
+                return memberRef;
+              }
+              return ref.ifNullThen(memberRef);
+            })!.code,
+            refer(')').nullChecked.code,
+          ]),
       );
 
   /// Factory constructors for each member.
@@ -96,6 +97,11 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..constant = true
           ..factory = true
           ..name = member.variantName
+          ..requiredParameters.add(Parameter(
+            (p) => p
+              ..type = memberSymbols[member]!.unboxed
+              ..name = member.variantName,
+          ))
           ..redirect = refer(member.variantClassName),
       );
     }
@@ -119,7 +125,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..modifier = FieldModifier.constant
           ..annotations.add(DartTypes.core.override)
           ..name = member.variantName
-          ..type = memberSymbols[member]!,
+          ..type = memberSymbols[member]!.unboxed,
       );
       yield Class(
         (c) => c
@@ -129,6 +135,32 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..fields.add(value),
       );
     }
+
+    // The sdkUnknown class
+    final ctor = Constructor(
+      (ctor) => ctor
+        ..constant = true
+        ..requiredParameters.add(Parameter(
+          (p) => p
+            ..toThis = true
+            ..name = 'value',
+        ))
+        ..initializers.add(refer('super').property('_').call([]).code),
+    );
+    final value = Field(
+      (f) => f
+        ..modifier = FieldModifier.constant
+        ..annotations.add(DartTypes.core.override)
+        ..name = 'value'
+        ..type = DartTypes.core.string,
+    );
+    yield Class(
+      (c) => c
+        ..name = '_SdkUnknown'
+        ..extend = symbol
+        ..constructors.add(ctor)
+        ..fields.add(value),
+    );
   }
 }
 
@@ -137,5 +169,5 @@ extension on MemberShape {
   String get variantName => memberName.camelCase;
 
   /// The name of the enum variant's private class name.
-  String get variantClassName => '_$memberName'.pascalCase;
+  String get variantClassName => '_${memberName.pascalCase}';
 }

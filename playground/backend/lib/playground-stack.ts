@@ -6,25 +6,18 @@ import {
   Stack,
   StackProps,
 } from "aws-cdk-lib";
-import { LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
+import { Cors, LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
 import {
-  Distribution,
-  EdgeLambda,
-  experimental,
-  LambdaEdgeEventType,
+  CloudFrontAllowedMethods,
+  CloudFrontWebDistribution,
   OriginAccessIdentity,
-  SecurityPolicyProtocol,
-  ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront";
-import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { Code, Function, Handler, Runtime } from "aws-cdk-lib/aws-lambda";
 import {
   BlockPublicAccess,
   Bucket,
-  BucketAccessControl,
 } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
-import * as fs from "fs-extra";
 import * as path from "path";
 
 export class PlaygroundStack extends Stack {
@@ -44,14 +37,9 @@ export class PlaygroundStack extends Stack {
 
     const gateway = new LambdaRestApi(this, "GenerateApi", {
       handler: lambda,
-    });
-
-    const websiteBucket = new Bucket(this, "WebsiteBucket", {
-      bucketName: "smithy-playground-web",
-      autoDeleteObjects: true,
-      removalPolicy: RemovalPolicy.DESTROY,
-      accessControl: BucketAccessControl.PRIVATE,
-      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      defaultCorsPreflightOptions: {
+        allowOrigins: Cors.ALL_ORIGINS,
+      }
     });
 
     const originAccessId = new OriginAccessIdentity(
@@ -59,40 +47,31 @@ export class PlaygroundStack extends Stack {
       "OriginAccessIdentity"
     );
 
+    const websiteBucket = new Bucket(this, "WebsiteBucket", {
+      bucketName: "smithy-playground-web",
+      autoDeleteObjects: true,
+      removalPolicy: RemovalPolicy.DESTROY,
+      publicReadAccess: false,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      websiteIndexDocument: 'index.html',
+    });
+
     websiteBucket.grantRead(originAccessId);
-
-    // Create an edge lambda which can rewrite directory listings to `index.html`
-    const rewriteFunction = new experimental.EdgeFunction(
-      this,
-      "RewriteFunction",
-      {
-        runtime: Runtime.NODEJS_12_X,
-        code: Code.fromInline(
-          fs.readFileSync("lib/rewrite.js", {
-            encoding: "utf8",
-          })
-        ),
-        handler: "rewrite.handler",
-      }
-    );
-
-    const edgeLambdas: EdgeLambda[] = [
-      {
-        functionVersion: rewriteFunction,
-        eventType: LambdaEdgeEventType.ORIGIN_REQUEST,
-      },
-    ];
-
-    const distribution = new Distribution(this, "WebsiteDistribution", {
-      enableIpv6: true,
-      minimumProtocolVersion: SecurityPolicyProtocol.TLS_V1_2_2021,
-      defaultBehavior: {
-        origin: new S3Origin(websiteBucket, {
-          originAccessIdentity: originAccessId,
-        }),
-        viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        edgeLambdas,
-      },
+    
+    const distribution = new CloudFrontWebDistribution(this, "WebsiteDistribution", {
+      originConfigs: [
+        {
+          s3OriginSource: {
+            s3BucketSource: websiteBucket,
+            originAccessIdentity: originAccessId,
+          },
+          behaviors: [{
+            isDefaultBehavior: true,
+            compress: true,
+            allowedMethods: CloudFrontAllowedMethods.GET_HEAD_OPTIONS,
+          }]
+        }
+      ],
     });
 
     new CfnOutput(this, "ApiUrl", {

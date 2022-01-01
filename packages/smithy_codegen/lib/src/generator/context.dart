@@ -29,7 +29,54 @@ class CodegenContext {
 
   /// Returns the symbol or [Reference] for [shapeId].
   Reference symbolFor(ShapeId shapeId, {Shape? parentShape}) {
-    final shape = shapes[shapeId];
+    Shape? shape;
+    if (shapeId.isCoreShape) {
+      final type = ShapeType.valueOf(shapeId.name.toLowerCase());
+      switch (type) {
+        case ShapeType.bigDecimal:
+          shape = BigDecimalShape();
+          break;
+        case ShapeType.bigInteger:
+          shape = BigIntegerShape();
+          break;
+        case ShapeType.blob:
+          shape = BlobShape();
+          break;
+        case ShapeType.boolean:
+          shape = BooleanShape();
+          break;
+        case ShapeType.byte:
+          shape = ByteShape();
+          break;
+        case ShapeType.document:
+          shape = DocumentShape();
+          break;
+        case ShapeType.double:
+          shape = DoubleShape();
+          break;
+        case ShapeType.float:
+          shape = FloatShape();
+          break;
+        case ShapeType.integer:
+          shape = IntegerShape();
+          break;
+        case ShapeType.long:
+          shape = LongShape();
+          break;
+        case ShapeType.short:
+          shape = ShortShape();
+          break;
+        case ShapeType.string:
+          shape = StringShape();
+          break;
+        case ShapeType.timestamp:
+          shape = TimestampShape();
+          break;
+        default:
+          break;
+      }
+    }
+    shape ??= shapes[shapeId];
     if (shape == null) {
       throw CodegenException('No shape found for ID: $shapeId');
     }

@@ -11,7 +11,10 @@ class TransformException implements Exception {
 
 class TransformerService {
   static final _client = http.Client();
-  static final _baseUrl = Uri.parse(const String.fromEnvironment('API_URL'));
+  static final _baseUrl = Uri.parse(
+    // const String.fromEnvironment('API_URL')
+    'https://8kfdofbpn1.execute-api.us-west-2.amazonaws.com/prod/',
+  );
 
   Future<TransformResponse> transform(String idl) async {
     final resp = await _client.post(_baseUrl, body: idl);

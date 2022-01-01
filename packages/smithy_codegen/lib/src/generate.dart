@@ -1,11 +1,12 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:dart_style/dart_style.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_codegen/src/format/format_stub.dart'
+    if (dart.library.io) 'package:smithy_codegen/src/format/format_io.dart';
 import 'package:smithy_codegen/src/generator/allocator.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/visitors/library.dart';
-import 'package:smithy_codegen/src/service/codegen.pbgrpc.dart';
+import 'package:smithy_codegen/src/service/codegen.pb.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// Header which prefixes all generated files.
@@ -41,12 +42,10 @@ Map<SmithyLibrary, String> generateForAst(
       .cast();
 
   // Emit Dart code and format
-  final formatter = DartFormatter(fixes: StyleFix.all);
   return libraries.map((shape, library) {
     return MapEntry(
       shape.smithyLibrary(packageName, serviceName),
-      '$header\n\n' +
-          formatter.format('${library.accept(buildEmitter(library))}'),
+      '$header\n\n' + format('${library.accept(buildEmitter(library))}'),
     );
   });
 }

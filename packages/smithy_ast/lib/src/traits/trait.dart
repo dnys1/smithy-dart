@@ -1,6 +1,9 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_ast/src/traits/external_documentation_trait.dart';
+import 'package:smithy_ast/src/traits/host_label_trait.dart';
+import 'package:smithy_ast/src/traits/http/http_api_key_auth_trait.dart';
 
 typedef TraitConstructor<TraitValue extends Object, T extends Trait<TraitValue>>
     = T Function(Object?);
@@ -14,8 +17,12 @@ abstract class Trait<TraitValue extends Object>
     with AWSEquatable<Trait<TraitValue>>, AWSSerializable {
   const Trait(this.shapeId, this.value);
 
-  static Trait fromJson(ShapeId shapeId, Object? jsonValue) =>
-      serializers[shapeId]!(jsonValue);
+  static Trait fromJson(ShapeId shapeId, Object? jsonValue) {
+    if (!serializers.containsKey(shapeId)) {
+      throw ArgumentError('No serializer found for $shapeId');
+    }
+    return serializers[shapeId]!(jsonValue);
+  }
 
   /// Returns the fully-qualified shape ID of the trait.
   final ShapeId shapeId;
@@ -33,7 +40,7 @@ abstract class Trait<TraitValue extends Object>
   bool get isSynthetic => false;
 
   @override
-  Object? toJson() =>
+  Object toJson() =>
       value is AWSSerializable ? (value as AWSSerializable).toJson() : value;
 
   @override
@@ -47,6 +54,15 @@ abstract class Trait<TraitValue extends Object>
     DeprecatedTrait.id: DeprecatedTrait.fromJson,
     DocumentationTrait.id: DocumentationTrait.fromJson,
     EndpointTrait.id: EndpointTrait.fromJson,
+    EnumTrait.id: EnumTrait.fromJson,
+    ErrorTrait.id: ErrorTrait.fromJson,
+    EventHeaderTrait.id: EventHeaderTrait.fromJson,
+    EventPayloadTrait.id: EventPayloadTrait.fromJson,
+    ExamplesTrait.id: ExamplesTrait.fromJson,
+    ExternalDocumentationTrait.id: ExternalDocumentationTrait.fromJson,
+    HostLabelTrait.id: HostLabelTrait.fromJson,
+    HttpApiKeyAuthTrait.id: HttpApiKeyAuthTrait.fromJson,
+    RequiredTrait.id: RequiredTrait.fromJson,
   };
 }
 

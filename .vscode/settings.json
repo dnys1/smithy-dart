@@ -1,5 +1,13 @@
 {
     "files.exclude": {
-        "codegen/build/**": true
+        "codegen/build/**": true,
+        "**/node_modules/**": true,
+    },
+    "yaml.schemas": {
+        "https://json.schemastore.org/dart-build": [
+            "build.yaml",
+            "*.build.yaml",
+            "build.*.yaml"
+        ]
     }
 }

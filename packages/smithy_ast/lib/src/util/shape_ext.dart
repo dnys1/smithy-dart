@@ -47,6 +47,11 @@ extension ShapeExt on Shape {
         }.contains(getType());
         return isNotRequired && (hasDefaultValue ? isBoxed : true);
 
+      // All but one value in a union is non-null. We represent all values
+      // with nullable getters, though.
+      case ShapeType.union:
+        return true;
+
       default:
         throw StateError('Unknown aggregate type: $parentType');
     }

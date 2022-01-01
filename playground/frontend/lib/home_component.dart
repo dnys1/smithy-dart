@@ -57,26 +57,17 @@ class HomeComponent implements AfterContentInit {
     }
     setBusy(true);
     try {
-      final response = await transformService.transform(editorText);
-      final error = response.errors.trim();
-      errorText = error.isEmpty ? null : error;
-
-      if (errorText != null) {
-        return;
-      }
-
-      final astStr = response.ast.trim();
-      outputs['AST'] = TransformOutput('application/json', astStr);
+      final astJson = await transformService.transform(editorText);
+      outputs['AST'] = TransformOutput('application/json', astJson);
 
       // Code generate libraries for AST
       try {
-        final ast = parseAstJson(astStr);
+        final ast = parseAstJson(astJson);
         final libraries = generateForAst(
           ast,
           packageName: 'example',
           serviceName: 'MyService',
         );
-        print('Outputted libraries: $libraries');
         libraries.forEach((lib, definition) {
           outputs[lib.filename + '.dart'] = TransformOutput('dart', definition);
         });

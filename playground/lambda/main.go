@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
@@ -73,24 +72,15 @@ func HandleRequest(ctx context.Context, event *events.APIGatewayProxyRequest) (*
 	if cmd.ProcessState.ExitCode() != 0 {
 		return badRequest("%v: %s", ErrInvalidIDL, ast)
 	}
+	if err := strings.TrimSpace(stderr.String()); err != "" {
+		return badRequest("%v: %s", ErrInvalidIDL, err)
+	}
 	log.Printf("Successfully generated AST: %s\n", ast)
-
-	response := struct {
-		AST    string `json:"ast"`
-		Errors string `json:"errors"`
-	}{
-		AST:    strings.TrimSpace(string(ast)),
-		Errors: strings.TrimSpace(stderr.String()),
-	}
-	b, err := json.Marshal(response)
-	if err != nil {
-		return internalServerError("error marshalling response: %v", err)
-	}
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
 		Headers:    corsHeaders,
-		Body:       string(b),
+		Body:       string(ast),
 	}, nil
 }
 

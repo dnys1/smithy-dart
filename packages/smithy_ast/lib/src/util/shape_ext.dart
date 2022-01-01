@@ -69,10 +69,10 @@ extension ShapeExt on Shape {
   bool get isEnum => this is StringShape && hasTrait<EnumTrait>();
 
   /// Whether `this` has the `@sparse` trait.
-  bool get isSparse => throw UnimplementedError();
+  bool get isSparse => hasTrait<SparseTrait>();
 
   /// Whether `this` has the `@streaming` trait.
-  bool get isStreaming => throw UnimplementedError();
+  bool get isStreaming => hasTrait<StreamingTrait>();
 
   /// Whether `this` has the `@required` trait.
   bool get isRequired => hasTrait<RequiredTrait>();

@@ -23,7 +23,10 @@ ResourceReference _$ResourceReferenceFromJson(Map<String, dynamic> json) =>
       resource: const ShapeIdConverter().fromJson(json['resource'] as String),
       service:
           const NullableShapeIdConverter().fromJson(json['service'] as String?),
-      ids: Map<String, String>.from(json['ids'] as Map),
+      ids: (json['ids'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          const {},
       rel: json['rel'] as String?,
     );
 

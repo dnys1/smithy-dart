@@ -10,7 +10,7 @@ class ReferencesTrait implements Trait<ReferencesTrait> {
   const ReferencesTrait(this.references);
 
   factory ReferencesTrait.fromJson(Object? json) =>
-      _$ReferencesTraitFromJson((json as Map).cast());
+      _$ReferencesTraitFromJson({'references': json});
 
   static const id = ShapeId.core('references');
 
@@ -40,7 +40,7 @@ class ResourceReference {
   const ResourceReference({
     required this.resource,
     this.service,
-    required this.ids,
+    this.ids = const {},
     this.rel,
   });
 

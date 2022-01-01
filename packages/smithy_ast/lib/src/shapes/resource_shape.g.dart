@@ -23,27 +23,10 @@ class _$ResourceShapeSerializer implements StructuredSerializer<ResourceShape> {
       serializers.serialize(object.identifiers,
           specifiedType: const FullType(BuiltMap,
               const [const FullType(String), const FullType(ShapeRef)])),
-      'put',
-      serializers.serialize(object.put,
-          specifiedType: const FullType(ShapeRef)),
-      'create',
-      serializers.serialize(object.create,
-          specifiedType: const FullType(ShapeRef)),
-      'read',
-      serializers.serialize(object.read,
-          specifiedType: const FullType(ShapeRef)),
-      'update',
-      serializers.serialize(object.update_,
-          specifiedType: const FullType(ShapeRef)),
-      'delete',
-      serializers.serialize(object.delete,
-          specifiedType: const FullType(ShapeRef)),
-      'list',
-      serializers.serialize(object.list,
-          specifiedType: const FullType(ShapeRef)),
       'collectionOperations',
       serializers.serialize(object.collectionOperations,
-          specifiedType: const FullType(Set, const [const FullType(ShapeRef)])),
+          specifiedType:
+              const FullType(BuiltSet, const [const FullType(ShapeRef)])),
       'traits',
       serializers.serialize(object.traits,
           specifiedType: const FullType(TraitMap)),
@@ -56,7 +39,49 @@ class _$ResourceShapeSerializer implements StructuredSerializer<ResourceShape> {
           specifiedType:
               const FullType(BuiltSet, const [const FullType(ShapeRef)])),
     ];
-
+    Object? value;
+    value = object.put;
+    if (value != null) {
+      result
+        ..add('put')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ShapeRef)));
+    }
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ShapeRef)));
+    }
+    value = object.read;
+    if (value != null) {
+      result
+        ..add('read')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ShapeRef)));
+    }
+    value = object.update_;
+    if (value != null) {
+      result
+        ..add('update')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ShapeRef)));
+    }
+    value = object.delete;
+    if (value != null) {
+      result
+        ..add('delete')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ShapeRef)));
+    }
+    value = object.list;
+    if (value != null) {
+      result
+        ..add('list')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ShapeRef)));
+    }
     return result;
   }
 
@@ -102,10 +127,10 @@ class _$ResourceShapeSerializer implements StructuredSerializer<ResourceShape> {
               specifiedType: const FullType(ShapeRef))! as ShapeRef);
           break;
         case 'collectionOperations':
-          result.collectionOperations = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(Set, const [const FullType(ShapeRef)]))
-              as Set<ShapeRef>;
+          result.collectionOperations.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltSet, const [const FullType(ShapeRef)]))!
+              as BuiltSet<Object?>);
           break;
         case 'traits':
           result.traits = serializers.deserialize(value,
@@ -134,19 +159,19 @@ class _$ResourceShape extends ResourceShape {
   @override
   final BuiltMap<String, ShapeRef> identifiers;
   @override
-  final ShapeRef put;
+  final ShapeRef? put;
   @override
-  final ShapeRef create;
+  final ShapeRef? create;
   @override
-  final ShapeRef read;
+  final ShapeRef? read;
   @override
-  final ShapeRef update_;
+  final ShapeRef? update_;
   @override
-  final ShapeRef delete;
+  final ShapeRef? delete;
   @override
-  final ShapeRef list;
+  final ShapeRef? list;
   @override
-  final Set<ShapeRef> collectionOperations;
+  final BuiltSet<ShapeRef> collectionOperations;
   @override
   final ShapeId shapeId;
   @override
@@ -161,12 +186,12 @@ class _$ResourceShape extends ResourceShape {
 
   _$ResourceShape._(
       {required this.identifiers,
-      required this.put,
-      required this.create,
-      required this.read,
-      required this.update_,
-      required this.delete,
-      required this.list,
+      this.put,
+      this.create,
+      this.read,
+      this.update_,
+      this.delete,
+      this.list,
       required this.collectionOperations,
       required this.shapeId,
       required this.traits,
@@ -175,12 +200,6 @@ class _$ResourceShape extends ResourceShape {
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         identifiers, 'ResourceShape', 'identifiers');
-    BuiltValueNullFieldError.checkNotNull(put, 'ResourceShape', 'put');
-    BuiltValueNullFieldError.checkNotNull(create, 'ResourceShape', 'create');
-    BuiltValueNullFieldError.checkNotNull(read, 'ResourceShape', 'read');
-    BuiltValueNullFieldError.checkNotNull(update_, 'ResourceShape', 'update_');
-    BuiltValueNullFieldError.checkNotNull(delete, 'ResourceShape', 'delete');
-    BuiltValueNullFieldError.checkNotNull(list, 'ResourceShape', 'list');
     BuiltValueNullFieldError.checkNotNull(
         collectionOperations, 'ResourceShape', 'collectionOperations');
     BuiltValueNullFieldError.checkNotNull(shapeId, 'ResourceShape', 'shapeId');
@@ -295,9 +314,11 @@ class ResourceShapeBuilder
   ShapeRefBuilder get list => _$this._list ??= new ShapeRefBuilder();
   set list(covariant ShapeRefBuilder? list) => _$this._list = list;
 
-  Set<ShapeRef>? _collectionOperations;
-  Set<ShapeRef>? get collectionOperations => _$this._collectionOperations;
-  set collectionOperations(covariant Set<ShapeRef>? collectionOperations) =>
+  SetBuilder<ShapeRef>? _collectionOperations;
+  SetBuilder<ShapeRef> get collectionOperations =>
+      _$this._collectionOperations ??= new SetBuilder<ShapeRef>();
+  set collectionOperations(
+          covariant SetBuilder<ShapeRef>? collectionOperations) =>
       _$this._collectionOperations = collectionOperations;
 
   ShapeId? _shapeId;
@@ -328,13 +349,13 @@ class ResourceShapeBuilder
     final $v = _$v;
     if ($v != null) {
       _identifiers = $v.identifiers.toBuilder();
-      _put = $v.put.toBuilder();
-      _create = $v.create.toBuilder();
-      _read = $v.read.toBuilder();
-      _update_ = $v.update_.toBuilder();
-      _delete = $v.delete.toBuilder();
-      _list = $v.list.toBuilder();
-      _collectionOperations = $v.collectionOperations;
+      _put = $v.put?.toBuilder();
+      _create = $v.create?.toBuilder();
+      _read = $v.read?.toBuilder();
+      _update_ = $v.update_?.toBuilder();
+      _delete = $v.delete?.toBuilder();
+      _list = $v.list?.toBuilder();
+      _collectionOperations = $v.collectionOperations.toBuilder();
       _shapeId = $v.shapeId;
       _traits = $v.traits;
       _resources = $v.resources.toBuilder();
@@ -362,16 +383,13 @@ class ResourceShapeBuilder
       _$result = _$v ??
           new _$ResourceShape._(
               identifiers: identifiers.build(),
-              put: put.build(),
-              create: create.build(),
-              read: read.build(),
-              update_: update_.build(),
-              delete: delete.build(),
-              list: list.build(),
-              collectionOperations: BuiltValueNullFieldError.checkNotNull(
-                  collectionOperations,
-                  'ResourceShape',
-                  'collectionOperations'),
+              put: _put?.build(),
+              create: _create?.build(),
+              read: _read?.build(),
+              update_: _update_?.build(),
+              delete: _delete?.build(),
+              list: _list?.build(),
+              collectionOperations: collectionOperations.build(),
               shapeId: BuiltValueNullFieldError.checkNotNull(
                   shapeId, 'ResourceShape', 'shapeId'),
               traits: BuiltValueNullFieldError.checkNotNull(
@@ -384,17 +402,19 @@ class ResourceShapeBuilder
         _$failedField = 'identifiers';
         identifiers.build();
         _$failedField = 'put';
-        put.build();
+        _put?.build();
         _$failedField = 'create';
-        create.build();
+        _create?.build();
         _$failedField = 'read';
-        read.build();
+        _read?.build();
         _$failedField = 'update_';
-        update_.build();
+        _update_?.build();
         _$failedField = 'delete';
-        delete.build();
+        _delete?.build();
         _$failedField = 'list';
-        list.build();
+        _list?.build();
+        _$failedField = 'collectionOperations';
+        collectionOperations.build();
 
         _$failedField = 'resources';
         resources.build();

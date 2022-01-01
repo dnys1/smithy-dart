@@ -24,16 +24,16 @@ abstract class ResourceShape
   }
 
   BuiltMap<String, ShapeRef> get identifiers;
-  ShapeRef get put;
-  ShapeRef get create;
-  ShapeRef get read;
+  ShapeRef? get put;
+  ShapeRef? get create;
+  ShapeRef? get read;
 
   @BuiltValueField(wireName: 'update')
-  ShapeRef get update_;
+  ShapeRef? get update_;
 
-  ShapeRef get delete;
-  ShapeRef get list;
-  Set<ShapeRef> get collectionOperations;
+  ShapeRef? get delete;
+  ShapeRef? get list;
+  BuiltSet<ShapeRef> get collectionOperations;
 
   @override
   ShapeType getType() => ShapeType.resource;

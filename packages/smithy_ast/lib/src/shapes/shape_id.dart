@@ -14,6 +14,8 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
   static const empty = ShapeId(namespace: '', name: '');
   static final serializer = ShapeIdSerializer();
 
+  const ShapeId.core(this.name, [this.member]) : namespace = coreNamespace;
+
   factory ShapeId.parse(String shapeId) => ShapeId(
         namespace: shapeId.split('#').first,
         name: shapeId.substring(
@@ -63,6 +65,21 @@ class ShapeIdConverter implements JsonConverter<ShapeId, String> {
 
   @override
   String toJson(ShapeId object) => object.toJson();
+}
+
+class NullableShapeIdConverter implements JsonConverter<ShapeId?, String?> {
+  const NullableShapeIdConverter();
+
+  @override
+  ShapeId? fromJson(String? json) {
+    if (json == null) {
+      return null;
+    }
+    return ShapeId.parse(json);
+  }
+
+  @override
+  String? toJson(ShapeId? object) => object?.toJson();
 }
 
 class ShapeIdSerializer extends PrimitiveSerializer<ShapeId> {

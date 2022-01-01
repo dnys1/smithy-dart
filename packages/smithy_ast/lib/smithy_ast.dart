@@ -37,23 +37,7 @@ export 'src/shapes/trait_map.dart';
 export 'src/shapes/union_shape.dart';
 
 // Traits
-export 'src/traits/annotation_trait.dart';
-export 'src/traits/auth_definition_trait.dart';
-export 'src/traits/auth_trait.dart';
-export 'src/traits/box_trait.dart';
-export 'src/traits/cors_trait.dart';
-export 'src/traits/deprecated_trait.dart';
-export 'src/traits/documentation_trait.dart';
-export 'src/traits/endpoint_trait.dart';
-export 'src/traits/enum_definition.dart';
-export 'src/traits/enum_trait.dart';
-export 'src/traits/error_trait.dart';
-export 'src/traits/event_header_trait.dart';
-export 'src/traits/event_payload_trait.dart';
-export 'src/traits/examples_trait.dart';
-export 'src/traits/required_trait.dart';
-export 'src/traits/string_trait.dart';
-export 'src/traits/trait.dart';
+export 'src/traits.dart';
 
 // Util
 export 'src/util/shape_ext.dart';

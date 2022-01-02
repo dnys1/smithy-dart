@@ -8,14 +8,14 @@ Code generator and runtime packages for Smithy models in pure Dart.
 | ------ | ----------- |
 | **[codegen](codegen/)** | Smithy codegen plugin, written in Kotlin. Calls the Dart generator with parsed and validated models. |
 | **[example](example/)** | Example of how to define and generate a Dart client for a Smithy model |
-| [example/idl](example/idl/) | Example using Smithy IDL |
-| [example/ast](example/ast/) | Example using Smithy JSON AST |
+| [idl](example/idl/) | Example using Smithy IDL |
+| [ast](example/ast/) | Example using Smithy JSON AST |
 | **[packages](packages/)** | Dart packages |
-| [packages/smithy](packages/smithy/) | Smithy Dart runtime |
-| [packages/smithy_aws](packages/smithy_aws/) | Smithy Dart runtime for AWS clients |
-| [packages/smithy_ast](packages/smithy_ast/) | Smithy AST model with shape and trait definitions |
-| [packages/smithy_codegen](packages/smithy_codegen/) | Smithy Dart code generator |
-| [packages/goldens](packages/goldens/) | Smithy Dart code generator golden files |
+| [smithy](packages/smithy/) | Smithy Dart runtime |
+| [smithy_aws](packages/smithy_aws/) | Smithy Dart runtime for AWS clients |
+| [smithy_ast](packages/smithy_ast/) | Smithy AST model with shape and trait definitions |
+| [smithy_codegen](packages/smithy_codegen/) | Smithy Dart code generator |
+| [goldens](packages/goldens/) | Smithy Dart code generator golden files |
 | **[playground](playground/)** | Online playground for exploring the Dart code generator |
 | **[protos](protos/)** | Protobuf definitions for interface between the Kotlin plugin and the Dart generator |
 

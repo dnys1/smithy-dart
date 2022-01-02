@@ -40,13 +40,13 @@ message CodegenResponse {
     // Whether the operation was successful.
     bool success = 1;
 
-    // The error, if `success == true`.
+    // The error, if `success == false`.
     string error = 2;
 
     // The pubspec YAML.
     string pubspec = 3;
 
-    // Libraries and their generated definition file.
+    // Libraries and their generated definition files.
     message Library {
         SmithyLibrary metadata = 1;
         string definition = 2;

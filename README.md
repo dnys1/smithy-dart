@@ -1,8 +1,8 @@
 # Smithy Dart
 
-Code generator and runtime packages for Smithy models in pure Dart.
+> **Note**: This is NOT an official AWS product. It is mostly a technical proof-of-concept at the moment.
 
-> This is NOT an official AWS product. It is mostly a technical proof-of-concept at the moment.
+Code generator and runtime packages for Smithy models in pure Dart.
 
 | Folder | Description |
 | ------ | ----------- |

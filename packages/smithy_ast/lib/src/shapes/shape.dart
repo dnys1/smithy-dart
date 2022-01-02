@@ -32,9 +32,17 @@ abstract class Shape {
     FloatShape.id: FloatShape(),
     IntegerShape.id: IntegerShape(),
     LongShape.id: LongShape(),
+    PrimitiveBooleanShape.id: PrimitiveBooleanShape(),
+    PrimitiveByteShape.id: PrimitiveByteShape(),
+    PrimitiveDoubleShape.id: PrimitiveDoubleShape(),
+    PrimitiveFloatShape.id: PrimitiveFloatShape(),
+    PrimitiveIntegerShape.id: PrimitiveIntegerShape(),
+    PrimitiveLongShape.id: PrimitiveLongShape(),
+    PrimitiveShortShape.id: PrimitiveShortShape(),
     ShortShape.id: ShortShape(),
     StringShape.id: StringShape(),
     TimestampShape.id: TimestampShape(),
+    UnitShape.id: UnitShape(),
   };
 }
 

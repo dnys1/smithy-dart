@@ -22,14 +22,14 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference mapShape(MapShape shape, [Shape? parent]) {
-    final key = context.symbolFor(shape.key.target, parent: shape);
-    final value = context.symbolFor(shape.value.target, parent: shape);
+    final key = context.symbolFor(shape.key.target, shape);
+    final value = context.symbolFor(shape.value.target, shape);
     return DartTypes.core.map(key, value).withBoxed(shape.isNullable(parent));
   }
 
   @override
   Reference memberShape(MemberShape shape, [Shape? parent]) {
-    return context.symbolFor(shape.target, parent: parent);
+    return context.symbolFor(shape.target, parent);
   }
 
   @override

@@ -18,7 +18,7 @@ abstract class BlobShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(BlobShapeBuilder b) {
     b.shapeId = id;
-    b.traits ??= TraitMap({});
+    b.traits = TraitMap.empty();
   }
 
   static const id = ShapeId.core('Blob');

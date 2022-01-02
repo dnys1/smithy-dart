@@ -18,7 +18,7 @@ abstract class StructureShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(StructureShapeBuilder b) {
     b.shapeId = ShapeId.empty;
-    b.traits ??= TraitMap({});
+    b.traits = TraitMap.empty();
   }
 
   @override

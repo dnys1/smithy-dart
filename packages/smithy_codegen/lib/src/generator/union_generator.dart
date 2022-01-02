@@ -28,7 +28,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
 
   late final Map<MemberShape, Reference> memberSymbols = {
     for (var member in sortedMembers)
-      member: context.symbolFor(member.target, parent: shape),
+      member: context.symbolFor(member.target, shape),
   };
 
   @override

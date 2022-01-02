@@ -1,32 +1,8 @@
+import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_ast/src/serializers.dart';
-import 'package:smithy_ast/src/shapes/apply_shape.dart';
-import 'package:smithy_ast/src/shapes/big_decimal_shape.dart';
-import 'package:smithy_ast/src/shapes/big_integer_shape.dart';
-import 'package:smithy_ast/src/shapes/blob_shape.dart';
-import 'package:smithy_ast/src/shapes/boolean_shape.dart';
-import 'package:smithy_ast/src/shapes/byte_shape.dart';
-import 'package:smithy_ast/src/shapes/document_shape.dart';
-import 'package:smithy_ast/src/shapes/float_shape.dart';
-import 'package:smithy_ast/src/shapes/integer_shape.dart';
-import 'package:smithy_ast/src/shapes/list_shape.dart';
-import 'package:smithy_ast/src/shapes/long_shape.dart';
-import 'package:smithy_ast/src/shapes/map_shape.dart';
-import 'package:smithy_ast/src/shapes/member_shape.dart';
-import 'package:smithy_ast/src/shapes/operation_shape.dart';
-import 'package:smithy_ast/src/shapes/resource_shape.dart';
-import 'package:smithy_ast/src/shapes/service_shape.dart';
-import 'package:smithy_ast/src/shapes/set_shape.dart';
-
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy_ast/src/shapes/short_shape.dart';
-import 'package:smithy_ast/src/shapes/string_shape.dart';
-import 'package:smithy_ast/src/shapes/structure_shape.dart';
-import 'package:smithy_ast/src/shapes/timestamp_shape.dart';
-import 'package:smithy_ast/src/shapes/union_shape.dart';
-
-import 'double_shape.dart';
 
 part 'shape_type.g.dart';
 
@@ -52,6 +28,7 @@ class ShapeType extends EnumClass {
   static const ShapeType double = _$double;
   static const ShapeType bigDecimal = _$bigDecimal;
   static const ShapeType bigInteger = _$bigInteger;
+  static const ShapeType unit = _$unit;
   static const ShapeType list = _$list;
   static const ShapeType set = _$set;
   static const ShapeType map = _$map;
@@ -97,6 +74,7 @@ extension ShapeTypeX on ShapeType {
       case ShapeType.double:
       case ShapeType.bigDecimal:
       case ShapeType.bigInteger:
+      case ShapeType.unit:
         return Category.simple;
       case ShapeType.list:
       case ShapeType.set:
@@ -161,6 +139,8 @@ extension ShapeTypeX on ShapeType {
         return TimestampShape;
       case ShapeType.union:
         return UnionShape;
+      case ShapeType.unit:
+        return UnitShape;
     }
     throw ArgumentError.value(this);
   }

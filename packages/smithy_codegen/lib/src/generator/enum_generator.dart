@@ -19,7 +19,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
   late final List<EnumDefinition> sortedDefinitions =
       enumTrait.definitions.toList()
         ..sort((a, b) {
-          return (a.name ?? a.value).compareTo((b.name ?? b.value));
+          return a.variantName.compareTo(b.variantName);
         });
 
   @override

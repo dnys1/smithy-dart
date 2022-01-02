@@ -18,7 +18,7 @@ abstract class TimestampShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TimestampShapeBuilder b) {
     b.shapeId = id;
-    b.traits ??= TraitMap({});
+    b.traits = TraitMap.empty();
   }
 
   static const id = ShapeId.core('Timestamp');

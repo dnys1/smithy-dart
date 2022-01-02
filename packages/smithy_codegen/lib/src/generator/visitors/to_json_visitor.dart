@@ -3,6 +3,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/util.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   ToJsonVisitor(
@@ -29,11 +30,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   @override
   Expression bigIntegerShape(BigIntegerShape shape, [Shape? parent]) {
     final ref = _shapeRef(shape);
-    if (shape.isNullable()) {
-      return ref.nullSafeProperty('toString').call([]);
-    } else {
-      return ref.property('toString').call([]);
-    }
+    return ref.nullableProperty(shape.isNullable(), 'toString').call([]);
   }
 
   @override
@@ -93,10 +90,9 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
         ..requiredParameters.add(Parameter((p) => p..name = 'el'))
         ..body = memberToJson.code,
     ).closure;
-    if (shape.isNullable(parent)) {
-      return ref.nullSafeProperty('map').call([closure]);
-    }
-    return ref.property('map').call([closure]);
+    return ref
+        .nullableProperty(shape.isNullable(parent), 'map')
+        .call([closure]);
   }
 
   @override
@@ -152,11 +148,8 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   @override
   Expression stringShape(StringShape shape, [Shape? parent]) {
     if (shape.isEnum) {
-      if (shape.isNullable(parent)) {
-        return _shapeRef(shape).nullSafeProperty('value');
-      } else {
-        return _shapeRef(shape).property('value');
-      }
+      return _shapeRef(shape)
+          .nullableProperty(shape.isNullable(parent), 'value');
     }
     return _shapeRef(shape);
   }
@@ -164,23 +157,61 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   @override
   Expression structureShape(StructureShape shape, [Shape? parent]) {
     final ref = _shapeRef(shape);
-    if (shape.isNullable(parent)) {
-      return ref.nullSafeProperty('toJson').call([]);
-    }
-    return ref.property('toJson').call([]);
+    return ref.nullableProperty(shape.isNullable(parent), 'toJson').call([]);
   }
 
   @override
   Expression timestampShape(TimestampShape shape, [Shape? parent]) {
+    final timestampFormat = shape.getTrait<TimestampFormatTrait>()?.format ??
+        parent?.getTrait<TimestampFormatTrait>()?.format;
     throw UnimplementedError();
   }
 
   @override
   Expression unionShape(UnionShape shape, [Shape? parent]) {
     final ref = _shapeRef(shape);
-    if (shape.isNullable(parent)) {
-      return ref.nullSafeProperty('value');
-    }
-    return ref.property('value');
+    return ref.nullableProperty(shape.isNullable(parent), 'value');
+  }
+
+  @override
+  Expression primitiveBooleanShape(PrimitiveBooleanShape shape,
+      [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveByteShape(PrimitiveByteShape shape, [Shape? parent]) {
+    return _shapeRef(shape);
+  }
+
+  @override
+  Expression primitiveDoubleShape(PrimitiveDoubleShape shape, [Shape? parent]) {
+    return _shapeRef(shape);
+  }
+
+  @override
+  Expression primitiveFloatShape(PrimitiveFloatShape shape, [Shape? parent]) {
+    return _shapeRef(shape);
+  }
+
+  @override
+  Expression primitiveIntegerShape(PrimitiveIntegerShape shape,
+      [Shape? parent]) {
+    return _shapeRef(shape);
+  }
+
+  @override
+  Expression primitiveLongShape(PrimitiveLongShape shape, [Shape? parent]) {
+    return _shapeRef(shape);
+  }
+
+  @override
+  Expression primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) {
+    return _shapeRef(shape);
+  }
+
+  @override
+  Expression unitShape(UnitShape shape, [Shape? parent]) {
+    throw UnimplementedError();
   }
 }

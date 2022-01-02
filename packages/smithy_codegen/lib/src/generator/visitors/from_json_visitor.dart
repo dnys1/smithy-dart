@@ -66,7 +66,7 @@ class ToJsonVisitor implements ShapeVisitor<Expression> {
     final isNullable = shape.isNullable();
     final ref =
         _shapeRef(shape).asA(DartTypes.core.list().withBoxed(isNullable));
-    final member = context.symbolFor(shape.member.target, parent: shape);
+    final member = context.symbolFor(shape.member.target, shape);
     if (isNullable) {
       return ref.nullSafeProperty('cast').call([], {}, [member]);
     } else {
@@ -131,6 +131,48 @@ class ToJsonVisitor implements ShapeVisitor<Expression> {
 
   @override
   Expression unionShape(UnionShape shape, [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveBooleanShape(PrimitiveBooleanShape shape,
+      [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveByteShape(PrimitiveByteShape shape, [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveDoubleShape(PrimitiveDoubleShape shape, [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveFloatShape(PrimitiveFloatShape shape, [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveIntegerShape(PrimitiveIntegerShape shape,
+      [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveLongShape(PrimitiveLongShape shape, [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Expression unitShape(UnitShape shape, [Shape? parent]) {
     throw UnimplementedError();
   }
 }

@@ -21,6 +21,13 @@ export 'src/shapes/long_shape.dart';
 export 'src/shapes/map_shape.dart';
 export 'src/shapes/member_shape.dart';
 export 'src/shapes/operation_shape.dart';
+export 'src/shapes/primitive_boolean_shape.dart';
+export 'src/shapes/primitive_byte_shape.dart';
+export 'src/shapes/primitive_double_shape.dart';
+export 'src/shapes/primitive_float_shape.dart';
+export 'src/shapes/primitive_integer_shape.dart';
+export 'src/shapes/primitive_long_shape.dart';
+export 'src/shapes/primitive_short_shape.dart';
 export 'src/shapes/resource_shape.dart';
 export 'src/shapes/service_shape.dart';
 export 'src/shapes/set_shape.dart';
@@ -37,6 +44,7 @@ export 'src/shapes/structure_shape.dart';
 export 'src/shapes/timestamp_shape.dart';
 export 'src/shapes/trait_map.dart';
 export 'src/shapes/union_shape.dart';
+export 'src/shapes/unit_shape.dart';
 
 // Traits
 export 'src/traits.dart';

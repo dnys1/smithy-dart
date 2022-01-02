@@ -2,24 +2,19 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 extension ShapeExt on Shape {
   /// Whether this shape is nullable/"boxed".
-  bool isNullable([Shape? parentShape]) {
-    final isMemberShape = parentShape != null;
+  bool isNullable([Shape? parent]) {
+    final isMemberShape = parent != null;
     if (!isMemberShape) {
       // If a shape is not part of an aggregate shape, its nullability is
       // strictly equal to whether it has the box trait.
       return isBoxed;
     }
 
-    final parentType = parentShape.getType();
-    assert(
-      parentType.category == Category.aggregate,
-      'Unknown aggregate type: $parentType',
-    );
-
+    final parentType = parent.getType();
     switch (parentType) {
       // Lists have nullable members only when they are sparse.
       case ShapeType.list:
-        return parentShape.isSparse;
+        return parent.isSparse;
 
       // Sets never have null members.
       case ShapeType.set:
@@ -28,8 +23,8 @@ extension ShapeExt on Shape {
       // Maps always have non-null keys. Values are null iff the map is sparse.
       // The box trait is not used to determine nullability.
       case ShapeType.map:
-        final isValue = (parentShape as MapShape).value.target == shapeId;
-        return isValue && parentShape.isSparse;
+        final isValue = (parent as MapShape).value.target == shapeId;
+        return isValue && parent.isSparse;
 
       // Shapes which are part of a structure are always considered boxed
       // unless they are marked with the `@required` trait.

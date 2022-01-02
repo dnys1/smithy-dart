@@ -19,7 +19,7 @@ abstract class OperationShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(OperationShapeBuilder b) {
     b.shapeId = ShapeId.empty;
-    b.traits ??= TraitMap({});
+    b.traits = TraitMap.empty();
   }
 
   ShapeRef? get input;

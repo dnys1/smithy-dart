@@ -18,7 +18,7 @@ abstract class BigDecimalShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(BigDecimalShapeBuilder b) {
     b.shapeId = id;
-    b.traits ??= TraitMap({});
+    b.traits = TraitMap.empty();
   }
 
   static const id = ShapeId.core('BigDecimal');

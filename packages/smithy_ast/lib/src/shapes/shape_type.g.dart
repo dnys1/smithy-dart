@@ -20,6 +20,7 @@ const ShapeType _$document = const ShapeType._('document');
 const ShapeType _$double = const ShapeType._('double');
 const ShapeType _$bigDecimal = const ShapeType._('bigDecimal');
 const ShapeType _$bigInteger = const ShapeType._('bigInteger');
+const ShapeType _$unit = const ShapeType._('unit');
 const ShapeType _$list = const ShapeType._('list');
 const ShapeType _$set = const ShapeType._('set');
 const ShapeType _$map = const ShapeType._('map');
@@ -60,6 +61,8 @@ ShapeType _$shapeTypeValueOf(String name) {
       return _$bigDecimal;
     case 'bigInteger':
       return _$bigInteger;
+    case 'unit':
+      return _$unit;
     case 'list':
       return _$list;
     case 'set':
@@ -99,6 +102,7 @@ final BuiltSet<ShapeType> _$shapeTypeValues =
   _$double,
   _$bigDecimal,
   _$bigInteger,
+  _$unit,
   _$list,
   _$set,
   _$map,

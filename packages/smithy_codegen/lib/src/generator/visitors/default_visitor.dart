@@ -69,4 +69,30 @@ class DefaultVisitor<T> implements ShapeVisitor<T?> {
 
   @override
   T? unionShape(UnionShape shape, [Shape? parent]) => null;
+
+  @override
+  T? primitiveBooleanShape(PrimitiveBooleanShape shape, [Shape? parent]) =>
+      null;
+
+  @override
+  T? primitiveByteShape(PrimitiveByteShape shape, [Shape? parent]) => null;
+
+  @override
+  T? primitiveDoubleShape(PrimitiveDoubleShape shape, [Shape? parent]) => null;
+
+  @override
+  T? primitiveFloatShape(PrimitiveFloatShape shape, [Shape? parent]) => null;
+
+  @override
+  T? primitiveIntegerShape(PrimitiveIntegerShape shape, [Shape? parent]) =>
+      null;
+
+  @override
+  T? primitiveLongShape(PrimitiveLongShape shape, [Shape? parent]) => null;
+
+  @override
+  T? primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) => null;
+
+  @override
+  T? unitShape(UnitShape shape, [Shape? parent]) => null;
 }

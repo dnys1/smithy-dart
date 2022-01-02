@@ -16,7 +16,7 @@ abstract class ApplyShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ApplyShapeBuilder b) {
     b.shapeId = ShapeId.empty;
-    b.traits ??= TraitMap({});
+    b.traits = TraitMap.empty();
   }
 
   @override

@@ -44,7 +44,7 @@ class CodegenContext {
   }
 
   /// Returns the symbol or [Reference] for [shapeId].
-  Reference symbolFor(ShapeId shapeId, {Shape? parent}) {
+  Reference symbolFor(ShapeId shapeId, [Shape? parent]) {
     final shape = shapeFor(shapeId);
     return shape.accept(SymbolVisitor(this), parent);
   }

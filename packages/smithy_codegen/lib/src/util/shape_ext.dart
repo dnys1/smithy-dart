@@ -98,6 +98,6 @@ extension ShapeUtils on Shape {
       ..packageName = packageName
       ..serviceName = serviceName
       ..libraryType = libraryType
-      ..filename = shapeId.name.snakeCase;
+      ..filename = shapeId.shape.snakeCase;
   }
 }

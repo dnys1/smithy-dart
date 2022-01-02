@@ -26,7 +26,7 @@ abstract class LibraryGenerator<T extends Shape> extends Generator<Library> {
   late final Reference symbol = context.symbolFor(shape.shapeId);
 
   /// The re-cased name for the generated class.
-  String get className => shape.shapeId.name.pascalCase;
+  String get className => shape.shapeId.shape.pascalCase;
 
   /// Formats documentation to follow Dart standards.
   String formatDocs(String docs) => docs

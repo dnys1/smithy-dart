@@ -6,5 +6,5 @@ class HttpBearerAuthTrait extends AnnotationTrait {
 
   const HttpBearerAuthTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', name: 'httpBearerAuth');
+  static const id = ShapeId(namespace: 'smithy.api', shape: 'httpBearerAuth');
 }

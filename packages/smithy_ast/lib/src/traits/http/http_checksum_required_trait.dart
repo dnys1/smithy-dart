@@ -9,5 +9,5 @@ class HttpChecksumRequiredTrait extends AnnotationTrait {
   const HttpChecksumRequiredTrait.fromJson(Object? json) : super(id);
 
   static const id =
-      ShapeId(namespace: 'smithy.api', name: 'httpChecksumRequired');
+      ShapeId(namespace: 'smithy.api', shape: 'httpChecksumRequired');
 }

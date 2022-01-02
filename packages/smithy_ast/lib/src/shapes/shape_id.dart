@@ -7,18 +7,18 @@ const coreNamespace = 'smithy.api';
 class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
   const ShapeId({
     required this.namespace,
-    required this.name,
+    required this.shape,
     this.member,
   });
 
-  static const empty = ShapeId(namespace: '', name: '');
+  static const empty = ShapeId(namespace: '', shape: '');
   static final serializer = ShapeIdSerializer();
 
-  const ShapeId.core(this.name, [this.member]) : namespace = coreNamespace;
+  const ShapeId.core(this.shape, [this.member]) : namespace = coreNamespace;
 
   factory ShapeId.parse(String shapeId) => ShapeId(
         namespace: shapeId.split('#').first,
-        name: shapeId.substring(
+        shape: shapeId.substring(
           shapeId.indexOf('#') + 1,
           shapeId.contains('\$') ? shapeId.indexOf('\$') : shapeId.length,
         ),
@@ -26,11 +26,11 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
       );
 
   final String namespace;
-  final String name;
+  final String shape;
   final String? member;
 
   String get absoluteName =>
-      '$namespace#$name' + (member == null ? '' : '\$$member');
+      '$namespace#$shape' + (member == null ? '' : '\$$member');
 
   ShapeId replace({
     String? namespace,
@@ -39,7 +39,7 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
   }) {
     return ShapeId(
       namespace: namespace ?? this.namespace,
-      name: name ?? this.name,
+      shape: name ?? this.shape,
       member: member is String
           ? member
           : member == const Object()
@@ -49,7 +49,7 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
   }
 
   @override
-  List<Object?> get props => [namespace, name, member];
+  List<Object?> get props => [namespace, shape, member];
 
   @override
   String toJson() => absoluteName;

@@ -6,5 +6,5 @@ class HttpBasicAuthTrait extends AnnotationTrait {
 
   const HttpBasicAuthTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', name: 'httpBasicAuth');
+  static const id = ShapeId(namespace: 'smithy.api', shape: 'httpBasicAuth');
 }

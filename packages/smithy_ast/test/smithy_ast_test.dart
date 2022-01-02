@@ -19,7 +19,7 @@ void main() {
         }''';
         final map = (jsonDecode(json) as Map).cast<String, Object?>();
         final ast = SmithyAst.fromJson(map);
-        final shapeId = ShapeId(namespace: 'smithy.example', name: 'MyString');
+        final shapeId = ShapeId(namespace: 'smithy.example', shape: 'MyString');
         final expected = SmithyAst((b) => b
           ..version = '1.0'
           ..shapes = ShapeMap({
@@ -48,9 +48,10 @@ void main() {
           }
         }''';
 
-        final serviceId = ShapeId(namespace: 'smithy.example', name: 'Service');
+        final serviceId =
+            ShapeId(namespace: 'smithy.example', shape: 'Service');
         final operationId =
-            ShapeId(namespace: 'smithy.example', name: 'Operation');
+            ShapeId(namespace: 'smithy.example', shape: 'Operation');
 
         final expected = SmithyAst((b) => b
           ..version = '1.0'
@@ -82,7 +83,7 @@ void main() {
             }
         }''';
 
-        final listId = ShapeId(namespace: 'smithy.example', name: 'MyList');
+        final listId = ShapeId(namespace: 'smithy.example', shape: 'MyList');
 
         final memberShape = MemberShape((b) {
           b
@@ -125,9 +126,9 @@ void main() {
             }
         }''';
 
-        final mapId = ShapeId(namespace: 'smithy.example', name: 'IntegerMap');
-        final stringId = ShapeId(namespace: 'smithy.api', name: 'String');
-        final integerId = ShapeId(namespace: 'smithy.api', name: 'Integer');
+        final mapId = ShapeId(namespace: 'smithy.example', shape: 'IntegerMap');
+        final stringId = ShapeId(namespace: 'smithy.api', shape: 'String');
+        final integerId = ShapeId(namespace: 'smithy.api', shape: 'Integer');
 
         final expected = SmithyAst((b) => b
           ..version = '1.0'
@@ -168,10 +169,10 @@ void main() {
       }''';
 
         final structureId =
-            ShapeId(namespace: 'smithy.example', name: 'MyStructure');
-        final stringId = ShapeId(namespace: 'smithy.api', name: 'String');
-        final integerId = ShapeId(namespace: 'smithy.api', name: 'Integer');
-        final requiredId = ShapeId(namespace: 'smithy.api', name: 'required');
+            ShapeId(namespace: 'smithy.example', shape: 'MyStructure');
+        final stringId = ShapeId(namespace: 'smithy.api', shape: 'String');
+        final integerId = ShapeId(namespace: 'smithy.api', shape: 'Integer');
+        final requiredId = ShapeId(namespace: 'smithy.api', shape: 'required');
 
         final expected = SmithyAst((b) => b
           ..version = '1.0'

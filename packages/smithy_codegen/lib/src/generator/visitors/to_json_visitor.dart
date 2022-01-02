@@ -19,7 +19,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
 
   /// The name for [shape] in this [context].
   String _nameFor(Shape shape) =>
-      renameFor(shape.shapeId) ?? shape.shapeId.name.camelCase;
+      renameFor(shape.shapeId) ?? shape.shapeId.shape.camelCase;
 
   @override
   Expression bigDecimalShape(BigDecimalShape shape, [Shape? parent]) {

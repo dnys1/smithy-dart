@@ -9,5 +9,5 @@ class EventPayloadTrait extends AnnotationTrait {
 
   const EventPayloadTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', name: 'eventPayload');
+  static const id = ShapeId(namespace: 'smithy.api', shape: 'eventPayload');
 }

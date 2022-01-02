@@ -6,5 +6,5 @@ class HttpDigestAuthTrait extends AnnotationTrait {
 
   const HttpDigestAuthTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', name: 'httpDigestAuth');
+  static const id = ShapeId(namespace: 'smithy.api', shape: 'httpDigestAuth');
 }

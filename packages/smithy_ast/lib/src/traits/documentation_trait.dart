@@ -5,5 +5,5 @@ class DocumentationTrait extends StringTrait {
 
   const DocumentationTrait.fromJson(Object? json) : super(id, json as String);
 
-  static const id = ShapeId(namespace: 'smithy.api', name: 'documentation');
+  static const id = ShapeId(namespace: 'smithy.api', shape: 'documentation');
 }

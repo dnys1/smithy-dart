@@ -6,5 +6,5 @@ class IdempotentTrait extends AnnotationTrait {
 
   const IdempotentTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', name: 'idempotent');
+  static const id = ShapeId(namespace: 'smithy.api', shape: 'idempotent');
 }

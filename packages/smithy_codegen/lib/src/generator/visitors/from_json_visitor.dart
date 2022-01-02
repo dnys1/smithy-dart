@@ -11,7 +11,7 @@ class ToJsonVisitor implements ShapeVisitor<Expression> {
 
   Reference _shapeRef(Shape shape) => refer(_nameFor(shape));
 
-  String _nameFor(Shape shape) => renames[shape.shapeId] ?? shape.shapeId.name;
+  String _nameFor(Shape shape) => renames[shape.shapeId] ?? shape.shapeId.shape;
 
   @override
   Expression bigDecimalShape(BigDecimalShape shape, [Shape? parent]) {

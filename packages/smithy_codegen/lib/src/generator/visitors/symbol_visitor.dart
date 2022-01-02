@@ -84,7 +84,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   }) {
     return TypeReference(
       (t) => t
-        ..symbol = name ?? shape.shapeId.name.pascalCase
+        ..symbol = name ?? shape.shapeId.shape.pascalCase
         ..url = shape.libraryUrl(
           context.packageName,
           serviceName ?? context.serviceName,

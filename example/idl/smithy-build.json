@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "projections": {
+    "idl_example": {
+      "plugins": {
+        "dart-codegen": {
+          "name": "idl_example",
+          "version": "0.1.0"
+        }
+      }
+    }
+  }
+}

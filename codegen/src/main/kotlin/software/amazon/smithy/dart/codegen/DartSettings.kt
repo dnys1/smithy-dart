@@ -1,18 +1,14 @@
 package software.amazon.smithy.dart.codegen
 
 import software.amazon.smithy.codegen.core.CodegenException
-import software.amazon.smithy.dart.codegen.core.capitalize
-import software.amazon.smithy.dart.codegen.lang.isValidPackageName
 import software.amazon.smithy.dart.codegen.utils.getOrNull
-import software.amazon.smithy.dart.codegen.utils.toSmithyIDL
+import software.amazon.smithy.dart.codegen.utils.toSnakeCase
 import software.amazon.smithy.model.Model
 import software.amazon.smithy.model.node.ObjectNode
-import software.amazon.smithy.model.node.StringNode
 import software.amazon.smithy.model.shapes.ServiceShape
 import software.amazon.smithy.model.shapes.Shape
 import software.amazon.smithy.model.shapes.ShapeId
 import java.util.logging.Logger
-import kotlin.streams.toList
 
 // shapeId of service from which to generate an SDK
 const val SERVICE = "service"
@@ -75,13 +71,12 @@ class DartSettings(
                 .map { listOf(it.expectShapeId()) }
                 .orElseGet { gatherServices(model) }
 
-            val packageName = config.expectStringMember(PACKAGE_NAME).value
-            if (!packageName.isValidPackageName()) {
-                throw CodegenException("Invalid package name, is empty or has invalid characters: '$packageName'")
-            }
-
+            val packageName = config.expectStringMember(PACKAGE_NAME).value.toSnakeCase()
             val version = config.expectStringMember(PACKAGE_VERSION).value
-            val desc = config.getStringMemberOrDefault(PACKAGE_DESCRIPTION, "${packageName.capitalize()} models")
+            val desc = config.getStringMemberOrDefault(
+                PACKAGE_DESCRIPTION,
+                "${packageName.replaceFirstChar { c -> c.uppercaseChar() }} models"
+            )
             val homepage = config.getStringMember(PACKAGE_HOMEPAGE).getOrNull()?.value ?: ""
             val publishTo = config.getStringMember(PACKAGE_PUBLISH_TO).getOrNull()?.value ?: ""
             val repository = config.getStringMember(PACKAGE_REPOSITORY).getOrNull()?.value ?: ""
@@ -113,7 +108,7 @@ class DartSettings(
                 .toList()
 
             if (services.isEmpty()) {
-                logger.severe(model.toSmithyIDL())
+                logger.severe(model.toString())
                 throw CodegenException(
                     "Cannot infer a service to generate because the model does not " +
                             "contain any service shapes"

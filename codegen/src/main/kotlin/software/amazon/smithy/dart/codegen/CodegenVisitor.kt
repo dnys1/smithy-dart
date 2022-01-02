@@ -8,15 +8,12 @@ import io.grpc.ManagedChannelBuilder
 import kotlinx.coroutines.runBlocking
 import software.amazon.smithy.build.FileManifest
 import software.amazon.smithy.build.PluginContext
-import software.amazon.smithy.dart.codegen.core.snakeCase
-import software.amazon.smithy.dart.codegen.model.OperationNormalizer
-import software.amazon.smithy.dart.codegen.model.isEnum
+import software.amazon.smithy.dart.codegen.utils.toSnakeCase
 import software.amazon.smithy.model.Model
 import software.amazon.smithy.model.neighbor.Walker
 import software.amazon.smithy.model.node.Node
 import software.amazon.smithy.model.shapes.ModelSerializer
 import software.amazon.smithy.model.shapes.ServiceShape
-import software.amazon.smithy.model.shapes.Shape
 import software.amazon.smithy.model.shapes.ShapeId
 import software.amazon.smithy.model.transform.ModelTransformer
 import java.io.Closeable
@@ -25,14 +22,6 @@ import java.util.logging.Logger
 
 class CodegenVisitor(context: PluginContext) {
     companion object {
-        /**
-         * Determines if a new Dart type is generated for a given shape. Generally only structures, unions, and enums
-         * result in a type being generated. Strings, ints, etc are mapped to builtins
-         */
-        fun isTypeGeneratedForShape(shape: Shape): Boolean =
-            // pretty much anything we visit in CodegenVisitor (we don't care about service shape here though)
-            shape.isEnum || shape.isStructureShape || shape.isUnionShape
-
         /**
          * Create unique library names for each service if there are conflicting values. Note: This does not affect any
          * generated type names, only their library (file) names - which must be unique.
@@ -43,7 +32,7 @@ class CodegenVisitor(context: PluginContext) {
         fun resolveServiceNames(serviceIds: List<ShapeId>): Map<ShapeId, String> {
             // Find conflicting service names by grouping shape IDs by name.
             val serviceNameConflicts = serviceIds.fold(mutableMapOf<String, MutableSet<ShapeId>>()) { map, serviceId ->
-                val serviceName = serviceId.name.snakeCase()
+                val serviceName = serviceId.name.toSnakeCase()
                 map.also {
                     it.putIfAbsent(serviceName, mutableSetOf())
                     it[serviceName]!!.add(serviceId)
@@ -75,9 +64,9 @@ class CodegenVisitor(context: PluginContext) {
                         val namespaceParts = serviceId.namespace.split(".")
 
                         // Fold the namespace parts in as prefixes until we have a unique name from the current one
-                        val prefixedName = namespaceParts.foldRight(serviceId.name.snakeCase()) { part, acc ->
+                        val prefixedName = namespaceParts.foldRight(serviceId.name.toSnakeCase()) { part, acc ->
                             if (serviceName.endsWith(acc)) {
-                                "${part}_$acc".snakeCase()
+                                "${part}_$acc".toSnakeCase()
                             } else {
                                 acc
                             }
@@ -133,20 +122,21 @@ class CodegenVisitor(context: PluginContext) {
     private val services: List<ServiceShape>
 
     init {
-        val resolvedModel = context.model
-
-        // Normalize operations by generating synthetic input/output events if missing.
-        model = OperationNormalizer.transform(resolvedModel, settings.services)
-
+        model = context.model
         services = settings.services.map { settings.getService(model, it) }
     }
 
     fun execute() {
         // Activate server
         logger.info("Activating codegen server...")
-        val activateCommand = ProcessBuilder()
-            .command("dart", "pub", "global", "activate", "-spath", "/Users/nydillon/dev/smithy-dart-new/packages/smithy_codegen")
-            .start()
+        val activateCommand = ProcessBuilder().command(
+                "dart",
+                "pub",
+                "global",
+                "activate",
+                "-spath",
+                "/Users/nydillon/dev/smithy-dart-new/packages/smithy_codegen"
+            ).start()
         activateCommand.waitFor(30, TimeUnit.SECONDS)
         if (activateCommand.exitValue() != 0) {
             val error = activateCommand.errorStream.readBytes().decodeToString()
@@ -156,16 +146,12 @@ class CodegenVisitor(context: PluginContext) {
 
         // Start server process
         logger.info("Starting codegen server...")
-        val server = ProcessBuilder()
-            .command("dart", "pub", "global", "run", "smithy_codegen", "--server")
-            .start()
+        val server = ProcessBuilder().command("dart", "pub", "global", "run", "smithy_codegen", "--server").start()
         val portStr = server.inputStream.bufferedReader().readLine()
         val port = portStr.toIntOrNull() ?: throw Exception("Could not parse port: $portStr")
 
-        val channel = ManagedChannelBuilder.forAddress("localhost", port)
-            .idleTimeout(15, TimeUnit.SECONDS)
-            .usePlaintext()
-            .build()
+        val channel =
+            ManagedChannelBuilder.forAddress("localhost", port).idleTimeout(15, TimeUnit.SECONDS).usePlaintext().build()
         val client = RemoteCodegenClient(channel)
 
         val serviceNames = resolveServiceNames(services.map(ServiceShape::getId))
@@ -180,7 +166,7 @@ class CodegenVisitor(context: PluginContext) {
             val serviceClosureShapes = Walker(modelWithoutTraits).walkShapes(service)
             val serviceClosureJson = Node.printJson(ModelSerializer.builder().shapeFilter {
                 serviceClosureShapes.contains(it)
-            }.traitFilter{
+            }.traitFilter {
                 false
             }.build().serialize(modelWithoutTraits))
 
@@ -223,9 +209,7 @@ class RemoteCodegenClient(private val channel: ManagedChannel) : Closeable {
     private val stub = CodegenServiceGrpcKt.CodegenServiceCoroutineStub(channel)
 
     suspend fun codegen(
-        settings: Map<String, String>,
-        serviceName: String,
-        json: String
+        settings: Map<String, String>, serviceName: String, json: String
     ): Codegen.CodegenResponse {
         val request = codegenRequest {
             this.settings.putAll(settings)

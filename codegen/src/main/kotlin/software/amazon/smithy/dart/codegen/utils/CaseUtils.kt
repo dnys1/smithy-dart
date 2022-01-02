@@ -19,7 +19,8 @@ fun String.splitOnWordBoundaries(): List<String> {
         .replace(Regex("([^A-Z]{2,})V([0-9]+)"), "$1 V$2 ") // TestV4 -> "Test V4 "
 
     // add a space between camelCased words
-    result = result.split(Regex("(?<=[a-z])(?=[A-Z]([a-zA-Z]|[0-9]))")).joinToString(separator = " ") // AcmSuccess -> // "Acm Success"
+    result = result.split(Regex("(?<=[a-z])(?=[A-Z]([a-zA-Z]|[0-9]))"))
+        .joinToString(separator = " ") // AcmSuccess -> // "Acm Success"
 
     // add a space after acronyms
     result = result.replace(Regex("([A-Z]+)([A-Z][a-z])"), "$1 $2") // "ACMSuccess" -> "ACM Success"
@@ -37,28 +38,17 @@ fun String.splitOnWordBoundaries(): List<String> {
 /**
  * Convert a string to `PascalCase` (uppercase start with upper case word boundaries)
  */
-fun String.toPascalCase(): String = splitOnWordBoundaries().joinToString(separator = "") { it.lowercase().replaceFirstChar { c -> c.uppercaseChar() } }
+fun String.toPascalCase(): String =
+    splitOnWordBoundaries().joinToString(separator = "") { it.lowercase().replaceFirstChar { c -> c.uppercaseChar() } }
+
+/**
+ * Convert a string to `snake_case` (uppercase start with upper case word boundaries)
+ */
+fun String.toSnakeCase(): String = splitOnWordBoundaries().joinToString(separator = "_") { it.lowercase() }
+
 
 /**
  * Convert a string to `camelCase` (lowercase start with upper case word boundaries)
  */
 fun String.toCamelCase(): String = toPascalCase().replaceFirstChar { c -> c.lowercaseChar() }
 
-/**
- * Inverts the case of a character. For example:
- * * 'a' → 'A'
- * * 'A' → 'a'
- * * '!' → '!'
- */
-fun Char.toggleCase(): Char = if (isUpperCase()) lowercaseChar() else uppercaseChar()
-
-/**
- * Toggles the case of the first character in the string. For example:
- * * "apple" → "Apple"
- * * "Apple" → "apple"
- * * "!apple" → "!apple"
- */
-fun String.toggleFirstCharacterCase(): String = when {
-    isEmpty() -> this
-    else -> first().toggleCase() + substring(1)
-}

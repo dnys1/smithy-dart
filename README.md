@@ -2,6 +2,8 @@
 
 Code generator and runtime packages for Smithy models in pure Dart.
 
+> This is NOT an official AWS product. It is mostly a technical proof-of-concept at the moment.
+
 | Folder | Description |
 | ------ | ----------- |
 | **[codegen](codegen/)** | Smithy codegen plugin, written in Kotlin. Calls the Dart generator with parsed and validated models. |

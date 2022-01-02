@@ -5,6 +5,45 @@ import 'package:smithy_codegen/src/model/smithy_library.dart';
 import 'package:smithy_codegen/src/service/codegen.pb.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 
+extension SimpleShapeUtil on SimpleShape {
+  Reference get typeReference {
+    switch (getType()) {
+      case ShapeType.bigDecimal:
+        throw UnimplementedError();
+      case ShapeType.bigInteger:
+        return DartTypes.core.bigInt;
+      case ShapeType.blob:
+        if (isStreaming) {
+          return DartTypes.async
+              .stream(DartTypes.core.list(DartTypes.core.int));
+        }
+        return DartTypes.typedData.uint8List;
+      case ShapeType.boolean:
+        return DartTypes.core.bool;
+      case ShapeType.byte:
+        return DartTypes.core.int;
+      case ShapeType.document:
+        return DartTypes.core.object;
+      case ShapeType.double:
+        return DartTypes.core.double;
+      case ShapeType.float:
+        return DartTypes.core.double;
+      case ShapeType.integer:
+        return DartTypes.core.int;
+      case ShapeType.long:
+        return DartTypes.fixNum.int64;
+      case ShapeType.short:
+        return DartTypes.core.int;
+      case ShapeType.string:
+        return DartTypes.core.string;
+      case ShapeType.timestamp:
+        return DartTypes.core.dateTime;
+      default:
+        throw ArgumentError('Invalid simple shape: ${getType()}');
+    }
+  }
+}
+
 extension ShapeUtils on Shape {
   /// Documentation for the shape.
   String? get docs => getTrait<DocumentationTrait>()?.value;

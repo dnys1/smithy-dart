@@ -1,19 +1,6 @@
 import 'dart:convert';
 
-import 'package:smithy_ast/src/shapes/collection_shape.dart';
-import 'package:smithy_ast/src/shapes/list_shape.dart';
-import 'package:smithy_ast/src/shapes/map_shape.dart';
-import 'package:smithy_ast/src/shapes/member_shape.dart';
-import 'package:smithy_ast/src/shapes/operation_shape.dart';
-import 'package:smithy_ast/src/shapes/service_shape.dart';
-import 'package:smithy_ast/src/shapes/shape_id.dart';
-import 'package:smithy_ast/src/shapes/shape_ref.dart';
-import 'package:smithy_ast/src/shapes/string_shape.dart';
-import 'package:smithy_ast/src/shapes/structure_shape.dart';
-import 'package:smithy_ast/src/shapes/trait_map.dart';
-import 'package:smithy_ast/src/smithy_ast.dart';
-import 'package:smithy_ast/src/traits/documentation_trait.dart';
-import 'package:smithy_ast/src/traits/required_trait.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -100,6 +87,8 @@ void main() {
         final memberShape = MemberShape((b) {
           b
             ..target = ShapeId.parse('smithy.api#String')
+            ..shapeId = listId.replace(member: 'member')
+            ..memberName = 'member'
             ..traits = TraitMap({
               DocumentationTrait.id: DocumentationTrait('Member documentation')
             });

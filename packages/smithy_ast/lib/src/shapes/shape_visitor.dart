@@ -1,68 +1,102 @@
-import 'big_decimal_shape.dart';
-import 'big_integer_shape.dart';
-import 'blob_shape.dart';
-import 'boolean_shape.dart';
-import 'byte_shape.dart';
-import 'document_shape.dart';
-import 'double_shape.dart';
-import 'float_shape.dart';
-import 'integer_shape.dart';
-import 'list_shape.dart';
-import 'long_shape.dart';
-import 'map_shape.dart';
-import 'member_shape.dart';
-import 'operation_shape.dart';
-import 'resource_shape.dart';
-import 'service_shape.dart';
-import 'set_shape.dart';
-import 'short_shape.dart';
-import 'string_shape.dart';
-import 'structure_shape.dart';
-import 'timestamp_shape.dart';
-import 'union_shape.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
+/// Visits shapes.
 abstract class ShapeVisitor<R> {
-  R blobShape(BlobShape shape);
+  R blobShape(BlobShape shape, [Shape? parent]);
 
-  R booleanShape(BooleanShape shape);
+  R booleanShape(BooleanShape shape, [Shape? parent]);
 
-  R listShape(ListShape shape);
+  R listShape(ListShape shape, [Shape? parent]);
 
-  R setShape(SetShape shape);
+  R setShape(SetShape shape, [Shape? parent]);
 
-  R mapShape(MapShape shape);
+  R mapShape(MapShape shape, [Shape? parent]);
 
-  R byteShape(ByteShape shape);
+  R byteShape(ByteShape shape, [Shape? parent]);
 
-  R shortShape(ShortShape shape);
+  R shortShape(ShortShape shape, [Shape? parent]);
 
-  R integerShape(IntegerShape shape);
+  R integerShape(IntegerShape shape, [Shape? parent]);
 
-  R longShape(LongShape shape);
+  R longShape(LongShape shape, [Shape? parent]);
 
-  R floatShape(FloatShape shape);
+  R floatShape(FloatShape shape, [Shape? parent]);
 
-  R documentShape(DocumentShape shape);
+  R documentShape(DocumentShape shape, [Shape? parent]);
 
-  R doubleShape(DoubleShape shape);
+  R doubleShape(DoubleShape shape, [Shape? parent]);
 
-  R bigIntegerShape(BigIntegerShape shape);
+  R bigIntegerShape(BigIntegerShape shape, [Shape? parent]);
 
-  R bigDecimalShape(BigDecimalShape shape);
+  R bigDecimalShape(BigDecimalShape shape, [Shape? parent]);
 
-  R operationShape(OperationShape shape);
+  R operationShape(OperationShape shape, [Shape? parent]);
 
-  R resourceShape(ResourceShape shape);
+  R resourceShape(ResourceShape shape, [Shape? parent]);
 
-  R serviceShape(ServiceShape shape);
+  R serviceShape(ServiceShape shape, [Shape? parent]);
 
-  R stringShape(StringShape shape);
+  R stringShape(StringShape shape, [Shape? parent]);
 
-  R structureShape(StructureShape shape);
+  R structureShape(StructureShape shape, [Shape? parent]);
 
-  R unionShape(UnionShape shape);
+  R unionShape(UnionShape shape, [Shape? parent]);
 
-  R memberShape(MemberShape shape);
+  R memberShape(MemberShape shape, [Shape? parent]);
 
-  R timestampShape(TimestampShape shape);
+  R timestampShape(TimestampShape shape, [Shape? parent]);
+}
+
+/// Visits shapes by category.
+abstract class CategoryShapeVisitor<R> implements ShapeVisitor<R> {
+  const CategoryShapeVisitor();
+
+  @override
+  R bigDecimalShape(BigDecimalShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R bigIntegerShape(BigIntegerShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R blobShape(BlobShape shape, [Shape? parent]) => simpleShape(shape, parent);
+
+  @override
+  R booleanShape(BooleanShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R byteShape(ByteShape shape, [Shape? parent]) => simpleShape(shape, parent);
+
+  @override
+  R documentShape(DocumentShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R doubleShape(DoubleShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R floatShape(FloatShape shape, [Shape? parent]) => simpleShape(shape, parent);
+
+  @override
+  R integerShape(IntegerShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R longShape(LongShape shape, [Shape? parent]) => simpleShape(shape, parent);
+
+  R simpleShape(SimpleShape shape, [Shape? parent]);
+
+  @override
+  R shortShape(ShortShape shape, [Shape? parent]) => simpleShape(shape, parent);
+
+  @override
+  R stringShape(StringShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
+
+  @override
+  R timestampShape(TimestampShape shape, [Shape? parent]) =>
+      simpleShape(shape, parent);
 }

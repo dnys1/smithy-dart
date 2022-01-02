@@ -92,7 +92,7 @@ class _$StringShape extends StringShape {
 }
 
 class StringShapeBuilder
-    implements Builder<StringShape, StringShapeBuilder>, ShapeBuilder {
+    implements Builder<StringShape, StringShapeBuilder>, SimpleShapeBuilder {
   _$StringShape? _$v;
 
   ShapeId? _shapeId;

@@ -25,11 +25,10 @@ extension MyEnumByValue on _i0.List<MyEnum> {
   /// Returns the value of [MyEnum] whose name matches [name].
   ///
   /// Throws a `StateError` if no matching value is found.
-  MyEnum byName(_i0.String name) => firstWhere((el) => el.name == name);
+  MyEnum byName(_i0.String name) =>
+      firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [MyEnum] whose value matches [value].
-  ///
-  /// Throws a `StateError` if no matching value is found.
   MyEnum byValue(_i0.String value) => firstWhere((el) => el.value == value,
       orElse: () => MyEnum.sdkUnknown(value));
 }

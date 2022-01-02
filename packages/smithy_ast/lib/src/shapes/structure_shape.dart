@@ -10,8 +10,7 @@ import 'package:smithy_ast/src/shapes/trait_map.dart';
 part 'structure_shape.g.dart';
 
 abstract class StructureShape
-    with HasNamedMembers
-    implements Shape, Built<StructureShape, StructureShapeBuilder> {
+    implements NamedMembersShape, Built<StructureShape, StructureShapeBuilder> {
   factory StructureShape([void Function(StructureShapeBuilder) updates]) =
       _$StructureShape;
   StructureShape._();
@@ -26,7 +25,8 @@ abstract class StructureShape
   ShapeType getType() => ShapeType.structure;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.structureShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.structureShape(this, parent);
 
   static Serializer<StructureShape> get serializer =>
       _$structureShapeSerializer;

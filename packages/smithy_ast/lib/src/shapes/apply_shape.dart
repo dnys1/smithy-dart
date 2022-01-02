@@ -23,7 +23,8 @@ abstract class ApplyShape
   ShapeType getType() => ShapeType.apply;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => throw UnimplementedError();
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      throw UnimplementedError();
 
   static Serializer<ApplyShape> get serializer => _$applyShapeSerializer;
 }

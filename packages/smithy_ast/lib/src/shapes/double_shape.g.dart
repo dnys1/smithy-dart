@@ -92,7 +92,7 @@ class _$DoubleShape extends DoubleShape {
 }
 
 class DoubleShapeBuilder
-    implements Builder<DoubleShape, DoubleShapeBuilder>, ShapeBuilder {
+    implements Builder<DoubleShape, DoubleShapeBuilder>, SimpleShapeBuilder {
   _$DoubleShape? _$v;
 
   ShapeId? _shapeId;

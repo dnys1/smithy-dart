@@ -154,8 +154,12 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
               (c) => c
                 ..lambda = true
                 ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                ..body =
-                    refer('el').property('name').equalTo(refer('name')).code,
+                ..body = refer('el')
+                    .property('name')
+                    .property('toLowerCase')
+                    .call([])
+                    .equalTo(refer('name').property('toLowerCase').call([]))
+                    .code,
             ).closure,
           ]).code,
       ),
@@ -166,9 +170,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
           ..returns = symbol
           ..name = 'byValue'
           ..docs.addAll([
-            '/// Returns the value of [$className] whose value matches [value].',
-            '/// ',
-            '/// Throws a `StateError` if no matching value is found.',
+            '/// Returns the value of [$className] whose value matches [value].'
           ])
           ..requiredParameters.add(Parameter((p) => p
             ..type = DartTypes.core.string

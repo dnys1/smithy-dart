@@ -1,11 +1,12 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/format/format_stub.dart'
     if (dart.library.io) 'package:smithy_codegen/src/format/format_io.dart';
 import 'package:smithy_codegen/src/generator/allocator.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
-import 'package:smithy_codegen/src/generator/visitors/library.dart';
+import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
 import 'package:smithy_codegen/src/service/codegen.pb.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
@@ -29,6 +30,8 @@ Map<SmithyLibrary, String> generateForAst(
   Pubspec? pubspec,
 }) {
   final context = CodegenContext(
+    smithyVersion: ast.version,
+    metadata: ast.metadata.toMap(),
     shapes: ast.shapes,
     packageName: packageName,
     serviceName: serviceName,

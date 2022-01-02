@@ -6,6 +6,19 @@ part of 'collection_shape.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+abstract class NamedMembersShapeBuilder implements ShapeBuilder {
+  void replace(covariant NamedMembersShape other);
+  void update(void Function(NamedMembersShapeBuilder) updates);
+  NamedMembersMap? get members;
+  set members(covariant NamedMembersMap? members);
+
+  ShapeId? get shapeId;
+  set shapeId(covariant ShapeId? shapeId);
+
+  TraitMap? get traits;
+  set traits(covariant TraitMap? traits);
+}
+
 abstract class CollectionShapeBuilder implements ShapeBuilder {
   void replace(covariant CollectionShape other);
   void update(void Function(CollectionShapeBuilder) updates);

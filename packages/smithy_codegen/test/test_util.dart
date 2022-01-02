@@ -21,6 +21,7 @@ CodegenContext createTestContext(
   String serviceName = 'Test',
 }) {
   return CodegenContext(
+    smithyVersion: '1.0',
     shapes: ShapeMap({for (var shape in shapes) shape.shapeId: shape}),
     packageName: packageName,
     serviceName: serviceName,
@@ -32,13 +33,18 @@ CodegenContext createTestContext(
 /// Returns a mapping from library name to library definition.
 Map<String, String> loadGoldens(String groupName, String testName) {
   final dirUri = Directory.current.uri.resolve(
-    'test/goldens/lib/${groupName.snakeCase}/${testName.snakeCase}',
+    '../goldens/lib/${groupName.snakeCase}/${testName.snakeCase}',
   );
   final dir = Directory.fromUri(dirUri);
 
   final libraries = <String, String>{};
   for (final entity in dir.listSync(recursive: true)) {
-    final libraryName = path.basenameWithoutExtension(entity.path);
+    if (entity.statSync().type == FileSystemEntityType.directory) {
+      continue;
+    }
+    final libraryName = SmithyLibraryX.fromPath('goldens',
+            path.relative(entity.path, from: path.join(dir.path, 'lib')))
+        .libraryName;
     final libraryDefinition = File.fromUri(entity.uri).readAsStringSync();
     libraries[libraryName] = libraryDefinition;
   }

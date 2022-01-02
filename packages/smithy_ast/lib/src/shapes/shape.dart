@@ -1,12 +1,7 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:collection/collection.dart';
-import 'package:smithy_ast/src/shapes/shape_visitor.dart';
-import 'package:smithy_ast/src/shapes/trait_map.dart';
-import 'package:smithy_ast/src/traits/trait.dart';
-
-import 'shape_id.dart';
-import 'shape_type.dart';
+import 'package:smithy_ast/smithy_ast.dart';
 
 part 'shape.g.dart';
 
@@ -18,13 +13,29 @@ abstract class Shape {
   TraitMap get traits;
   ShapeType getType();
 
-  R accept<R>(ShapeVisitor<R> visitor);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]);
 
-  Shape rebuild(void Function(ShapeBuilder) updates);
+  Shape rebuild(covariant void Function(ShapeBuilder) updates);
   ShapeBuilder toBuilder();
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Shape> get serializer => ShapeSerializer();
+
+  static final preludeShapes = <ShapeId, Shape>{
+    BigDecimalShape.id: BigDecimalShape(),
+    BigIntegerShape.id: BigIntegerShape(),
+    BlobShape.id: BlobShape(),
+    BooleanShape.id: BooleanShape(),
+    ByteShape.id: ByteShape(),
+    DocumentShape.id: DocumentShape(),
+    DoubleShape.id: DoubleShape(),
+    FloatShape.id: FloatShape(),
+    IntegerShape.id: IntegerShape(),
+    LongShape.id: LongShape(),
+    ShortShape.id: ShortShape(),
+    StringShape.id: StringShape(),
+    TimestampShape.id: TimestampShape(),
+  };
 }
 
 extension ShapeUtils on Shape {

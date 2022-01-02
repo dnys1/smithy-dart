@@ -18,12 +18,12 @@ class _$UnionShapeSerializer implements StructuredSerializer<UnionShape> {
   Iterable<Object?> serialize(Serializers serializers, UnionShape object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'traits',
-      serializers.serialize(object.traits,
-          specifiedType: const FullType(TraitMap)),
       'members',
       serializers.serialize(object.members,
           specifiedType: const FullType(NamedMembersMap)),
+      'traits',
+      serializers.serialize(object.traits,
+          specifiedType: const FullType(TraitMap)),
     ];
 
     return result;
@@ -40,14 +40,14 @@ class _$UnionShapeSerializer implements StructuredSerializer<UnionShape> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'traits':
-          result.traits = serializers.deserialize(value,
-              specifiedType: const FullType(TraitMap)) as TraitMap;
-          break;
         case 'members':
           result.members = serializers.deserialize(value,
                   specifiedType: const FullType(NamedMembersMap))
               as NamedMembersMap;
+          break;
+        case 'traits':
+          result.traits = serializers.deserialize(value,
+              specifiedType: const FullType(TraitMap)) as TraitMap;
           break;
       }
     }
@@ -58,21 +58,21 @@ class _$UnionShapeSerializer implements StructuredSerializer<UnionShape> {
 
 class _$UnionShape extends UnionShape {
   @override
+  final NamedMembersMap members;
+  @override
   final ShapeId shapeId;
   @override
   final TraitMap traits;
-  @override
-  final NamedMembersMap members;
 
   factory _$UnionShape([void Function(UnionShapeBuilder)? updates]) =>
       (new UnionShapeBuilder()..update(updates)).build();
 
   _$UnionShape._(
-      {required this.shapeId, required this.traits, required this.members})
+      {required this.members, required this.shapeId, required this.traits})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(members, 'UnionShape', 'members');
     BuiltValueNullFieldError.checkNotNull(shapeId, 'UnionShape', 'shapeId');
     BuiltValueNullFieldError.checkNotNull(traits, 'UnionShape', 'traits');
-    BuiltValueNullFieldError.checkNotNull(members, 'UnionShape', 'members');
   }
 
   @override
@@ -86,30 +86,36 @@ class _$UnionShape extends UnionShape {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UnionShape &&
+        members == other.members &&
         shapeId == other.shapeId &&
-        traits == other.traits &&
-        members == other.members;
+        traits == other.traits;
   }
 
   @override
   int get hashCode {
     return $jf(
-        $jc($jc($jc(0, shapeId.hashCode), traits.hashCode), members.hashCode));
+        $jc($jc($jc(0, members.hashCode), shapeId.hashCode), traits.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('UnionShape')
+          ..add('members', members)
           ..add('shapeId', shapeId)
-          ..add('traits', traits)
-          ..add('members', members))
+          ..add('traits', traits))
         .toString();
   }
 }
 
 class UnionShapeBuilder
-    implements Builder<UnionShape, UnionShapeBuilder>, ShapeBuilder {
+    implements
+        Builder<UnionShape, UnionShapeBuilder>,
+        NamedMembersShapeBuilder {
   _$UnionShape? _$v;
+
+  NamedMembersMap? _members;
+  NamedMembersMap? get members => _$this._members;
+  set members(covariant NamedMembersMap? members) => _$this._members = members;
 
   ShapeId? _shapeId;
   ShapeId? get shapeId => _$this._shapeId;
@@ -119,10 +125,6 @@ class UnionShapeBuilder
   TraitMap? get traits => _$this._traits;
   set traits(covariant TraitMap? traits) => _$this._traits = traits;
 
-  NamedMembersMap? _members;
-  NamedMembersMap? get members => _$this._members;
-  set members(covariant NamedMembersMap? members) => _$this._members = members;
-
   UnionShapeBuilder() {
     UnionShape._init(this);
   }
@@ -130,9 +132,9 @@ class UnionShapeBuilder
   UnionShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _members = $v.members;
       _shapeId = $v.shapeId;
       _traits = $v.traits;
-      _members = $v.members;
       _$v = null;
     }
     return this;
@@ -153,12 +155,12 @@ class UnionShapeBuilder
   _$UnionShape build() {
     final _$result = _$v ??
         new _$UnionShape._(
+            members: BuiltValueNullFieldError.checkNotNull(
+                members, 'UnionShape', 'members'),
             shapeId: BuiltValueNullFieldError.checkNotNull(
                 shapeId, 'UnionShape', 'shapeId'),
             traits: BuiltValueNullFieldError.checkNotNull(
-                traits, 'UnionShape', 'traits'),
-            members: BuiltValueNullFieldError.checkNotNull(
-                members, 'UnionShape', 'members'));
+                traits, 'UnionShape', 'traits'));
     replace(_$result);
     return _$result;
   }

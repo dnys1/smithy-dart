@@ -20,12 +20,12 @@ class _$StructureShapeSerializer
   Iterable<Object?> serialize(Serializers serializers, StructureShape object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'traits',
-      serializers.serialize(object.traits,
-          specifiedType: const FullType(TraitMap)),
       'members',
       serializers.serialize(object.members,
           specifiedType: const FullType(NamedMembersMap)),
+      'traits',
+      serializers.serialize(object.traits,
+          specifiedType: const FullType(TraitMap)),
     ];
 
     return result;
@@ -43,14 +43,14 @@ class _$StructureShapeSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'traits':
-          result.traits = serializers.deserialize(value,
-              specifiedType: const FullType(TraitMap)) as TraitMap;
-          break;
         case 'members':
           result.members = serializers.deserialize(value,
                   specifiedType: const FullType(NamedMembersMap))
               as NamedMembersMap;
+          break;
+        case 'traits':
+          result.traits = serializers.deserialize(value,
+              specifiedType: const FullType(TraitMap)) as TraitMap;
           break;
       }
     }
@@ -61,21 +61,21 @@ class _$StructureShapeSerializer
 
 class _$StructureShape extends StructureShape {
   @override
+  final NamedMembersMap members;
+  @override
   final ShapeId shapeId;
   @override
   final TraitMap traits;
-  @override
-  final NamedMembersMap members;
 
   factory _$StructureShape([void Function(StructureShapeBuilder)? updates]) =>
       (new StructureShapeBuilder()..update(updates)).build();
 
   _$StructureShape._(
-      {required this.shapeId, required this.traits, required this.members})
+      {required this.members, required this.shapeId, required this.traits})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(members, 'StructureShape', 'members');
     BuiltValueNullFieldError.checkNotNull(shapeId, 'StructureShape', 'shapeId');
     BuiltValueNullFieldError.checkNotNull(traits, 'StructureShape', 'traits');
-    BuiltValueNullFieldError.checkNotNull(members, 'StructureShape', 'members');
   }
 
   @override
@@ -90,30 +90,36 @@ class _$StructureShape extends StructureShape {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is StructureShape &&
+        members == other.members &&
         shapeId == other.shapeId &&
-        traits == other.traits &&
-        members == other.members;
+        traits == other.traits;
   }
 
   @override
   int get hashCode {
     return $jf(
-        $jc($jc($jc(0, shapeId.hashCode), traits.hashCode), members.hashCode));
+        $jc($jc($jc(0, members.hashCode), shapeId.hashCode), traits.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('StructureShape')
+          ..add('members', members)
           ..add('shapeId', shapeId)
-          ..add('traits', traits)
-          ..add('members', members))
+          ..add('traits', traits))
         .toString();
   }
 }
 
 class StructureShapeBuilder
-    implements Builder<StructureShape, StructureShapeBuilder>, ShapeBuilder {
+    implements
+        Builder<StructureShape, StructureShapeBuilder>,
+        NamedMembersShapeBuilder {
   _$StructureShape? _$v;
+
+  NamedMembersMap? _members;
+  NamedMembersMap? get members => _$this._members;
+  set members(covariant NamedMembersMap? members) => _$this._members = members;
 
   ShapeId? _shapeId;
   ShapeId? get shapeId => _$this._shapeId;
@@ -123,10 +129,6 @@ class StructureShapeBuilder
   TraitMap? get traits => _$this._traits;
   set traits(covariant TraitMap? traits) => _$this._traits = traits;
 
-  NamedMembersMap? _members;
-  NamedMembersMap? get members => _$this._members;
-  set members(covariant NamedMembersMap? members) => _$this._members = members;
-
   StructureShapeBuilder() {
     StructureShape._init(this);
   }
@@ -134,9 +136,9 @@ class StructureShapeBuilder
   StructureShapeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _members = $v.members;
       _shapeId = $v.shapeId;
       _traits = $v.traits;
-      _members = $v.members;
       _$v = null;
     }
     return this;
@@ -157,12 +159,12 @@ class StructureShapeBuilder
   _$StructureShape build() {
     final _$result = _$v ??
         new _$StructureShape._(
+            members: BuiltValueNullFieldError.checkNotNull(
+                members, 'StructureShape', 'members'),
             shapeId: BuiltValueNullFieldError.checkNotNull(
                 shapeId, 'StructureShape', 'shapeId'),
             traits: BuiltValueNullFieldError.checkNotNull(
-                traits, 'StructureShape', 'traits'),
-            members: BuiltValueNullFieldError.checkNotNull(
-                members, 'StructureShape', 'members'));
+                traits, 'StructureShape', 'traits'));
     replace(_$result);
     return _$result;
   }

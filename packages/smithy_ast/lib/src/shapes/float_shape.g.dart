@@ -92,7 +92,7 @@ class _$FloatShape extends FloatShape {
 }
 
 class FloatShapeBuilder
-    implements Builder<FloatShape, FloatShapeBuilder>, ShapeBuilder {
+    implements Builder<FloatShape, FloatShapeBuilder>, SimpleShapeBuilder {
   _$FloatShape? _$v;
 
   ShapeId? _shapeId;

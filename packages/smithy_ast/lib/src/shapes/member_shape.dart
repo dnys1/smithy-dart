@@ -29,7 +29,8 @@ abstract class MemberShape
   ShapeType getType() => ShapeType.member;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.memberShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.memberShape(this, parent);
 
   static Serializer<MemberShape> get serializer => _$memberShapeSerializer;
 }

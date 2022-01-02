@@ -24,7 +24,7 @@ class _$SmithyAstSerializer implements StructuredSerializer<SmithyAst> {
       'metadata',
       serializers.serialize(object.metadata,
           specifiedType: const FullType(BuiltMap,
-              const [const FullType(String), const FullType.nullable(Object)])),
+              const [const FullType(String), const FullType(Object)])),
       'shapes',
       serializers.serialize(object.shapes,
           specifiedType: const FullType(ShapeMap)),
@@ -50,10 +50,8 @@ class _$SmithyAstSerializer implements StructuredSerializer<SmithyAst> {
           break;
         case 'metadata':
           result.metadata.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltMap, const [
-                const FullType(String),
-                const FullType.nullable(Object)
-              ]))!);
+              specifiedType: const FullType(BuiltMap,
+                  const [const FullType(String), const FullType(Object)]))!);
           break;
         case 'shapes':
           result.shapes = serializers.deserialize(value,
@@ -70,7 +68,7 @@ class _$SmithyAst extends SmithyAst {
   @override
   final String version;
   @override
-  final BuiltMap<String, Object?> metadata;
+  final BuiltMap<String, Object> metadata;
   @override
   final ShapeMap shapes;
 
@@ -124,10 +122,10 @@ class SmithyAstBuilder implements Builder<SmithyAst, SmithyAstBuilder> {
   String? get version => _$this._version;
   set version(String? version) => _$this._version = version;
 
-  MapBuilder<String, Object?>? _metadata;
-  MapBuilder<String, Object?> get metadata =>
-      _$this._metadata ??= new MapBuilder<String, Object?>();
-  set metadata(MapBuilder<String, Object?>? metadata) =>
+  MapBuilder<String, Object>? _metadata;
+  MapBuilder<String, Object> get metadata =>
+      _$this._metadata ??= new MapBuilder<String, Object>();
+  set metadata(MapBuilder<String, Object>? metadata) =>
       _$this._metadata = metadata;
 
   ShapeMap? _shapes;

@@ -10,8 +10,7 @@ import 'package:smithy_ast/src/shapes/trait_map.dart';
 part 'union_shape.g.dart';
 
 abstract class UnionShape
-    with HasNamedMembers
-    implements Shape, Built<UnionShape, UnionShapeBuilder> {
+    implements NamedMembersShape, Built<UnionShape, UnionShapeBuilder> {
   factory UnionShape([void Function(UnionShapeBuilder) updates]) = _$UnionShape;
   UnionShape._();
 
@@ -25,7 +24,8 @@ abstract class UnionShape
   ShapeType getType() => ShapeType.union;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.unionShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.unionShape(this, parent);
 
   static Serializer<UnionShape> get serializer => _$unionShapeSerializer;
 }

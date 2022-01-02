@@ -94,7 +94,7 @@ class _$BooleanShape extends BooleanShape {
 }
 
 class BooleanShapeBuilder
-    implements Builder<BooleanShape, BooleanShapeBuilder>, ShapeBuilder {
+    implements Builder<BooleanShape, BooleanShapeBuilder>, SimpleShapeBuilder {
   _$BooleanShape? _$v;
 
   ShapeId? _shapeId;

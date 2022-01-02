@@ -38,7 +38,10 @@ class TraitMapSerializer extends StructuredSerializer<TraitMap> {
   @override
   Iterable<Object?> serialize(Serializers serializers, TraitMap object,
       {FullType specifiedType = FullType.unspecified}) sync* {
-    throw UnimplementedError();
+    for (var entry in object.entries) {
+      yield entry.key.absoluteName;
+      yield entry.value.toJson();
+    }
   }
 
   @override

@@ -30,7 +30,8 @@ abstract class OperationShape
   ShapeType getType() => ShapeType.operation;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.operationShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.operationShape(this, parent);
 
   static Serializer<OperationShape> get serializer =>
       _$operationShapeSerializer;

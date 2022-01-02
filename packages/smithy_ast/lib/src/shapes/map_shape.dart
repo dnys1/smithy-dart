@@ -26,7 +26,8 @@ abstract class MapShape implements Shape, Built<MapShape, MapShapeBuilder> {
   ShapeType getType() => ShapeType.map;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.mapShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.mapShape(this, parent);
 
   static Serializer<MapShape> get serializer => _$mapShapeSerializer;
 }

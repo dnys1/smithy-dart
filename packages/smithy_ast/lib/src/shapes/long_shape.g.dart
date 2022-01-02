@@ -92,7 +92,7 @@ class _$LongShape extends LongShape {
 }
 
 class LongShapeBuilder
-    implements Builder<LongShape, LongShapeBuilder>, ShapeBuilder {
+    implements Builder<LongShape, LongShapeBuilder>, SimpleShapeBuilder {
   _$LongShape? _$v;
 
   ShapeId? _shapeId;

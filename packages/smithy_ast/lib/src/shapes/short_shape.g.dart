@@ -92,7 +92,7 @@ class _$ShortShape extends ShortShape {
 }
 
 class ShortShapeBuilder
-    implements Builder<ShortShape, ShortShapeBuilder>, ShapeBuilder {
+    implements Builder<ShortShape, ShortShapeBuilder>, SimpleShapeBuilder {
   _$ShortShape? _$v;
 
   ShapeId? _shapeId;

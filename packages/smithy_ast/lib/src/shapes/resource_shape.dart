@@ -39,7 +39,8 @@ abstract class ResourceShape
   ShapeType getType() => ShapeType.resource;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.resourceShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.resourceShape(this, parent);
 
   static Serializer<ResourceShape> get serializer => _$resourceShapeSerializer;
 }

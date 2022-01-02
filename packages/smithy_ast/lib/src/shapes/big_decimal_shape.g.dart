@@ -98,7 +98,9 @@ class _$BigDecimalShape extends BigDecimalShape {
 }
 
 class BigDecimalShapeBuilder
-    implements Builder<BigDecimalShape, BigDecimalShapeBuilder>, ShapeBuilder {
+    implements
+        Builder<BigDecimalShape, BigDecimalShapeBuilder>,
+        SimpleShapeBuilder {
   _$BigDecimalShape? _$v;
 
   ShapeId? _shapeId;

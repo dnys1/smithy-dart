@@ -9,9 +9,12 @@ import 'package:smithy_ast/src/shapes/trait_map.dart';
 
 part 'collection_shape.g.dart';
 
-abstract class HasNamedMembers {
+@BuiltValue(instantiable: false)
+abstract class NamedMembersShape implements Shape {
   NamedMembersMap get members;
-  Iterable<String> get memberNames => members.keys;
+
+  @override
+  NamedMembersShape rebuild(void Function(NamedMembersShapeBuilder) updates);
 }
 
 class NamedMembersMap extends DelegatingMap<String, MemberShape> {

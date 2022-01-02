@@ -5,7 +5,7 @@ import 'package:smithy_codegen/src/generator/enum_generator.dart';
 import 'package:smithy_codegen/src/generator/service_generator.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';
-import 'package:smithy_codegen/src/generator/visitors/default.dart';
+import 'package:smithy_codegen/src/generator/visitors/default_visitor.dart';
 
 /// Wrapper over [Library] with context for its creation.
 class ShapeLibrary {
@@ -23,25 +23,25 @@ class LibraryVisitor extends DefaultVisitor<Library> {
   final CodegenContext context;
 
   @override
-  Library serviceShape(ServiceShape shape) {
+  Library serviceShape(ServiceShape shape, [Shape? parent]) {
     return ServiceGenerator(shape, context: context).generate();
   }
 
   @override
-  Library? stringShape(StringShape shape) {
-    if (!shape.isEnum) {
-      return null;
+  Library? stringShape(StringShape shape, [Shape? parent]) {
+    if (shape.isEnum) {
+      return EnumGenerator(shape, context: context).generate();
     }
-    return EnumGenerator(shape, context: context).generate();
+    return null;
   }
 
   @override
-  Library structureShape(StructureShape shape) {
+  Library structureShape(StructureShape shape, [Shape? parent]) {
     return StructureGenerator(shape, context: context).generate();
   }
 
   @override
-  Library unionShape(UnionShape shape) {
+  Library unionShape(UnionShape shape, [Shape? parent]) {
     return UnionGenerator(shape, context: context).generate();
   }
 }

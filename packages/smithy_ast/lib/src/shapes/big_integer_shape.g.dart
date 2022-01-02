@@ -98,7 +98,9 @@ class _$BigIntegerShape extends BigIntegerShape {
 }
 
 class BigIntegerShapeBuilder
-    implements Builder<BigIntegerShape, BigIntegerShapeBuilder>, ShapeBuilder {
+    implements
+        Builder<BigIntegerShape, BigIntegerShapeBuilder>,
+        SimpleShapeBuilder {
   _$BigIntegerShape? _$v;
 
   ShapeId? _shapeId;

@@ -94,7 +94,9 @@ class _$DocumentShape extends DocumentShape {
 }
 
 class DocumentShapeBuilder
-    implements Builder<DocumentShape, DocumentShapeBuilder>, ShapeBuilder {
+    implements
+        Builder<DocumentShape, DocumentShapeBuilder>,
+        SimpleShapeBuilder {
   _$DocumentShape? _$v;
 
   ShapeId? _shapeId;

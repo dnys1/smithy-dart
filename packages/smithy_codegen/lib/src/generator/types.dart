@@ -47,11 +47,13 @@ class _Core {
   Reference get int => const Reference('int', _url);
 
   /// Creates a [core.List] reference.
-  Reference list(Reference ref) => TypeReference(
+  Reference list([Reference? ref]) => TypeReference(
         (t) => t
           ..symbol = 'List'
           ..url = _url
-          ..types.add(ref),
+          ..types.addAll([
+            if (ref != null) ref,
+          ]),
       );
 
   /// Creates a [core.Map] reference.
@@ -76,6 +78,9 @@ class _Core {
           ..url = _url
           ..types.add(ref),
       );
+
+  /// Create a [core.StateError] reference.
+  Reference get stateError => const Reference('StateError', _url);
 
   /// Creates a [core.String] reference.
   Reference get string => const Reference('String', _url);

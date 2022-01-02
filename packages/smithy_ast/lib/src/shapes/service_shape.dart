@@ -31,7 +31,8 @@ abstract class ServiceShape
   ShapeType getType() => ShapeType.service;
 
   @override
-  R accept<R>(ShapeVisitor<R> visitor) => visitor.serviceShape(this);
+  R accept<R>(ShapeVisitor<R> visitor, [Shape? parent]) =>
+      visitor.serviceShape(this, parent);
 
   static Serializer<ServiceShape> get serializer => _$serviceShapeSerializer;
 }

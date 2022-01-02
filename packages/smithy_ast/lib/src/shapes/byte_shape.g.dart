@@ -92,7 +92,7 @@ class _$ByteShape extends ByteShape {
 }
 
 class ByteShapeBuilder
-    implements Builder<ByteShape, ByteShapeBuilder>, ShapeBuilder {
+    implements Builder<ByteShape, ByteShapeBuilder>, SimpleShapeBuilder {
   _$ByteShape? _$v;
 
   ShapeId? _shapeId;

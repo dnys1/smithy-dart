@@ -94,7 +94,7 @@ class _$IntegerShape extends IntegerShape {
 }
 
 class IntegerShapeBuilder
-    implements Builder<IntegerShape, IntegerShapeBuilder>, ShapeBuilder {
+    implements Builder<IntegerShape, IntegerShapeBuilder>, SimpleShapeBuilder {
   _$IntegerShape? _$v;
 
   ShapeId? _shapeId;

@@ -92,7 +92,7 @@ class _$BlobShape extends BlobShape {
 }
 
 class BlobShapeBuilder
-    implements Builder<BlobShape, BlobShapeBuilder>, ShapeBuilder {
+    implements Builder<BlobShape, BlobShapeBuilder>, SimpleShapeBuilder {
   _$BlobShape? _$v;
 
   ShapeId? _shapeId;

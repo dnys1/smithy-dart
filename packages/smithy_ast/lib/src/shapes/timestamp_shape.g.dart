@@ -97,7 +97,9 @@ class _$TimestampShape extends TimestampShape {
 }
 
 class TimestampShapeBuilder
-    implements Builder<TimestampShape, TimestampShapeBuilder>, ShapeBuilder {
+    implements
+        Builder<TimestampShape, TimestampShapeBuilder>,
+        SimpleShapeBuilder {
   _$TimestampShape? _$v;
 
   ShapeId? _shapeId;

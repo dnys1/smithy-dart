@@ -32,8 +32,9 @@ CodegenContext createTestContext(
 ///
 /// Returns a mapping from library name to library definition.
 Map<String, String> loadGoldens(String groupName, String testName) {
+  final packageName = testName.snakeCase;
   final dirUri = Directory.current.uri.resolve(
-    '../goldens/lib/${groupName.snakeCase}/${testName.snakeCase}',
+    '../goldens/lib/${groupName.snakeCase}/$packageName/lib',
   );
   final dir = Directory.fromUri(dirUri);
 
@@ -42,9 +43,13 @@ Map<String, String> loadGoldens(String groupName, String testName) {
     if (entity.statSync().type == FileSystemEntityType.directory) {
       continue;
     }
-    final libraryName = SmithyLibraryX.fromPath('goldens',
-            path.relative(entity.path, from: path.join(dir.path, 'lib')))
-        .libraryName;
+    if (entity.path.endsWith('.g.dart')) {
+      continue;
+    }
+    final libraryName = SmithyLibraryX.fromPath(
+      packageName,
+      path.relative(entity.path, from: dir.path),
+    ).libraryName;
     final libraryDefinition = File.fromUri(entity.uri).readAsStringSync();
     libraries[libraryName] = libraryDefinition;
   }
@@ -68,7 +73,7 @@ void testGolden(
       final ast = createAst(shapes);
       final libraries = generateForAst(
         ast,
-        packageName: 'goldens',
+        packageName: testName.snakeCase,
         serviceName: 'test',
       ).map((library, definition) {
         return MapEntry(library.libraryName, definition);

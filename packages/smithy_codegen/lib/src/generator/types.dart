@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:aws_common/aws_common.dart' as aws_common;
+import 'package:built_value/built_value.dart' as built_value;
 import 'package:built_value/serializer.dart' as built_value_serializer;
 import 'package:code_builder/code_builder.dart';
 import 'package:fixnum/fixnum.dart';
@@ -23,7 +24,7 @@ abstract class DartTypes {
   static const awsCommon = _AwsCommon();
 
   /// `package:built_value` types.
-  static const builtValue = _BuiltValue();
+  static const builtValue = BuiltValue._();
 
   /// `package:meta` types.
   static const meta = _Meta();
@@ -110,6 +111,9 @@ class _Core {
 
   /// Creates a [core.String] reference.
   Reference get string => const Reference('String', _url);
+
+  /// Creates a `void` reference.
+  Reference get void$ => const Reference('void');
 }
 
 /// `dart:async` types
@@ -146,17 +150,26 @@ class _TypedData {
 }
 
 /// `package:built_value` types
-class _BuiltValue {
-  const _BuiltValue();
+class BuiltValue {
+  const BuiltValue._();
 
-  static const _mainUrl = 'package:built_value/built_value.dart';
-  static const _serializerUrl = 'package:built_value/serializer.dart';
+  static const mainUrl = 'package:built_value/built_value.dart';
+  static const serializerUrl = 'package:built_value/serializer.dart';
+
+  /// Creates a [built_value.Built] reference for [ref] and its builder class,
+  /// [builderRef].
+  Reference built(Reference ref, Reference builderRef) => TypeReference(
+        (t) => t
+          ..symbol = 'Built'
+          ..url = mainUrl
+          ..types.addAll([ref, builderRef]),
+      );
 
   /// Creates a [built_value_serializer.Serializers] reference.
-  Reference get serializers => const Reference('Serializers', _serializerUrl);
+  Reference get serializers => const Reference('Serializers', serializerUrl);
 
   /// Creates a [built_value_serializer.FullType] reference.
-  Reference get fullType => const Reference('FullType', _serializerUrl);
+  Reference get fullType => const Reference('FullType', serializerUrl);
 }
 
 /// `package:fixnum` types

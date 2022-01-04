@@ -1,31 +1,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of example.model.qux;
+part of common.test.model.qux;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
-
-Serializer<Qux> _$quxSerializer = new _$QuxSerializer();
-
-class _$QuxSerializer implements StructuredSerializer<Qux> {
-  @override
-  final Iterable<Type> types = const [Qux, _$Qux];
-  @override
-  final String wireName = 'Qux';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers, Qux object,
-      {FullType specifiedType = FullType.unspecified}) {
-    return <Object?>[];
-  }
-
-  @override
-  Qux deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    return new QuxBuilder().build();
-  }
-}
 
 class _$Qux extends Qux {
   factory _$Qux([void Function(QuxBuilder)? updates]) =>
@@ -49,6 +28,11 @@ class _$Qux extends Qux {
   @override
   int get hashCode {
     return 872758689;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper('Qux').toString();
   }
 }
 

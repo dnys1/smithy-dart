@@ -17,7 +17,14 @@ class ProtocolDefinitionTrait implements Trait<ProtocolDefinitionTrait> {
 
   static const id = ShapeId.core('protocolDefinition');
 
+  /// List of shape IDs that protocol implementations MUST understand in order
+  /// to successfully use the protocol. Each shape MUST exist and MUST be a
+  /// trait. Code generators SHOULD ensure that they support each listed trait.
   final List<ShapeId> traits;
+
+  /// If set to `true`, indicates that this protocol does not support `document`
+  /// type shapes. A service that uses such a protocol MUST NOT contain any
+  /// `document` shapes in their service closure.
   final bool noInlineDocumentSupport;
 
   @override

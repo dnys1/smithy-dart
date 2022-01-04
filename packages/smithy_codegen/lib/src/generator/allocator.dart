@@ -47,10 +47,11 @@ class SmithyAllocator implements Allocator {
   int _nextKey() => _keys++;
 
   @override
-  Iterable<Directive> get imports => _imports.keys.map(
-        (u) => Directive.import(
-          u,
-          as: _doNotPrefix.contains(u) ? null : '_i${_imports[u]}',
-        ),
-      );
+  Iterable<Directive> get imports =>
+      _imports.keys.where((key) => key != 'dart:core').map(
+            (u) => Directive.import(
+              u,
+              as: _doNotPrefix.contains(u) ? null : '_i${_imports[u]}',
+            ),
+          );
 }

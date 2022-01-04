@@ -15,8 +15,8 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference listShape(ListShape shape, [Shape? parent]) {
-    return DartTypes.core
-        .list(shape.member.accept(this, shape))
+    return DartTypes.builtValue
+        .builtList(shape.member.accept(this, shape))
         .withBoxed(shape.isNullable(parent));
   }
 
@@ -24,7 +24,9 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   Reference mapShape(MapShape shape, [Shape? parent]) {
     final key = context.symbolFor(shape.key.target, shape);
     final value = context.symbolFor(shape.value.target, shape);
-    return DartTypes.core.map(key, value).withBoxed(shape.isNullable(parent));
+    return DartTypes.builtValue
+        .builtMap(key, value)
+        .withBoxed(shape.isNullable(parent));
   }
 
   @override
@@ -53,8 +55,8 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference setShape(SetShape shape, [Shape? parent]) {
-    return DartTypes.core
-        .set(shape.member.accept(this, shape))
+    return DartTypes.builtValue
+        .builtSet(shape.member.accept(this, shape))
         .withBoxed(shape.isNullable(parent));
   }
 

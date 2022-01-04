@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of goldens.test.model.get_foo_input;
+part of deprecated.test.model.get_foo_input;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -10,14 +10,14 @@ class _$GetFooInput extends GetFooInput {
   @override
   final String? bar;
   @override
-  final String? foo;
+  final _i2.Qux? baz;
   @override
-  final _i2.Qux? qux;
+  final String? foo;
 
   factory _$GetFooInput([void Function(GetFooInputBuilder)? updates]) =>
       (new GetFooInputBuilder()..update(updates)).build();
 
-  _$GetFooInput._({this.bar, this.foo, this.qux}) : super._();
+  _$GetFooInput._({this.bar, this.baz, this.foo}) : super._();
 
   @override
   GetFooInput rebuild(void Function(GetFooInputBuilder) updates) =>
@@ -31,21 +31,21 @@ class _$GetFooInput extends GetFooInput {
     if (identical(other, this)) return true;
     return other is GetFooInput &&
         bar == other.bar &&
-        foo == other.foo &&
-        qux == other.qux;
+        baz == other.baz &&
+        foo == other.foo;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, bar.hashCode), foo.hashCode), qux.hashCode));
+    return $jf($jc($jc($jc(0, bar.hashCode), baz.hashCode), foo.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GetFooInput')
           ..add('bar', bar)
-          ..add('foo', foo)
-          ..add('qux', qux))
+          ..add('baz', baz)
+          ..add('foo', foo))
         .toString();
   }
 }
@@ -57,13 +57,13 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   String? get bar => _$this._bar;
   set bar(String? bar) => _$this._bar = bar;
 
+  _i2.QuxBuilder? _baz;
+  _i2.QuxBuilder get baz => _$this._baz ??= new _i2.QuxBuilder();
+  set baz(_i2.QuxBuilder? baz) => _$this._baz = baz;
+
   String? _foo;
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
-
-  _i2.QuxBuilder? _qux;
-  _i2.QuxBuilder get qux => _$this._qux ??= new _i2.QuxBuilder();
-  set qux(_i2.QuxBuilder? qux) => _$this._qux = qux;
 
   GetFooInputBuilder();
 
@@ -71,8 +71,8 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
     final $v = _$v;
     if ($v != null) {
       _bar = $v.bar;
+      _baz = $v.baz?.toBuilder();
       _foo = $v.foo;
-      _qux = $v.qux?.toBuilder();
       _$v = null;
     }
     return this;
@@ -94,12 +94,12 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
     _$GetFooInput _$result;
     try {
       _$result =
-          _$v ?? new _$GetFooInput._(bar: bar, foo: foo, qux: _qux?.build());
+          _$v ?? new _$GetFooInput._(bar: bar, baz: _baz?.build(), foo: foo);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'qux';
-        _qux?.build();
+        _$failedField = 'baz';
+        _baz?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GetFooInput', _$failedField, e.toString());

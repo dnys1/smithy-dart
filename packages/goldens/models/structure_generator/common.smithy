@@ -15,6 +15,7 @@ structure GetFooInput {
     bar: PrimitiveInteger,
     baz: Integer,
     Quux: Qux,
+    @required
     byteValue: Byte
 }
 

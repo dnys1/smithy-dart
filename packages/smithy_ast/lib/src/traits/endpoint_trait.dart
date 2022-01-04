@@ -11,7 +11,7 @@ class EndpointTrait implements Trait<EndpointTrait> {
   factory EndpointTrait.fromJson(Object? json) =>
       _$EndpointTraitFromJson((json as Map).cast());
 
-  static final id = ShapeId.parse('smithy.api#endpoint');
+  static const id = ShapeId.core('endpoint');
 
   final String hostPrefix;
 

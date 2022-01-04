@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:aws_common/aws_common.dart' as aws_common;
+import 'package:built_collection/built_collection.dart' as built_collection;
 import 'package:built_value/built_value.dart' as built_value;
 import 'package:built_value/serializer.dart' as built_value_serializer;
 import 'package:code_builder/code_builder.dart';
@@ -155,6 +156,8 @@ class BuiltValue {
 
   static const mainUrl = 'package:built_value/built_value.dart';
   static const serializerUrl = 'package:built_value/serializer.dart';
+  static const _collectionUrl =
+      'package:built_collection/built_collection.dart';
 
   /// Creates a [built_value.Built] reference for [ref] and its builder class,
   /// [builderRef].
@@ -163,6 +166,32 @@ class BuiltValue {
           ..symbol = 'Built'
           ..url = mainUrl
           ..types.addAll([ref, builderRef]),
+      );
+
+  /// Creates a [built_collection.BuiltList] reference for generic type [ref].
+  Reference builtList(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'BuiltList'
+          ..url = _collectionUrl
+          ..types.add(ref),
+      );
+
+  /// Creates a [built_collection.BuiltMap] reference with [key] and [value]
+  /// generic types.
+  Reference builtMap(Reference key, Reference value) => TypeReference(
+        (t) => t
+          ..symbol = 'BuiltMap'
+          ..url = _collectionUrl
+          ..types.add(key)
+          ..types.add(value),
+      );
+
+  /// Creates a [built_collection.BuiltSet] reference for generic type [ref].
+  Reference builtSet(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'BuiltSet'
+          ..url = _collectionUrl
+          ..types.add(ref),
       );
 
   /// Creates a [built_value_serializer.Serializers] reference.
@@ -188,6 +217,9 @@ class _Smithy {
 
   static const _url = 'package:smithy/smithy.dart';
 
+  /// Creates a [smithy.ShapeId] AST reference.
+  Reference get shapeId => const Reference('ShapeId', _url);
+
   /// Creates a [smithy.SmithyEnum] reference for [ref], the enum class.
   Reference smithyEnum(Reference ref) => TypeReference(
         (t) => t
@@ -212,6 +244,10 @@ class _Smithy {
           ..url = _url
           ..types.add(ref),
       );
+
+  /// Creates a [smithy.TimestampSerializer] reference.
+  Reference get timestampSerializer =>
+      const Reference('TimestampSerializer', _url);
 }
 
 /// `package:aws_common` types.

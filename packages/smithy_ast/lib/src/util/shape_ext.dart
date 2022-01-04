@@ -74,4 +74,8 @@ extension ShapeExt on Shape {
 
   /// Whether `this` does not have the `@required` trait.
   bool get isNotRequired => !isRequired;
+
+  /// The custom timestamp format specified by this shape, if any.
+  TimestampFormat? get timestampFormat =>
+      getTrait<TimestampFormatTrait>()?.format;
 }

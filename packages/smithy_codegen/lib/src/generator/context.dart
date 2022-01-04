@@ -50,6 +50,11 @@ class CodegenContext {
   late final ServiceShape? service =
       serviceShapeId == null ? null : shapeFor(serviceShapeId!) as ServiceShape;
 
+  /// The protocol for this service.
+  late final List<ProtocolDefinitionTrait> serviceProtocols =
+      service?.traits.values.whereType<ProtocolDefinitionTrait>().toList() ??
+          const [_GenericProtocolDefinitionTrait()];
+
   /// Returns the shape for [shapeId].
   Shape shapeFor(ShapeId shapeId) {
     final shape = shapes[shapeId] ?? Shape.preludeShapes[shapeId];
@@ -64,4 +69,34 @@ class CodegenContext {
     final shape = shapeFor(shapeId);
     return shape.accept(SymbolVisitor(this), parent);
   }
+}
+
+/// A generic JSON protocol definition for generating service clients without
+/// a defined protocol.
+///
+/// This enforces that at least one serializer is always generated.
+class _GenericProtocolDefinitionTrait implements ProtocolDefinitionTrait {
+  const _GenericProtocolDefinitionTrait();
+
+  @override
+  bool get isSynthetic => true;
+
+  @override
+  bool get noInlineDocumentSupport => false;
+
+  @override
+  List<Object?> get props => [shapeId];
+
+  @override
+  ShapeId get shapeId =>
+      ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol');
+
+  @override
+  Map<String, Object?> toJson() => throw UnimplementedError();
+
+  @override
+  List<ShapeId> get traits => [JsonNameTrait.id];
+
+  @override
+  ProtocolDefinitionTrait get value => this;
 }

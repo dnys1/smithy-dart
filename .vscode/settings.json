@@ -2,6 +2,9 @@
     "files.exclude": {
         "codegen/build/**": true,
         "**/node_modules/**": true,
+        "playground/backend/cdk.out/**": true,
+        "playground/smithy/**": true,
+        "**/generated/**": true
     },
     "yaml.schemas": {
         "https://json.schemastore.org/dart-build": [
@@ -9,5 +12,6 @@
             "*.build.yaml",
             "build.*.yaml"
         ]
-    }
+    },
+    "dart.runPubGetOnPubspecChanges": false
 }

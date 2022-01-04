@@ -1,6 +1,15 @@
 export 'traits/annotation_trait.dart';
 export 'traits/auth_definition_trait.dart';
 export 'traits/auth_trait.dart';
+
+// AWS
+export 'traits/aws/alpn_protocol.dart';
+export 'traits/aws/aws_json_1_0_trait.dart';
+export 'traits/aws/aws_json_1_1_trait.dart';
+export 'traits/aws/aws_protocol_trait.dart';
+export 'traits/aws/rest_json_1_trait.dart';
+export 'traits/aws/rest_xml_trait.dart';
+
 export 'traits/box_trait.dart';
 export 'traits/cors_trait.dart';
 export 'traits/deprecated_trait.dart';

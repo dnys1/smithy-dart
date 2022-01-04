@@ -17,7 +17,7 @@ class CorsTrait with AWSSerializable implements Trait<CorsTrait> {
   factory CorsTrait.fromJson(Object? json) =>
       _$CorsTraitFromJson((json as Map).cast());
 
-  static final id = ShapeId.parse('smithy.api#cors');
+  static const id = ShapeId.core('cors');
   static const defaultOrigin = '*';
   static const defaultMaxAge = 600;
 

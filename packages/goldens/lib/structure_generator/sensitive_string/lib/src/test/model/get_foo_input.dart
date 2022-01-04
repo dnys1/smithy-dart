@@ -38,8 +38,8 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
       final Object? value = iterator.current;
       switch (key) {
         case 'enumMap':
-          result.enumMap.replace(serializers.deserialize(value,
-              specifiedType: const FullType(_i2.Foo)));
+          result.enumMap.replace((serializers.deserialize(value,
+              specifiedType: const FullType(_i2.Foo)) as _i2.Foo?));
           break;
       }
     }

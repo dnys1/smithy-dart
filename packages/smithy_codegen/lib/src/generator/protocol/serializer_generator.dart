@@ -28,7 +28,9 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
   /// other protocol-specific traits.
   late final ProtocolTraits protocolTraits = () {
     if (protocol.isJsonProtocol) {
-      final builder = JsonProtocolTraitsBuilder();
+      final builder = protocol is RestJson1Trait
+          ? RestJson1ProtocolTraitsBuilder()
+          : JsonProtocolTraitsBuilder();
       for (var member in sortedMembers) {
         final jsonName = member.getTrait<JsonNameTrait>()?.value;
         if (jsonName != null) {
@@ -205,7 +207,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
           refer('result')
               .property(member.dartName)
               .property('replace')
-              .call([_deserializerFor(member)]).statement
+              .call([_deserializerFor(member).asA(memberSymbol)]).statement
         else
           refer('result')
               .property(member.dartName)

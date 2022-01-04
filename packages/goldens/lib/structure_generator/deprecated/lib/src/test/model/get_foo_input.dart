@@ -48,8 +48,8 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
               specifiedType: const FullType(String)) as String?);
           break;
         case 'baz':
-          result.baz.replace(serializers.deserialize(value,
-              specifiedType: const FullType(_i2.Qux)));
+          result.baz.replace((serializers.deserialize(value,
+              specifiedType: const FullType(_i2.Qux)) as _i2.Qux?));
           break;
         case 'foo':
           result.foo = (serializers.deserialize(value,

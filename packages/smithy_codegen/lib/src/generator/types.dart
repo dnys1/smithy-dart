@@ -8,6 +8,8 @@ import 'package:built_value/built_value.dart' as built_value;
 import 'package:built_value/serializer.dart' as built_value_serializer;
 import 'package:code_builder/code_builder.dart';
 import 'package:fixnum/fixnum.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart' as http_test;
 import 'package:meta/meta.dart' as meta;
 import 'package:smithy/smithy.dart' as smithy;
 
@@ -27,17 +29,20 @@ abstract class DartTypes {
   /// `package:built_value` types.
   static const builtValue = BuiltValue._();
 
-  /// `package:meta` types.
-  static const meta = _Meta();
-
-  /// `dart:typed_data` types.
-  static const typedData = _TypedData();
-
   /// `package:fixnum` types.
   static const fixNum = _FixNum();
 
+  /// `package:http` types.
+  static const http = _Http();
+
+  /// `package:meta` types.
+  static const meta = _Meta();
+
   /// `package:smithy` types.
   static const smithy = _Smithy();
+
+  /// `dart:typed_data` types.
+  static const typedData = _TypedData();
 }
 
 /// `dart:core` types
@@ -140,14 +145,22 @@ class _Async {
       );
 }
 
-/// `dart:typed_data` types
-class _TypedData {
-  const _TypedData();
+/// `package:aws_common` types.
+class _AwsCommon {
+  const _AwsCommon();
 
-  static const _url = 'dart:typed_data';
+  static const _url = 'package:aws_common/aws_common.dart';
 
-  /// Creates a [Uint8List] reference.
-  Reference get uint8List => const Reference('Uint8List', _url);
+  /// Creates an [aws_common.AWSEquatable] reference.
+  Reference awsEquatable(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'AWSEquatable'
+          ..url = _url
+          ..types.add(ref),
+      );
+
+  /// Creates an [aws_common.AWSSerializable] reference.
+  Reference get awsSerializable => const Reference('AWSSerializable', _url);
 }
 
 /// `package:built_value` types
@@ -211,6 +224,45 @@ class _FixNum {
   Reference get int64 => const Reference('Int64', _url);
 }
 
+/// `package:http` types.
+class _Http {
+  const _Http();
+
+  static const _url = 'package:http/http.dart';
+  static const _testingUrl = 'package:http/testing.dart';
+
+  /// Creates an [http.ByteStream] reference.
+  Reference get byteStream => const Reference('ByteStream', _url);
+
+  /// Creates an [http.Client] reference.
+  Reference get client => const Reference('Client', _url);
+
+  /// Creates an [http_test.MockClient] reference.
+  Reference get mockClient => const Reference('MockClient', _testingUrl);
+
+  /// Creates an [http.Request] reference.
+  Reference get request => const Reference('Request', _url);
+
+  /// Creates an [http.Response] reference.
+  Reference get response => const Reference('Response', _url);
+
+  /// Creates an [http.StreamedRequest] reference.
+  Reference get streamedRequest => const Reference('StreamedRequest', _url);
+
+  /// Creates an [http.StreamedResponse] reference.
+  Reference get streamedResponse => const Reference('StreamedResponse', _url);
+}
+
+/// `package:meta` types.
+class _Meta {
+  const _Meta();
+
+  static const _url = 'package:meta/meta.dart';
+
+  /// Creates a [meta.immutable] reference.
+  Reference get immutable => const Reference('immutable', _url);
+}
+
 /// `package:smithy` types
 class _Smithy {
   const _Smithy();
@@ -250,32 +302,14 @@ class _Smithy {
       const Reference('TimestampSerializer', _url);
 }
 
-/// `package:aws_common` types.
-class _AwsCommon {
-  const _AwsCommon();
+/// `dart:typed_data` types
+class _TypedData {
+  const _TypedData();
 
-  static const _url = 'package:aws_common/aws_common.dart';
+  static const _url = 'dart:typed_data';
 
-  /// Creates an [aws_common.AWSEquatable] reference.
-  Reference awsEquatable(Reference ref) => TypeReference(
-        (t) => t
-          ..symbol = 'AWSEquatable'
-          ..url = _url
-          ..types.add(ref),
-      );
-
-  /// Creates an [aws_common.AWSSerializable] reference.
-  Reference get awsSerializable => const Reference('AWSSerializable', _url);
-}
-
-/// `package:meta` types.
-class _Meta {
-  const _Meta();
-
-  static const _url = 'package:meta/meta.dart';
-
-  /// Creates a [meta.immutable] reference.
-  Reference get immutable => const Reference('immutable', _url);
+  /// Creates a [Uint8List] reference.
+  Reference get uint8List => const Reference('Uint8List', _url);
 }
 
 extension ReferenceHelpers on Reference {

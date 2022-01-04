@@ -9,6 +9,12 @@ abstract class ProtocolTraits {
   BuiltMap<MemberShape, String> get memberWireNames;
 }
 
+abstract class ProtocolTraitsBuilder {
+  MapBuilder<MemberShape, String> get memberWireNames;
+  set memberWireNames(MapBuilder<MemberShape, String> memberWireNames);
+  ProtocolTraits build();
+}
+
 abstract class HttpPrefixHeaders
     implements Built<HttpPrefixHeaders, HttpPrefixHeadersBuilder> {
   factory HttpPrefixHeaders([void Function(HttpPrefixHeadersBuilder) updates]) =

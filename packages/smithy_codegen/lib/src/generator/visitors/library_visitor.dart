@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/enum_generator.dart';
+import 'package:smithy_codegen/src/generator/operation_generator.dart';
 import 'package:smithy_codegen/src/generator/service_generator.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';
@@ -38,6 +39,11 @@ class LibraryVisitor extends DefaultVisitor<Library> {
   @override
   Library structureShape(StructureShape shape, [Shape? parent]) {
     return StructureGenerator(shape, context: context).generate();
+  }
+
+  @override
+  Library operationShape(OperationShape shape, [Shape? parent]) {
+    return OperationGenerator(shape, context).generate();
   }
 
   @override

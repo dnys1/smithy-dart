@@ -6,13 +6,6 @@ part of 'protocol_traits.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract class ProtocolTraitsBuilder {
-  void replace(ProtocolTraits other);
-  void update(void Function(ProtocolTraitsBuilder) updates);
-  MapBuilder<MemberShape, String> get memberWireNames;
-  set memberWireNames(MapBuilder<MemberShape, String>? memberWireNames);
-}
-
 class _$HttpPrefixHeaders extends HttpPrefixHeaders {
   @override
   final HttpPrefixHeadersTrait trait;

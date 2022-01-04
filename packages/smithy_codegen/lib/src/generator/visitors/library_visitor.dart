@@ -42,11 +42,6 @@ class LibraryVisitor extends DefaultVisitor<Library> {
   }
 
   @override
-  Library operationShape(OperationShape shape, [Shape? parent]) {
-    return OperationGenerator(shape, context).generate();
-  }
-
-  @override
   Library unionShape(UnionShape shape, [Shape? parent]) {
     return UnionGenerator(shape, context: context).generate();
   }

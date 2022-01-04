@@ -1,12 +1,16 @@
 import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 
 /// Adds functionality to track renaming of shapes in recursive visiting.
 mixin RenameState {
+  CodegenContext get context;
+
   final Map<ShapeId, List<String>> _states = {};
 
   /// Returns the current rename for [shapeId].
-  String? renameFor(ShapeId shapeId) => _states[shapeId]?.lastOrNull;
+  String? renameFor(ShapeId shapeId) =>
+      _states[shapeId]?.lastOrNull ?? context.service?.rename[shapeId];
 
   /// Sets the rename for [key] to [value].
   void pushState(ShapeId key, String value) {

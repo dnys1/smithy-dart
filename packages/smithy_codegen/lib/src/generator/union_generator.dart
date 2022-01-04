@@ -3,7 +3,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
-import 'package:smithy_codegen/src/generator/visitors/to_json_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
@@ -54,8 +53,8 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
             ..._variantGetters,
             _valueGetter,
             _whenMethod,
-            _toJson,
-          ]),
+          ])
+          ..fields.addAll([]),
       );
 
   /// Prevents initialization of the class, except via [_factoryConstructors].
@@ -170,34 +169,6 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
       ]);
     });
   }
-
-  /// Returns the `toJson` method which uses `when` to serialize the type.
-  Method get _toJson => Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.map(
-            DartTypes.core.string,
-            DartTypes.core.object,
-          )
-          ..name = 'toJson'
-          ..lambda = true
-          ..body = refer('when')
-              .call([], {
-                for (var member in sortedMembers)
-                  member.variantName: Method(
-                    (m) => m
-                      ..lambda = true
-                      ..requiredParameters
-                          .add(Parameter((p) => p..name = member.variantName))
-                      ..body = literalMap({
-                        member.variantName:
-                            member.accept(ToJsonVisitor(context), shape),
-                      }).code,
-                  ).closure,
-              })
-              .nullChecked
-              .code,
-      );
 
   /// Factory constructors for each member.
   Iterable<Class> get _variantClasses sync* {

@@ -156,8 +156,6 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
                 ..requiredParameters.add(Parameter((p) => p..name = 'el'))
                 ..body = refer('el')
                     .property('name')
-                    .property('toLowerCase')
-                    .call([])
                     .equalTo(refer('name').property('toLowerCase').call([]))
                     .code,
             ).closure,

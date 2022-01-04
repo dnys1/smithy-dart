@@ -44,9 +44,31 @@ extension SimpleShapeUtil on SimpleShape {
   }
 }
 
+extension MemberShapeUtils on MemberShape {
+  /// The name of this shape in a Dart struct.
+  String get dartName => memberName.camelCase;
+}
+
 extension ShapeUtils on Shape {
   /// Documentation for the shape.
   String? get docs => getTrait<DocumentationTrait>()?.value;
+
+  Expression? get deprecatedAnnotation {
+    const defaultMessage =
+        'No longer recommended for use. See API documentation for more details.';
+    final trait = getTrait<DeprecatedTrait>();
+    if (trait == null) {
+      return null;
+    }
+    final since = trait.since;
+    var message = trait.message ?? defaultMessage;
+    if (since != null) {
+      message = 'Since $since. $message';
+    }
+    return DartTypes.core.deprecated.newInstance([
+      literalString(message),
+    ]);
+  }
 
   /// The default value of this shape when not boxed.
   Expression? get defaultValue {

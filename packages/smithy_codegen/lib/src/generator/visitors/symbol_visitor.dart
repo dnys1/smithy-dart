@@ -23,6 +23,29 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   @override
   Reference mapShape(MapShape shape, [Shape? parent]) {
     final key = context.symbolFor(shape.key.target, shape);
+
+    final valueShape = context.shapeFor(shape.value.target);
+    final valueShapeType = valueShape.getType();
+
+    // Use `BuiltSetMultimap` and `BuiltListMultimap` for Maps with collection
+    // value types.
+    switch (valueShapeType) {
+      case ShapeType.list:
+        final valueSymbol =
+            context.symbolFor((valueShape as ListShape).member.target);
+        return DartTypes.builtValue
+            .builtListMultimap(key, valueSymbol)
+            .withBoxed(shape.isNullable(parent));
+      case ShapeType.set:
+        final valueSymbol =
+            context.symbolFor((valueShape as SetShape).member.target);
+        return DartTypes.builtValue
+            .builtSetMultimap(key, valueSymbol)
+            .withBoxed(shape.isNullable(parent));
+      default:
+        break;
+    }
+
     final value = context.symbolFor(shape.value.target, shape);
     return DartTypes.builtValue
         .builtMap(key, value)

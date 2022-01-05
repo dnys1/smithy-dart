@@ -8,9 +8,10 @@ part of 'auth_definition_trait.dart';
 
 AuthDefinitionTrait _$AuthDefinitionTraitFromJson(Map<String, dynamic> json) =>
     AuthDefinitionTrait(
-      (json['traits'] as List<dynamic>)
-          .map((e) => const ShapeIdConverter().fromJson(e as String))
-          .toList(),
+      (json['traits'] as List<dynamic>?)
+              ?.map((e) => const ShapeIdConverter().fromJson(e as String))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$AuthDefinitionTraitToJson(

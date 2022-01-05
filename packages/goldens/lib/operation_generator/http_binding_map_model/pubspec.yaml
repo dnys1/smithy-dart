@@ -1,0 +1,19 @@
+name: http_binding_map_model
+description: Http_binding_map_model client SDK
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  smithy:
+    path: ../../../../smithy
+  smithy_aws:
+    path: ../../../../smithy_aws
+
+dev_dependencies:
+  build_runner: ^2.0.0
+  built_value_generator: ^8.0.0
+  lints: ^1.0.0
+  test: ^1.16.0

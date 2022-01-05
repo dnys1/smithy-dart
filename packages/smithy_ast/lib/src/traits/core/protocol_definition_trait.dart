@@ -8,8 +8,8 @@ part 'protocol_definition_trait.g.dart';
 @JsonSerializable()
 class ProtocolDefinitionTrait implements Trait<ProtocolDefinitionTrait> {
   const ProtocolDefinitionTrait({
-    required this.traits,
-    required this.noInlineDocumentSupport,
+    this.traits = const [],
+    this.noInlineDocumentSupport = false,
   });
 
   factory ProtocolDefinitionTrait.fromJson(Object? json) =>

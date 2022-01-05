@@ -2,6 +2,7 @@ import 'package:aws_common/aws_common.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
+/// Constructs [Trait] objects from JSON values.
 typedef TraitConstructor<TraitValue extends Object, T extends Trait<TraitValue>>
     = T Function(Object?);
 

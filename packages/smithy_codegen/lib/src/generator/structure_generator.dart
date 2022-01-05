@@ -10,7 +10,7 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// Generates Dart classes from [StructureShape] types.
 class StructureGenerator extends LibraryGenerator<StructureShape>
-    with StructureGenerationContext {
+    with StructureGenerationContext, HttpGenerationContext {
   StructureGenerator(
     StructureShape shape, {
     required CodegenContext context,
@@ -38,13 +38,17 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..docs.addAll([
             if (shape.docs != null) formatDocs(shape.docs!),
           ])
-          ..implements.add(DartTypes.builtValue.built(symbol, builderSymbol))
+          ..implements.addAll([
+            DartTypes.builtValue.built(symbol, builderSymbol),
+            DartTypes.smithy.hasPayload(httpPayload.symbol),
+          ])
           ..constructors.addAll([
             _factoryConstructor,
             _privateConstructor,
           ])
           ..methods.addAll([
             ..._fieldGetters,
+            ..._hasPayloadOverrides,
           ])
           ..fields.addAll([
             _serializersField(serializerClasses),
@@ -94,6 +98,33 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = member.dartName,
       );
     }
+  }
+
+  /// Methods to conform to `HasPayload`.
+  Iterable<Method> get _hasPayloadOverrides sync* {
+    // `getPayload` override
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = httpPayload.symbol
+        ..name = 'getPayload'
+        ..lambda = true
+        ..body = refer(httpPayload.member?.dartName ?? 'this').code,
+    );
+
+    // `isStreaming` override
+    final bool isStreaming =
+        httpPayload.member != null && httpPayload.member!.isStreaming ||
+            context.shapeFor(httpPayload.member!.target).isStreaming;
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.bool
+        ..name = 'isStreaming'
+        ..type = MethodType.getter
+        ..lambda = true
+        ..body = literalBool(isStreaming).code,
+    );
   }
 
   /// Creates the static `serializers` field using the class names in

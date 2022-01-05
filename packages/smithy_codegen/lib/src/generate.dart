@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/format/format_stub.dart'
@@ -39,7 +38,7 @@ Map<SmithyLibrary, String> generateForAst(
 
   // Generate libraries for relevant shape types.
   final Map<Shape, Library> libraries = (Map.fromEntries(
-    ast.shapes.values
+    context.shapes.values
         .map((shape) => MapEntry(shape, shape.accept(LibraryVisitor(context)))),
   )..removeWhere((_, value) => value == null))
       .cast();

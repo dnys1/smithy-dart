@@ -9,7 +9,7 @@ part 'auth_definition_trait.g.dart';
 class AuthDefinitionTrait
     with AWSSerializable
     implements Trait<AuthDefinitionTrait> {
-  const AuthDefinitionTrait(this.traits);
+  const AuthDefinitionTrait([this.traits = const []]);
 
   factory AuthDefinitionTrait.fromJson(Object? json) =>
       _$AuthDefinitionTraitFromJson((json as Map).cast());

@@ -9,10 +9,12 @@ part of 'protocol_definition_trait.dart';
 ProtocolDefinitionTrait _$ProtocolDefinitionTraitFromJson(
         Map<String, dynamic> json) =>
     ProtocolDefinitionTrait(
-      traits: (json['traits'] as List<dynamic>)
-          .map((e) => const ShapeIdConverter().fromJson(e as String))
-          .toList(),
-      noInlineDocumentSupport: json['noInlineDocumentSupport'] as bool,
+      traits: (json['traits'] as List<dynamic>?)
+              ?.map((e) => const ShapeIdConverter().fromJson(e as String))
+              .toList() ??
+          const [],
+      noInlineDocumentSupport:
+          json['noInlineDocumentSupport'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$ProtocolDefinitionTraitToJson(

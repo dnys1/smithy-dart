@@ -189,6 +189,19 @@ class BuiltValue {
           ..types.add(ref),
       );
 
+  /// Creates a [built_collection.BuiltListMultimap] reference with key [key]
+  /// and [value] generic types.
+  ///
+  /// For example, a key of [core.String] and value of [core.String] creates
+  /// a `BuiltListMultimap<String, String>` which is the same a
+  /// `Map<String, List<String>>` when built.
+  Reference builtListMultimap(Reference key, Reference value) => TypeReference(
+        (t) => t
+          ..symbol = 'BuiltListMultimap'
+          ..url = _collectionUrl
+          ..types.addAll([key, value]),
+      );
+
   /// Creates a [built_collection.BuiltMap] reference with [key] and [value]
   /// generic types.
   Reference builtMap(Reference key, Reference value) => TypeReference(
@@ -205,6 +218,19 @@ class BuiltValue {
           ..symbol = 'BuiltSet'
           ..url = _collectionUrl
           ..types.add(ref),
+      );
+
+  /// Creates a [built_collection.BuiltSetMultimap] reference with key [key]
+  /// and [value] generic types.
+  ///
+  /// For example, a key of [core.String] and value of [core.String] creates
+  /// a `BuiltSetMultimap<String, String>` which is the same a
+  /// `Map<String, Set<String>>` when built.
+  Reference builtSetMultimap(Reference key, Reference value) => TypeReference(
+        (t) => t
+          ..symbol = 'BuiltSetMultimap'
+          ..url = _collectionUrl
+          ..types.addAll([key, value]),
       );
 
   /// Creates a [built_value_serializer.Serializers] reference.
@@ -268,6 +294,14 @@ class _Smithy {
   const _Smithy();
 
   static const _url = 'package:smithy/smithy.dart';
+
+  /// Creates a [smithy.HasPayload] reference for [ref], the payload type.
+  Reference hasPayload(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'HasPayload'
+          ..url = _url
+          ..types.add(ref),
+      );
 
   /// Creates a [smithy.ShapeId] AST reference.
   Reference get shapeId => const Reference('ShapeId', _url);

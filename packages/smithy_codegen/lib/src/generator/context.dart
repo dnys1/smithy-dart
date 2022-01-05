@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/exception.dart';
@@ -9,15 +10,21 @@ class CodegenContext {
   CodegenContext({
     required this.smithyVersion,
     this.metadata = const {},
-    required this.shapes,
+    required ShapeMap shapes,
     required this.packageName,
-    this.serviceShapeId,
+    ShapeId? serviceShapeId,
     String? serviceName,
     this.pubspec,
-  }) : _serviceName = serviceName {
+  })  : _shapes = shapes,
+        _serviceName = serviceName,
+        serviceShapeId = serviceShapeId ??
+            shapes.entries.singleWhereOrNull((entry) {
+              return entry.value.getType() == ShapeType.service;
+            })?.key {
     if (serviceShapeId == null && serviceName == null) {
       throw ArgumentError(
-          'Eitehr serviceShapeId or serviceName must be provided.');
+        'Either serviceShapeId or serviceName must be provided.',
+      );
     }
   }
 
@@ -28,7 +35,14 @@ class CodegenContext {
   final Map<String, Object> metadata;
 
   /// The service closure's shape map.
-  final ShapeMap shapes;
+  final ShapeMap _shapes;
+
+  late final ShapeMap shapes = ShapeMap(Map.fromEntries(
+    _shapes.entries.where((entry) {
+      return serviceShapeId == null ||
+          entry.key.namespace == serviceShapeId!.namespace;
+    }),
+  ));
 
   /// The name of the package being generated.
   final String packageName;
@@ -74,7 +88,7 @@ class CodegenContext {
 /// A generic JSON protocol definition for generating service clients without
 /// a defined protocol.
 ///
-/// This enforces that at least one serializer is always generated.
+/// This ensures that at least one serializer is always generated.
 class _GenericProtocolDefinitionTrait implements ProtocolDefinitionTrait {
   const _GenericProtocolDefinitionTrait();
 

@@ -204,14 +204,15 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
         literalString(wireName).code,
         const Code(':'),
         if (nestedBuilder)
-          refer('result')
-              .property(member.dartName)
-              .property('replace')
-              .call([_deserializerFor(member).asA(memberSymbol)]).statement
+          refer('result').property(member.dartName).property('replace').call([
+            _deserializerFor(member).asA(memberSymbol.unboxed),
+          ]).statement
         else
           refer('result')
               .property(member.dartName)
-              .assign(_deserializerFor(member).asA(memberSymbol))
+              .assign(
+                _deserializerFor(member).asA(memberSymbol),
+              )
               .statement,
         const Code('break;'),
       ]);

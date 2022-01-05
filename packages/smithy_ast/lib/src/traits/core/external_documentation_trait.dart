@@ -9,7 +9,7 @@ part 'external_documentation_trait.g.dart';
 class ExternalDocumentationTrait
     with AWSSerializable
     implements Trait<ExternalDocumentationTrait> {
-  const ExternalDocumentationTrait(this.urls);
+  const ExternalDocumentationTrait([this.urls = const {}]);
 
   factory ExternalDocumentationTrait.fromJson(Object? json) =>
       _$ExternalDocumentationTraitFromJson((json as Map).cast());

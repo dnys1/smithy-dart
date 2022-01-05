@@ -1,10 +1,6 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_ast/src/traits/dynamic_trait.dart';
-import 'package:smithy_ast/src/traits/external_documentation_trait.dart';
-import 'package:smithy_ast/src/traits/host_label_trait.dart';
-import 'package:smithy_ast/src/traits/http/http_api_key_auth_trait.dart';
 
 typedef TraitConstructor<TraitValue extends Object, T extends Trait<TraitValue>>
     = T Function(Object?);
@@ -18,10 +14,10 @@ abstract class Trait<TraitValue extends Object>
     with AWSEquatable<Trait<TraitValue>>, AWSSerializable {
   const Trait(this.shapeId, this.value);
 
-  static Trait fromJson(ShapeId shapeId, Object jsonValue) {
+  static Trait fromJson(ShapeId shapeId, Object? jsonValue) {
     if (!serializers.containsKey(shapeId)) {
       print('No serializer found for $shapeId');
-      return DynamicTrait(shapeId, jsonValue);
+      return DynamicTrait(shapeId, jsonValue ?? const {});
     }
     return serializers[shapeId]!(jsonValue);
   }
@@ -49,6 +45,7 @@ abstract class Trait<TraitValue extends Object>
   List<Object?> get props => [shapeId, value, isSynthetic];
 
   static final Map<ShapeId, TraitConstructor> serializers = {
+    // Core
     AuthDefinitionTrait.id: AuthDefinitionTrait.fromJson,
     AuthTrait.id: AuthTrait.fromJson,
     BoxTrait.id: BoxTrait.fromJson,
@@ -114,6 +111,24 @@ abstract class Trait<TraitValue extends Object>
     XmlFlattenedTrait.id: XmlFlattenedTrait.fromJson,
     XmlNameTrait.id: XmlNameTrait.fromJson,
     XmlNamespaceTrait.id: XmlNamespaceTrait.fromJson,
+
+    // AWS
+    ArnReferenceTrait.id: ArnReferenceTrait.fromJson,
+    ArnTrait.id: ArnTrait.fromJson,
+    ControlPlaneTrait.id: ControlPlaneTrait.fromJson,
+    DataTrait.id: DataTrait.fromJson,
+    HttpChecksumTrait.id: HttpChecksumTrait.fromJson,
+    ServiceTrait.id: ServiceTrait.fromJson,
+    CognitoUserPoolsTrait.id: CognitoUserPoolsTrait.fromJson,
+    SigV4Trait.id: SigV4Trait.fromJson,
+    UnsignedPayloadTrait.id: UnsignedPayloadTrait.fromJson,
+    ClientDiscoveredEndpointTrait.id: ClientDiscoveredEndpointTrait.fromJson,
+    ClientEndpointDiscoveryIdTrait.id: ClientEndpointDiscoveryIdTrait.fromJson,
+    ClientEndpointDiscoveryTrait.id: ClientEndpointDiscoveryTrait.fromJson,
+    AwsJson1_0Trait.id: AwsJson1_0Trait.fromJson,
+    AwsJson1_1Trait.id: AwsJson1_1Trait.fromJson,
+    RestJson1Trait.id: RestJson1Trait.fromJson,
+    RestXmlTrait.id: RestXmlTrait.fromJson,
   };
 }
 

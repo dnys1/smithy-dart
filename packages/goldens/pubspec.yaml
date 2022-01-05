@@ -11,6 +11,8 @@ dependencies:
     path: ../smithy
 
 dev_dependencies:
+  file: ^6.1.2
+  glob: ^2.0.2
   lints: ^1.0.0
   pubspec_parse: ^1.2.0
   smithy_codegen:

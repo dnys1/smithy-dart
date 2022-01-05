@@ -1,25 +1,24 @@
 import 'dart:typed_data';
 
 import 'package:built_value/serializer.dart';
-import 'package:built_value/standard_json_plugin.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
-class RestJson1Protocol<Payload, Input extends HasPayload<Payload>, Output>
+class RestXmlProtocol<Payload, Input extends HasPayload<Payload>, Output>
     extends HttpProtocol<Payload, Input, Output> {
-  const RestJson1Protocol({this.mediaType});
+  const RestXmlProtocol({this.mediaType});
 
   static final serializers = (Serializers().toBuilder()
-        ..addPlugin(StandardJsonPlugin())
+        ..addPlugin(const XmlPlugin())
         ..addAll([
           const BlobSerializer(),
-          TimestampSerializer.epochSeconds,
-          BigIntSerializer.asNum,
+          TimestampSerializer.dateTime,
+          BigIntSerializer.asString,
         ]))
       .build();
 
   @override
-  ShapeId get protocolId => RestJson1Trait.id;
+  ShapeId get protocolId => RestXmlTrait.id;
 
   /// The `Content-Type` to use for [Payload].
   final String? mediaType;
@@ -31,8 +30,9 @@ class RestJson1Protocol<Payload, Input extends HasPayload<Payload>, Output>
         String: 'text/plain',
         Uint8List: 'application/octet-stream',
       }[Payload] ??
-      'application/json';
+      'application/xml';
 
   @override
-  JsonSerializer<Payload, Output> get serializer => JsonSerializer(serializers);
+  FullSerializer<Payload, Output, List<int>> get serializer =>
+      throw UnimplementedError();
 }

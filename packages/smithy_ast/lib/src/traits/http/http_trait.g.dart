@@ -8,7 +8,7 @@ part of 'http_trait.dart';
 
 HttpTrait _$HttpTraitFromJson(Map<String, dynamic> json) => HttpTrait(
       method: json['method'] as String,
-      uri: UriPattern.fromJson(json['uri'] as Map<String, dynamic>),
+      uri: json['uri'] as String,
       code: json['code'] as int? ?? 200,
     );
 

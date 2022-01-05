@@ -15,8 +15,8 @@ class AwsJson1_0Trait extends AWSProtocolTrait {
           timestampFormat: TimestampFormat.epochSeconds,
         );
 
-  factory AwsJson1_0Trait.fromJson(Map<String, Object?> json) =>
-      _$AwsJson1_0TraitFromJson(json);
+  factory AwsJson1_0Trait.fromJson(Object? json) =>
+      _$AwsJson1_0TraitFromJson((json as Map).cast());
 
   static const id = ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0');
 

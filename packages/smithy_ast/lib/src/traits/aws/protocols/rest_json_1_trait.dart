@@ -1,32 +1,32 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
-part 'rest_xml_trait.g.dart';
+part 'rest_json_1_trait.g.dart';
 
-/// A RESTful protocol that sends XML in structured payloads.
+///
+///
+/// **Important**: This protocol only permits the `httpPayload` trait to be
+/// applied to members that target structures, documents, strings, blobs, or
+/// unions.
 @JsonSerializable()
-class RestXmlTrait extends AWSProtocolTrait {
-  const RestXmlTrait({
-    this.noErrorWrapping = false,
+class RestJson1Trait extends AWSProtocolTrait {
+  const RestJson1Trait({
     List<AlpnProtocol> http = AWSProtocolTrait.defaultHttpProtocols,
     List<AlpnProtocol>? eventStreamHttp,
   }) : super(
           id,
           http: http,
           eventStreamHttp: eventStreamHttp,
-          timestampFormat: TimestampFormat.dateTime,
-          noInlineDocumentSupport: true,
+          timestampFormat: TimestampFormat.epochSeconds,
         );
 
-  factory RestXmlTrait.fromJson(Map<String, Object?> json) =>
-      _$RestXmlTraitFromJson(json);
+  factory RestJson1Trait.fromJson(Object? json) =>
+      _$RestJson1TraitFromJson((json as Map).cast());
 
-  static const id = ShapeId(namespace: 'aws.protocols', shape: 'restXml');
-
-  final bool noErrorWrapping;
+  static const id = ShapeId(namespace: 'aws.protocols', shape: 'restJson1');
 
   @override
-  Map<String, Object?> toJson() => _$RestXmlTraitToJson(this);
+  Map<String, Object?> toJson() => _$RestJson1TraitToJson(this);
 
   @override
   List<ShapeId> get traits => const [
@@ -41,10 +41,7 @@ class RestXmlTrait extends AWSProtocolTrait {
         HttpPrefixHeadersTrait.id,
         HttpQueryTrait.id,
         HttpQueryParamsTrait.id,
-        XmlAttributeTrait.id,
-        XmlFlattenedTrait.id,
-        XmlNameTrait.id,
-        XmlNamespaceTrait.id,
+        JsonNameTrait.id,
         TimestampFormatTrait.id,
       ];
 }

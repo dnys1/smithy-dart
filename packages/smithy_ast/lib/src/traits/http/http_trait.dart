@@ -1,7 +1,6 @@
 import 'package:aws_common/aws_common.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_ast/src/pattern/uri_pattern.dart';
 
 part 'http_trait.g.dart';
 
@@ -21,14 +20,14 @@ class HttpTrait with AWSSerializable implements Trait<HttpTrait> {
   static const id = ShapeId.core('http');
 
   final String method;
-  final UriPattern uri;
+  final String uri;
   final int code;
 
   @override
   bool get isSynthetic => false;
 
   @override
-  List<Object?> get props => [code];
+  List<Object?> get props => [method, uri, code];
 
   @override
   ShapeId get shapeId => id;

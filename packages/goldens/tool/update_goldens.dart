@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:file/local.dart';
+import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -9,10 +11,11 @@ import 'package:smithy_codegen/src/util/pubspec.dart';
 
 const modelsDir = 'models';
 
-void main() {
+void main(List<String> args) {
   final modelsPath = path.join(Directory.current.path, modelsDir);
-  final dir = Directory(modelsPath);
-  for (var modelEnt in dir.listSync(recursive: true)) {
+  final glob = Glob(args.length == 1 ? args[0] : '**');
+  final entites = glob.listFileSystemSync(LocalFileSystem(), root: modelsPath);
+  for (var modelEnt in entites) {
     if (modelEnt.statSync().type == FileSystemEntityType.directory) {
       final dirPath = path.join(
         'lib',
@@ -42,8 +45,11 @@ void main() {
         '--rm',
         '-v',
         '$modelsPath:/home/$modelsDir',
-        'dnys1/smithy:latest',
+        'smithy-playground',
+        'smithy',
         'ast',
+        '-d',
+        '/smithy/lib/traits',
         '/home/$modelPath',
       ],
       stdoutEncoding: utf8,

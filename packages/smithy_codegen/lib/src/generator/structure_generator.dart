@@ -16,6 +16,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     required CodegenContext context,
   }) : super(shape, context: context);
 
+  /// The resolved HTTP payload shape/type.
+  late final HttpPayload _httpPayload = httpPayload(shape, symbol);
+
   @override
   Library generate() {
     // Ad .g.dart part directive
@@ -40,7 +43,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
-            DartTypes.smithy.hasPayload(httpPayload.symbol),
+            DartTypes.smithy.hasPayload(_httpPayload.symbol),
           ])
           ..constructors.addAll([
             _factoryConstructor,
@@ -106,16 +109,16 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = httpPayload.symbol
+        ..returns = _httpPayload.symbol
         ..name = 'getPayload'
         ..lambda = true
-        ..body = refer(httpPayload.member?.dartName ?? 'this').code,
+        ..body = refer(_httpPayload.member?.dartName ?? 'this').code,
     );
 
     // `isStreaming` override
     final bool isStreaming =
-        httpPayload.member != null && httpPayload.member!.isStreaming ||
-            context.shapeFor(httpPayload.member!.target).isStreaming;
+        _httpPayload.member != null && _httpPayload.member!.isStreaming ||
+            context.shapeFor(_httpPayload.member!.target).isStreaming;
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)

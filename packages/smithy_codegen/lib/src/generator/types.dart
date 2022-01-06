@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart' as http_test;
 import 'package:meta/meta.dart' as meta;
 import 'package:smithy/smithy.dart' as smithy;
+import 'package:smithy_aws/smithy_aws.dart' as smithy_aws;
 
 /// Common type references used throughout code generation.
 abstract class DartTypes {
@@ -40,6 +41,9 @@ abstract class DartTypes {
 
   /// `package:smithy` types.
   static const smithy = _Smithy();
+
+  /// `package:smithy_aws` types.
+  static const smithyAws = _SmithyAws();
 
   /// `dart:typed_data` types.
   static const typedData = _TypedData();
@@ -117,6 +121,9 @@ class _Core {
 
   /// Creates a [core.String] reference.
   Reference get string => const Reference('String', _url);
+
+  /// Creates a [core.Uri] reference.
+  Reference get uri => const Reference('Uri', _url);
 
   /// Creates a `void` reference.
   Reference get void$ => const Reference('void');
@@ -303,6 +310,34 @@ class _Smithy {
           ..types.add(ref),
       );
 
+  /// Creates a [smithy.HttpOperation] reference for an operation with input
+  /// payload type [inputPayload], input type [input], and output type [output].
+  Reference httpOperation(
+    Reference inputPayload,
+    Reference input,
+    Reference output,
+  ) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'HttpOperation'
+          ..url = _url
+          ..types.addAll([inputPayload, input, output]),
+      );
+
+  /// Creates a [smithy.HttpProtocol] reference for an operation with input
+  /// payload type [inputPayload], input type [input], and output type [output].
+  Reference httpProtocol(
+    Reference inputPayload,
+    Reference input,
+    Reference output,
+  ) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'HttpProtocol'
+          ..url = _url
+          ..types.addAll([inputPayload, input, output]),
+      );
+
   /// Creates a [smithy.ShapeId] AST reference.
   Reference get shapeId => const Reference('ShapeId', _url);
 
@@ -334,6 +369,30 @@ class _Smithy {
   /// Creates a [smithy.TimestampSerializer] reference.
   Reference get timestampSerializer =>
       const Reference('TimestampSerializer', _url);
+
+  /// Creates a [smithy.Unit] reference.
+  Reference get unit => const Reference('Unit', _url);
+}
+
+/// `package:smithy_aws` types.
+class _SmithyAws {
+  const _SmithyAws();
+
+  static const _url = 'package:smithy_aws/smithy_aws.dart';
+
+  /// Creates an [smithy_aws.AwsJson1_0Protocol] refererence.
+  Reference get awsJson1_0Protocol =>
+      const Reference('AwsJson1_0Protocol', _url);
+
+  /// Creates an [smithy_aws.AwsJson1_1Protocol] refererence.
+  Reference get awsJson1_1Protocol =>
+      const Reference('AwsJson1_1Protocol', _url);
+
+  /// Creates an [smithy_aws.RestJson1Protocol] refererence.
+  Reference get restJson1Protocol => const Reference('RestJson1Protocol', _url);
+
+  /// Creates an [smithy_aws.RestXmlProtocol] refererence.
+  Reference get restXmlProtocol => const Reference('RestXmlProtocol', _url);
 }
 
 /// `dart:typed_data` types

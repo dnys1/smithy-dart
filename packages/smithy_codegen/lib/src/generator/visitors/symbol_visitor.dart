@@ -93,6 +93,9 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference structureShape(StructureShape shape, [Shape? parent]) {
+    if (shape.hasTrait<UnitTypeTrait>()) {
+      return DartTypes.smithy.unit;
+    }
     return createSymbol(shape);
   }
 

@@ -463,6 +463,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
+  smithy_aws:
+    dependency: "direct main"
+    description:
+      path: "../smithy_aws"
+      relative: true
+    source: path
+    version: "1.0.0"
   smithy_test:
     dependency: "direct dev"
     description:

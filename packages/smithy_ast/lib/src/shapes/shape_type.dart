@@ -28,7 +28,6 @@ class ShapeType extends EnumClass {
   static const ShapeType double = _$double;
   static const ShapeType bigDecimal = _$bigDecimal;
   static const ShapeType bigInteger = _$bigInteger;
-  static const ShapeType unit = _$unit;
   static const ShapeType list = _$list;
   static const ShapeType set = _$set;
   static const ShapeType map = _$map;
@@ -74,7 +73,6 @@ extension ShapeTypeX on ShapeType {
       case ShapeType.double:
       case ShapeType.bigDecimal:
       case ShapeType.bigInteger:
-      case ShapeType.unit:
         return Category.simple;
       case ShapeType.list:
       case ShapeType.set:
@@ -139,8 +137,6 @@ extension ShapeTypeX on ShapeType {
         return TimestampShape;
       case ShapeType.union:
         return UnionShape;
-      case ShapeType.unit:
-        return UnitShape;
     }
     throw ArgumentError.value(this);
   }

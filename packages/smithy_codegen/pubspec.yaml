@@ -27,6 +27,8 @@ dependencies:
     path: ../smithy
   smithy_ast:
     path: ../smithy_ast
+  smithy_aws:
+    path: ../smithy_aws
   yaml_edit: ^2.0.1
 
 dev_dependencies:

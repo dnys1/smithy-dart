@@ -170,9 +170,4 @@ class ToJsonVisitor implements ShapeVisitor<Expression> {
   Expression primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) {
     throw UnimplementedError();
   }
-
-  @override
-  Expression unitShape(UnitShape shape, [Shape? parent]) {
-    throw UnimplementedError();
-  }
 }

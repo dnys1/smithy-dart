@@ -42,9 +42,9 @@ mixin StructureGenerationContext<U> on ShapeGenerator<StructureShape, U> {
       symbol.typeRef.rebuild((t) => t.symbol = '${className}Builder');
 }
 
-mixin HttpGenerationContext<U> on ShapeGenerator<StructureShape, U> {
+mixin HttpGenerationContext<S extends Shape, U> on ShapeGenerator<S, U> {
   /// The symbol for the HTTP payload, or [symbol] if not supported.
-  HttpPayload get httpPayload {
+  HttpPayload httpPayload(StructureShape shape, Reference symbol) {
     final payloadMember = shape.members.values.firstWhereOrNull((shape) {
       return shape.hasTrait<HttpPayloadTrait>();
     });

@@ -21,6 +21,9 @@ abstract class Shape {
   @BuiltValueSerializer(custom: true)
   static Serializer<Shape> get serializer => ShapeSerializer();
 
+  /// The `Unit` type's shape ID.
+  static const unit = ShapeId.core('Unit');
+
   static final preludeShapes = <ShapeId, Shape>{
     BigDecimalShape.id: BigDecimalShape(),
     BigIntegerShape.id: BigIntegerShape(),
@@ -42,7 +45,7 @@ abstract class Shape {
     ShortShape.id: ShortShape(),
     StringShape.id: StringShape(),
     TimestampShape.id: TimestampShape(),
-    UnitShape.id: UnitShape(),
+    unit: StructureShape(),
   };
 }
 

@@ -3,8 +3,7 @@
         "codegen/build/**": true,
         "**/node_modules/**": true,
         "playground/backend/cdk.out/**": true,
-        "playground/smithy/**": true,
-        "**/generated/**": true
+        "playground/smithy/**": true
     },
     "yaml.schemas": {
         "https://json.schemastore.org/dart-build": [

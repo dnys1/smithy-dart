@@ -3,16 +3,21 @@ import 'dart:typed_data';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-class RestXmlProtocol<Payload, Input extends HasPayload<Payload>, Output>
-    extends HttpProtocol<Payload, Input, Output> {
-  const RestXmlProtocol({
+class RestXmlProtocol<Payload, Input extends HttpInput<Payload>, Output>
+    extends AWSHttpProtocol<Payload, Input, Output> {
+  RestXmlProtocol({
     this.mediaType,
-    this.interceptors = const [],
-    this.additionalSerializers = const [],
-  });
+    List<HttpInterceptor> interceptors = const [],
+    List<Object> serializers = const [],
+  }) : super(
+          _coreSerializers,
+          serializers,
+          interceptors: interceptors,
+        );
 
-  static final serializers = (Serializers().toBuilder()
+  static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(const XmlPlugin())
         ..addAll([
           const UnitSerializer(),
@@ -38,11 +43,6 @@ class RestXmlProtocol<Payload, Input extends HasPayload<Payload>, Output>
       'application/xml';
 
   @override
-  FullSerializer<Payload, Output, List<int>> get serializer =>
+  FullSerializer<Payload, Output, List<int>> get wireSerializer =>
       throw UnimplementedError();
-
-  @override
-  final List<HttpInterceptor> interceptors;
-
-  final List<Object> additionalSerializers;
 }

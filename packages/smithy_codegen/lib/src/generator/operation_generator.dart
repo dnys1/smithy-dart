@@ -69,17 +69,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
   /// The required HTTP operation overrides.
   Iterable<Method> _httpOverrides(HttpTrait http) sync* {
-    // The `baseUri` getter
-    yield Method(
-      (m) => m
-        ..annotations.add(DartTypes.core.override)
-        ..returns = DartTypes.core.uri
-        ..type = MethodType.getter
-        ..name = 'baseUri'
-        ..lambda = true
-        ..body = const Code('Uri()'),
-    );
-
     // The `method` getter
     final method = http.method;
     yield Method(
@@ -122,7 +111,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..name = 'protocols'
           ..body = literalConstList([
             for (var protocol in context.serviceProtocols)
-              protocol.instantiableProtocolSymbol.constInstance([]),
+              protocol.instantiableProtocolSymbol.constInstance([], {
+                'additionalSerializers': literalConstList([]),
+                'interceptors': literalConstList([]),
+              }),
           ]).code,
       );
 }

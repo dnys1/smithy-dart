@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
@@ -11,7 +12,7 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 import 'package:smithy_codegen/src/util/trait_ext.dart';
 
 /// Generates a serializer class for [shape] and [protocol].
-class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
+class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
     with StructureGenerationContext {
   SerializerGenerator(
       StructureShape shape, CodegenContext context, this.protocol)
@@ -24,6 +25,26 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
     return '_' +
         '${shape.shapeId.shape}_${withProtocolName}_Serializer'.pascalCase;
   }
+
+  /// The member shape to serialize when [HttpPayloadTrait] is used.
+  late final MemberShape? payloadShape = sortedMembers
+      .firstWhereOrNull((shape) => shape.hasTrait<HttpPayloadTrait>());
+
+  /// The list of all members which should be serialized in the payload.
+  ///
+  /// Only used when [payloadShape] == null.
+  late final List<MemberShape> serializableMembers =
+      sortedMembers.where((member) {
+    // Traits which mark this member as metadata, not to be serialized.
+    const metadataTraits = [
+      HttpHeaderTrait.id,
+      HttpLabelTrait.id,
+      HttpQueryTrait.id,
+      HttpPrefixHeadersTrait.id,
+      HttpQueryParamsTrait.id,
+    ];
+    return !member.traits.keys.any(metadataTraits.contains);
+  }).toList();
 
   /// Metadata about [shape] in the context of [protocol], including renames and
   /// other protocol-specific traits.
@@ -83,7 +104,14 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
       wireNames[member] ?? member.memberName;
 
   @override
-  Class generate() {
+  Class? generate() {
+    // Will use a pre-defined serializer when targeting another shape for the
+    // payload.
+    final useExistingSerializer = payloadShape != null;
+    if (useExistingSerializer) {
+      return null;
+    }
+
     return Class(
       (c) => c
         ..name = serializerClassName
@@ -120,9 +148,10 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class>
           ..lambda = true
           ..body = literalList([
             if (!protocol.isSynthetic)
-              DartTypes.smithy.shapeId.property('parse').call([
-                literalString(protocol.shapeId.absoluteName),
-              ])
+              DartTypes.smithy.shapeId.constInstance([], {
+                'namespace': literalString(protocol.shapeId.namespace),
+                'shape': literalString(protocol.shapeId.shape),
+              })
           ]).code,
       );
 

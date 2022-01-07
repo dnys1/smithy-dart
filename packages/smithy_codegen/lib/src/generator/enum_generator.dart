@@ -111,7 +111,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
             ..name = definition.variantName
             ..assignment = symbol.newInstanceNamed('_', [
               literalNum(index),
-              literalString(definition.variantName),
+              literalString(definition.name ?? definition.variantName),
               literalString(definition.value),
             ]).code;
         });
@@ -156,7 +156,9 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
                 ..requiredParameters.add(Parameter((p) => p..name = 'el'))
                 ..body = refer('el')
                     .property('name')
-                    .equalTo(refer('name'))
+                    .property('toLowerCase')
+                    .call([])
+                    .equalTo(refer('name').property('toLowerCase').call([]))
                     .code,
             ).closure,
           ]).code,

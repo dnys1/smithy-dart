@@ -4,16 +4,21 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-class RestJson1Protocol<Payload, Input extends HasPayload<Payload>, Output>
-    extends HttpProtocol<Payload, Input, Output> {
-  const RestJson1Protocol({
+class RestJson1Protocol<Payload, Input extends HttpInput<Payload>, Output>
+    extends AWSHttpProtocol<Payload, Input, Output> {
+  RestJson1Protocol({
     this.mediaType,
-    this.interceptors = const [],
-    this.additionalSerializers = const [],
-  });
+    List<HttpInterceptor> interceptors = const [],
+    List<Object> serializers = const [],
+  }) : super(
+          _coreSerializers,
+          serializers,
+          interceptors: interceptors,
+        );
 
-  static final serializers = (Serializers().toBuilder()
+  static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(StandardJsonPlugin())
         ..addAll([
           const UnitSerializer(),
@@ -39,11 +44,6 @@ class RestJson1Protocol<Payload, Input extends HasPayload<Payload>, Output>
       'application/json';
 
   @override
-  JsonSerializer<Payload, Output> get serializer =>
-      JsonSerializer(serializers, additionalSerializers);
-
-  @override
-  final List<HttpInterceptor> interceptors;
-
-  final List<Object> additionalSerializers;
+  late final JsonSerializer<Payload, Output> wireSerializer =
+      JsonSerializer(serializers);
 }

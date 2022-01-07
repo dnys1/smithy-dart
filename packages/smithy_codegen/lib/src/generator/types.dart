@@ -246,6 +246,15 @@ class BuiltValue {
           ..types.addAll([key, value]),
       );
 
+  /// Creates a [built_value_serializer.PrimitiveSerializer] reference for
+  /// generic type [ref].
+  Reference primitiveSerializer(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'PrimitiveSerializer'
+          ..url = serializerUrl
+          ..types.add(ref),
+      );
+
   /// Creates a [built_value_serializer.Serializers] reference.
   Reference get serializers => const Reference('Serializers', serializerUrl);
 
@@ -342,6 +351,14 @@ class _Smithy {
           ..symbol = 'HttpProtocol'
           ..url = _url
           ..types.addAll([inputPayload, input, output]),
+      );
+
+  /// Creates a [smithy.HttpInput] reference for [ref], the input type.
+  Reference httpInput(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'HasPayload'
+          ..url = _url
+          ..types.add(ref),
       );
 
   /// Creates a [smithy.ShapeId] AST reference.

@@ -4,8 +4,6 @@ import 'package:smithy_aws/smithy_aws.dart';
 
 class MapInputOperation
     extends HttpOperation<MapInputRequest, MapInputRequest, Unit> {
-  const MapInputOperation();
-
   @override
   HttpRequest get request => (HttpRequestBuilder()
         ..method = 'POST'
@@ -13,10 +11,10 @@ class MapInputOperation
       .build();
 
   @override
-  List<HttpProtocol<MapInputRequest, MapInputRequest, Unit>> get protocols =>
-      const [
-        AwsJson1_1Protocol(
-          additionalSerializers: [MapInputRequest.serializers],
-        ),
-      ];
+  late final List<HttpProtocol<MapInputRequest, MapInputRequest, Unit>>
+      protocols = [
+    AwsJson1_1Protocol(
+      serializers: [MapInputRequest.serializers],
+    ),
+  ];
 }

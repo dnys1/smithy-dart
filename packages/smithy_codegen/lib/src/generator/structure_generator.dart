@@ -43,7 +43,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
-            DartTypes.smithy.hasPayload(_httpPayload.symbol),
+            DartTypes.smithy.httpInput(_httpPayload.symbol),
           ])
           ..constructors.addAll([
             _factoryConstructor,
@@ -51,7 +51,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..methods.addAll([
             ..._fieldGetters,
-            ..._hasPayloadOverrides,
+            ..._httpInputOverrides,
           ])
           ..fields.addAll([
             _serializersField(serializerClasses),
@@ -103,8 +103,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
   }
 
-  /// Methods to conform to `HasPayload`.
-  Iterable<Method> get _hasPayloadOverrides sync* {
+  /// Methods to conform to `HttpInput`.
+  Iterable<Method> get _httpInputOverrides sync* {
     // `getPayload` override
     yield Method(
       (m) => m
@@ -149,7 +149,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final classes = <String, Class>{};
     for (var protocol in context.serviceProtocols) {
       final generator = SerializerGenerator(shape, context, protocol);
-      classes[generator.serializerClassName] = generator.generate();
+      final class$ = generator.generate();
+      if (class$ != null) {
+        classes[generator.serializerClassName] = class$;
+      }
     }
     return classes;
   }

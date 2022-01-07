@@ -10,7 +10,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'map_input_request.g.dart';
 
 abstract class MapInputRequest
-    with _i1.HttpRequestable<MapInputRequest>
+    with _i1.HttpInput<MapInputRequest>
     implements Built<MapInputRequest, MapInputRequestBuilder> {
   factory MapInputRequest([void Function(MapInputRequestBuilder) updates]) =
       _$MapInputRequest;

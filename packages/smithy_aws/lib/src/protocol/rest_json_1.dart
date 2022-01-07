@@ -7,11 +7,16 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 class RestJson1Protocol<Payload, Input extends HasPayload<Payload>, Output>
     extends HttpProtocol<Payload, Input, Output> {
-  const RestJson1Protocol({this.mediaType});
+  const RestJson1Protocol({
+    this.mediaType,
+    this.interceptors = const [],
+    this.additionalSerializers = const [],
+  });
 
   static final serializers = (Serializers().toBuilder()
         ..addPlugin(StandardJsonPlugin())
         ..addAll([
+          const UnitSerializer(),
           const BlobSerializer(),
           TimestampSerializer.epochSeconds,
           BigIntSerializer.asNum,
@@ -34,5 +39,11 @@ class RestJson1Protocol<Payload, Input extends HasPayload<Payload>, Output>
       'application/json';
 
   @override
-  JsonSerializer<Payload, Output> get serializer => JsonSerializer(serializers);
+  JsonSerializer<Payload, Output> get serializer =>
+      JsonSerializer(serializers, additionalSerializers);
+
+  @override
+  final List<HttpInterceptor> interceptors;
+
+  final List<Object> additionalSerializers;
 }

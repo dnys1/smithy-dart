@@ -6,5 +6,5 @@ class RequiredTrait extends AnnotationTrait {
 
   const RequiredTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', shape: 'required');
+  static const id = ShapeId.core('required');
 }

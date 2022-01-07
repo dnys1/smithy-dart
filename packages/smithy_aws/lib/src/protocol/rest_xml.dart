@@ -6,11 +6,16 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 class RestXmlProtocol<Payload, Input extends HasPayload<Payload>, Output>
     extends HttpProtocol<Payload, Input, Output> {
-  const RestXmlProtocol({this.mediaType});
+  const RestXmlProtocol({
+    this.mediaType,
+    this.interceptors = const [],
+    this.additionalSerializers = const [],
+  });
 
   static final serializers = (Serializers().toBuilder()
         ..addPlugin(const XmlPlugin())
         ..addAll([
+          const UnitSerializer(),
           const BlobSerializer(),
           TimestampSerializer.dateTime,
           BigIntSerializer.asString,
@@ -35,4 +40,9 @@ class RestXmlProtocol<Payload, Input extends HasPayload<Payload>, Output>
   @override
   FullSerializer<Payload, Output, List<int>> get serializer =>
       throw UnimplementedError();
+
+  @override
+  final List<HttpInterceptor> interceptors;
+
+  final List<Object> additionalSerializers;
 }

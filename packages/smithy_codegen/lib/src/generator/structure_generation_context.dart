@@ -2,8 +2,8 @@ import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
-import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class HttpPayload {
   const HttpPayload(this.symbol, [this.member]);

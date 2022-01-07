@@ -4,6 +4,7 @@ import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 /// Converts shapes into symbols or [Reference]s.
 ///

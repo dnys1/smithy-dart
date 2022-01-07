@@ -13,7 +13,7 @@ class EnumTrait with AWSSerializable implements Trait<EnumTrait> {
         'definitions': json as List,
       });
 
-  static final id = ShapeId.parse('smithy.api#enum');
+  static const id = ShapeId.core('enum');
 
   final List<EnumDefinition> definitions;
 

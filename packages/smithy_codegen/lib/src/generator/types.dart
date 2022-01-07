@@ -45,6 +45,12 @@ abstract class DartTypes {
   /// `package:smithy_aws` types.
   static const smithyAws = _SmithyAws();
 
+  /// `package:test` types.
+  static const test = _Test();
+
+  /// `package:smithy_test` types.
+  static const smithyTest = _SmithyTest();
+
   /// `dart:typed_data` types.
   static const typedData = _TypedData();
 }
@@ -395,6 +401,25 @@ class _SmithyAws {
   Reference get restXmlProtocol => const Reference('RestXmlProtocol', _url);
 }
 
+/// `package:test` types
+class _Test {
+  const _Test();
+}
+
+/// `package:smithy_test` types
+class _SmithyTest {
+  const _SmithyTest();
+
+  static const _url = 'package:smithy_test/smithy_test.dart';
+
+  /// Creates an `httpRequestTest` reference.
+  Reference get httpRequestTest => const Reference('httpRequestTest', _url);
+
+  /// Creates an `HttpRequestTestCase` reference.
+  Reference get httpRequestTestCase =>
+      const Reference('HttpRequestTestCase', _url);
+}
+
 /// `dart:typed_data` types
 class _TypedData {
   const _TypedData();
@@ -403,24 +428,4 @@ class _TypedData {
 
   /// Creates a [Uint8List] reference.
   Reference get uint8List => const Reference('Uint8List', _url);
-}
-
-extension ReferenceHelpers on Reference {
-  TypeReference get typeRef =>
-      this is TypeReference ? this as TypeReference : type as TypeReference;
-
-  /// Returns a nullable version of `this`.
-  TypeReference get boxed {
-    return typeRef.rebuild((t) => t.isNullable = true);
-  }
-
-  /// Returns a non-nullable version of `this`.
-  TypeReference get unboxed {
-    return typeRef.rebuild((t) => t.isNullable = false);
-  }
-
-  /// Returns a version of `this` with nullable set to [isBoxed].
-  TypeReference withBoxed(core.bool isBoxed) {
-    return isBoxed ? boxed : unboxed;
-  }
 }

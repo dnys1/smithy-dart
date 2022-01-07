@@ -7,17 +7,16 @@ class MapInputOperation
   const MapInputOperation();
 
   @override
-  Uri get baseUri => Uri();
-
-  @override
-  String get method => 'POST';
-
-  @override
-  String get path => '/input/map';
+  HttpRequest get request => (HttpRequestBuilder()
+        ..method = 'POST'
+        ..path = '/input/map')
+      .build();
 
   @override
   List<HttpProtocol<MapInputRequest, MapInputRequest, Unit>> get protocols =>
       const [
-        AwsJson1_1Protocol(),
+        AwsJson1_1Protocol(
+          additionalSerializers: [MapInputRequest.serializers],
+        ),
       ];
 }

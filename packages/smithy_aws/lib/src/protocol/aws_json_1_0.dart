@@ -5,11 +5,15 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 class AwsJson1_0Protocol<Payload, Input extends HasPayload<Payload>, Output>
     extends HttpProtocol<Payload, Input, Output> {
-  const AwsJson1_0Protocol();
+  const AwsJson1_0Protocol({
+    this.interceptors = const [],
+    this.additionalSerializers = const [],
+  });
 
   static final serializers = (Serializers().toBuilder()
         ..addPlugin(StandardJsonPlugin())
         ..addAll([
+          const UnitSerializer(),
           const BlobSerializer(),
           TimestampSerializer.epochSeconds,
           BigIntSerializer.asNum,
@@ -23,7 +27,13 @@ class AwsJson1_0Protocol<Payload, Input extends HasPayload<Payload>, Output>
   String get contentType => 'application/x-amz-json-1.0';
 
   @override
-  JsonSerializer<Payload, Output> get serializer => JsonSerializer(serializers);
+  JsonSerializer<Payload, Output> get serializer =>
+      JsonSerializer(serializers, additionalSerializers);
+
+  @override
+  final List<HttpInterceptor> interceptors;
+
+  final List<Object> additionalSerializers;
 }
 
 // ignore_for_file: camel_case_types

@@ -14,7 +14,7 @@ class ExternalDocumentationTrait
   factory ExternalDocumentationTrait.fromJson(Object? json) =>
       _$ExternalDocumentationTraitFromJson((json as Map).cast());
 
-  static final id = ShapeId.parse('smithy.api#externalDocumentation');
+  static const id = ShapeId.core('externalDocumentation');
 
   final Map<String, Uri> urls;
 

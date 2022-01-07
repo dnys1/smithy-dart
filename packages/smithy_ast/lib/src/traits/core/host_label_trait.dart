@@ -7,5 +7,5 @@ class HostLabelTrait extends AnnotationTrait {
 
   const HostLabelTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', shape: 'hostLabel');
+  static const id = ShapeId.core('hostLabel');
 }

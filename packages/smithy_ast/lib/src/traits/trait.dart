@@ -2,6 +2,8 @@ import 'package:aws_common/aws_common.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
+part 'dynamic_trait.dart';
+
 /// Constructs [Trait] objects from JSON values.
 typedef TraitConstructor<TraitValue extends Object, T extends Trait<TraitValue>>
     = T Function(Object?);
@@ -18,7 +20,7 @@ abstract class Trait<TraitValue extends Object>
   static Trait fromJson(ShapeId shapeId, Object? jsonValue) {
     if (!serializers.containsKey(shapeId)) {
       print('No serializer found for $shapeId');
-      return DynamicTrait(shapeId, jsonValue ?? const {});
+      return DynamicTrait._(shapeId, jsonValue ?? const {});
     }
     return serializers[shapeId]!(jsonValue);
   }
@@ -39,7 +41,7 @@ abstract class Trait<TraitValue extends Object>
   bool get isSynthetic => false;
 
   @override
-  Object toJson() =>
+  Object? toJson() =>
       value is AWSSerializable ? (value as AWSSerializable).toJson() : value;
 
   @override
@@ -130,6 +132,11 @@ abstract class Trait<TraitValue extends Object>
     AwsJson1_1Trait.id: AwsJson1_1Trait.fromJson,
     RestJson1Trait.id: RestJson1Trait.fromJson,
     RestXmlTrait.id: RestXmlTrait.fromJson,
+
+    // Protocol Tests
+    HttpMalformedRequestTestsTrait.id: HttpMalformedRequestTestsTrait.fromJson,
+    HttpRequestTestsTrait.id: HttpRequestTestsTrait.fromJson,
+    HttpResponseTestsTrait.id: HttpResponseTestsTrait.fromJson,
   };
 }
 

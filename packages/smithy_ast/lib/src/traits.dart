@@ -27,7 +27,6 @@ export 'traits/core/box_trait.dart';
 export 'traits/core/cors_trait.dart';
 export 'traits/core/deprecated_trait.dart';
 export 'traits/core/documentation_trait.dart';
-export 'traits/dynamic_trait.dart';
 export 'traits/core/endpoint_trait.dart';
 export 'traits/core/enum_definition.dart';
 export 'traits/core/enum_trait.dart';
@@ -91,3 +90,16 @@ export 'traits/core/xml_attribute_trait.dart';
 export 'traits/core/xml_flattened_trait.dart';
 export 'traits/core/xml_name_trait.dart';
 export 'traits/core/xml_namespace_trait.dart';
+
+// Protocol Tests
+export 'traits/test/http_malformed_request_definition.dart';
+export 'traits/test/http_malformed_request_test_case.dart';
+export 'traits/test/http_malformed_request_tests_trait.dart';
+export 'traits/test/http_malformed_response_body_definition.dart';
+export 'traits/test/http_malformed_response_definition.dart';
+export 'traits/test/http_message_test_case.dart';
+export 'traits/test/http_request_test_case.dart';
+export 'traits/test/http_request_tests_trait.dart';
+export 'traits/test/http_response_test_case.dart';
+export 'traits/test/http_response_tests_trait.dart';
+export 'traits/test/parameterized_http_malformed_test_case.dart';

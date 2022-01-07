@@ -15,7 +15,7 @@ class DeprecatedTrait with AWSSerializable implements Trait<DeprecatedTrait> {
   factory DeprecatedTrait.fromJson(Object? json) =>
       _$DeprecatedTraitFromJson((json as Map).cast());
 
-  static final id = ShapeId.parse('smithy.api#deprecated');
+  static const id = ShapeId.core('deprecated');
 
   final String? since;
   final String? message;

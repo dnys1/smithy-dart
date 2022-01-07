@@ -6,7 +6,7 @@ class ErrorTrait extends StringTrait {
 
   factory ErrorTrait.fromJson(Object? json) => ErrorTrait(json as String);
 
-  static const id = ShapeId(namespace: 'smithy.api', shape: 'error');
+  static const id = ShapeId.core('error');
 
   int get defaultHttpStatusCode => isClientError ? 400 : 500;
 

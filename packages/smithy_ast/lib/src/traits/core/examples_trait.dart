@@ -14,7 +14,7 @@ class ExamplesTrait with AWSSerializable implements Trait<ExamplesTrait> {
   factory ExamplesTrait.fromJson(Object? json) =>
       _$ExamplesTraitFromJson((json as Map).cast());
 
-  static final id = ShapeId.parse('smithy.api#examples');
+  static const id = ShapeId.core('examples');
 
   final List<Example> examples;
 

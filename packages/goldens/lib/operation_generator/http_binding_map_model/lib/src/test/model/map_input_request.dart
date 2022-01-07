@@ -10,9 +10,8 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'map_input_request.g.dart';
 
 abstract class MapInputRequest
-    implements
-        _i1.HasPayload<MapInputRequest>,
-        Built<MapInputRequest, MapInputRequestBuilder> {
+    with _i1.HttpRequestable<MapInputRequest>
+    implements Built<MapInputRequest, MapInputRequestBuilder> {
   factory MapInputRequest([void Function(MapInputRequestBuilder) updates]) =
       _$MapInputRequest;
 
@@ -38,6 +37,10 @@ class _MapInputRequestAwsJson11Serializer
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       [_i1.ShapeId.parse('aws.protocols#awsJson1_1')];
+
+  @override
+  Iterable<Type> get types => [MapInputRequest, _$MapInputRequest];
+
   @override
   MapInputRequest deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -68,9 +71,11 @@ class _MapInputRequestAwsJson11Serializer
     if (object.mapOfLists != null) {
       result
         ..add('mapOfLists')
-        ..add(serializers.serialize(object.mapOfLists,
-            specifiedType: const FullType(
-                _i2.BuiltListMultimap, [FullType(String), FullType(int)])));
+        ..add(serializers.serialize(object.mapOfLists?.asMap(),
+            specifiedType: const FullType(Map, [
+              FullType(String),
+              FullType(Iterable, [FullType.nullable(int)])
+            ])));
     }
     return result;
   }

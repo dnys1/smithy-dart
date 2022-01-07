@@ -9,5 +9,5 @@ class EventHeaderTrait extends AnnotationTrait {
 
   const EventHeaderTrait.fromJson(Object? json) : super(id);
 
-  static const id = ShapeId(namespace: 'smithy.api', shape: 'eventHeader');
+  static const id = ShapeId.core('eventHeader');
 }

@@ -23,6 +23,7 @@ void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
         specifiedType: FullType(Input),
       ) as Input;
       final request = await operation.createRequest(
+        operation.buildRequest(input),
         baseUri,
         protocol,
         input,

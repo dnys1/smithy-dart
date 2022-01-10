@@ -43,6 +43,5 @@ class RestXmlProtocol<Payload, Input extends HttpInput<Payload>, Output>
       'application/xml';
 
   @override
-  FullSerializer<Payload, Output, List<int>> get wireSerializer =>
-      throw UnimplementedError();
+  FullSerializer<List<int>> get wireSerializer => throw UnimplementedError();
 }

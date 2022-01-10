@@ -323,6 +323,9 @@ class _Smithy {
 
   static const _url = 'package:smithy/smithy.dart';
 
+  /// Creates a [smithy.ErrorKind] reference.
+  Reference get errorKind => const Reference('ErrorKind', _url);
+
   /// Creates a [smithy.HasPayload] reference for [ref], the payload type.
   Reference hasPayload(Reference ref) => TypeReference(
         (t) => t
@@ -330,6 +333,9 @@ class _Smithy {
           ..url = _url
           ..types.add(ref),
       );
+
+  /// Creates a [smithy.HttpError] reference.
+  Reference get httpError => const Reference('HttpError', _url);
 
   /// Creates a [smithy.HttpInput] reference for [ref], the input type.
   Reference httpInput(Reference ref) => TypeReference(
@@ -373,6 +379,9 @@ class _Smithy {
   /// Creates a [smithy.HttpRequestBuilder] AST reference.
   Reference get httpRequestBuilder =>
       const Reference('HttpRequestBuilder', _url);
+
+  /// Creates a [smithy.RetryConfig] reference.
+  Reference get retryConfig => const Reference('RetryConfig', _url);
 
   /// Creates a [smithy.ShapeId] AST reference.
   Reference get shapeId => const Reference('ShapeId', _url);

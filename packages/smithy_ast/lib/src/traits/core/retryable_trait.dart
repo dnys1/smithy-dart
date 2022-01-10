@@ -8,7 +8,7 @@ part 'retryable_trait.g.dart';
 @JsonSerializable()
 class RetryableTrait implements Trait<RetryableTrait> {
   const RetryableTrait({
-    required this.throttling,
+    this.throttling = false,
   });
 
   factory RetryableTrait.fromJson(Object? json) =>

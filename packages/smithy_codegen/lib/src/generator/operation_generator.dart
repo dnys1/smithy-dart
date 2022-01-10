@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
@@ -27,8 +28,27 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   late final outputSymbol =
       context.symbolFor(shape.output?.target ?? Shape.unit);
 
-  late final errorSymbols =
-      shape.errors.map((error) => context.symbolFor(error.target));
+  late final Map<HttpError, Reference> errorSymbols =
+      Map.fromEntries(shape.errors.map((error) {
+    final symbol = context.symbolFor(error.target);
+    final shape = context.shapeFor(error.target);
+    final errorTrait = shape.expectTrait<ErrorTrait>();
+    final httpErrorTrait = shape.getTrait<HttpErrorTrait>();
+    final retryTrait = shape.getTrait<RetryableTrait>();
+    return MapEntry(
+      HttpError(
+        errorTrait.type,
+        Never,
+        retryConfig: retryTrait == null
+            ? null
+            : RetryConfig(
+                isThrottlingError: retryTrait.throttling,
+              ),
+        statusCode: httpErrorTrait?.code,
+      ),
+      symbol,
+    );
+  }));
 
   /// HTTP metadata which can influence code generation.
   late final HttpProtocolTraits? _httpTraits = () {
@@ -361,15 +381,32 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
 
     // The `errorTypes` getter
-    yield Method(
-      (m) => m
-        ..annotations.add(DartTypes.core.override)
-        ..returns = DartTypes.core.map(DartTypes.core.int, DartTypes.core.type)
-        ..type = MethodType.getter
-        ..name = 'errorTypes'
-        ..lambda = true
-        ..body = literalConstMap({}).code,
-    );
+    if (errorSymbols.isNotEmpty) {
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.core.list(DartTypes.smithy.httpError)
+          ..type = MethodType.getter
+          ..name = 'errorTypes'
+          ..lambda = true
+          ..body = literalConstList([
+            for (var error in errorSymbols.entries)
+              DartTypes.smithy.httpError.constInstance([
+                DartTypes.smithy.errorKind.property(error.key.kind.name),
+                error.value,
+              ], {
+                if (error.key.statusCode != null)
+                  'statusCode': literalNum(error.key.statusCode!),
+                if (error.key.retryConfig != null)
+                  'retryConfig':
+                      DartTypes.smithy.retryConfig.constInstance([], {
+                    'isThrottling':
+                        literalBool(error.key.retryConfig!.isThrottlingError),
+                  })
+              })
+          ]).code,
+      );
+    }
   }
 
   /// The `protocols` override getter.

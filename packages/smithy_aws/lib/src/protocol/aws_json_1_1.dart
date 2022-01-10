@@ -15,7 +15,7 @@ class AwsJson1_1Protocol<Payload, Input extends HttpInput<Payload>, Output>
           interceptors: interceptors,
         );
 
-  static final _coreSerializers = (Serializers().toBuilder()
+  static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(StandardJsonPlugin())
         ..addAll([
           const UnitSerializer(),
@@ -32,8 +32,7 @@ class AwsJson1_1Protocol<Payload, Input extends HttpInput<Payload>, Output>
   String get contentType => 'application/x-amz-json-1.1';
 
   @override
-  late final JsonSerializer<Payload, Output> wireSerializer =
-      JsonSerializer(serializers);
+  late final JsonSerializer wireSerializer = JsonSerializer(serializers);
 }
 
 // ignore_for_file: camel_case_types

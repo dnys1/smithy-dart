@@ -24,6 +24,4 @@ class MapInputOperation extends _i1
         b.path = '/input/map';
         b.successCode = 200;
       });
-  @override
-  Map<int, Type> get errorTypes => const {};
 }

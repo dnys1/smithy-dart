@@ -86,6 +86,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return 'src/$serviceName/$filename.dart';
       case SmithyLibrary_LibraryType.MODEL:
         return 'src/$serviceName/model/$filename.dart';
+      case SmithyLibrary_LibraryType.OPERATION:
+        return 'src/$serviceName/operation/$filename.dart';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$filename.dart';
     }
@@ -102,6 +104,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return '$packageName.$serviceName.$filename';
       case SmithyLibrary_LibraryType.MODEL:
         return '$packageName.$serviceName.model.$filename';
+      case SmithyLibrary_LibraryType.OPERATION:
+        return '$packageName.$serviceName.operation.$filename';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$packageName.$serviceName';
     }

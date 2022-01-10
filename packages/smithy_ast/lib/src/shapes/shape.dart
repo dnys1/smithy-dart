@@ -45,7 +45,12 @@ abstract class Shape {
     ShortShape.id: ShortShape(),
     StringShape.id: StringShape(),
     TimestampShape.id: TimestampShape(),
-    unit: StructureShape(),
+    unit: StructureShape(
+      (b) => b
+        ..shapeId = unit
+        ..members = const NamedMembersMap({})
+        ..traits![unit] = const UnitTypeTrait(),
+    ),
   };
 }
 

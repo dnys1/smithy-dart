@@ -25,24 +25,22 @@ abstract class HttpPrefixHeaders
   MemberShape get member;
 }
 
-abstract class HttpQuery implements Built<HttpQuery, HttpQueryBuilder> {
-  factory HttpQuery([void Function(HttpQueryBuilder) updates]) = _$HttpQuery;
-  HttpQuery._();
+abstract class HttpProtocolTraits
+    implements Built<HttpProtocolTraits, HttpProtocolTraitsBuilder> {
+  factory HttpProtocolTraits(
+          [void Function(HttpProtocolTraitsBuilder) updates]) =
+      _$HttpProtocolTraits;
+  HttpProtocolTraits._();
 
-  HttpQueryTrait get trait;
-  MemberShape get member;
-}
-
-@BuiltValue(instantiable: false)
-abstract class HttpProtocolTraits {
   HttpTrait get http;
   BuiltMap<String, MemberShape> get httpHeaders;
   BuiltSet<MemberShape> get httpLabels;
   MemberShape? get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;
   MemberShape? get hostLabel;
-  HttpQuery? get httpQuery;
+  BuiltMap<String, MemberShape> get httpQuery;
   MemberShape? get httpQueryParams;
+  MemberShape? get httpResponseCode;
 }
 
 abstract class JsonProtocolTraits
@@ -58,7 +56,6 @@ abstract class JsonProtocolTraits
 abstract class RestJson1ProtocolTraits
     implements
         ProtocolTraits,
-        HttpProtocolTraits,
         Built<RestJson1ProtocolTraits, RestJson1ProtocolTraitsBuilder> {
   factory RestJson1ProtocolTraits(
           [void Function(RestJson1ProtocolTraitsBuilder) updates]) =

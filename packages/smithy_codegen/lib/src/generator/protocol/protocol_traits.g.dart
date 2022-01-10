@@ -113,132 +113,239 @@ class HttpPrefixHeadersBuilder
   }
 }
 
-class _$HttpQuery extends HttpQuery {
+class _$HttpProtocolTraits extends HttpProtocolTraits {
   @override
-  final HttpQueryTrait trait;
+  final HttpTrait http;
   @override
-  final MemberShape member;
+  final BuiltMap<String, MemberShape> httpHeaders;
+  @override
+  final BuiltSet<MemberShape> httpLabels;
+  @override
+  final MemberShape? httpPayload;
+  @override
+  final HttpPrefixHeaders? httpPrefixHeaders;
+  @override
+  final MemberShape? hostLabel;
+  @override
+  final BuiltMap<String, MemberShape> httpQuery;
+  @override
+  final MemberShape? httpQueryParams;
+  @override
+  final MemberShape? httpResponseCode;
 
-  factory _$HttpQuery([void Function(HttpQueryBuilder)? updates]) =>
-      (new HttpQueryBuilder()..update(updates)).build();
+  factory _$HttpProtocolTraits(
+          [void Function(HttpProtocolTraitsBuilder)? updates]) =>
+      (new HttpProtocolTraitsBuilder()..update(updates)).build();
 
-  _$HttpQuery._({required this.trait, required this.member}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(trait, 'HttpQuery', 'trait');
-    BuiltValueNullFieldError.checkNotNull(member, 'HttpQuery', 'member');
+  _$HttpProtocolTraits._(
+      {required this.http,
+      required this.httpHeaders,
+      required this.httpLabels,
+      this.httpPayload,
+      this.httpPrefixHeaders,
+      this.hostLabel,
+      required this.httpQuery,
+      this.httpQueryParams,
+      this.httpResponseCode})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(http, 'HttpProtocolTraits', 'http');
+    BuiltValueNullFieldError.checkNotNull(
+        httpHeaders, 'HttpProtocolTraits', 'httpHeaders');
+    BuiltValueNullFieldError.checkNotNull(
+        httpLabels, 'HttpProtocolTraits', 'httpLabels');
+    BuiltValueNullFieldError.checkNotNull(
+        httpQuery, 'HttpProtocolTraits', 'httpQuery');
   }
 
   @override
-  HttpQuery rebuild(void Function(HttpQueryBuilder) updates) =>
+  HttpProtocolTraits rebuild(
+          void Function(HttpProtocolTraitsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  HttpQueryBuilder toBuilder() => new HttpQueryBuilder()..replace(this);
+  HttpProtocolTraitsBuilder toBuilder() =>
+      new HttpProtocolTraitsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is HttpQuery && trait == other.trait && member == other.member;
+    return other is HttpProtocolTraits &&
+        http == other.http &&
+        httpHeaders == other.httpHeaders &&
+        httpLabels == other.httpLabels &&
+        httpPayload == other.httpPayload &&
+        httpPrefixHeaders == other.httpPrefixHeaders &&
+        hostLabel == other.hostLabel &&
+        httpQuery == other.httpQuery &&
+        httpQueryParams == other.httpQueryParams &&
+        httpResponseCode == other.httpResponseCode;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, trait.hashCode), member.hashCode));
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc($jc(0, http.hashCode),
+                                    httpHeaders.hashCode),
+                                httpLabels.hashCode),
+                            httpPayload.hashCode),
+                        httpPrefixHeaders.hashCode),
+                    hostLabel.hashCode),
+                httpQuery.hashCode),
+            httpQueryParams.hashCode),
+        httpResponseCode.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('HttpQuery')
-          ..add('trait', trait)
-          ..add('member', member))
+    return (newBuiltValueToStringHelper('HttpProtocolTraits')
+          ..add('http', http)
+          ..add('httpHeaders', httpHeaders)
+          ..add('httpLabels', httpLabels)
+          ..add('httpPayload', httpPayload)
+          ..add('httpPrefixHeaders', httpPrefixHeaders)
+          ..add('hostLabel', hostLabel)
+          ..add('httpQuery', httpQuery)
+          ..add('httpQueryParams', httpQueryParams)
+          ..add('httpResponseCode', httpResponseCode))
         .toString();
   }
 }
 
-class HttpQueryBuilder implements Builder<HttpQuery, HttpQueryBuilder> {
-  _$HttpQuery? _$v;
+class HttpProtocolTraitsBuilder
+    implements Builder<HttpProtocolTraits, HttpProtocolTraitsBuilder> {
+  _$HttpProtocolTraits? _$v;
 
-  HttpQueryTrait? _trait;
-  HttpQueryTrait? get trait => _$this._trait;
-  set trait(HttpQueryTrait? trait) => _$this._trait = trait;
+  HttpTrait? _http;
+  HttpTrait? get http => _$this._http;
+  set http(HttpTrait? http) => _$this._http = http;
 
-  MemberShapeBuilder? _member;
-  MemberShapeBuilder get member => _$this._member ??= new MemberShapeBuilder();
-  set member(MemberShapeBuilder? member) => _$this._member = member;
+  MapBuilder<String, MemberShape>? _httpHeaders;
+  MapBuilder<String, MemberShape> get httpHeaders =>
+      _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
+  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders) =>
+      _$this._httpHeaders = httpHeaders;
 
-  HttpQueryBuilder();
+  SetBuilder<MemberShape>? _httpLabels;
+  SetBuilder<MemberShape> get httpLabels =>
+      _$this._httpLabels ??= new SetBuilder<MemberShape>();
+  set httpLabels(SetBuilder<MemberShape>? httpLabels) =>
+      _$this._httpLabels = httpLabels;
 
-  HttpQueryBuilder get _$this {
+  MemberShapeBuilder? _httpPayload;
+  MemberShapeBuilder get httpPayload =>
+      _$this._httpPayload ??= new MemberShapeBuilder();
+  set httpPayload(MemberShapeBuilder? httpPayload) =>
+      _$this._httpPayload = httpPayload;
+
+  HttpPrefixHeadersBuilder? _httpPrefixHeaders;
+  HttpPrefixHeadersBuilder get httpPrefixHeaders =>
+      _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
+  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
+      _$this._httpPrefixHeaders = httpPrefixHeaders;
+
+  MemberShapeBuilder? _hostLabel;
+  MemberShapeBuilder get hostLabel =>
+      _$this._hostLabel ??= new MemberShapeBuilder();
+  set hostLabel(MemberShapeBuilder? hostLabel) => _$this._hostLabel = hostLabel;
+
+  MapBuilder<String, MemberShape>? _httpQuery;
+  MapBuilder<String, MemberShape> get httpQuery =>
+      _$this._httpQuery ??= new MapBuilder<String, MemberShape>();
+  set httpQuery(MapBuilder<String, MemberShape>? httpQuery) =>
+      _$this._httpQuery = httpQuery;
+
+  MemberShapeBuilder? _httpQueryParams;
+  MemberShapeBuilder get httpQueryParams =>
+      _$this._httpQueryParams ??= new MemberShapeBuilder();
+  set httpQueryParams(MemberShapeBuilder? httpQueryParams) =>
+      _$this._httpQueryParams = httpQueryParams;
+
+  MemberShapeBuilder? _httpResponseCode;
+  MemberShapeBuilder get httpResponseCode =>
+      _$this._httpResponseCode ??= new MemberShapeBuilder();
+  set httpResponseCode(MemberShapeBuilder? httpResponseCode) =>
+      _$this._httpResponseCode = httpResponseCode;
+
+  HttpProtocolTraitsBuilder();
+
+  HttpProtocolTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _trait = $v.trait;
-      _member = $v.member.toBuilder();
+      _http = $v.http;
+      _httpHeaders = $v.httpHeaders.toBuilder();
+      _httpLabels = $v.httpLabels.toBuilder();
+      _httpPayload = $v.httpPayload?.toBuilder();
+      _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
+      _hostLabel = $v.hostLabel?.toBuilder();
+      _httpQuery = $v.httpQuery.toBuilder();
+      _httpQueryParams = $v.httpQueryParams?.toBuilder();
+      _httpResponseCode = $v.httpResponseCode?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(HttpQuery other) {
+  void replace(HttpProtocolTraits other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$HttpQuery;
+    _$v = other as _$HttpProtocolTraits;
   }
 
   @override
-  void update(void Function(HttpQueryBuilder)? updates) {
+  void update(void Function(HttpProtocolTraitsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$HttpQuery build() {
-    _$HttpQuery _$result;
+  _$HttpProtocolTraits build() {
+    _$HttpProtocolTraits _$result;
     try {
       _$result = _$v ??
-          new _$HttpQuery._(
-              trait: BuiltValueNullFieldError.checkNotNull(
-                  trait, 'HttpQuery', 'trait'),
-              member: member.build());
+          new _$HttpProtocolTraits._(
+              http: BuiltValueNullFieldError.checkNotNull(
+                  http, 'HttpProtocolTraits', 'http'),
+              httpHeaders: httpHeaders.build(),
+              httpLabels: httpLabels.build(),
+              httpPayload: _httpPayload?.build(),
+              httpPrefixHeaders: _httpPrefixHeaders?.build(),
+              hostLabel: _hostLabel?.build(),
+              httpQuery: httpQuery.build(),
+              httpQueryParams: _httpQueryParams?.build(),
+              httpResponseCode: _httpResponseCode?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'member';
-        member.build();
+        _$failedField = 'httpHeaders';
+        httpHeaders.build();
+        _$failedField = 'httpLabels';
+        httpLabels.build();
+        _$failedField = 'httpPayload';
+        _httpPayload?.build();
+        _$failedField = 'httpPrefixHeaders';
+        _httpPrefixHeaders?.build();
+        _$failedField = 'hostLabel';
+        _hostLabel?.build();
+        _$failedField = 'httpQuery';
+        httpQuery.build();
+        _$failedField = 'httpQueryParams';
+        _httpQueryParams?.build();
+        _$failedField = 'httpResponseCode';
+        _httpResponseCode?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'HttpQuery', _$failedField, e.toString());
+            'HttpProtocolTraits', _$failedField, e.toString());
       }
       rethrow;
     }
     replace(_$result);
     return _$result;
   }
-}
-
-abstract class HttpProtocolTraitsBuilder {
-  void replace(HttpProtocolTraits other);
-  void update(void Function(HttpProtocolTraitsBuilder) updates);
-  HttpTrait? get http;
-  set http(HttpTrait? http);
-
-  MapBuilder<String, MemberShape> get httpHeaders;
-  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders);
-
-  SetBuilder<MemberShape> get httpLabels;
-  set httpLabels(SetBuilder<MemberShape>? httpLabels);
-
-  MemberShapeBuilder get httpPayload;
-  set httpPayload(MemberShapeBuilder? httpPayload);
-
-  HttpPrefixHeadersBuilder get httpPrefixHeaders;
-  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders);
-
-  MemberShapeBuilder get hostLabel;
-  set hostLabel(MemberShapeBuilder? hostLabel);
-
-  HttpQueryBuilder get httpQuery;
-  set httpQuery(HttpQueryBuilder? httpQuery);
-
-  MemberShapeBuilder get httpQueryParams;
-  set httpQueryParams(MemberShapeBuilder? httpQueryParams);
 }
 
 class _$JsonProtocolTraits extends JsonProtocolTraits {
@@ -343,46 +450,14 @@ class JsonProtocolTraitsBuilder
 class _$RestJson1ProtocolTraits extends RestJson1ProtocolTraits {
   @override
   final BuiltMap<MemberShape, String> memberWireNames;
-  @override
-  final HttpTrait http;
-  @override
-  final BuiltMap<String, MemberShape> httpHeaders;
-  @override
-  final BuiltSet<MemberShape> httpLabels;
-  @override
-  final MemberShape? httpPayload;
-  @override
-  final HttpPrefixHeaders? httpPrefixHeaders;
-  @override
-  final MemberShape? hostLabel;
-  @override
-  final HttpQuery? httpQuery;
-  @override
-  final MemberShape? httpQueryParams;
 
   factory _$RestJson1ProtocolTraits(
           [void Function(RestJson1ProtocolTraitsBuilder)? updates]) =>
       (new RestJson1ProtocolTraitsBuilder()..update(updates)).build();
 
-  _$RestJson1ProtocolTraits._(
-      {required this.memberWireNames,
-      required this.http,
-      required this.httpHeaders,
-      required this.httpLabels,
-      this.httpPayload,
-      this.httpPrefixHeaders,
-      this.hostLabel,
-      this.httpQuery,
-      this.httpQueryParams})
-      : super._() {
+  _$RestJson1ProtocolTraits._({required this.memberWireNames}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
         memberWireNames, 'RestJson1ProtocolTraits', 'memberWireNames');
-    BuiltValueNullFieldError.checkNotNull(
-        http, 'RestJson1ProtocolTraits', 'http');
-    BuiltValueNullFieldError.checkNotNull(
-        httpHeaders, 'RestJson1ProtocolTraits', 'httpHeaders');
-    BuiltValueNullFieldError.checkNotNull(
-        httpLabels, 'RestJson1ProtocolTraits', 'httpLabels');
   }
 
   @override
@@ -398,49 +473,18 @@ class _$RestJson1ProtocolTraits extends RestJson1ProtocolTraits {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is RestJson1ProtocolTraits &&
-        memberWireNames == other.memberWireNames &&
-        http == other.http &&
-        httpHeaders == other.httpHeaders &&
-        httpLabels == other.httpLabels &&
-        httpPayload == other.httpPayload &&
-        httpPrefixHeaders == other.httpPrefixHeaders &&
-        hostLabel == other.hostLabel &&
-        httpQuery == other.httpQuery &&
-        httpQueryParams == other.httpQueryParams;
+        memberWireNames == other.memberWireNames;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc($jc(0, memberWireNames.hashCode),
-                                    http.hashCode),
-                                httpHeaders.hashCode),
-                            httpLabels.hashCode),
-                        httpPayload.hashCode),
-                    httpPrefixHeaders.hashCode),
-                hostLabel.hashCode),
-            httpQuery.hashCode),
-        httpQueryParams.hashCode));
+    return $jf($jc(0, memberWireNames.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('RestJson1ProtocolTraits')
-          ..add('memberWireNames', memberWireNames)
-          ..add('http', http)
-          ..add('httpHeaders', httpHeaders)
-          ..add('httpLabels', httpLabels)
-          ..add('httpPayload', httpPayload)
-          ..add('httpPrefixHeaders', httpPrefixHeaders)
-          ..add('hostLabel', hostLabel)
-          ..add('httpQuery', httpQuery)
-          ..add('httpQueryParams', httpQueryParams))
+          ..add('memberWireNames', memberWireNames))
         .toString();
   }
 }
@@ -448,8 +492,7 @@ class _$RestJson1ProtocolTraits extends RestJson1ProtocolTraits {
 class RestJson1ProtocolTraitsBuilder
     implements
         Builder<RestJson1ProtocolTraits, RestJson1ProtocolTraitsBuilder>,
-        ProtocolTraitsBuilder,
-        HttpProtocolTraitsBuilder {
+        ProtocolTraitsBuilder {
   _$RestJson1ProtocolTraits? _$v;
 
   MapBuilder<MemberShape, String>? _memberWireNames;
@@ -459,74 +502,18 @@ class RestJson1ProtocolTraitsBuilder
           covariant MapBuilder<MemberShape, String>? memberWireNames) =>
       _$this._memberWireNames = memberWireNames;
 
-  HttpTrait? _http;
-  HttpTrait? get http => _$this._http;
-  set http(covariant HttpTrait? http) => _$this._http = http;
-
-  MapBuilder<String, MemberShape>? _httpHeaders;
-  MapBuilder<String, MemberShape> get httpHeaders =>
-      _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
-  set httpHeaders(covariant MapBuilder<String, MemberShape>? httpHeaders) =>
-      _$this._httpHeaders = httpHeaders;
-
-  SetBuilder<MemberShape>? _httpLabels;
-  SetBuilder<MemberShape> get httpLabels =>
-      _$this._httpLabels ??= new SetBuilder<MemberShape>();
-  set httpLabels(covariant SetBuilder<MemberShape>? httpLabels) =>
-      _$this._httpLabels = httpLabels;
-
-  MemberShapeBuilder? _httpPayload;
-  MemberShapeBuilder get httpPayload =>
-      _$this._httpPayload ??= new MemberShapeBuilder();
-  set httpPayload(covariant MemberShapeBuilder? httpPayload) =>
-      _$this._httpPayload = httpPayload;
-
-  HttpPrefixHeadersBuilder? _httpPrefixHeaders;
-  HttpPrefixHeadersBuilder get httpPrefixHeaders =>
-      _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
-  set httpPrefixHeaders(
-          covariant HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
-      _$this._httpPrefixHeaders = httpPrefixHeaders;
-
-  MemberShapeBuilder? _hostLabel;
-  MemberShapeBuilder get hostLabel =>
-      _$this._hostLabel ??= new MemberShapeBuilder();
-  set hostLabel(covariant MemberShapeBuilder? hostLabel) =>
-      _$this._hostLabel = hostLabel;
-
-  HttpQueryBuilder? _httpQuery;
-  HttpQueryBuilder get httpQuery =>
-      _$this._httpQuery ??= new HttpQueryBuilder();
-  set httpQuery(covariant HttpQueryBuilder? httpQuery) =>
-      _$this._httpQuery = httpQuery;
-
-  MemberShapeBuilder? _httpQueryParams;
-  MemberShapeBuilder get httpQueryParams =>
-      _$this._httpQueryParams ??= new MemberShapeBuilder();
-  set httpQueryParams(covariant MemberShapeBuilder? httpQueryParams) =>
-      _$this._httpQueryParams = httpQueryParams;
-
   RestJson1ProtocolTraitsBuilder();
 
   RestJson1ProtocolTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _memberWireNames = $v.memberWireNames.toBuilder();
-      _http = $v.http;
-      _httpHeaders = $v.httpHeaders.toBuilder();
-      _httpLabels = $v.httpLabels.toBuilder();
-      _httpPayload = $v.httpPayload?.toBuilder();
-      _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
-      _hostLabel = $v.hostLabel?.toBuilder();
-      _httpQuery = $v.httpQuery?.toBuilder();
-      _httpQueryParams = $v.httpQueryParams?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant RestJson1ProtocolTraits other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RestJson1ProtocolTraits;
@@ -543,36 +530,12 @@ class RestJson1ProtocolTraitsBuilder
     try {
       _$result = _$v ??
           new _$RestJson1ProtocolTraits._(
-              memberWireNames: memberWireNames.build(),
-              http: BuiltValueNullFieldError.checkNotNull(
-                  http, 'RestJson1ProtocolTraits', 'http'),
-              httpHeaders: httpHeaders.build(),
-              httpLabels: httpLabels.build(),
-              httpPayload: _httpPayload?.build(),
-              httpPrefixHeaders: _httpPrefixHeaders?.build(),
-              hostLabel: _hostLabel?.build(),
-              httpQuery: _httpQuery?.build(),
-              httpQueryParams: _httpQueryParams?.build());
+              memberWireNames: memberWireNames.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'memberWireNames';
         memberWireNames.build();
-
-        _$failedField = 'httpHeaders';
-        httpHeaders.build();
-        _$failedField = 'httpLabels';
-        httpLabels.build();
-        _$failedField = 'httpPayload';
-        _httpPayload?.build();
-        _$failedField = 'httpPrefixHeaders';
-        _httpPrefixHeaders?.build();
-        _$failedField = 'hostLabel';
-        _hostLabel?.build();
-        _$failedField = 'httpQuery';
-        _httpQuery?.build();
-        _$failedField = 'httpQueryParams';
-        _httpQueryParams?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'RestJson1ProtocolTraits', _$failedField, e.toString());

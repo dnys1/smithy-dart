@@ -21,11 +21,11 @@ abstract class MapInputRequest
     _MapInputRequestAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MapInputRequestBuilder b) {}
   _i2.BuiltListMultimap<String, int?>? get mapOfLists;
-
   @override
   MapInputRequest getPayload() => this;
-
   @override
   bool get isStreaming => false;
 }
@@ -36,11 +36,7 @@ class _MapInputRequestAwsJson11Serializer
 
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
-      [_i1.ShapeId.parse('aws.protocols#awsJson1_1')];
-
-  @override
-  Iterable<Type> get types => [MapInputRequest, _$MapInputRequest];
-
+      [const _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   MapInputRequest deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -71,11 +67,9 @@ class _MapInputRequestAwsJson11Serializer
     if (object.mapOfLists != null) {
       result
         ..add('mapOfLists')
-        ..add(serializers.serialize(object.mapOfLists?.asMap(),
-            specifiedType: const FullType(Map, [
-              FullType(String),
-              FullType(Iterable, [FullType.nullable(int)])
-            ])));
+        ..add(serializers.serialize(object.mapOfLists,
+            specifiedType: const FullType(
+                _i2.BuiltListMultimap, [FullType(String), FullType(int)])));
     }
     return result;
   }

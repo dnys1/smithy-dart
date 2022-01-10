@@ -52,7 +52,9 @@ class MapInputRequestBuilder
   set mapOfLists(_i2.ListMultimapBuilder<String, int?>? mapOfLists) =>
       _$this._mapOfLists = mapOfLists;
 
-  MapInputRequestBuilder();
+  MapInputRequestBuilder() {
+    MapInputRequest._init(this);
+  }
 
   MapInputRequestBuilder get _$this {
     final $v = _$v;

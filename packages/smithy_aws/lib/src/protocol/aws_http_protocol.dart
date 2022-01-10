@@ -10,18 +10,12 @@ abstract class AWSHttpProtocol<Payload, Input extends HttpInput<Payload>,
   });
 
   final Serializers _coreSerializers;
-  final List<Object> _userSerializers;
+  final List<SmithySerializer> _userSerializers;
 
   @override
   late final Serializers serializers = (_coreSerializers.toBuilder()
-        ..addAll(_userSerializers.expand((el) {
-          if (el is List) {
-            return el.cast();
-          } else if (el is Iterable) {
-            return el.cast();
-          }
-          return [el as Serializer];
-        })))
+        ..addAll(_userSerializers
+            .where((el) => el.supportedProtocols.contains(protocolId))))
       .build();
 
   @override

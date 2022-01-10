@@ -11,7 +11,7 @@ class RestJson1Protocol<Payload, Input extends HttpInput<Payload>, Output>
   RestJson1Protocol({
     this.mediaType,
     List<HttpInterceptor> interceptors = const [],
-    List<Object> serializers = const [],
+    List<SmithySerializer> serializers = const [],
   }) : super(
           _coreSerializers,
           serializers,

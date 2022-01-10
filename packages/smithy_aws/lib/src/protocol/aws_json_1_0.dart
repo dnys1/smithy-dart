@@ -8,7 +8,7 @@ class AwsJson1_0Protocol<Payload, Input extends HttpInput<Payload>, Output>
     extends AWSHttpProtocol<Payload, Input, Output> {
   AwsJson1_0Protocol({
     List<HttpInterceptor> interceptors = const [],
-    List<Object> serializers = const [],
+    List<SmithySerializer> serializers = const [],
   }) : super(
           _coreSerializers,
           serializers,

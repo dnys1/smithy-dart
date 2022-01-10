@@ -5,7 +5,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 part 'timestamp_format_trait.g.dart';
 
 /// The format to use for serializing/deserializing a timestamp as defined
-/// by the [timestampFormat](https://awslabs.github.io/smithy/1.0/spec/core/protocol-traits.html?highlight=timestampformat#timestampformat-trait) trait.
+/// by the [TimestampFormatTrait].
 @JsonEnum(alwaysCreate: true, fieldRename: FieldRename.kebab)
 enum TimestampFormat {
   /// {@template smithy.timestamp_format_datetime}

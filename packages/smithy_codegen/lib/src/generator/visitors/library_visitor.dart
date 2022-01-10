@@ -24,25 +24,30 @@ class LibraryVisitor extends DefaultVisitor<Library> {
   final CodegenContext context;
 
   @override
+  Library operationShape(OperationShape shape, [Shape? parent]) {
+    return OperationGenerator(shape, context).generate();
+  }
+
+  @override
   Library serviceShape(ServiceShape shape, [Shape? parent]) {
-    return ServiceGenerator(shape, context: context).generate();
+    return ServiceGenerator(shape, context).generate();
   }
 
   @override
   Library? stringShape(StringShape shape, [Shape? parent]) {
     if (shape.isEnum) {
-      return EnumGenerator(shape, context: context).generate();
+      return EnumGenerator(shape, context).generate();
     }
     return null;
   }
 
   @override
   Library structureShape(StructureShape shape, [Shape? parent]) {
-    return StructureGenerator(shape, context: context).generate();
+    return StructureGenerator(shape, context).generate();
   }
 
   @override
   Library unionShape(UnionShape shape, [Shape? parent]) {
-    return UnionGenerator(shape, context: context).generate();
+    return UnionGenerator(shape, context).generate();
   }
 }

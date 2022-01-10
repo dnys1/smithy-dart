@@ -104,6 +104,8 @@ extension ShapeUtils on Shape {
     switch (getType()) {
       case ShapeType.service:
         return SmithyLibrary_LibraryType.CLIENT;
+      case ShapeType.operation:
+        return SmithyLibrary_LibraryType.OPERATION;
       case ShapeType.structure:
       case ShapeType.union:
         return SmithyLibrary_LibraryType.MODEL;

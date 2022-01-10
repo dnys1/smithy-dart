@@ -12,9 +12,9 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 class StructureGenerator extends LibraryGenerator<StructureShape>
     with StructureGenerationContext, HttpGenerationContext {
   StructureGenerator(
-    StructureShape shape, {
-    required CodegenContext context,
-  }) : super(shape, context: context);
+    StructureShape shape,
+    CodegenContext context,
+  ) : super(shape, context: context);
 
   /// The resolved HTTP payload shape/type.
   late final HttpPayload _httpPayload = httpPayload(shape, symbol);
@@ -43,6 +43,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
+          ])
+          ..mixins.addAll([
             DartTypes.smithy.httpInput(_httpPayload.symbol),
           ])
           ..constructors.addAll([
@@ -50,6 +52,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             _privateConstructor,
           ])
           ..methods.addAll([
+            _defaultValues,
             ..._fieldGetters,
             ..._httpInputOverrides,
           ])
@@ -84,6 +87,24 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..redirect = builtSymbol,
       );
 
+  /// Adds default values to relevant properties.
+  Method get _defaultValues => Method.returnsVoid((m) => m
+    ..annotations.add(DartTypes.builtValue.builtValueHook
+        .newInstance([], {'initializeBuilder': literalBool(true)}))
+    ..static = true
+    ..name = '_init'
+    ..requiredParameters.add(Parameter((p) => p
+      ..type = builderSymbol
+      ..name = 'b'))
+    ..body = Block.of([
+      for (var member in sortedMembers)
+        if (member.defaultValue != null)
+          refer('b')
+              .property(member.dartName)
+              .assign(member.defaultValue!)
+              .statement,
+    ]));
+
   /// Fields for this type.
   Iterable<Method> get _fieldGetters sync* {
     for (var member in sortedMembers) {
@@ -116,9 +137,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     );
 
     // `isStreaming` override
-    final bool isStreaming =
-        _httpPayload.member != null && _httpPayload.member!.isStreaming ||
-            context.shapeFor(_httpPayload.member!.target).isStreaming;
+    final bool isStreaming = _httpPayload.member != null &&
+        (_httpPayload.member!.isStreaming ||
+            context.shapeFor(_httpPayload.member!.target).isStreaming);
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)

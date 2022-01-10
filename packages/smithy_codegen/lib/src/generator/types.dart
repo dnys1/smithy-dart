@@ -128,6 +128,9 @@ class _Core {
   /// Creates a [core.String] reference.
   Reference get string => const Reference('String', _url);
 
+  /// Creates a [core.Type] reference.
+  Reference get type => const Reference('Type', _url);
+
   /// Creates a [core.Uri] reference.
   Reference get uri => const Reference('Uri', _url);
 
@@ -184,6 +187,9 @@ class BuiltValue {
   static const serializerUrl = 'package:built_value/serializer.dart';
   static const _collectionUrl =
       'package:built_collection/built_collection.dart';
+
+  /// A [built_value.BuiltValueHook] reference.
+  Reference get builtValueHook => const Reference('BuiltValueHook', mainUrl);
 
   /// Creates a [built_value.Built] reference for [ref] and its builder class,
   /// [builderRef].
@@ -325,6 +331,14 @@ class _Smithy {
           ..types.add(ref),
       );
 
+  /// Creates a [smithy.HttpInput] reference for [ref], the input type.
+  Reference httpInput(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'HttpInput'
+          ..url = _url
+          ..types.add(ref),
+      );
+
   /// Creates a [smithy.HttpOperation] reference for an operation with input
   /// payload type [inputPayload], input type [input], and output type [output].
   Reference httpOperation(
@@ -353,13 +367,12 @@ class _Smithy {
           ..types.addAll([inputPayload, input, output]),
       );
 
-  /// Creates a [smithy.HttpInput] reference for [ref], the input type.
-  Reference httpInput(Reference ref) => TypeReference(
-        (t) => t
-          ..symbol = 'HasPayload'
-          ..url = _url
-          ..types.add(ref),
-      );
+  /// Creates a [smithy.HttpRequest] AST reference.
+  Reference get httpRequest => const Reference('HttpRequest', _url);
+
+  /// Creates a [smithy.HttpRequestBuilder] AST reference.
+  Reference get httpRequestBuilder =>
+      const Reference('HttpRequestBuilder', _url);
 
   /// Creates a [smithy.ShapeId] AST reference.
   Reference get shapeId => const Reference('ShapeId', _url);
@@ -388,6 +401,9 @@ class _Smithy {
           ..url = _url
           ..types.add(ref),
       );
+
+  /// Creates a [smithy.TimestampFormat] reference.
+  Reference get timestampFormat => const Reference('TimestampFormat', _url);
 
   /// Creates a [smithy.TimestampSerializer] reference.
   Reference get timestampSerializer =>

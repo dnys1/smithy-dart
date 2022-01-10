@@ -11,9 +11,10 @@ const _sdkUnknown = 'sdkUnknown';
 
 class UnionGenerator extends LibraryGenerator<UnionShape> {
   UnionGenerator(
-    UnionShape shape, {
-    required CodegenContext context,
-  }) : super(shape, context: context);
+    UnionShape shape,
+  
+    CodegenContext context,
+  ) : super(shape, context: context);
 
   late final List<MemberShape> sortedMembers = shape.members.values.toList()
     ..sort((a, b) {

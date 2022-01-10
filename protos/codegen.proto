@@ -18,6 +18,7 @@ message SmithyLibrary {
         MODEL = 0;
         CLIENT = 1;
         SERVICE = 2;
+        OPERATION = 3;
     }
     LibraryType libraryType = 3;
 

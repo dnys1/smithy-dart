@@ -9,6 +9,8 @@ environment:
 dependencies:
   smithy: 
     path: ../../../../smithy
+  smithy_aws: 
+    path: ../../../../smithy_aws
 
 dev_dependencies:
   build_runner: ^2.0.0

@@ -59,7 +59,7 @@ class ShapeMapSerializer extends StructuredSerializer<ShapeMap> {
         final member = memberId.member;
         if (member != null) {
           if (shape is NamedMembersShape) {
-            (shape as NamedMembersShape).members.update(
+            shape.members.update(
                   member,
                   (member) => member..traits.addAll(apply.traits),
                 );

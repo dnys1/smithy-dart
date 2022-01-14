@@ -78,4 +78,10 @@ extension ShapeExt on Shape {
   /// The custom timestamp format specified by this shape, if any.
   TimestampFormat? get timestampFormat =>
       getTrait<TimestampFormatTrait>()?.format;
+
+  /// Whether `this` has the `@error` trait.
+  bool get isError => hasTrait<ErrorTrait>();
+
+  /// Whether `this` has the `@httpError` trait.
+  bool get isHttpError => hasTrait<HttpErrorTrait>();
 }

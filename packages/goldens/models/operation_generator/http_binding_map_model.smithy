@@ -26,3 +26,8 @@ operation MapInput {
 structure MapInputRequest {
     mapOfLists: MapOfLists
 }
+
+@error("client")
+@retryable
+@httpError(429)
+structure MapInputError {}

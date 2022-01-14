@@ -13,9 +13,9 @@ HttpChecksumTrait _$HttpChecksumTraitFromJson(Map<String, dynamic> json) =>
       requestValidationModeMember:
           json['requestValidationModeMember'] as String?,
       responseAlgorithms: (json['responseAlgorithms'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+              ?.map((e) => $enumDecode(_$ChecksumAlgorithmEnumMap, e))
+              .toSet() ??
+          const {},
     );
 
 Map<String, dynamic> _$HttpChecksumTraitToJson(HttpChecksumTrait instance) =>
@@ -23,5 +23,15 @@ Map<String, dynamic> _$HttpChecksumTraitToJson(HttpChecksumTrait instance) =>
       'requestChecksumRequired': instance.requestChecksumRequired,
       'requestAlgorithmMember': instance.requestAlgorithmMember,
       'requestValidationModeMember': instance.requestValidationModeMember,
-      'responseAlgorithms': instance.responseAlgorithms,
+      'responseAlgorithms': instance.responseAlgorithms
+          .map((e) => _$ChecksumAlgorithmEnumMap[e])
+          .toList(),
     };
+
+const _$ChecksumAlgorithmEnumMap = {
+  ChecksumAlgorithm.crc32c: 'CRC32C',
+  ChecksumAlgorithm.crc32: 'CRC32',
+  ChecksumAlgorithm.sha1: 'SHA1',
+  ChecksumAlgorithm.sha256: 'SHA256',
+  ChecksumAlgorithm.md5: 'MD5',
+};

@@ -76,6 +76,9 @@ class _Core {
   /// Creates a [core.double] reference.
   Reference get double => const Reference('double', _url);
 
+  /// Creates a [core.Function] reference.
+  Reference get function => const Reference('Function', _url);
+
   /// Creates an [core.int] reference.
   Reference get int => const Reference('int', _url);
 
@@ -252,6 +255,15 @@ class BuiltValue {
           ..types.addAll([key, value]),
       );
 
+  /// The builder for [built_collection.BuiltListMultimap].
+  Reference listMultimapBuilder(Reference key, Reference value) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'ListMultimapBuilder'
+          ..url = _collectionUrl
+          ..types.addAll([key, value]),
+      );
+
   /// Creates a [built_value_serializer.PrimitiveSerializer] reference for
   /// generic type [ref].
   Reference primitiveSerializer(Reference ref) => TypeReference(
@@ -259,6 +271,14 @@ class BuiltValue {
           ..symbol = 'PrimitiveSerializer'
           ..url = serializerUrl
           ..types.add(ref),
+      );
+
+  /// The builder for [built_collection.BuiltSetMultimap].
+  Reference setMultimapBuilder(Reference key, Reference value) => TypeReference(
+        (t) => t
+          ..symbol = 'SetMultimapBuilder'
+          ..url = _collectionUrl
+          ..types.addAll([key, value]),
       );
 
   /// Creates a [built_value_serializer.Serializers] reference.
@@ -394,6 +414,13 @@ class _Smithy {
           ..types.add(ref),
       );
 
+  /// Creates a [smithy.SmithyException] reference.
+  Reference get smithyException => const Reference('SmithyException', _url);
+
+  /// Creates a [smithy.SmithyHttpException] reference.
+  Reference get smithyHttpException =>
+      const Reference('SmithyHttpException', _url);
+
   /// Creates a [smithy.SmithyUnion] reference for [ref], the union class.
   Reference smithyUnion(Reference ref) => TypeReference(
         (t) => t
@@ -404,11 +431,13 @@ class _Smithy {
 
   /// Creates a [smithy.SmithySerializer] reference for [ref], the class being
   /// serialized.
-  Reference smithySerializer(Reference ref) => TypeReference(
+  Reference smithySerializer([Reference? ref]) => TypeReference(
         (t) => t
           ..symbol = 'SmithySerializer'
           ..url = _url
-          ..types.add(ref),
+          ..types.addAll([
+            if (ref != null) ref,
+          ]),
       );
 
   /// Creates a [smithy.TimestampFormat] reference.

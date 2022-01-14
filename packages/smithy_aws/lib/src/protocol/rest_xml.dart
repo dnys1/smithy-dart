@@ -11,9 +11,11 @@ class RestXmlProtocol<Payload, Input extends HttpInput<Payload>, Output>
     this.mediaType,
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],
+    Map<Type, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
-          serializers,
+          serializers: serializers,
+          builderFactories: builderFactories,
           interceptors: interceptors,
         );
 

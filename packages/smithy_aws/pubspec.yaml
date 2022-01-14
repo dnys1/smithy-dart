@@ -9,6 +9,10 @@ environment:
 dependencies:
   built_collection: ^5.0.0
   built_value: ^8.0.0
+  convert: ^3.0.1
+  crclib: ^3.0.0
+  crypto: ^3.0.1
+  http: ^0.13.4
   smithy:
     path: ../smithy
   smithy_ast:

@@ -11,6 +11,15 @@ class ServiceGenerator extends LibraryGenerator<ServiceShape> {
 
   @override
   Library generate() {
+    builder.directives.addAll([
+      for (final type in context.generatedTypes) Directive.export(type.url!),
+      for (final lib in [
+        context.serviceSerializersLibrary,
+        context.serviceClientLibrary,
+      ])
+        Directive.export(lib.libRelativePath)
+    ]);
+
     return builder.build();
   }
 }

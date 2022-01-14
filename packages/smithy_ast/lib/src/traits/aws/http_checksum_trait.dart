@@ -4,6 +4,23 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 part 'http_checksum_trait.g.dart';
 
+enum ChecksumAlgorithm {
+  @JsonValue('CRC32C')
+  crc32c,
+
+  @JsonValue('CRC32')
+  crc32,
+
+  @JsonValue('SHA1')
+  sha1,
+
+  @JsonValue('SHA256')
+  sha256,
+
+  @JsonValue('MD5')
+  md5,
+}
+
 @ShapeIdConverter()
 @JsonSerializable()
 class HttpChecksumTrait
@@ -13,7 +30,7 @@ class HttpChecksumTrait
     required this.requestChecksumRequired,
     this.requestAlgorithmMember,
     this.requestValidationModeMember,
-    this.responseAlgorithms = const [],
+    this.responseAlgorithms = const {},
   });
 
   factory HttpChecksumTrait.fromJson(Object? json) =>
@@ -24,7 +41,7 @@ class HttpChecksumTrait
   final bool requestChecksumRequired;
   final String? requestAlgorithmMember;
   final String? requestValidationModeMember;
-  final List<String> responseAlgorithms;
+  final Set<ChecksumAlgorithm> responseAlgorithms;
 
   @override
   bool get isSynthetic => false;

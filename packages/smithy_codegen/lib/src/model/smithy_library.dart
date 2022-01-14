@@ -90,6 +90,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return 'src/$serviceName/operation/$filename.dart';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$filename.dart';
+      case SmithyLibrary_LibraryType.SERIALIZERS:
+        return 'src/$serviceName/serializers.dart';
     }
     throw ArgumentError('Invalid library type: $libraryType');
   }
@@ -108,7 +110,12 @@ extension SmithyLibraryX on SmithyLibrary {
         return '$packageName.$serviceName.operation.$filename';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$packageName.$serviceName';
+      case SmithyLibrary_LibraryType.SERIALIZERS:
+        return '$packageName.$serviceName.serializers';
     }
     throw ArgumentError('Invalid library type: $libraryType');
   }
+
+  /// The absolute `package` URL.
+  String get libraryUrl => 'package:$packageName/$libRelativePath';
 }

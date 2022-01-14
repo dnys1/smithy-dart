@@ -10,7 +10,7 @@ class HttpErrorTrait with AWSSerializable implements Trait<HttpErrorTrait> {
   const HttpErrorTrait(this.code);
 
   factory HttpErrorTrait.fromJson(Object? json) =>
-      _$HttpErrorTraitFromJson((json as Map).cast());
+      _$HttpErrorTraitFromJson({'code': json});
 
   static const id = ShapeId.core('httpError');
 

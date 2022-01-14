@@ -112,6 +112,9 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       return null;
     }
 
+    // Tracks the generated type.
+    context.generatedTypes.add(symbol);
+
     return Class(
       (c) => c
         ..name = serializerClassName
@@ -146,7 +149,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
           ..type = MethodType.getter
           ..name = 'supportedProtocols'
           ..lambda = true
-          ..body = literalList([
+          ..body = literalConstList([
             if (!protocol.isSynthetic)
               DartTypes.smithy.shapeId.constInstance([], {
                 'namespace': literalString(protocol.shapeId.namespace),

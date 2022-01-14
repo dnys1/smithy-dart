@@ -74,10 +74,12 @@ packages:
   aws_common:
     dependency: transitive
     description:
-      path: "../../../pocs/aws_common"
-      relative: true
-    source: path
-    version: "1.0.0"
+      path: "packages/aws_common"
+      ref: main
+      resolved-ref: d056ddbc07fbcf1c0644ff07c4d30702985332b0
+      url: "https://github.com/dnys1/aws-sdk-dart.git"
+    source: git
+    version: "0.1.0"
   bazel_worker:
     dependency: transitive
     description:
@@ -260,6 +262,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  crclib:
+    dependency: transitive
+    description:
+      name: crclib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   crypto:
     dependency: transitive
     description:
@@ -540,6 +549,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  retry:
+    dependency: transitive
+    description:
+      name: retry
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   sass:
     dependency: transitive
     description:
@@ -590,19 +606,26 @@ packages:
     source: hosted
     version: "1.0.1"
   smithy:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../packages/smithy"
       relative: true
     source: path
     version: "0.1.0"
   smithy_ast:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../packages/smithy_ast"
       relative: true
     source: path
     version: "0.1.0"
+  smithy_aws:
+    dependency: "direct overridden"
+    description:
+      path: "../../packages/smithy_aws"
+      relative: true
+    source: path
+    version: "1.0.0"
   smithy_codegen:
     dependency: "direct main"
     description:
@@ -610,6 +633,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
+  smithy_test:
+    dependency: "direct overridden"
+    description:
+      path: "../../packages/smithy_test"
+      relative: true
+    source: path
+    version: "1.0.0"
   source_gen:
     dependency: transitive
     description:

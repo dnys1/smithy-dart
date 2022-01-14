@@ -36,7 +36,7 @@ class _MapInputRequestAwsJson11Serializer
 
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
-      [const _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   MapInputRequest deserialize(
       Serializers serializers, Iterable<Object?> serialized,

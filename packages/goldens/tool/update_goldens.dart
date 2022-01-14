@@ -80,7 +80,7 @@ void main(List<String> args) {
     // Create dummy pubspec
     final pubspecPath = path.join(outputPath, 'pubspec.yaml');
     final pubspec = Pubspec(packageName);
-    final localSmithyPath = Directory.current.uri.resolve('../smithy').path;
+    final localSmithyPath = Directory.current.uri.resolve('..').path;
     File(pubspecPath).writeAsStringSync(
       pubspec.toYaml(path.relative(localSmithyPath, from: outputPath)),
     );

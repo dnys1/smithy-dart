@@ -28,26 +28,13 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   late final outputSymbol =
       context.symbolFor(shape.output?.target ?? Shape.unit);
 
-  late final Map<HttpError, Reference> errorSymbols =
-      Map.fromEntries(shape.errors.map((error) {
+  late final Map<HttpError, Reference> errorSymbols = Map.fromEntries([
+    ...?context.service?.errors,
+    ...shape.errors,
+  ].map((error) {
     final symbol = context.symbolFor(error.target);
     final shape = context.shapeFor(error.target);
-    final errorTrait = shape.expectTrait<ErrorTrait>();
-    final httpErrorTrait = shape.getTrait<HttpErrorTrait>();
-    final retryTrait = shape.getTrait<RetryableTrait>();
-    return MapEntry(
-      HttpError(
-        errorTrait.type,
-        Never,
-        retryConfig: retryTrait == null
-            ? null
-            : RetryConfig(
-                isThrottlingError: retryTrait.throttling,
-              ),
-        statusCode: httpErrorTrait?.code,
-      ),
-      symbol,
-    );
+    return MapEntry(shape.httpError, symbol);
   }));
 
   /// HTTP metadata which can influence code generation.
@@ -426,12 +413,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..assignment = literalList([
             for (var protocol in context.serviceProtocols)
               protocol.instantiableProtocolSymbol.newInstance([], {
-                'serializers': literalList([
-                  if (inputShape.shapeId != Shape.unit)
-                    inputSymbol.property('serializers').spread,
-                  if (outputShape.shapeId != Shape.unit)
-                    outputSymbol.property('serializers').spread,
-                ]),
+                'serializers': context.serializersRef,
+                'builderFactories': context.builderFactoriesRef,
                 'interceptors': literalList([]),
               }),
           ]).code,

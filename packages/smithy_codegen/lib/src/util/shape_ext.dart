@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/model/smithy_library.dart';
@@ -123,5 +124,21 @@ extension ShapeUtils on Shape {
       ..serviceName = serviceName
       ..libraryType = libraryType
       ..filename = shapeId.shape.snakeCase;
+  }
+
+  HttpError get httpError {
+    final errorTrait = expectTrait<ErrorTrait>();
+    final httpErrorTrait = getTrait<HttpErrorTrait>();
+    final retryTrait = getTrait<RetryableTrait>();
+    return HttpError(
+      errorTrait.type,
+      Never,
+      retryConfig: retryTrait == null
+          ? null
+          : RetryConfig(
+              isThrottlingError: retryTrait.throttling,
+            ),
+      statusCode: httpErrorTrait?.code,
+    );
   }
 }

@@ -7,6 +7,7 @@ import 'package:smithy_codegen/src/generator/structure_generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 /// Generates Dart classes from [StructureShape] types.
 class StructureGenerator extends LibraryGenerator<StructureShape>
@@ -45,7 +46,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             DartTypes.builtValue.built(symbol, builderSymbol),
           ])
           ..mixins.addAll([
-            DartTypes.smithy.httpInput(_httpPayload.symbol),
+            if (shape.isError)
+              if (shape.isHttpError)
+                DartTypes.smithy.smithyHttpException
+              else
+                DartTypes.smithy.smithyException
+            else
+              DartTypes.smithy.httpInput(_httpPayload.symbol),
           ])
           ..constructors.addAll([
             _factoryConstructor,
@@ -55,6 +62,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             _defaultValues,
             ..._fieldGetters,
             ..._httpInputOverrides,
+            ..._errorFields,
           ])
           ..fields.addAll([
             _serializersField(serializerClasses),
@@ -126,6 +134,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// Methods to conform to `HttpInput`.
   Iterable<Method> get _httpInputOverrides sync* {
+    if (shape.isError) {
+      return;
+    }
+
     // `getPayload` override
     yield Method(
       (m) => m
@@ -176,5 +188,65 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       }
     }
     return classes;
+  }
+
+  /// The error traits, if an error structure.
+  Iterable<Method> get _errorFields sync* {
+    if (!shape.isError) {
+      return;
+    }
+
+    final cfg = shape.httpError;
+    if (shape.isHttpError) {
+      // `kind` getter
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.smithy.errorKind
+          ..name = 'kind'
+          ..type = MethodType.getter
+          ..lambda = true
+          ..body = DartTypes.smithy.errorKind.property(cfg.kind.name).code,
+      );
+
+      // `statusCode` getter
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.core.int.boxed
+          ..name = 'statusCode'
+          ..type = MethodType.getter
+          ..lambda = true
+          ..body = (cfg.statusCode == null
+                  ? literalNull
+                  : literalNum(cfg.statusCode!))
+              .code,
+      );
+    }
+
+    // `message` getter
+    final message = shape.members['message'];
+    if (message == null) {
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.core.string.boxed
+          ..name = 'message'
+          ..type = MethodType.getter
+          ..lambda = true
+          ..body = literalNull.code,
+      );
+    }
+
+    // `isRetryable` getter
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.bool
+        ..name = 'isRetryable'
+        ..type = MethodType.getter
+        ..lambda = true
+        ..body = literalBool(cfg.retryConfig != null).code,
+    );
   }
 }

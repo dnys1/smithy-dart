@@ -1,0 +1,4 @@
+name: smithy
+packages:
+  - packages/**
+  - playground/frontend/**

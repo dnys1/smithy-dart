@@ -1,6 +1,7 @@
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/version.dart';
+import 'package:path/path.dart' as path;
 
 extension PubspecYaml on Pubspec {
   String toYaml([String? smithyPath]) {
@@ -15,7 +16,9 @@ environment:
 
 dependencies:
   smithy: ${smithyPath == null ? '^$packageVersion' : ''}
-    ${smithyPath != null ? 'path: $smithyPath' : ''}
+    ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy')}' : ''}
+  smithy_aws: ${smithyPath == null ? '^$packageVersion' : ''}
+    ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy_aws')}' : ''}
 
 dev_dependencies:
   build_runner: ^2.0.0

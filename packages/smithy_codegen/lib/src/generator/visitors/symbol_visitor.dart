@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -34,15 +35,23 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
       case ShapeType.list:
         final valueSymbol =
             context.symbolFor((valueShape as ListShape).member.target);
-        return DartTypes.builtValue
+        final type = DartTypes.builtValue
             .builtListMultimap(key, valueSymbol)
             .withBoxed(shape.isNullable(parent));
+        final builder =
+            DartTypes.builtValue.listMultimapBuilder(key, valueSymbol);
+        context.builderFactories[type.unboxed] = builder.property('new');
+        return type;
       case ShapeType.set:
         final valueSymbol =
             context.symbolFor((valueShape as SetShape).member.target);
-        return DartTypes.builtValue
+        final type = DartTypes.builtValue
             .builtSetMultimap(key, valueSymbol)
             .withBoxed(shape.isNullable(parent));
+        final builder =
+            DartTypes.builtValue.setMultimapBuilder(key, valueSymbol);
+        context.builderFactories[type.unboxed] = builder.property('new');
+        return type;
       default:
         break;
     }

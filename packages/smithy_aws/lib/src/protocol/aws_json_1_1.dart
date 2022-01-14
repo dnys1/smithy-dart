@@ -1,5 +1,4 @@
 import 'package:built_value/serializer.dart';
-import 'package:built_value/standard_json_plugin.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
@@ -9,14 +8,16 @@ class AwsJson1_1Protocol<Payload, Input extends HttpInput<Payload>, Output>
   AwsJson1_1Protocol({
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],
+    Map<Type, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
-          serializers,
+          serializers: serializers,
+          builderFactories: builderFactories,
           interceptors: interceptors,
         );
 
   static late final _coreSerializers = (Serializers().toBuilder()
-        ..addPlugin(StandardJsonPlugin())
+        ..addPlugin(SmithyJsonPlugin())
         ..addAll([
           const UnitSerializer(),
           const BlobSerializer(),

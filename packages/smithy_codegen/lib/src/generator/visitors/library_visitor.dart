@@ -30,10 +30,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   final CodegenContext context;
 
   GeneratedLibrary _buildLibrary(Shape shape, Library library) =>
-      GeneratedLibrary(
-        shape.smithyLibrary(context.packageName, context.serviceName),
-        library,
-      );
+      GeneratedLibrary(shape.smithyLibrary(context), library);
 
   @override
   Iterable<GeneratedLibrary> operationShape(OperationShape shape,

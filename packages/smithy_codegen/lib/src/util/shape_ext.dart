@@ -92,14 +92,12 @@ extension ShapeUtils on Shape {
   }
 
   /// The absolute `package` path of the library generated for this shape.
-  String libraryUrl(String packageName, String serviceName) {
-    final smithyLibrary = this.smithyLibrary(packageName, serviceName);
-    return 'package:$packageName/${smithyLibrary.libRelativePath}';
-  }
+  String libraryUrl(CodegenContext context) =>
+      smithyLibrary(context).libraryUrl;
 
   /// The library directive name for this shape.
-  String libraryName(String packageName, String serviceName) {
-    return smithyLibrary(packageName, serviceName).libraryName;
+  String libraryName(CodegenContext context) {
+    return smithyLibrary(context).libraryName;
   }
 
   /// The library type generated for this shape.
@@ -120,10 +118,10 @@ extension ShapeUtils on Shape {
   }
 
   /// The smithy library for this shape.
-  SmithyLibrary smithyLibrary(String packageName, String serviceName) {
+  SmithyLibrary smithyLibrary(CodegenContext context) {
     return SmithyLibrary()
-      ..packageName = packageName
-      ..serviceName = serviceName
+      ..packageName = context.packageName
+      ..serviceName = context.serviceName
       ..libraryType = libraryType
       ..filename = shapeId.shape.snakeCase;
   }

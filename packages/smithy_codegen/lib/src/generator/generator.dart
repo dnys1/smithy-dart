@@ -35,8 +35,7 @@ abstract class LibraryGenerator<T extends Shape>
   LibraryGenerator(
     T shape, {
     required CodegenContext context,
-  })  : builder = LibraryBuilder()
-          ..name = shape.libraryName(context.packageName, context.serviceName),
+  })  : builder = LibraryBuilder()..name = shape.libraryName(context),
         super(shape, context);
 
   final LibraryBuilder builder;

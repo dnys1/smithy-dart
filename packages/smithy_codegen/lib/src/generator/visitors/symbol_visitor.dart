@@ -77,10 +77,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference operationShape(OperationShape shape, [Shape? parent]) {
-    final library = shape.smithyLibrary(
-      context.packageName,
-      context.serviceName,
-    );
+    final library = shape.smithyLibrary(context);
     return Reference(shape.dartName, library.libraryUrl);
   }
 
@@ -130,18 +127,11 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   }
 
   /// Creates a new symbol from shape, with its own definition file.
-  Reference createSymbol(
-    Shape shape, {
-    String? name,
-    String? serviceName,
-  }) {
+  Reference createSymbol(Shape shape) {
     return TypeReference(
       (t) => t
-        ..symbol = name ?? shape.shapeId.shape.pascalCase
-        ..url = shape.libraryUrl(
-          context.packageName,
-          serviceName ?? context.serviceName,
-        ),
+        ..symbol = shape.shapeId.shape.pascalCase
+        ..url = shape.libraryUrl(context),
     );
   }
 

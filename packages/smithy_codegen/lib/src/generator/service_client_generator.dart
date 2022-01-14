@@ -54,7 +54,11 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
     for (final operation in _operations) {
       final fieldName = '_' + operation.dartName.camelCase;
       final operationInput = operation.inputSymbol(context);
-      final operationOutput = operation.outputSymbol(context);
+      var operationOutput = operation.outputSymbol(context);
+      // Replace Unit with void for nicer DX
+      if (operationOutput == DartTypes.smithy.unit) {
+        operationOutput = DartTypes.core.void$;
+      }
       yield Method(
         (m) => m
           ..returns = operation.isStreaming

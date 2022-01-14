@@ -6,7 +6,8 @@ use aws.protocols#awsJson1_1
 @awsJson1_1
 service Test {
     version: "1.0.0",
-    operations: [MapInput]
+    operations: [MapInput],
+    errors: [ServerError]
 }
 
 list IntList {
@@ -20,7 +21,8 @@ map MapOfLists {
 
 @http(method: "POST", uri: "/input/map")
 operation MapInput {
-    input: MapInputRequest
+    input: MapInputRequest,
+    errors: [MapInputError]
 }
 
 structure MapInputRequest {
@@ -31,3 +33,9 @@ structure MapInputRequest {
 @retryable
 @httpError(429)
 structure MapInputError {}
+
+@error("server")
+structure ServerError {
+    @required
+    message: String
+}

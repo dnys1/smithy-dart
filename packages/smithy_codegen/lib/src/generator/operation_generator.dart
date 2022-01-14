@@ -353,32 +353,29 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
     }
 
     // The `errorTypes` getter
-    if (errorSymbols.isNotEmpty) {
-      yield Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.list(DartTypes.smithy.smithyError)
-          ..type = MethodType.getter
-          ..name = 'errorTypes'
-          ..lambda = true
-          ..body = literalConstList([
-            for (var error in errorSymbols.entries)
-              DartTypes.smithy.smithyError.constInstance([
-                DartTypes.smithy.errorKind.property(error.key.kind.name),
-                error.value,
-              ], {
-                if (error.key.statusCode != null)
-                  'statusCode': literalNum(error.key.statusCode!),
-                if (error.key.retryConfig != null)
-                  'retryConfig':
-                      DartTypes.smithy.retryConfig.constInstance([], {
-                    'isThrottling':
-                        literalBool(error.key.retryConfig!.isThrottlingError),
-                  })
-              })
-          ]).code,
-      );
-    }
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.list(DartTypes.smithy.smithyError)
+        ..type = MethodType.getter
+        ..name = 'errorTypes'
+        ..lambda = true
+        ..body = literalConstList([
+          for (var error in errorSymbols.entries)
+            DartTypes.smithy.smithyError.constInstance([
+              DartTypes.smithy.errorKind.property(error.key.kind.name),
+              error.value,
+            ], {
+              if (error.key.statusCode != null)
+                'statusCode': literalNum(error.key.statusCode!),
+              if (error.key.retryConfig != null)
+                'retryConfig': DartTypes.smithy.retryConfig.constInstance([], {
+                  'isThrottlingError':
+                      literalBool(error.key.retryConfig!.isThrottlingError),
+                })
+            })
+        ]).code,
+    );
   }
 
   /// The `protocols` override getter.

@@ -121,6 +121,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..annotations.addAll([
             if (member.deprecatedAnnotation != null)
               member.deprecatedAnnotation!,
+
+            // Add override annotation for this specific field when the class
+            // implements SmithyError. Per the docs, this field should be
+            // treated specially.
+            // https://awslabs.github.io/smithy/1.0/spec/core/type-refinement-traits.html#error-trait
+            if (shape.isError && member.dartName == 'message')
+              DartTypes.core.override,
           ])
           ..docs.addAll([
             if (member.docs != null) formatDocs(member.docs!),

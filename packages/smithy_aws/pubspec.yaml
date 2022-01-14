@@ -4,13 +4,19 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: '>=2.15.0 <3.0.0'
+  sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   built_collection: ^5.0.0
   built_value: ^8.0.0
+  convert: ^3.0.1
+  crclib: ^3.0.0
+  crypto: ^3.0.1
+  http: ^0.13.4
   smithy:
     path: ../smithy
+  smithy_ast:
+    path: ../smithy_ast
 
 dev_dependencies:
   amplify_lints: ^1.0.0

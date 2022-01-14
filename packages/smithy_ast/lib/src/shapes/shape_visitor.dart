@@ -59,8 +59,6 @@ abstract class ShapeVisitor<R> {
   R memberShape(MemberShape shape, [Shape? parent]);
 
   R timestampShape(TimestampShape shape, [Shape? parent]);
-
-  R unitShape(UnitShape shape, [Shape? parent]);
 }
 
 /// Visits shapes by category.
@@ -143,7 +141,4 @@ abstract class CategoryShapeVisitor<R> implements ShapeVisitor<R> {
   @override
   R primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) =>
       simpleShape(shape, parent);
-
-  @override
-  R unitShape(UnitShape shape, [Shape? parent]) => simpleShape(shape, parent);
 }

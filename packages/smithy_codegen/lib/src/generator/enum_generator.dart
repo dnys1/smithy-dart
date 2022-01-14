@@ -10,9 +10,9 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 /// Generates enums for [StringShape] types.
 class EnumGenerator extends LibraryGenerator<StringShape> {
   EnumGenerator(
-    StringShape enumShape, {
-    required CodegenContext context,
-  }) : super(enumShape, context: context);
+    StringShape enumShape,
+    CodegenContext context,
+  ) : super(enumShape, context: context);
 
   late final EnumTrait enumTrait = shape.expectTrait<EnumTrait>();
 
@@ -111,7 +111,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
             ..name = definition.variantName
             ..assignment = symbol.newInstanceNamed('_', [
               literalNum(index),
-              literalString(definition.variantName),
+              literalString(definition.name ?? definition.variantName),
               literalString(definition.value),
             ]).code;
         });

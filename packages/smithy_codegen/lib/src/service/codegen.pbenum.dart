@@ -13,11 +13,17 @@ class SmithyLibrary_LibraryType extends $pb.ProtobufEnum {
   static const SmithyLibrary_LibraryType MODEL = SmithyLibrary_LibraryType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'MODEL');
   static const SmithyLibrary_LibraryType CLIENT = SmithyLibrary_LibraryType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CLIENT');
   static const SmithyLibrary_LibraryType SERVICE = SmithyLibrary_LibraryType._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'SERVICE');
+  static const SmithyLibrary_LibraryType OPERATION = SmithyLibrary_LibraryType._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'OPERATION');
+  static const SmithyLibrary_LibraryType SERIALIZERS = SmithyLibrary_LibraryType._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'SERIALIZERS');
+  static const SmithyLibrary_LibraryType TEST = SmithyLibrary_LibraryType._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TEST');
 
   static const $core.List<SmithyLibrary_LibraryType> values = <SmithyLibrary_LibraryType> [
     MODEL,
     CLIENT,
     SERVICE,
+    OPERATION,
+    SERIALIZERS,
+    TEST,
   ];
 
   static final $core.Map<$core.int, SmithyLibrary_LibraryType> _byValue = $pb.ProtobufEnum.initByValue(values);

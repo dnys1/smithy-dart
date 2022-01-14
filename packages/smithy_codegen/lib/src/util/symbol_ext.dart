@@ -10,3 +10,23 @@ extension ExpressionUtil on Expression {
     }
   }
 }
+
+extension ReferenceHelpers on Reference {
+  TypeReference get typeRef =>
+      this is TypeReference ? this as TypeReference : type as TypeReference;
+
+  /// Returns a nullable version of `this`.
+  TypeReference get boxed {
+    return typeRef.rebuild((t) => t.isNullable = true);
+  }
+
+  /// Returns a non-nullable version of `this`.
+  TypeReference get unboxed {
+    return typeRef.rebuild((t) => t.isNullable = false);
+  }
+
+  /// Returns a version of `this` with nullable set to [isBoxed].
+  TypeReference withBoxed(bool isBoxed) {
+    return isBoxed ? boxed : unboxed;
+  }
+}

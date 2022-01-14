@@ -1,6 +1,8 @@
-import 'package:smithy_ast/smithy_ast.dart';
+@TestOn('vm')
 
-import '../../test_util.dart';
+import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_test/smithy_test_io.dart';
+import 'package:test/test.dart';
 
 void main() {
   testGolden('EnumGenerator', 'Create Enum', [

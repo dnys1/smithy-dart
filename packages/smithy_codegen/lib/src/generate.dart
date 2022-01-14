@@ -1,14 +1,13 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/format/format_stub.dart'
     if (dart.library.io) 'package:smithy_codegen/src/format/format_io.dart';
 import 'package:smithy_codegen/src/generator/allocator.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
+import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
 import 'package:smithy_codegen/src/service/codegen.pb.dart';
-import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// Header which prefixes all generated files.
 const header = '// Generated code. DO NOT MODIFY.';
@@ -38,17 +37,30 @@ Map<SmithyLibrary, String> generateForAst(
   );
 
   // Generate libraries for relevant shape types.
-  final Map<Shape, Library> libraries = (Map.fromEntries(
-    ast.shapes.values
-        .map((shape) => MapEntry(shape, shape.accept(LibraryVisitor(context)))),
-  )..removeWhere((_, value) => value == null))
-      .cast();
+  final List<Shape> shapes = context.shapes.values.toList()
+    ..sort((a, b) {
+      // Build service shapes last, since they aggregate generated types.
+      if (a is ServiceShape) {
+        return 1;
+      } else if (b is ServiceShape) {
+        return -1;
+      }
+      return 0;
+    });
+  final List<GeneratedLibrary> libraries = shapes
+      .expand(
+        (shape) =>
+            shape.accept(LibraryVisitor(context)) ??
+            const Iterable<GeneratedLibrary>.empty(),
+      )
+      .toList();
 
   // Emit Dart code and format
-  return libraries.map((shape, library) {
+  return Map.fromEntries(libraries.map((generated) {
+    final library = generated.library;
     return MapEntry(
-      shape.smithyLibrary(packageName, serviceName),
+      generated.smithyLibrary,
       '$header\n\n' + format('${library.accept(buildEmitter(library))}'),
     );
-  });
+  }));
 }

@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class ToJsonVisitor implements ShapeVisitor<Expression> {
   const ToJsonVisitor(this.context, [this.renames = const {}]);
@@ -168,11 +169,6 @@ class ToJsonVisitor implements ShapeVisitor<Expression> {
 
   @override
   Expression primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Expression unitShape(UnitShape shape, [Shape? parent]) {
     throw UnimplementedError();
   }
 }

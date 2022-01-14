@@ -13,7 +13,16 @@ FROM gradle:7-jdk17 AS cli
 WORKDIR /build
 COPY smithy .
 
-RUN ./gradlew --no-daemon :smithy-cli:runtime --stacktrace
+# Generate all traits
+RUN ./gradlew :smithy-aws-apigateway-traits:jar --stacktrace
+RUN ./gradlew :smithy-aws-cloudformation-traits:jar --stacktrace
+RUN ./gradlew :smithy-aws-iam-traits:jar --stacktrace
+RUN ./gradlew :smithy-aws-traits:jar --stacktrace
+RUN ./gradlew :smithy-mqtt-traits:jar --stacktrace
+RUN ./gradlew :smithy-protocol-test-traits:jar --stacktrace
+
+# Build the CLI
+RUN ./gradlew :smithy-cli:runtime --stacktrace
 
 # Run Lambda handler with Smithy CLI in container
 FROM public.ecr.aws/amazonlinux/amazonlinux:2
@@ -21,6 +30,14 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2
 WORKDIR /smithy
 COPY --from=cli /build/smithy-cli/build/image/smithy-cli-linux-x86_64 .
 RUN ln -s /smithy/bin/smithy /usr/local/bin/smithy
+
+# Copy in all AWS traits
+COPY --from=cli /build/smithy-aws-apigateway-traits/build/libs/*.jar /smithy/lib/traits/
+COPY --from=cli /build/smithy-aws-cloudformation-traits/build/libs/*.jar /smithy/lib/traits/
+COPY --from=cli /build/smithy-aws-iam-traits/build/libs/*.jar /smithy/lib/traits/
+COPY --from=cli /build/smithy-aws-traits/build/libs/*.jar /smithy/lib/traits/
+COPY --from=cli /build/smithy-mqtt-traits/build/libs/*.jar /smithy/lib/traits/
+COPY --from=cli /build/smithy-protocol-test-traits/build/libs/*.jar /smithy/lib/traits/
 
 # Build application class data sharing archive using smithy validate as the baseline.
 RUN SMITHY_OPTS="-XX:DumpLoadedClassList=/smithy/lib/smithy.lst" \

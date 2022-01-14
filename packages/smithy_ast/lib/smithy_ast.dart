@@ -44,7 +44,6 @@ export 'src/shapes/structure_shape.dart';
 export 'src/shapes/timestamp_shape.dart';
 export 'src/shapes/trait_map.dart';
 export 'src/shapes/union_shape.dart';
-export 'src/shapes/unit_shape.dart';
 
 // Traits
 export 'src/traits.dart';

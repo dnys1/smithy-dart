@@ -107,7 +107,7 @@ namespace com.test
 
 service MyService {
   version: "1.0.0",
-  operations: ["GetFoo"]
+  operations: [GetFoo]
 }
 
 @enum([

@@ -92,7 +92,4 @@ class DefaultVisitor<T> implements ShapeVisitor<T?> {
 
   @override
   T? primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) => null;
-
-  @override
-  T? unitShape(UnitShape shape, [Shape? parent]) => null;
 }

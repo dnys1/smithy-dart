@@ -20,3 +20,4 @@ pluginManagement {
 rootProject.name = "smithy-dart"
 include("protos")
 include("stub")
+include("reference")

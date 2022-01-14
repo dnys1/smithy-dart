@@ -5,12 +5,17 @@ import 'package:smithy_codegen/src/generator/generator.dart';
 
 class ServiceGenerator extends LibraryGenerator<ServiceShape> {
   ServiceGenerator(
-    ServiceShape shape, {
-    required CodegenContext context,
-  }) : super(shape, context: context);
+    ServiceShape shape,
+    CodegenContext context,
+  ) : super(shape, context: context);
 
   @override
   Library generate() {
+    builder.directives.addAll([
+      for (final type in context.generatedTypes) Directive.export(type.url!),
+      Directive.export(context.serviceClientLibrary.libraryUrl)
+    ]);
+
     return builder.build();
   }
 }

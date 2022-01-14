@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "plugins": {
+    "kotlin-codegen": {
+      "service": "com.test#Example",
+      "package": {
+        "name": "com.test",
+        "version": "0.0.1",
+        "description": "Example Service Client"
+      },
+      "sdkId": "Example",
+      "build": {
+        "rootProject": true,
+        "optInAnnotations": [
+          "aws.smithy.kotlin.runtime.util.InternalApi",
+          "aws.sdk.kotlin.runtime.InternalSdkApi"
+        ],
+        "generateDefaultBuildFiles": true
+      }
+    },
+    "swift-codegen": {
+      "service": "com.test#Example",
+      "module": "Example",
+      "moduleVersion": "0.0.1",
+      "author": "Amazon Web Services",
+      "sdkId": "Example",
+      "swiftVersion": "5.4.0"
+    }
+  }
+}

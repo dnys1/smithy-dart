@@ -28,7 +28,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.6"
+    version: "3.1.8"
   args:
     dependency: "direct main"
     description:
@@ -46,10 +46,12 @@ packages:
   aws_common:
     dependency: transitive
     description:
-      path: "../../../pocs/aws_common"
-      relative: true
-    source: path
-    version: "1.0.0"
+      path: "packages/aws_common"
+      ref: main
+      resolved-ref: d056ddbc07fbcf1c0644ff07c4d30702985332b0
+      url: "https://github.com/dnys1/aws-sdk-dart.git"
+    source: git
+    version: "0.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -197,6 +199,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  crclib:
+    dependency: transitive
+    description:
+      name: crclib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   crypto:
     dependency: transitive
     description:
@@ -268,7 +277,7 @@ packages:
     source: hosted
     version: "3.0.2"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -421,6 +430,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  retry:
+    dependency: transitive
+    description:
+      name: retry
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   shelf:
     dependency: transitive
     description:
@@ -463,6 +479,20 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
+  smithy_aws:
+    dependency: "direct main"
+    description:
+      path: "../smithy_aws"
+      relative: true
+    source: path
+    version: "1.0.0"
+  smithy_test:
+    dependency: "direct dev"
+    description:
+      path: "../smithy_test"
+      relative: true
+    source: path
+    version: "1.0.0"
   source_gen:
     dependency: transitive
     description:
@@ -561,6 +591,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:

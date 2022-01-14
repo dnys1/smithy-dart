@@ -209,9 +209,4 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   Expression primitiveShortShape(PrimitiveShortShape shape, [Shape? parent]) {
     return _shapeRef(shape);
   }
-
-  @override
-  Expression unitShape(UnitShape shape, [Shape? parent]) {
-    throw UnimplementedError();
-  }
 }

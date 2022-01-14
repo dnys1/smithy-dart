@@ -20,7 +20,7 @@ class HttpApiKeyAuthTrait
   factory HttpApiKeyAuthTrait.fromJson(Object? json) =>
       _$HttpApiKeyAuthTraitFromJson((json as Map).cast());
 
-  static final id = ShapeId.parse('smithy.api#httpApiKeyAuth');
+  static const id = ShapeId.core('httpApiKeyAuth');
 
   final String? scheme;
   final String name;

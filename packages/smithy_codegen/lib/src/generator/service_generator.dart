@@ -17,7 +17,7 @@ class ServiceGenerator extends LibraryGenerator<ServiceShape> {
         context.serviceSerializersLibrary,
         context.serviceClientLibrary,
       ])
-        Directive.export(lib.libRelativePath)
+        Directive.export(lib.libraryUrl)
     ]);
 
     return builder.build();

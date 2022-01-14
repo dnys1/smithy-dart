@@ -126,11 +126,11 @@ extension ShapeUtils on Shape {
       ..filename = shapeId.shape.snakeCase;
   }
 
-  HttpError get httpError {
+  SmithyError get smithyError {
     final errorTrait = expectTrait<ErrorTrait>();
     final httpErrorTrait = getTrait<HttpErrorTrait>();
     final retryTrait = getTrait<RetryableTrait>();
-    return HttpError(
+    return SmithyError(
       errorTrait.type,
       Never,
       retryConfig: retryTrait == null

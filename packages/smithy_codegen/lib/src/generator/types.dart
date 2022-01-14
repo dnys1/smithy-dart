@@ -378,8 +378,8 @@ class _Smithy {
           ..types.add(ref),
       );
 
-  /// Creates a [smithy.HttpError] reference.
-  Reference get httpError => const Reference('HttpError', _url);
+  /// Creates a [smithy.SmithyError] reference.
+  Reference get smithyError => const Reference('SmithyError', _url);
 
   /// Creates a [smithy.HttpInput] reference for [ref], the input type.
   Reference httpInput(Reference ref) => TypeReference(

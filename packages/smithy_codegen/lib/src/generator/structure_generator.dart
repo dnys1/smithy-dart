@@ -196,7 +196,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       return;
     }
 
-    final cfg = shape.httpError;
+    final cfg = shape.smithyError;
     if (shape.isHttpError) {
       // `kind` getter
       yield Method(

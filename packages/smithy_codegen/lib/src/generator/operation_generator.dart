@@ -18,13 +18,13 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
   late final outputShape = shape.outputShape(context);
   late final outputSymbol = shape.outputSymbol(context);
 
-  late final Map<HttpError, Reference> errorSymbols = Map.fromEntries([
+  late final Map<SmithyError, Reference> errorSymbols = Map.fromEntries([
     ...?context.service?.errors,
     ...shape.errors,
   ].map((error) {
     final symbol = context.symbolFor(error.target);
     final shape = context.shapeFor(error.target);
-    return MapEntry(shape.httpError, symbol);
+    return MapEntry(shape.smithyError, symbol);
   }));
 
   /// HTTP metadata which can influence code generation.
@@ -357,13 +357,13 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.list(DartTypes.smithy.httpError)
+          ..returns = DartTypes.core.list(DartTypes.smithy.smithyError)
           ..type = MethodType.getter
           ..name = 'errorTypes'
           ..lambda = true
           ..body = literalConstList([
             for (var error in errorSymbols.entries)
-              DartTypes.smithy.httpError.constInstance([
+              DartTypes.smithy.smithyError.constInstance([
                 DartTypes.smithy.errorKind.property(error.key.kind.name),
                 error.value,
               ], {

@@ -1,6 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/generator/structure_generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/model/smithy_library.dart';
 import 'package:smithy_codegen/src/service/codegen.pb.dart';
@@ -139,6 +141,50 @@ extension ShapeUtils on Shape {
               isThrottlingError: retryTrait.throttling,
             ),
       statusCode: httpErrorTrait?.code,
+    );
+  }
+}
+
+extension OperationShapeUtil on OperationShape {
+  /// The name of this operation as a Dart class.
+  String get dartName {
+    final shapeName = shapeId.shape.pascalCase;
+    if (shapeName.endsWith('Operation')) {
+      return shapeName;
+    }
+    return '${shapeName}_Operation'.pascalCase;
+  }
+
+  /// The shape for the operation's input.
+  StructureShape inputShape(CodegenContext context) =>
+      context.shapeFor(input?.target ?? Shape.unit) as StructureShape;
+
+  /// The symbol for the operation's input.
+  Reference inputSymbol(CodegenContext context) =>
+      context.symbolFor(input?.target ?? Shape.unit);
+
+  /// The shape for the operation's output.
+  StructureShape outputShape(CodegenContext context) =>
+      context.shapeFor(output?.target ?? Shape.unit) as StructureShape;
+
+  /// The symbol for the operation's output.
+  Reference outputSymbol(CodegenContext context) =>
+      context.symbolFor(output?.target ?? Shape.unit);
+}
+
+extension StructureShapeUtil on StructureShape {
+  /// The symbol for the HTTP payload, or `this` if not supported.
+  HttpPayload httpPayload(CodegenContext context) {
+    final payloadMember = members.values.firstWhereOrNull((shape) {
+      return shape.hasTrait<HttpPayloadTrait>();
+    });
+    if (payloadMember == null) {
+      final symbol = context.symbolFor(shapeId);
+      return HttpPayload(symbol);
+    }
+    return HttpPayload(
+      context.symbolFor(payloadMember.target, this),
+      payloadMember,
     );
   }
 }

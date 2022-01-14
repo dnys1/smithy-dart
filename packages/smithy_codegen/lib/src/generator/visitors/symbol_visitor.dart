@@ -1,4 +1,3 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -17,9 +16,12 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference listShape(ListShape shape, [Shape? parent]) {
-    return DartTypes.builtValue
+    final type = DartTypes.builtValue
         .builtList(shape.member.accept(this, shape))
         .withBoxed(shape.isNullable(parent));
+    final builder = DartTypes.builtValue.listBuilder(type);
+    context.builderFactories[type.unboxed] = builder.property('new');
+    return type;
   }
 
   @override
@@ -28,6 +30,9 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
     final valueShape = context.shapeFor(shape.value.target);
     final valueShapeType = valueShape.getType();
+
+    // Ensure we add the builders for these to the context's `builderFactories`
+    // since they will not be available to serializers otherwise.
 
     // Use `BuiltSetMultimap` and `BuiltListMultimap` for Maps with collection
     // value types.
@@ -57,9 +62,12 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
     }
 
     final value = context.symbolFor(shape.value.target, shape);
-    return DartTypes.builtValue
+    final type = DartTypes.builtValue
         .builtMap(key, value)
         .withBoxed(shape.isNullable(parent));
+    final builder = DartTypes.builtValue.mapBuilder(key, value);
+    context.builderFactories[type.unboxed] = builder.property('new');
+    return type;
   }
 
   @override
@@ -69,7 +77,11 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference operationShape(OperationShape shape, [Shape? parent]) {
-    throw UnsupportedError('Codegen does not generate for operation shapes');
+    final library = shape.smithyLibrary(
+      context.packageName,
+      context.serviceName,
+    );
+    return Reference(shape.dartName, library.libraryUrl);
   }
 
   @override
@@ -79,18 +91,21 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference serviceShape(ServiceShape shape, [Shape? parent]) {
-    final clientName = context.serviceName
-            .replaceAll(RegExp(r'(API|Client|Service)$'), '')
-            .pascalCase +
-        'Client';
-    return createSymbol(shape, name: clientName, serviceName: clientName);
+    // Returns the service client's shape.
+    return Reference(
+      context.serviceClientName,
+      context.serviceClientLibrary.libraryUrl,
+    );
   }
 
   @override
   Reference setShape(SetShape shape, [Shape? parent]) {
-    return DartTypes.builtValue
+    final type = DartTypes.builtValue
         .builtSet(shape.member.accept(this, shape))
         .withBoxed(shape.isNullable(parent));
+    final builder = DartTypes.builtValue.setBuilder(type);
+    context.builderFactories[type.unboxed] = builder.property('new');
+    return type;
   }
 
   @override

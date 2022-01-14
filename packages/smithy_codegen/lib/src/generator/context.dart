@@ -116,8 +116,12 @@ class CodegenContext {
     packageName: packageName,
     serviceName: serviceName,
     libraryType: SmithyLibrary_LibraryType.CLIENT,
-    filename: '${serviceName}_client.dart',
+    filename: serviceClientName,
   );
+
+  late final String serviceClientName =
+      serviceName.replaceAll(RegExp(r'(API|Client|Service)$'), '').pascalCase +
+          'Client';
 
   /// The top-level service library.
   late final SmithyLibrary serviceLibrary = SmithyLibraryX.create(

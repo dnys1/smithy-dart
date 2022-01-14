@@ -255,11 +255,27 @@ class BuiltValue {
           ..types.addAll([key, value]),
       );
 
+  /// The builder for [built_collection.ListBuilder].
+  Reference listBuilder(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'ListBuilder'
+          ..url = _collectionUrl
+          ..types.add(ref),
+      );
+
   /// The builder for [built_collection.BuiltListMultimap].
   Reference listMultimapBuilder(Reference key, Reference value) =>
       TypeReference(
         (t) => t
           ..symbol = 'ListMultimapBuilder'
+          ..url = _collectionUrl
+          ..types.addAll([key, value]),
+      );
+
+  /// The builder for [built_collection.MapBuilder].
+  Reference mapBuilder(Reference key, Reference value) => TypeReference(
+        (t) => t
+          ..symbol = 'MapBuilder'
           ..url = _collectionUrl
           ..types.addAll([key, value]),
       );
@@ -270,6 +286,14 @@ class BuiltValue {
         (t) => t
           ..symbol = 'PrimitiveSerializer'
           ..url = serializerUrl
+          ..types.add(ref),
+      );
+
+  /// The builder for [built_collection.SetBuilder].
+  Reference setBuilder(Reference ref) => TypeReference(
+        (t) => t
+          ..symbol = 'SetBuilder'
+          ..url = _collectionUrl
           ..types.add(ref),
       );
 

@@ -11,14 +11,14 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 /// Generates Dart classes from [StructureShape] types.
 class StructureGenerator extends LibraryGenerator<StructureShape>
-    with StructureGenerationContext, HttpGenerationContext {
+    with StructureGenerationContext {
   StructureGenerator(
     StructureShape shape,
     CodegenContext context,
   ) : super(shape, context: context);
 
   /// The resolved HTTP payload shape/type.
-  late final HttpPayload _httpPayload = httpPayload(shape, symbol);
+  late final HttpPayload _httpPayload = shape.httpPayload(context);
 
   @override
   Library generate() {

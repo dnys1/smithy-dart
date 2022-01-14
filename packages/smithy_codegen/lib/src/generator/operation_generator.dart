@@ -4,29 +4,19 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/protocol/protocol_traits.dart';
-import 'package:smithy_codegen/src/generator/structure_generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
-class OperationGenerator extends LibraryGenerator<OperationShape>
-    with HttpGenerationContext {
+class OperationGenerator extends LibraryGenerator<OperationShape> {
   OperationGenerator(OperationShape shape, CodegenContext context)
       : super(shape, context: context);
 
-  late final inputShape =
-      context.shapeFor(shape.input?.target ?? Shape.unit) as StructureShape;
-
-  late final inputSymbol = context.symbolFor(shape.input?.target ?? Shape.unit);
-
-  late final _inputPayload = httpPayload(inputShape, inputSymbol);
-
-  late final outputShape =
-      context.shapeFor(shape.output?.target ?? Shape.unit) as StructureShape;
-
-  late final outputSymbol =
-      context.symbolFor(shape.output?.target ?? Shape.unit);
+  late final inputShape = shape.inputShape(context);
+  late final inputSymbol = shape.inputSymbol(context);
+  late final inputPayload = inputShape.httpPayload(context);
+  late final outputShape = shape.outputShape(context);
+  late final outputSymbol = shape.outputSymbol(context);
 
   late final Map<HttpError, Reference> errorSymbols = Map.fromEntries([
     ...?context.service?.errors,
@@ -82,12 +72,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   }();
 
   @override
-  String get className {
-    if (super.className.endsWith('Operation')) {
-      return super.className;
-    }
-    return '${super.className}_Operation'.pascalCase;
-  }
+  String get className => shape.dartName;
 
   @override
   Library generate() {
@@ -104,7 +89,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ])
           ..name = className
           ..extend = DartTypes.smithy.httpOperation(
-            _inputPayload.symbol,
+            inputPayload.symbol,
             inputSymbol,
             outputSymbol,
           )
@@ -404,7 +389,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..modifier = FieldModifier.final$
           ..type = DartTypes.core.list(
             DartTypes.smithy.httpProtocol(
-              _inputPayload.symbol,
+              inputPayload.symbol,
               inputSymbol,
               outputSymbol,
             ),

@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:grpc/grpc.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/format/format_stub.dart'
@@ -7,10 +6,8 @@ import 'package:smithy_codegen/src/format/format_stub.dart'
 import 'package:smithy_codegen/src/generator/allocator.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generated_library.dart';
-import 'package:smithy_codegen/src/generator/serializers_generator.dart';
 import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
 import 'package:smithy_codegen/src/service/codegen.pb.dart';
-import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// Header which prefixes all generated files.
 const header = '// Generated code. DO NOT MODIFY.';

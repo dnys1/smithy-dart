@@ -35,6 +35,8 @@ class _MapInputRequestAwsJson11Serializer
   const _MapInputRequestAwsJson11Serializer() : super('MapInputRequest');
 
   @override
+  Iterable<Type> get types => const [MapInputRequest, _$MapInputRequest];
+  @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override

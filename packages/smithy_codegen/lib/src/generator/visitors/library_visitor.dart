@@ -4,6 +4,7 @@ import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/enum_generator.dart';
 import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/operation_generator.dart';
+import 'package:smithy_codegen/src/generator/operation_test_generator.dart';
 import 'package:smithy_codegen/src/generator/serializers_generator.dart';
 import 'package:smithy_codegen/src/generator/service_client_generator.dart';
 import 'package:smithy_codegen/src/generator/service_generator.dart';
@@ -34,10 +35,21 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
 
   @override
   Iterable<GeneratedLibrary> operationShape(OperationShape shape,
-      [Shape? parent]) {
-    return [
-      _buildLibrary(shape, OperationGenerator(shape, context).generate()),
-    ];
+      [Shape? parent]) sync* {
+    // Build the operation class.
+    yield _buildLibrary(shape, OperationGenerator(shape, context).generate());
+
+    // Build the operation tests.
+    final testLibrary = SmithyLibraryX.create(
+      packageName: context.packageName,
+      serviceName: context.serviceName,
+      libraryType: SmithyLibrary_LibraryType.TEST,
+      filename: shape.dartName,
+    );
+    yield GeneratedLibrary(
+      testLibrary,
+      OperationTestGenerator(shape, context).generate(),
+    );
   }
 
   @override

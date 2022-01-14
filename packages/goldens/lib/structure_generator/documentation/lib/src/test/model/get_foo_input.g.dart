@@ -65,7 +65,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   String? get qux => _$this._qux;
   set qux(String? qux) => _$this._qux = qux;
 
-  GetFooInputBuilder();
+  GetFooInputBuilder() {
+    GetFooInput._init(this);
+  }
 
   GetFooInputBuilder get _$this {
     final $v = _$v;

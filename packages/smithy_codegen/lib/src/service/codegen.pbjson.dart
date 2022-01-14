@@ -29,11 +29,12 @@ const SmithyLibrary_LibraryType$json = const {
     const {'1': 'SERVICE', '2': 2},
     const {'1': 'OPERATION', '2': 3},
     const {'1': 'SERIALIZERS', '2': 4},
+    const {'1': 'TEST', '2': 5},
   ],
 };
 
 /// Descriptor for `SmithyLibrary`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List smithyLibraryDescriptor = $convert.base64Decode('Cg1TbWl0aHlMaWJyYXJ5EiAKC3BhY2thZ2VOYW1lGAEgASgJUgtwYWNrYWdlTmFtZRIgCgtzZXJ2aWNlTmFtZRgCIAEoCVILc2VydmljZU5hbWUSPAoLbGlicmFyeVR5cGUYAyABKA4yGi5TbWl0aHlMaWJyYXJ5LkxpYnJhcnlUeXBlUgtsaWJyYXJ5VHlwZRIaCghmaWxlbmFtZRgEIAEoCVIIZmlsZW5hbWUiUQoLTGlicmFyeVR5cGUSCQoFTU9ERUwQABIKCgZDTElFTlQQARILCgdTRVJWSUNFEAISDQoJT1BFUkFUSU9OEAMSDwoLU0VSSUFMSVpFUlMQBA==');
+final $typed_data.Uint8List smithyLibraryDescriptor = $convert.base64Decode('Cg1TbWl0aHlMaWJyYXJ5EiAKC3BhY2thZ2VOYW1lGAEgASgJUgtwYWNrYWdlTmFtZRIgCgtzZXJ2aWNlTmFtZRgCIAEoCVILc2VydmljZU5hbWUSPAoLbGlicmFyeVR5cGUYAyABKA4yGi5TbWl0aHlMaWJyYXJ5LkxpYnJhcnlUeXBlUgtsaWJyYXJ5VHlwZRIaCghmaWxlbmFtZRgEIAEoCVIIZmlsZW5hbWUiWwoLTGlicmFyeVR5cGUSCQoFTU9ERUwQABIKCgZDTElFTlQQARILCgdTRVJWSUNFEAISDQoJT1BFUkFUSU9OEAMSDwoLU0VSSUFMSVpFUlMQBBIICgRURVNUEAU=');
 @$core.Deprecated('Use codegenRequestDescriptor instead')
 const CodegenRequest$json = const {
   '1': 'CodegenRequest',

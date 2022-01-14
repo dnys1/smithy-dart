@@ -37,6 +37,7 @@ abstract class HttpProtocolTraits
   BuiltSet<MemberShape> get httpLabels;
   MemberShape? get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;
+  String? get hostPrefix;
   MemberShape? get hostLabel;
   BuiltMap<String, MemberShape> get httpQuery;
   MemberShape? get httpQueryParams;

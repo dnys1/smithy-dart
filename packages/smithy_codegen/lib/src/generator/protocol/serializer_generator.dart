@@ -121,6 +121,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
         ..extend = DartTypes.smithy.smithySerializer(symbol)
         ..constructors.add(_constructor)
         ..methods.addAll([
+          _typesGetter,
           _supportedProtocols,
           _deserialize,
           _serialize,
@@ -139,6 +140,20 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
               literalString(shape.shapeId.shape),
             ]).code,
           ),
+      );
+
+  /// The `types` getter.
+  Method get _typesGetter => Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.core.iterable(DartTypes.core.type)
+          ..type = MethodType.getter
+          ..name = 'types'
+          ..lambda = true
+          ..body = literalConstList([
+            symbol,
+            builtSymbol,
+          ]).code,
       );
 
   /// The `supportedProtocols` getter.

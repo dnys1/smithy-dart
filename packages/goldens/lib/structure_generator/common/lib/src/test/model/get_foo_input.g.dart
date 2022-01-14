@@ -106,7 +106,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   _i2.QuxBuilder get quux => _$this._quux ??= new _i2.QuxBuilder();
   set quux(_i2.QuxBuilder? quux) => _$this._quux = quux;
 
-  GetFooInputBuilder();
+  GetFooInputBuilder() {
+    GetFooInput._init(this);
+  }
 
   GetFooInputBuilder get _$this {
     final $v = _$v;

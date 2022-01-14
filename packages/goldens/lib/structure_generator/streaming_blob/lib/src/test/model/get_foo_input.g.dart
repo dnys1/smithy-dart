@@ -55,7 +55,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   _i3.Uint8List? get foo => _$this._foo;
   set foo(_i3.Uint8List? foo) => _$this._foo = foo;
 
-  GetFooInputBuilder();
+  GetFooInputBuilder() {
+    GetFooInput._init(this);
+  }
 
   GetFooInputBuilder get _$this {
     final $v = _$v;

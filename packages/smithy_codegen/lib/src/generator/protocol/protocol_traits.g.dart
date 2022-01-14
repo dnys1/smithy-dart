@@ -125,6 +125,8 @@ class _$HttpProtocolTraits extends HttpProtocolTraits {
   @override
   final HttpPrefixHeaders? httpPrefixHeaders;
   @override
+  final String? hostPrefix;
+  @override
   final MemberShape? hostLabel;
   @override
   final BuiltMap<String, MemberShape> httpQuery;
@@ -143,6 +145,7 @@ class _$HttpProtocolTraits extends HttpProtocolTraits {
       required this.httpLabels,
       this.httpPayload,
       this.httpPrefixHeaders,
+      this.hostPrefix,
       this.hostLabel,
       required this.httpQuery,
       this.httpQueryParams,
@@ -175,6 +178,7 @@ class _$HttpProtocolTraits extends HttpProtocolTraits {
         httpLabels == other.httpLabels &&
         httpPayload == other.httpPayload &&
         httpPrefixHeaders == other.httpPrefixHeaders &&
+        hostPrefix == other.hostPrefix &&
         hostLabel == other.hostLabel &&
         httpQuery == other.httpQuery &&
         httpQueryParams == other.httpQueryParams &&
@@ -190,11 +194,13 @@ class _$HttpProtocolTraits extends HttpProtocolTraits {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, http.hashCode),
-                                    httpHeaders.hashCode),
-                                httpLabels.hashCode),
-                            httpPayload.hashCode),
-                        httpPrefixHeaders.hashCode),
+                                $jc(
+                                    $jc($jc(0, http.hashCode),
+                                        httpHeaders.hashCode),
+                                    httpLabels.hashCode),
+                                httpPayload.hashCode),
+                            httpPrefixHeaders.hashCode),
+                        hostPrefix.hashCode),
                     hostLabel.hashCode),
                 httpQuery.hashCode),
             httpQueryParams.hashCode),
@@ -209,6 +215,7 @@ class _$HttpProtocolTraits extends HttpProtocolTraits {
           ..add('httpLabels', httpLabels)
           ..add('httpPayload', httpPayload)
           ..add('httpPrefixHeaders', httpPrefixHeaders)
+          ..add('hostPrefix', hostPrefix)
           ..add('hostLabel', hostLabel)
           ..add('httpQuery', httpQuery)
           ..add('httpQueryParams', httpQueryParams)
@@ -249,6 +256,10 @@ class HttpProtocolTraitsBuilder
   set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
       _$this._httpPrefixHeaders = httpPrefixHeaders;
 
+  String? _hostPrefix;
+  String? get hostPrefix => _$this._hostPrefix;
+  set hostPrefix(String? hostPrefix) => _$this._hostPrefix = hostPrefix;
+
   MemberShapeBuilder? _hostLabel;
   MemberShapeBuilder get hostLabel =>
       _$this._hostLabel ??= new MemberShapeBuilder();
@@ -282,6 +293,7 @@ class HttpProtocolTraitsBuilder
       _httpLabels = $v.httpLabels.toBuilder();
       _httpPayload = $v.httpPayload?.toBuilder();
       _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
+      _hostPrefix = $v.hostPrefix;
       _hostLabel = $v.hostLabel?.toBuilder();
       _httpQuery = $v.httpQuery.toBuilder();
       _httpQueryParams = $v.httpQueryParams?.toBuilder();
@@ -314,6 +326,7 @@ class HttpProtocolTraitsBuilder
               httpLabels: httpLabels.build(),
               httpPayload: _httpPayload?.build(),
               httpPrefixHeaders: _httpPrefixHeaders?.build(),
+              hostPrefix: hostPrefix,
               hostLabel: _hostLabel?.build(),
               httpQuery: httpQuery.build(),
               httpQueryParams: _httpQueryParams?.build(),
@@ -329,6 +342,7 @@ class HttpProtocolTraitsBuilder
         _httpPayload?.build();
         _$failedField = 'httpPrefixHeaders';
         _httpPrefixHeaders?.build();
+
         _$failedField = 'hostLabel';
         _hostLabel?.build();
         _$failedField = 'httpQuery';

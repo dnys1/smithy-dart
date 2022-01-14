@@ -4,7 +4,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 part 'http_request_test_case.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(anyMap: true)
 @ShapeIdConverter()
 @NullableShapeIdConverter()
 class HttpRequestTestCase extends HttpMessageTestCase<HttpRequestTestCase>

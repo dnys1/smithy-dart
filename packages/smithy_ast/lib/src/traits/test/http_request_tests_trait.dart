@@ -13,7 +13,7 @@ class HttpRequestTestsTrait
   const HttpRequestTestsTrait(this.testCases);
 
   factory HttpRequestTestsTrait.fromJson(Object? json) =>
-      _$HttpRequestTestsTraitFromJson((json as Map).cast());
+      _$HttpRequestTestsTraitFromJson({'testCases': json});
 
   static const id =
       ShapeId(namespace: 'smithy.test', shape: 'httpRequestTests');

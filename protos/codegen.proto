@@ -20,6 +20,7 @@ message SmithyLibrary {
         SERVICE = 2;
         OPERATION = 3;
         SERIALIZERS = 4;
+        TEST = 5;
     }
     LibraryType libraryType = 3;
 

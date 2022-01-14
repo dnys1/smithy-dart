@@ -6,7 +6,7 @@ part of 'http_request_test_case.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-HttpRequestTestCase _$HttpRequestTestCaseFromJson(Map<String, dynamic> json) =>
+HttpRequestTestCase _$HttpRequestTestCaseFromJson(Map json) =>
     HttpRequestTestCase(
       id: json['id'] as String,
       documentation: json['documentation'] as String?,
@@ -15,12 +15,18 @@ HttpRequestTestCase _$HttpRequestTestCaseFromJson(Map<String, dynamic> json) =>
           .fromJson(json['authScheme'] as String?),
       body: json['body'] as String?,
       bodyMediaType: json['bodyMediaType'] as String?,
-      params: json['params'] as Map<String, dynamic>? ?? const {},
+      params: (json['params'] as Map?)?.map(
+            (k, e) => MapEntry(k as String, e),
+          ) ??
+          const {},
       vendorParamsShape: const NullableShapeIdConverter()
           .fromJson(json['vendorParamsShape'] as String?),
-      vendorParams: json['vendorParams'] as Map<String, dynamic>? ?? const {},
-      headers: (json['headers'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as String),
+      vendorParams: (json['vendorParams'] as Map?)?.map(
+            (k, e) => MapEntry(k as String, e),
+          ) ??
+          const {},
+      headers: (json['headers'] as Map?)?.map(
+            (k, e) => MapEntry(k as String, e as String),
           ) ??
           const {},
       forbidHeaders: (json['forbidHeaders'] as List<dynamic>?)

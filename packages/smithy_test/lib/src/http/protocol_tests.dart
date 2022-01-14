@@ -15,7 +15,9 @@ void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
   group(testCase.protocol.shape, () {
     test(testCase.id, () async {
       final baseUri = Uri(scheme: 'https', host: testCase.host);
-      final protocol = operation.resolveProtocol();
+      final protocol = operation.resolveProtocol(
+        useProtocol: testCase.protocol,
+      );
       // TODO: Need fromJson method because protocol won't always
       // be JSON. But do input params map to jsonName?
       final input = protocol.serializers.deserialize(

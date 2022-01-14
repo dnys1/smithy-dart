@@ -49,7 +49,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   set enumMap(_i2.MapBuilder<String, _i3.MyEnum?>? enumMap) =>
       _$this._enumMap = enumMap;
 
-  GetFooInputBuilder();
+  GetFooInputBuilder() {
+    GetFooInput._init(this);
+  }
 
   GetFooInputBuilder get _$this {
     final $v = _$v;

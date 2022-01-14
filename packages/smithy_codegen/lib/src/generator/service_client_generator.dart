@@ -38,6 +38,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   /// only need to be built once.
   Iterable<Field> get _operationFields sync* {
     for (final operation in _operations) {
+      if (!operation.hasTrait<HttpTrait>()) {
+        continue;
+      }
       yield Field(
         (f) => f
           ..late = true
@@ -52,6 +55,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   /// Generate a callable method for each operation.
   Iterable<Method> get _operationMethods sync* {
     for (final operation in _operations) {
+      if (!operation.hasTrait<HttpTrait>()) {
+        continue;
+      }
       final fieldName = '_' + operation.dartName.camelCase;
       final operationInput = operation.inputSymbol(context);
       var operationOutput = operation.outputSymbol(context);

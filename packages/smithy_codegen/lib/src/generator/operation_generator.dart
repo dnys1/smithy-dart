@@ -35,6 +35,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
     }
     final bldr = HttpProtocolTraitsBuilder();
     bldr.http = httpTrait;
+    bldr.hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
     for (var member in inputShape.members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
@@ -76,7 +77,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
 
   @override
   Library generate() {
-    builder.body.add(_operationClass);
+    // Only generate HTTP operations currently
+    if (_httpTraits != null) {
+      builder.body.add(_operationClass);
+    }
 
     return builder.build();
   }
@@ -120,6 +124,13 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
             ? literalNum(traits.http.code)
             : input.property(traits.httpResponseCode!.dartName))
         .statement;
+
+    if (traits.hostPrefix != null) {
+      yield builder
+          .property('hostPrefix')
+          .assign(literalString(traits.hostPrefix!))
+          .statement;
+    }
 
     for (var entry in traits.httpHeaders.entries) {
       yield _httpHeader(
@@ -205,15 +216,26 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
 
     final targetShape =
         value is MemberShape ? context.shapeFor(value.target) : value;
-
-    return builder
-        .property('headers')
-        .index(key)
-        .assign(toString(
-          valueRef,
-          targetShape,
-        ))
-        .statement;
+    final isBoxed = targetShape.isNullable(inputShape);
+    var toStringExp = toString(
+      valueRef,
+      targetShape,
+    );
+    if (isBoxed) {
+      toStringExp = toStringExp.nullChecked;
+    }
+    final addHeader =
+        builder.property('headers').index(key).assign(toStringExp).statement;
+    if (isBoxed) {
+      return Block.of([
+        const Code('if ('),
+        valueRef.notEqualTo(literalNull).code,
+        const Code(') {'),
+        addHeader,
+        const Code('}'),
+      ]);
+    }
+    return addHeader;
   }
 
   /// Adds the prefixed headers to the request's headers map.
@@ -287,10 +309,25 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
       }
     }
 
-    return builder.property('queryParameters').property('add').call([
-      key,
-      toString(valueRef, targetShape.getType()),
-    ]).statement;
+    final isBoxed = targetShape.isNullable(inputShape);
+    var toStringExp = toString(valueRef, targetShape.getType());
+    if (isBoxed) {
+      toStringExp = toStringExp.nullChecked;
+    }
+    final addParam = builder
+        .property('queryParameters')
+        .property('add')
+        .call([key, toStringExp]).statement;
+    if (isBoxed) {
+      return Block.of([
+        const Code('if ('),
+        valueRef.notEqualTo(literalNull).code,
+        const Code(') {'),
+        addParam,
+        const Code('}'),
+      ]);
+    }
+    return addParam;
   }
 
   /// Adds all query parameters in a map to the request's query parameters.

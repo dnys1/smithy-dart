@@ -1,10 +1,8 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
-import 'package:smithy_codegen/src/util/protocol_ext.dart';
 
 /// Generates test classes for shapes with HTTP tests.
 class OperationTestGenerator extends LibraryGenerator<OperationShape> {
@@ -24,21 +22,20 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape> {
   Method get _mainMethod => Method.returnsVoid(
         (b) => b
           ..name = 'main'
-          ..body = Block.of(_protocolTestMethods),
+          ..body = Block.of([
+            ..._httpRequestTests,
+          ]),
       );
 
-  Iterable<Code> get _protocolTestMethods sync* {
+  /// HTTP request tests.
+  Iterable<Code> get _httpRequestTests sync* {
     final httpRequestTestCases =
         shape.getTrait<HttpRequestTestsTrait>()?.testCases ?? const [];
     for (var testCase in httpRequestTestCases) {
-      final protocol = context.serviceProtocols
-          .singleWhere((def) => def.shapeId == testCase.protocol);
-      yield DartTypes.smithyTest.httpRequestTest.call([
-        DartTypes.smithyTest.httpRequestTestCase.newInstanceNamed('fromJson', [
-          literalMap(testCase.toJson()),
-        ]),
-        protocol.instantiableProtocolSymbol.constInstance([]),
-      ]).statement;
+      yield DartTypes.smithyTest.httpRequestTest.call([], {
+        'operation': symbol.newInstance([]),
+        'testCaseJson': literalMap(testCase.toJson()),
+      }).statement;
     }
   }
 }

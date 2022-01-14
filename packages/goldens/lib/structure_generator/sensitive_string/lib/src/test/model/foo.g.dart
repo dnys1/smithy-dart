@@ -65,7 +65,9 @@ class FooBuilder implements Builder<Foo, FooBuilder> {
   String? get qux => _$this._qux;
   set qux(String? qux) => _$this._qux = qux;
 
-  FooBuilder();
+  FooBuilder() {
+    Foo._init(this);
+  }
 
   FooBuilder get _$this {
     final $v = _$v;

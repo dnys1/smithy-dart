@@ -47,7 +47,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   _i2.FooBuilder get enumMap => _$this._enumMap ??= new _i2.FooBuilder();
   set enumMap(_i2.FooBuilder? enumMap) => _$this._enumMap = enumMap;
 
-  GetFooInputBuilder();
+  GetFooInputBuilder() {
+    GetFooInput._init(this);
+  }
 
   GetFooInputBuilder get _$this {
     final $v = _$v;

@@ -24,6 +24,8 @@ dev_dependencies:
   build_runner: ^2.0.0
   built_value_generator: ^8.0.0
   lints: ^1.0.0
+  smithy_test: ${smithyPath == null ? '^$packageVersion' : ''}
+    ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy_test')}' : ''}
   test: ^1.16.0
 ''';
   }

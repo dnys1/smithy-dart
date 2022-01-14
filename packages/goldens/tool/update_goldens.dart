@@ -71,7 +71,7 @@ void main(List<String> args) {
     );
 
     libraries.forEach((library, definition) {
-      final outPath = path.join(outputPath, 'lib', library.libRelativePath);
+      final outPath = path.join(outputPath, library.projectRelativePath);
       File(outPath)
         ..createSync(recursive: true)
         ..writeAsStringSync(definition);

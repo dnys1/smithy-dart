@@ -39,7 +39,9 @@ class _$Qux extends Qux {
 class QuxBuilder implements Builder<Qux, QuxBuilder> {
   _$Qux? _$v;
 
-  QuxBuilder();
+  QuxBuilder() {
+    Qux._init(this);
+  }
 
   @override
   void replace(Qux other) {

@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
 part 'protocol_traits.g.dart';
@@ -35,6 +36,9 @@ abstract class HttpPrefixHeaders
   MemberShape get member;
 }
 
+@BuiltValue(instantiable: false)
+abstract class HttpTraits {}
+
 abstract class HttpInputTraits
     implements Built<HttpInputTraits, HttpInputTraitsBuilder> {
   factory HttpInputTraits([void Function(HttpInputTraitsBuilder) updates]) =
@@ -58,7 +62,30 @@ abstract class HttpOutputTraits
       _$HttpOutputTraits;
   HttpOutputTraits._();
 
+  BuiltMap<String, MemberShape> get httpHeaders;
+  HttpPayload get httpPayload;
+  HttpPrefixHeaders? get httpPrefixHeaders;
   MemberShape? get httpResponseCode;
+}
+
+abstract class HttpErrorTraits
+    implements Built<HttpErrorTraits, HttpErrorTraitsBuilder> {
+  factory HttpErrorTraits([void Function(HttpErrorTraitsBuilder) updates]) =
+      _$HttpErrorTraits;
+  HttpErrorTraits._();
+
+  @BuiltValueHook(finalizeBuilder: true)
+  static void _init(HttpErrorTraitsBuilder b) {
+    b.statusCode ??= (b.kind! == ErrorKind.client ? 400 : 500);
+  }
+
+  ErrorKind get kind;
+  Reference get symbol;
+  RetryConfig? get retryConfig;
+  int get statusCode;
+  BuiltMap<String, MemberShape> get httpHeaders;
+  HttpPayload get httpPayload;
+  HttpPrefixHeaders? get httpPrefixHeaders;
 }
 
 abstract class JsonProtocolTraits

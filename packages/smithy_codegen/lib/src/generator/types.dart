@@ -191,6 +191,9 @@ class BuiltValue {
   static const _collectionUrl =
       'package:built_collection/built_collection.dart';
 
+  /// A [built_value.BuiltValue] reference.
+  Reference get builtValue => const Reference('BuiltValue', mainUrl);
+
   /// A [built_value.BuiltValueHook] reference.
   Reference get builtValueHook => const Reference('BuiltValueHook', mainUrl);
 
@@ -357,6 +360,9 @@ class _Meta {
 
   static const _url = 'package:meta/meta.dart';
 
+  /// Creates a [meta.internal] reference.
+  Reference get internal => const Reference('internal', _url);
+
   /// Creates a [meta.immutable] reference.
   Reference get immutable => const Reference('immutable', _url);
 }
@@ -394,13 +400,14 @@ class _Smithy {
   Reference httpOperation(
     Reference inputPayload,
     Reference input,
+    Reference outputPayload,
     Reference output,
   ) =>
       TypeReference(
         (t) => t
           ..symbol = 'HttpOperation'
           ..url = _url
-          ..types.addAll([inputPayload, input, output]),
+          ..types.addAll([inputPayload, input, outputPayload, output]),
       );
 
   /// Creates a [smithy.HttpProtocol] reference for an operation with input
@@ -408,13 +415,14 @@ class _Smithy {
   Reference httpProtocol(
     Reference inputPayload,
     Reference input,
+    Reference outputPayload,
     Reference output,
   ) =>
       TypeReference(
         (t) => t
           ..symbol = 'HttpProtocol'
           ..url = _url
-          ..types.addAll([inputPayload, input, output]),
+          ..types.addAll([inputPayload, input, outputPayload, output]),
       );
 
   /// Creates a [smithy.HttpRequest] AST reference.
@@ -423,6 +431,9 @@ class _Smithy {
   /// Creates a [smithy.HttpRequestBuilder] AST reference.
   Reference get httpRequestBuilder =>
       const Reference('HttpRequestBuilder', _url);
+
+  /// Creates a [smithy.HttpResponse] AST reference.
+  Reference get httpResponse => const Reference('HttpResponse', _url);
 
   /// Creates a [smithy.MissingLabelException] reference.
   Reference get missingLabelException =>

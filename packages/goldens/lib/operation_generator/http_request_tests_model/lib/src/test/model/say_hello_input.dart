@@ -4,19 +4,22 @@ library http_request_tests_model.test.model.say_hello_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'say_hello_input.g.dart';
 
 abstract class SayHelloInput
-    with _i1.HttpInput<SayHelloInput>
-    implements Built<SayHelloInput, SayHelloInputBuilder> {
+    with _i1.HttpInput<SayHelloInputPayload>
+    implements
+        Built<SayHelloInput, SayHelloInputBuilder>,
+        _i1.HasPayload<SayHelloInputPayload> {
   factory SayHelloInput([void Function(SayHelloInputBuilder) updates]) =
       _$SayHelloInput;
 
   const SayHelloInput._();
 
-  static const List<_i1.SmithySerializer<SayHelloInput>> serializers = [
+  static const List<_i1.SmithySerializer> serializers = [
     _SayHelloInputAwsJson11Serializer()
   ];
 
@@ -27,10 +30,6 @@ abstract class SayHelloInput
   String? get name;
   String? get query;
   @override
-  SayHelloInput getPayload() => this;
-  @override
-  bool get isStreaming => false;
-  @override
   String labelFor(String key) {
     switch (key) {
       case 'hostLabel':
@@ -38,22 +37,46 @@ abstract class SayHelloInput
     }
     throw _i1.MissingLabelException(this, key);
   }
+
+  @override
+  SayHelloInputPayload getPayload() =>
+      SayHelloInputPayload((b) => b..name = name);
+}
+
+@_i2.internal
+@BuiltValue(nestedBuilders: false)
+abstract class SayHelloInputPayload
+    implements Built<SayHelloInputPayload, SayHelloInputPayloadBuilder> {
+  factory SayHelloInputPayload(
+          [void Function(SayHelloInputPayloadBuilder) updates]) =
+      _$SayHelloInputPayload;
+
+  const SayHelloInputPayload._();
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SayHelloInputPayloadBuilder b) {}
+  String? get name;
 }
 
 class _SayHelloInputAwsJson11Serializer
-    extends _i1.SmithySerializer<SayHelloInput> {
+    extends _i1.SmithySerializer<SayHelloInputPayload> {
   const _SayHelloInputAwsJson11Serializer() : super('SayHelloInput');
 
   @override
-  Iterable<Type> get types => const [SayHelloInput, _$SayHelloInput];
+  Iterable<Type> get types => const [
+        SayHelloInput,
+        _$SayHelloInput,
+        SayHelloInputPayload,
+        _$SayHelloInputPayload
+      ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  SayHelloInput deserialize(
+  SayHelloInputPayload deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = SayHelloInputBuilder();
+    final result = SayHelloInputPayloadBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -71,13 +94,16 @@ class _SayHelloInputAwsJson11Serializer
   }
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, SayHelloInput object,
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
+    final SayHelloInputPayload payload = object is SayHelloInput
+        ? object.getPayload()
+        : (object as SayHelloInputPayload);
     final result = <Object?>[];
-    if (object.name != null) {
+    if (payload.name != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(payload.name,
             specifiedType: const FullType(String)));
     }
     return result;

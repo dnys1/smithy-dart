@@ -25,6 +25,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final serializerClasses = _serializerClasses;
     builder.body.addAll([
       _structClass(serializerClasses.keys),
+      if (hasBuiltPayload) _payloadClass,
       ...serializerClasses.values,
     ]);
 
@@ -41,28 +42,70 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
+            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol)
           ])
           ..mixins.addAll([
             if (shape.isError)
               if (shape.isHttpError)
                 DartTypes.smithy.smithyHttpException
               else
-                DartTypes.smithy.smithyException
-            else
-              DartTypes.smithy.httpInput(httpInputTraits.httpPayload.symbol),
+                DartTypes.smithy.smithyException,
+            if (shape.isInputShape) DartTypes.smithy.httpInput(payloadSymbol)
           ])
           ..constructors.addAll([
-            _factoryConstructor,
+            _factoryConstructor(
+              builderSymbol: builderSymbol,
+              builtSymbol: builtSymbol,
+            ),
             _privateConstructor,
           ])
           ..methods.addAll([
-            _defaultValues,
-            ..._fieldGetters,
+            _defaultValues(
+              members: sortedMembers,
+              builderSymbol: builderSymbol,
+            ),
+            ..._fieldGetters(sortedMembers),
             ..._httpInputOverrides,
+            if (hasPayload) _getPayload,
             ..._errorFields,
           ])
           ..fields.addAll([
             _serializersField(serializerClasses),
+          ]),
+      );
+
+  /// The struct's payload class.
+  Class get _payloadClass => Class(
+        (c) => c
+          ..name = '${className}Payload'
+          ..abstract = true
+          ..annotations.addAll([
+            // Developers only ever interact with the main struct.
+            DartTypes.meta.internal,
+
+            // Payload types do not need nested builders. These are nice for DX
+            // in the main struct, but do not add anything in the payload since
+            // this is an internal class.
+            DartTypes.builtValue.builtValue.newInstance([], {
+              'nestedBuilders': literalFalse,
+            }),
+          ])
+          ..implements.addAll([
+            DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol),
+          ])
+          ..constructors.addAll([
+            _factoryConstructor(
+              builderSymbol: payloadBuilderSymbol,
+              builtSymbol: builtPayloadSymbol,
+            ),
+            _privateConstructor,
+          ])
+          ..methods.addAll([
+            _defaultValues(
+              members: serializableMembers,
+              builderSymbol: payloadBuilderSymbol,
+            ),
+            ..._fieldGetters(serializableMembers),
           ]),
       );
 
@@ -74,7 +117,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
   /// The builder/factory constructor.
-  Constructor get _factoryConstructor => Constructor(
+  Constructor _factoryConstructor({
+    required Reference builderSymbol,
+    required Reference builtSymbol,
+  }) =>
+      Constructor(
         (c) => c
           ..factory = true
           ..annotations.addAll([
@@ -93,26 +140,32 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
   /// Adds default values to relevant properties.
-  Method get _defaultValues => Method.returnsVoid((m) => m
-    ..annotations.add(DartTypes.builtValue.builtValueHook
-        .newInstance([], {'initializeBuilder': literalBool(true)}))
-    ..static = true
-    ..name = '_init'
-    ..requiredParameters.add(Parameter((p) => p
-      ..type = builderSymbol
-      ..name = 'b'))
-    ..body = Block.of([
-      for (var member in sortedMembers)
-        if (member.defaultValue != null)
-          refer('b')
-              .property(member.dartName)
-              .assign(member.defaultValue!)
-              .statement,
-    ]));
+  Method _defaultValues({
+    required List<MemberShape> members,
+    required Reference builderSymbol,
+  }) =>
+      Method.returnsVoid(
+        (m) => m
+          ..annotations.add(DartTypes.builtValue.builtValueHook
+              .newInstance([], {'initializeBuilder': literalBool(true)}))
+          ..static = true
+          ..name = '_init'
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = builderSymbol
+            ..name = 'b'))
+          ..body = Block.of([
+            for (var member in members)
+              if (member.defaultValue != null)
+                refer('b')
+                    .property(member.dartName)
+                    .assign(member.defaultValue!)
+                    .statement,
+          ]),
+      );
 
   /// Fields for this type.
-  Iterable<Method> get _fieldGetters sync* {
-    for (var member in sortedMembers) {
+  Iterable<Method> _fieldGetters(List<MemberShape> members) sync* {
+    for (var member in members) {
       yield Method(
         (f) => f
           ..annotations.addAll([
@@ -136,42 +189,46 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
   }
 
+  /// The `getPayload` method.
+  Method get _getPayload => Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = payloadSymbol
+          ..name = 'getPayload'
+          ..lambda = true
+          ..body = _buildPayload,
+      );
+
+  Code get _buildPayload {
+    // If an instance member, return it.
+    if (payloadShape != null) {
+      return refer(payloadShape!.dartName).code;
+    }
+
+    // Build the payload using the payload builder class.
+    Expression builder = refer('b');
+    for (final member in serializableMembers) {
+      builder = builder.cascade(member.dartName).assign(refer(member.dartName));
+    }
+    return payloadSymbol.newInstance([
+      if (serializableMembers.isNotEmpty)
+        Method((m) => m
+          ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+          ..body = builder.code).closure,
+    ]).code;
+  }
+
   /// Methods to conform to `HttpInput`.
   Iterable<Method> get _httpInputOverrides sync* {
-    if (shape.isError) {
+    if (!shape.isInputShape) {
       return;
     }
 
-    final payload = httpInputTraits.httpPayload;
-
-    // `getPayload` override
-    yield Method(
-      (m) => m
-        ..annotations.add(DartTypes.core.override)
-        ..returns = payload.symbol
-        ..name = 'getPayload'
-        ..lambda = true
-        ..body = refer(payload.member?.dartName ?? 'this').code,
-    );
-
-    // `isStreaming` override
-    final bool isStreaming = payload.member != null &&
-        (payload.member!.isStreaming ||
-            context.shapeFor(payload.member!.target).isStreaming);
-    yield Method(
-      (m) => m
-        ..annotations.add(DartTypes.core.override)
-        ..returns = DartTypes.core.bool
-        ..name = 'isStreaming'
-        ..type = MethodType.getter
-        ..lambda = true
-        ..body = literalBool(isStreaming).code,
-    );
-
     // The `labelFor` method
+    final inputTraits = httpInputTraits!;
     final labels = [
-      ...httpInputTraits.httpLabels,
-      if (httpInputTraits.hostLabel != null) httpInputTraits.hostLabel!,
+      ...inputTraits.httpLabels,
+      if (inputTraits.hostLabel != null) inputTraits.hostLabel!,
     ];
     if (labels.isNotEmpty) {
       yield Method(
@@ -209,8 +266,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         (f) => f
           ..static = true
           ..modifier = FieldModifier.constant
-          ..type =
-              DartTypes.core.list(DartTypes.smithy.smithySerializer(symbol))
+          ..type = DartTypes.core.list(DartTypes.smithy.smithySerializer())
           ..name = 'serializers'
           ..assignment = literalList(
             serializerClasses.map((name) => refer(name).newInstance([])),
@@ -232,11 +288,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// The error traits, if an error structure.
   Iterable<Method> get _errorFields sync* {
-    if (!shape.isError) {
+    final errorTraits = httpErrorTraits;
+    if (errorTraits == null) {
       return;
     }
-
-    final cfg = shape.smithyError;
     if (shape.isHttpError) {
       // `kind` getter
       yield Method(
@@ -246,7 +301,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = 'kind'
           ..type = MethodType.getter
           ..lambda = true
-          ..body = DartTypes.smithy.errorKind.property(cfg.kind.name).code,
+          ..body =
+              DartTypes.smithy.errorKind.property(errorTraits.kind.name).code,
       );
 
       // `statusCode` getter
@@ -257,10 +313,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = 'statusCode'
           ..type = MethodType.getter
           ..lambda = true
-          ..body = (cfg.statusCode == null
-                  ? literalNull
-                  : literalNum(cfg.statusCode!))
-              .code,
+          ..body = literalNum(errorTraits.statusCode).code,
       );
     }
 
@@ -286,7 +339,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ..name = 'isRetryable'
         ..type = MethodType.getter
         ..lambda = true
-        ..body = literalBool(cfg.retryConfig != null).code,
+        ..body = literalBool(errorTraits.retryConfig != null).code,
     );
   }
 }

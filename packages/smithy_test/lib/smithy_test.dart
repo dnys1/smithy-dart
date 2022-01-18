@@ -2,4 +2,4 @@
 library smithy_test;
 
 export 'src/common.dart';
-export 'src/http/protocol_tests.dart';
+export 'src/http/http_request_test.dart';

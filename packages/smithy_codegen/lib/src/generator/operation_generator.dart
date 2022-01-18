@@ -36,6 +36,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..extend = DartTypes.smithy.httpOperation(
             inputPayload.symbol,
             inputSymbol,
+            outputPayload.symbol,
             outputSymbol,
           )
           ..fields.addAll([
@@ -97,6 +98,28 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     if (httpInputTraits.httpQueryParams != null) {
       yield _httpQueryParameters(httpInputTraits.httpQueryParams!);
     }
+  }
+
+  /// The statements of the output builder.
+  Iterable<Code> get _outputBuilder sync* {
+    final builder = refer('b');
+    final payload = refer('payload');
+    final response = refer('response');
+
+    // Add all payload members
+    final payloadShape = outputShape.payloadShape(context);
+    if (outputShape.hasBuiltPayload(context)) {
+      for (final member in outputShape.serializableMembers(context)) {
+        yield builder
+            .property(member.dartName)
+            .assign(payload.property(member.dartName))
+            .statement;
+      }
+    } else if (payloadShape != null) {
+      yield builder.property(payloadShape.dartName).assign(payload).statement;
+    }
+
+    // TODO: Add HTTP metadata
   }
 
   /// Adds the header to the request's headers map.
@@ -309,6 +332,34 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ..body = request.code,
     );
 
+    // The `buildOutput` method
+    final output = outputPayload.symbol == DartTypes.smithy.unit
+        ? refer('payload')
+        : outputSymbol.newInstance([
+            if (outputShape.members.isNotEmpty)
+              Method(
+                (m) => m
+                  ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+                  ..lambda = false
+                  ..body = Block.of(_outputBuilder),
+              ).closure,
+          ]);
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = outputSymbol
+        ..name = 'buildOutput'
+        ..requiredParameters.addAll([
+          Parameter((p) => p
+            ..name = 'payload'
+            ..type = outputPayload.symbol),
+          Parameter((p) => p
+            ..name = 'response'
+            ..type = DartTypes.smithy.httpResponse),
+        ])
+        ..body = output.code,
+    );
+
     // The `errorTypes` getter
     yield Method(
       (m) => m
@@ -318,17 +369,16 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ..name = 'errorTypes'
         ..lambda = true
         ..body = literalConstList([
-          for (var error in errorSymbols.entries)
+          for (var error in errorSymbols)
             DartTypes.smithy.smithyError.constInstance([
-              DartTypes.smithy.errorKind.property(error.key.kind.name),
-              error.value,
+              DartTypes.smithy.errorKind.property(error.kind.name),
+              error.symbol,
             ], {
-              if (error.key.statusCode != null)
-                'statusCode': literalNum(error.key.statusCode!),
-              if (error.key.retryConfig != null)
+              'statusCode': literalNum(error.statusCode),
+              if (error.retryConfig != null)
                 'retryConfig': DartTypes.smithy.retryConfig.constInstance([], {
                   'isThrottlingError':
-                      literalBool(error.key.retryConfig!.isThrottlingError),
+                      literalBool(error.retryConfig!.isThrottlingError),
                 })
             })
         ]).code,
@@ -345,6 +395,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             DartTypes.smithy.httpProtocol(
               inputPayload.symbol,
               inputSymbol,
+              outputPayload.symbol,
               outputSymbol,
             ),
           )

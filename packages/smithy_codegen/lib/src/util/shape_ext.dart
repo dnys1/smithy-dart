@@ -3,11 +3,9 @@ import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/protocol/protocol_traits.dart';
-import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
-import 'package:smithy_codegen/src/model/smithy_library.dart';
-import 'package:smithy_codegen/src/service/codegen.pb.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 extension SimpleShapeUtil on SimpleShape {
   Reference get typeReference {
@@ -126,22 +124,6 @@ extension ShapeUtils on Shape {
       ..libraryType = libraryType
       ..filename = shapeId.shape.snakeCase;
   }
-
-  SmithyError get smithyError {
-    final errorTrait = expectTrait<ErrorTrait>();
-    final httpErrorTrait = getTrait<HttpErrorTrait>();
-    final retryTrait = getTrait<RetryableTrait>();
-    return SmithyError(
-      errorTrait.type,
-      Never,
-      retryConfig: retryTrait == null
-          ? null
-          : RetryConfig(
-              isThrottlingError: retryTrait.throttling,
-            ),
-      statusCode: httpErrorTrait?.code,
-    );
-  }
 }
 
 extension OperationShapeUtil on OperationShape {
@@ -178,7 +160,10 @@ extension StructureShapeUtil on StructureShape {
       return shape.hasTrait<HttpPayloadTrait>();
     });
     if (payloadMember == null) {
-      final symbol = context.symbolFor(shapeId);
+      var symbol = context.symbolFor(shapeId);
+      if (shapeId != Shape.unit) {
+        symbol = symbol.typeRef.rebuild((t) => t.symbol = '${t.symbol}Payload');
+      }
       return HttpPayload((b) => b.symbol = symbol);
     }
     return HttpPayload(
@@ -189,9 +174,23 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// HTTP metadata on operation output structures.
-  HttpOutputTraits httpOutputTraits(CodegenContext context) {
+  HttpOutputTraits? httpOutputTraits(CodegenContext context) {
+    if (!isOutputShape && shapeId != Shape.unit) {
+      return null;
+    }
     final builder = HttpOutputTraitsBuilder();
+    builder.httpPayload.replace(httpPayload(context));
     for (var member in members.values) {
+      final headerTrait = member.getTrait<HttpHeaderTrait>();
+      if (headerTrait != null) {
+        builder.httpHeaders[headerTrait.value] = member;
+      }
+      final prefixHeadersTrait = member.getTrait<HttpPrefixHeadersTrait>();
+      if (prefixHeadersTrait != null) {
+        builder.httpPrefixHeaders
+          ..member.replace(member)
+          ..trait = prefixHeadersTrait;
+      }
       if (member.hasTrait<HttpResponseCodeTrait>()) {
         builder.httpResponseCode.replace(member);
       }
@@ -200,7 +199,10 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// HTTP metadata on operation input structures.
-  HttpInputTraits httpInputTraits(CodegenContext context) {
+  HttpInputTraits? httpInputTraits(CodegenContext context) {
+    if (!isInputShape && shapeId != Shape.unit) {
+      return null;
+    }
     final builder = HttpInputTraitsBuilder();
     builder.httpPayload.replace(httpPayload(context));
     for (var member in members.values) {
@@ -229,5 +231,105 @@ extension StructureShapeUtil on StructureShape {
       }
     }
     return builder.build();
+  }
+
+  HttpErrorTraits? httpErrorTraits(CodegenContext context) {
+    if (!isError) {
+      return null;
+    }
+    final builder = HttpErrorTraitsBuilder();
+    builder.symbol = context.symbolFor(shapeId);
+    final errorTrait = expectTrait<ErrorTrait>();
+    builder.kind = errorTrait.type;
+    final httpErrorTrait = getTrait<HttpErrorTrait>();
+    if (httpErrorTrait != null) {
+      builder.statusCode = httpErrorTrait.code;
+    }
+    final retryTrait = getTrait<RetryableTrait>();
+    if (retryTrait != null) {
+      builder.retryConfig = RetryConfig(
+        isThrottlingError: retryTrait.throttling,
+      );
+    }
+    builder.httpPayload.replace(httpPayload(context));
+    for (var member in members.values) {
+      final headerTrait = member.getTrait<HttpHeaderTrait>();
+      if (headerTrait != null) {
+        builder.httpHeaders[headerTrait.value] = member;
+      }
+      final prefixHeadersTrait = member.getTrait<HttpPrefixHeadersTrait>();
+      if (prefixHeadersTrait != null) {
+        builder.httpPrefixHeaders
+          ..member.replace(member)
+          ..trait = prefixHeadersTrait;
+      }
+    }
+    return builder.build();
+  }
+
+  /// Member shapes and their [Reference] types.
+  Map<MemberShape, Reference> memberSymbols(CodegenContext context) => {
+        for (var member in sortedMembers)
+          member: context
+              .symbolFor(member.target, this)
+              .withBoxed(member.isNullable(this)),
+      };
+
+  /// Members sorted by their re-cased Dart name.
+  List<MemberShape> get sortedMembers => members.values.toList()
+    ..sort((a, b) {
+      return a.dartName.compareTo(b.dartName);
+    });
+
+  /// The member shape to serialize when [HttpPayloadTrait] is used.
+  MemberShape? payloadShape(CodegenContext context) =>
+      httpInputTraits(context)?.httpPayload.member ??
+      httpOutputTraits(context)?.httpPayload.member ??
+      httpErrorTraits(context)?.httpPayload.member;
+
+  /// The list of all members which should not be serialized in the payload.
+  List<MemberShape> nonSerializableMembers(CodegenContext context) {
+    final httpInputTraits = this.httpInputTraits(context);
+    final httpOutputTraits = this.httpOutputTraits(context);
+    final httpErrorTraits = this.httpErrorTraits(context);
+
+    return <MemberShape?>{
+      httpInputTraits?.hostLabel,
+      ...?httpInputTraits?.httpHeaders.values,
+      httpInputTraits?.httpQueryParams,
+      ...?httpInputTraits?.httpLabels,
+      httpInputTraits?.httpPayload.member,
+      httpInputTraits?.httpPrefixHeaders?.member,
+      ...?httpInputTraits?.httpQuery.values,
+      httpOutputTraits?.httpResponseCode,
+      ...?httpOutputTraits?.httpHeaders.values,
+      httpOutputTraits?.httpPayload.member,
+      httpOutputTraits?.httpPrefixHeaders?.member,
+      ...?httpErrorTraits?.httpHeaders.values,
+      httpErrorTraits?.httpPayload.member,
+      httpErrorTraits?.httpPrefixHeaders?.member,
+    }.whereType<MemberShape>().toList()
+      ..sorted((a, b) => a.dartName.compareTo(b.dartName));
+  }
+
+  /// The list of all members which should be serialized in the payload.
+  List<MemberShape> serializableMembers(CodegenContext context) => sortedMembers
+      .where((member) => !nonSerializableMembers(context).contains(member))
+      .toList();
+
+  /// Whether the structure has an HTTP payload.
+  bool get hasPayload => isInputShape || isOutputShape || isError;
+
+  /// Whether the structure needs a payload struct.
+  bool hasBuiltPayload(CodegenContext context) =>
+      hasPayload && payloadShape(context) == null;
+
+  /// Whether the structure has a streaming payload.
+  bool hasStreamingPayload(CodegenContext context) {
+    final payloadShape = this.payloadShape(context);
+    return hasPayload &&
+        payloadShape != null &&
+        (payloadShape.isStreaming ||
+            context.shapeFor(payloadShape.target).isStreaming);
   }
 }

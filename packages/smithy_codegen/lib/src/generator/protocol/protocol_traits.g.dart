@@ -417,13 +417,29 @@ class HttpInputTraitsBuilder
 
 class _$HttpOutputTraits extends HttpOutputTraits {
   @override
+  final BuiltMap<String, MemberShape> httpHeaders;
+  @override
+  final HttpPayload httpPayload;
+  @override
+  final HttpPrefixHeaders? httpPrefixHeaders;
+  @override
   final MemberShape? httpResponseCode;
 
   factory _$HttpOutputTraits(
           [void Function(HttpOutputTraitsBuilder)? updates]) =>
       (new HttpOutputTraitsBuilder()..update(updates)).build();
 
-  _$HttpOutputTraits._({this.httpResponseCode}) : super._();
+  _$HttpOutputTraits._(
+      {required this.httpHeaders,
+      required this.httpPayload,
+      this.httpPrefixHeaders,
+      this.httpResponseCode})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        httpHeaders, 'HttpOutputTraits', 'httpHeaders');
+    BuiltValueNullFieldError.checkNotNull(
+        httpPayload, 'HttpOutputTraits', 'httpPayload');
+  }
 
   @override
   HttpOutputTraits rebuild(void Function(HttpOutputTraitsBuilder) updates) =>
@@ -437,17 +453,26 @@ class _$HttpOutputTraits extends HttpOutputTraits {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpOutputTraits &&
+        httpHeaders == other.httpHeaders &&
+        httpPayload == other.httpPayload &&
+        httpPrefixHeaders == other.httpPrefixHeaders &&
         httpResponseCode == other.httpResponseCode;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, httpResponseCode.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, httpHeaders.hashCode), httpPayload.hashCode),
+            httpPrefixHeaders.hashCode),
+        httpResponseCode.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HttpOutputTraits')
+          ..add('httpHeaders', httpHeaders)
+          ..add('httpPayload', httpPayload)
+          ..add('httpPrefixHeaders', httpPrefixHeaders)
           ..add('httpResponseCode', httpResponseCode))
         .toString();
   }
@@ -456,6 +481,24 @@ class _$HttpOutputTraits extends HttpOutputTraits {
 class HttpOutputTraitsBuilder
     implements Builder<HttpOutputTraits, HttpOutputTraitsBuilder> {
   _$HttpOutputTraits? _$v;
+
+  MapBuilder<String, MemberShape>? _httpHeaders;
+  MapBuilder<String, MemberShape> get httpHeaders =>
+      _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
+  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders) =>
+      _$this._httpHeaders = httpHeaders;
+
+  HttpPayloadBuilder? _httpPayload;
+  HttpPayloadBuilder get httpPayload =>
+      _$this._httpPayload ??= new HttpPayloadBuilder();
+  set httpPayload(HttpPayloadBuilder? httpPayload) =>
+      _$this._httpPayload = httpPayload;
+
+  HttpPrefixHeadersBuilder? _httpPrefixHeaders;
+  HttpPrefixHeadersBuilder get httpPrefixHeaders =>
+      _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
+  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
+      _$this._httpPrefixHeaders = httpPrefixHeaders;
 
   MemberShapeBuilder? _httpResponseCode;
   MemberShapeBuilder get httpResponseCode =>
@@ -468,6 +511,9 @@ class HttpOutputTraitsBuilder
   HttpOutputTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _httpHeaders = $v.httpHeaders.toBuilder();
+      _httpPayload = $v.httpPayload.toBuilder();
+      _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
       _httpResponseCode = $v.httpResponseCode?.toBuilder();
       _$v = null;
     }
@@ -491,15 +537,215 @@ class HttpOutputTraitsBuilder
     try {
       _$result = _$v ??
           new _$HttpOutputTraits._(
+              httpHeaders: httpHeaders.build(),
+              httpPayload: httpPayload.build(),
+              httpPrefixHeaders: _httpPrefixHeaders?.build(),
               httpResponseCode: _httpResponseCode?.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'httpHeaders';
+        httpHeaders.build();
+        _$failedField = 'httpPayload';
+        httpPayload.build();
+        _$failedField = 'httpPrefixHeaders';
+        _httpPrefixHeaders?.build();
         _$failedField = 'httpResponseCode';
         _httpResponseCode?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'HttpOutputTraits', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$HttpErrorTraits extends HttpErrorTraits {
+  @override
+  final ErrorKind kind;
+  @override
+  final Reference symbol;
+  @override
+  final RetryConfig? retryConfig;
+  @override
+  final int statusCode;
+  @override
+  final BuiltMap<String, MemberShape> httpHeaders;
+  @override
+  final HttpPayload httpPayload;
+  @override
+  final HttpPrefixHeaders? httpPrefixHeaders;
+
+  factory _$HttpErrorTraits([void Function(HttpErrorTraitsBuilder)? updates]) =>
+      (new HttpErrorTraitsBuilder()..update(updates)).build();
+
+  _$HttpErrorTraits._(
+      {required this.kind,
+      required this.symbol,
+      this.retryConfig,
+      required this.statusCode,
+      required this.httpHeaders,
+      required this.httpPayload,
+      this.httpPrefixHeaders})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(kind, 'HttpErrorTraits', 'kind');
+    BuiltValueNullFieldError.checkNotNull(symbol, 'HttpErrorTraits', 'symbol');
+    BuiltValueNullFieldError.checkNotNull(
+        statusCode, 'HttpErrorTraits', 'statusCode');
+    BuiltValueNullFieldError.checkNotNull(
+        httpHeaders, 'HttpErrorTraits', 'httpHeaders');
+    BuiltValueNullFieldError.checkNotNull(
+        httpPayload, 'HttpErrorTraits', 'httpPayload');
+  }
+
+  @override
+  HttpErrorTraits rebuild(void Function(HttpErrorTraitsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  HttpErrorTraitsBuilder toBuilder() =>
+      new HttpErrorTraitsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is HttpErrorTraits &&
+        kind == other.kind &&
+        symbol == other.symbol &&
+        retryConfig == other.retryConfig &&
+        statusCode == other.statusCode &&
+        httpHeaders == other.httpHeaders &&
+        httpPayload == other.httpPayload &&
+        httpPrefixHeaders == other.httpPrefixHeaders;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, kind.hashCode), symbol.hashCode),
+                        retryConfig.hashCode),
+                    statusCode.hashCode),
+                httpHeaders.hashCode),
+            httpPayload.hashCode),
+        httpPrefixHeaders.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('HttpErrorTraits')
+          ..add('kind', kind)
+          ..add('symbol', symbol)
+          ..add('retryConfig', retryConfig)
+          ..add('statusCode', statusCode)
+          ..add('httpHeaders', httpHeaders)
+          ..add('httpPayload', httpPayload)
+          ..add('httpPrefixHeaders', httpPrefixHeaders))
+        .toString();
+  }
+}
+
+class HttpErrorTraitsBuilder
+    implements Builder<HttpErrorTraits, HttpErrorTraitsBuilder> {
+  _$HttpErrorTraits? _$v;
+
+  ErrorKind? _kind;
+  ErrorKind? get kind => _$this._kind;
+  set kind(ErrorKind? kind) => _$this._kind = kind;
+
+  Reference? _symbol;
+  Reference? get symbol => _$this._symbol;
+  set symbol(Reference? symbol) => _$this._symbol = symbol;
+
+  RetryConfig? _retryConfig;
+  RetryConfig? get retryConfig => _$this._retryConfig;
+  set retryConfig(RetryConfig? retryConfig) =>
+      _$this._retryConfig = retryConfig;
+
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  MapBuilder<String, MemberShape>? _httpHeaders;
+  MapBuilder<String, MemberShape> get httpHeaders =>
+      _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
+  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders) =>
+      _$this._httpHeaders = httpHeaders;
+
+  HttpPayloadBuilder? _httpPayload;
+  HttpPayloadBuilder get httpPayload =>
+      _$this._httpPayload ??= new HttpPayloadBuilder();
+  set httpPayload(HttpPayloadBuilder? httpPayload) =>
+      _$this._httpPayload = httpPayload;
+
+  HttpPrefixHeadersBuilder? _httpPrefixHeaders;
+  HttpPrefixHeadersBuilder get httpPrefixHeaders =>
+      _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
+  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
+      _$this._httpPrefixHeaders = httpPrefixHeaders;
+
+  HttpErrorTraitsBuilder();
+
+  HttpErrorTraitsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _kind = $v.kind;
+      _symbol = $v.symbol;
+      _retryConfig = $v.retryConfig;
+      _statusCode = $v.statusCode;
+      _httpHeaders = $v.httpHeaders.toBuilder();
+      _httpPayload = $v.httpPayload.toBuilder();
+      _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(HttpErrorTraits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$HttpErrorTraits;
+  }
+
+  @override
+  void update(void Function(HttpErrorTraitsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$HttpErrorTraits build() {
+    HttpErrorTraits._init(this);
+    _$HttpErrorTraits _$result;
+    try {
+      _$result = _$v ??
+          new _$HttpErrorTraits._(
+              kind: BuiltValueNullFieldError.checkNotNull(
+                  kind, 'HttpErrorTraits', 'kind'),
+              symbol: BuiltValueNullFieldError.checkNotNull(
+                  symbol, 'HttpErrorTraits', 'symbol'),
+              retryConfig: retryConfig,
+              statusCode: BuiltValueNullFieldError.checkNotNull(
+                  statusCode, 'HttpErrorTraits', 'statusCode'),
+              httpHeaders: httpHeaders.build(),
+              httpPayload: httpPayload.build(),
+              httpPrefixHeaders: _httpPrefixHeaders?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'httpHeaders';
+        httpHeaders.build();
+        _$failedField = 'httpPayload';
+        httpPayload.build();
+        _$failedField = 'httpPrefixHeaders';
+        _httpPrefixHeaders?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'HttpErrorTraits', _$failedField, e.toString());
       }
       rethrow;
     }

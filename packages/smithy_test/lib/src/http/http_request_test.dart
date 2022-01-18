@@ -9,8 +9,9 @@ import 'package:test/test.dart';
 
 /// Performs an HTTP request test for [operation] for a test case from an
 /// [HttpRequestTestsTrait].
-void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
-  required HttpOperation<Payload, Input, Output> operation,
+void httpRequestTest<InputPayload, Input extends HttpInput<InputPayload>,
+    OutputPayload, Output>({
+  required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required Map<String, Object?> testCaseJson,
   required Input input,
 }) {

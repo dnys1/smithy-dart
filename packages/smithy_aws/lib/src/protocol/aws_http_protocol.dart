@@ -1,8 +1,12 @@
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 
-abstract class AWSHttpProtocol<Payload, Input extends HttpInput<Payload>,
-    Output> extends HttpProtocol<Payload, Input, Output> {
+abstract class AWSHttpProtocol<
+        InputPayload extends Object?,
+        Input extends HttpInput<InputPayload>,
+        OutputPayload extends Object?,
+        Output extends HasPayload<OutputPayload>>
+    extends HttpProtocol<InputPayload, Input, OutputPayload, Output> {
   AWSHttpProtocol(
     this._coreSerializers, {
     required List<SmithySerializer> serializers,

@@ -85,3 +85,11 @@ extension ShapeExt on Shape {
   /// Whether `this` has the `@httpError` trait.
   bool get isHttpError => hasTrait<HttpErrorTrait>();
 }
+
+extension StructureShapeExt on StructureShape {
+  /// Whether this is an input to an operation.
+  bool get isInputShape => hasTrait<InputTrait>();
+
+  /// Whether this is an output to an operation.
+  bool get isOutputShape => hasTrait<OutputTrait>();
+}

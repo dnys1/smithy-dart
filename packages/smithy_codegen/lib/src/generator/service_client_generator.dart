@@ -28,29 +28,10 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
         c
           ..name = className
           ..constructors.add(_clientConstructor)
-          ..fields.addAll(_operationFields)
           ..methods.addAll(_operationMethods);
       });
 
   Constructor get _clientConstructor => Constructor();
-
-  /// The late final fields for the operations, so that they
-  /// only need to be built once.
-  Iterable<Field> get _operationFields sync* {
-    for (final operation in _operations) {
-      if (!operation.hasTrait<HttpTrait>()) {
-        continue;
-      }
-      yield Field(
-        (f) => f
-          ..late = true
-          ..modifier = FieldModifier.final$
-          ..name = '_' + operation.dartName.camelCase
-          ..assignment =
-              context.symbolFor(operation.shapeId).newInstance([]).code,
-      );
-    }
-  }
 
   /// Generate a callable method for each operation.
   Iterable<Method> get _operationMethods sync* {
@@ -58,7 +39,6 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       if (!operation.hasTrait<HttpTrait>()) {
         continue;
       }
-      final fieldName = '_' + operation.dartName.camelCase;
       final operationInput = operation.inputSymbol(context);
       var operationOutput = operation.outputSymbol(context);
       // Replace Unit with void for nicer DX
@@ -75,7 +55,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ..requiredParameters.add(Parameter((p) => p
             ..type = operationInput
             ..name = 'input'))
-          ..body = refer(fieldName)
+          ..body = context
+              .symbolFor(operation.shapeId)
+              .newInstance([])
               .property('run')
               .call([
                 refer('input'),

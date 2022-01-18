@@ -25,6 +25,7 @@ operation MapInput {
     errors: [MapInputError]
 }
 
+@input
 structure MapInputRequest {
     mapOfLists: MapOfLists
 }

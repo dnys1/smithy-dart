@@ -98,4 +98,84 @@ class MapInputRequestBuilder
   }
 }
 
+class _$MapInputRequestPayload extends MapInputRequestPayload {
+  @override
+  final _i2.BuiltListMultimap<String, int?>? mapOfLists;
+
+  factory _$MapInputRequestPayload(
+          [void Function(MapInputRequestPayloadBuilder)? updates]) =>
+      (new MapInputRequestPayloadBuilder()..update(updates)).build();
+
+  _$MapInputRequestPayload._({this.mapOfLists}) : super._();
+
+  @override
+  MapInputRequestPayload rebuild(
+          void Function(MapInputRequestPayloadBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MapInputRequestPayloadBuilder toBuilder() =>
+      new MapInputRequestPayloadBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MapInputRequestPayload && mapOfLists == other.mapOfLists;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, mapOfLists.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MapInputRequestPayload')
+          ..add('mapOfLists', mapOfLists))
+        .toString();
+  }
+}
+
+class MapInputRequestPayloadBuilder
+    implements Builder<MapInputRequestPayload, MapInputRequestPayloadBuilder> {
+  _$MapInputRequestPayload? _$v;
+
+  _i2.BuiltListMultimap<String, int?>? _mapOfLists;
+  _i2.BuiltListMultimap<String, int?>? get mapOfLists => _$this._mapOfLists;
+  set mapOfLists(_i2.BuiltListMultimap<String, int?>? mapOfLists) =>
+      _$this._mapOfLists = mapOfLists;
+
+  MapInputRequestPayloadBuilder() {
+    MapInputRequestPayload._init(this);
+  }
+
+  MapInputRequestPayloadBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _mapOfLists = $v.mapOfLists;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MapInputRequestPayload other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MapInputRequestPayload;
+  }
+
+  @override
+  void update(void Function(MapInputRequestPayloadBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MapInputRequestPayload build() {
+    final _$result =
+        _$v ?? new _$MapInputRequestPayload._(mapOfLists: mapOfLists);
+    replace(_$result);
+    return _$result;
+  }
+}
+
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

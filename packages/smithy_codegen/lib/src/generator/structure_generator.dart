@@ -3,7 +3,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/protocol/serializer_generator.dart';
-import 'package:smithy_codegen/src/generator/structure_generation_context.dart';
+import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
@@ -16,9 +16,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     StructureShape shape,
     CodegenContext context,
   ) : super(shape, context: context);
-
-  /// The resolved HTTP payload shape/type.
-  late final HttpPayload _httpPayload = shape.httpPayload(context);
 
   @override
   Library generate() {
@@ -52,7 +49,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               else
                 DartTypes.smithy.smithyException
             else
-              DartTypes.smithy.httpInput(_httpPayload.symbol),
+              DartTypes.smithy.httpInput(httpInputTraits.httpPayload.symbol),
           ])
           ..constructors.addAll([
             _factoryConstructor,
@@ -145,20 +142,22 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       return;
     }
 
+    final payload = httpInputTraits.httpPayload;
+
     // `getPayload` override
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = _httpPayload.symbol
+        ..returns = payload.symbol
         ..name = 'getPayload'
         ..lambda = true
-        ..body = refer(_httpPayload.member?.dartName ?? 'this').code,
+        ..body = refer(payload.member?.dartName ?? 'this').code,
     );
 
     // `isStreaming` override
-    final bool isStreaming = _httpPayload.member != null &&
-        (_httpPayload.member!.isStreaming ||
-            context.shapeFor(_httpPayload.member!.target).isStreaming);
+    final bool isStreaming = payload.member != null &&
+        (payload.member!.isStreaming ||
+            context.shapeFor(payload.member!.target).isStreaming);
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
@@ -168,6 +167,40 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ..lambda = true
         ..body = literalBool(isStreaming).code,
     );
+
+    // The `labelFor` method
+    final labels = [
+      ...httpInputTraits.httpLabels,
+      if (httpInputTraits.hostLabel != null) httpInputTraits.hostLabel!,
+    ];
+    if (labels.isNotEmpty) {
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.core.string
+          ..name = 'labelFor'
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = DartTypes.core.string
+            ..name = 'key'))
+          ..body = Block.of([
+            const Code('switch (key) {'),
+            for (var label in labels) ...[
+              Code("case '${label.memberName}':"),
+              refer(label.dartName)
+                  // TODO: proper toString (timestamps, etc.)
+                  .property('toString')
+                  .call([])
+                  .returned
+                  .statement,
+            ],
+            const Code('}'),
+            DartTypes.smithy.missingLabelException
+                .newInstance([refer('this'), refer('key')])
+                .thrown
+                .statement,
+          ]),
+      );
+    }
   }
 
   /// Creates the static `serializers` field using the class names in

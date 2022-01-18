@@ -2,7 +2,8 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/generator/structure_generation_context.dart';
+import 'package:smithy_codegen/src/generator/protocol/protocol_traits.dart';
+import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/model/smithy_library.dart';
 import 'package:smithy_codegen/src/service/codegen.pb.dart';
@@ -178,11 +179,55 @@ extension StructureShapeUtil on StructureShape {
     });
     if (payloadMember == null) {
       final symbol = context.symbolFor(shapeId);
-      return HttpPayload(symbol);
+      return HttpPayload((b) => b.symbol = symbol);
     }
     return HttpPayload(
-      context.symbolFor(payloadMember.target, this),
-      payloadMember,
+      (b) => b
+        ..symbol = context.symbolFor(payloadMember.target, this)
+        ..member.replace(payloadMember),
     );
+  }
+
+  /// HTTP metadata on operation output structures.
+  HttpOutputTraits httpOutputTraits(CodegenContext context) {
+    final builder = HttpOutputTraitsBuilder();
+    for (var member in members.values) {
+      if (member.hasTrait<HttpResponseCodeTrait>()) {
+        builder.httpResponseCode.replace(member);
+      }
+    }
+    return builder.build();
+  }
+
+  /// HTTP metadata on operation input structures.
+  HttpInputTraits httpInputTraits(CodegenContext context) {
+    final builder = HttpInputTraitsBuilder();
+    builder.httpPayload.replace(httpPayload(context));
+    for (var member in members.values) {
+      final headerTrait = member.getTrait<HttpHeaderTrait>();
+      if (headerTrait != null) {
+        builder.httpHeaders[headerTrait.value] = member;
+      }
+      if (member.hasTrait<HttpLabelTrait>()) {
+        builder.httpLabels.add(member);
+      }
+      final prefixHeadersTrait = member.getTrait<HttpPrefixHeadersTrait>();
+      if (prefixHeadersTrait != null) {
+        builder.httpPrefixHeaders
+          ..member.replace(member)
+          ..trait = prefixHeadersTrait;
+      }
+      if (member.hasTrait<HostLabelTrait>()) {
+        builder.hostLabel.replace(member);
+      }
+      final queryTrait = member.getTrait<HttpQueryTrait>();
+      if (queryTrait != null) {
+        builder.httpQuery[queryTrait.value] = member;
+      }
+      if (member.hasTrait<HttpQueryParamsTrait>()) {
+        builder.httpQueryParams.replace(member);
+      }
+    }
+    return builder.build();
   }
 }

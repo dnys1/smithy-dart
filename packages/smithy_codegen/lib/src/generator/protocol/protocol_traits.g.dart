@@ -6,6 +6,107 @@ part of 'protocol_traits.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+class _$HttpPayload extends HttpPayload {
+  @override
+  final Reference symbol;
+  @override
+  final MemberShape? member;
+
+  factory _$HttpPayload([void Function(HttpPayloadBuilder)? updates]) =>
+      (new HttpPayloadBuilder()..update(updates)).build();
+
+  _$HttpPayload._({required this.symbol, this.member}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(symbol, 'HttpPayload', 'symbol');
+  }
+
+  @override
+  HttpPayload rebuild(void Function(HttpPayloadBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  HttpPayloadBuilder toBuilder() => new HttpPayloadBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is HttpPayload &&
+        symbol == other.symbol &&
+        member == other.member;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, symbol.hashCode), member.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('HttpPayload')
+          ..add('symbol', symbol)
+          ..add('member', member))
+        .toString();
+  }
+}
+
+class HttpPayloadBuilder implements Builder<HttpPayload, HttpPayloadBuilder> {
+  _$HttpPayload? _$v;
+
+  Reference? _symbol;
+  Reference? get symbol => _$this._symbol;
+  set symbol(Reference? symbol) => _$this._symbol = symbol;
+
+  MemberShapeBuilder? _member;
+  MemberShapeBuilder get member => _$this._member ??= new MemberShapeBuilder();
+  set member(MemberShapeBuilder? member) => _$this._member = member;
+
+  HttpPayloadBuilder();
+
+  HttpPayloadBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _symbol = $v.symbol;
+      _member = $v.member?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(HttpPayload other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$HttpPayload;
+  }
+
+  @override
+  void update(void Function(HttpPayloadBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$HttpPayload build() {
+    _$HttpPayload _$result;
+    try {
+      _$result = _$v ??
+          new _$HttpPayload._(
+              symbol: BuiltValueNullFieldError.checkNotNull(
+                  symbol, 'HttpPayload', 'symbol'),
+              member: _member?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'member';
+        _member?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'HttpPayload', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$HttpPrefixHeaders extends HttpPrefixHeaders {
   @override
   final HttpPrefixHeadersTrait trait;
@@ -113,76 +214,63 @@ class HttpPrefixHeadersBuilder
   }
 }
 
-class _$HttpProtocolTraits extends HttpProtocolTraits {
-  @override
-  final HttpTrait http;
+class _$HttpInputTraits extends HttpInputTraits {
   @override
   final BuiltMap<String, MemberShape> httpHeaders;
   @override
   final BuiltSet<MemberShape> httpLabels;
   @override
-  final MemberShape? httpPayload;
+  final HttpPayload httpPayload;
   @override
   final HttpPrefixHeaders? httpPrefixHeaders;
-  @override
-  final String? hostPrefix;
   @override
   final MemberShape? hostLabel;
   @override
   final BuiltMap<String, MemberShape> httpQuery;
   @override
   final MemberShape? httpQueryParams;
-  @override
-  final MemberShape? httpResponseCode;
 
-  factory _$HttpProtocolTraits(
-          [void Function(HttpProtocolTraitsBuilder)? updates]) =>
-      (new HttpProtocolTraitsBuilder()..update(updates)).build();
+  factory _$HttpInputTraits([void Function(HttpInputTraitsBuilder)? updates]) =>
+      (new HttpInputTraitsBuilder()..update(updates)).build();
 
-  _$HttpProtocolTraits._(
-      {required this.http,
-      required this.httpHeaders,
+  _$HttpInputTraits._(
+      {required this.httpHeaders,
       required this.httpLabels,
-      this.httpPayload,
+      required this.httpPayload,
       this.httpPrefixHeaders,
-      this.hostPrefix,
       this.hostLabel,
       required this.httpQuery,
-      this.httpQueryParams,
-      this.httpResponseCode})
+      this.httpQueryParams})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(http, 'HttpProtocolTraits', 'http');
     BuiltValueNullFieldError.checkNotNull(
-        httpHeaders, 'HttpProtocolTraits', 'httpHeaders');
+        httpHeaders, 'HttpInputTraits', 'httpHeaders');
     BuiltValueNullFieldError.checkNotNull(
-        httpLabels, 'HttpProtocolTraits', 'httpLabels');
+        httpLabels, 'HttpInputTraits', 'httpLabels');
     BuiltValueNullFieldError.checkNotNull(
-        httpQuery, 'HttpProtocolTraits', 'httpQuery');
+        httpPayload, 'HttpInputTraits', 'httpPayload');
+    BuiltValueNullFieldError.checkNotNull(
+        httpQuery, 'HttpInputTraits', 'httpQuery');
   }
 
   @override
-  HttpProtocolTraits rebuild(
-          void Function(HttpProtocolTraitsBuilder) updates) =>
+  HttpInputTraits rebuild(void Function(HttpInputTraitsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  HttpProtocolTraitsBuilder toBuilder() =>
-      new HttpProtocolTraitsBuilder()..replace(this);
+  HttpInputTraitsBuilder toBuilder() =>
+      new HttpInputTraitsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is HttpProtocolTraits &&
-        http == other.http &&
+    return other is HttpInputTraits &&
         httpHeaders == other.httpHeaders &&
         httpLabels == other.httpLabels &&
         httpPayload == other.httpPayload &&
         httpPrefixHeaders == other.httpPrefixHeaders &&
-        hostPrefix == other.hostPrefix &&
         hostLabel == other.hostLabel &&
         httpQuery == other.httpQuery &&
-        httpQueryParams == other.httpQueryParams &&
-        httpResponseCode == other.httpResponseCode;
+        httpQueryParams == other.httpQueryParams;
   }
 
   @override
@@ -191,46 +279,31 @@ class _$HttpProtocolTraits extends HttpProtocolTraits {
         $jc(
             $jc(
                 $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc($jc(0, http.hashCode),
-                                        httpHeaders.hashCode),
-                                    httpLabels.hashCode),
-                                httpPayload.hashCode),
-                            httpPrefixHeaders.hashCode),
-                        hostPrefix.hashCode),
-                    hostLabel.hashCode),
-                httpQuery.hashCode),
-            httpQueryParams.hashCode),
-        httpResponseCode.hashCode));
+                    $jc($jc($jc(0, httpHeaders.hashCode), httpLabels.hashCode),
+                        httpPayload.hashCode),
+                    httpPrefixHeaders.hashCode),
+                hostLabel.hashCode),
+            httpQuery.hashCode),
+        httpQueryParams.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('HttpProtocolTraits')
-          ..add('http', http)
+    return (newBuiltValueToStringHelper('HttpInputTraits')
           ..add('httpHeaders', httpHeaders)
           ..add('httpLabels', httpLabels)
           ..add('httpPayload', httpPayload)
           ..add('httpPrefixHeaders', httpPrefixHeaders)
-          ..add('hostPrefix', hostPrefix)
           ..add('hostLabel', hostLabel)
           ..add('httpQuery', httpQuery)
-          ..add('httpQueryParams', httpQueryParams)
-          ..add('httpResponseCode', httpResponseCode))
+          ..add('httpQueryParams', httpQueryParams))
         .toString();
   }
 }
 
-class HttpProtocolTraitsBuilder
-    implements Builder<HttpProtocolTraits, HttpProtocolTraitsBuilder> {
-  _$HttpProtocolTraits? _$v;
-
-  HttpTrait? _http;
-  HttpTrait? get http => _$this._http;
-  set http(HttpTrait? http) => _$this._http = http;
+class HttpInputTraitsBuilder
+    implements Builder<HttpInputTraits, HttpInputTraitsBuilder> {
+  _$HttpInputTraits? _$v;
 
   MapBuilder<String, MemberShape>? _httpHeaders;
   MapBuilder<String, MemberShape> get httpHeaders =>
@@ -244,10 +317,10 @@ class HttpProtocolTraitsBuilder
   set httpLabels(SetBuilder<MemberShape>? httpLabels) =>
       _$this._httpLabels = httpLabels;
 
-  MemberShapeBuilder? _httpPayload;
-  MemberShapeBuilder get httpPayload =>
-      _$this._httpPayload ??= new MemberShapeBuilder();
-  set httpPayload(MemberShapeBuilder? httpPayload) =>
+  HttpPayloadBuilder? _httpPayload;
+  HttpPayloadBuilder get httpPayload =>
+      _$this._httpPayload ??= new HttpPayloadBuilder();
+  set httpPayload(HttpPayloadBuilder? httpPayload) =>
       _$this._httpPayload = httpPayload;
 
   HttpPrefixHeadersBuilder? _httpPrefixHeaders;
@@ -255,10 +328,6 @@ class HttpProtocolTraitsBuilder
       _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
   set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
       _$this._httpPrefixHeaders = httpPrefixHeaders;
-
-  String? _hostPrefix;
-  String? get hostPrefix => _$this._hostPrefix;
-  set hostPrefix(String? hostPrefix) => _$this._hostPrefix = hostPrefix;
 
   MemberShapeBuilder? _hostLabel;
   MemberShapeBuilder get hostLabel =>
@@ -277,60 +346,47 @@ class HttpProtocolTraitsBuilder
   set httpQueryParams(MemberShapeBuilder? httpQueryParams) =>
       _$this._httpQueryParams = httpQueryParams;
 
-  MemberShapeBuilder? _httpResponseCode;
-  MemberShapeBuilder get httpResponseCode =>
-      _$this._httpResponseCode ??= new MemberShapeBuilder();
-  set httpResponseCode(MemberShapeBuilder? httpResponseCode) =>
-      _$this._httpResponseCode = httpResponseCode;
+  HttpInputTraitsBuilder();
 
-  HttpProtocolTraitsBuilder();
-
-  HttpProtocolTraitsBuilder get _$this {
+  HttpInputTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _http = $v.http;
       _httpHeaders = $v.httpHeaders.toBuilder();
       _httpLabels = $v.httpLabels.toBuilder();
-      _httpPayload = $v.httpPayload?.toBuilder();
+      _httpPayload = $v.httpPayload.toBuilder();
       _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
-      _hostPrefix = $v.hostPrefix;
       _hostLabel = $v.hostLabel?.toBuilder();
       _httpQuery = $v.httpQuery.toBuilder();
       _httpQueryParams = $v.httpQueryParams?.toBuilder();
-      _httpResponseCode = $v.httpResponseCode?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(HttpProtocolTraits other) {
+  void replace(HttpInputTraits other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$HttpProtocolTraits;
+    _$v = other as _$HttpInputTraits;
   }
 
   @override
-  void update(void Function(HttpProtocolTraitsBuilder)? updates) {
+  void update(void Function(HttpInputTraitsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$HttpProtocolTraits build() {
-    _$HttpProtocolTraits _$result;
+  _$HttpInputTraits build() {
+    _$HttpInputTraits _$result;
     try {
       _$result = _$v ??
-          new _$HttpProtocolTraits._(
-              http: BuiltValueNullFieldError.checkNotNull(
-                  http, 'HttpProtocolTraits', 'http'),
+          new _$HttpInputTraits._(
               httpHeaders: httpHeaders.build(),
               httpLabels: httpLabels.build(),
-              httpPayload: _httpPayload?.build(),
+              httpPayload: httpPayload.build(),
               httpPrefixHeaders: _httpPrefixHeaders?.build(),
-              hostPrefix: hostPrefix,
               hostLabel: _hostLabel?.build(),
               httpQuery: httpQuery.build(),
-              httpQueryParams: _httpQueryParams?.build(),
-              httpResponseCode: _httpResponseCode?.build());
+              httpQueryParams: _httpQueryParams?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -339,21 +395,111 @@ class HttpProtocolTraitsBuilder
         _$failedField = 'httpLabels';
         httpLabels.build();
         _$failedField = 'httpPayload';
-        _httpPayload?.build();
+        httpPayload.build();
         _$failedField = 'httpPrefixHeaders';
         _httpPrefixHeaders?.build();
-
         _$failedField = 'hostLabel';
         _hostLabel?.build();
         _$failedField = 'httpQuery';
         httpQuery.build();
         _$failedField = 'httpQueryParams';
         _httpQueryParams?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'HttpInputTraits', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$HttpOutputTraits extends HttpOutputTraits {
+  @override
+  final MemberShape? httpResponseCode;
+
+  factory _$HttpOutputTraits(
+          [void Function(HttpOutputTraitsBuilder)? updates]) =>
+      (new HttpOutputTraitsBuilder()..update(updates)).build();
+
+  _$HttpOutputTraits._({this.httpResponseCode}) : super._();
+
+  @override
+  HttpOutputTraits rebuild(void Function(HttpOutputTraitsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  HttpOutputTraitsBuilder toBuilder() =>
+      new HttpOutputTraitsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is HttpOutputTraits &&
+        httpResponseCode == other.httpResponseCode;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, httpResponseCode.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('HttpOutputTraits')
+          ..add('httpResponseCode', httpResponseCode))
+        .toString();
+  }
+}
+
+class HttpOutputTraitsBuilder
+    implements Builder<HttpOutputTraits, HttpOutputTraitsBuilder> {
+  _$HttpOutputTraits? _$v;
+
+  MemberShapeBuilder? _httpResponseCode;
+  MemberShapeBuilder get httpResponseCode =>
+      _$this._httpResponseCode ??= new MemberShapeBuilder();
+  set httpResponseCode(MemberShapeBuilder? httpResponseCode) =>
+      _$this._httpResponseCode = httpResponseCode;
+
+  HttpOutputTraitsBuilder();
+
+  HttpOutputTraitsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _httpResponseCode = $v.httpResponseCode?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(HttpOutputTraits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$HttpOutputTraits;
+  }
+
+  @override
+  void update(void Function(HttpOutputTraitsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$HttpOutputTraits build() {
+    _$HttpOutputTraits _$result;
+    try {
+      _$result = _$v ??
+          new _$HttpOutputTraits._(
+              httpResponseCode: _httpResponseCode?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
         _$failedField = 'httpResponseCode';
         _httpResponseCode?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'HttpProtocolTraits', _$failedField, e.toString());
+            'HttpOutputTraits', _$failedField, e.toString());
       }
       rethrow;
     }

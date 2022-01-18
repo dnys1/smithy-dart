@@ -30,6 +30,14 @@ abstract class SayHelloInput
   SayHelloInput getPayload() => this;
   @override
   bool get isStreaming => false;
+  @override
+  String labelFor(String key) {
+    switch (key) {
+      case 'hostLabel':
+        return hostLabel.toString();
+    }
+    throw _i1.MissingLabelException(this, key);
+  }
 }
 
 class _SayHelloInputAwsJson11Serializer
@@ -52,20 +60,8 @@ class _SayHelloInputAwsJson11Serializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'greeting':
-          result.greeting = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
-          break;
-        case 'hostLabel':
-          result.hostLabel = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String);
-          break;
         case 'name':
           result.name = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
-          break;
-        case 'query':
-          result.query = (serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?);
           break;
       }
@@ -77,27 +73,11 @@ class _SayHelloInputAwsJson11Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, SayHelloInput object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'hostLabel',
-      serializers.serialize(object.hostLabel,
-          specifiedType: const FullType(String))
-    ];
-    if (object.greeting != null) {
-      result
-        ..add('greeting')
-        ..add(serializers.serialize(object.greeting,
-            specifiedType: const FullType(String)));
-    }
+    final result = <Object?>[];
     if (object.name != null) {
       result
         ..add('name')
         ..add(serializers.serialize(object.name,
-            specifiedType: const FullType(String)));
-    }
-    if (object.query != null) {
-      result
-        ..add('query')
-        ..add(serializers.serialize(object.query,
             specifiedType: const FullType(String)));
     }
     return result;

@@ -4,7 +4,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/protocol/protocol_traits.dart';
-import 'package:smithy_codegen/src/generator/structure_generation_context.dart';
+import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
@@ -27,23 +27,20 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
   }
 
   /// The member shape to serialize when [HttpPayloadTrait] is used.
-  late final MemberShape? payloadShape = sortedMembers
-      .firstWhereOrNull((shape) => shape.hasTrait<HttpPayloadTrait>());
+  late final MemberShape? payloadShape = httpInputTraits.httpPayload.member;
 
   /// The list of all members which should be serialized in the payload.
-  ///
-  /// Only used when [payloadShape] == null.
   late final List<MemberShape> serializableMembers =
       sortedMembers.where((member) {
-    // Traits which mark this member as metadata, not to be serialized.
-    const metadataTraits = [
-      HttpHeaderTrait.id,
-      HttpLabelTrait.id,
-      HttpQueryTrait.id,
-      HttpPrefixHeadersTrait.id,
-      HttpQueryParamsTrait.id,
-    ];
-    return !member.traits.keys.any(metadataTraits.contains);
+    return !<MemberShape?>[
+      httpInputTraits.hostLabel,
+      ...httpInputTraits.httpHeaders.values,
+      httpInputTraits.httpQueryParams,
+      ...httpInputTraits.httpLabels,
+      httpInputTraits.httpPayload.member,
+      httpInputTraits.httpPrefixHeaders?.member,
+      ...httpInputTraits.httpQuery.values,
+    ].contains(member);
   }).toList();
 
   /// Metadata about [shape] in the context of [protocol], including renames and
@@ -53,7 +50,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       final builder = protocol is RestJson1Trait
           ? RestJson1ProtocolTraitsBuilder()
           : JsonProtocolTraitsBuilder();
-      for (var member in sortedMembers) {
+      for (var member in serializableMembers) {
         final jsonName = member.getTrait<JsonNameTrait>()?.value;
         if (jsonName != null) {
           builder.memberWireNames[member] = jsonName;
@@ -70,7 +67,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       if (xmlNamespace != null) {
         builder.namespace = xmlNamespace;
       }
-      for (var member in sortedMembers) {
+      for (var member in serializableMembers) {
         final xmlName = member.getTrait<XmlNameTrait>()?.value;
         if (xmlName != null) {
           builder.memberWireNames[member] = xmlName;
@@ -200,7 +197,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// Returns the code needed to deserialize [shape].
   Code get _deserializeCode {
-    if (sortedMembers.isEmpty) {
+    if (serializableMembers.isEmpty) {
       return builderSymbol
           .newInstance([])
           .property('build')
@@ -242,7 +239,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// Expression to deserialize fields within the `switch` statement.
   Iterable<Code> get _fieldDeserializers sync* {
-    for (var member in sortedMembers) {
+    for (var member in serializableMembers) {
       final wireName = _wireName(member);
       final targetShape = context.shapeFor(member.target);
       final memberSymbol = memberSymbols[member]!;
@@ -318,7 +315,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// Returns the code needed to serialize [shape].
   Code get _serializeCode {
-    if (sortedMembers.isEmpty) {
+    if (serializableMembers.isEmpty) {
       return literalConstList([], DartTypes.core.object.boxed).code;
     }
     final builder = BlockBuilder();
@@ -326,7 +323,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
     // Create a result object with all the non-null members.
     final result = <Expression>[];
     final nonNullMembers =
-        sortedMembers.where((member) => !member.isNullable(shape));
+        serializableMembers.where((member) => !member.isNullable(shape));
     for (var member in nonNullMembers) {
       result.addAll([
         literalString(_wireName(member)),
@@ -339,7 +336,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
     // Add remaining objects only if they're non-null.
     final nullableMembers =
-        sortedMembers.where((member) => member.isNullable(shape));
+        serializableMembers.where((member) => member.isNullable(shape));
     for (var member in nullableMembers) {
       builder.statements.addAll([
         const Code('if ('),

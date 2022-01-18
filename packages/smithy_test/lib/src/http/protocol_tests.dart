@@ -1,6 +1,8 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
-import 'package:built_value/serializer.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:test/test.dart';
@@ -10,6 +12,7 @@ import 'package:test/test.dart';
 void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
   required HttpOperation<Payload, Input, Output> operation,
   required Map<String, Object?> testCaseJson,
+  required Input input,
 }) {
   final testCase = HttpRequestTestCase.fromJson(testCaseJson);
   group(testCase.protocol.shape, () {
@@ -18,12 +21,6 @@ void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
       final protocol = operation.resolveProtocol(
         useProtocol: testCase.protocol,
       );
-      // TODO: Need fromJson method because protocol won't always
-      // be JSON. But do input params map to jsonName?
-      final input = protocol.serializers.deserialize(
-        testCase.params,
-        specifiedType: FullType(Input),
-      ) as Input;
       final request = await operation.createRequest(
         operation.buildRequest(input),
         baseUri,
@@ -48,7 +45,8 @@ void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
       //
       // For example, "foo=bar", "foo=", and "foo" are all valid values.
       for (var queryParam in testCase.queryParams) {
-        final split = queryParam.split('=').iterator;
+        final split = Uri.decodeQueryComponent(queryParam).split('=').iterator
+          ..moveNext();
         final key = split.current;
         final value = split.moveNext() ? split.current : '';
 
@@ -120,11 +118,30 @@ void httpRequestTest<Payload, Input extends HttpInput<Payload>, Output>({
       // base64 encoding the data (for example, use "Zm9vCg==" and not "foo").
       final expectedBody = testCase.body;
       if (expectedBody != null) {
+        final List<int> expectedBodyBytes;
         final contentType = testCase.bodyMediaType;
         switch (contentType) {
-          // TODO
+          case 'application/octet-stream':
+            expectedBodyBytes = base64Decode(expectedBody);
+            break;
+
+          // Reformat JSON since the whitespace is different sometimes.
+          case 'application/json':
+            expectedBodyBytes =
+                utf8.encode(jsonEncode(jsonDecode(expectedBody)));
+            break;
+          default:
+            expectedBodyBytes = expectedBody.codeUnits;
+            break;
         }
-        expect(request.body, equals(testCase.body));
+        final bodyBytes = await ByteStream(request.body).toBytes();
+        expect(
+          bodyBytes,
+          orderedEquals(expectedBodyBytes),
+          reason:
+              'Expected: ${utf8.decode(expectedBodyBytes, allowMalformed: true)}, '
+              'Got: ${utf8.decode(bodyBytes, allowMalformed: true)}',
+        );
       }
     });
   });

@@ -1,76 +1,17 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
+import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/protocol/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
-class OperationGenerator extends LibraryGenerator<OperationShape> {
+class OperationGenerator extends LibraryGenerator<OperationShape>
+    with OperationGenerationContext {
   OperationGenerator(OperationShape shape, CodegenContext context)
       : super(shape, context: context);
-
-  late final inputShape = shape.inputShape(context);
-  late final inputSymbol = shape.inputSymbol(context);
-  late final inputPayload = inputShape.httpPayload(context);
-  late final outputShape = shape.outputShape(context);
-  late final outputSymbol = shape.outputSymbol(context);
-
-  late final Map<SmithyError, Reference> errorSymbols = Map.fromEntries([
-    ...?context.service?.errors,
-    ...shape.errors,
-  ].map((error) {
-    final symbol = context.symbolFor(error.target);
-    final shape = context.shapeFor(error.target);
-    return MapEntry(shape.smithyError, symbol);
-  }));
-
-  /// HTTP metadata which can influence code generation.
-  late final HttpProtocolTraits? _httpTraits = () {
-    final httpTrait = shape.getTrait<HttpTrait>();
-    if (httpTrait == null) {
-      return null;
-    }
-    final bldr = HttpProtocolTraitsBuilder();
-    bldr.http = httpTrait;
-    bldr.hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
-    for (var member in inputShape.members.values) {
-      final headerTrait = member.getTrait<HttpHeaderTrait>();
-      if (headerTrait != null) {
-        bldr.httpHeaders[headerTrait.value] = member;
-      }
-      if (member.hasTrait<HttpLabelTrait>()) {
-        bldr.httpLabels.add(member);
-      }
-      if (member.hasTrait<HttpPayloadTrait>()) {
-        bldr.httpPayload.replace(member);
-      }
-      final prefixHeadersTrait = member.getTrait<HttpPrefixHeadersTrait>();
-      if (prefixHeadersTrait != null) {
-        bldr.httpPrefixHeaders
-          ..member.replace(member)
-          ..trait = prefixHeadersTrait;
-      }
-      if (member.hasTrait<HostLabelTrait>()) {
-        bldr.hostLabel.replace(member);
-      }
-      final queryTrait = member.getTrait<HttpQueryTrait>();
-      if (queryTrait != null) {
-        bldr.httpQuery[queryTrait.value] = member;
-      }
-      if (member.hasTrait<HttpQueryParamsTrait>()) {
-        bldr.httpQueryParams.replace(member);
-      }
-    }
-    for (var member in outputShape.members.values) {
-      if (member.hasTrait<HttpResponseCodeTrait>()) {
-        bldr.httpResponseCode.replace(member);
-      }
-    }
-    return bldr.build();
-  }();
 
   @override
   String get className => shape.dartName;
@@ -78,7 +19,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
   @override
   Library generate() {
     // Only generate HTTP operations currently
-    if (_httpTraits != null) {
+    if (shape.hasTrait<HttpTrait>()) {
       builder.body.add(_operationClass);
     }
 
@@ -101,38 +42,39 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
             _protocolsGetter,
           ])
           ..methods.addAll([
-            ..._httpOverrides(_httpTraits!),
+            ..._httpOverrides,
           ]),
       );
 
   /// The statements of the HTTP request builder.
-  Iterable<Code> _httpRequestBuilder(HttpProtocolTraits traits) sync* {
+  Iterable<Code> get _httpRequestBuilder sync* {
     final builder = refer('b');
     final input = refer('input');
 
     yield builder
         .property('method')
-        .assign(literalString(traits.http.method))
+        .assign(literalString(httpTrait.method))
         .statement;
     yield builder
         .property('path')
-        .assign(literalString(traits.http.uri))
+        .assign(literalString(httpTrait.uri))
         .statement;
     yield builder
         .property('successCode')
-        .assign(traits.httpResponseCode == null
-            ? literalNum(traits.http.code)
-            : input.property(traits.httpResponseCode!.dartName))
+        .assign(httpOutputTraits.httpResponseCode == null
+            ? literalNum(httpTrait.code)
+            : input.property(httpOutputTraits.httpResponseCode!.dartName))
         .statement;
 
-    if (traits.hostPrefix != null) {
+    final hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
+    if (hostPrefix != null) {
       yield builder
           .property('hostPrefix')
-          .assign(literalString(traits.hostPrefix!))
+          .assign(literalString(hostPrefix))
           .statement;
     }
 
-    for (var entry in traits.httpHeaders.entries) {
+    for (var entry in httpInputTraits.httpHeaders.entries) {
       yield _httpHeader(
         literalString(entry.key),
         entry.value,
@@ -140,11 +82,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
       );
     }
 
-    if (traits.httpPrefixHeaders != null) {
-      yield _httpPrefixedHeaders(traits.httpPrefixHeaders!);
+    if (httpInputTraits.httpPrefixHeaders != null) {
+      yield _httpPrefixedHeaders(httpInputTraits.httpPrefixHeaders!);
     }
 
-    for (var entry in traits.httpQuery.entries) {
+    for (var entry in httpInputTraits.httpQuery.entries) {
       yield _httpQuery(
         literalString(entry.key),
         entry.value,
@@ -152,8 +94,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
       );
     }
 
-    if (traits.httpQueryParams != null) {
-      yield _httpQueryParameters(traits.httpQueryParams!);
+    if (httpInputTraits.httpQueryParams != null) {
+      yield _httpQueryParameters(httpInputTraits.httpQueryParams!);
     }
   }
 
@@ -346,14 +288,14 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
   }
 
   /// The required HTTP operation overrides.
-  Iterable<Method> _httpOverrides(HttpProtocolTraits traits) sync* {
+  Iterable<Method> get _httpOverrides sync* {
     // The `buildRequest` method
     final request = DartTypes.smithy.httpRequest.newInstance([
       Method(
         (m) => m
           ..requiredParameters.add(Parameter((p) => p..name = 'b'))
           ..lambda = false
-          ..body = Block.of(_httpRequestBuilder(traits)),
+          ..body = Block.of(_httpRequestBuilder),
       ).closure,
     ]);
     yield Method(
@@ -366,28 +308,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape> {
           ..type = inputSymbol))
         ..body = request.code,
     );
-
-    // The `labelFor` method
-    if (traits.httpLabels.isNotEmpty) {
-      yield Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.string
-          ..name = 'labelFor'
-          ..requiredParameters.add(Parameter((p) => p
-            ..type = DartTypes.core.string
-            ..name = 'key'))
-          ..body = literalMap({
-            for (var label in traits.httpLabels)
-              literalString(label.memberName):
-                  refer(label.dartName).property('toString').call([]),
-          })
-              .index(refer('key'))
-              .ifNullThen(
-                  refer('super').property('labelFor').call([refer('key')]))
-              .code,
-      );
-    }
 
     // The `errorTypes` getter
     yield Method(

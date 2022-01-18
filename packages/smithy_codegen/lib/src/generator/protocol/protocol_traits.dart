@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
+import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
 part 'protocol_traits.g.dart';
@@ -15,6 +16,15 @@ abstract class ProtocolTraitsBuilder {
   ProtocolTraits build();
 }
 
+abstract class HttpPayload implements Built<HttpPayload, HttpPayloadBuilder> {
+  factory HttpPayload([void Function(HttpPayloadBuilder) updates]) =
+      _$HttpPayload;
+  HttpPayload._();
+
+  Reference get symbol;
+  MemberShape? get member;
+}
+
 abstract class HttpPrefixHeaders
     implements Built<HttpPrefixHeaders, HttpPrefixHeadersBuilder> {
   factory HttpPrefixHeaders([void Function(HttpPrefixHeadersBuilder) updates]) =
@@ -25,22 +35,29 @@ abstract class HttpPrefixHeaders
   MemberShape get member;
 }
 
-abstract class HttpProtocolTraits
-    implements Built<HttpProtocolTraits, HttpProtocolTraitsBuilder> {
-  factory HttpProtocolTraits(
-          [void Function(HttpProtocolTraitsBuilder) updates]) =
-      _$HttpProtocolTraits;
-  HttpProtocolTraits._();
+abstract class HttpInputTraits
+    implements Built<HttpInputTraits, HttpInputTraitsBuilder> {
+  factory HttpInputTraits([void Function(HttpInputTraitsBuilder) updates]) =
+      _$HttpInputTraits;
+  HttpInputTraits._();
 
-  HttpTrait get http;
   BuiltMap<String, MemberShape> get httpHeaders;
+
+  /// Shapes marked with an [HttpLabelTrait] annotation.
   BuiltSet<MemberShape> get httpLabels;
-  MemberShape? get httpPayload;
+  HttpPayload get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;
-  String? get hostPrefix;
   MemberShape? get hostLabel;
   BuiltMap<String, MemberShape> get httpQuery;
   MemberShape? get httpQueryParams;
+}
+
+abstract class HttpOutputTraits
+    implements Built<HttpOutputTraits, HttpOutputTraitsBuilder> {
+  factory HttpOutputTraits([void Function(HttpOutputTraitsBuilder) updates]) =
+      _$HttpOutputTraits;
+  HttpOutputTraits._();
+
   MemberShape? get httpResponseCode;
 }
 

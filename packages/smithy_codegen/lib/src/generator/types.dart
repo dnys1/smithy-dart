@@ -424,6 +424,10 @@ class _Smithy {
   Reference get httpRequestBuilder =>
       const Reference('HttpRequestBuilder', _url);
 
+  /// Creates a [smithy.MissingLabelException] reference.
+  Reference get missingLabelException =>
+      const Reference('MissingLabelException', _url);
+
   /// Creates a [smithy.RetryConfig] reference.
   Reference get retryConfig => const Reference('RetryConfig', _url);
 
@@ -496,11 +500,6 @@ class _SmithyAws {
   Reference get restXmlProtocol => const Reference('RestXmlProtocol', _url);
 }
 
-/// `package:test` types
-class _Test {
-  const _Test();
-}
-
 /// `package:smithy_test` types
 class _SmithyTest {
   const _SmithyTest();
@@ -513,6 +512,11 @@ class _SmithyTest {
   /// Creates an `HttpRequestTestCase` reference.
   Reference get httpRequestTestCase =>
       const Reference('HttpRequestTestCase', _url);
+}
+
+/// `package:test` types
+class _Test {
+  const _Test();
 }
 
 /// `dart:typed_data` types

@@ -132,10 +132,12 @@ operation GetFoo {
   output: GetFooOutput
 }
 
+@input
 structure GetFooInput {
   input: MyEnum
 }
 
+@output
 structure GetFooOutput {
   output: MyUnion
 }

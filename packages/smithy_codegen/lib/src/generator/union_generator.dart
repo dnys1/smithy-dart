@@ -12,7 +12,6 @@ const _sdkUnknown = 'sdkUnknown';
 class UnionGenerator extends LibraryGenerator<UnionShape> {
   UnionGenerator(
     UnionShape shape,
-  
     CodegenContext context,
   ) : super(shape, context: context);
 
@@ -45,6 +44,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
   Class get _unionClass => Class(
         (c) => c
           ..docs.addAll([if (shape.docs != null) formatDocs(shape.docs!)])
+          ..abstract = true
           ..name = className
           ..extend = DartTypes.smithy.smithyUnion(symbol)
           ..constructors.addAll([
@@ -110,13 +110,21 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..constant = true
           ..factory = true
           ..name = member.variantName
-          ..requiredParameters.add(Parameter(
-            (p) => p
-              ..type = memberSymbols[member]!.unboxed
-              ..name = member.variantName == _sdkUnknown
-                  ? 'value'
-                  : member.variantName,
-          ))
+          ..requiredParameters.addAll([
+            if (member.isUnknownMember)
+              Parameter(
+                (p) => p
+                  ..type = DartTypes.core.string
+                  ..name = 'name',
+              ),
+            Parameter(
+              (p) => p
+                ..type = memberSymbols[member]!.unboxed
+                ..name = member.variantName == _sdkUnknown
+                    ? 'value'
+                    : member.variantName,
+            ),
+          ])
           ..redirect = refer(member.variantClassName(className)),
       );
     }
@@ -178,11 +186,19 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
       final ctor = Constructor(
         (ctor) => ctor
           ..constant = true
-          ..requiredParameters.add(Parameter(
-            (p) => p
-              ..toThis = true
-              ..name = member.isUnknownMember ? 'value' : member.variantName,
-          ))
+          ..requiredParameters.addAll([
+            if (member.isUnknownMember)
+              Parameter(
+                (p) => p
+                  ..toThis = true
+                  ..name = 'name',
+              ),
+            Parameter(
+              (p) => p
+                ..toThis = true
+                ..name = member.isUnknownMember ? 'value' : member.variantName,
+            ),
+          ])
           ..initializers.add(refer('super').property('_').call([]).code),
       );
       final value = Field(
@@ -199,7 +215,25 @@ class UnionGenerator extends LibraryGenerator<UnionShape> {
           ..name = member.variantClassName(className)
           ..extend = symbol
           ..constructors.add(ctor)
-          ..fields.add(value),
+          ..fields.addAll([
+            if (member.isUnknownMember)
+              Field((f) => f
+                ..modifier = FieldModifier.final$
+                ..annotations.add(DartTypes.core.override)
+                ..name = 'name'
+                ..type = DartTypes.core.string),
+            value,
+          ])
+          ..methods.addAll([
+            if (!member.isUnknownMember)
+              Method((m) => m
+                ..annotations.add(DartTypes.core.override)
+                ..returns = DartTypes.core.string
+                ..name = 'name'
+                ..type = MethodType.getter
+                ..lambda = true
+                ..body = literalString(member.memberName).code)
+          ]),
       );
     }
   }

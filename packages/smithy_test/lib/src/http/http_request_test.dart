@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:built_value/serializer.dart';
 import 'package:http/http.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/smithy.dart';
@@ -13,7 +14,7 @@ void httpRequestTest<InputPayload, Input extends HttpInput<InputPayload>,
     OutputPayload, Output>({
   required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required Map<String, Object?> testCaseJson,
-  required Input input,
+  SmithySerializer<Input>? inputSerializer,
 }) {
   final testCase = HttpRequestTestCase.fromJson(testCaseJson);
   group(testCase.protocol.shape, () {
@@ -22,6 +23,15 @@ void httpRequestTest<InputPayload, Input extends HttpInput<InputPayload>,
       final protocol = operation.resolveProtocol(
         useProtocol: testCase.protocol,
       );
+      final serializers = (protocol.serializers.toBuilder()
+            ..addAll([
+              if (inputSerializer != null) inputSerializer,
+            ]))
+          .build();
+      final input = serializers.deserialize(
+        testCase.params,
+        specifiedType: FullType(Input),
+      ) as Input;
       final request = await operation.createRequest(
         operation.buildRequest(input),
         baseUri,

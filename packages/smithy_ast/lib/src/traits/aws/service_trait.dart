@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:aws_common/aws_common.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:smithy_ast/smithy_ast.dart';
@@ -10,11 +12,11 @@ part 'service_trait.g.dart';
 @JsonSerializable()
 class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   const ServiceTrait({
-    required this.cloudFormationName,
-    required this.arnNamespace,
-    required this.sdkId,
-    required this.cloudTrailEventSource,
-    required this.endpointPrefix,
+    this.cloudFormationName,
+    this.arnNamespace,
+    this.sdkId,
+    this.cloudTrailEventSource,
+    this.endpointPrefix,
   });
 
   factory ServiceTrait.fromJson(Object? json) =>
@@ -25,7 +27,7 @@ class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   /// The AWS CloudFormation service name.
   ///
   /// When not set, this value defaults to the name of the service shape.
-  final String cloudFormationName;
+  final String? cloudFormationName;
 
   /// The AWS ARN service namespace of the service.
   ///
@@ -35,15 +37,15 @@ class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   /// explicitly define the 'aws.api#arnTemplate' trait are assigned ARNs,
   /// and their relative ARNs are combined with the service's arnNamespace to
   /// form an ARN.
-  final String arnNamespace;
+  final String? arnNamespace;
 
   /// The SDK service ID.
   ///
   /// This value is used to generate SDK class names.
-  final String sdkId;
+  final String? sdkId;
 
   /// The CloudTrail event source name of the service.
-  final String cloudTrailEventSource;
+  final String? cloudTrailEventSource;
 
   /// The endpoint prefix for the service.
   ///
@@ -51,7 +53,12 @@ class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   /// Therefore it MUST NOT be used to generate class names, namespaces, or
   /// for any other purpose that requires a static, unique identifier. The
   /// sdkId property should be used for those purposes.
-  final String endpointPrefix;
+  final String? endpointPrefix;
+
+  /// Resolves the service trait definition for the given [target] shape.
+  ResolvedServiceTrait resolve(ShapeId target) {
+    throw UnimplementedError();
+  }
 
   @override
   bool get isSynthetic => false;
@@ -73,4 +80,40 @@ class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
 
   @override
   ServiceTrait get value => this;
+}
+
+@ShapeIdConverter()
+@JsonSerializable()
+class ResolvedServiceTrait extends ServiceTrait {
+  const ResolvedServiceTrait({
+    required this.cloudFormationName,
+    required this.arnNamespace,
+    required this.sdkId,
+    required this.cloudTrailEventSource,
+    required this.endpointPrefix,
+  });
+
+  factory ResolvedServiceTrait.fromJson(Object? json) =>
+      _$ResolvedServiceTraitFromJson((json as Map).cast());
+
+  @override
+  final String cloudFormationName;
+
+  @override
+  final String arnNamespace;
+
+  @override
+  final String sdkId;
+
+  @override
+  final String cloudTrailEventSource;
+
+  @override
+  final String endpointPrefix;
+
+  @override
+  ResolvedServiceTrait resolve(ShapeId target) => this;
+
+  @override
+  Map<String, Object?> toJson() => _$ResolvedServiceTraitToJson(this);
 }

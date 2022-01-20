@@ -10,13 +10,58 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 import 'package:smithy_codegen/src/util/trait_ext.dart';
 
+class SerializerConfig {
+  const SerializerConfig._({
+    this.renameMembers = true,
+    this.usePayload = true,
+    this.usePrivateSymbols = true,
+  });
+
+  /// Config for test serializers.
+  const SerializerConfig.test()
+      : this._(
+          usePayload: false,
+          renameMembers: false,
+          usePrivateSymbols: false,
+        );
+
+  /// Config for AWS JSON 1.0
+  const SerializerConfig.awsJson10()
+      : this._(
+          usePayload: false,
+          renameMembers: false,
+          usePrivateSymbols: true,
+        );
+
+  final bool renameMembers;
+  final bool usePayload;
+  final bool usePrivateSymbols;
+}
+
+extension on ProtocolDefinitionTrait {
+  SerializerConfig get serializerConfig {
+    switch (runtimeType) {
+      case AwsJson1_0Trait:
+        return const SerializerConfig.awsJson10();
+      default:
+        return const SerializerConfig._();
+    }
+  }
+}
+
 /// Generates a serializer class for [shape] and [protocol].
 class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
     with StructureGenerationContext {
   SerializerGenerator(
-      StructureShape shape, CodegenContext context, this.protocol)
-      : super(shape, context);
+    StructureShape shape,
+    CodegenContext context,
+    this.protocol, {
+    SerializerConfig? config,
+  }) : super(shape, context) {
+    this.config = config ?? protocol.serializerConfig;
+  }
 
+  late final SerializerConfig config;
   final ProtocolDefinitionTrait protocol;
 
   String get serializerClassName {
@@ -24,6 +69,19 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
     return '_' +
         '${shape.shapeId.shape}_${withProtocolName}_Serializer'.pascalCase;
   }
+
+  /// The symbol to be serialized.
+  ///
+  /// When generating test case serializers, it's always the full symbol.
+  Reference get serializedSymbol =>
+      config.usePayload ? payloadSymbol ?? symbol : symbol;
+
+  /// The members which get serialized.
+  ///
+  /// In general, this is members of the payload ([serializableMembers]).
+  /// However, for test cases, we want to deserialize *all* members.
+  List<MemberShape> get serializedMembers =>
+      config.usePayload ? serializableMembers : sortedMembers;
 
   /// Metadata about [shape] in the context of [protocol], including renames and
   /// other protocol-specific traits.
@@ -68,9 +126,8 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
         }
       }
       return builder.build();
-    } else {
-      throw UnsupportedError('Unsupported protocol: ${protocol.shapeId}');
     }
+    return JsonProtocolTraits();
   }();
 
   /// The names of members on the wire with optional renames, e.g. using
@@ -79,15 +136,16 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       protocolTraits.memberWireNames.toMap();
 
   /// The name of [member] on the wire.
-  String _wireName(MemberShape member) =>
-      wireNames[member] ?? member.memberName;
+  String _wireName(MemberShape member) => config.renameMembers
+      ? wireNames[member] ?? member.memberName
+      : member.memberName;
 
   @override
   Class? generate() {
     // Will use a pre-defined serializer when targeting another shape for the
     // payload.
     final useExistingSerializer = payloadShape != null;
-    if (useExistingSerializer) {
+    if (useExistingSerializer || shape.shapeId == Shape.unit) {
       return null;
     }
 
@@ -97,7 +155,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
     return Class(
       (c) => c
         ..name = serializerClassName
-        ..extend = DartTypes.smithy.smithySerializer(payloadSymbol)
+        ..extend = DartTypes.smithy.smithySerializer(serializedSymbol)
         ..constructors.add(_constructor)
         ..methods.addAll([
           _typesGetter,
@@ -131,9 +189,12 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
           ..lambda = true
           ..body = literalConstList([
             symbol,
-            builtSymbol,
-            payloadSymbol,
-            builtPayloadSymbol,
+            if (config.usePrivateSymbols) builtSymbol,
+            if (!config.usePayload) ...[
+              if (payloadSymbol != null) payloadSymbol,
+              if (config.usePrivateSymbols && builtPayloadSymbol != null)
+                builtPayloadSymbol,
+            ],
           ]).code,
       );
 
@@ -158,7 +219,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
   Method get _deserialize => Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
-          ..returns = payloadSymbol
+          ..returns = serializedSymbol
           ..name = 'deserialize'
           ..requiredParameters.addAll([
             Parameter((p) => p
@@ -181,8 +242,11 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// Returns the code needed to deserialize [shape].
   Code get _deserializeCode {
-    if (serializableMembers.isEmpty) {
-      return payloadBuilderSymbol
+    final builderSymbol = config.usePayload
+        ? payloadBuilderSymbol ?? this.builderSymbol
+        : this.builderSymbol;
+    if (serializedMembers.isEmpty) {
+      return builderSymbol
           .newInstance([])
           .property('build')
           .call([])
@@ -194,7 +258,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
     // Create the builder.
     builder.addExpression(
-      payloadBuilderSymbol.newInstance([]).assignFinal('result'),
+      builderSymbol.newInstance([]).assignFinal('result'),
     );
 
     // Iterate over the serialized elements.
@@ -223,19 +287,24 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// Expression to deserialize fields within the `switch` statement.
   Iterable<Code> get _fieldDeserializers sync* {
-    for (var member in serializableMembers) {
+    for (var member in serializedMembers) {
       final wireName = _wireName(member);
       final memberSymbol = memberSymbols[member]!;
+      final targetShape = context.shapeFor(member.target);
+      final nestedBuilder = targetShape.getType() == ShapeType.structure;
       yield Block.of([
         const Code('case '),
         literalString(wireName).code,
         const Code(':'),
-        refer('result')
-            .property(member.dartName)
-            .assign(
-              _deserializerFor(member).asA(memberSymbol),
-            )
-            .statement,
+        if (!config.usePayload && nestedBuilder)
+          refer('result').property(member.dartName).property('replace').call([
+            _deserializerFor(member).asA(memberSymbol.unboxed),
+          ]).statement
+        else
+          refer('result')
+              .property(member.dartName)
+              .assign(_deserializerFor(member).asA(memberSymbol))
+              .statement,
         const Code('break;'),
       ]);
     }
@@ -292,7 +361,13 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// Returns the code needed to serialize [shape].
   Code get _serializeCode {
-    if (serializableMembers.isEmpty) {
+    if (!config.usePrivateSymbols) {
+      return DartTypes.core.stateError
+          .newInstance([literalString('Not supported for tests')])
+          .thrown
+          .statement;
+    }
+    if (serializedMembers.isEmpty) {
       return literalConstList([], DartTypes.core.object.boxed).code;
     }
     final builder = BlockBuilder();
@@ -301,24 +376,30 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
     // Get the payload, since we handle serializing the input & payload types
     // in the same serializer.
-    builder.addExpression(
-      object
-          .isA(symbol)
-          .conditional(
-            object.property('getPayload').call([]),
-            object.asA(payloadSymbol),
-          )
-          .assignFinal('payload', payloadSymbol),
-    );
+    final payloadSymbol = this.payloadSymbol;
+    if (config.usePayload && payloadSymbol != null) {
+      builder.addExpression(
+        object
+            .isA(symbol)
+            .conditional(
+              object.property('getPayload').call([]),
+              object.asA(payloadSymbol),
+            )
+            .assignFinal('payload', payloadSymbol),
+      );
+    } else {
+      builder.addExpression(object.asA(symbol).assignFinal('payload'));
+    }
 
     // Create a result object with all the non-null members.
     final result = <Expression>[];
     final nonNullMembers =
-        serializableMembers.where((member) => !member.isNullable(shape));
+        serializedMembers.where((member) => !member.isNullable(shape));
     for (var member in nonNullMembers) {
+      final memberRef = payload.property(member.dartName);
       result.addAll([
         literalString(_wireName(member)),
-        _serializerFor(member),
+        _serializerFor(member, memberRef),
       ]);
     }
     builder.addExpression(
@@ -327,8 +408,9 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
     // Add remaining objects only if they're non-null.
     final nullableMembers =
-        serializableMembers.where((member) => member.isNullable(shape));
+        serializedMembers.where((member) => member.isNullable(shape));
     for (var member in nullableMembers) {
+      final memberRef = payload.property(member.dartName);
       builder.statements.addAll([
         const Code('if ('),
         payload.property(member.dartName).notEqualTo(literalNull).code,
@@ -337,7 +419,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
             .cascade('add')
             .call([literalString(_wireName(member))])
             .cascade('add')
-            .call([_serializerFor(member)])
+            .call([_serializerFor(member, memberRef)])
             .statement,
         const Code('}'),
       ]);
@@ -363,9 +445,8 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
   }
 
   /// Serializes [member] as a timestamp shape.
-  Expression _serializerFor(MemberShape member) {
+  Expression _serializerFor(MemberShape member, Expression memberRef) {
     final type = context.shapeFor(member.target).getType();
-    final memberRef = refer('payload').property(member.dartName);
 
     // For timestamps, check if there is a custom serializer needed.
     if (type == ShapeType.timestamp) {

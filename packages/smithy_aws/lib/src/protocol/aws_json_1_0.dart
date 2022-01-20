@@ -3,22 +3,23 @@ import 'package:smithy/smithy.dart' hide Serializer;
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-class AwsJson1_0Protocol<
-        InputPayload extends Object?,
-        Input extends HttpInput<InputPayload>,
-        OutputPayload extends Object?,
-        Output extends HasPayload<OutputPayload>>
-    extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
+class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
+    extends AWSHttpProtocol<Input, Input, Output, Output> {
   AwsJson1_0Protocol({
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],
     Map<Type, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
+          _coreInterceptors,
           serializers: serializers,
           builderFactories: builderFactories,
           interceptors: interceptors,
         );
+
+  static const _coreInterceptors = [
+    WithContentType(),
+  ];
 
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())

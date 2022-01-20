@@ -13,6 +13,16 @@
             "args": [
                 "operation**"
             ]
+        },
+        {
+            "name": "Update Goldens (AWS)",
+            "cwd": "packages/smithy_aws",
+            "request": "launch",
+            "type": "dart",
+            "program": "tool/update_goldens.dart",
+            "args": [
+                "awsJson1_0"
+            ]
         }
     ]
 }

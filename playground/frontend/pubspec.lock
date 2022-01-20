@@ -75,8 +75,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/aws_common"
-      ref: main
-      resolved-ref: d056ddbc07fbcf1c0644ff07c4d30702985332b0
+      ref: smithy
+      resolved-ref: "997b3f8508dfb6c1a47bb5cef818c0b614f005ec"
       url: "https://github.com/dnys1/aws-sdk-dart.git"
     source: git
     version: "0.1.0"
@@ -606,21 +606,21 @@ packages:
     source: hosted
     version: "1.0.1"
   smithy:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../packages/smithy"
       relative: true
     source: path
     version: "0.1.0"
   smithy_ast:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../packages/smithy_ast"
       relative: true
     source: path
     version: "0.1.0"
   smithy_aws:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../packages/smithy_aws"
       relative: true
@@ -633,6 +633,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
+  smithy_test:
+    dependency: "direct overridden"
+    description:
+      path: "../../packages/smithy_test"
+      relative: true
+    source: path
+    version: "1.0.0"
   source_gen:
     dependency: transitive
     description:

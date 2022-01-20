@@ -18,8 +18,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
   @override
   Library generate() {
-    // Only generate HTTP operations currently
-    if (shape.hasTrait<HttpTrait>()) {
+    if (httpTrait != null) {
       builder.body.add(_operationClass);
     }
 
@@ -54,16 +53,16 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
     yield builder
         .property('method')
-        .assign(literalString(httpTrait.method))
+        .assign(literalString(httpTrait!.method))
         .statement;
     yield builder
         .property('path')
-        .assign(literalString(httpTrait.uri))
+        .assign(literalString(httpTrait!.uri))
         .statement;
     yield builder
         .property('successCode')
         .assign(httpOutputTraits.httpResponseCode == null
-            ? literalNum(httpTrait.code)
+            ? literalNum(httpTrait!.code)
             : input.property(httpOutputTraits.httpResponseCode!.dartName))
         .statement;
 
@@ -120,6 +119,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
 
     // TODO: Add HTTP metadata
+    final nonSerializableMembers = outputShape.nonSerializableMembers(context);
   }
 
   /// Adds the header to the request's headers map.
@@ -405,8 +405,36 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
               protocol.instantiableProtocolSymbol.newInstance([], {
                 'serializers': context.serializersRef,
                 'builderFactories': context.builderFactoriesRef,
-                'interceptors': literalList([]),
+                'interceptors': literalList(_protocolInterceptors(protocol)),
               }),
           ]).code,
       );
+
+  /// Additional interceptors for the protocol.
+  List<Expression> _protocolInterceptors(ProtocolDefinitionTrait protocol) {
+    switch (protocol.runtimeType) {
+      case AwsJson1_0Trait:
+        return [
+          DartTypes.smithy.withHeader.constInstance([
+            literalString('X-Amz-Target'),
+
+            // The value of this header is the shape name of the service's Shape
+            // ID joined to the shape name of the operation's Shape ID,
+            // separated by a single period (.) character.
+            //
+            // For example, the value for the operation `ns.example#MyOp` of the
+            // service `ns.example#MyService` is MyService.MyOp.
+            literalString([
+              context.service!.shapeId.shape,
+              shape.shapeId.shape,
+            ].join('.'))
+          ]),
+        ];
+      case AwsJson1_1Trait:
+      case RestJson1Trait:
+      case RestXmlTrait:
+      default:
+        return const [];
+    }
+  }
 }

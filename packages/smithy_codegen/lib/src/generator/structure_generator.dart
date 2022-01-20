@@ -1,3 +1,4 @@
+import 'package:aws_common/aws_common.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -42,7 +43,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
-            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol)
+            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol!)
           ])
           ..mixins.addAll([
             if (shape.isError)
@@ -50,7 +51,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
                 DartTypes.smithy.smithyHttpException
               else
                 DartTypes.smithy.smithyException,
-            if (shape.isInputShape) DartTypes.smithy.httpInput(payloadSymbol)
+            if (shape.isInputShape) DartTypes.smithy.httpInput(payloadSymbol!)
           ])
           ..constructors.addAll([
             _factoryConstructor(
@@ -91,19 +92,19 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             }),
           ])
           ..implements.addAll([
-            DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol),
+            DartTypes.builtValue.built(payloadSymbol!, payloadBuilderSymbol!),
           ])
           ..constructors.addAll([
             _factoryConstructor(
-              builderSymbol: payloadBuilderSymbol,
-              builtSymbol: builtPayloadSymbol,
+              builderSymbol: payloadBuilderSymbol!,
+              builtSymbol: builtPayloadSymbol!,
             ),
             _privateConstructor,
           ])
           ..methods.addAll([
             _defaultValues(
               members: serializableMembers,
-              builderSymbol: payloadBuilderSymbol,
+              builderSymbol: payloadBuilderSymbol!,
             ),
             ..._fieldGetters(serializableMembers),
           ]),
@@ -210,7 +211,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     for (final member in serializableMembers) {
       builder = builder.cascade(member.dartName).assign(refer(member.dartName));
     }
-    return payloadSymbol.newInstance([
+    return payloadSymbol!.newInstance([
       if (serializableMembers.isNotEmpty)
         Method((m) => m
           ..requiredParameters.add(Parameter((p) => p..name = 'b'))
@@ -318,8 +319,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // `message` getter
-    final message = shape.members['message'];
-    if (message == null) {
+    if (!CaseInsensitiveSet(shape.members.keys).contains('message')) {
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)

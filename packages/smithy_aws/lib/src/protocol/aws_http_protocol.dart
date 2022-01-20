@@ -1,23 +1,23 @@
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 
-abstract class AWSHttpProtocol<
-        InputPayload extends Object?,
-        Input extends HttpInput<InputPayload>,
-        OutputPayload extends Object?,
-        Output extends HasPayload<OutputPayload>>
+abstract class AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
     extends HttpProtocol<InputPayload, Input, OutputPayload, Output> {
   AWSHttpProtocol(
-    this._coreSerializers, {
+    this._coreSerializers,
+    this._coreInterceptors, {
     required List<SmithySerializer> serializers,
     required Map<Type, Function> builderFactories,
-    required this.interceptors,
+    required List<HttpInterceptor> interceptors,
   })  : _userSerializers = serializers,
-        _builderFactories = builderFactories;
+        _builderFactories = builderFactories,
+        _userInterceptors = interceptors;
 
   final Serializers _coreSerializers;
   final List<SmithySerializer> _userSerializers;
   final Map<Type, Function> _builderFactories;
+  final List<HttpInterceptor> _coreInterceptors;
+  final List<HttpInterceptor> _userInterceptors;
 
   @override
   late final Serializers serializers = () {
@@ -32,5 +32,8 @@ abstract class AWSHttpProtocol<
   }();
 
   @override
-  final List<HttpInterceptor> interceptors;
+  late final List<HttpInterceptor> interceptors = [
+    ..._coreInterceptors,
+    ..._userInterceptors,
+  ];
 }

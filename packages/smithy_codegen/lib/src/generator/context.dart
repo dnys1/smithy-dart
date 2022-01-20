@@ -3,7 +3,6 @@ import 'package:collection/collection.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/exception.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 
@@ -76,13 +75,18 @@ class CodegenContext {
       serviceShapeId == null ? null : shapeFor(serviceShapeId!) as ServiceShape;
 
   /// The protocol for this service.
-  late final List<ProtocolDefinitionTrait> serviceProtocols =
-      service?.traits.values.whereType<ProtocolDefinitionTrait>().toList() ??
-          const [_GenericProtocolDefinitionTrait()];
+  late final List<ProtocolDefinitionTrait> serviceProtocols = () {
+    final protocols =
+        service?.traits.values.whereType<ProtocolDefinitionTrait>().toList();
+    if (protocols == null || protocols.isEmpty) {
+      return const [GenericProtocolDefinitionTrait()];
+    }
+    return protocols;
+  }();
 
   /// Returns the shape for [shapeId].
   Shape shapeFor(ShapeId shapeId) {
-    final shape = shapes[shapeId] ?? Shape.preludeShapes[shapeId];
+    final shape = _shapes[shapeId] ?? Shape.preludeShapes[shapeId];
     if (shape != null) {
       return shape;
     }
@@ -136,8 +140,8 @@ class CodegenContext {
 /// a defined protocol.
 ///
 /// This ensures that at least one serializer is always generated.
-class _GenericProtocolDefinitionTrait implements ProtocolDefinitionTrait {
-  const _GenericProtocolDefinitionTrait();
+class GenericProtocolDefinitionTrait implements ProtocolDefinitionTrait {
+  const GenericProtocolDefinitionTrait();
 
   @override
   bool get isSynthetic => true;

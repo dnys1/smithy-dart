@@ -11,8 +11,6 @@ import 'package:smithy_codegen/src/generator/service_generator.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';
 import 'package:smithy_codegen/src/generator/visitors/default_visitor.dart';
-import 'package:smithy_codegen/src/service/codegen.pb.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// Wrapper over [Library] with context for its creation.
@@ -50,6 +48,19 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       testLibrary,
       OperationTestGenerator(shape, context).generate(),
     );
+
+    // Build the input, output and error shapes
+    final shapes = [
+      if (shape.input != null) shape.input!.target,
+      if (shape.output != null) shape.output!.target,
+      ...shape.errors.map((ref) => ref.target),
+    ].map(context.shapeFor).cast<StructureShape>();
+
+    for (final child in shapes) {
+      if (!context.shapes.values.contains(child)) {
+        yield* structureShape(child);
+      }
+    }
   }
 
   @override
@@ -79,19 +90,33 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     if (shape.isEnum) {
       return [_buildLibrary(shape, EnumGenerator(shape, context).generate())];
     }
-    return Iterable.empty();
+    return const Iterable.empty();
   }
 
   @override
   Iterable<GeneratedLibrary> structureShape(StructureShape shape,
-      [Shape? parent]) {
-    return [
-      _buildLibrary(shape, StructureGenerator(shape, context).generate())
-    ];
+      [Shape? parent]) sync* {
+    if (Shape.preludeShapes.keys.contains(shape.shapeId)) {
+      return;
+    }
+    yield* _foreignMembers(shape);
+    yield _buildLibrary(
+      shape,
+      StructureGenerator(shape, context).generate(),
+    );
   }
 
   @override
-  Iterable<GeneratedLibrary> unionShape(UnionShape shape, [Shape? parent]) {
-    return [_buildLibrary(shape, UnionGenerator(shape, context).generate())];
+  Iterable<GeneratedLibrary> unionShape(UnionShape shape,
+      [Shape? parent]) sync* {
+    yield* _foreignMembers(shape);
+    yield _buildLibrary(shape, UnionGenerator(shape, context).generate());
+  }
+
+  Iterable<GeneratedLibrary> _foreignMembers(NamedMembersShape shape) {
+    return shape.members.values
+        .map((shape) => context.shapeFor(shape.target))
+        .where((target) => !context.shapes.keys.contains(target.shapeId))
+        .expand((shape) => shape.accept(this) ?? const Iterable.empty());
   }
 }

@@ -5,11 +5,7 @@ import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-class RestXmlProtocol<
-        InputPayload extends Object?,
-        Input extends HttpInput<InputPayload>,
-        OutputPayload extends Object?,
-        Output extends HasPayload<OutputPayload>>
+class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
   RestXmlProtocol({
     this.mediaType,
@@ -18,10 +14,13 @@ class RestXmlProtocol<
     Map<Type, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
+          _coreInterceptors,
           serializers: serializers,
           builderFactories: builderFactories,
           interceptors: interceptors,
         );
+
+  static const _coreInterceptors = <HttpInterceptor>[];
 
   static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(const XmlPlugin())

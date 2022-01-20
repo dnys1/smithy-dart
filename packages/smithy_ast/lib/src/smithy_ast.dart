@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
@@ -18,7 +19,7 @@ abstract class SmithyAst implements Built<SmithyAst, SmithyAstBuilder> {
 
   @BuiltValueField(wireName: 'smithy')
   String get version;
-  BuiltMap<String, Object> get metadata;
+  BuiltMap<String, JsonObject> get metadata;
   ShapeMap get shapes;
 
   Map<String, Object?> toJson() {

@@ -28,7 +28,6 @@ class AwsJson1_0Trait extends AWSProtocolTrait {
         CorsTrait.id,
         EndpointTrait.id,
         HostLabelTrait.id,
-        JsonNameTrait.id,
         TimestampFormatTrait.id,
       ];
 }

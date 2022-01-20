@@ -47,8 +47,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/aws_common"
-      ref: main
-      resolved-ref: d056ddbc07fbcf1c0644ff07c4d30702985332b0
+      ref: smithy
+      resolved-ref: "997b3f8508dfb6c1a47bb5cef818c0b614f005ec"
       url: "https://github.com/dnys1/aws-sdk-dart.git"
     source: git
     version: "0.1.0"

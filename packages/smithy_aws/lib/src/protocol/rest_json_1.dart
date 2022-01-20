@@ -5,11 +5,7 @@ import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-class RestJson1Protocol<
-        InputPayload extends Object?,
-        Input extends HttpInput<InputPayload>,
-        OutputPayload extends Object?,
-        Output extends HasPayload<OutputPayload>>
+class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
   RestJson1Protocol({
     this.mediaType,
@@ -18,10 +14,13 @@ class RestJson1Protocol<
     Map<Type, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
+          _coreInterceptors,
           serializers: serializers,
           builderFactories: builderFactories,
           interceptors: interceptors,
         );
+
+  static const _coreInterceptors = <HttpInterceptor>[];
 
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())

@@ -132,7 +132,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
 
   /// Adds helper functions `byName` and `byValue` via an extension.
   Extension get _helperExtension => Extension((e) => e
-    ..name = '${className}ByValue'
+    ..name = '${className}Helpers'
     ..on = DartTypes.core.list(symbol)
     ..methods.addAll([
       // The `byName` method

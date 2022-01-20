@@ -67,13 +67,13 @@ mixin StructureGenerationContext<U> on ShapeGenerator<StructureShape, U> {
       httpOutputTraits?.httpPayload.member ??
       httpErrorTraits?.httpPayload.member;
 
-  /// The list of all members which should not be serialized in the payload.
-  late final List<MemberShape> nonSerializableMembers =
-      shape.nonSerializableMembers(context);
+  /// The list of all members which convey some information about the request,
+  /// and for most protocols are not included in the body of the request.
+  late final List<MemberShape> metadataMembers = shape.metadataMembers(context);
 
-  /// The list of all members which should be serialized in the payload.
-  late final List<MemberShape> serializableMembers =
-      shape.serializableMembers(context);
+  /// The list of all members which should always be included in the body of
+  /// the request.
+  late final List<MemberShape> payloadMembers = shape.payloadMembers(context);
 
   /// Whether the structure has an HTTP payload.
   late final bool hasPayload = shape.hasPayload;

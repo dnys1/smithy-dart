@@ -108,7 +108,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     // Add all payload members
     final payloadShape = outputShape.payloadShape(context);
     if (outputShape.hasBuiltPayload(context)) {
-      for (final member in outputShape.serializableMembers(context)) {
+      for (final member in outputShape.payloadMembers(context)) {
         yield builder
             .property(member.dartName)
             .assign(payload.property(member.dartName))
@@ -119,7 +119,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
 
     // TODO: Add HTTP metadata
-    final nonSerializableMembers = outputShape.nonSerializableMembers(context);
+    final nonSerializableMembers = outputShape.metadataMembers(context);
   }
 
   /// Adds the header to the request's headers map.

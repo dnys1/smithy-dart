@@ -88,10 +88,10 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
 
   /// The members which get serialized.
   ///
-  /// In general, this is members of the payload ([serializableMembers]).
+  /// In general, this is members of the payload ([payloadMembers]).
   /// However, for test cases, we want to deserialize *all* members.
   List<MemberShape> get serializedMembers =>
-      config.usePayload ? serializableMembers : sortedMembers;
+      config.usePayload ? payloadMembers : sortedMembers;
 
   /// Metadata about [shape] in the context of [protocol], including renames and
   /// other protocol-specific traits.
@@ -100,7 +100,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       final builder = protocol is RestJson1Trait
           ? RestJson1ProtocolTraitsBuilder()
           : JsonProtocolTraitsBuilder();
-      for (var member in serializableMembers) {
+      for (var member in payloadMembers) {
         final jsonName = member.getTrait<JsonNameTrait>()?.value;
         if (jsonName != null) {
           builder.memberWireNames[member] = jsonName;
@@ -117,7 +117,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       if (xmlNamespace != null) {
         builder.namespace = xmlNamespace;
       }
-      for (var member in serializableMembers) {
+      for (var member in payloadMembers) {
         final xmlName = member.getTrait<XmlNameTrait>()?.value;
         if (xmlName != null) {
           builder.memberWireNames[member] = xmlName;
@@ -306,7 +306,11 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
             ShapeType.list,
             ShapeType.set,
           ].contains(targetShape.getType()) ||
-          targetShape.getType() == ShapeType.structure && config.usePayload;
+          // Since payload types have `nestedBuilders: false`, the member has
+          // a nested builder only when the shape has a payload & we're using
+          // payloads.
+          targetShape.getType() == ShapeType.structure &&
+              (!shape.hasPayload || !config.usePayload);
       yield Block.of([
         const Code('case '),
         literalString(wireName).code,

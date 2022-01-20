@@ -287,8 +287,9 @@ extension StructureShapeUtil on StructureShape {
       httpOutputTraits(context)?.httpPayload.member ??
       httpErrorTraits(context)?.httpPayload.member;
 
-  /// The list of all members which should not be serialized in the payload.
-  List<MemberShape> nonSerializableMembers(CodegenContext context) {
+  /// The list of all members which convey some information about the request,
+  /// and for most protocols are not included in the body of the request.
+  List<MemberShape> metadataMembers(CodegenContext context) {
     final httpInputTraits = this.httpInputTraits(context);
     final httpOutputTraits = this.httpOutputTraits(context);
     final httpErrorTraits = this.httpErrorTraits(context);
@@ -312,9 +313,10 @@ extension StructureShapeUtil on StructureShape {
       ..sorted((a, b) => a.dartName.compareTo(b.dartName));
   }
 
-  /// The list of all members which should be serialized in the payload.
-  List<MemberShape> serializableMembers(CodegenContext context) => sortedMembers
-      .where((member) => !nonSerializableMembers(context).contains(member))
+  /// The list of all members which should always be included in the body of
+  /// the request.
+  List<MemberShape> payloadMembers(CodegenContext context) => sortedMembers
+      .where((member) => !metadataMembers(context).contains(member))
       .toList();
 
   /// Whether the structure has an HTTP payload.

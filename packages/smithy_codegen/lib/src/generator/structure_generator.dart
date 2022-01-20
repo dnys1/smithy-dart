@@ -103,10 +103,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..methods.addAll([
             _defaultValues(
-              members: serializableMembers,
+              members: payloadMembers,
               builderSymbol: payloadBuilderSymbol!,
             ),
-            ..._fieldGetters(serializableMembers),
+            ..._fieldGetters(payloadMembers),
           ]),
       );
 
@@ -208,11 +208,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
     // Build the payload using the payload builder class.
     Expression builder = refer('b');
-    for (final member in serializableMembers) {
+    for (final member in payloadMembers) {
       builder = builder.cascade(member.dartName).assign(refer(member.dartName));
     }
     return payloadSymbol!.newInstance([
-      if (serializableMembers.isNotEmpty)
+      if (payloadMembers.isNotEmpty)
         Method((m) => m
           ..requiredParameters.add(Parameter((p) => p..name = 'b'))
           ..body = builder.code).closure,

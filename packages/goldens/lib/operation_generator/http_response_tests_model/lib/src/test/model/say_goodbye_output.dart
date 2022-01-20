@@ -48,12 +48,7 @@ class _SayGoodbyeOutputAwsJson11Serializer
   const _SayGoodbyeOutputAwsJson11Serializer() : super('SayGoodbyeOutput');
 
   @override
-  Iterable<Type> get types => const [
-        SayGoodbyeOutput,
-        _$SayGoodbyeOutput,
-        SayGoodbyeOutputPayload,
-        _$SayGoodbyeOutputPayload
-      ];
+  Iterable<Type> get types => const [SayGoodbyeOutput, _$SayGoodbyeOutput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

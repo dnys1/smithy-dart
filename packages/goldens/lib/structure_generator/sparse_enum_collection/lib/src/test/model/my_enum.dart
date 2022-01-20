@@ -18,7 +18,7 @@ class MyEnum extends _i1.SmithyEnum<MyEnum> {
   static const values = <MyEnum>[MyEnum.variant1, MyEnum.variant2];
 }
 
-extension MyEnumByValue on List<MyEnum> {
+extension MyEnumHelpers on List<MyEnum> {
   /// Returns the value of [MyEnum] whose name matches [name].
   ///
   /// Throws a `StateError` if no matching value is found.

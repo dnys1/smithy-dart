@@ -63,12 +63,7 @@ class _SayHelloInputAwsJson11Serializer
   const _SayHelloInputAwsJson11Serializer() : super('SayHelloInput');
 
   @override
-  Iterable<Type> get types => const [
-        SayHelloInput,
-        _$SayHelloInput,
-        SayHelloInputPayload,
-        _$SayHelloInputPayload
-      ];
+  Iterable<Type> get types => const [SayHelloInput, _$SayHelloInput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

@@ -25,6 +25,14 @@ class SerializerConfig {
           usePrivateSymbols: false,
         );
 
+  /// Config for generic JSON protocol.
+  const SerializerConfig.genericJson()
+      : this._(
+          usePayload: true,
+          renameMembers: true,
+          usePrivateSymbols: true,
+        );
+
   /// Config for AWS JSON 1.0
   const SerializerConfig.awsJson10()
       : this._(
@@ -41,6 +49,8 @@ class SerializerConfig {
 extension on ProtocolDefinitionTrait {
   SerializerConfig get serializerConfig {
     switch (runtimeType) {
+      case GenericProtocolDefinitionTrait:
+        return const SerializerConfig.genericJson();
       case AwsJson1_0Trait:
         return const SerializerConfig.awsJson10();
       default:
@@ -291,12 +301,17 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       final wireName = _wireName(member);
       final memberSymbol = memberSymbols[member]!;
       final targetShape = context.shapeFor(member.target);
-      final nestedBuilder = targetShape.getType() == ShapeType.structure;
+      final hasNestedBuilder = [
+            ShapeType.map,
+            ShapeType.list,
+            ShapeType.set,
+          ].contains(targetShape.getType()) ||
+          targetShape.getType() == ShapeType.structure && config.usePayload;
       yield Block.of([
         const Code('case '),
         literalString(wireName).code,
         const Code(':'),
-        if (!config.usePayload && nestedBuilder)
+        if (hasNestedBuilder)
           refer('result').property(member.dartName).property('replace').call([
             _deserializerFor(member).asA(memberSymbol.unboxed),
           ]).statement

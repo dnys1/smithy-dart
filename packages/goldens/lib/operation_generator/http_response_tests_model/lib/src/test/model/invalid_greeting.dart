@@ -60,12 +60,7 @@ class _InvalidGreetingAwsJson11Serializer
   const _InvalidGreetingAwsJson11Serializer() : super('InvalidGreeting');
 
   @override
-  Iterable<Type> get types => const [
-        InvalidGreeting,
-        _$InvalidGreeting,
-        InvalidGreetingPayload,
-        _$InvalidGreetingPayload
-      ];
+  Iterable<Type> get types => const [InvalidGreeting, _$InvalidGreeting];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

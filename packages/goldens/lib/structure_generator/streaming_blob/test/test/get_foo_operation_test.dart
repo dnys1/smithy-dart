@@ -1,5 +1,5 @@
 // Generated code. DO NOT MODIFY.
 
-library streaming_blob.test.operation.get_foo;
+library streaming_blob.test.operation.get_foo_test;
 
 void main() {}

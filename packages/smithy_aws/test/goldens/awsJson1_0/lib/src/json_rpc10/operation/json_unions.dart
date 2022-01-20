@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.operation.json_unions;
 
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_0/src/json_rpc10/model/json_unions_input.dart' as _i2;
 import 'package:aws_json1_0/src/json_rpc10/model/json_unions_output.dart'
     as _i3;
@@ -32,8 +33,8 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInputPayload,
         b.successCode = 200;
       });
   @override
-  _i3.JsonUnionsOutput buildOutput(
-          _i3.JsonUnionsOutputPayload payload, _i1.HttpResponse response) =>
+  _i3.JsonUnionsOutput buildOutput(_i3.JsonUnionsOutputPayload payload,
+          _i6.AWSStreamedHttpResponse response) =>
       _i3.JsonUnionsOutput((b) {
         b.contents = payload.contents;
       });

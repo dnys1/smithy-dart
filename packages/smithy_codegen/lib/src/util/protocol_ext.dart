@@ -32,11 +32,4 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         return const SerializerConfig();
     }
   }
-
-  /// A constructed ShapeId expression.
-  Expression get constructedShapeId =>
-      DartTypes.smithy.shapeId.constInstance([], {
-        'namespace': literalString(shapeId.namespace),
-        'shape': literalString(shapeId.shape),
-      });
 }

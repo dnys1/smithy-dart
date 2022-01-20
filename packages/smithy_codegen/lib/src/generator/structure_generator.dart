@@ -307,15 +307,18 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
       // `statusCode` getter
-      yield Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.int.boxed
-          ..name = 'statusCode'
-          ..type = MethodType.getter
-          ..lambda = true
-          ..body = literalNum(errorTraits.statusCode).code,
-      );
+      final statusCode = errorTraits.statusCode;
+      if (statusCode != null) {
+        yield Method(
+          (m) => m
+            ..annotations.add(DartTypes.core.override)
+            ..returns = DartTypes.core.int.boxed
+            ..name = 'statusCode'
+            ..type = MethodType.getter
+            ..lambda = true
+            ..body = literalNum(statusCode).code,
+        );
+      }
     }
 
     // `message` getter

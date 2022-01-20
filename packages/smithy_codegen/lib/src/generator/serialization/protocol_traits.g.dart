@@ -214,6 +214,11 @@ class HttpPrefixHeadersBuilder
   }
 }
 
+abstract class HttpTraitsBuilder {
+  void replace(HttpTraits other);
+  void update(void Function(HttpTraitsBuilder) updates);
+}
+
 class _$HttpInputTraits extends HttpInputTraits {
   @override
   final BuiltMap<String, MemberShape> httpHeaders;
@@ -565,13 +570,15 @@ class HttpOutputTraitsBuilder
 
 class _$HttpErrorTraits extends HttpErrorTraits {
   @override
+  final ShapeId shapeId;
+  @override
   final ErrorKind kind;
   @override
   final Reference symbol;
   @override
   final RetryConfig? retryConfig;
   @override
-  final int statusCode;
+  final int? statusCode;
   @override
   final BuiltMap<String, MemberShape> httpHeaders;
   @override
@@ -583,18 +590,19 @@ class _$HttpErrorTraits extends HttpErrorTraits {
       (new HttpErrorTraitsBuilder()..update(updates)).build();
 
   _$HttpErrorTraits._(
-      {required this.kind,
+      {required this.shapeId,
+      required this.kind,
       required this.symbol,
       this.retryConfig,
-      required this.statusCode,
+      this.statusCode,
       required this.httpHeaders,
       required this.httpPayload,
       this.httpPrefixHeaders})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        shapeId, 'HttpErrorTraits', 'shapeId');
     BuiltValueNullFieldError.checkNotNull(kind, 'HttpErrorTraits', 'kind');
     BuiltValueNullFieldError.checkNotNull(symbol, 'HttpErrorTraits', 'symbol');
-    BuiltValueNullFieldError.checkNotNull(
-        statusCode, 'HttpErrorTraits', 'statusCode');
     BuiltValueNullFieldError.checkNotNull(
         httpHeaders, 'HttpErrorTraits', 'httpHeaders');
     BuiltValueNullFieldError.checkNotNull(
@@ -613,6 +621,7 @@ class _$HttpErrorTraits extends HttpErrorTraits {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpErrorTraits &&
+        shapeId == other.shapeId &&
         kind == other.kind &&
         symbol == other.symbol &&
         retryConfig == other.retryConfig &&
@@ -628,7 +637,9 @@ class _$HttpErrorTraits extends HttpErrorTraits {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, kind.hashCode), symbol.hashCode),
+                    $jc(
+                        $jc($jc($jc(0, shapeId.hashCode), kind.hashCode),
+                            symbol.hashCode),
                         retryConfig.hashCode),
                     statusCode.hashCode),
                 httpHeaders.hashCode),
@@ -639,6 +650,7 @@ class _$HttpErrorTraits extends HttpErrorTraits {
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HttpErrorTraits')
+          ..add('shapeId', shapeId)
           ..add('kind', kind)
           ..add('symbol', symbol)
           ..add('retryConfig', retryConfig)
@@ -653,6 +665,10 @@ class _$HttpErrorTraits extends HttpErrorTraits {
 class HttpErrorTraitsBuilder
     implements Builder<HttpErrorTraits, HttpErrorTraitsBuilder> {
   _$HttpErrorTraits? _$v;
+
+  ShapeId? _shapeId;
+  ShapeId? get shapeId => _$this._shapeId;
+  set shapeId(ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   ErrorKind? _kind;
   ErrorKind? get kind => _$this._kind;
@@ -694,6 +710,7 @@ class HttpErrorTraitsBuilder
   HttpErrorTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _shapeId = $v.shapeId;
       _kind = $v.kind;
       _symbol = $v.symbol;
       _retryConfig = $v.retryConfig;
@@ -719,18 +736,18 @@ class HttpErrorTraitsBuilder
 
   @override
   _$HttpErrorTraits build() {
-    HttpErrorTraits._init(this);
     _$HttpErrorTraits _$result;
     try {
       _$result = _$v ??
           new _$HttpErrorTraits._(
+              shapeId: BuiltValueNullFieldError.checkNotNull(
+                  shapeId, 'HttpErrorTraits', 'shapeId'),
               kind: BuiltValueNullFieldError.checkNotNull(
                   kind, 'HttpErrorTraits', 'kind'),
               symbol: BuiltValueNullFieldError.checkNotNull(
                   symbol, 'HttpErrorTraits', 'symbol'),
               retryConfig: retryConfig,
-              statusCode: BuiltValueNullFieldError.checkNotNull(
-                  statusCode, 'HttpErrorTraits', 'statusCode'),
+              statusCode: statusCode,
               httpHeaders: httpHeaders.build(),
               httpPayload: httpPayload.build(),
               httpPrefixHeaders: _httpPrefixHeaders?.build());

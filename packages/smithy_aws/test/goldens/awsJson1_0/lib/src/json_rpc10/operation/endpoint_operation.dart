@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.operation.endpoint_operation;
 
+import 'package:aws_common/aws_common.dart' as _i4;
 import 'package:aws_json1_0/src/json_rpc10/serializers.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
@@ -27,7 +28,9 @@ class EndpointOperation
         b.hostPrefix = 'foo.';
       });
   @override
-  _i1.Unit buildOutput(_i1.Unit payload, _i1.HttpResponse response) => payload;
+  _i1.Unit buildOutput(
+          _i1.Unit payload, _i4.AWSStreamedHttpResponse response) =>
+      payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

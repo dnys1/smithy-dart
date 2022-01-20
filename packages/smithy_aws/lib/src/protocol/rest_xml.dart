@@ -50,4 +50,9 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
 
   @override
   FullSerializer<List<int>> get wireSerializer => throw UnimplementedError();
+
+    @override
+  Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
+    throw UnimplementedError();
+  }
 }

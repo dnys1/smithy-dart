@@ -355,7 +355,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             ..type = outputPayload.symbol),
           Parameter((p) => p
             ..name = 'response'
-            ..type = DartTypes.smithy.httpResponse),
+            ..type = DartTypes.awsCommon.awsStreamedHttpResponse),
         ])
         ..body = output.code,
     );
@@ -371,10 +371,12 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ..body = literalConstList([
           for (var error in errorSymbols)
             DartTypes.smithy.smithyError.constInstance([
+              error.shapeId.constructed,
               DartTypes.smithy.errorKind.property(error.kind.name),
               error.symbol,
             ], {
-              'statusCode': literalNum(error.statusCode),
+              if (error.statusCode != null)
+                'statusCode': literalNum(error.statusCode!),
               if (error.retryConfig != null)
                 'retryConfig': DartTypes.smithy.retryConfig.constInstance([], {
                   'isThrottlingError':

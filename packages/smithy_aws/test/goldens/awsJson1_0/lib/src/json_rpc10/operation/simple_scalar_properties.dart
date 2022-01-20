@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.operation.simple_scalar_properties;
 
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_input.dart'
     as _i2;
 import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_output.dart'
@@ -41,7 +42,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   @override
   _i3.SimpleScalarPropertiesOutput buildOutput(
           _i3.SimpleScalarPropertiesOutputPayload payload,
-          _i1.HttpResponse response) =>
+          _i6.AWSStreamedHttpResponse response) =>
       _i3.SimpleScalarPropertiesOutput((b) {
         b.doubleValue = payload.doubleValue;
         b.floatValue = payload.floatValue;

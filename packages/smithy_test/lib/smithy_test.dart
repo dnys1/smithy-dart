@@ -6,3 +6,4 @@ export 'package:smithy_ast/smithy_ast.dart'
 
 export 'src/common.dart';
 export 'src/http/http_request_test.dart';
+export 'src/http/http_response_test.dart';

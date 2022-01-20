@@ -7,6 +7,7 @@ import 'package:smithy_codegen/src/generator/serialization/serializer_config.dar
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
+import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 /// Generates a serializer class for [shape] and [protocol].
@@ -57,7 +58,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           ..name = 'supportedProtocols'
           ..lambda = true
           ..body = literalConstList([
-            if (!protocol.isSynthetic) protocol.constructedShapeId,
+            if (!protocol.isSynthetic) protocol.shapeId.constructed,
           ]).code,
       );
 

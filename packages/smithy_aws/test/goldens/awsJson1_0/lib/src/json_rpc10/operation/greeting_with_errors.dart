@@ -2,13 +2,14 @@
 
 library aws_json1_0.json_rpc10.operation.greeting_with_errors;
 
-import 'package:aws_json1_0/src/json_rpc10/model/complex_error.dart' as _i6;
-import 'package:aws_json1_0/src/json_rpc10/model/foo_error.dart' as _i7;
+import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:aws_json1_0/src/json_rpc10/model/complex_error.dart' as _i7;
+import 'package:aws_json1_0/src/json_rpc10/model/foo_error.dart' as _i8;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_input.dart'
     as _i2;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_output.dart'
     as _i3;
-import 'package:aws_json1_0/src/json_rpc10/model/invalid_greeting.dart' as _i8;
+import 'package:aws_json1_0/src/json_rpc10/model/invalid_greeting.dart' as _i9;
 import 'package:aws_json1_0/src/json_rpc10/serializers.dart' as _i5;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
@@ -51,16 +52,27 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
   @override
   _i3.GreetingWithErrorsOutput buildOutput(
           _i3.GreetingWithErrorsOutputPayload payload,
-          _i1.HttpResponse response) =>
+          _i6.AWSStreamedHttpResponse response) =>
       _i3.GreetingWithErrorsOutput((b) {
         b.greeting = payload.greeting;
       });
   @override
   List<_i1.SmithyError> get errorTypes => const [
-        _i1.SmithyError(_i1.ErrorKind.client, _i6.ComplexError,
-            statusCode: 400),
-        _i1.SmithyError(_i1.ErrorKind.server, _i7.FooError, statusCode: 500),
-        _i1.SmithyError(_i1.ErrorKind.client, _i8.InvalidGreeting,
-            statusCode: 400)
+        _i1.SmithyError(
+            _i1.ShapeId(
+                namespace: 'aws.protocoltests.json10', shape: 'ComplexError'),
+            _i1.ErrorKind.client,
+            _i7.ComplexError),
+        _i1.SmithyError(
+            _i1.ShapeId(
+                namespace: 'aws.protocoltests.json10', shape: 'FooError'),
+            _i1.ErrorKind.server,
+            _i8.FooError),
+        _i1.SmithyError(
+            _i1.ShapeId(
+                namespace: 'aws.protocoltests.json10',
+                shape: 'InvalidGreeting'),
+            _i1.ErrorKind.client,
+            _i9.InvalidGreeting)
       ];
 }

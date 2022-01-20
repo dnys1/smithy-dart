@@ -18,13 +18,36 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           ?.testCases
           .where((t) => t.appliesTo != AppliesTo.server) ??
       const [];
-  late final testProtocols = httpRequestTestCases
-      .map((t) => t.protocol)
-      .toSet()
+  late final httpResponseTestCases = shape
+          .getTrait<HttpResponseTestsTrait>()
+          ?.testCases
+          .where((t) => t.appliesTo != AppliesTo.server) ??
+      const [];
+  late final errorShapes = shape.errors
+      .map((err) => context.shapeFor(err.target))
+      .cast<StructureShape>()
+      .toList();
+  late final httpErrorResponseTestCases = {
+    for (final shape in errorShapes)
+      shape: shape
+              .getTrait<HttpResponseTestsTrait>()
+              ?.testCases
+              .where((t) => t.appliesTo != AppliesTo.server) ??
+          const [],
+  };
+
+  late final testProtocols = {
+    ...httpRequestTestCases.map((t) => t.protocol),
+    ...httpResponseTestCases.map((t) => t.protocol),
+    ...httpErrorResponseTestCases.values
+        .expand((el) => el)
+        .map((t) => t.protocol),
+  }
       .map((protocol) =>
           context.serviceProtocols.firstWhere((p) => p.shapeId == protocol))
       .toList();
-  late final testSerializers = {
+
+  late final inputSerializers = {
     for (final protocol in testProtocols)
       protocol.shapeId: StructureSerializerGenerator(
         inputShape,
@@ -32,6 +55,27 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         protocol,
         config: const SerializerConfig.test(),
       ).generate(),
+  };
+  late final outputSerializers = {
+    for (final protocol in testProtocols)
+      protocol.shapeId: StructureSerializerGenerator(
+        outputShape,
+        context,
+        protocol,
+        config: const SerializerConfig.test(),
+      ).generate(),
+  };
+  late final errorSerializers = {
+    for (final errorShape in errorShapes)
+      errorShape: {
+        for (final protocol in testProtocols)
+          protocol.shapeId: StructureSerializerGenerator(
+            errorShape,
+            context,
+            protocol,
+            config: const SerializerConfig.test(),
+          ).generate(),
+      }
   };
 
   @override
@@ -41,7 +85,9 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     // Generic JSON serializer for deserializing the input params
     builder.body.addAll([
       _mainMethod,
-      ...testSerializers.values.whereType<Class>(),
+      ...inputSerializers.values.whereType<Class>(),
+      ...outputSerializers.values.whereType<Class>(),
+      ...errorSerializers.values.expand((el) => el.values).whereType<Class>(),
     ]);
 
     return builder.build();
@@ -53,13 +99,15 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           ..name = 'main'
           ..body = Block.of([
             ..._httpRequestTests,
+            ..._httpResponseTests,
+            ..._httpErrorResponseTests,
           ]),
       );
 
   /// HTTP request tests.
   Iterable<Code> get _httpRequestTests sync* {
     for (var testCase in httpRequestTestCases) {
-      final serializer = testSerializers[testCase.protocol];
+      final serializer = inputSerializers[testCase.protocol];
       yield DartTypes.smithyTest.httpRequestTest.call([], {
         'operation': symbol.newInstance([]),
         'testCase': DartTypes.smithyTest.httpRequestTestCase.constInstance([], {
@@ -102,4 +150,67 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       }).statement;
     }
   }
+
+  /// HTTP response tests.
+  ///
+  /// https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#httpresponsetests
+  Iterable<Code> get _httpResponseTests sync* {
+    for (var testCase in httpResponseTestCases) {
+      final serializer = outputSerializers[testCase.protocol];
+      yield DartTypes.smithyTest.httpResponseTest.call([], {
+        'operation': symbol.newInstance([]),
+        'testCase': _buildResponseTestCase(testCase),
+        if (serializer != null)
+          'outputSerializer': refer(serializer.name).constInstance([]),
+      }).statement;
+    }
+  }
+
+  /// HTTP error response tests.
+  ///
+  /// https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#httpresponsetests
+  Iterable<Code> get _httpErrorResponseTests sync* {
+    for (final shape in errorShapes) {
+      final testCases = httpErrorResponseTestCases[shape]!;
+      for (var testCase in testCases) {
+        final serializer = errorSerializers[shape]![testCase.protocol];
+        yield DartTypes.smithyTest.httpErrorResponseTest.call([], {
+          'operation': symbol.newInstance([]),
+          'testCase': _buildResponseTestCase(testCase),
+          if (serializer != null)
+            'errorSerializer': refer(serializer.name).constInstance([]),
+        }).statement;
+      }
+    }
+  }
+
+  Expression _buildResponseTestCase(HttpResponseTestCase testCase) =>
+      DartTypes.smithyTest.httpResponseTestCase.constInstance([], {
+        'id': literal(testCase.id),
+        'documentation': literal(testCase.documentation),
+        'protocol': DartTypes.smithy.shapeId.constInstance([], {
+          'namespace': literalString(testCase.protocol.namespace),
+          'shape': literalString(testCase.protocol.shape),
+        }),
+        'authScheme': literal(testCase.authScheme),
+        'body': literal(testCase.body),
+        'bodyMediaType': literal(testCase.bodyMediaType),
+        'params': literal(testCase.params),
+        'vendorParamsShape': testCase.vendorParamsShape == null
+            ? literalNull
+            : DartTypes.smithy.shapeId.constInstance([], {
+                'namespace':
+                    literalString(testCase.vendorParamsShape!.namespace),
+                'shape': literalString(testCase.vendorParamsShape!.shape),
+              }),
+        'vendorParams': literal(testCase.vendorParams),
+        'headers': literal(testCase.headers),
+        'forbidHeaders': literal(testCase.forbidHeaders),
+        'requireHeaders': literal(testCase.requireHeaders),
+        'tags': literal(testCase.tags),
+        'appliesTo': testCase.appliesTo == null
+            ? literalNull
+            : DartTypes.smithyTest.appliesTo.property(testCase.appliesTo!.name),
+        'code': literal(testCase.code),
+      });
 }

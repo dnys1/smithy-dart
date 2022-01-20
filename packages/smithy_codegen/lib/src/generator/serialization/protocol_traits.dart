@@ -74,15 +74,11 @@ abstract class HttpErrorTraits
       _$HttpErrorTraits;
   HttpErrorTraits._();
 
-  @BuiltValueHook(finalizeBuilder: true)
-  static void _init(HttpErrorTraitsBuilder b) {
-    b.statusCode ??= (b.kind! == ErrorKind.client ? 400 : 500);
-  }
-
+  ShapeId get shapeId;
   ErrorKind get kind;
   Reference get symbol;
   RetryConfig? get retryConfig;
-  int get statusCode;
+  int? get statusCode;
   BuiltMap<String, MemberShape> get httpHeaders;
   HttpPayload get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;

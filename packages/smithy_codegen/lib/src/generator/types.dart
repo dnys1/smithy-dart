@@ -184,6 +184,10 @@ class _AwsCommon {
 
   /// Creates an [aws_common.AWSSerializable] reference.
   Reference get awsSerializable => const Reference('AWSSerializable', _url);
+
+  /// Creates an [aws_common.AWSStreamedHttpResponse] reference.
+  Reference get awsStreamedHttpResponse =>
+      const Reference('AWSStreamedHttpResponse', _url);
 }
 
 /// `package:built_value` types
@@ -558,12 +562,19 @@ class _SmithyTest {
   /// Creates an `AppliesTo` reference.
   Reference get appliesTo => const Reference('AppliesTo', _url);
 
+  /// Creates an `httpErrorResponseTest` reference.
+  Reference get httpErrorResponseTest =>
+      const Reference('httpErrorResponseTest', _url);
+
   /// Creates an `httpRequestTest` reference.
   Reference get httpRequestTest => const Reference('httpRequestTest', _url);
 
   /// Creates an `HttpRequestTestCase` reference.
   Reference get httpRequestTestCase =>
       const Reference('HttpRequestTestCase', _url);
+
+  /// Creates an `httpResponseTest` reference.
+  Reference get httpResponseTest => const Reference('httpResponseTest', _url);
 
   /// Creates an `HttpResponseTestCase` reference.
   Reference get httpResponseTestCase =>

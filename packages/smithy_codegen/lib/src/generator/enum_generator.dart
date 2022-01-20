@@ -4,7 +4,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
-import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
@@ -148,7 +147,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
         'sdkUnknown': symbol.property('sdkUnknown'),
         'supportedProtocols': literalConstList([
           for (final protocol in context.serviceProtocols)
-            if (!protocol.isSynthetic) protocol.constructedShapeId,
+            if (!protocol.isSynthetic) protocol.shapeId.constructed,
         ])
       })
     ]).code);

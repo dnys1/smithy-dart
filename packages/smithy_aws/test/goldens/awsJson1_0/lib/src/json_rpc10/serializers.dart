@@ -15,10 +15,10 @@ import 'package:aws_json1_0/src/json_rpc10/model/foo_enum.dart' as _i13;
 import 'package:aws_json1_0/src/json_rpc10/model/foo_error.dart' as _i7;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_struct.dart' as _i14;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_input.dart'
-    as _i8;
-import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_output.dart'
     as _i9;
-import 'package:aws_json1_0/src/json_rpc10/model/invalid_greeting.dart' as _i10;
+import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_output.dart'
+    as _i10;
+import 'package:aws_json1_0/src/json_rpc10/model/invalid_greeting.dart' as _i8;
 import 'package:aws_json1_0/src/json_rpc10/model/json_unions_input.dart'
     as _i11;
 import 'package:aws_json1_0/src/json_rpc10/model/json_unions_output.dart'
@@ -41,9 +41,9 @@ const List<_i1.SmithySerializer> serializers = [
   ..._i5.EmptyInputAndEmptyOutputOutput.serializers,
   ..._i6.EndpointWithHostLabelOperationInput.serializers,
   ..._i7.FooError.serializers,
-  ..._i8.GreetingWithErrorsInput.serializers,
-  ..._i9.GreetingWithErrorsOutput.serializers,
-  ..._i10.InvalidGreeting.serializers,
+  ..._i8.InvalidGreeting.serializers,
+  ..._i9.GreetingWithErrorsInput.serializers,
+  ..._i10.GreetingWithErrorsOutput.serializers,
   ..._i11.JsonUnionsInput.serializers,
   ..._i12.JsonUnionsOutput.serializers,
   ..._i13.FooEnum.serializers,

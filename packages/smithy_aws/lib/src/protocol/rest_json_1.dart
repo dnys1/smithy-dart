@@ -50,4 +50,9 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
 
   @override
   late final JsonSerializer wireSerializer = JsonSerializer(serializers);
+
+    @override
+  Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
+    throw UnimplementedError();
+  }
 }

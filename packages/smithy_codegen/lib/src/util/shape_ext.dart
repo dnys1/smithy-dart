@@ -239,6 +239,7 @@ extension StructureShapeUtil on StructureShape {
     }
     final builder = HttpErrorTraitsBuilder();
     builder.symbol = context.symbolFor(shapeId);
+    builder.shapeId = shapeId;
     final errorTrait = expectTrait<ErrorTrait>();
     builder.kind = errorTrait.type;
     final httpErrorTrait = getTrait<HttpErrorTrait>();
@@ -334,4 +335,13 @@ extension StructureShapeUtil on StructureShape {
         (payloadShape.isStreaming ||
             context.shapeFor(payloadShape.target).isStreaming);
   }
+}
+
+extension ShapeIdUtil on ShapeId {
+  /// A constructed ShapeId expression.
+  Expression get constructed => DartTypes.smithy.shapeId.constInstance([], {
+        'namespace': literalString(namespace),
+        'shape': literalString(shape),
+        if (member != null) 'member': literalString(member!),
+      });
 }

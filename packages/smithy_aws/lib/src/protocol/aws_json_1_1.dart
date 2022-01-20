@@ -40,6 +40,11 @@ class AwsJson1_1Protocol<InputPayload, Input, OutputPayload, Output>
 
   @override
   late final JsonSerializer wireSerializer = JsonSerializer(serializers);
+
+  @override
+  Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
+    throw UnimplementedError();
+  }
 }
 
 // ignore_for_file: camel_case_types

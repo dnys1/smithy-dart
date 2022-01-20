@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.operation.empty_input_and_empty_output;
 
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_0/src/json_rpc10/model/empty_input_and_empty_output_input.dart'
     as _i2;
 import 'package:aws_json1_0/src/json_rpc10/model/empty_input_and_empty_output_output.dart'
@@ -45,7 +46,7 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
   @override
   _i3.EmptyInputAndEmptyOutputOutput buildOutput(
           _i3.EmptyInputAndEmptyOutputOutputPayload payload,
-          _i1.HttpResponse response) =>
+          _i6.AWSStreamedHttpResponse response) =>
       _i3.EmptyInputAndEmptyOutputOutput();
   @override
   List<_i1.SmithyError> get errorTypes => const [];

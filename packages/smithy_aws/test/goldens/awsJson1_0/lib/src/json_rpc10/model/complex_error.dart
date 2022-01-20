@@ -57,7 +57,7 @@ abstract class ComplexErrorPayload
 }
 
 class _ComplexErrorAwsJson10Serializer
-    extends _i1.SmithySerializer<ComplexError> {
+    extends _i1.StructuredSmithySerializer<ComplexError> {
   const _ComplexErrorAwsJson10Serializer() : super('ComplexError');
 
   @override

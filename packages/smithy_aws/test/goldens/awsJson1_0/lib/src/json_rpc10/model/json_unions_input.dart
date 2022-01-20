@@ -48,7 +48,7 @@ abstract class JsonUnionsInputPayload
 }
 
 class _JsonUnionsInputAwsJson10Serializer
-    extends _i1.SmithySerializer<JsonUnionsInput> {
+    extends _i1.StructuredSmithySerializer<JsonUnionsInput> {
   const _JsonUnionsInputAwsJson10Serializer() : super('JsonUnionsInput');
 
   @override

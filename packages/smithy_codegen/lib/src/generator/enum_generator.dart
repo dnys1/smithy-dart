@@ -4,6 +4,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
@@ -24,6 +25,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
 
   @override
   Library generate() {
+    context.generatedTypes.add(symbol);
+
     builder.body.addAll([
       _classDefinition,
       _helperExtension,
@@ -48,6 +51,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
           ..fields.addAll([
             ..._variantFields,
             _valuesField,
+            _serializersField,
           ]);
       });
 
@@ -129,6 +133,25 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
             symbol,
           ).code,
       );
+
+  /// The list of serializers for this enum.
+  Field get _serializersField => Field((f) => f
+    ..static = true
+    ..modifier = FieldModifier.constant
+    ..type = DartTypes.core.list(DartTypes.smithy.smithySerializer(symbol))
+    ..name = 'serializers'
+    ..assignment = literalConstList([
+      DartTypes.smithy.smithyEnumSerializer.constInstance([
+        literalString(shape.shapeId.shape),
+      ], {
+        'values': refer('values'),
+        'sdkUnknown': symbol.property('sdkUnknown'),
+        'supportedProtocols': literalConstList([
+          for (final protocol in context.serviceProtocols)
+            if (!protocol.isSynthetic) protocol.constructedShapeId,
+        ])
+      })
+    ]).code);
 
   /// Adds helper functions `byName` and `byValue` via an extension.
   Extension get _helperExtension => Extension((e) => e

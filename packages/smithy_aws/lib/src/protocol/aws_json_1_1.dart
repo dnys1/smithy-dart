@@ -8,7 +8,7 @@ class AwsJson1_1Protocol<InputPayload, Input, OutputPayload, Output>
   AwsJson1_1Protocol({
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],
-    Map<Type, Function> builderFactories = const {},
+    Map<FullType, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
           _coreInterceptors,
@@ -24,6 +24,7 @@ class AwsJson1_1Protocol<InputPayload, Input, OutputPayload, Output>
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
         ..addAll([
+          const DoubleSerializer(),
           const UnitSerializer(),
           const BlobSerializer(),
           TimestampSerializer.epochSeconds,

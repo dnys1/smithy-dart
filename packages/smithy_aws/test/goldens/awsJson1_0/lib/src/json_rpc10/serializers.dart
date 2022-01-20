@@ -11,8 +11,9 @@ import 'package:aws_json1_0/src/json_rpc10/model/empty_input_and_empty_output_ou
     as _i5;
 import 'package:aws_json1_0/src/json_rpc10/model/endpoint_with_host_label_operation_input.dart'
     as _i6;
+import 'package:aws_json1_0/src/json_rpc10/model/foo_enum.dart' as _i13;
 import 'package:aws_json1_0/src/json_rpc10/model/foo_error.dart' as _i7;
-import 'package:aws_json1_0/src/json_rpc10/model/greeting_struct.dart' as _i13;
+import 'package:aws_json1_0/src/json_rpc10/model/greeting_struct.dart' as _i14;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_input.dart'
     as _i8;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_output.dart'
@@ -22,14 +23,15 @@ import 'package:aws_json1_0/src/json_rpc10/model/json_unions_input.dart'
     as _i11;
 import 'package:aws_json1_0/src/json_rpc10/model/json_unions_output.dart'
     as _i12;
-import 'package:aws_json1_0/src/json_rpc10/model/my_union.dart' as _i14;
+import 'package:aws_json1_0/src/json_rpc10/model/my_union.dart' as _i15;
 import 'package:aws_json1_0/src/json_rpc10/model/no_input_and_output_output.dart'
-    as _i15;
-import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_input.dart'
     as _i16;
-import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_output.dart'
+import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_input.dart'
     as _i17;
-import 'package:built_collection/built_collection.dart' as _i18;
+import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_output.dart'
+    as _i18;
+import 'package:built_collection/built_collection.dart' as _i19;
+import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 const List<_i1.SmithySerializer> serializers = [
@@ -44,13 +46,20 @@ const List<_i1.SmithySerializer> serializers = [
   ..._i10.InvalidGreeting.serializers,
   ..._i11.JsonUnionsInput.serializers,
   ..._i12.JsonUnionsOutput.serializers,
-  ..._i13.GreetingStruct.serializers,
-  ..._i14.MyUnion.serializers,
-  ..._i15.NoInputAndOutputOutput.serializers,
-  ..._i16.SimpleScalarPropertiesInput.serializers,
-  ..._i17.SimpleScalarPropertiesOutput.serializers
+  ..._i13.FooEnum.serializers,
+  ..._i14.GreetingStruct.serializers,
+  ..._i15.MyUnion.serializers,
+  ..._i16.NoInputAndOutputOutput.serializers,
+  ..._i17.SimpleScalarPropertiesInput.serializers,
+  ..._i18.SimpleScalarPropertiesOutput.serializers
 ];
-const Map<Type, Function> builderFactories = {
-  _i18.BuiltList<String>: _i18.ListBuilder<String>.new,
-  _i18.BuiltMap<String, String>: _i18.MapBuilder<String, String>.new
+final Map<FullType, Function> builderFactories = {
+  const FullType(_i19.BuiltList, [FullType(String)]):
+      _i19.ListBuilder<String>.new,
+  const FullType(_i19.BuiltMap, [FullType(String), FullType(String)]):
+      _i19.MapBuilder<String, String>.new,
+  const FullType(_i19.BuiltList, [FullType(String)]):
+      _i19.ListBuilder<String>.new,
+  const FullType(_i19.BuiltMap, [FullType(String), FullType(String)]):
+      _i19.MapBuilder<String, String>.new
 };

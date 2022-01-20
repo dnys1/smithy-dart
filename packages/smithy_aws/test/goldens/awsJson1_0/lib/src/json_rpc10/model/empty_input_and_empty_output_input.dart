@@ -50,7 +50,7 @@ abstract class EmptyInputAndEmptyOutputInputPayload
 }
 
 class _EmptyInputAndEmptyOutputInputAwsJson10Serializer
-    extends _i1.SmithySerializer<EmptyInputAndEmptyOutputInput> {
+    extends _i1.StructuredSmithySerializer<EmptyInputAndEmptyOutputInput> {
   const _EmptyInputAndEmptyOutputInputAwsJson10Serializer()
       : super('EmptyInputAndEmptyOutputInput');
 

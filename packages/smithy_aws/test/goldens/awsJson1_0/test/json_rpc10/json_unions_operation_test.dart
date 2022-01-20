@@ -12,297 +12,297 @@ import 'package:smithy_test/smithy_test.dart' as _i1;
 void main() {
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeStringUnionValue',
-        'documentation': 'Serializes a string union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{\n    "contents": {\n        "stringValue": "foo"\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {'stringValue': 'foo'}
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeStringUnionValue',
+          documentation: 'Serializes a string union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{\n    "contents": {\n        "stringValue": "foo"\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {'stringValue': 'foo'}
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeBooleanUnionValue',
-        'documentation': 'Serializes a boolean union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{\n    "contents": {\n        "booleanValue": true\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {'booleanValue': true}
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeBooleanUnionValue',
+          documentation: 'Serializes a boolean union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{\n    "contents": {\n        "booleanValue": true\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {'booleanValue': true}
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeNumberUnionValue',
-        'documentation': 'Serializes a number union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{\n    "contents": {\n        "numberValue": 1\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {'numberValue': 1}
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeNumberUnionValue',
+          documentation: 'Serializes a number union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{\n    "contents": {\n        "numberValue": 1\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {'numberValue': 1}
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeBlobUnionValue',
-        'documentation': 'Serializes a blob union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{\n    "contents": {\n        "blobValue": "Zm9v"\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {'blobValue': 'foo'}
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeBlobUnionValue',
+          documentation: 'Serializes a blob union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{\n    "contents": {\n        "blobValue": "Zm9v"\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {'blobValue': 'foo'}
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeTimestampUnionValue',
-        'documentation': 'Serializes a timestamp union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body':
-            '{\n    "contents": {\n        "timestampValue": 1398796238\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {'timestampValue': 1398796238}
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeTimestampUnionValue',
+          documentation: 'Serializes a timestamp union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body:
+              '{\n    "contents": {\n        "timestampValue": 1398796238\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {'timestampValue': 1398796238}
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeEnumUnionValue',
-        'documentation': 'Serializes an enum union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{\n    "contents": {\n        "enumValue": "Foo"\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {'enumValue': 'Foo'}
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeEnumUnionValue',
+          documentation: 'Serializes an enum union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{\n    "contents": {\n        "enumValue": "Foo"\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {'enumValue': 'Foo'}
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeListUnionValue',
-        'documentation': 'Serializes a list union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body':
-            '{\n    "contents": {\n        "listValue": ["foo", "bar"]\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {
-            'listValue': ['foo', 'bar']
-          }
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeListUnionValue',
+          documentation: 'Serializes a list union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body:
+              '{\n    "contents": {\n        "listValue": ["foo", "bar"]\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {
+              'listValue': ['foo', 'bar']
+            }
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeMapUnionValue',
-        'documentation': 'Serializes a map union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body':
-            '{\n    "contents": {\n        "mapValue": {\n            "foo": "bar",\n            "spam": "eggs"\n        }\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {
-            'mapValue': {'foo': 'bar', 'spam': 'eggs'}
-          }
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeMapUnionValue',
+          documentation: 'Serializes a map union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body:
+              '{\n    "contents": {\n        "mapValue": {\n            "foo": "bar",\n            "spam": "eggs"\n        }\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {
+              'mapValue': {'foo': 'bar', 'spam': 'eggs'}
+            }
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.JsonUnionsOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SerializeStructureUnionValue',
-        'documentation': 'Serializes a structure union value',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body':
-            '{\n    "contents": {\n        "structureValue": {\n            "hi": "hello"\n        }\n    }\n}',
-        'bodyMediaType': 'application/json',
-        'params': {
-          'contents': {
-            'structureValue': {'hi': 'hello'}
-          }
-        },
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.JsonUnions'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SerializeStructureUnionValue',
+          documentation: 'Serializes a structure union value',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body:
+              '{\n    "contents": {\n        "structureValue": {\n            "hi": "hello"\n        }\n    }\n}',
+          bodyMediaType: 'application/json',
+          params: {
+            'contents': {
+              'structureValue': {'hi': 'hello'}
+            }
+          },
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.JsonUnions'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
 }
 
 class _JsonUnionsInputAwsJson10Serializer
-    extends _i3.SmithySerializer<_i4.JsonUnionsInput> {
+    extends _i3.StructuredSmithySerializer<_i4.JsonUnionsInput> {
   const _JsonUnionsInputAwsJson10Serializer() : super('JsonUnionsInput');
 
   @override

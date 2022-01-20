@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:smithy_codegen/src/generator/types.dart';
 
 extension ExpressionUtil on Expression {
   /// The property getter, given [isNull].
@@ -28,5 +29,19 @@ extension ReferenceHelpers on Reference {
   /// Returns a version of `this` with nullable set to [isBoxed].
   TypeReference withBoxed(bool isBoxed) {
     return isBoxed ? boxed : unboxed;
+  }
+
+  /// Constructs a `built_value` FullType reference for this.
+  Expression get fullType {
+    final typeRef = this.typeRef;
+    if (typeRef.types.isEmpty) {
+      return DartTypes.builtValue.fullType.constInstance([
+        typeRef.unboxed,
+      ]);
+    }
+    return DartTypes.builtValue.fullType.constInstance([
+      typeRef.rebuild((t) => t.types.clear()).unboxed,
+      literalList(typeRef.types.map((t) => t.fullType)),
+    ]);
   }
 }

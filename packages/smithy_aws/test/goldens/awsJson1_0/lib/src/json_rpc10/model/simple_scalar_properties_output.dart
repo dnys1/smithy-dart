@@ -54,7 +54,7 @@ abstract class SimpleScalarPropertiesOutputPayload
 }
 
 class _SimpleScalarPropertiesOutputAwsJson10Serializer
-    extends _i1.SmithySerializer<SimpleScalarPropertiesOutput> {
+    extends _i1.StructuredSmithySerializer<SimpleScalarPropertiesOutput> {
   const _SimpleScalarPropertiesOutputAwsJson10Serializer()
       : super('SimpleScalarPropertiesOutput');
 

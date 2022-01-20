@@ -8,6 +8,7 @@ export 'package:aws_json1_0/src/json_rpc10/model/complex_nested_error_data.dart'
 export 'package:aws_json1_0/src/json_rpc10/model/empty_input_and_empty_output_input.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/empty_input_and_empty_output_output.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/endpoint_with_host_label_operation_input.dart';
+export 'package:aws_json1_0/src/json_rpc10/model/foo_enum.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/foo_error.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/greeting_struct.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_input.dart';

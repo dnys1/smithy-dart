@@ -7,7 +7,7 @@ abstract class AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
     this._coreSerializers,
     this._coreInterceptors, {
     required List<SmithySerializer> serializers,
-    required Map<Type, Function> builderFactories,
+    required Map<FullType, Function> builderFactories,
     required List<HttpInterceptor> interceptors,
   })  : _userSerializers = serializers,
         _builderFactories = builderFactories,
@@ -15,7 +15,7 @@ abstract class AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
 
   final Serializers _coreSerializers;
   final List<SmithySerializer> _userSerializers;
-  final Map<Type, Function> _builderFactories;
+  final Map<FullType, Function> _builderFactories;
   final List<HttpInterceptor> _coreInterceptors;
   final List<HttpInterceptor> _userInterceptors;
 
@@ -26,7 +26,7 @@ abstract class AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
       return el.supportedProtocols.contains(protocolId);
     }));
     for (final entry in _builderFactories.entries) {
-      builder.addBuilderFactory(FullType(entry.key), entry.value);
+      builder.addBuilderFactory(entry.key, entry.value);
     }
     return builder.build();
   }();

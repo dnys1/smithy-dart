@@ -13,36 +13,36 @@ import 'package:smithy_test/smithy_test.dart' as _i1;
 void main() {
   _i1.httpRequestTest(
       operation: _i2.EndpointWithHostLabelOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10EndpointTraitWithHostLabel',
-        'documentation':
-            'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{"label": "bar"}',
-        'bodyMediaType': 'application/json',
-        'params': {'label': 'bar'},
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {},
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': 'example.com',
-        'resolvedHost': 'foo.bar.example.com',
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10EndpointTraitWithHostLabel',
+          documentation:
+              'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{"label": "bar"}',
+          bodyMediaType: 'application/json',
+          params: {'label': 'bar'},
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {},
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: 'example.com',
+          resolvedHost: 'foo.bar.example.com',
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer:
           const _EndpointWithHostLabelOperationInputAwsJson10Serializer());
 }
 
-class _EndpointWithHostLabelOperationInputAwsJson10Serializer
-    extends _i3.SmithySerializer<_i4.EndpointWithHostLabelOperationInput> {
+class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i3
+    .StructuredSmithySerializer<_i4.EndpointWithHostLabelOperationInput> {
   const _EndpointWithHostLabelOperationInputAwsJson10Serializer()
       : super('EndpointWithHostLabelOperationInput');
 

@@ -52,7 +52,7 @@ class CodegenContext {
   final Set<Reference> generatedTypes = {};
 
   /// Tracks the service's needed builder factories.
-  final Map<Reference, Expression> builderFactories = {};
+  final Map<Expression, Expression> builderFactories = {};
 
   /// The name of the package being generated.
   final String packageName;

@@ -54,7 +54,7 @@ abstract class SimpleScalarPropertiesInputPayload
 }
 
 class _SimpleScalarPropertiesInputAwsJson10Serializer
-    extends _i1.SmithySerializer<SimpleScalarPropertiesInput> {
+    extends _i1.StructuredSmithySerializer<SimpleScalarPropertiesInput> {
   const _SimpleScalarPropertiesInputAwsJson10Serializer()
       : super('SimpleScalarPropertiesInput');
 

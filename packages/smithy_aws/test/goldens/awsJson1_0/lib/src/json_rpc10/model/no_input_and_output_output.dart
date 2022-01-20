@@ -46,7 +46,7 @@ abstract class NoInputAndOutputOutputPayload
 }
 
 class _NoInputAndOutputOutputAwsJson10Serializer
-    extends _i1.SmithySerializer<NoInputAndOutputOutput> {
+    extends _i1.StructuredSmithySerializer<NoInputAndOutputOutput> {
   const _NoInputAndOutputOutputAwsJson10Serializer()
       : super('NoInputAndOutputOutput');
 

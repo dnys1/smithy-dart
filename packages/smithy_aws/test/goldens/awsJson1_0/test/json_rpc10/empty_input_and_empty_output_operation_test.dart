@@ -13,39 +13,39 @@ import 'package:smithy_test/smithy_test.dart' as _i1;
 void main() {
   _i1.httpRequestTest(
       operation: _i2.EmptyInputAndEmptyOutputOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10EmptyInputAndEmptyOutput',
-        'documentation':
-            'Clients must always send an empty object if input is modeled.',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{}',
-        'bodyMediaType': 'application/json',
-        'params': {},
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.EmptyInputAndEmptyOutput'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10EmptyInputAndEmptyOutput',
+          documentation:
+              'Clients must always send an empty object if input is modeled.',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{}',
+          bodyMediaType: 'application/json',
+          params: {},
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.EmptyInputAndEmptyOutput'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer:
           const _EmptyInputAndEmptyOutputInputAwsJson10Serializer());
 }
 
 class _EmptyInputAndEmptyOutputInputAwsJson10Serializer
-    extends _i3.SmithySerializer<_i4.EmptyInputAndEmptyOutputInput> {
+    extends _i3.StructuredSmithySerializer<_i4.EmptyInputAndEmptyOutputInput> {
   const _EmptyInputAndEmptyOutputInputAwsJson10Serializer()
       : super('EmptyInputAndEmptyOutputInput');
 

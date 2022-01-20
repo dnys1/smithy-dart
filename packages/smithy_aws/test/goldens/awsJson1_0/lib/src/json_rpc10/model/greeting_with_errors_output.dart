@@ -49,7 +49,7 @@ abstract class GreetingWithErrorsOutputPayload
 }
 
 class _GreetingWithErrorsOutputAwsJson10Serializer
-    extends _i1.SmithySerializer<GreetingWithErrorsOutput> {
+    extends _i1.StructuredSmithySerializer<GreetingWithErrorsOutput> {
   const _GreetingWithErrorsOutputAwsJson10Serializer()
       : super('GreetingWithErrorsOutput');
 

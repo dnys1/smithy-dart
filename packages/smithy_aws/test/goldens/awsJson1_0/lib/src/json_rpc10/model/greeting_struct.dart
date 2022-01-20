@@ -25,7 +25,7 @@ abstract class GreetingStruct
 }
 
 class _GreetingStructAwsJson10Serializer
-    extends _i1.SmithySerializer<GreetingStruct> {
+    extends _i1.StructuredSmithySerializer<GreetingStruct> {
   const _GreetingStructAwsJson10Serializer() : super('GreetingStruct');
 
   @override

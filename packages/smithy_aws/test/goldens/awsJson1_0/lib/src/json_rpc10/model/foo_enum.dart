@@ -28,6 +28,15 @@ class FooEnum extends _i1.SmithyEnum<FooEnum> {
     FooEnum.one,
     FooEnum.zero
   ];
+
+  static const List<_i1.SmithySerializer<FooEnum>> serializers = [
+    _i1.SmithyEnumSerializer('FooEnum',
+        values: values,
+        sdkUnknown: FooEnum.sdkUnknown,
+        supportedProtocols: [
+          _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')
+        ])
+  ];
 }
 
 extension FooEnumHelpers on List<FooEnum> {

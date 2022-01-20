@@ -26,7 +26,7 @@ abstract class ComplexNestedErrorData
 }
 
 class _ComplexNestedErrorDataAwsJson10Serializer
-    extends _i1.SmithySerializer<ComplexNestedErrorData> {
+    extends _i1.StructuredSmithySerializer<ComplexNestedErrorData> {
   const _ComplexNestedErrorDataAwsJson10Serializer()
       : super('ComplexNestedErrorData');
 

@@ -2,8 +2,8 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
+import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_generator.dart';
-import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
@@ -29,7 +29,7 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     return Class(
       (c) => c
         ..name = serializerClassName
-        ..extend = DartTypes.smithy.smithySerializer(symbol)
+        ..extend = DartTypes.smithy.structuredSmithySerializer(symbol)
         ..constructors.add(constructor)
         ..methods.addAll([
           _typesGetter,

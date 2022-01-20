@@ -207,7 +207,8 @@ class _MyUnionSdkUnknown extends MyUnion {
   final Object value;
 }
 
-class _MyUnionAwsJson10Serializer extends _i1.SmithySerializer<MyUnion> {
+class _MyUnionAwsJson10Serializer
+    extends _i1.StructuredSmithySerializer<MyUnion> {
   const _MyUnionAwsJson10Serializer() : super('MyUnion');
 
   @override

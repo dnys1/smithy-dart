@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
+import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 
 extension ProtocolUtils on ProtocolDefinitionTrait {
@@ -32,4 +32,11 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         return const SerializerConfig();
     }
   }
+
+  /// A constructed ShapeId expression.
+  Expression get constructedShapeId =>
+      DartTypes.smithy.shapeId.constInstance([], {
+        'namespace': literalString(shapeId.namespace),
+        'shape': literalString(shapeId.shape),
+      });
 }

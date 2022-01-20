@@ -11,7 +11,7 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     this.mediaType,
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],
-    Map<Type, Function> builderFactories = const {},
+    Map<FullType, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
           _coreInterceptors,
@@ -25,6 +25,7 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
   static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(const XmlPlugin())
         ..addAll([
+          const DoubleSerializer(),
           const UnitSerializer(),
           const BlobSerializer(),
           TimestampSerializer.dateTime,

@@ -47,7 +47,8 @@ abstract class FooErrorPayload
   static void _init(FooErrorPayloadBuilder b) {}
 }
 
-class _FooErrorAwsJson10Serializer extends _i1.SmithySerializer<FooError> {
+class _FooErrorAwsJson10Serializer
+    extends _i1.StructuredSmithySerializer<FooError> {
   const _FooErrorAwsJson10Serializer() : super('FooError');
 
   @override

@@ -52,7 +52,7 @@ abstract class InvalidGreetingPayload
 }
 
 class _InvalidGreetingAwsJson10Serializer
-    extends _i1.SmithySerializer<InvalidGreeting> {
+    extends _i1.StructuredSmithySerializer<InvalidGreeting> {
   const _InvalidGreetingAwsJson10Serializer() : super('InvalidGreeting');
 
   @override

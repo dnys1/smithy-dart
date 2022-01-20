@@ -1,10 +1,9 @@
-import 'package:built_value/json_object.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
-import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
+import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
@@ -58,11 +57,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           ..name = 'supportedProtocols'
           ..lambda = true
           ..body = literalConstList([
-            if (!protocol.isSynthetic)
-              DartTypes.smithy.shapeId.constInstance([], {
-                'namespace': literalString(protocol.shapeId.namespace),
-                'shape': literalString(protocol.shapeId.shape),
-              })
+            if (!protocol.isSynthetic) protocol.constructedShapeId,
           ]).code,
       );
 
@@ -142,12 +137,16 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     return refer('serializers').property('serialize').call([
       memberRef,
     ], {
-      'specifiedType': fullType(memberSymbols[member]!),
+      'specifiedType': memberSymbols[member]!.fullType,
     });
   }
 
   /// Deserializes [member] using `built_value` constructs.
-  Expression deserializerFor(MemberShape member, [Reference? memberSymbol]) {
+  Expression deserializerFor(
+    MemberShape member, {
+    Expression value = const Reference('value'),
+    Reference? memberSymbol,
+  }) {
     final type = context.shapeFor(member.target).getType();
 
     // For timestamps, check if there is a custom serializer needed.
@@ -156,7 +155,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
       if (format != null) {
         return refer('serializers').property('deserializeWith').call([
           DartTypes.smithy.timestampSerializer.property(format.name),
-          refer('value'),
+          value,
         ]);
       }
     }
@@ -164,23 +163,9 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     // For timestamps without custom serialization annotations, and all other
     // shapes, use the default serializer for the context.
     return refer('serializers').property('deserialize').call([
-      refer('value'),
+      value,
     ], {
-      'specifiedType': fullType((memberSymbol ?? memberSymbols[member])!.typeRef),
+      'specifiedType': (memberSymbol ?? memberSymbols[member])!.fullType,
     });
-  }
-
-  /// The `built_value` FullType expression for [ref].
-  Expression fullType(Reference ref) {
-    final typeRef = ref.typeRef;
-    if (typeRef.types.isEmpty) {
-      return DartTypes.builtValue.fullType.constInstance([
-        typeRef.unboxed,
-      ]);
-    }
-    return DartTypes.builtValue.fullType.constInstance([
-      typeRef.rebuild((t) => t.types.clear()).unboxed,
-      literalList(typeRef.types.map(fullType)),
-    ]);
   }
 }

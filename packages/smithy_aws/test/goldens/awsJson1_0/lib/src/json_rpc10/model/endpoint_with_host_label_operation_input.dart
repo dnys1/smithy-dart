@@ -59,8 +59,8 @@ abstract class EndpointWithHostLabelOperationInputPayload
   static void _init(EndpointWithHostLabelOperationInputPayloadBuilder b) {}
 }
 
-class _EndpointWithHostLabelOperationInputAwsJson10Serializer
-    extends _i1.SmithySerializer<EndpointWithHostLabelOperationInput> {
+class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1
+    .StructuredSmithySerializer<EndpointWithHostLabelOperationInput> {
   const _EndpointWithHostLabelOperationInputAwsJson10Serializer()
       : super('EndpointWithHostLabelOperationInput');
 

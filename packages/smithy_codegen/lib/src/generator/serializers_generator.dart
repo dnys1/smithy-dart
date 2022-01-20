@@ -31,10 +31,10 @@ class SerializersGenerator extends Generator<Library> {
 
   Field get _builderFactories => Field(
         (f) => f
-          ..modifier = FieldModifier.constant
-          ..type =
-              DartTypes.core.map(DartTypes.core.type, DartTypes.core.function)
+          ..modifier = FieldModifier.final$
+          ..type = DartTypes.core
+              .map(DartTypes.builtValue.fullType, DartTypes.core.function)
           ..name = 'builderFactories'
-          ..assignment = literalConstMap(context.builderFactories).code,
+          ..assignment = literalMap(context.builderFactories).code,
       );
 }

@@ -13,97 +13,97 @@ import 'package:smithy_test/smithy_test.dart' as _i1;
 void main() {
   _i1.httpRequestTest(
       operation: _i2.SimpleScalarPropertiesOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SupportsNaNFloatInputs',
-        'documentation': 'Supports handling NaN float values.',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body': '{\n    "floatValue": "NaN",\n    "doubleValue": "NaN"\n}',
-        'bodyMediaType': 'application/json',
-        'params': {'floatValue': 'NaN', 'doubleValue': 'NaN'},
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SupportsNaNFloatInputs',
+          documentation: 'Supports handling NaN float values.',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body: '{\n    "floatValue": "NaN",\n    "doubleValue": "NaN"\n}',
+          bodyMediaType: 'application/json',
+          params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _SimpleScalarPropertiesInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.SimpleScalarPropertiesOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SupportsInfinityFloatInputs',
-        'documentation': 'Supports handling Infinity float values.',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body':
-            '{\n    "floatValue": "Infinity",\n    "doubleValue": "Infinity"\n}',
-        'bodyMediaType': 'application/json',
-        'params': {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SupportsInfinityFloatInputs',
+          documentation: 'Supports handling Infinity float values.',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body:
+              '{\n    "floatValue": "Infinity",\n    "doubleValue": "Infinity"\n}',
+          bodyMediaType: 'application/json',
+          params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _SimpleScalarPropertiesInputAwsJson10Serializer());
   _i1.httpRequestTest(
       operation: _i2.SimpleScalarPropertiesOperation(),
-      testCaseJson: {
-        'id': 'AwsJson10SupportsNegativeInfinityFloatInputs',
-        'documentation': 'Supports handling -Infinity float values.',
-        'protocol': 'aws.protocols#awsJson1_0',
-        'authScheme': null,
-        'body':
-            '{\n    "floatValue": "-Infinity",\n    "doubleValue": "-Infinity"\n}',
-        'bodyMediaType': 'application/json',
-        'params': {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
-        'vendorParamsShape': null,
-        'vendorParams': {},
-        'headers': {
-          'Content-Type': 'application/x-amz-json-1.0',
-          'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
-        },
-        'forbidHeaders': [],
-        'requireHeaders': [],
-        'tags': [],
-        'appliesTo': null,
-        'method': 'POST',
-        'uri': '/',
-        'host': null,
-        'resolvedHost': null,
-        'queryParams': [],
-        'forbidQueryParams': [],
-        'requireQueryParams': []
-      },
+      testCase: const _i1.HttpRequestTestCase(
+          id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
+          documentation: 'Supports handling -Infinity float values.',
+          protocol:
+              _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+          authScheme: null,
+          body:
+              '{\n    "floatValue": "-Infinity",\n    "doubleValue": "-Infinity"\n}',
+          bodyMediaType: 'application/json',
+          params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
+          vendorParamsShape: null,
+          vendorParams: {},
+          headers: {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
+          },
+          forbidHeaders: [],
+          requireHeaders: [],
+          tags: [],
+          appliesTo: null,
+          method: 'POST',
+          uri: '/',
+          host: null,
+          resolvedHost: null,
+          queryParams: [],
+          forbidQueryParams: [],
+          requireQueryParams: []),
       inputSerializer: const _SimpleScalarPropertiesInputAwsJson10Serializer());
 }
 
 class _SimpleScalarPropertiesInputAwsJson10Serializer
-    extends _i3.SmithySerializer<_i4.SimpleScalarPropertiesInput> {
+    extends _i3.StructuredSmithySerializer<_i4.SimpleScalarPropertiesInput> {
   const _SimpleScalarPropertiesInputAwsJson10Serializer()
       : super('SimpleScalarPropertiesInput');
 

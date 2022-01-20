@@ -16,10 +16,11 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference listShape(ListShape shape, [Shape? parent]) {
+    final valueType = shape.member.accept(this, shape);
     final type = DartTypes.builtValue
-        .builtList(shape.member.accept(this, shape))
+        .builtList(valueType)
         .withBoxed(shape.isNullable(parent));
-    final builder = DartTypes.builtValue.listBuilder(type);
+    final builder = DartTypes.builtValue.listBuilder(valueType);
     context.builderFactories[type.unboxed] = builder.property('new');
     return type;
   }

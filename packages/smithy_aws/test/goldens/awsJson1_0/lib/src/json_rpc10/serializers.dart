@@ -22,13 +22,14 @@ import 'package:aws_json1_0/src/json_rpc10/model/json_unions_input.dart'
     as _i11;
 import 'package:aws_json1_0/src/json_rpc10/model/json_unions_output.dart'
     as _i12;
+import 'package:aws_json1_0/src/json_rpc10/model/my_union.dart' as _i14;
 import 'package:aws_json1_0/src/json_rpc10/model/no_input_and_output_output.dart'
-    as _i14;
-import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_input.dart'
     as _i15;
-import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_output.dart'
+import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_input.dart'
     as _i16;
-import 'package:built_collection/built_collection.dart' as _i17;
+import 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_output.dart'
+    as _i17;
+import 'package:built_collection/built_collection.dart' as _i18;
 import 'package:smithy/smithy.dart' as _i1;
 
 const List<_i1.SmithySerializer> serializers = [
@@ -44,11 +45,12 @@ const List<_i1.SmithySerializer> serializers = [
   ..._i11.JsonUnionsInput.serializers,
   ..._i12.JsonUnionsOutput.serializers,
   ..._i13.GreetingStruct.serializers,
-  ..._i14.NoInputAndOutputOutput.serializers,
-  ..._i15.SimpleScalarPropertiesInput.serializers,
-  ..._i16.SimpleScalarPropertiesOutput.serializers
+  ..._i14.MyUnion.serializers,
+  ..._i15.NoInputAndOutputOutput.serializers,
+  ..._i16.SimpleScalarPropertiesInput.serializers,
+  ..._i17.SimpleScalarPropertiesOutput.serializers
 ];
 const Map<Type, Function> builderFactories = {
-  _i17.BuiltList<String>: _i17.ListBuilder<_i17.BuiltList<String>?>.new,
-  _i17.BuiltMap<String, String>: _i17.MapBuilder<String, String>.new
+  _i18.BuiltList<String>: _i18.ListBuilder<String>.new,
+  _i18.BuiltMap<String, String>: _i18.MapBuilder<String, String>.new
 };

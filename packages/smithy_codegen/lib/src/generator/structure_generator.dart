@@ -3,7 +3,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
-import 'package:smithy_codegen/src/generator/protocol/serializer_generator.dart';
+import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
@@ -12,7 +12,7 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 /// Generates Dart classes from [StructureShape] types.
 class StructureGenerator extends LibraryGenerator<StructureShape>
-    with StructureGenerationContext {
+    with StructureGenerationContext, NamedMembersGenerationContext {
   StructureGenerator(
     StructureShape shape,
     CodegenContext context,
@@ -278,7 +278,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Map<String, Class> get _serializerClasses {
     final classes = <String, Class>{};
     for (var protocol in context.serviceProtocols) {
-      final generator = SerializerGenerator(shape, context, protocol);
+      final generator = StructureSerializerGenerator(shape, context, protocol);
       final class$ = generator.generate();
       if (class$ != null) {
         classes[generator.serializerClassName] = class$;

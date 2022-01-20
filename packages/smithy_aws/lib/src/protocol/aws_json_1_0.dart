@@ -4,7 +4,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
 class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
-    extends AWSHttpProtocol<Input, Input, Output, Output> {
+    extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
   AwsJson1_0Protocol({
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],

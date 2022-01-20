@@ -10,8 +10,7 @@ import 'package:test/test.dart';
 
 /// Performs an HTTP request test for [operation] for a test case from an
 /// [HttpRequestTestsTrait].
-void httpRequestTest<InputPayload, Input extends HttpInput<InputPayload>,
-    OutputPayload, Output>({
+void httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required Map<String, Object?> testCaseJson,
   SmithySerializer<Input>? inputSerializer,
@@ -19,7 +18,7 @@ void httpRequestTest<InputPayload, Input extends HttpInput<InputPayload>,
   final testCase = HttpRequestTestCase.fromJson(testCaseJson);
   group(testCase.protocol.shape, () {
     test(testCase.id, () async {
-      final baseUri = Uri(scheme: 'https', host: testCase.host);
+      final baseUri = Uri.parse('https://${testCase.host}');
       final protocol = operation.resolveProtocol(
         useProtocol: testCase.protocol,
       );

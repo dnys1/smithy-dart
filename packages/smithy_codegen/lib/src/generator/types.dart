@@ -188,6 +188,7 @@ class BuiltValue {
 
   static const mainUrl = 'package:built_value/built_value.dart';
   static const serializerUrl = 'package:built_value/serializer.dart';
+  static const _jsonObjectUrl = 'package:built_value/json_object.dart';
   static const _collectionUrl =
       'package:built_collection/built_collection.dart';
 
@@ -258,6 +259,9 @@ class BuiltValue {
           ..types.addAll([key, value]),
       );
 
+  /// Creates a [built_value_serializer.FullType] reference.
+  Reference get fullType => const Reference('FullType', serializerUrl);
+
   /// The builder for [built_collection.ListBuilder].
   Reference listBuilder(Reference ref) => TypeReference(
         (t) => t
@@ -310,9 +314,6 @@ class BuiltValue {
 
   /// Creates a [built_value_serializer.Serializers] reference.
   Reference get serializers => const Reference('Serializers', serializerUrl);
-
-  /// Creates a [built_value_serializer.FullType] reference.
-  Reference get fullType => const Reference('FullType', serializerUrl);
 }
 
 /// `package:fixnum` types

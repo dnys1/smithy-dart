@@ -3,7 +3,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
-import 'package:smithy_codegen/src/generator/protocol/serializer_generator.dart';
+import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 
 /// Generates test classes for shapes with HTTP tests.
@@ -22,7 +22,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       .toList();
   late final testSerializers = {
     for (final protocol in testProtocols)
-      protocol.shapeId: SerializerGenerator(
+      protocol.shapeId: StructureSerializerGenerator(
         inputShape,
         context,
         protocol,

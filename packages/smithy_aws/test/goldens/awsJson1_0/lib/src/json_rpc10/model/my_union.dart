@@ -7,6 +7,7 @@ import 'dart:typed_data' as _i2;
 import 'package:aws_json1_0/src/json_rpc10/model/foo_enum.dart' as _i3;
 import 'package:aws_json1_0/src/json_rpc10/model/greeting_struct.dart' as _i5;
 import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 /// A union with a representative set of types for members.
@@ -38,6 +39,10 @@ abstract class MyUnion extends _i1.SmithyUnion<MyUnion> {
   const factory MyUnion.sdkUnknown(String name, Object value) =
       _MyUnionSdkUnknown;
 
+  static const List<_i1.SmithySerializer<MyUnion>> serializers = [
+    _MyUnionAwsJson10Serializer()
+  ];
+
   _i2.Uint8List? get blobValue => null;
   bool? get booleanValue => null;
   _i3.FooEnum? get enumValue => null;
@@ -47,7 +52,6 @@ abstract class MyUnion extends _i1.SmithyUnion<MyUnion> {
   String? get stringValue => null;
   _i5.GreetingStruct? get structureValue => null;
   DateTime? get timestampValue => null;
-  Object? get sdkUnknown => null;
   @override
   Object get value => (blobValue ??
       booleanValue ??
@@ -69,7 +73,7 @@ abstract class MyUnion extends _i1.SmithyUnion<MyUnion> {
       T Function(String)? stringValue,
       T Function(_i5.GreetingStruct)? structureValue,
       T Function(DateTime)? timestampValue,
-      T Function(Object)? sdkUnknown}) {
+      T Function(String, Object)? sdkUnknown}) {
     if (this is _MyUnionBlobValue) {
       return blobValue?.call((this as _MyUnionBlobValue).blobValue);
     }
@@ -99,10 +103,7 @@ abstract class MyUnion extends _i1.SmithyUnion<MyUnion> {
       return timestampValue
           ?.call((this as _MyUnionTimestampValue).timestampValue);
     }
-    if (this is _MyUnionSdkUnknown) {
-      return sdkUnknown?.call((this as _MyUnionSdkUnknown).value);
-    }
-    throw StateError('Unknown union value: $this');
+    return sdkUnknown?.call(name, value);
   }
 }
 
@@ -204,4 +205,87 @@ class _MyUnionSdkUnknown extends MyUnion {
 
   @override
   final Object value;
+}
+
+class _MyUnionAwsJson10Serializer extends _i1.SmithySerializer<MyUnion> {
+  const _MyUnionAwsJson10Serializer() : super('MyUnion');
+
+  @override
+  Iterable<Type> get types => const [MyUnion];
+  @override
+  Iterable<_i1.ShapeId> get supportedProtocols =>
+      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  @override
+  MyUnion deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final iterator = serialized.iterator;
+    iterator.moveNext();
+    final String key = iterator.current as String;
+    iterator.moveNext();
+    final Object value = iterator.current as Object;
+    switch (key) {
+      case 'blobValue':
+        return _MyUnionBlobValue((serializers.deserialize(value,
+            specifiedType: const FullType(_i2.Uint8List)) as _i2.Uint8List));
+      case 'booleanValue':
+        return _MyUnionBooleanValue((serializers.deserialize(value,
+            specifiedType: const FullType(bool)) as bool));
+      case 'enumValue':
+        return _MyUnionEnumValue((serializers.deserialize(value,
+            specifiedType: const FullType(_i3.FooEnum)) as _i3.FooEnum));
+      case 'listValue':
+        return _MyUnionListValue((serializers.deserialize(value,
+                specifiedType:
+                    const FullType(_i4.BuiltList, [FullType(String)]))
+            as _i4.BuiltList<String>));
+      case 'mapValue':
+        return _MyUnionMapValue((serializers.deserialize(value,
+                specifiedType: const FullType(
+                    _i4.BuiltMap, [FullType(String), FullType(String)]))
+            as _i4.BuiltMap<String, String>));
+      case 'numberValue':
+        return _MyUnionNumberValue((serializers.deserialize(value,
+            specifiedType: const FullType(int)) as int));
+      case 'stringValue':
+        return _MyUnionStringValue((serializers.deserialize(value,
+            specifiedType: const FullType(String)) as String));
+      case 'structureValue':
+        return _MyUnionStructureValue((serializers.deserialize(value,
+                specifiedType: const FullType(_i5.GreetingStruct))
+            as _i5.GreetingStruct));
+      case 'timestampValue':
+        return _MyUnionTimestampValue((serializers.deserialize(value,
+            specifiedType: const FullType(DateTime)) as DateTime));
+    }
+    return _MyUnionSdkUnknown(key, value);
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    (object as MyUnion);
+    return [
+      object.name,
+      object.when<Object?>(
+          blobValue: (_i2.Uint8List? blobValue) => serializers.serialize(blobValue,
+              specifiedType: const FullType(_i2.Uint8List)),
+          booleanValue: (bool? booleanValue) => serializers
+              .serialize(booleanValue, specifiedType: const FullType(bool)),
+          enumValue: (_i3.FooEnum? enumValue) => serializers
+              .serialize(enumValue, specifiedType: const FullType(_i3.FooEnum)),
+          listValue: (_i4.BuiltList<String>? listValue) => serializers.serialize(
+              listValue,
+              specifiedType: const FullType(_i4.BuiltList, [FullType(String)])),
+          mapValue: (_i4.BuiltMap<String, String>? mapValue) =>
+              serializers.serialize(mapValue,
+                  specifiedType: const FullType(
+                      _i4.BuiltMap, [FullType(String), FullType(String)])),
+          numberValue: (int? numberValue) =>
+              serializers.serialize(numberValue, specifiedType: const FullType(int)),
+          stringValue: (String? stringValue) => serializers.serialize(stringValue, specifiedType: const FullType(String)),
+          structureValue: (_i5.GreetingStruct? structureValue) => serializers.serialize(structureValue, specifiedType: const FullType(_i5.GreetingStruct)),
+          timestampValue: (DateTime? timestampValue) => serializers.serialize(timestampValue, specifiedType: const FullType(DateTime)),
+          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
+    ];
+  }
 }

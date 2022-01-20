@@ -15,6 +15,7 @@ export 'package:aws_json1_0/src/json_rpc10/model/greeting_with_errors_output.dar
 export 'package:aws_json1_0/src/json_rpc10/model/invalid_greeting.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/json_unions_input.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/json_unions_output.dart';
+export 'package:aws_json1_0/src/json_rpc10/model/my_union.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/no_input_and_output_output.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_input.dart';
 export 'package:aws_json1_0/src/json_rpc10/model/simple_scalar_properties_output.dart';

@@ -1,17 +1,16 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
-import 'package:smithy_codegen/src/generator/generator.dart';
-import 'package:smithy_codegen/src/generator/protocol/protocol_traits.dart';
+import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
+import 'package:smithy_codegen/src/generator/serialization/serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 import 'package:smithy_codegen/src/util/trait_ext.dart';
 
 class SerializerConfig {
-  const SerializerConfig._({
+  const SerializerConfig({
     this.renameMembers = true,
     this.usePayload = true,
     this.usePrivateSymbols = true,
@@ -19,7 +18,7 @@ class SerializerConfig {
 
   /// Config for test serializers.
   const SerializerConfig.test()
-      : this._(
+      : this(
           usePayload: false,
           renameMembers: false,
           usePrivateSymbols: false,
@@ -27,7 +26,7 @@ class SerializerConfig {
 
   /// Config for generic JSON protocol.
   const SerializerConfig.genericJson()
-      : this._(
+      : this(
           usePayload: true,
           renameMembers: true,
           usePrivateSymbols: true,
@@ -35,7 +34,7 @@ class SerializerConfig {
 
   /// Config for AWS JSON 1.0
   const SerializerConfig.awsJson10()
-      : this._(
+      : this(
           usePayload: false,
           renameMembers: false,
           usePrivateSymbols: true,
@@ -46,43 +45,17 @@ class SerializerConfig {
   final bool usePrivateSymbols;
 }
 
-extension on ProtocolDefinitionTrait {
-  SerializerConfig get serializerConfig {
-    switch (runtimeType) {
-      case GenericProtocolDefinitionTrait:
-        return const SerializerConfig.genericJson();
-      case AwsJson1_0Trait:
-        return const SerializerConfig.awsJson10();
-      default:
-        return const SerializerConfig._();
-    }
-  }
-}
-
 /// Generates a serializer class for [shape] and [protocol].
-class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
-    with StructureGenerationContext {
-  SerializerGenerator(
+class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
+    with NamedMembersGenerationContext, StructureGenerationContext {
+  StructureSerializerGenerator(
     StructureShape shape,
     CodegenContext context,
-    this.protocol, {
+    ProtocolDefinitionTrait protocol, {
     SerializerConfig? config,
-  }) : super(shape, context) {
-    this.config = config ?? protocol.serializerConfig;
-  }
+  }) : super(shape, context, protocol, config: config);
 
-  late final SerializerConfig config;
-  final ProtocolDefinitionTrait protocol;
-
-  String get serializerClassName {
-    final withProtocolName = protocol.isSynthetic ? '' : protocol.shapeId.shape;
-    return '_' +
-        '${shape.shapeId.shape}_${withProtocolName}_Serializer'.pascalCase;
-  }
-
-  /// The symbol to be serialized.
-  ///
-  /// When generating test case serializers, it's always the full symbol.
+  @override
   Reference get serializedSymbol =>
       config.usePayload ? payloadSymbol ?? symbol : symbol;
 
@@ -166,28 +139,15 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       (c) => c
         ..name = serializerClassName
         ..extend = DartTypes.smithy.smithySerializer(serializedSymbol)
-        ..constructors.add(_constructor)
+        ..constructors.add(constructor)
         ..methods.addAll([
           _typesGetter,
-          _supportedProtocols,
-          _deserialize,
-          _serialize,
+          supportedProtocols,
+          deserialize,
+          serialize,
         ]),
     );
   }
-
-  /// The primary, unnamed initializer.
-  Constructor get _constructor => Constructor(
-        (c) => c
-          ..constant = true
-          ..initializers.add(
-            refer('super').call([
-              // Use the unprocessed shape name as the wire name, since this is
-              // what we can expect to see for protocols which use it like XML.
-              literalString(shape.shapeId.shape),
-            ]).code,
-          ),
-      );
 
   /// The `types` getter.
   Method get _typesGetter => Method(
@@ -208,50 +168,8 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
           ]).code,
       );
 
-  /// The `supportedProtocols` getter.
-  Method get _supportedProtocols => Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.iterable(DartTypes.smithy.shapeId)
-          ..type = MethodType.getter
-          ..name = 'supportedProtocols'
-          ..lambda = true
-          ..body = literalConstList([
-            if (!protocol.isSynthetic)
-              DartTypes.smithy.shapeId.constInstance([], {
-                'namespace': literalString(protocol.shapeId.namespace),
-                'shape': literalString(protocol.shapeId.shape),
-              })
-          ]).code,
-      );
-
-  /// The deserialize method.
-  Method get _deserialize => Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = serializedSymbol
-          ..name = 'deserialize'
-          ..requiredParameters.addAll([
-            Parameter((p) => p
-              ..type = DartTypes.builtValue.serializers
-              ..name = 'serializers'),
-            Parameter((p) => p
-              ..type = DartTypes.core.iterable(DartTypes.core.object.boxed)
-              ..name = 'serialized'),
-          ])
-          ..optionalParameters.add(
-            Parameter((p) => p
-              ..type = DartTypes.builtValue.fullType
-              ..named = true
-              ..name = 'specifiedType'
-              ..defaultTo =
-                  DartTypes.builtValue.fullType.property('unspecified').code),
-          )
-          ..body = _deserializeCode,
-      );
-
-  /// Returns the code needed to deserialize [shape].
-  Code get _deserializeCode {
+  @override
+  Code get deserializeCode {
     final builderSymbol = config.usePayload
         ? payloadBuilderSymbol ?? this.builderSymbol
         : this.builderSymbol;
@@ -317,69 +235,20 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
         const Code(':'),
         if (hasNestedBuilder)
           refer('result').property(member.dartName).property('replace').call([
-            _deserializerFor(member).asA(memberSymbol.unboxed),
+            deserializerFor(member).asA(memberSymbol.unboxed),
           ]).statement
         else
           refer('result')
               .property(member.dartName)
-              .assign(_deserializerFor(member).asA(memberSymbol))
+              .assign(deserializerFor(member).asA(memberSymbol))
               .statement,
         const Code('break;'),
       ]);
     }
   }
 
-  /// Deserializes [member] using `built_value` constructs.
-  Expression _deserializerFor(MemberShape member) {
-    final type = context.shapeFor(member.target).getType();
-
-    // For timestamps, check if there is a custom serializer needed.
-    if (type == ShapeType.timestamp) {
-      final format = member.timestampFormat ?? shape.timestampFormat;
-      if (format != null) {
-        return refer('serializers').property('deserializeWith').call([
-          DartTypes.smithy.timestampSerializer.property(format.name),
-          refer('value'),
-        ]);
-      }
-    }
-
-    // For timestamps without custom serialization annotations, and all other
-    // shapes, use the default serializer for the context.
-    return refer('serializers').property('deserialize').call([
-      refer('value'),
-    ], {
-      'specifiedType': _fullType(memberSymbols[member]!.typeRef),
-    });
-  }
-
-  // The serialize method.
-  Method get _serialize => Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.iterable(DartTypes.core.object.boxed)
-          ..name = 'serialize'
-          ..requiredParameters.addAll([
-            Parameter((p) => p
-              ..type = DartTypes.builtValue.serializers
-              ..name = 'serializers'),
-            Parameter((p) => p
-              ..type = DartTypes.core.object.boxed
-              ..name = 'object'),
-          ])
-          ..optionalParameters.add(
-            Parameter((p) => p
-              ..type = DartTypes.builtValue.fullType
-              ..named = true
-              ..name = 'specifiedType'
-              ..defaultTo =
-                  DartTypes.builtValue.fullType.property('unspecified').code),
-          )
-          ..body = _serializeCode,
-      );
-
-  /// Returns the code needed to serialize [shape].
-  Code get _serializeCode {
+  @override
+  Code get serializeCode {
     if (!config.usePrivateSymbols) {
       return DartTypes.core.stateError
           .newInstance([literalString('Not supported for tests')])
@@ -418,7 +287,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
       final memberRef = payload.property(member.dartName);
       result.addAll([
         literalString(_wireName(member)),
-        _serializerFor(member, memberRef),
+        serializerFor(member, memberRef),
       ]);
     }
     builder.addExpression(
@@ -438,7 +307,7 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
             .cascade('add')
             .call([literalString(_wireName(member))])
             .cascade('add')
-            .call([_serializerFor(member, memberRef)])
+            .call([serializerFor(member, memberRef)])
             .statement,
         const Code('}'),
       ]);
@@ -447,43 +316,5 @@ class SerializerGenerator extends ShapeGenerator<StructureShape, Class?>
     builder.addExpression(refer('result').returned);
 
     return builder.build();
-  }
-
-  /// The `built_value` FullType expression for [ref].
-  Expression _fullType(Reference ref) {
-    final typeRef = ref.typeRef;
-    if (typeRef.types.isEmpty) {
-      return DartTypes.builtValue.fullType.constInstance([
-        typeRef.unboxed,
-      ]);
-    }
-    return DartTypes.builtValue.fullType.constInstance([
-      typeRef.rebuild((t) => t.types.clear()).unboxed,
-      literalList(typeRef.types.map(_fullType)),
-    ]);
-  }
-
-  /// Serializes [member] as a timestamp shape.
-  Expression _serializerFor(MemberShape member, Expression memberRef) {
-    final type = context.shapeFor(member.target).getType();
-
-    // For timestamps, check if there is a custom serializer needed.
-    if (type == ShapeType.timestamp) {
-      final format = member.timestampFormat ?? shape.timestampFormat;
-      if (format != null) {
-        return refer('serializers').property('serializeWith').call([
-          DartTypes.smithy.timestampSerializer.property(format.name),
-          memberRef,
-        ]);
-      }
-    }
-
-    // For timestamps without custom serialization annotations, and all other
-    // shapes, use the default serializer for the context.
-    return refer('serializers').property('serialize').call([
-      memberRef,
-    ], {
-      'specifiedType': _fullType(memberSymbols[member]!),
-    });
   }
 }

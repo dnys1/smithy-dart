@@ -21,7 +21,7 @@ class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
         );
 
   static const _coreInterceptors = [
-    WithContentType(),
+    WithContentLength(),
   ];
 
   static late final _coreSerializers = (Serializers().toBuilder()

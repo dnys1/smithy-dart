@@ -525,7 +525,7 @@ class _Smithy {
   /// Creates a [smithy.Unit] reference.
   Reference get unit => const Reference('Unit', _url);
 
-  /// Creates a [smithy.WithContentType] reference.
+  /// Creates a [smithy.WithContentLength] reference.
   Reference get withContentType => const Reference('WithContentType', _url);
 
   /// Creates a [smithy.WithHeader] reference.

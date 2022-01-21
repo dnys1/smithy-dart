@@ -24,7 +24,9 @@ abstract class ServiceShape
   }
 
   String? get version;
-  BuiltMap<ShapeId, String> get rename;
+
+  // A map of Shape IDs to their rename
+  BuiltMap<String, String> get rename;
   BuiltSet<ShapeRef> get errors;
 
   @override

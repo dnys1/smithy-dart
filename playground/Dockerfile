@@ -47,4 +47,10 @@ RUN SMITHY_OPTS="-Xshare:dump -XX:SharedArchiveFile=/smithy/lib/smithy.jsa -XX:S
 
 COPY --from=lambda /app/handler /usr/local/bin
 
+# Fixes UTF-8 issues in stdout
+RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+RUN echo "LANG=en_US.UTF-8" > /etc/locale.conf
+ENV JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+
 CMD "handler"

@@ -5,6 +5,7 @@ import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
@@ -59,6 +60,10 @@ extension MemberShapeUtils on MemberShape {
 }
 
 extension ShapeUtils on Shape {
+  /// The rename for the shape in the service closure.
+  String? rename(CodegenContext context) =>
+      context.service?.rename[shapeId.toString()];
+
   /// Documentation for the shape.
   String? get docs => getTrait<DocumentationTrait>()?.value;
 
@@ -125,11 +130,12 @@ extension ShapeUtils on Shape {
 
   /// The smithy library for this shape.
   SmithyLibrary smithyLibrary(CodegenContext context) {
+    final rename = this.rename(context);
     return SmithyLibrary()
       ..packageName = context.packageName
       ..serviceName = context.serviceName
       ..libraryType = libraryType
-      ..filename = shapeId.shape.snakeCase;
+      ..filename = (rename ?? shapeId.shape).snakeCase;
   }
 }
 
@@ -175,7 +181,7 @@ extension StructureShapeUtil on StructureShape {
     }
     return HttpPayload(
       (b) => b
-        ..symbol = context.symbolFor(payloadMember.target, this)
+        ..symbol = payloadMember.accept(SymbolVisitor(context), this)
         ..member.replace(payloadMember),
     );
   }

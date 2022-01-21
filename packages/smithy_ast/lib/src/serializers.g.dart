@@ -37,25 +37,25 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<ShapeRef>())
       ..addBuilderFactory(
           const FullType(BuiltMap,
-              const [const FullType(ShapeId), const FullType(String)]),
-          () => new MapBuilder<ShapeId, String>())
-      ..addBuilderFactory(
-          const FullType(BuiltSet, const [const FullType(ShapeRef)]),
-          () => new SetBuilder<ShapeRef>())
-      ..addBuilderFactory(
-          const FullType(BuiltSet, const [const FullType(ShapeRef)]),
-          () => new SetBuilder<ShapeRef>())
-      ..addBuilderFactory(
-          const FullType(BuiltSet, const [const FullType(ShapeRef)]),
-          () => new SetBuilder<ShapeRef>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap,
               const [const FullType(String), const FullType(JsonObject)]),
           () => new MapBuilder<String, JsonObject>())
       ..addBuilderFactory(
           const FullType(BuiltMap,
               const [const FullType(String), const FullType(ShapeRef)]),
           () => new MapBuilder<String, ShapeRef>())
+      ..addBuilderFactory(
+          const FullType(BuiltSet, const [const FullType(ShapeRef)]),
+          () => new SetBuilder<ShapeRef>())
+      ..addBuilderFactory(
+          const FullType(BuiltSet, const [const FullType(ShapeRef)]),
+          () => new SetBuilder<ShapeRef>())
+      ..addBuilderFactory(
+          const FullType(BuiltSet, const [const FullType(ShapeRef)]),
+          () => new SetBuilder<ShapeRef>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
       ..addBuilderFactory(
           const FullType(BuiltSet, const [const FullType(ShapeRef)]),
           () => new SetBuilder<ShapeRef>())

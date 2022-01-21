@@ -7,6 +7,7 @@ import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart'
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class OperationGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
@@ -33,9 +34,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ])
           ..name = className
           ..extend = DartTypes.smithy.httpOperation(
-            inputPayload.symbol,
+            inputPayload.symbol.unboxed,
             inputSymbol,
-            outputPayload.symbol,
+            outputPayload.symbol.unboxed,
             outputSymbol,
           )
           ..fields.addAll([
@@ -61,9 +62,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         .statement;
     yield builder
         .property('successCode')
-        .assign(httpOutputTraits.httpResponseCode == null
-            ? literalNum(httpTrait!.code)
-            : input.property(httpOutputTraits.httpResponseCode!.dartName))
+        .assign(literalNum(httpTrait!.code))
         .statement;
 
     final hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
@@ -79,6 +78,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         literalString(entry.key),
         entry.value,
         input.property(entry.value.dartName),
+        isNullable: entry.value.isNullable(inputShape),
       );
     }
 
@@ -91,6 +91,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         literalString(entry.key),
         entry.value,
         input.property(entry.value.dartName),
+        isNullable: entry.value.isNullable(inputShape),
       );
     }
 
@@ -105,41 +106,41 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final payload = refer('payload');
     final response = refer('response');
 
-    // Add all payload members
     final payloadShape = outputShape.payloadShape(context);
-    if (outputShape.hasBuiltPayload(context)) {
-      for (final member in outputShape.payloadMembers(context)) {
-        final targetShapeType = context.shapeFor(member.target).getType();
-        final isNestedBuilder = [
-          ShapeType.map,
-          ShapeType.list,
-          ShapeType.set,
-          ShapeType.structure
-        ].contains(targetShapeType);
-        if (isNestedBuilder) {
-          final isNullable = member.isNullable(outputShape);
-          final payloadProp = payload.property(member.dartName);
-          if (isNullable) {
-            yield* [
-              const Code('if ('),
-              payloadProp.notEqualTo(literalNull).code,
-              const Code(') {')
-            ];
-          }
-          yield builder.property(member.dartName).property('replace').call(
-              [isNullable ? payloadProp.nullChecked : payloadProp]).statement;
-          if (isNullable) {
-            yield const Code('}');
-          }
-        } else {
-          yield builder
-              .property(member.dartName)
-              .assign(payload.property(member.dartName))
-              .statement;
-        }
+
+    Code _putShape(MemberShape member, Expression payloadProp) {
+      final targetShapeType = context.shapeFor(member.target).getType();
+      final isNestedBuilder = [
+        ShapeType.map,
+        ShapeType.list,
+        ShapeType.set,
+        ShapeType.structure
+      ].contains(targetShapeType);
+      if (isNestedBuilder) {
+        final isNullable = shape.isNullable(outputShape);
+        return builder
+            .property(member.dartName)
+            .property('replace')
+            .call([
+              isNullable && member != payloadShape
+                  ? payloadProp.nullChecked
+                  : payloadProp
+            ])
+            .statement
+            .wrapWithBlockNullCheck(payloadProp, isNullable);
+      } else {
+        return builder.property(member.dartName).assign(payloadProp).statement;
       }
-    } else if (payloadShape != null) {
-      yield builder.property(payloadShape.dartName).assign(payload).statement;
+    }
+
+    // Add all payload members to the output builder.
+    if (payloadShape != null) {
+      yield _putShape(payloadShape, payload);
+    } else if (outputShape.hasBuiltPayload(context)) {
+      for (final member in outputShape.payloadMembers(context)) {
+        final payloadProp = payload.property(member.dartName);
+        yield _putShape(member, payloadProp);
+      }
     }
 
     // TODO: Add HTTP metadata
@@ -147,10 +148,17 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   }
 
   /// Adds the header to the request's headers map.
-  Code _httpHeader(Expression key, Shape value, Expression valueRef) {
+  Code _httpHeader(
+    Expression key,
+    Shape value,
+    Expression valueRef, {
+    required bool isNullable,
+  }) {
     final builder = refer('b');
     Expression toString(Expression ref, Shape shape) {
-      final type = shape.getType();
+      final targetShape =
+          shape is MemberShape ? context.shapeFor(shape.target) : shape;
+      final type = targetShape.getType();
       switch (type) {
         case ShapeType.boolean:
         case ShapeType.bigDecimal:
@@ -165,6 +173,14 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
         // string values with a mediaType trait are always base64 encoded.
         case ShapeType.string:
+          if (targetShape.isEnum) {
+            return ref.property('value');
+          }
+          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
+          switch (mediaType) {
+            case 'application/json':
+              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
+          }
           return ref;
 
         // timestamp values are serialized using the http-date format by
@@ -172,7 +188,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         // serialization format.
         case ShapeType.timestamp:
           final format = shape.timestampFormat ?? TimestampFormat.httpDate;
-          return ref
+          return DartTypes.smithy.timestamp
+              .newInstance([ref])
               .property('format')
               .call([
                 DartTypes.smithy.timestampFormat.property(format.name),
@@ -186,8 +203,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         // value on its own line.
         case ShapeType.list:
         case ShapeType.set:
-          final Shape memberShape =
-              context.shapeFor((shape as CollectionShape).member.target);
+          final memberShape = (targetShape as CollectionShape).member;
           return ref
               .property('map')
               .call([
@@ -203,66 +219,75 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       }
     }
 
-    final targetShape =
-        value is MemberShape ? context.shapeFor(value.target) : value;
-    final isBoxed = targetShape.isNullable(inputShape);
     var toStringExp = toString(
-      valueRef,
-      targetShape,
+      (isNullable ? valueRef.nullChecked : valueRef),
+      value,
     );
-    if (isBoxed) {
-      toStringExp = toStringExp.nullChecked;
-    }
     final addHeader =
         builder.property('headers').index(key).assign(toStringExp).statement;
-    if (isBoxed) {
-      return Block.of([
-        const Code('if ('),
-        valueRef.notEqualTo(literalNull).code,
-        const Code(') {'),
-        addHeader,
-        const Code('}'),
-      ]);
-    }
-    return addHeader;
+    return addHeader.wrapWithBlockNullCheck(valueRef, isNullable);
   }
 
   /// Adds the prefixed headers to the request's headers map.
   Code _httpPrefixedHeaders(HttpPrefixHeaders headers) {
     final mapShape = context.shapeFor(headers.member.target) as MapShape;
+    final mapRef = refer('input').property(headers.member.dartName);
+    final isNullableMap = headers.member.isNullable(inputShape);
     final valueTarget = context.shapeFor(mapShape.value.target);
     return Block.of([
-      Code('for (var entry in input.${headers.member.dartName}) {'),
+      const Code('for (var entry in '),
+      (isNullableMap ? mapRef.nullChecked : mapRef)
+          .property('toMap')
+          .call([])
+          .property('entries')
+          .code,
+      const Code(') {'),
       _httpHeader(
         literalString(headers.trait.value)
             .operatorAdd(refer('entry').property('key')),
         valueTarget,
         refer('entry').property('value'),
+        isNullable: valueTarget.isNullable(mapShape),
       ),
-      Code('}'),
-    ]);
+      const Code('}'),
+    ]).wrapWithBlockNullCheck(mapRef, isNullableMap);
   }
 
   /// Adds the shape to the request's query parameters.
   Code _httpQuery(
     Expression key,
     Shape value,
-    Expression valueRef,
-  ) {
+    Expression valueRef, {
+    required bool isNullable,
+  }) {
     final builder = refer('b');
 
     final targetShape =
         value is MemberShape ? context.shapeFor(value.target) : value;
     if (targetShape is CollectionShape) {
-      value as MemberShape;
+      final isNullableMember = targetShape.member.isNullable(targetShape);
+      Expression memberRef = refer('value');
+      if (isNullableMember) {
+        memberRef = memberRef.nullChecked;
+      }
       return Block.of([
-        Code('for (var value in input.${value.dartName}) {'),
-        _httpQuery(key, targetShape.member, refer('value')),
+        const Code('for (var value in '),
+        (isNullable ? valueRef.nullChecked : valueRef).code,
+        const Code(') {'),
+        _httpQuery(
+          key,
+          targetShape.member,
+          memberRef,
+          isNullable: isNullableMember,
+        ),
         Code('}'),
-      ]);
+      ]).wrapWithBlockNullCheck(valueRef, isNullable);
     }
 
-    Expression toString(Expression ref, ShapeType type) {
+    Expression toString(Expression ref, Shape shape) {
+      final targetShape =
+          shape is MemberShape ? context.shapeFor(shape.target) : shape;
+      final type = targetShape.getType();
       switch (type) {
         case ShapeType.boolean:
         case ShapeType.bigDecimal:
@@ -277,6 +302,14 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
         // string values with a mediaType trait are always base64 encoded.
         case ShapeType.string:
+          if (targetShape.isEnum) {
+            return ref.property('value');
+          }
+          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
+          switch (mediaType) {
+            case 'application/json':
+              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
+          }
           return ref;
 
         // timestamp values are serialized as an RFC 3339 date-time string by
@@ -285,7 +318,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         // trait MAY be used to use a custom serialization format.
         case ShapeType.timestamp:
           final format = shape.timestampFormat ?? TimestampFormat.dateTime;
-          return ref
+          return DartTypes.smithy.timestamp
+              .newInstance([ref])
               .property('format')
               .call([
                 DartTypes.smithy.timestampFormat.property(format.name),
@@ -298,40 +332,42 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       }
     }
 
-    final isBoxed = targetShape.isNullable(inputShape);
-    var toStringExp = toString(valueRef, targetShape.getType());
-    if (isBoxed) {
-      toStringExp = toStringExp.nullChecked;
-    }
+    final toStringExp =
+        toString((isNullable ? valueRef.nullChecked : valueRef), targetShape);
     final addParam = builder
         .property('queryParameters')
         .property('add')
         .call([key, toStringExp]).statement;
-    if (isBoxed) {
-      return Block.of([
-        const Code('if ('),
-        valueRef.notEqualTo(literalNull).code,
-        const Code(') {'),
-        addParam,
-        const Code('}'),
-      ]);
-    }
-    return addParam;
+    return addParam.wrapWithBlockNullCheck(valueRef, isNullable);
   }
 
   /// Adds all query parameters in a map to the request's query parameters.
   Code _httpQueryParameters(MemberShape queryParameters) {
     final targetShape = context.shapeFor(queryParameters.target) as MapShape;
     final valueShape = context.shapeFor(targetShape.value.target);
+    final isNullable = queryParameters.isNullable(inputShape);
+    final mapRef = refer('input').property(queryParameters.dartName);
+    var entriesRef = mapRef;
+    if (isNullable) {
+      entriesRef = entriesRef.nullChecked;
+    }
+    entriesRef = entriesRef.property('toMap').call([]).property('entries');
+    var valueRef = refer('entry').property('value');
+    if (valueShape.isNullable(targetShape)) {
+      valueRef = valueRef.nullChecked;
+    }
     return Block.of([
-      Code('for (var entry in input.${queryParameters.dartName}) {'),
+      const Code('for (var entry in '),
+      entriesRef.code,
+      const Code(') {'),
       _httpQuery(
         refer('entry').property('key'),
         valueShape,
-        refer('entry').property('value'),
+        valueRef,
+        isNullable: valueShape.isNullable(targetShape),
       ),
       Code('}'),
-    ]);
+    ]).wrapWithBlockNullCheck(mapRef, isNullable);
   }
 
   /// The required HTTP operation overrides.
@@ -419,9 +455,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..modifier = FieldModifier.final$
           ..type = DartTypes.core.list(
             DartTypes.smithy.httpProtocol(
-              inputPayload.symbol,
+              inputPayload.symbol.unboxed,
               inputSymbol,
-              outputPayload.symbol,
+              outputPayload.symbol.unboxed,
               outputSymbol,
             ),
           )

@@ -25,6 +25,8 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   late final SerializerConfig config;
   final ProtocolDefinitionTrait protocol;
 
+  bool get isStructuredSerializer;
+
   String get serializerClassName {
     final withProtocolName = protocol.isSynthetic ? '' : protocol.shapeId.shape;
     return '_' +
@@ -73,7 +75,9 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
               ..type = DartTypes.builtValue.serializers
               ..name = 'serializers'),
             Parameter((p) => p
-              ..type = DartTypes.core.iterable(DartTypes.core.object.boxed)
+              ..type = isStructuredSerializer
+                  ? DartTypes.core.iterable(DartTypes.core.object.boxed)
+                  : DartTypes.core.object
               ..name = 'serialized'),
           ])
           ..optionalParameters.add(
@@ -94,7 +98,9 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   Method get serialize => Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.iterable(DartTypes.core.object.boxed)
+          ..returns = isStructuredSerializer
+              ? DartTypes.core.iterable(DartTypes.core.object.boxed)
+              : DartTypes.core.object
           ..name = 'serialize'
           ..requiredParameters.addAll([
             Parameter((p) => p
@@ -185,7 +191,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
         return DartTypes.smithy.timestampSerializer
             .property(format.name)
             .property('deserialize')
-            .call([refer('serializers'), value]).asA(memberSymbol);
+            .call([refer('serializers'), value]);
       }
     }
     if (type == ShapeType.string) {
@@ -195,8 +201,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           return DartTypes.smithy.encodedJsonObjectSerializer
               .constInstance([])
               .property('deserialize')
-              .call([refer('serializers'), value])
-              .asA(memberSymbol);
+              .call([refer('serializers'), value]);
       }
     }
 

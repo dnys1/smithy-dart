@@ -1,0 +1,85 @@
+// Generated code. DO NOT MODIFY.
+
+library rest_json1.rest_json.model.nested_payload;
+
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+import 'package:smithy/smithy.dart' as _i1;
+
+part 'nested_payload.g.dart';
+
+abstract class NestedPayload
+    implements Built<NestedPayload, NestedPayloadBuilder> {
+  factory NestedPayload([void Function(NestedPayloadBuilder) updates]) =
+      _$NestedPayload;
+
+  const NestedPayload._();
+
+  static const List<_i1.SmithySerializer> serializers = [
+    _NestedPayloadRestJson1Serializer()
+  ];
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NestedPayloadBuilder b) {}
+  String? get greeting;
+  String? get name;
+}
+
+class _NestedPayloadRestJson1Serializer
+    extends _i1.StructuredSmithySerializer<NestedPayload> {
+  const _NestedPayloadRestJson1Serializer() : super('NestedPayload');
+
+  @override
+  Iterable<Type> get types => const [NestedPayload, _$NestedPayload];
+  @override
+  Iterable<_i1.ShapeId> get supportedProtocols =>
+      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  @override
+  NestedPayload deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = NestedPayloadBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'greeting':
+          if (value != null) {
+            result.greeting = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+        case 'name':
+          if (value != null) {
+            result.name = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final payload = (object as NestedPayload);
+    final result = <Object?>[];
+    if (payload.greeting != null) {
+      result
+        ..add('greeting')
+        ..add(serializers.serialize(payload.greeting,
+            specifiedType: const FullType.nullable(String)));
+    }
+    if (payload.name != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(payload.name,
+            specifiedType: const FullType.nullable(String)));
+    }
+    return result;
+  }
+}

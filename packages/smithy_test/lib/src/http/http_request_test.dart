@@ -15,7 +15,7 @@ import 'serializers.dart';
 Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required HttpRequestTestCase testCase,
-  SmithySerializer<Input>? inputSerializer,
+  SmithySerializer? inputSerializer,
 }) async {
   final baseUri = Uri.parse('https://${testCase.host}');
   final protocol = operation.resolveProtocol(
@@ -55,10 +55,11 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   //
   // For example, "foo=bar", "foo=", and "foo" are all valid values.
   for (var queryParam in testCase.queryParams) {
-    final split = Uri.decodeQueryComponent(queryParam).split('=').iterator
-      ..moveNext();
-    final key = split.current;
-    final value = split.moveNext() ? split.current : '';
+    final parts = queryParam.split('=');
+    final key = Uri.decodeQueryComponent(parts.first);
+    final value = parts.length == 1
+        ? ''
+        : Uri.decodeQueryComponent(parts.sublist(1).join(''));
 
     // This kind of list is used instead of a map so that query string
     // parameter values for lists can be represented using repeated
@@ -144,7 +145,8 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
         break;
       case 'application/json':
         final expectedJsonBody = jsonDecode(expectedBody);
-        final jsonBody = jsonDecode(utf8.decode(bodyBytes));
+        final jsonBody =
+            bodyBytes.isEmpty ? '' : jsonDecode(utf8.decode(bodyBytes));
         expect(jsonBody, equals(expectedJsonBody));
         break;
       default:

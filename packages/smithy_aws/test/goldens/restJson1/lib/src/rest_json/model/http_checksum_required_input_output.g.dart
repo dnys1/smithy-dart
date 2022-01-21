@@ -1,0 +1,177 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of rest_json1.rest_json.model.http_checksum_required_input_output;
+
+// **************************************************************************
+// BuiltValueGenerator
+// **************************************************************************
+
+class _$HttpChecksumRequiredInputOutput
+    extends HttpChecksumRequiredInputOutput {
+  @override
+  final String? foo;
+
+  factory _$HttpChecksumRequiredInputOutput(
+          [void Function(HttpChecksumRequiredInputOutputBuilder)? updates]) =>
+      (new HttpChecksumRequiredInputOutputBuilder()..update(updates)).build();
+
+  _$HttpChecksumRequiredInputOutput._({this.foo}) : super._();
+
+  @override
+  HttpChecksumRequiredInputOutput rebuild(
+          void Function(HttpChecksumRequiredInputOutputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  HttpChecksumRequiredInputOutputBuilder toBuilder() =>
+      new HttpChecksumRequiredInputOutputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is HttpChecksumRequiredInputOutput && foo == other.foo;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, foo.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('HttpChecksumRequiredInputOutput')
+          ..add('foo', foo))
+        .toString();
+  }
+}
+
+class HttpChecksumRequiredInputOutputBuilder
+    implements
+        Builder<HttpChecksumRequiredInputOutput,
+            HttpChecksumRequiredInputOutputBuilder> {
+  _$HttpChecksumRequiredInputOutput? _$v;
+
+  String? _foo;
+  String? get foo => _$this._foo;
+  set foo(String? foo) => _$this._foo = foo;
+
+  HttpChecksumRequiredInputOutputBuilder() {
+    HttpChecksumRequiredInputOutput._init(this);
+  }
+
+  HttpChecksumRequiredInputOutputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _foo = $v.foo;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(HttpChecksumRequiredInputOutput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$HttpChecksumRequiredInputOutput;
+  }
+
+  @override
+  void update(void Function(HttpChecksumRequiredInputOutputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$HttpChecksumRequiredInputOutput build() {
+    final _$result = _$v ?? new _$HttpChecksumRequiredInputOutput._(foo: foo);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$HttpChecksumRequiredInputOutputPayload
+    extends HttpChecksumRequiredInputOutputPayload {
+  @override
+  final String? foo;
+
+  factory _$HttpChecksumRequiredInputOutputPayload(
+          [void Function(HttpChecksumRequiredInputOutputPayloadBuilder)?
+              updates]) =>
+      (new HttpChecksumRequiredInputOutputPayloadBuilder()..update(updates))
+          .build();
+
+  _$HttpChecksumRequiredInputOutputPayload._({this.foo}) : super._();
+
+  @override
+  HttpChecksumRequiredInputOutputPayload rebuild(
+          void Function(HttpChecksumRequiredInputOutputPayloadBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  HttpChecksumRequiredInputOutputPayloadBuilder toBuilder() =>
+      new HttpChecksumRequiredInputOutputPayloadBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is HttpChecksumRequiredInputOutputPayload && foo == other.foo;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, foo.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            'HttpChecksumRequiredInputOutputPayload')
+          ..add('foo', foo))
+        .toString();
+  }
+}
+
+class HttpChecksumRequiredInputOutputPayloadBuilder
+    implements
+        Builder<HttpChecksumRequiredInputOutputPayload,
+            HttpChecksumRequiredInputOutputPayloadBuilder> {
+  _$HttpChecksumRequiredInputOutputPayload? _$v;
+
+  String? _foo;
+  String? get foo => _$this._foo;
+  set foo(String? foo) => _$this._foo = foo;
+
+  HttpChecksumRequiredInputOutputPayloadBuilder() {
+    HttpChecksumRequiredInputOutputPayload._init(this);
+  }
+
+  HttpChecksumRequiredInputOutputPayloadBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _foo = $v.foo;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(HttpChecksumRequiredInputOutputPayload other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$HttpChecksumRequiredInputOutputPayload;
+  }
+
+  @override
+  void update(
+      void Function(HttpChecksumRequiredInputOutputPayloadBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$HttpChecksumRequiredInputOutputPayload build() {
+    final _$result =
+        _$v ?? new _$HttpChecksumRequiredInputOutputPayload._(foo: foo);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

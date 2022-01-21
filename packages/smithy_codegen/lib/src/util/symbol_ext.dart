@@ -22,7 +22,21 @@ extension ExpressionUtil on Expression {
         check.notEqualTo(literalNull).code,
         const Code(') {'),
       ],
-      statement,
+      isNullable ? nullChecked.statement : statement,
+      if (isNullable) const Code('}')
+    ]);
+  }
+}
+
+extension CodeHelpers on Code {
+  Code wrapWithBlockNullCheck(Expression check, bool isNullable) {
+    return Block.of([
+      if (isNullable) ...[
+        const Code('if ('),
+        check.notEqualTo(literalNull).code,
+        const Code(') {'),
+      ],
+      this,
       if (isNullable) const Code('}')
     ]);
   }
@@ -50,8 +64,9 @@ extension ReferenceHelpers on Reference {
   /// Constructs a `built_value` FullType reference for this.
   Expression get fullType {
     final typeRef = this.typeRef;
-    final ctor = typeRef.isNullable!
-        ? DartTypes.builtValue.fullType.property('nullable').call
+    final ctor = typeRef.isNullable ?? false
+        ? (args) =>
+            DartTypes.builtValue.fullType.constInstanceNamed('nullable', args)
         : DartTypes.builtValue.fullType.constInstance;
     if (typeRef.types.isEmpty) {
       return ctor([typeRef.unboxed]);

@@ -20,7 +20,9 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
   late final Reference symbol = context.symbolFor(shape.shapeId);
 
   /// The re-cased name for the generated class.
-  String get className => shape.shapeId.shape.pascalCase;
+  String get className {
+    return (shape.rename(context) ?? shape.shapeId.shape).pascalCase;
+  }
 
   /// Formats documentation to follow Dart standards.
   String formatDocs(String docs) => docs

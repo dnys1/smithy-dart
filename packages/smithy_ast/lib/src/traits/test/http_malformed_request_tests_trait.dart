@@ -13,7 +13,7 @@ class HttpMalformedRequestTestsTrait
   const HttpMalformedRequestTestsTrait(this.testCases);
 
   factory HttpMalformedRequestTestsTrait.fromJson(Object? json) =>
-      _$HttpMalformedRequestTestsTraitFromJson((json as Map).cast());
+      _$HttpMalformedRequestTestsTraitFromJson({'testCases': json});
 
   static const id =
       ShapeId(namespace: 'smithy.test', shape: 'httpMalformedRequestTests');

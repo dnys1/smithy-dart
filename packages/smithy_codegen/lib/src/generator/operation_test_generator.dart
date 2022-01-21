@@ -8,6 +8,7 @@ import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// Generates test classes for shapes with HTTP tests.
 class OperationTestGenerator extends LibraryGenerator<OperationShape>
@@ -122,21 +123,15 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         'testCase': DartTypes.smithyTest.httpRequestTestCase.constInstance([], {
           'id': literal(testCase.id),
           'documentation': literal(testCase.documentation),
-          'protocol': DartTypes.smithy.shapeId.constInstance([], {
-            'namespace': literalString(testCase.protocol.namespace),
-            'shape': literalString(testCase.protocol.shape),
-          }),
+          'protocol': testCase.protocol.constructed,
           'authScheme': literal(testCase.authScheme),
-          'body': literal(_escapeBody(testCase.body)),
-          'bodyMediaType': literal(testCase.bodyMediaType),
-          'params': literal(testCase.params),
-          'vendorParamsShape': testCase.vendorParamsShape == null
+          'body': testCase.body == null
               ? literalNull
-              : DartTypes.smithy.shapeId.constInstance([], {
-                  'namespace':
-                      literalString(testCase.vendorParamsShape!.namespace),
-                  'shape': literalString(testCase.vendorParamsShape!.shape),
-                }),
+              : literalString(_escapeBody(testCase.body!)),
+          'bodyMediaType': literal(testCase.bodyMediaType),
+          'params': literal(_escapeParams(testCase.params)),
+          'vendorParamsShape':
+              testCase.vendorParamsShape?.constructed ?? literalNull,
           'vendorParams': literal(testCase.vendorParams),
           'headers': literal(testCase.headers),
           'forbidHeaders': literal(testCase.forbidHeaders),
@@ -210,21 +205,15 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       DartTypes.smithyTest.httpResponseTestCase.constInstance([], {
         'id': literal(testCase.id),
         'documentation': literal(testCase.documentation),
-        'protocol': DartTypes.smithy.shapeId.constInstance([], {
-          'namespace': literalString(testCase.protocol.namespace),
-          'shape': literalString(testCase.protocol.shape),
-        }),
+        'protocol': testCase.protocol.constructed,
         'authScheme': literal(testCase.authScheme),
-        'body': literal(_escapeBody(testCase.body)),
-        'bodyMediaType': literal(testCase.bodyMediaType),
-        'params': literal(testCase.params),
-        'vendorParamsShape': testCase.vendorParamsShape == null
+        'body': testCase.body == null
             ? literalNull
-            : DartTypes.smithy.shapeId.constInstance([], {
-                'namespace':
-                    literalString(testCase.vendorParamsShape!.namespace),
-                'shape': literalString(testCase.vendorParamsShape!.shape),
-              }),
+            : literalString(_escapeBody(testCase.body!)),
+        'bodyMediaType': literal(testCase.bodyMediaType),
+        'params': literal(_escapeParams(testCase.params)),
+        'vendorParamsShape':
+            testCase.vendorParamsShape?.constructed ?? literalNull,
         'vendorParams': literal(testCase.vendorParams),
         'headers': literal(testCase.headers),
         'forbidHeaders': literal(testCase.forbidHeaders),
@@ -236,5 +225,16 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         'code': literal(testCase.code),
       });
 
-  String? _escapeBody(String? body) => body?.replaceAll('\\', '\\\\');
+  String _escapeBody(String body) => body.replaceAll('\$', '\\\$');
+
+  Map<String, Object?> _escapeParams(Map<String, Object?> params) =>
+      {...params}..updateAll((key, value) {
+          if (value is String) {
+            return _escapeBody(value);
+          }
+          if (value is Map) {
+            return _escapeParams(value.cast());
+          }
+          return value;
+        });
 }

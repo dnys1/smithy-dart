@@ -21,7 +21,7 @@
             "type": "dart",
             "program": "tool/update_goldens.dart",
             "args": [
-                "awsJson1_1"
+                "restJson1"
             ]
         }
     ]

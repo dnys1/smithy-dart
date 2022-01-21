@@ -22,7 +22,7 @@ class _$ServiceShapeSerializer implements StructuredSerializer<ServiceShape> {
       'rename',
       serializers.serialize(object.rename,
           specifiedType: const FullType(BuiltMap,
-              const [const FullType(ShapeId), const FullType(String)])),
+              const [const FullType(String), const FullType(String)])),
       'errors',
       serializers.serialize(object.errors,
           specifiedType:
@@ -69,7 +69,7 @@ class _$ServiceShapeSerializer implements StructuredSerializer<ServiceShape> {
         case 'rename':
           result.rename.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltMap,
-                  const [const FullType(ShapeId), const FullType(String)]))!);
+                  const [const FullType(String), const FullType(String)]))!);
           break;
         case 'errors':
           result.errors.replace(serializers.deserialize(value,
@@ -104,7 +104,7 @@ class _$ServiceShape extends ServiceShape {
   @override
   final String? version;
   @override
-  final BuiltMap<ShapeId, String> rename;
+  final BuiltMap<String, String> rename;
   @override
   final BuiltSet<ShapeRef> errors;
   @override
@@ -194,10 +194,10 @@ class ServiceShapeBuilder
   String? get version => _$this._version;
   set version(covariant String? version) => _$this._version = version;
 
-  MapBuilder<ShapeId, String>? _rename;
-  MapBuilder<ShapeId, String> get rename =>
-      _$this._rename ??= new MapBuilder<ShapeId, String>();
-  set rename(covariant MapBuilder<ShapeId, String>? rename) =>
+  MapBuilder<String, String>? _rename;
+  MapBuilder<String, String> get rename =>
+      _$this._rename ??= new MapBuilder<String, String>();
+  set rename(covariant MapBuilder<String, String>? rename) =>
       _$this._rename = rename;
 
   SetBuilder<ShapeRef>? _errors;

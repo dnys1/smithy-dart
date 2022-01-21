@@ -31,6 +31,14 @@ class SerializerConfig {
           usePrivateSymbols: true,
         );
 
+  /// Config for AWS REST JSON 1
+  const SerializerConfig.restJson1()
+      : this(
+          usePayload: true,
+          renameMembers: true,
+          usePrivateSymbols: true,
+        );
+
   final bool renameMembers;
   final bool usePayload;
   final bool usePrivateSymbols;

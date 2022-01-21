@@ -29,6 +29,8 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
       case AwsJson1_0Trait:
       case AwsJson1_1Trait:
         return const SerializerConfig.awsJson();
+      case RestJson1Trait:
+        return const SerializerConfig.restJson1();
       default:
         return const SerializerConfig();
     }

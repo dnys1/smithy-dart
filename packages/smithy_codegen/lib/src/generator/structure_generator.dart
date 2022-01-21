@@ -20,7 +20,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   @override
   Library generate() {
-    // Ad .g.dart part directive
+    // Add .g.dart part directive
     builder.directives.add(Directive.part('${className.snakeCase}.g.dart'));
 
     final serializerClasses = _serializerClasses;
@@ -43,7 +43,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
-            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol!)
+            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol!.unboxed)
           ])
           ..mixins.addAll([
             if (shape.isError)
@@ -51,7 +51,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
                 DartTypes.smithy.smithyHttpException
               else
                 DartTypes.smithy.smithyException,
-            if (shape.isInputShape) DartTypes.smithy.httpInput(payloadSymbol!)
+            if (shape.isInputShape)
+              DartTypes.smithy.httpInput(payloadSymbol!.unboxed)
           ])
           ..constructors.addAll([
             _factoryConstructor(

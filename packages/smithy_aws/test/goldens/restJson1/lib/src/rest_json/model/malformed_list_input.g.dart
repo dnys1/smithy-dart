@@ -1,0 +1,183 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of rest_json1.rest_json.model.malformed_list_input;
+
+// **************************************************************************
+// BuiltValueGenerator
+// **************************************************************************
+
+class _$MalformedListInput extends MalformedListInput {
+  @override
+  final _i2.BuiltList<String>? bodyList;
+
+  factory _$MalformedListInput(
+          [void Function(MalformedListInputBuilder)? updates]) =>
+      (new MalformedListInputBuilder()..update(updates)).build();
+
+  _$MalformedListInput._({this.bodyList}) : super._();
+
+  @override
+  MalformedListInput rebuild(
+          void Function(MalformedListInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MalformedListInputBuilder toBuilder() =>
+      new MalformedListInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MalformedListInput && bodyList == other.bodyList;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, bodyList.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MalformedListInput')
+          ..add('bodyList', bodyList))
+        .toString();
+  }
+}
+
+class MalformedListInputBuilder
+    implements Builder<MalformedListInput, MalformedListInputBuilder> {
+  _$MalformedListInput? _$v;
+
+  _i2.ListBuilder<String>? _bodyList;
+  _i2.ListBuilder<String> get bodyList =>
+      _$this._bodyList ??= new _i2.ListBuilder<String>();
+  set bodyList(_i2.ListBuilder<String>? bodyList) =>
+      _$this._bodyList = bodyList;
+
+  MalformedListInputBuilder() {
+    MalformedListInput._init(this);
+  }
+
+  MalformedListInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _bodyList = $v.bodyList?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MalformedListInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MalformedListInput;
+  }
+
+  @override
+  void update(void Function(MalformedListInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MalformedListInput build() {
+    _$MalformedListInput _$result;
+    try {
+      _$result =
+          _$v ?? new _$MalformedListInput._(bodyList: _bodyList?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'bodyList';
+        _bodyList?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MalformedListInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MalformedListInputPayload extends MalformedListInputPayload {
+  @override
+  final _i2.BuiltList<String>? bodyList;
+
+  factory _$MalformedListInputPayload(
+          [void Function(MalformedListInputPayloadBuilder)? updates]) =>
+      (new MalformedListInputPayloadBuilder()..update(updates)).build();
+
+  _$MalformedListInputPayload._({this.bodyList}) : super._();
+
+  @override
+  MalformedListInputPayload rebuild(
+          void Function(MalformedListInputPayloadBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MalformedListInputPayloadBuilder toBuilder() =>
+      new MalformedListInputPayloadBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MalformedListInputPayload && bodyList == other.bodyList;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, bodyList.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MalformedListInputPayload')
+          ..add('bodyList', bodyList))
+        .toString();
+  }
+}
+
+class MalformedListInputPayloadBuilder
+    implements
+        Builder<MalformedListInputPayload, MalformedListInputPayloadBuilder> {
+  _$MalformedListInputPayload? _$v;
+
+  _i2.BuiltList<String>? _bodyList;
+  _i2.BuiltList<String>? get bodyList => _$this._bodyList;
+  set bodyList(_i2.BuiltList<String>? bodyList) => _$this._bodyList = bodyList;
+
+  MalformedListInputPayloadBuilder() {
+    MalformedListInputPayload._init(this);
+  }
+
+  MalformedListInputPayloadBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _bodyList = $v.bodyList;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MalformedListInputPayload other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MalformedListInputPayload;
+  }
+
+  @override
+  void update(void Function(MalformedListInputPayloadBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MalformedListInputPayload build() {
+    final _$result =
+        _$v ?? new _$MalformedListInputPayload._(bodyList: bodyList);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

@@ -606,21 +606,21 @@ packages:
     source: hosted
     version: "1.0.1"
   smithy:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       path: "../../packages/smithy"
       relative: true
     source: path
     version: "0.1.0"
   smithy_ast:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       path: "../../packages/smithy_ast"
       relative: true
     source: path
     version: "0.1.0"
   smithy_aws:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       path: "../../packages/smithy_aws"
       relative: true
@@ -633,13 +633,6 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
-  smithy_test:
-    dependency: "direct overridden"
-    description:
-      path: "../../packages/smithy_test"
-      relative: true
-    source: path
-    version: "1.0.0"
   source_gen:
     dependency: transitive
     description:

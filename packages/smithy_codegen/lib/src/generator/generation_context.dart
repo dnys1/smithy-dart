@@ -50,7 +50,7 @@ mixin UnionGenerationContext<U> on ShapeGenerator<UnionShape, U>
       member.memberName == UnionGenerationContext.sdkUnknown;
 
   /// The name of this member as a union variant.
-  String variantName(MemberShape member) => member.memberName.camelCase;
+  String variantName(MemberShape member) => member.dartName;
 
   /// The name of the union variant's private class name.
   String variantClassName(MemberShape member) =>

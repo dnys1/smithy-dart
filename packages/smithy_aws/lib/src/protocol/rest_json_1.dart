@@ -5,8 +5,11 @@ import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
+import 'aws_json_protocol.dart';
+
 class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
-    extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
+    extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
+    with AWSJsonProtocol {
   RestJson1Protocol({
     this.mediaType,
     List<HttpInterceptor> interceptors = const [],
@@ -50,10 +53,6 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
       'application/json';
 
   @override
-  late final JsonSerializer wireSerializer = JsonSerializer(serializers);
-
-  @override
-  Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
-    throw UnimplementedError();
-  }
+  late final JsonSerializer wireSerializer =
+      JsonSerializer(serializers, EmptyPayloadType.empty);
 }

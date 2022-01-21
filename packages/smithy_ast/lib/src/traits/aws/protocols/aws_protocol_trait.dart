@@ -11,6 +11,8 @@ abstract class AWSProtocolTrait implements ProtocolDefinitionTrait {
   })  : _http = http,
         _eventStreamHttp = eventStreamHttp;
 
+  // A client SHOULD assume that a service supports http/1.1 when no http or 
+  // eventStreamHttp values are provided.
   static const defaultHttpProtocols = [AlpnProtocol.http1_1];
 
   @override

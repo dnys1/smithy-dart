@@ -339,6 +339,12 @@ class _Convert {
 
   /// Creates a [convert.base64Encode] reference.
   Reference get base64Encode => const Reference('base64Encode', _url);
+
+  /// Creates a [convert.jsonEncode] reference.
+  Reference get jsonEncode => const Reference('jsonEncode', _url);
+
+  /// Creates a [convert.jsonDecode] reference.
+  Reference get jsonDecode => const Reference('jsonDecode', _url);
 }
 
 /// `package:fixnum` types
@@ -523,6 +529,20 @@ class _Smithy {
             if (ref != null) ref,
           ]),
       );
+
+  /// Creates a [smithy.PrimitiveSmithySerializer] reference for [ref], the
+  /// class being serialized.
+  Reference primitiveSmithySerializer([Reference? ref]) => TypeReference(
+        (t) => t
+          ..symbol = 'PrimitiveSmithySerializer'
+          ..url = _url
+          ..types.addAll([
+            if (ref != null) ref,
+          ]),
+      );
+
+  /// Creates a [smithy.Timestamp] reference.
+  Reference get timestamp => const Reference('Timestamp', _url);
 
   /// Creates a [smithy.TimestampFormat] reference.
   Reference get timestampFormat => const Reference('TimestampFormat', _url);

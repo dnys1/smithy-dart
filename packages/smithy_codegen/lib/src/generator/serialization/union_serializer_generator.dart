@@ -22,6 +22,9 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
   Reference get serializedSymbol => symbol;
 
   @override
+  bool get isStructuredSerializer => true;
+
+  @override
   Class generate() {
     // Tracks the generated type.
     context.generatedTypes.add(symbol);

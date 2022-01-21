@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
+import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
@@ -40,8 +41,7 @@ mixin UnionGenerationContext<U> on ShapeGenerator<UnionShape, U>
       ..shapeId = shape.shapeId.replace(member: sdkUnknown)
       ..target = ShapeId.core('Document'),
   );
-  late final Reference unknownMemberSymbol =
-      context.symbolFor(unknownMember.target, shape).unboxed;
+  late final Reference unknownMemberSymbol = DartTypes.core.object.unboxed;
 
   late final List<MemberShape> allMembers = [...sortedMembers, unknownMember];
 

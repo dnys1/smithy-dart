@@ -3,8 +3,9 @@
 library aws_json1_1.json_protocol.model.put_and_get_inline_documents_input_output;
 
 import 'package:built_value/built_value.dart';
+import 'package:built_value/json_object.dart' as _i2;
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'put_and_get_inline_documents_input_output.g.dart';
@@ -28,14 +29,14 @@ abstract class PutAndGetInlineDocumentsInputOutput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PutAndGetInlineDocumentsInputOutputBuilder b) {}
-  Object? get inlineDocument;
+  _i2.JsonObject? get inlineDocument;
   @override
   PutAndGetInlineDocumentsInputOutputPayload getPayload() =>
       PutAndGetInlineDocumentsInputOutputPayload(
           (b) => b..inlineDocument = inlineDocument);
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class PutAndGetInlineDocumentsInputOutputPayload
     implements
@@ -49,7 +50,7 @@ abstract class PutAndGetInlineDocumentsInputOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PutAndGetInlineDocumentsInputOutputPayloadBuilder b) {}
-  Object? get inlineDocument;
+  _i2.JsonObject? get inlineDocument;
 }
 
 class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1
@@ -79,8 +80,11 @@ class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1
       final value = iterator.current;
       switch (key) {
         case 'inlineDocument':
-          result.inlineDocument = (serializers.deserialize(value,
-              specifiedType: const FullType(Object)) as Object?);
+          if (value != null) {
+            result.inlineDocument = (serializers.deserialize(value,
+                    specifiedType: const FullType(_i2.JsonObject))
+                as _i2.JsonObject);
+          }
           break;
       }
     }
@@ -97,7 +101,7 @@ class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1
       result
         ..add('inlineDocument')
         ..add(serializers.serialize(payload.inlineDocument,
-            specifiedType: const FullType(Object)));
+            specifiedType: FullType.nullable(_i2.JsonObject)));
     }
     return result;
   }

@@ -24,37 +24,37 @@ class _$KitchenSink extends KitchenSink {
   @override
   final DateTime? iso8601Timestamp;
   @override
-  final String? jsonValue;
+  final _i4.JsonObject? jsonValue;
   @override
-  final _i4.BuiltList<_i4.BuiltList<String>>? listOfLists;
+  final _i5.BuiltList<_i5.BuiltList<String>>? listOfLists;
   @override
-  final _i4.BuiltList<_i4.BuiltMap<String, String>>? listOfMapsOfStrings;
+  final _i5.BuiltList<_i5.BuiltMap<String, String>>? listOfMapsOfStrings;
   @override
-  final _i4.BuiltList<String>? listOfStrings;
+  final _i5.BuiltList<String>? listOfStrings;
   @override
-  final _i4.BuiltList<_i5.SimpleStruct>? listOfStructs;
+  final _i5.BuiltList<_i6.SimpleStruct>? listOfStructs;
   @override
-  final _i6.Int64? long;
+  final _i7.Int64? long;
   @override
-  final _i4.BuiltListMultimap<String, String>? mapOfListsOfStrings;
+  final _i5.BuiltListMultimap<String, String>? mapOfListsOfStrings;
   @override
-  final _i4.BuiltMap<String, _i4.BuiltMap<String, String>>? mapOfMaps;
+  final _i5.BuiltMap<String, _i5.BuiltMap<String, String>>? mapOfMaps;
   @override
-  final _i4.BuiltMap<String, String>? mapOfStrings;
+  final _i5.BuiltMap<String, String>? mapOfStrings;
   @override
-  final _i4.BuiltMap<String, _i5.SimpleStruct>? mapOfStructs;
+  final _i5.BuiltMap<String, _i6.SimpleStruct>? mapOfStructs;
   @override
-  final _i4.BuiltList<KitchenSink>? recursiveList;
+  final _i5.BuiltList<KitchenSink>? recursiveList;
   @override
-  final _i4.BuiltMap<String, KitchenSink>? recursiveMap;
+  final _i5.BuiltMap<String, KitchenSink>? recursiveMap;
   @override
   final KitchenSink? recursiveStruct;
   @override
-  final _i5.SimpleStruct? simpleStruct;
+  final _i6.SimpleStruct? simpleStruct;
   @override
   final String? string;
   @override
-  final _i7.StructWithJsonName? structWithJsonName;
+  final _i8.StructWithJsonName? structWithJsonName;
   @override
   final DateTime? timestamp;
   @override
@@ -245,78 +245,78 @@ class KitchenSinkBuilder implements Builder<KitchenSink, KitchenSinkBuilder> {
   set iso8601Timestamp(DateTime? iso8601Timestamp) =>
       _$this._iso8601Timestamp = iso8601Timestamp;
 
-  String? _jsonValue;
-  String? get jsonValue => _$this._jsonValue;
-  set jsonValue(String? jsonValue) => _$this._jsonValue = jsonValue;
+  _i4.JsonObject? _jsonValue;
+  _i4.JsonObject? get jsonValue => _$this._jsonValue;
+  set jsonValue(_i4.JsonObject? jsonValue) => _$this._jsonValue = jsonValue;
 
-  _i4.ListBuilder<_i4.BuiltList<String>>? _listOfLists;
-  _i4.ListBuilder<_i4.BuiltList<String>> get listOfLists =>
-      _$this._listOfLists ??= new _i4.ListBuilder<_i4.BuiltList<String>>();
-  set listOfLists(_i4.ListBuilder<_i4.BuiltList<String>>? listOfLists) =>
+  _i5.ListBuilder<_i5.BuiltList<String>>? _listOfLists;
+  _i5.ListBuilder<_i5.BuiltList<String>> get listOfLists =>
+      _$this._listOfLists ??= new _i5.ListBuilder<_i5.BuiltList<String>>();
+  set listOfLists(_i5.ListBuilder<_i5.BuiltList<String>>? listOfLists) =>
       _$this._listOfLists = listOfLists;
 
-  _i4.ListBuilder<_i4.BuiltMap<String, String>>? _listOfMapsOfStrings;
-  _i4.ListBuilder<_i4.BuiltMap<String, String>> get listOfMapsOfStrings =>
+  _i5.ListBuilder<_i5.BuiltMap<String, String>>? _listOfMapsOfStrings;
+  _i5.ListBuilder<_i5.BuiltMap<String, String>> get listOfMapsOfStrings =>
       _$this._listOfMapsOfStrings ??=
-          new _i4.ListBuilder<_i4.BuiltMap<String, String>>();
+          new _i5.ListBuilder<_i5.BuiltMap<String, String>>();
   set listOfMapsOfStrings(
-          _i4.ListBuilder<_i4.BuiltMap<String, String>>? listOfMapsOfStrings) =>
+          _i5.ListBuilder<_i5.BuiltMap<String, String>>? listOfMapsOfStrings) =>
       _$this._listOfMapsOfStrings = listOfMapsOfStrings;
 
-  _i4.ListBuilder<String>? _listOfStrings;
-  _i4.ListBuilder<String> get listOfStrings =>
-      _$this._listOfStrings ??= new _i4.ListBuilder<String>();
-  set listOfStrings(_i4.ListBuilder<String>? listOfStrings) =>
+  _i5.ListBuilder<String>? _listOfStrings;
+  _i5.ListBuilder<String> get listOfStrings =>
+      _$this._listOfStrings ??= new _i5.ListBuilder<String>();
+  set listOfStrings(_i5.ListBuilder<String>? listOfStrings) =>
       _$this._listOfStrings = listOfStrings;
 
-  _i4.ListBuilder<_i5.SimpleStruct>? _listOfStructs;
-  _i4.ListBuilder<_i5.SimpleStruct> get listOfStructs =>
-      _$this._listOfStructs ??= new _i4.ListBuilder<_i5.SimpleStruct>();
-  set listOfStructs(_i4.ListBuilder<_i5.SimpleStruct>? listOfStructs) =>
+  _i5.ListBuilder<_i6.SimpleStruct>? _listOfStructs;
+  _i5.ListBuilder<_i6.SimpleStruct> get listOfStructs =>
+      _$this._listOfStructs ??= new _i5.ListBuilder<_i6.SimpleStruct>();
+  set listOfStructs(_i5.ListBuilder<_i6.SimpleStruct>? listOfStructs) =>
       _$this._listOfStructs = listOfStructs;
 
-  _i6.Int64? _long;
-  _i6.Int64? get long => _$this._long;
-  set long(_i6.Int64? long) => _$this._long = long;
+  _i7.Int64? _long;
+  _i7.Int64? get long => _$this._long;
+  set long(_i7.Int64? long) => _$this._long = long;
 
-  _i4.ListMultimapBuilder<String, String>? _mapOfListsOfStrings;
-  _i4.ListMultimapBuilder<String, String> get mapOfListsOfStrings =>
+  _i5.ListMultimapBuilder<String, String>? _mapOfListsOfStrings;
+  _i5.ListMultimapBuilder<String, String> get mapOfListsOfStrings =>
       _$this._mapOfListsOfStrings ??=
-          new _i4.ListMultimapBuilder<String, String>();
+          new _i5.ListMultimapBuilder<String, String>();
   set mapOfListsOfStrings(
-          _i4.ListMultimapBuilder<String, String>? mapOfListsOfStrings) =>
+          _i5.ListMultimapBuilder<String, String>? mapOfListsOfStrings) =>
       _$this._mapOfListsOfStrings = mapOfListsOfStrings;
 
-  _i4.MapBuilder<String, _i4.BuiltMap<String, String>>? _mapOfMaps;
-  _i4.MapBuilder<String, _i4.BuiltMap<String, String>> get mapOfMaps =>
+  _i5.MapBuilder<String, _i5.BuiltMap<String, String>>? _mapOfMaps;
+  _i5.MapBuilder<String, _i5.BuiltMap<String, String>> get mapOfMaps =>
       _$this._mapOfMaps ??=
-          new _i4.MapBuilder<String, _i4.BuiltMap<String, String>>();
+          new _i5.MapBuilder<String, _i5.BuiltMap<String, String>>();
   set mapOfMaps(
-          _i4.MapBuilder<String, _i4.BuiltMap<String, String>>? mapOfMaps) =>
+          _i5.MapBuilder<String, _i5.BuiltMap<String, String>>? mapOfMaps) =>
       _$this._mapOfMaps = mapOfMaps;
 
-  _i4.MapBuilder<String, String>? _mapOfStrings;
-  _i4.MapBuilder<String, String> get mapOfStrings =>
-      _$this._mapOfStrings ??= new _i4.MapBuilder<String, String>();
-  set mapOfStrings(_i4.MapBuilder<String, String>? mapOfStrings) =>
+  _i5.MapBuilder<String, String>? _mapOfStrings;
+  _i5.MapBuilder<String, String> get mapOfStrings =>
+      _$this._mapOfStrings ??= new _i5.MapBuilder<String, String>();
+  set mapOfStrings(_i5.MapBuilder<String, String>? mapOfStrings) =>
       _$this._mapOfStrings = mapOfStrings;
 
-  _i4.MapBuilder<String, _i5.SimpleStruct>? _mapOfStructs;
-  _i4.MapBuilder<String, _i5.SimpleStruct> get mapOfStructs =>
-      _$this._mapOfStructs ??= new _i4.MapBuilder<String, _i5.SimpleStruct>();
-  set mapOfStructs(_i4.MapBuilder<String, _i5.SimpleStruct>? mapOfStructs) =>
+  _i5.MapBuilder<String, _i6.SimpleStruct>? _mapOfStructs;
+  _i5.MapBuilder<String, _i6.SimpleStruct> get mapOfStructs =>
+      _$this._mapOfStructs ??= new _i5.MapBuilder<String, _i6.SimpleStruct>();
+  set mapOfStructs(_i5.MapBuilder<String, _i6.SimpleStruct>? mapOfStructs) =>
       _$this._mapOfStructs = mapOfStructs;
 
-  _i4.ListBuilder<KitchenSink>? _recursiveList;
-  _i4.ListBuilder<KitchenSink> get recursiveList =>
-      _$this._recursiveList ??= new _i4.ListBuilder<KitchenSink>();
-  set recursiveList(_i4.ListBuilder<KitchenSink>? recursiveList) =>
+  _i5.ListBuilder<KitchenSink>? _recursiveList;
+  _i5.ListBuilder<KitchenSink> get recursiveList =>
+      _$this._recursiveList ??= new _i5.ListBuilder<KitchenSink>();
+  set recursiveList(_i5.ListBuilder<KitchenSink>? recursiveList) =>
       _$this._recursiveList = recursiveList;
 
-  _i4.MapBuilder<String, KitchenSink>? _recursiveMap;
-  _i4.MapBuilder<String, KitchenSink> get recursiveMap =>
-      _$this._recursiveMap ??= new _i4.MapBuilder<String, KitchenSink>();
-  set recursiveMap(_i4.MapBuilder<String, KitchenSink>? recursiveMap) =>
+  _i5.MapBuilder<String, KitchenSink>? _recursiveMap;
+  _i5.MapBuilder<String, KitchenSink> get recursiveMap =>
+      _$this._recursiveMap ??= new _i5.MapBuilder<String, KitchenSink>();
+  set recursiveMap(_i5.MapBuilder<String, KitchenSink>? recursiveMap) =>
       _$this._recursiveMap = recursiveMap;
 
   KitchenSinkBuilder? _recursiveStruct;
@@ -325,20 +325,20 @@ class KitchenSinkBuilder implements Builder<KitchenSink, KitchenSinkBuilder> {
   set recursiveStruct(KitchenSinkBuilder? recursiveStruct) =>
       _$this._recursiveStruct = recursiveStruct;
 
-  _i5.SimpleStructBuilder? _simpleStruct;
-  _i5.SimpleStructBuilder get simpleStruct =>
-      _$this._simpleStruct ??= new _i5.SimpleStructBuilder();
-  set simpleStruct(_i5.SimpleStructBuilder? simpleStruct) =>
+  _i6.SimpleStructBuilder? _simpleStruct;
+  _i6.SimpleStructBuilder get simpleStruct =>
+      _$this._simpleStruct ??= new _i6.SimpleStructBuilder();
+  set simpleStruct(_i6.SimpleStructBuilder? simpleStruct) =>
       _$this._simpleStruct = simpleStruct;
 
   String? _string;
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  _i7.StructWithJsonNameBuilder? _structWithJsonName;
-  _i7.StructWithJsonNameBuilder get structWithJsonName =>
-      _$this._structWithJsonName ??= new _i7.StructWithJsonNameBuilder();
-  set structWithJsonName(_i7.StructWithJsonNameBuilder? structWithJsonName) =>
+  _i8.StructWithJsonNameBuilder? _structWithJsonName;
+  _i8.StructWithJsonNameBuilder get structWithJsonName =>
+      _$this._structWithJsonName ??= new _i8.StructWithJsonNameBuilder();
+  set structWithJsonName(_i8.StructWithJsonNameBuilder? structWithJsonName) =>
       _$this._structWithJsonName = structWithJsonName;
 
   DateTime? _timestamp;
@@ -494,37 +494,37 @@ class _$KitchenSinkPayload extends KitchenSinkPayload {
   @override
   final DateTime? iso8601Timestamp;
   @override
-  final String? jsonValue;
+  final _i4.JsonObject? jsonValue;
   @override
-  final _i4.BuiltList<_i4.BuiltList<String>>? listOfLists;
+  final _i5.BuiltList<_i5.BuiltList<String>>? listOfLists;
   @override
-  final _i4.BuiltList<_i4.BuiltMap<String, String>>? listOfMapsOfStrings;
+  final _i5.BuiltList<_i5.BuiltMap<String, String>>? listOfMapsOfStrings;
   @override
-  final _i4.BuiltList<String>? listOfStrings;
+  final _i5.BuiltList<String>? listOfStrings;
   @override
-  final _i4.BuiltList<_i5.SimpleStruct>? listOfStructs;
+  final _i5.BuiltList<_i6.SimpleStruct>? listOfStructs;
   @override
-  final _i6.Int64? long;
+  final _i7.Int64? long;
   @override
-  final _i4.BuiltListMultimap<String, String>? mapOfListsOfStrings;
+  final _i5.BuiltListMultimap<String, String>? mapOfListsOfStrings;
   @override
-  final _i4.BuiltMap<String, _i4.BuiltMap<String, String>>? mapOfMaps;
+  final _i5.BuiltMap<String, _i5.BuiltMap<String, String>>? mapOfMaps;
   @override
-  final _i4.BuiltMap<String, String>? mapOfStrings;
+  final _i5.BuiltMap<String, String>? mapOfStrings;
   @override
-  final _i4.BuiltMap<String, _i5.SimpleStruct>? mapOfStructs;
+  final _i5.BuiltMap<String, _i6.SimpleStruct>? mapOfStructs;
   @override
-  final _i4.BuiltList<KitchenSink>? recursiveList;
+  final _i5.BuiltList<KitchenSink>? recursiveList;
   @override
-  final _i4.BuiltMap<String, KitchenSink>? recursiveMap;
+  final _i5.BuiltMap<String, KitchenSink>? recursiveMap;
   @override
   final KitchenSink? recursiveStruct;
   @override
-  final _i5.SimpleStruct? simpleStruct;
+  final _i6.SimpleStruct? simpleStruct;
   @override
   final String? string;
   @override
-  final _i7.StructWithJsonName? structWithJsonName;
+  final _i8.StructWithJsonName? structWithJsonName;
   @override
   final DateTime? timestamp;
   @override
@@ -718,69 +718,69 @@ class KitchenSinkPayloadBuilder
   set iso8601Timestamp(DateTime? iso8601Timestamp) =>
       _$this._iso8601Timestamp = iso8601Timestamp;
 
-  String? _jsonValue;
-  String? get jsonValue => _$this._jsonValue;
-  set jsonValue(String? jsonValue) => _$this._jsonValue = jsonValue;
+  _i4.JsonObject? _jsonValue;
+  _i4.JsonObject? get jsonValue => _$this._jsonValue;
+  set jsonValue(_i4.JsonObject? jsonValue) => _$this._jsonValue = jsonValue;
 
-  _i4.BuiltList<_i4.BuiltList<String>>? _listOfLists;
-  _i4.BuiltList<_i4.BuiltList<String>>? get listOfLists => _$this._listOfLists;
-  set listOfLists(_i4.BuiltList<_i4.BuiltList<String>>? listOfLists) =>
+  _i5.BuiltList<_i5.BuiltList<String>>? _listOfLists;
+  _i5.BuiltList<_i5.BuiltList<String>>? get listOfLists => _$this._listOfLists;
+  set listOfLists(_i5.BuiltList<_i5.BuiltList<String>>? listOfLists) =>
       _$this._listOfLists = listOfLists;
 
-  _i4.BuiltList<_i4.BuiltMap<String, String>>? _listOfMapsOfStrings;
-  _i4.BuiltList<_i4.BuiltMap<String, String>>? get listOfMapsOfStrings =>
+  _i5.BuiltList<_i5.BuiltMap<String, String>>? _listOfMapsOfStrings;
+  _i5.BuiltList<_i5.BuiltMap<String, String>>? get listOfMapsOfStrings =>
       _$this._listOfMapsOfStrings;
   set listOfMapsOfStrings(
-          _i4.BuiltList<_i4.BuiltMap<String, String>>? listOfMapsOfStrings) =>
+          _i5.BuiltList<_i5.BuiltMap<String, String>>? listOfMapsOfStrings) =>
       _$this._listOfMapsOfStrings = listOfMapsOfStrings;
 
-  _i4.BuiltList<String>? _listOfStrings;
-  _i4.BuiltList<String>? get listOfStrings => _$this._listOfStrings;
-  set listOfStrings(_i4.BuiltList<String>? listOfStrings) =>
+  _i5.BuiltList<String>? _listOfStrings;
+  _i5.BuiltList<String>? get listOfStrings => _$this._listOfStrings;
+  set listOfStrings(_i5.BuiltList<String>? listOfStrings) =>
       _$this._listOfStrings = listOfStrings;
 
-  _i4.BuiltList<_i5.SimpleStruct>? _listOfStructs;
-  _i4.BuiltList<_i5.SimpleStruct>? get listOfStructs => _$this._listOfStructs;
-  set listOfStructs(_i4.BuiltList<_i5.SimpleStruct>? listOfStructs) =>
+  _i5.BuiltList<_i6.SimpleStruct>? _listOfStructs;
+  _i5.BuiltList<_i6.SimpleStruct>? get listOfStructs => _$this._listOfStructs;
+  set listOfStructs(_i5.BuiltList<_i6.SimpleStruct>? listOfStructs) =>
       _$this._listOfStructs = listOfStructs;
 
-  _i6.Int64? _long;
-  _i6.Int64? get long => _$this._long;
-  set long(_i6.Int64? long) => _$this._long = long;
+  _i7.Int64? _long;
+  _i7.Int64? get long => _$this._long;
+  set long(_i7.Int64? long) => _$this._long = long;
 
-  _i4.BuiltListMultimap<String, String>? _mapOfListsOfStrings;
-  _i4.BuiltListMultimap<String, String>? get mapOfListsOfStrings =>
+  _i5.BuiltListMultimap<String, String>? _mapOfListsOfStrings;
+  _i5.BuiltListMultimap<String, String>? get mapOfListsOfStrings =>
       _$this._mapOfListsOfStrings;
   set mapOfListsOfStrings(
-          _i4.BuiltListMultimap<String, String>? mapOfListsOfStrings) =>
+          _i5.BuiltListMultimap<String, String>? mapOfListsOfStrings) =>
       _$this._mapOfListsOfStrings = mapOfListsOfStrings;
 
-  _i4.BuiltMap<String, _i4.BuiltMap<String, String>>? _mapOfMaps;
-  _i4.BuiltMap<String, _i4.BuiltMap<String, String>>? get mapOfMaps =>
+  _i5.BuiltMap<String, _i5.BuiltMap<String, String>>? _mapOfMaps;
+  _i5.BuiltMap<String, _i5.BuiltMap<String, String>>? get mapOfMaps =>
       _$this._mapOfMaps;
   set mapOfMaps(
-          _i4.BuiltMap<String, _i4.BuiltMap<String, String>>? mapOfMaps) =>
+          _i5.BuiltMap<String, _i5.BuiltMap<String, String>>? mapOfMaps) =>
       _$this._mapOfMaps = mapOfMaps;
 
-  _i4.BuiltMap<String, String>? _mapOfStrings;
-  _i4.BuiltMap<String, String>? get mapOfStrings => _$this._mapOfStrings;
-  set mapOfStrings(_i4.BuiltMap<String, String>? mapOfStrings) =>
+  _i5.BuiltMap<String, String>? _mapOfStrings;
+  _i5.BuiltMap<String, String>? get mapOfStrings => _$this._mapOfStrings;
+  set mapOfStrings(_i5.BuiltMap<String, String>? mapOfStrings) =>
       _$this._mapOfStrings = mapOfStrings;
 
-  _i4.BuiltMap<String, _i5.SimpleStruct>? _mapOfStructs;
-  _i4.BuiltMap<String, _i5.SimpleStruct>? get mapOfStructs =>
+  _i5.BuiltMap<String, _i6.SimpleStruct>? _mapOfStructs;
+  _i5.BuiltMap<String, _i6.SimpleStruct>? get mapOfStructs =>
       _$this._mapOfStructs;
-  set mapOfStructs(_i4.BuiltMap<String, _i5.SimpleStruct>? mapOfStructs) =>
+  set mapOfStructs(_i5.BuiltMap<String, _i6.SimpleStruct>? mapOfStructs) =>
       _$this._mapOfStructs = mapOfStructs;
 
-  _i4.BuiltList<KitchenSink>? _recursiveList;
-  _i4.BuiltList<KitchenSink>? get recursiveList => _$this._recursiveList;
-  set recursiveList(_i4.BuiltList<KitchenSink>? recursiveList) =>
+  _i5.BuiltList<KitchenSink>? _recursiveList;
+  _i5.BuiltList<KitchenSink>? get recursiveList => _$this._recursiveList;
+  set recursiveList(_i5.BuiltList<KitchenSink>? recursiveList) =>
       _$this._recursiveList = recursiveList;
 
-  _i4.BuiltMap<String, KitchenSink>? _recursiveMap;
-  _i4.BuiltMap<String, KitchenSink>? get recursiveMap => _$this._recursiveMap;
-  set recursiveMap(_i4.BuiltMap<String, KitchenSink>? recursiveMap) =>
+  _i5.BuiltMap<String, KitchenSink>? _recursiveMap;
+  _i5.BuiltMap<String, KitchenSink>? get recursiveMap => _$this._recursiveMap;
+  set recursiveMap(_i5.BuiltMap<String, KitchenSink>? recursiveMap) =>
       _$this._recursiveMap = recursiveMap;
 
   KitchenSink? _recursiveStruct;
@@ -788,18 +788,18 @@ class KitchenSinkPayloadBuilder
   set recursiveStruct(KitchenSink? recursiveStruct) =>
       _$this._recursiveStruct = recursiveStruct;
 
-  _i5.SimpleStruct? _simpleStruct;
-  _i5.SimpleStruct? get simpleStruct => _$this._simpleStruct;
-  set simpleStruct(_i5.SimpleStruct? simpleStruct) =>
+  _i6.SimpleStruct? _simpleStruct;
+  _i6.SimpleStruct? get simpleStruct => _$this._simpleStruct;
+  set simpleStruct(_i6.SimpleStruct? simpleStruct) =>
       _$this._simpleStruct = simpleStruct;
 
   String? _string;
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  _i7.StructWithJsonName? _structWithJsonName;
-  _i7.StructWithJsonName? get structWithJsonName => _$this._structWithJsonName;
-  set structWithJsonName(_i7.StructWithJsonName? structWithJsonName) =>
+  _i8.StructWithJsonName? _structWithJsonName;
+  _i8.StructWithJsonName? get structWithJsonName => _$this._structWithJsonName;
+  set structWithJsonName(_i8.StructWithJsonName? structWithJsonName) =>
       _$this._structWithJsonName = structWithJsonName;
 
   DateTime? _timestamp;

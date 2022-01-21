@@ -3,6 +3,7 @@ class SerializerConfig {
     this.renameMembers = true,
     this.usePayload = true,
     this.usePrivateSymbols = true,
+    this.isTest = false,
   });
 
   /// Config for test serializers.
@@ -11,6 +12,7 @@ class SerializerConfig {
           usePayload: false,
           renameMembers: false,
           usePrivateSymbols: false,
+          isTest: true,
         );
 
   /// Config for generic JSON protocol.
@@ -32,4 +34,5 @@ class SerializerConfig {
   final bool renameMembers;
   final bool usePayload;
   final bool usePrivateSymbols;
+  final bool isTest;
 }

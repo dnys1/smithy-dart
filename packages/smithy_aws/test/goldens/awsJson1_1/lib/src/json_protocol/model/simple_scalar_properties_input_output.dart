@@ -82,12 +82,16 @@ class _SimpleScalarPropertiesInputOutputAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'doubleValue':
-          result.doubleValue = (serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?);
+          if (value != null) {
+            result.doubleValue = (serializers.deserialize(value,
+                specifiedType: const FullType(double)) as double);
+          }
           break;
         case 'floatValue':
-          result.floatValue = (serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?);
+          if (value != null) {
+            result.floatValue = (serializers.deserialize(value,
+                specifiedType: const FullType(double)) as double);
+          }
           break;
       }
     }
@@ -104,13 +108,13 @@ class _SimpleScalarPropertiesInputOutputAwsJson11Serializer
       result
         ..add('doubleValue')
         ..add(serializers.serialize(payload.doubleValue,
-            specifiedType: const FullType(double)));
+            specifiedType: FullType.nullable(double)));
     }
     if (payload.floatValue != null) {
       result
         ..add('floatValue')
         ..add(serializers.serialize(payload.floatValue,
-            specifiedType: const FullType(double)));
+            specifiedType: FullType.nullable(double)));
     }
     return result;
   }

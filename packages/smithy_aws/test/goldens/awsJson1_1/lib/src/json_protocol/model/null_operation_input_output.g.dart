@@ -8,9 +8,9 @@ part of aws_json1_1.json_protocol.model.null_operation_input_output;
 
 class _$NullOperationInputOutput extends NullOperationInputOutput {
   @override
-  final _i2.BuiltList<String>? sparseStringList;
+  final _i2.BuiltList<String?>? sparseStringList;
   @override
-  final _i2.BuiltMap<String, String>? sparseStringMap;
+  final _i2.BuiltMap<String, String?>? sparseStringMap;
   @override
   final String? string;
 
@@ -62,16 +62,16 @@ class NullOperationInputOutputBuilder
         Builder<NullOperationInputOutput, NullOperationInputOutputBuilder> {
   _$NullOperationInputOutput? _$v;
 
-  _i2.ListBuilder<String>? _sparseStringList;
-  _i2.ListBuilder<String> get sparseStringList =>
-      _$this._sparseStringList ??= new _i2.ListBuilder<String>();
-  set sparseStringList(_i2.ListBuilder<String>? sparseStringList) =>
+  _i2.ListBuilder<String?>? _sparseStringList;
+  _i2.ListBuilder<String?> get sparseStringList =>
+      _$this._sparseStringList ??= new _i2.ListBuilder<String?>();
+  set sparseStringList(_i2.ListBuilder<String?>? sparseStringList) =>
       _$this._sparseStringList = sparseStringList;
 
-  _i2.MapBuilder<String, String>? _sparseStringMap;
-  _i2.MapBuilder<String, String> get sparseStringMap =>
-      _$this._sparseStringMap ??= new _i2.MapBuilder<String, String>();
-  set sparseStringMap(_i2.MapBuilder<String, String>? sparseStringMap) =>
+  _i2.MapBuilder<String, String?>? _sparseStringMap;
+  _i2.MapBuilder<String, String?> get sparseStringMap =>
+      _$this._sparseStringMap ??= new _i2.MapBuilder<String, String?>();
+  set sparseStringMap(_i2.MapBuilder<String, String?>? sparseStringMap) =>
       _$this._sparseStringMap = sparseStringMap;
 
   String? _string;
@@ -134,9 +134,9 @@ class NullOperationInputOutputBuilder
 class _$NullOperationInputOutputPayload
     extends NullOperationInputOutputPayload {
   @override
-  final _i2.BuiltList<String>? sparseStringList;
+  final _i2.BuiltList<String?>? sparseStringList;
   @override
-  final _i2.BuiltMap<String, String>? sparseStringMap;
+  final _i2.BuiltMap<String, String?>? sparseStringMap;
   @override
   final String? string;
 
@@ -189,14 +189,14 @@ class NullOperationInputOutputPayloadBuilder
             NullOperationInputOutputPayloadBuilder> {
   _$NullOperationInputOutputPayload? _$v;
 
-  _i2.BuiltList<String>? _sparseStringList;
-  _i2.BuiltList<String>? get sparseStringList => _$this._sparseStringList;
-  set sparseStringList(_i2.BuiltList<String>? sparseStringList) =>
+  _i2.BuiltList<String?>? _sparseStringList;
+  _i2.BuiltList<String?>? get sparseStringList => _$this._sparseStringList;
+  set sparseStringList(_i2.BuiltList<String?>? sparseStringList) =>
       _$this._sparseStringList = sparseStringList;
 
-  _i2.BuiltMap<String, String>? _sparseStringMap;
-  _i2.BuiltMap<String, String>? get sparseStringMap => _$this._sparseStringMap;
-  set sparseStringMap(_i2.BuiltMap<String, String>? sparseStringMap) =>
+  _i2.BuiltMap<String, String?>? _sparseStringMap;
+  _i2.BuiltMap<String, String?>? get sparseStringMap => _$this._sparseStringMap;
+  set sparseStringMap(_i2.BuiltMap<String, String?>? sparseStringMap) =>
       _$this._sparseStringMap = sparseStringMap;
 
   String? _string;

@@ -119,17 +119,40 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   Code get serializeCode;
 
   /// Serializes [member] as a timestamp shape.
-  Expression serializerFor(MemberShape member, Expression memberRef) {
-    final type = context.shapeFor(member.target).getType();
+  Expression serializerFor(
+    MemberShape member,
+    Expression memberRef, {
+    Reference? memberSymbol,
+  }) {
+    final targetShape = context.shapeFor(member.target);
+    final type = targetShape.getType();
+    final isNullable = member.isNullable(shape);
+    memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
     if (type == ShapeType.timestamp) {
       final format = member.timestampFormat ?? shape.timestampFormat;
       if (format != null) {
-        return refer('serializers').property('serializeWith').call([
-          DartTypes.smithy.timestampSerializer.property(format.name),
-          memberRef,
+        return DartTypes.smithy.timestampSerializer
+            .property(format.name)
+            .property('serialize')
+            .call([
+          refer('serializers'),
+          isNullable ? memberRef.nullChecked : memberRef
         ]);
+      }
+    }
+    if (type == ShapeType.string) {
+      final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
+      switch (mediaType) {
+        case 'application/json':
+          return DartTypes.smithy.encodedJsonObjectSerializer
+              .constInstance([])
+              .property('serialize')
+              .call([
+                refer('serializers'),
+                isNullable ? memberRef.nullChecked : memberRef
+              ]);
       }
     }
 
@@ -138,7 +161,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     return refer('serializers').property('serialize').call([
       memberRef,
     ], {
-      'specifiedType': memberSymbols[member]!.fullType,
+      'specifiedType': memberSymbol.fullType,
     });
   }
 
@@ -148,16 +171,32 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     Expression value = const Reference('value'),
     Reference? memberSymbol,
   }) {
-    final type = context.shapeFor(member.target).getType();
+    final targetShape = context.shapeFor(member.target);
+    final type = targetShape.getType();
+    memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
     if (type == ShapeType.timestamp) {
-      final format = member.timestampFormat ?? shape.timestampFormat;
+      final format = config.isTest
+          // Test params are always in epoch seconds for some reason
+          ? TimestampFormat.epochSeconds
+          : member.timestampFormat ?? shape.timestampFormat;
       if (format != null) {
-        return refer('serializers').property('deserializeWith').call([
-          DartTypes.smithy.timestampSerializer.property(format.name),
-          value,
-        ]);
+        return DartTypes.smithy.timestampSerializer
+            .property(format.name)
+            .property('deserialize')
+            .call([refer('serializers'), value]).asA(memberSymbol);
+      }
+    }
+    if (type == ShapeType.string) {
+      final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
+      switch (mediaType) {
+        case 'application/json':
+          return DartTypes.smithy.encodedJsonObjectSerializer
+              .constInstance([])
+              .property('deserialize')
+              .call([refer('serializers'), value])
+              .asA(memberSymbol);
       }
     }
 
@@ -166,7 +205,9 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     return refer('serializers').property('deserialize').call([
       value,
     ], {
-      'specifiedType': (memberSymbol ?? memberSymbols[member])!.fullType,
-    });
+      'specifiedType': memberSymbol.fullType,
+    }).asA(memberSymbol);
   }
 }
+
+extension on Expression {}

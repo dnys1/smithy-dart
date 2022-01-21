@@ -45,8 +45,10 @@ class _SimpleStructAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'Value':
-          result.value = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.value = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -63,7 +65,7 @@ class _SimpleStructAwsJson11Serializer
       result
         ..add('Value')
         ..add(serializers.serialize(payload.value,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

@@ -45,8 +45,10 @@ class _GreetingStructAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'hi':
-          result.hi = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.hi = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -63,7 +65,7 @@ class _GreetingStructAwsJson11Serializer
       result
         ..add('hi')
         ..add(serializers.serialize(payload.hi,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

@@ -27,11 +27,12 @@ class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
         ..addAll([
-          const DoubleSerializer(),
-          const UnitSerializer(),
-          const BlobSerializer(),
-          TimestampSerializer.epochSeconds,
           BigIntSerializer.asNum,
+          const BlobSerializer(),
+          const DoubleSerializer(),
+          Int64Serializer.asNum,
+          TimestampSerializer.epochSeconds,
+          const UnitSerializer(),
         ]))
       .build();
 

@@ -117,7 +117,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   Iterable<Code> get _httpRequestTests sync* {
     for (var testCase in httpRequestTestCases) {
       final serializer = inputSerializers[testCase.protocol];
-      yield DartTypes.smithyTest.httpRequestTest.call([], {
+      final testCall = DartTypes.smithyTest.httpRequestTest.call([], {
         'operation': symbol.newInstance([]),
         'testCase': DartTypes.smithyTest.httpRequestTestCase.constInstance([], {
           'id': literal(testCase.id),
@@ -127,7 +127,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             'shape': literalString(testCase.protocol.shape),
           }),
           'authScheme': literal(testCase.authScheme),
-          'body': literal(testCase.body),
+          'body': literal(_escapeBody(testCase.body)),
           'bodyMediaType': literal(testCase.bodyMediaType),
           'params': literal(testCase.params),
           'vendorParamsShape': testCase.vendorParamsShape == null
@@ -156,7 +156,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         }),
         if (serializer != null)
           'inputSerializer': refer(serializer.name).constInstance([]),
-      }).statement;
+      });
+      yield _buildTest(testCase, testCall);
     }
   }
 
@@ -166,12 +167,13 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   Iterable<Code> get _httpResponseTests sync* {
     for (var testCase in httpResponseTestCases) {
       final serializer = outputSerializers[testCase.protocol];
-      yield DartTypes.smithyTest.httpResponseTest.call([], {
+      final testCall = DartTypes.smithyTest.httpResponseTest.call([], {
         'operation': symbol.newInstance([]),
         'testCase': _buildResponseTestCase(testCase),
         if (serializer != null)
           'outputSerializer': refer(serializer.name).constInstance([]),
-      }).statement;
+      });
+      yield _buildTest(testCase, testCall);
     }
   }
 
@@ -183,14 +185,25 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       final testCases = httpErrorResponseTestCases[shape]!;
       for (var testCase in testCases) {
         final serializer = errorSerializers[shape]![testCase.protocol];
-        yield DartTypes.smithyTest.httpErrorResponseTest.call([], {
+        final testCall = DartTypes.smithyTest.httpErrorResponseTest.call([], {
           'operation': symbol.newInstance([]),
           'testCase': _buildResponseTestCase(testCase),
           if (serializer != null)
             'errorSerializer': refer(serializer.name).constInstance([]),
-        }).statement;
+        });
+        yield _buildTest(testCase, testCall);
       }
     }
+  }
+
+  Code _buildTest(HttpMessageTestCase testCase, Expression testCall) {
+    return Block.of([
+      Code.scope((allocate) =>
+          allocate(DartTypes.test.test) +
+          "('${testCase.id} (${testCase.protocol.shape})', () async {"),
+      testCall.awaited.statement,
+      Code('});'),
+    ]);
   }
 
   Expression _buildResponseTestCase(HttpResponseTestCase testCase) =>
@@ -202,7 +215,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           'shape': literalString(testCase.protocol.shape),
         }),
         'authScheme': literal(testCase.authScheme),
-        'body': literal(testCase.body),
+        'body': literal(_escapeBody(testCase.body)),
         'bodyMediaType': literal(testCase.bodyMediaType),
         'params': literal(testCase.params),
         'vendorParamsShape': testCase.vendorParamsShape == null
@@ -222,4 +235,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             : DartTypes.smithyTest.appliesTo.property(testCase.appliesTo!.name),
         'code': literal(testCase.code),
       });
+
+  String? _escapeBody(String? body) => body?.replaceAll('\\', '\\\\');
 }

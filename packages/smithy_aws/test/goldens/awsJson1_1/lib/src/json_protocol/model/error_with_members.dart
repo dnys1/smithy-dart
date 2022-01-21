@@ -100,37 +100,51 @@ class _ErrorWithMembersAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'Code':
-          result.code = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.code = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
         case 'ComplexData':
-          result.complexData.replace((serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.KitchenSink))
-              as _i2.KitchenSink));
+          if (value != null) {
+            result.complexData.replace((serializers.deserialize(value,
+                    specifiedType: const FullType(_i2.KitchenSink))
+                as _i2.KitchenSink));
+          }
           break;
         case 'IntegerField':
-          result.integerField = (serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?);
+          if (value != null) {
+            result.integerField = (serializers.deserialize(value,
+                specifiedType: const FullType(int)) as int);
+          }
           break;
         case 'ListField':
-          result.listField.replace((serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(_i3.BuiltList, [FullType(String)]))
-              as _i3.BuiltList<String>));
+          if (value != null) {
+            result.listField.replace((serializers.deserialize(value,
+                    specifiedType:
+                        const FullType(_i3.BuiltList, [FullType(String)]))
+                as _i3.BuiltList<String>));
+          }
           break;
         case 'MapField':
-          result.mapField.replace((serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      _i3.BuiltMap, [FullType(String), FullType(String)]))
-              as _i3.BuiltMap<String, String>));
+          if (value != null) {
+            result.mapField.replace((serializers.deserialize(value,
+                    specifiedType: const FullType(
+                        _i3.BuiltMap, [FullType(String), FullType(String)]))
+                as _i3.BuiltMap<String, String>));
+          }
           break;
         case 'Message':
-          result.message = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.message = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
         case 'StringField':
-          result.stringField = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.stringField = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -147,44 +161,45 @@ class _ErrorWithMembersAwsJson11Serializer
       result
         ..add('Code')
         ..add(serializers.serialize(payload.code,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     if (payload.complexData != null) {
       result
         ..add('ComplexData')
         ..add(serializers.serialize(payload.complexData,
-            specifiedType: const FullType(_i2.KitchenSink)));
+            specifiedType: FullType.nullable(_i2.KitchenSink)));
     }
     if (payload.integerField != null) {
       result
         ..add('IntegerField')
         ..add(serializers.serialize(payload.integerField,
-            specifiedType: const FullType(int)));
+            specifiedType: FullType.nullable(int)));
     }
     if (payload.listField != null) {
       result
         ..add('ListField')
         ..add(serializers.serialize(payload.listField,
-            specifiedType: const FullType(_i3.BuiltList, [FullType(String)])));
+            specifiedType:
+                FullType.nullable(_i3.BuiltList, [const FullType(String)])));
     }
     if (payload.mapField != null) {
       result
         ..add('MapField')
         ..add(serializers.serialize(payload.mapField,
-            specifiedType: const FullType(
-                _i3.BuiltMap, [FullType(String), FullType(String)])));
+            specifiedType: FullType.nullable(_i3.BuiltMap,
+                [const FullType(String), const FullType(String)])));
     }
     if (payload.message != null) {
       result
         ..add('Message')
         ..add(serializers.serialize(payload.message,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     if (payload.stringField != null) {
       result
         ..add('StringField')
         ..add(serializers.serialize(payload.stringField,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

@@ -82,13 +82,17 @@ class _ComplexErrorAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'Nested':
-          result.nested.replace((serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.ComplexNestedErrorData))
-              as _i2.ComplexNestedErrorData));
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(value,
+                    specifiedType: const FullType(_i2.ComplexNestedErrorData))
+                as _i2.ComplexNestedErrorData));
+          }
           break;
         case 'TopLevel':
-          result.topLevel = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.topLevel = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -105,13 +109,13 @@ class _ComplexErrorAwsJson11Serializer
       result
         ..add('Nested')
         ..add(serializers.serialize(payload.nested,
-            specifiedType: const FullType(_i2.ComplexNestedErrorData)));
+            specifiedType: FullType.nullable(_i2.ComplexNestedErrorData)));
     }
     if (payload.topLevel != null) {
       result
         ..add('TopLevel')
         ..add(serializers.serialize(payload.topLevel,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

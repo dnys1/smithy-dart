@@ -98,5 +98,9 @@ final Map<FullType, Function> builderFactories = {
   const FullType(_i24.BuiltList, [FullType(_i15.KitchenSink)]):
       _i24.ListBuilder<_i15.KitchenSink>.new,
   const FullType(_i24.BuiltMap, [FullType(String), FullType(_i15.KitchenSink)]):
-      _i24.MapBuilder<String, _i15.KitchenSink>.new
+      _i24.MapBuilder<String, _i15.KitchenSink>.new,
+  const FullType(_i24.BuiltList, [FullType.nullable(String)]):
+      _i24.ListBuilder<String?>.new,
+  const FullType(_i24.BuiltMap, [FullType(String), FullType.nullable(String)]):
+      _i24.MapBuilder<String, String?>.new
 };

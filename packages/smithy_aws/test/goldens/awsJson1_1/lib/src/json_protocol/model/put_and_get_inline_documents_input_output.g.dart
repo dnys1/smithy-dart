@@ -9,7 +9,7 @@ part of aws_json1_1.json_protocol.model.put_and_get_inline_documents_input_outpu
 class _$PutAndGetInlineDocumentsInputOutput
     extends PutAndGetInlineDocumentsInputOutput {
   @override
-  final Object? inlineDocument;
+  final _i2.JsonObject? inlineDocument;
 
   factory _$PutAndGetInlineDocumentsInputOutput(
           [void Function(PutAndGetInlineDocumentsInputOutputBuilder)?
@@ -54,9 +54,9 @@ class PutAndGetInlineDocumentsInputOutputBuilder
             PutAndGetInlineDocumentsInputOutputBuilder> {
   _$PutAndGetInlineDocumentsInputOutput? _$v;
 
-  Object? _inlineDocument;
-  Object? get inlineDocument => _$this._inlineDocument;
-  set inlineDocument(Object? inlineDocument) =>
+  _i2.JsonObject? _inlineDocument;
+  _i2.JsonObject? get inlineDocument => _$this._inlineDocument;
+  set inlineDocument(_i2.JsonObject? inlineDocument) =>
       _$this._inlineDocument = inlineDocument;
 
   PutAndGetInlineDocumentsInputOutputBuilder() {
@@ -97,7 +97,7 @@ class PutAndGetInlineDocumentsInputOutputBuilder
 class _$PutAndGetInlineDocumentsInputOutputPayload
     extends PutAndGetInlineDocumentsInputOutputPayload {
   @override
-  final Object? inlineDocument;
+  final _i2.JsonObject? inlineDocument;
 
   factory _$PutAndGetInlineDocumentsInputOutputPayload(
           [void Function(PutAndGetInlineDocumentsInputOutputPayloadBuilder)?
@@ -145,9 +145,9 @@ class PutAndGetInlineDocumentsInputOutputPayloadBuilder
             PutAndGetInlineDocumentsInputOutputPayloadBuilder> {
   _$PutAndGetInlineDocumentsInputOutputPayload? _$v;
 
-  Object? _inlineDocument;
-  Object? get inlineDocument => _$this._inlineDocument;
-  set inlineDocument(Object? inlineDocument) =>
+  _i2.JsonObject? _inlineDocument;
+  _i2.JsonObject? get inlineDocument => _$this._inlineDocument;
+  set inlineDocument(_i2.JsonObject? inlineDocument) =>
       _$this._inlineDocument = inlineDocument;
 
   PutAndGetInlineDocumentsInputOutputPayloadBuilder() {

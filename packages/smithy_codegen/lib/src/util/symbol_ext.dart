@@ -10,6 +10,22 @@ extension ExpressionUtil on Expression {
       return property(name);
     }
   }
+
+  Expression wrapWithInlineNullCheck(Expression check) {
+    return check.equalTo(literalNull).conditional(literalNull, nullChecked);
+  }
+
+  Code wrapWithBlockNullCheck(Expression check, bool isNullable) {
+    return Block.of([
+      if (isNullable) ...[
+        const Code('if ('),
+        check.notEqualTo(literalNull).code,
+        const Code(') {'),
+      ],
+      statement,
+      if (isNullable) const Code('}')
+    ]);
+  }
 }
 
 extension ReferenceHelpers on Reference {
@@ -34,12 +50,13 @@ extension ReferenceHelpers on Reference {
   /// Constructs a `built_value` FullType reference for this.
   Expression get fullType {
     final typeRef = this.typeRef;
+    final ctor = typeRef.isNullable!
+        ? DartTypes.builtValue.fullType.property('nullable').call
+        : DartTypes.builtValue.fullType.constInstance;
     if (typeRef.types.isEmpty) {
-      return DartTypes.builtValue.fullType.constInstance([
-        typeRef.unboxed,
-      ]);
+      return ctor([typeRef.unboxed]);
     }
-    return DartTypes.builtValue.fullType.constInstance([
+    return ctor([
       typeRef.rebuild((t) => t.types.clear()).unboxed,
       literalList(typeRef.types.map((t) => t.fullType)),
     ]);

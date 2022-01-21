@@ -77,8 +77,10 @@ class _InvalidGreetingAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'Message':
-          result.message = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.message = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -95,7 +97,7 @@ class _InvalidGreetingAwsJson11Serializer
       result
         ..add('Message')
         ..add(serializers.serialize(payload.message,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

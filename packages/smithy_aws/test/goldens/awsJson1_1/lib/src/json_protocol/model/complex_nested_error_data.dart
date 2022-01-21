@@ -48,8 +48,10 @@ class _ComplexNestedErrorDataAwsJson11Serializer
       final value = iterator.current;
       switch (key) {
         case 'Foo':
-          result.foo = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.foo = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -66,7 +68,7 @@ class _ComplexNestedErrorDataAwsJson11Serializer
       result
         ..add('Foo')
         ..add(serializers.serialize(payload.foo,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

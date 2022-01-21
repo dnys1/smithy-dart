@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'package:aws_common/aws_common.dart' as aws_common;
 import 'package:built_collection/built_collection.dart' as built_collection;
 import 'package:built_value/built_value.dart' as built_value;
+import 'package:built_value/json_object.dart' as built_value_json_object;
 import 'package:built_value/serializer.dart' as built_value_serializer;
 import 'package:code_builder/code_builder.dart';
 import 'package:fixnum/fixnum.dart';
@@ -196,6 +197,7 @@ class BuiltValue {
 
   static const mainUrl = 'package:built_value/built_value.dart';
   static const serializerUrl = 'package:built_value/serializer.dart';
+  static const _jsonUrl = 'package:built_value/json_object.dart';
   static const _collectionUrl =
       'package:built_collection/built_collection.dart';
 
@@ -268,6 +270,9 @@ class BuiltValue {
 
   /// Creates a [built_value_serializer.FullType] reference.
   Reference get fullType => const Reference('FullType', serializerUrl);
+
+  /// Creates a [built_value_json_object.JsonObject] reference.
+  Reference get jsonObject => const Reference('JsonObject', _jsonUrl);
 
   /// The builder for [built_collection.ListBuilder].
   Reference listBuilder(Reference ref) => TypeReference(
@@ -397,6 +402,10 @@ class _Smithy {
   /// Creates a [smithy.ErrorKind] reference.
   Reference get errorKind => const Reference('ErrorKind', _url);
 
+  /// Creates a [smithy.EncodedJsonObjectSerializer] reference.
+  Reference get encodedJsonObjectSerializer =>
+      const Reference('EncodedJsonObjectSerializer', _url);
+
   /// Creates a [smithy.HasPayload] reference for [ref], the payload type.
   Reference hasPayload(Reference ref) => TypeReference(
         (t) => t
@@ -404,9 +413,6 @@ class _Smithy {
           ..url = _url
           ..types.add(ref),
       );
-
-  /// Creates a [smithy.SmithyError] reference.
-  Reference get smithyError => const Reference('SmithyError', _url);
 
   /// Creates a [smithy.HttpInput] reference for [ref], the input type.
   Reference httpInput(Reference ref) => TypeReference(
@@ -477,6 +483,9 @@ class _Smithy {
   /// Creates a [smithy.SmithyEnumSerializer] reference.
   Reference get smithyEnumSerializer =>
       const Reference('SmithyEnumSerializer', _url);
+
+  /// Creates a [smithy.SmithyError] reference.
+  Reference get smithyError => const Reference('SmithyError', _url);
 
   /// Creates a [smithy.SmithyException] reference.
   Reference get smithyException => const Reference('SmithyException', _url);
@@ -584,6 +593,11 @@ class _SmithyTest {
 /// `package:test` types
 class _Test {
   const _Test();
+
+  static const _url = 'package:test/test.dart';
+
+  /// Creates an `test` reference.
+  Reference get test => const Reference('test', _url);
 }
 
 /// `dart:typed_data` types

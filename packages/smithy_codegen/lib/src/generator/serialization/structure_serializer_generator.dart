@@ -183,6 +183,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     for (var member in serializedMembers) {
       final wireName = _wireName(member);
       final memberSymbol = memberSymbols[member]!;
+      final isNullable = member.isNullable(shape);
       final targetShape = context.shapeFor(member.target);
       final hasNestedBuilder = [
             ShapeType.map,
@@ -200,13 +201,14 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
         const Code(':'),
         if (hasNestedBuilder)
           refer('result').property(member.dartName).property('replace').call([
-            deserializerFor(member).asA(memberSymbol.unboxed),
-          ]).statement
+            deserializerFor(member, memberSymbol: memberSymbol.unboxed),
+          ]).wrapWithBlockNullCheck(refer('value'), isNullable)
         else
           refer('result')
               .property(member.dartName)
-              .assign(deserializerFor(member).asA(memberSymbol))
-              .statement,
+              .assign(
+                  deserializerFor(member, memberSymbol: memberSymbol.unboxed))
+              .wrapWithBlockNullCheck(refer('value'), isNullable),
         const Code('break;'),
       ]);
     }
@@ -265,16 +267,12 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     for (var member in nullableMembers) {
       final memberRef = payload.property(member.dartName);
       builder.statements.addAll([
-        const Code('if ('),
-        payload.property(member.dartName).notEqualTo(literalNull).code,
-        const Code(') {'),
         refer('result')
             .cascade('add')
             .call([literalString(_wireName(member))])
             .cascade('add')
             .call([serializerFor(member, memberRef)])
-            .statement,
-        const Code('}'),
+            .wrapWithBlockNullCheck(memberRef, true),
       ]);
     }
 

@@ -76,8 +76,10 @@ class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i1
       final value = iterator.current;
       switch (key) {
         case 'Value':
-          result.value = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.value = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -94,7 +96,7 @@ class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i1
       result
         ..add('Value')
         ..add(serializers.serialize(payload.value,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

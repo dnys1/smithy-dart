@@ -26,7 +26,7 @@ extension SimpleShapeUtil on SimpleShape {
       case ShapeType.byte:
         return DartTypes.core.int;
       case ShapeType.document:
-        return DartTypes.core.object;
+        return DartTypes.builtValue.jsonObject;
       case ShapeType.double:
         return DartTypes.core.double;
       case ShapeType.float:

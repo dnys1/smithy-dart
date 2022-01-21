@@ -27,53 +27,57 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference mapShape(MapShape shape, [Shape? parent]) {
-    final key = context.symbolFor(shape.key.target, shape);
-
+    final keySymbol = context.symbolFor(shape.key.target, shape);
     final valueShape = context.shapeFor(shape.value.target);
     final valueShapeType = valueShape.getType();
 
     // Ensure we add the builders for these to the context's `builderFactories`
     // since they will not be available to serializers otherwise.
-
+    //
     // Use `BuiltSetMultimap` and `BuiltListMultimap` for Maps with collection
-    // value types.
+    // value types. This changes the signature from BuiltMap<String, List<String>>,
+    // for example to BuiltListMultimap<String, String>, so we need to use
+    // the value's member's symbol instead of the value's symbol.
     switch (valueShapeType) {
       case ShapeType.list:
-        final valueSymbol =
-            context.symbolFor((valueShape as ListShape).member.target);
+        final valueSymbol = context.symbolFor(
+            (valueShape as ListShape).member.target, valueShape);
         final type = DartTypes.builtValue
-            .builtListMultimap(key, valueSymbol)
+            .builtListMultimap(keySymbol, valueSymbol)
             .withBoxed(shape.isNullable(parent));
         final builder =
-            DartTypes.builtValue.listMultimapBuilder(key, valueSymbol);
+            DartTypes.builtValue.listMultimapBuilder(keySymbol, valueSymbol);
         context.builderFactories[type.unboxed] = builder.property('new');
         return type;
       case ShapeType.set:
-        final valueSymbol =
-            context.symbolFor((valueShape as SetShape).member.target);
+        final valueSymbol = context.symbolFor(
+            (valueShape as SetShape).member.target, valueShape);
         final type = DartTypes.builtValue
-            .builtSetMultimap(key, valueSymbol)
+            .builtSetMultimap(keySymbol, valueSymbol)
             .withBoxed(shape.isNullable(parent));
         final builder =
-            DartTypes.builtValue.setMultimapBuilder(key, valueSymbol);
+            DartTypes.builtValue.setMultimapBuilder(keySymbol, valueSymbol);
         context.builderFactories[type.unboxed] = builder.property('new');
         return type;
       default:
         break;
     }
 
-    final value = context.symbolFor(shape.value.target, shape);
+    final valueSymbol =
+        valueShape.accept(this, shape).withBoxed(valueShape.isNullable(shape));
     final type = DartTypes.builtValue
-        .builtMap(key, value)
+        .builtMap(keySymbol, valueSymbol)
         .withBoxed(shape.isNullable(parent));
-    final builder = DartTypes.builtValue.mapBuilder(key, value);
+    final builder = DartTypes.builtValue.mapBuilder(keySymbol, valueSymbol);
     context.builderFactories[type.unboxed] = builder.property('new');
     return type;
   }
 
   @override
   Reference memberShape(MemberShape shape, [Shape? parent]) {
-    return context.symbolFor(shape.target, parent);
+    return context
+        .symbolFor(shape.target, parent)
+        .withBoxed(shape.isNullable(parent));
   }
 
   @override
@@ -111,6 +115,14 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   Reference stringShape(StringShape shape, [Shape? parent]) {
     if (shape.isEnum) {
       return createSymbol(shape).withBoxed(shape.isNullable(parent));
+    }
+    final mediaType = shape.getTrait<MediaTypeTrait>()?.value;
+    if (mediaType != null) {
+      switch (mediaType) {
+        case 'application/json':
+          return DartTypes.builtValue.jsonObject
+              .withBoxed(shape.isNullable(parent));
+      }
     }
     return super.stringShape(shape);
   }

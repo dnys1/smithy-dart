@@ -25,11 +25,12 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
   static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(const XmlPlugin())
         ..addAll([
-          const DoubleSerializer(),
-          const UnitSerializer(),
-          const BlobSerializer(),
-          TimestampSerializer.dateTime,
           BigIntSerializer.asString,
+          const BlobSerializer(),
+          const DoubleSerializer(),
+          Int64Serializer.asNum,
+          TimestampSerializer.dateTime,
+          const UnitSerializer(),
         ]))
       .build();
 
@@ -51,7 +52,7 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
   @override
   FullSerializer<List<int>> get wireSerializer => throw UnimplementedError();
 
-    @override
+  @override
   Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
     throw UnimplementedError();
   }

@@ -25,11 +25,12 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
         ..addAll([
-          const DoubleSerializer(),
-          const UnitSerializer(),
-          const BlobSerializer(),
-          TimestampSerializer.epochSeconds,
           BigIntSerializer.asNum,
+          const BlobSerializer(),
+          const DoubleSerializer(),
+          Int64Serializer.asNum,
+          TimestampSerializer.epochSeconds,
+          const UnitSerializer(),
         ]))
       .build();
 
@@ -51,7 +52,7 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
   @override
   late final JsonSerializer wireSerializer = JsonSerializer(serializers);
 
-    @override
+  @override
   Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
     throw UnimplementedError();
   }

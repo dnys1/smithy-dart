@@ -69,11 +69,13 @@ class _JsonUnionsOutputAwsJson10Serializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'contents':
-          result.contents = (serializers.deserialize(value,
-              specifiedType: const FullType(_i2.MyUnion)) as _i2.MyUnion?);
+          if (value != null) {
+            result.contents = (serializers.deserialize(value,
+                specifiedType: const FullType(_i2.MyUnion)) as _i2.MyUnion);
+          }
           break;
       }
     }
@@ -90,7 +92,7 @@ class _JsonUnionsOutputAwsJson10Serializer
       result
         ..add('contents')
         ..add(serializers.serialize(payload.contents,
-            specifiedType: const FullType(_i2.MyUnion)));
+            specifiedType: FullType.nullable(_i2.MyUnion)));
     }
     return result;
   }

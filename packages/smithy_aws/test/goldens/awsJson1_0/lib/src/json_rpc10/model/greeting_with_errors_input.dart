@@ -73,11 +73,13 @@ class _GreetingWithErrorsInputAwsJson10Serializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'greeting':
-          result.greeting = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.greeting = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -94,7 +96,7 @@ class _GreetingWithErrorsInputAwsJson10Serializer
       result
         ..add('greeting')
         ..add(serializers.serialize(payload.greeting,
-            specifiedType: const FullType(String)));
+            specifiedType: FullType.nullable(String)));
     }
     return result;
   }

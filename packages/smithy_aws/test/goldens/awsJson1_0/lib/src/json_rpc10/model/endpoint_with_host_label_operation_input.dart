@@ -83,7 +83,7 @@ class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'label':
           result.label = (serializers.deserialize(value,

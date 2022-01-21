@@ -57,9 +57,5 @@ final Map<FullType, Function> builderFactories = {
   const FullType(_i19.BuiltList, [FullType(String)]):
       _i19.ListBuilder<String>.new,
   const FullType(_i19.BuiltMap, [FullType(String), FullType(String)]):
-      _i19.MapBuilder<String, String>.new,
-  const FullType(_i19.BuiltList, [FullType(String)]):
-      _i19.ListBuilder<String>.new,
-  const FullType(_i19.BuiltMap, [FullType(String), FullType(String)]):
       _i19.MapBuilder<String, String>.new
 };

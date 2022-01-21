@@ -109,10 +109,34 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final payloadShape = outputShape.payloadShape(context);
     if (outputShape.hasBuiltPayload(context)) {
       for (final member in outputShape.payloadMembers(context)) {
-        yield builder
-            .property(member.dartName)
-            .assign(payload.property(member.dartName))
-            .statement;
+        final targetShapeType = context.shapeFor(member.target).getType();
+        final isNestedBuilder = [
+          ShapeType.map,
+          ShapeType.list,
+          ShapeType.set,
+          ShapeType.structure
+        ].contains(targetShapeType);
+        if (isNestedBuilder) {
+          final isNullable = member.isNullable(outputShape);
+          final payloadProp = payload.property(member.dartName);
+          if (isNullable) {
+            yield* [
+              const Code('if ('),
+              payloadProp.notEqualTo(literalNull).code,
+              const Code(') {')
+            ];
+          }
+          yield builder.property(member.dartName).property('replace').call(
+              [isNullable ? payloadProp.nullChecked : payloadProp]).statement;
+          if (isNullable) {
+            yield const Code('}');
+          }
+        } else {
+          yield builder
+              .property(member.dartName)
+              .assign(payload.property(member.dartName))
+              .statement;
+        }
       }
     } else if (payloadShape != null) {
       yield builder.property(payloadShape.dartName).assign(payload).statement;
@@ -416,6 +440,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   List<Expression> _protocolInterceptors(ProtocolDefinitionTrait protocol) {
     switch (protocol.runtimeType) {
       case AwsJson1_0Trait:
+      case AwsJson1_1Trait:
         return [
           DartTypes.smithy.withHeader.constInstance([
             literalString('X-Amz-Target'),
@@ -432,7 +457,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             ].join('.'))
           ]),
         ];
-      case AwsJson1_1Trait:
       case RestJson1Trait:
       case RestXmlTrait:
       default:

@@ -156,12 +156,12 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
 
     // Iterate over the serialized elements.
     builder.statements.addAll([
-      const Code('''
+      Code.scope((allocate) => '''
       final iterator = serialized.iterator;
       while (iterator.moveNext()) {
-        final key = iterator.current as String;
+        final key = iterator.current as ${allocate(DartTypes.core.string)};
         iterator.moveNext();
-        final Object? value = iterator.current;
+        final value = iterator.current;
         switch (key) {
       '''),
       ..._fieldDeserializers,

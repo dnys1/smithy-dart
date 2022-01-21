@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -85,9 +87,16 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     // Generic JSON serializer for deserializing the input params
     builder.body.addAll([
       _mainMethod,
-      ...inputSerializers.values.whereType<Class>(),
-      ...outputSerializers.values.whereType<Class>(),
-      ...errorSerializers.values.expand((el) => el.values).whereType<Class>(),
+      ...LinkedHashSet<Class>(
+        equals: (a, b) => a.name == b.name,
+        hashCode: (key) => key.name.hashCode,
+      )..addAll([
+          ...inputSerializers.values.whereType<Class>(),
+          ...outputSerializers.values.whereType<Class>(),
+          ...errorSerializers.values
+              .expand((el) => el.values)
+              .whereType<Class>()
+        ]),
     ]);
 
     return builder.build();

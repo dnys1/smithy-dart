@@ -60,9 +60,9 @@ class ShapeMapSerializer extends StructuredSerializer<ShapeMap> {
         if (member != null) {
           if (shape is NamedMembersShape) {
             shape.members.update(
-                  member,
-                  (member) => member..traits.addAll(apply.traits),
-                );
+              member,
+              (member) => member..traits.addAll(apply.traits),
+            );
           } else if (shape is CollectionShape) {
           } else {
             throw ArgumentError('Invalid member type');
@@ -73,6 +73,18 @@ class ShapeMapSerializer extends StructuredSerializer<ShapeMap> {
         return shape;
       });
     });
+
+    // Add input/output traits to operation inputs/outputs, if not present.
+    for (final shape in shapeMap.values.whereType<OperationShape>()) {
+      final inputShape = shapeMap[shape.input?.target];
+      if (inputShape != null) {
+        inputShape.traits.putIfAbsent(InputTrait.id, () => InputTrait());
+      }
+      final outputShape = shapeMap[shape.output?.target];
+      if (outputShape != null) {
+        outputShape.traits.putIfAbsent(OutputTrait.id, () => OutputTrait());
+      }
+    }
 
     return shapeMap;
   }

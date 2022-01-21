@@ -21,8 +21,8 @@ class SerializerConfig {
           usePrivateSymbols: true,
         );
 
-  /// Config for AWS JSON 1.0
-  const SerializerConfig.awsJson10()
+  /// Config for AWS JSON 1.0/1.1
+  const SerializerConfig.awsJson()
       : this(
           usePayload: false,
           renameMembers: false,

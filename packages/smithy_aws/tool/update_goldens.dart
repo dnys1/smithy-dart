@@ -62,6 +62,7 @@ void main(List<String> args) {
 
     final packageName = protocolName.snakeCase;
     final ast = parseAstJson(astJson);
+
     final libraries = generateForAst(
       ast,
       packageName: packageName,

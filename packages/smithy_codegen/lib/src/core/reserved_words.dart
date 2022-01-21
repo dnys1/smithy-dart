@@ -75,4 +75,9 @@ const hardReservedWords = {
   'void',
   'while',
   'with',
+
+  // Lowercase type names create conflicts
+  'double',
+  'int',
+  'bool',
 };

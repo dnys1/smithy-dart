@@ -140,11 +140,18 @@ mixin OperationGenerationContext<U> on ShapeGenerator<OperationShape, U> {
       return trait;
     }
     final protocol = context.serviceProtocols;
-    if (protocol.singleOrNull?.shapeId == AwsJson1_0Trait.id) {
+    if ([AwsJson1_0Trait.id, AwsJson1_1Trait.id]
+        .contains(protocol.singleOrNull?.shapeId)) {
       return HttpTrait(method: 'POST', uri: '/');
     }
     return null;
   }();
-  late final httpInputTraits = inputShape.httpInputTraits(context)!;
-  late final httpOutputTraits = outputShape.httpOutputTraits(context)!;
+  late final httpInputTraits = inputShape.httpInputTraits(
+    context,
+    overrideTrait: true,
+  )!;
+  late final httpOutputTraits = outputShape.httpOutputTraits(
+    context,
+    overrideTrait: true,
+  )!;
 }

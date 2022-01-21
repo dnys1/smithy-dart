@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
@@ -48,7 +49,13 @@ extension SimpleShapeUtil on SimpleShape {
 
 extension MemberShapeUtils on MemberShape {
   /// The name of this shape in a Dart struct.
-  String get dartName => memberName.camelCase;
+  String get dartName {
+    var name = memberName.camelCase;
+    if (hardReservedWords.contains(name)) {
+      name = '$name\$';
+    }
+    return name;
+  }
 }
 
 extension ShapeUtils on Shape {
@@ -174,8 +181,11 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// HTTP metadata on operation output structures.
-  HttpOutputTraits? httpOutputTraits(CodegenContext context) {
-    if (!isOutputShape && shapeId != Shape.unit) {
+  HttpOutputTraits? httpOutputTraits(
+    CodegenContext context, {
+    bool overrideTrait = false,
+  }) {
+    if (!isOutputShape && !overrideTrait && Shape.unit != shapeId) {
       return null;
     }
     final builder = HttpOutputTraitsBuilder();
@@ -199,8 +209,11 @@ extension StructureShapeUtil on StructureShape {
   }
 
   /// HTTP metadata on operation input structures.
-  HttpInputTraits? httpInputTraits(CodegenContext context) {
-    if (!isInputShape && shapeId != Shape.unit) {
+  HttpInputTraits? httpInputTraits(
+    CodegenContext context, {
+    bool overrideTrait = false,
+  }) {
+    if (!isInputShape && !overrideTrait && Shape.unit != shapeId) {
       return null;
     }
     final builder = HttpInputTraitsBuilder();

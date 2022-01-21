@@ -54,13 +54,12 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
   @override
   Code get deserializeCode {
     final builder = BlockBuilder();
-
-    builder.statements.add(const Code('''
+    builder.statements.add(Code.scope((allocate) => '''
     final iterator = serialized.iterator;
     iterator.moveNext();
-    final String key = iterator.current as String;
+    final key = iterator.current as ${allocate(DartTypes.core.string)};
     iterator.moveNext();
-    final Object value = iterator.current as Object;
+    final value = iterator.current as ${allocate(DartTypes.core.object)};
     switch (key) {
     '''));
 

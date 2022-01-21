@@ -73,183 +73,30 @@ final Map<FullType, Function> builderFactories = {
   const FullType(_i24.BuiltMap, [FullType(String), FullType(_i12.FooEnum)]):
       _i24.MapBuilder<String, _i12.FooEnum>.new,
   const FullType(_i24.BuiltSet, [FullType(_i12.FooEnum)]):
-      _i24.SetBuilder<_i24.BuiltSet<_i12.FooEnum>?>.new,
-  const FullType(_i24.BuiltList, [FullType(_i12.FooEnum)]):
-      _i24.ListBuilder<_i12.FooEnum>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i12.FooEnum)]):
-      _i24.MapBuilder<String, _i12.FooEnum>.new,
-  const FullType(_i24.BuiltSet, [FullType(_i12.FooEnum)]):
-      _i24.SetBuilder<_i24.BuiltSet<_i12.FooEnum>?>.new,
+      _i24.SetBuilder<_i12.FooEnum>.new,
   const FullType(_i24.BuiltList, [FullType(String)]):
       _i24.ListBuilder<String>.new,
   const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
       _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(_i12.FooEnum)]):
-      _i24.ListBuilder<_i12.FooEnum>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i12.FooEnum)]):
-      _i24.MapBuilder<String, _i12.FooEnum>.new,
-  const FullType(_i24.BuiltSet, [FullType(_i12.FooEnum)]):
-      _i24.SetBuilder<_i24.BuiltSet<_i12.FooEnum>?>.new,
-  const FullType(_i24.BuiltList, [FullType(_i12.FooEnum)]):
-      _i24.ListBuilder<_i12.FooEnum>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i12.FooEnum)]):
-      _i24.MapBuilder<String, _i12.FooEnum>.new,
-  const FullType(_i24.BuiltSet, [FullType(_i12.FooEnum)]):
-      _i24.SetBuilder<_i24.BuiltSet<_i12.FooEnum>?>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
   const FullType(_i24.BuiltList, [
     FullType(_i24.BuiltList, [FullType(String)])
   ]): _i24.ListBuilder<_i24.BuiltList<String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
   const FullType(_i24.BuiltList, [
     FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
   ]): _i24.ListBuilder<_i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
   const FullType(_i24.BuiltList, [FullType(_i23.SimpleStruct)]):
       _i24.ListBuilder<_i23.SimpleStruct>.new,
   const FullType(_i24.BuiltListMultimap, [FullType(String), FullType(String)]):
       _i24.ListMultimapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
   const FullType(_i24.BuiltMap, [
     FullType(String),
     FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
   ]): _i24.MapBuilder<String, _i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
   const FullType(
           _i24.BuiltMap, [FullType(String), FullType(_i23.SimpleStruct)]):
       _i24.MapBuilder<String, _i23.SimpleStruct>.new,
   const FullType(_i24.BuiltList, [FullType(_i15.KitchenSink)]):
       _i24.ListBuilder<_i15.KitchenSink>.new,
   const FullType(_i24.BuiltMap, [FullType(String), FullType(_i15.KitchenSink)]):
-      _i24.MapBuilder<String, _i15.KitchenSink>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltList, [
-    FullType(_i24.BuiltList, [FullType(String)])
-  ]): _i24.ListBuilder<_i24.BuiltList<String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [
-    FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
-  ]): _i24.ListBuilder<_i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltList, [FullType(_i23.SimpleStruct)]):
-      _i24.ListBuilder<_i23.SimpleStruct>.new,
-  const FullType(_i24.BuiltListMultimap, [FullType(String), FullType(String)]):
-      _i24.ListMultimapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [
-    FullType(String),
-    FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
-  ]): _i24.MapBuilder<String, _i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(
-          _i24.BuiltMap, [FullType(String), FullType(_i23.SimpleStruct)]):
-      _i24.MapBuilder<String, _i23.SimpleStruct>.new,
-  const FullType(_i24.BuiltList, [FullType(_i15.KitchenSink)]):
-      _i24.ListBuilder<_i15.KitchenSink>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i15.KitchenSink)]):
-      _i24.MapBuilder<String, _i15.KitchenSink>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltList, [
-    FullType(_i24.BuiltList, [FullType(String)])
-  ]): _i24.ListBuilder<_i24.BuiltList<String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [
-    FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
-  ]): _i24.ListBuilder<_i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltList, [FullType(_i23.SimpleStruct)]):
-      _i24.ListBuilder<_i23.SimpleStruct>.new,
-  const FullType(_i24.BuiltListMultimap, [FullType(String), FullType(String)]):
-      _i24.ListMultimapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [
-    FullType(String),
-    FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
-  ]): _i24.MapBuilder<String, _i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(
-          _i24.BuiltMap, [FullType(String), FullType(_i23.SimpleStruct)]):
-      _i24.MapBuilder<String, _i23.SimpleStruct>.new,
-  const FullType(_i24.BuiltList, [FullType(_i15.KitchenSink)]):
-      _i24.ListBuilder<_i15.KitchenSink>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i15.KitchenSink)]):
-      _i24.MapBuilder<String, _i15.KitchenSink>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltList, [
-    FullType(_i24.BuiltList, [FullType(String)])
-  ]): _i24.ListBuilder<_i24.BuiltList<String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [
-    FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
-  ]): _i24.ListBuilder<_i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltList, [FullType(_i23.SimpleStruct)]):
-      _i24.ListBuilder<_i23.SimpleStruct>.new,
-  const FullType(_i24.BuiltListMultimap, [FullType(String), FullType(String)]):
-      _i24.ListMultimapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltMap, [
-    FullType(String),
-    FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
-  ]): _i24.MapBuilder<String, _i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(
-          _i24.BuiltMap, [FullType(String), FullType(_i23.SimpleStruct)]):
-      _i24.MapBuilder<String, _i23.SimpleStruct>.new,
-  const FullType(_i24.BuiltList, [FullType(_i15.KitchenSink)]):
-      _i24.ListBuilder<_i15.KitchenSink>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i15.KitchenSink)]):
-      _i24.MapBuilder<String, _i15.KitchenSink>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new
+      _i24.MapBuilder<String, _i15.KitchenSink>.new
 };

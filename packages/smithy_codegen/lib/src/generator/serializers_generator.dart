@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class SerializersGenerator extends Generator<Library> {
   SerializersGenerator(this.context);
@@ -35,6 +36,9 @@ class SerializersGenerator extends Generator<Library> {
           ..type = DartTypes.core
               .map(DartTypes.builtValue.fullType, DartTypes.core.function)
           ..name = 'builderFactories'
-          ..assignment = literalMap(context.builderFactories).code,
+          ..assignment = literalMap({
+            for (final entry in context.builderFactories.entries)
+              entry.key.fullType: entry.value,
+          }).code,
       );
 }

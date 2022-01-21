@@ -21,7 +21,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
         .builtList(valueType)
         .withBoxed(shape.isNullable(parent));
     final builder = DartTypes.builtValue.listBuilder(valueType);
-    context.builderFactories[type.unboxed.fullType] = builder.property('new');
+    context.builderFactories[type.unboxed] = builder.property('new');
     return type;
   }
 
@@ -46,8 +46,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
             .withBoxed(shape.isNullable(parent));
         final builder =
             DartTypes.builtValue.listMultimapBuilder(key, valueSymbol);
-        context.builderFactories[type.unboxed.fullType] =
-            builder.property('new');
+        context.builderFactories[type.unboxed] = builder.property('new');
         return type;
       case ShapeType.set:
         final valueSymbol =
@@ -57,8 +56,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
             .withBoxed(shape.isNullable(parent));
         final builder =
             DartTypes.builtValue.setMultimapBuilder(key, valueSymbol);
-        context.builderFactories[type.unboxed.fullType] =
-            builder.property('new');
+        context.builderFactories[type.unboxed] = builder.property('new');
         return type;
       default:
         break;
@@ -69,7 +67,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
         .builtMap(key, value)
         .withBoxed(shape.isNullable(parent));
     final builder = DartTypes.builtValue.mapBuilder(key, value);
-    context.builderFactories[type.unboxed.fullType] = builder.property('new');
+    context.builderFactories[type.unboxed] = builder.property('new');
     return type;
   }
 
@@ -100,11 +98,12 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference setShape(SetShape shape, [Shape? parent]) {
+    final valueType = shape.member.accept(this, shape);
     final type = DartTypes.builtValue
-        .builtSet(shape.member.accept(this, shape))
+        .builtSet(valueType)
         .withBoxed(shape.isNullable(parent));
-    final builder = DartTypes.builtValue.setBuilder(type);
-    context.builderFactories[type.unboxed.fullType] = builder.property('new');
+    final builder = DartTypes.builtValue.setBuilder(valueType);
+    context.builderFactories[type.unboxed] = builder.property('new');
     return type;
   }
 

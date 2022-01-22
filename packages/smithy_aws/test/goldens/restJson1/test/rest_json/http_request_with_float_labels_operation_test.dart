@@ -12,96 +12,105 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonSupportsNaNFloatLabels (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpRequestWithFloatLabelsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNaNFloatLabels',
-            documentation: 'Supports handling NaN float label values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'float': 'NaN', 'double': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/FloatHttpLabels/NaN/NaN',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpRequestWithFloatLabelsInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsInfinityFloatLabels (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpRequestWithFloatLabelsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsInfinityFloatLabels',
-            documentation: 'Supports handling Infinity float label values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'float': 'Infinity', 'double': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/FloatHttpLabels/Infinity/Infinity',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpRequestWithFloatLabelsInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatLabels (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpRequestWithFloatLabelsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNegativeInfinityFloatLabels',
-            documentation: 'Supports handling -Infinity float label values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'float': '-Infinity', 'double': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/FloatHttpLabels/-Infinity/-Infinity',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpRequestWithFloatLabelsInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonSupportsNaNFloatLabels (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpRequestWithFloatLabelsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNaNFloatLabels',
+              documentation: 'Supports handling NaN float label values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'float': 'NaN', 'double': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/FloatHttpLabels/NaN/NaN',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpRequestWithFloatLabelsInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsInfinityFloatLabels (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpRequestWithFloatLabelsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsInfinityFloatLabels',
+              documentation: 'Supports handling Infinity float label values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'float': 'Infinity', 'double': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/FloatHttpLabels/Infinity/Infinity',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpRequestWithFloatLabelsInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNegativeInfinityFloatLabels (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpRequestWithFloatLabelsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNegativeInfinityFloatLabels',
+              documentation: 'Supports handling -Infinity float label values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'float': '-Infinity', 'double': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/FloatHttpLabels/-Infinity/-Infinity',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpRequestWithFloatLabelsInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpRequestWithFloatLabelsInputRestJson1Serializer extends _i4

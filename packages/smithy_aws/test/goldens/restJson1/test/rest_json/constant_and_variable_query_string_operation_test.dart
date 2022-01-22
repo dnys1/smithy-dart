@@ -12,70 +12,74 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonConstantAndVariableQueryStringMissingOneValue (request)',
-      () async {
-    await _i2.httpRequestTest(
-        operation: _i3.ConstantAndVariableQueryStringOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonConstantAndVariableQueryStringMissingOneValue',
-            documentation:
-                'Mixes constant and variable query string parameters',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'baz': 'bam'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/ConstantAndVariableQueryString',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['foo=bar', 'baz=bam'],
-            forbidQueryParams: ['maybeSet'],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _ConstantAndVariableQueryStringInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonConstantAndVariableQueryStringAllValues (request)',
-      () async {
-    await _i2.httpRequestTest(
-        operation: _i3.ConstantAndVariableQueryStringOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonConstantAndVariableQueryStringAllValues',
-            documentation:
-                'Mixes constant and variable query string parameters',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'baz': 'bam', 'maybeSet': 'yes'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/ConstantAndVariableQueryString',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['foo=bar', 'baz=bam', 'maybeSet=yes'],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _ConstantAndVariableQueryStringInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonConstantAndVariableQueryStringMissingOneValue (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.ConstantAndVariableQueryStringOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonConstantAndVariableQueryStringMissingOneValue',
+              documentation:
+                  'Mixes constant and variable query string parameters',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'baz': 'bam'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/ConstantAndVariableQueryString',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['foo=bar', 'baz=bam'],
+              forbidQueryParams: ['maybeSet'],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _ConstantAndVariableQueryStringInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonConstantAndVariableQueryStringAllValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.ConstantAndVariableQueryStringOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonConstantAndVariableQueryStringAllValues',
+              documentation:
+                  'Mixes constant and variable query string parameters',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'baz': 'bam', 'maybeSet': 'yes'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/ConstantAndVariableQueryString',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['foo=bar', 'baz=bam', 'maybeSet=yes'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _ConstantAndVariableQueryStringInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _ConstantAndVariableQueryStringInputRestJson1Serializer extends _i4

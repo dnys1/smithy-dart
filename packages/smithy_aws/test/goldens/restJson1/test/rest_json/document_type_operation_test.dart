@@ -12,303 +12,335 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('DocumentTypeInputWithObject (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'DocumentTypeInputWithObject',
-            documentation:
-                'Serializes document types as part of the JSON request payload with no escaping.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'stringValue': 'string',
-              'documentValue': {'foo': 'bar'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/DocumentType',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentInputWithString (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'DocumentInputWithString',
-            documentation: 'Serializes document types using a string.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": "hello"\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': 'string', 'documentValue': 'hello'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/DocumentType',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentInputWithNumber (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'DocumentInputWithNumber',
-            documentation: 'Serializes document types using a number.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringValue": "string",\n    "documentValue": 10\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': 'string', 'documentValue': 10},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/DocumentType',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentInputWithBoolean (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'DocumentInputWithBoolean',
-            documentation: 'Serializes document types using a boolean.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": true\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': 'string', 'documentValue': true},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/DocumentType',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentInputWithList (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'DocumentInputWithList',
-            documentation: 'Serializes document types using a list.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": [\n        true,\n        "hi",\n        [\n            1,\n            2\n        ],\n        {\n            "foo": {\n                "baz": [\n                    3,\n                    4\n                ]\n            }\n        }\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'stringValue': 'string',
-              'documentValue': [
-                true,
-                'hi',
-                [1, 2],
-                {
-                  'foo': {
-                    'baz': [3, 4]
+  _i1.test(
+    'DocumentTypeInputWithObject (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'DocumentTypeInputWithObject',
+              documentation:
+                  'Serializes document types as part of the JSON request payload with no escaping.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'stringValue': 'string',
+                'documentValue': {'foo': 'bar'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/DocumentType',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentInputWithString (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'DocumentInputWithString',
+              documentation: 'Serializes document types using a string.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": "hello"\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': 'string', 'documentValue': 'hello'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/DocumentType',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentInputWithNumber (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'DocumentInputWithNumber',
+              documentation: 'Serializes document types using a number.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": 10\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': 'string', 'documentValue': 10},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/DocumentType',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentInputWithBoolean (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'DocumentInputWithBoolean',
+              documentation: 'Serializes document types using a boolean.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": true\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': 'string', 'documentValue': true},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/DocumentType',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentInputWithList (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'DocumentInputWithList',
+              documentation: 'Serializes document types using a list.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": [\n        true,\n        "hi",\n        [\n            1,\n            2\n        ],\n        {\n            "foo": {\n                "baz": [\n                    3,\n                    4\n                ]\n            }\n        }\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'stringValue': 'string',
+                'documentValue': [
+                  true,
+                  'hi',
+                  [1, 2],
+                  {
+                    'foo': {
+                      'baz': [3, 4]
+                    }
                   }
-                }
-              ]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/DocumentType',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentOutput (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'DocumentOutput',
-            documentation:
-                'Serializes documents as part of the JSON response payload with no escaping.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'stringValue': 'string',
-              'documentValue': {'foo': 'bar'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentOutputString (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'DocumentOutputString',
-            documentation: 'Document types can be JSON scalars too.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": "hello"\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': 'string', 'documentValue': 'hello'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentOutputNumber (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'DocumentOutputNumber',
-            documentation: 'Document types can be JSON scalars too.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringValue": "string",\n    "documentValue": 10\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': 'string', 'documentValue': 10},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentOutputBoolean (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'DocumentOutputBoolean',
-            documentation: 'Document types can be JSON scalars too.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": false\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': 'string', 'documentValue': false},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('DocumentOutputArray (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.DocumentTypeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'DocumentOutputArray',
-            documentation: 'Document types can be JSON arrays.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": [\n        true,\n        false\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'stringValue': 'string',
-              'documentValue': [true, false]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _DocumentTypeInputOutputRestJson1Serializer()
-        ]);
-  });
+                ]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/DocumentType',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentOutput (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'DocumentOutput',
+              documentation:
+                  'Serializes documents as part of the JSON response payload with no escaping.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'stringValue': 'string',
+                'documentValue': {'foo': 'bar'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentOutputString (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'DocumentOutputString',
+              documentation: 'Document types can be JSON scalars too.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": "hello"\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': 'string', 'documentValue': 'hello'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentOutputNumber (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'DocumentOutputNumber',
+              documentation: 'Document types can be JSON scalars too.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": 10\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': 'string', 'documentValue': 10},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentOutputBoolean (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'DocumentOutputBoolean',
+              documentation: 'Document types can be JSON scalars too.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": false\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': 'string', 'documentValue': false},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'DocumentOutputArray (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.DocumentTypeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'DocumentOutputArray',
+              documentation: 'Document types can be JSON arrays.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "documentValue": [\n        true,\n        false\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'stringValue': 'string',
+                'documentValue': [true, false]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _DocumentTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _DocumentTypeInputOutputRestJson1Serializer

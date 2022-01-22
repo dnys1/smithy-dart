@@ -132,7 +132,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   : payloadProp
             ])
             .statement
-            .wrapWithBlockNullCheck(payloadProp, isNullable);
+            .wrapWithBlockIf(payloadProp.notEqualTo(literalNull), isNullable);
       } else {
         return builder.property(member.dartName).assign(payloadProp).statement;
       }
@@ -293,7 +293,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     );
     final addHeader =
         builder.property('headers').index(key).assign(toStringExp).statement;
-    return addHeader.wrapWithBlockNullCheck(valueRef, isNullable);
+    return addHeader.wrapWithBlockIf(
+      valueRef.notEqualTo(literalNull),
+      isNullable,
+    );
   }
 
   /// Adds the prefixed headers to the request's headers map.
@@ -318,7 +321,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         isNullable: valueTarget.isNullable(mapShape),
       ),
       const Code('}'),
-    ]).wrapWithBlockNullCheck(mapRef, isNullableMap);
+    ]).wrapWithBlockIf(mapRef.notEqualTo(literalNull), isNullableMap);
   }
 
   /// Adds the header to the request's headers map.
@@ -423,7 +426,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     } else {
       addHeader = valueRef.assign(fromStringExp).statement;
     }
-    return addHeader.wrapWithBlockNullCheck(headerRef, isNullable);
+    return addHeader.wrapWithBlockIf(
+      headerRef.notEqualTo(literalNull),
+      isNullable,
+    );
   }
 
   /// Adds the shape to the request's query parameters.
@@ -454,7 +460,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           isNullable: isNullableMember,
         ),
         Code('}'),
-      ]).wrapWithBlockNullCheck(valueRef, isNullable);
+      ]).wrapWithBlockIf(valueRef.notEqualTo(literalNull), isNullable);
     }
 
     Expression toString(Expression ref, Shape shape) {
@@ -513,7 +519,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         .property('queryParameters')
         .property('add')
         .call([key, toStringExp]).statement;
-    return addParam.wrapWithBlockNullCheck(valueRef, isNullable);
+    return addParam.wrapWithBlockIf(
+      valueRef.notEqualTo(literalNull),
+      isNullable,
+    );
   }
 
   /// Adds all query parameters in a map to the request's query parameters.
@@ -542,7 +551,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         isNullable: valueShape.isNullable(targetShape),
       ),
       Code('}'),
-    ]).wrapWithBlockNullCheck(mapRef, isNullable);
+    ]).wrapWithBlockIf(mapRef.notEqualTo(literalNull), isNullable);
   }
 
   /// The required HTTP operation overrides.
@@ -640,13 +649,39 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..assignment = literalList([
             for (var protocol in context.serviceProtocols)
               protocol.instantiableProtocolSymbol.newInstance([], {
-                'serializers': context.serializersRef,
+                'serializers': _protocolSerializers(protocol),
                 'builderFactories': context.builderFactoriesRef,
                 'interceptors': literalList(_protocolInterceptors(protocol)),
                 ...?_protocolParameters(protocol),
               }),
           ]).code,
       );
+
+  Expression _protocolSerializers(ProtocolDefinitionTrait protocol) {
+    final additionalSerializers = <Expression>[];
+    if (protocol.traits.contains(HttpPayloadTrait.id)) {
+      final payloadMember = inputPayload.member;
+      final targetShape =
+          payloadMember != null ? context.shapeFor(payloadMember.target) : null;
+      if (targetShape != null && targetShape is BlobShape) {
+        final mediaType = (payloadMember!.getTrait<MediaTypeTrait>() ??
+                targetShape.getTrait<MediaTypeTrait>())
+            ?.value;
+        if (mediaType != null) {
+          additionalSerializers
+              .add(DartTypes.smithy.blobSerializer.constInstance([
+            literalString(mediaType),
+          ]));
+        }
+      }
+    }
+    return additionalSerializers.isNotEmpty
+        ? literalConstList([
+            context.serializersRef.spread,
+            ...additionalSerializers,
+          ])
+        : context.serializersRef;
+  }
 
   /// Interceptors for the protocol.
   Iterable<Expression> _protocolInterceptors(

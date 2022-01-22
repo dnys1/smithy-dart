@@ -11,66 +11,72 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpWithNoModeledBody (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TestNoPayloadOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpWithNoModeledBody',
-            documentation: 'Serializes a GET request with no modeled body',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: ['Content-Length', 'Content-Type'],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/no_payload',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TestNoPayloadInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonHttpWithHeaderMemberNoModeledBody (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TestNoPayloadOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpWithHeaderMemberNoModeledBody',
-            documentation:
-                'Serializes a GET request with header member but no modeled body',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'testId': 't-12345'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Amz-Test-Id': 't-12345'},
-            forbidHeaders: ['Content-Length', 'Content-Type'],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/no_payload',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TestNoPayloadInputOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpWithNoModeledBody (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TestNoPayloadOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpWithNoModeledBody',
+              documentation: 'Serializes a GET request with no modeled body',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: ['Content-Length', 'Content-Type'],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/no_payload',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TestNoPayloadInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonHttpWithHeaderMemberNoModeledBody (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TestNoPayloadOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpWithHeaderMemberNoModeledBody',
+              documentation:
+                  'Serializes a GET request with header member but no modeled body',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'testId': 't-12345'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Amz-Test-Id': 't-12345'},
+              forbidHeaders: ['Content-Length', 'Content-Type'],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/no_payload',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TestNoPayloadInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _TestNoPayloadInputOutputRestJson1Serializer

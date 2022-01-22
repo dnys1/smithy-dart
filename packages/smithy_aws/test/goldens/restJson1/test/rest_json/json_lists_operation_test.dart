@@ -15,212 +15,230 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonLists (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonListsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonLists',
-            documentation: 'Serializes JSON lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringList": [\n        "foo",\n        "bar"\n    ],\n    "stringSet": [\n        "foo",\n        "bar"\n    ],\n    "integerList": [\n        1,\n        2\n    ],\n    "booleanList": [\n        true,\n        false\n    ],\n    "timestampList": [\n        1398796238,\n        1398796238\n    ],\n    "enumList": [\n        "Foo",\n        "0"\n    ],\n    "nestedStringList": [\n        [\n            "foo",\n            "bar"\n        ],\n        [\n            "baz",\n            "qux"\n        ]\n    ],\n    "myStructureList": [\n        {\n            "value": "1",\n            "other": "2"\n        },\n        {\n            "value": "3",\n            "other": "4"\n        }\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'stringList': ['foo', 'bar'],
-              'stringSet': ['foo', 'bar'],
-              'integerList': [1, 2],
-              'booleanList': [true, false],
-              'timestampList': [1398796238, 1398796238],
-              'enumList': ['Foo', '0'],
-              'nestedStringList': [
-                ['foo', 'bar'],
-                ['baz', 'qux']
-              ],
-              'structureList': [
-                {'a': '1', 'b': '2'},
-                {'a': '3', 'b': '4'}
-              ]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/JsonLists',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonListsInputOutputRestJson1Serializer(),
-          _StructureListMemberRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonListsEmpty (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonListsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonListsEmpty',
-            documentation: 'Serializes empty JSON lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringList": []\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringList': []},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/JsonLists',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonListsInputOutputRestJson1Serializer(),
-          _StructureListMemberRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonListsSerializeNull (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonListsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonListsSerializeNull',
-            documentation: 'Serializes null values in lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseStringList": [\n        null,\n        "hi"\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseStringList': [null, 'hi']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/JsonLists',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonListsInputOutputRestJson1Serializer(),
-          _StructureListMemberRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonLists (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonListsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonLists',
-            documentation: 'Serializes JSON lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringList": [\n        "foo",\n        "bar"\n    ],\n    "stringSet": [\n        "foo",\n        "bar"\n    ],\n    "integerList": [\n        1,\n        2\n    ],\n    "booleanList": [\n        true,\n        false\n    ],\n    "timestampList": [\n        1398796238,\n        1398796238\n    ],\n    "enumList": [\n        "Foo",\n        "0"\n    ],\n    "nestedStringList": [\n        [\n            "foo",\n            "bar"\n        ],\n        [\n            "baz",\n            "qux"\n        ]\n    ],\n    "myStructureList": [\n        {\n            "value": "1",\n            "other": "2"\n        },\n        {\n            "value": "3",\n            "other": "4"\n        }\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'stringList': ['foo', 'bar'],
-              'stringSet': ['foo', 'bar'],
-              'integerList': [1, 2],
-              'booleanList': [true, false],
-              'timestampList': [1398796238, 1398796238],
-              'enumList': ['Foo', '0'],
-              'nestedStringList': [
-                ['foo', 'bar'],
-                ['baz', 'qux']
-              ],
-              'structureList': [
-                {'a': '1', 'b': '2'},
-                {'a': '3', 'b': '4'}
-              ]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonListsInputOutputRestJson1Serializer(),
-          _StructureListMemberRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonListsEmpty (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonListsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonListsEmpty',
-            documentation: 'Serializes empty JSON lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringList": []\n}',
-            bodyMediaType: 'application/json',
-            params: {'stringList': []},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonListsInputOutputRestJson1Serializer(),
-          _StructureListMemberRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonListsSerializeNull (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonListsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonListsSerializeNull',
-            documentation: 'Serializes null values in sparse lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseStringList": [\n        null,\n        "hi"\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseStringList': [null, 'hi']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonListsInputOutputRestJson1Serializer(),
-          _StructureListMemberRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonLists (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonListsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonLists',
+              documentation: 'Serializes JSON lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringList": [\n        "foo",\n        "bar"\n    ],\n    "stringSet": [\n        "foo",\n        "bar"\n    ],\n    "integerList": [\n        1,\n        2\n    ],\n    "booleanList": [\n        true,\n        false\n    ],\n    "timestampList": [\n        1398796238,\n        1398796238\n    ],\n    "enumList": [\n        "Foo",\n        "0"\n    ],\n    "nestedStringList": [\n        [\n            "foo",\n            "bar"\n        ],\n        [\n            "baz",\n            "qux"\n        ]\n    ],\n    "myStructureList": [\n        {\n            "value": "1",\n            "other": "2"\n        },\n        {\n            "value": "3",\n            "other": "4"\n        }\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'stringList': ['foo', 'bar'],
+                'stringSet': ['foo', 'bar'],
+                'integerList': [1, 2],
+                'booleanList': [true, false],
+                'timestampList': [1398796238, 1398796238],
+                'enumList': ['Foo', '0'],
+                'nestedStringList': [
+                  ['foo', 'bar'],
+                  ['baz', 'qux']
+                ],
+                'structureList': [
+                  {'a': '1', 'b': '2'},
+                  {'a': '3', 'b': '4'}
+                ]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/JsonLists',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonListsInputOutputRestJson1Serializer(),
+            _StructureListMemberRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonListsEmpty (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonListsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonListsEmpty',
+              documentation: 'Serializes empty JSON lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "stringList": []\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringList': []},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/JsonLists',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonListsInputOutputRestJson1Serializer(),
+            _StructureListMemberRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonListsSerializeNull (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonListsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonListsSerializeNull',
+              documentation: 'Serializes null values in lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseStringList": [\n        null,\n        "hi"\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseStringList': [null, 'hi']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/JsonLists',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonListsInputOutputRestJson1Serializer(),
+            _StructureListMemberRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonLists (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonListsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonLists',
+              documentation: 'Serializes JSON lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringList": [\n        "foo",\n        "bar"\n    ],\n    "stringSet": [\n        "foo",\n        "bar"\n    ],\n    "integerList": [\n        1,\n        2\n    ],\n    "booleanList": [\n        true,\n        false\n    ],\n    "timestampList": [\n        1398796238,\n        1398796238\n    ],\n    "enumList": [\n        "Foo",\n        "0"\n    ],\n    "nestedStringList": [\n        [\n            "foo",\n            "bar"\n        ],\n        [\n            "baz",\n            "qux"\n        ]\n    ],\n    "myStructureList": [\n        {\n            "value": "1",\n            "other": "2"\n        },\n        {\n            "value": "3",\n            "other": "4"\n        }\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'stringList': ['foo', 'bar'],
+                'stringSet': ['foo', 'bar'],
+                'integerList': [1, 2],
+                'booleanList': [true, false],
+                'timestampList': [1398796238, 1398796238],
+                'enumList': ['Foo', '0'],
+                'nestedStringList': [
+                  ['foo', 'bar'],
+                  ['baz', 'qux']
+                ],
+                'structureList': [
+                  {'a': '1', 'b': '2'},
+                  {'a': '3', 'b': '4'}
+                ]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonListsInputOutputRestJson1Serializer(),
+            _StructureListMemberRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonListsEmpty (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonListsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonListsEmpty',
+              documentation: 'Serializes empty JSON lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "stringList": []\n}',
+              bodyMediaType: 'application/json',
+              params: {'stringList': []},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonListsInputOutputRestJson1Serializer(),
+            _StructureListMemberRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonListsSerializeNull (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonListsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonListsSerializeNull',
+              documentation: 'Serializes null values in sparse lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseStringList": [\n        null,\n        "hi"\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseStringList': [null, 'hi']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonListsInputOutputRestJson1Serializer(),
+            _StructureListMemberRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _JsonListsInputOutputRestJson1Serializer

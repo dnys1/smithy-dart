@@ -15,579 +15,630 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonInputAndOutputWithStringHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputAndOutputWithStringHeaders',
-            documentation: 'Tests requests with string header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'headerString': 'Hello',
-              'headerStringList': ['a', 'b', 'c'],
-              'headerStringSet': ['a', 'b', 'c']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-String': 'Hello',
-              'X-StringList': 'a, b, c',
-              'X-StringSet': 'a, b, c'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
-            documentation:
-                'Tests requests with string list header bindings that require quoting',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'headerStringList': ['b,c', '"def"', 'a']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-StringList': '"b,c",""def"",a'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithNumericHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputAndOutputWithNumericHeaders',
-            documentation: 'Tests requests with numeric header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'headerByte': 1,
-              'headerShort': 123,
-              'headerInteger': 123,
-              'headerLong': 123,
-              'headerFloat': 1.1,
-              'headerDouble': 1.1,
-              'headerIntegerList': [1, 2, 3]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Byte': '1',
-              'X-Short': '123',
-              'X-Integer': '123',
-              'X-Long': '123',
-              'X-Float': '1.1',
-              'X-Double': '1.1',
-              'X-IntegerList': '1, 2, 3'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithBooleanHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputAndOutputWithBooleanHeaders',
-            documentation: 'Tests requests with boolean header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'headerTrueBool': true,
-              'headerFalseBool': false,
-              'headerBooleanList': [true, false, true]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Boolean1': 'true',
-              'X-Boolean2': 'false',
-              'X-BooleanList': 'true, false, true'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithTimestampHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputAndOutputWithTimestampHeaders',
-            documentation: 'Tests requests with timestamp header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'headerTimestampList': [1576540098, 1576540098]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-TimestampList':
-                  'Mon, 16 Dec 2019 23:48:18 GMT, Mon, 16 Dec 2019 23:48:18 GMT'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithEnumHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputAndOutputWithEnumHeaders',
-            documentation: 'Tests requests with enum header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'headerEnum': 'Foo',
-              'headerEnumList': ['Foo', 'Bar', 'Baz']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Enum': 'Foo', 'X-EnumList': 'Foo, Bar, Baz'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNaNFloatHeaderInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNaNFloatHeaderInputs',
-            documentation: 'Supports handling NaN float header values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'headerFloat': 'NaN', 'headerDouble': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Float': 'NaN', 'X-Double': 'NaN'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsInfinityFloatHeaderInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsInfinityFloatHeaderInputs',
-            documentation: 'Supports handling Infinity float header values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'headerFloat': 'Infinity', 'headerDouble': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Float': 'Infinity', 'X-Double': 'Infinity'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderInputs (request)',
-      () async {
-    await _i2.httpRequestTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNegativeInfinityFloatHeaderInputs',
-            documentation: 'Supports handling -Infinity float header values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'headerFloat': '-Infinity', 'headerDouble': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Float': '-Infinity', 'X-Double': '-Infinity'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/InputAndOutputWithHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithStringHeaders (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInputAndOutputWithStringHeaders',
-            documentation: 'Tests responses with string header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'headerString': 'Hello',
-              'headerStringList': ['a', 'b', 'c'],
-              'headerStringSet': ['a', 'b', 'c']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-String': 'Hello',
-              'X-StringList': 'a, b, c',
-              'X-StringSet': 'a, b, c'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (response)',
-      () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
-            documentation:
-                'Tests responses with string list header bindings that require quoting',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'headerStringList': ['a', 'b,c', '"def"']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-StringList': '"b,c",""def"",a'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithNumericHeaders (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInputAndOutputWithNumericHeaders',
-            documentation: 'Tests responses with numeric header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'headerByte': 1,
-              'headerShort': 123,
-              'headerInteger': 123,
-              'headerLong': 123,
-              'headerFloat': 1.1,
-              'headerDouble': 1.1,
-              'headerIntegerList': [1, 2, 3]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Byte': '1',
-              'X-Short': '123',
-              'X-Integer': '123',
-              'X-Long': '123',
-              'X-Float': '1.1',
-              'X-Double': '1.1',
-              'X-IntegerList': '1, 2, 3'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithBooleanHeaders (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInputAndOutputWithBooleanHeaders',
-            documentation: 'Tests responses with boolean header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'headerTrueBool': true,
-              'headerFalseBool': false,
-              'headerBooleanList': [true, false, true]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Boolean1': 'true',
-              'X-Boolean2': 'false',
-              'X-BooleanList': 'true, false, true'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithTimestampHeaders (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInputAndOutputWithTimestampHeaders',
-            documentation: 'Tests responses with timestamp header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'headerTimestampList': [1576540098, 1576540098]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-TimestampList':
-                  'Mon, 16 Dec 2019 23:48:18 GMT, Mon, 16 Dec 2019 23:48:18 GMT'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonInputAndOutputWithEnumHeaders (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInputAndOutputWithEnumHeaders',
-            documentation: 'Tests responses with enum header bindings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'headerEnum': 'Foo',
-              'headerEnumList': ['Foo', 'Bar', 'Baz']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Enum': 'Foo', 'X-EnumList': 'Foo, Bar, Baz'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNaNFloatHeaderOutputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSupportsNaNFloatHeaderOutputs',
-            documentation: 'Supports handling NaN float header values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {'headerFloat': 'NaN', 'headerDouble': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Float': 'NaN', 'X-Double': 'NaN'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsInfinityFloatHeaderOutputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSupportsInfinityFloatHeaderOutputs',
-            documentation: 'Supports handling Infinity float header values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {'headerFloat': 'Infinity', 'headerDouble': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Float': 'Infinity', 'X-Double': 'Infinity'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderOutputs (response)',
-      () async {
-    await _i2.httpResponseTest(
-        operation: _i3.InputAndOutputWithHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSupportsNegativeInfinityFloatHeaderOutputs',
-            documentation: 'Supports handling -Infinity float header values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {'headerFloat': '-Infinity', 'headerDouble': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Float': '-Infinity', 'X-Double': '-Infinity'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _InputAndOutputWithHeadersIoRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonInputAndOutputWithStringHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputAndOutputWithStringHeaders',
+              documentation: 'Tests requests with string header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'headerString': 'Hello',
+                'headerStringList': ['a', 'b', 'c'],
+                'headerStringSet': ['a', 'b', 'c']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-String': 'Hello',
+                'X-StringList': 'a, b, c',
+                'X-StringSet': 'a, b, c'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithQuotedStringHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
+              documentation:
+                  'Tests requests with string list header bindings that require quoting',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'headerStringList': ['b,c', '"def"', 'a']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-StringList': '"b,c",""def"",a'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithNumericHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputAndOutputWithNumericHeaders',
+              documentation: 'Tests requests with numeric header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'headerByte': 1,
+                'headerShort': 123,
+                'headerInteger': 123,
+                'headerLong': 123,
+                'headerFloat': 1.1,
+                'headerDouble': 1.1,
+                'headerIntegerList': [1, 2, 3]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Byte': '1',
+                'X-Short': '123',
+                'X-Integer': '123',
+                'X-Long': '123',
+                'X-Float': '1.1',
+                'X-Double': '1.1',
+                'X-IntegerList': '1, 2, 3'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithBooleanHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputAndOutputWithBooleanHeaders',
+              documentation: 'Tests requests with boolean header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'headerTrueBool': true,
+                'headerFalseBool': false,
+                'headerBooleanList': [true, false, true]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Boolean1': 'true',
+                'X-Boolean2': 'false',
+                'X-BooleanList': 'true, false, true'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithTimestampHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputAndOutputWithTimestampHeaders',
+              documentation: 'Tests requests with timestamp header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'headerTimestampList': [1576540098, 1576540098]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-TimestampList':
+                    'Mon, 16 Dec 2019 23:48:18 GMT, Mon, 16 Dec 2019 23:48:18 GMT'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithEnumHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputAndOutputWithEnumHeaders',
+              documentation: 'Tests requests with enum header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'headerEnum': 'Foo',
+                'headerEnumList': ['Foo', 'Bar', 'Baz']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Enum': 'Foo', 'X-EnumList': 'Foo, Bar, Baz'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNaNFloatHeaderInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNaNFloatHeaderInputs',
+              documentation: 'Supports handling NaN float header values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'headerFloat': 'NaN', 'headerDouble': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Float': 'NaN', 'X-Double': 'NaN'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsInfinityFloatHeaderInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsInfinityFloatHeaderInputs',
+              documentation: 'Supports handling Infinity float header values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'headerFloat': 'Infinity', 'headerDouble': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Float': 'Infinity', 'X-Double': 'Infinity'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNegativeInfinityFloatHeaderInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNegativeInfinityFloatHeaderInputs',
+              documentation: 'Supports handling -Infinity float header values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'headerFloat': '-Infinity', 'headerDouble': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Float': '-Infinity', 'X-Double': '-Infinity'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/InputAndOutputWithHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithStringHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInputAndOutputWithStringHeaders',
+              documentation: 'Tests responses with string header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'headerString': 'Hello',
+                'headerStringList': ['a', 'b', 'c'],
+                'headerStringSet': ['a', 'b', 'c']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-String': 'Hello',
+                'X-StringList': 'a, b, c',
+                'X-StringSet': 'a, b, c'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithQuotedStringHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
+              documentation:
+                  'Tests responses with string list header bindings that require quoting',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'headerStringList': ['a', 'b,c', '"def"']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-StringList': '"b,c",""def"",a'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithNumericHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInputAndOutputWithNumericHeaders',
+              documentation: 'Tests responses with numeric header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'headerByte': 1,
+                'headerShort': 123,
+                'headerInteger': 123,
+                'headerLong': 123,
+                'headerFloat': 1.1,
+                'headerDouble': 1.1,
+                'headerIntegerList': [1, 2, 3]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Byte': '1',
+                'X-Short': '123',
+                'X-Integer': '123',
+                'X-Long': '123',
+                'X-Float': '1.1',
+                'X-Double': '1.1',
+                'X-IntegerList': '1, 2, 3'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithBooleanHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInputAndOutputWithBooleanHeaders',
+              documentation: 'Tests responses with boolean header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'headerTrueBool': true,
+                'headerFalseBool': false,
+                'headerBooleanList': [true, false, true]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Boolean1': 'true',
+                'X-Boolean2': 'false',
+                'X-BooleanList': 'true, false, true'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithTimestampHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInputAndOutputWithTimestampHeaders',
+              documentation: 'Tests responses with timestamp header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'headerTimestampList': [1576540098, 1576540098]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-TimestampList':
+                    'Mon, 16 Dec 2019 23:48:18 GMT, Mon, 16 Dec 2019 23:48:18 GMT'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonInputAndOutputWithEnumHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInputAndOutputWithEnumHeaders',
+              documentation: 'Tests responses with enum header bindings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'headerEnum': 'Foo',
+                'headerEnumList': ['Foo', 'Bar', 'Baz']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Enum': 'Foo', 'X-EnumList': 'Foo, Bar, Baz'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNaNFloatHeaderOutputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSupportsNaNFloatHeaderOutputs',
+              documentation: 'Supports handling NaN float header values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {'headerFloat': 'NaN', 'headerDouble': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Float': 'NaN', 'X-Double': 'NaN'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsInfinityFloatHeaderOutputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSupportsInfinityFloatHeaderOutputs',
+              documentation: 'Supports handling Infinity float header values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {'headerFloat': 'Infinity', 'headerDouble': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Float': 'Infinity', 'X-Double': 'Infinity'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNegativeInfinityFloatHeaderOutputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.InputAndOutputWithHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSupportsNegativeInfinityFloatHeaderOutputs',
+              documentation: 'Supports handling -Infinity float header values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {'headerFloat': '-Infinity', 'headerDouble': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Float': '-Infinity', 'X-Double': '-Infinity'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _InputAndOutputWithHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _InputAndOutputWithHeadersIoRestJson1Serializer

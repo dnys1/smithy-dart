@@ -14,66 +14,72 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpWithEmptyBlobPayload (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TestPayloadBlobOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpWithEmptyBlobPayload',
-            documentation: 'Serializes a payload targeting an empty blob',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: 'application/octet-stream',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/octet-stream'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/blob_payload',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TestPayloadBlobInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonTestPayloadBlob (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TestPayloadBlobOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonTestPayloadBlob',
-            documentation: 'Serializes a payload targeting a blob',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '1234',
-            bodyMediaType: 'image/jpg',
-            params: {'contentType': 'image/jpg', 'data': '1234'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'image/jpg'},
-            forbidHeaders: [],
-            requireHeaders: ['Content-Length'],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/blob_payload',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TestPayloadBlobInputOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpWithEmptyBlobPayload (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TestPayloadBlobOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpWithEmptyBlobPayload',
+              documentation: 'Serializes a payload targeting an empty blob',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: 'application/octet-stream',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/octet-stream'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/blob_payload',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TestPayloadBlobInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonTestPayloadBlob (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TestPayloadBlobOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonTestPayloadBlob',
+              documentation: 'Serializes a payload targeting a blob',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '1234',
+              bodyMediaType: 'image/jpg',
+              params: {'contentType': 'image/jpg', 'data': '1234'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'image/jpg'},
+              forbidHeaders: [],
+              requireHeaders: ['Content-Length'],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/blob_payload',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TestPayloadBlobInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _TestPayloadBlobInputOutputRestJson1Serializer

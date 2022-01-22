@@ -13,72 +13,80 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonJsonEnums (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonEnumsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonJsonEnums',
-            documentation: 'Serializes simple scalar properties',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'fooEnum1': 'Foo',
-              'fooEnum2': '0',
-              'fooEnum3': '1',
-              'fooEnumList': ['Foo', '0'],
-              'fooEnumSet': ['Foo', '0'],
-              'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/JsonEnums',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_JsonEnumsInputOutputRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonJsonEnums (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonEnumsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonJsonEnums',
-            documentation: 'Serializes simple scalar properties',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'fooEnum1': 'Foo',
-              'fooEnum2': '0',
-              'fooEnum3': '1',
-              'fooEnumList': ['Foo', '0'],
-              'fooEnumSet': ['Foo', '0'],
-              'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [_JsonEnumsInputOutputRestJson1Serializer()]);
-  });
+  _i1.test(
+    'RestJsonJsonEnums (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonEnumsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonJsonEnums',
+              documentation: 'Serializes simple scalar properties',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'fooEnum1': 'Foo',
+                'fooEnum2': '0',
+                'fooEnum3': '1',
+                'fooEnumList': ['Foo', '0'],
+                'fooEnumSet': ['Foo', '0'],
+                'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/JsonEnums',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [_JsonEnumsInputOutputRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonJsonEnums (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonEnumsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonJsonEnums',
+              documentation: 'Serializes simple scalar properties',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'fooEnum1': 'Foo',
+                'fooEnum2': '0',
+                'fooEnum3': '1',
+                'fooEnumList': ['Foo', '0'],
+                'fooEnumSet': ['Foo', '0'],
+                'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonEnumsInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _JsonEnumsInputOutputRestJson1Serializer

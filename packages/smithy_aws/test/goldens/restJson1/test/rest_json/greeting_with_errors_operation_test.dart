@@ -17,406 +17,448 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonGreetingWithErrors (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonGreetingWithErrors',
-            documentation:
-                'Ensures that operations with errors successfully know how\nto deserialize a successful response. As of January 2021,\nserver implementations are expected to respond with a\nJSON object regardless of if the output parameters are\nempty.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {'greeting': 'Hello'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Greeting': 'Hello'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _GreetingWithErrorsOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonGreetingWithErrorsNoPayload (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonGreetingWithErrorsNoPayload',
-            documentation:
-                'This test is similar to RestJsonGreetingWithErrors, but it\nensures that clients can gracefully deal with a server\nomitting a response payload.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'greeting': 'Hello'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Greeting': 'Hello'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 200),
-        outputSerializers: const [
-          _GreetingWithErrorsOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonComplexErrorWithNoMessage (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i6.ComplexError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonComplexErrorWithNoMessage',
-            documentation: 'Serializes a complex error with no message member',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "TopLevel": "Top level",\n    "Nested": {\n        "Fooooo": "bar"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'Header': 'Header',
-              'TopLevel': 'Top level',
-              'Nested': {'Foo': 'bar'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Header': 'Header',
-              'X-Amzn-Errortype': 'ComplexError'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 403),
-        errorSerializers: const [
-          _ComplexErrorRestJson1Serializer(),
-          _ComplexNestedErrorDataRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonEmptyComplexErrorWithNoMessage (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i6.ComplexError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonEmptyComplexErrorWithNoMessage',
-            documentation: null,
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Amzn-Errortype': 'ComplexError'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 403),
-        errorSerializers: const [
-          _ComplexErrorRestJson1Serializer(),
-          _ComplexNestedErrorDataRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonFooErrorUsingXAmznErrorType (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorUsingXAmznErrorType',
-            documentation:
-                'Serializes the X-Amzn-ErrorType header. For an example service, see Amazon EKS.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Amzn-Errortype': 'FooError'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorUsingXAmznErrorTypeWithUri (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUri',
-            documentation:
-                'Some X-Amzn-Errortype headers contain URLs. Clients need to split the URL on \':\' and take only the first half of the string. For example, \'ValidationException:http://internal.amazon.com/coral/com.amazon.coral.validate/\'\nis to be interpreted as \'ValidationException\'.\n\nFor an example service see Amazon Polly.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Amzn-Errortype':
-                  'FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace (error)',
-      () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace',
-            documentation:
-                'X-Amzn-Errortype might contain a URL and a namespace. Client should extract only the shape name. This is a pathalogical case that might not actually happen in any deployed AWS service.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Amzn-Errortype':
-                  'aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorUsingCode (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorUsingCode',
-            documentation:
-                'This example uses the \'code\' property in the output rather than X-Amzn-Errortype. Some services do this though it\'s preferable to send the X-Amzn-Errortype. Client implementations must first check for the X-Amzn-Errortype and then check for a top-level \'code\' property.\n\nFor example service see Amazon S3 Glacier.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "code": "FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorUsingCodeAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorUsingCodeAndNamespace',
-            documentation:
-                'Some services serialize errors using code, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "code": "aws.protocoltests.restjson#FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorUsingCodeUriAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorUsingCodeUriAndNamespace',
-            documentation:
-                'Some services serialize errors using code, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "code": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorWithDunderType (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorWithDunderType',
-            documentation: 'Some services serialize errors using __type.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "__type": "FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorWithDunderTypeAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorWithDunderTypeAndNamespace',
-            documentation:
-                'Some services serialize errors using __type, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "__type": "aws.protocoltests.restjson#FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonFooErrorWithDunderTypeUriAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonFooErrorWithDunderTypeUriAndNamespace',
-            documentation:
-                'Some services serialize errors using __type, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "__type": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonInvalidGreetingError (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i4.Unit,
-            _i4.Unit,
-            _i5.GreetingWithErrorsOutputPayload,
-            _i5.GreetingWithErrorsOutput,
-            _i8.InvalidGreeting>(
-        operation: _i3.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonInvalidGreetingError',
-            documentation: 'Parses simple JSON errors',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "Message": "Hi"\n}',
-            bodyMediaType: 'application/json',
-            params: {'Message': 'Hi'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Amzn-Errortype': 'InvalidGreeting'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 400),
-        errorSerializers: const [_InvalidGreetingRestJson1Serializer()]);
-  });
+  _i1.test(
+    'RestJsonGreetingWithErrors (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonGreetingWithErrors',
+              documentation:
+                  'Ensures that operations with errors successfully know how\nto deserialize a successful response. As of January 2021,\nserver implementations are expected to respond with a\nJSON object regardless of if the output parameters are\nempty.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {'greeting': 'Hello'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Greeting': 'Hello'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _GreetingWithErrorsOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonGreetingWithErrorsNoPayload (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonGreetingWithErrorsNoPayload',
+              documentation:
+                  'This test is similar to RestJsonGreetingWithErrors, but it\nensures that clients can gracefully deal with a server\nomitting a response payload.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'greeting': 'Hello'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Greeting': 'Hello'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 200),
+          outputSerializers: const [
+            _GreetingWithErrorsOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonComplexErrorWithNoMessage (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i6.ComplexError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonComplexErrorWithNoMessage',
+              documentation:
+                  'Serializes a complex error with no message member',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "TopLevel": "Top level",\n    "Nested": {\n        "Fooooo": "bar"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'Header': 'Header',
+                'TopLevel': 'Top level',
+                'Nested': {'Foo': 'bar'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Header': 'Header',
+                'X-Amzn-Errortype': 'ComplexError'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 403),
+          errorSerializers: const [
+            _ComplexErrorRestJson1Serializer(),
+            _ComplexNestedErrorDataRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonEmptyComplexErrorWithNoMessage (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i6.ComplexError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonEmptyComplexErrorWithNoMessage',
+              documentation: null,
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Amzn-Errortype': 'ComplexError'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 403),
+          errorSerializers: const [
+            _ComplexErrorRestJson1Serializer(),
+            _ComplexNestedErrorDataRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorUsingXAmznErrorType (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorUsingXAmznErrorType',
+              documentation:
+                  'Serializes the X-Amzn-ErrorType header. For an example service, see Amazon EKS.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Amzn-Errortype': 'FooError'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorUsingXAmznErrorTypeWithUri (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUri',
+              documentation:
+                  'Some X-Amzn-Errortype headers contain URLs. Clients need to split the URL on \':\' and take only the first half of the string. For example, \'ValidationException:http://internal.amazon.com/coral/com.amazon.coral.validate/\'\nis to be interpreted as \'ValidationException\'.\n\nFor an example service see Amazon Polly.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Amzn-Errortype':
+                    'FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace',
+              documentation:
+                  'X-Amzn-Errortype might contain a URL and a namespace. Client should extract only the shape name. This is a pathalogical case that might not actually happen in any deployed AWS service.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Amzn-Errortype':
+                    'aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorUsingCode (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorUsingCode',
+              documentation:
+                  'This example uses the \'code\' property in the output rather than X-Amzn-Errortype. Some services do this though it\'s preferable to send the X-Amzn-Errortype. Client implementations must first check for the X-Amzn-Errortype and then check for a top-level \'code\' property.\n\nFor example service see Amazon S3 Glacier.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "code": "FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorUsingCodeAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorUsingCodeAndNamespace',
+              documentation:
+                  'Some services serialize errors using code, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "code": "aws.protocoltests.restjson#FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorUsingCodeUriAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorUsingCodeUriAndNamespace',
+              documentation:
+                  'Some services serialize errors using code, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "code": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorWithDunderType (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorWithDunderType',
+              documentation: 'Some services serialize errors using __type.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "__type": "FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorWithDunderTypeAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorWithDunderTypeAndNamespace',
+              documentation:
+                  'Some services serialize errors using __type, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "__type": "aws.protocoltests.restjson#FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonFooErrorWithDunderTypeUriAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonFooErrorWithDunderTypeUriAndNamespace',
+              documentation:
+                  'Some services serialize errors using __type, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "__type": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'RestJsonInvalidGreetingError (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i4.Unit,
+              _i4.Unit,
+              _i5.GreetingWithErrorsOutputPayload,
+              _i5.GreetingWithErrorsOutput,
+              _i8.InvalidGreeting>(
+          operation: _i3.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonInvalidGreetingError',
+              documentation: 'Parses simple JSON errors',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "Message": "Hi"\n}',
+              bodyMediaType: 'application/json',
+              params: {'Message': 'Hi'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Amzn-Errortype': 'InvalidGreeting'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 400),
+          errorSerializers: const [_InvalidGreetingRestJson1Serializer()]);
+    },
+  );
 }
 
 class _GreetingWithErrorsOutputRestJson1Serializer

@@ -184,7 +184,8 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     // For timestamps, check if there is a custom serializer needed.
     if (type == ShapeType.timestamp) {
       final format = config.isTest
-          // Test params are always in epoch seconds for some reason
+          // Test params are always in epoch seconds.
+          // https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#parameter-format
           ? TimestampFormat.epochSeconds
           : member.timestampFormat ?? targetShape.timestampFormat;
       if (format != null) {

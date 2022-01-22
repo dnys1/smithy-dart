@@ -26,7 +26,10 @@ class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
           _i2.Uint8List,
           _i3.HttpPayloadTraitsWithMediaTypeInputOutput>> protocols = [
     _i4.RestJson1Protocol(
-        serializers: _i5.serializers,
+        serializers: const [
+          ..._i5.serializers,
+          _i1.BlobSerializer('text/plain')
+        ],
         builderFactories: _i5.builderFactories,
         interceptors: [],
         mediaType: 'text/plain')

@@ -12,56 +12,62 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('EnumPayloadRequest (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpEnumPayloadOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'EnumPayloadRequest',
-            documentation: null,
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: 'enumvalue',
-            bodyMediaType: null,
-            params: {'payload': 'enumvalue'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/EnumPayload',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_EnumPayloadInputRestJson1Serializer()]);
-  });
-  _i1.test('EnumPayloadResponse (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.HttpEnumPayloadOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'EnumPayloadResponse',
-            documentation: null,
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: 'enumvalue',
-            bodyMediaType: null,
-            params: {'payload': 'enumvalue'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [_EnumPayloadInputRestJson1Serializer()]);
-  });
+  _i1.test(
+    'EnumPayloadRequest (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpEnumPayloadOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'EnumPayloadRequest',
+              documentation: null,
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: 'enumvalue',
+              bodyMediaType: null,
+              params: {'payload': 'enumvalue'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/EnumPayload',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [_EnumPayloadInputRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'EnumPayloadResponse (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.HttpEnumPayloadOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'EnumPayloadResponse',
+              documentation: null,
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: 'enumvalue',
+              bodyMediaType: null,
+              params: {'payload': 'enumvalue'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [_EnumPayloadInputRestJson1Serializer()]);
+    },
+  );
 }
 
 class _EnumPayloadInputRestJson1Serializer

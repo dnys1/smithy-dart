@@ -27,7 +27,12 @@ abstract class QueryIdempotencyTokenAutoFillInput
   ];
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _init(QueryIdempotencyTokenAutoFillInputBuilder b) {}
+  static void _init(QueryIdempotencyTokenAutoFillInputBuilder b) {
+    if (const bool.hasEnvironment('SMITHY_TEST')) {
+      b.token = '00000000-0000-4000-8000-000000000000';
+    }
+  }
+
   String? get token;
   QueryIdempotencyTokenAutoFillInputPayload getPayload() =>
       QueryIdempotencyTokenAutoFillInputPayload();

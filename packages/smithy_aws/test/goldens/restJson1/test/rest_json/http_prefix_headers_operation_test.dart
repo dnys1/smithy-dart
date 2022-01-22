@@ -15,101 +15,114 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpPrefixHeadersArePresent (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpPrefixHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpPrefixHeadersArePresent',
-            documentation: 'Adds headers by prefix',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'foo': 'Foo',
-              'fooMap': {'Abc': 'Abc value', 'Def': 'Def value'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Foo': 'Foo',
-              'X-Foo-Abc': 'Abc value',
-              'X-Foo-Def': 'Def value'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/HttpPrefixHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_HttpPrefixHeadersInputRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonHttpPrefixHeadersAreNotPresent (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpPrefixHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpPrefixHeadersAreNotPresent',
-            documentation:
-                'No prefix headers are serialized because the value is empty',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'foo': 'Foo', 'fooMap': {}},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Foo': 'Foo'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/HttpPrefixHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_HttpPrefixHeadersInputRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonHttpPrefixHeadersArePresent (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.HttpPrefixHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonHttpPrefixHeadersArePresent',
-            documentation: 'Adds headers by prefix',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'foo': 'Foo',
-              'fooMap': {'Abc': 'Abc value', 'Def': 'Def value'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Foo': 'Foo',
-              'X-Foo-Abc': 'Abc value',
-              'X-Foo-Def': 'Def value'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _HttpPrefixHeadersOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpPrefixHeadersArePresent (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpPrefixHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpPrefixHeadersArePresent',
+              documentation: 'Adds headers by prefix',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'foo': 'Foo',
+                'fooMap': {'Abc': 'Abc value', 'Def': 'Def value'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Foo': 'Foo',
+                'X-Foo-Abc': 'Abc value',
+                'X-Foo-Def': 'Def value'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/HttpPrefixHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpPrefixHeadersInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonHttpPrefixHeadersAreNotPresent (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpPrefixHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpPrefixHeadersAreNotPresent',
+              documentation:
+                  'No prefix headers are serialized because the value is empty',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'foo': 'Foo', 'fooMap': {}},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Foo': 'Foo'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/HttpPrefixHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpPrefixHeadersInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonHttpPrefixHeadersArePresent (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.HttpPrefixHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonHttpPrefixHeadersArePresent',
+              documentation: 'Adds headers by prefix',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'foo': 'Foo',
+                'fooMap': {'Abc': 'Abc value', 'Def': 'Def value'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Foo': 'Foo',
+                'X-Foo-Abc': 'Abc value',
+                'X-Foo-Def': 'Def value'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _HttpPrefixHeadersOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpPrefixHeadersInputRestJson1Serializer

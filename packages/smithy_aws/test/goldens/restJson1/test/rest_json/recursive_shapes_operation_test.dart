@@ -16,86 +16,92 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonRecursiveShapes (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.RecursiveShapesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonRecursiveShapes',
-            documentation: 'Serializes recursive structures',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "nested": {\n        "foo": "Foo1",\n        "nested": {\n            "bar": "Bar1",\n            "recursiveMember": {\n                "foo": "Foo2",\n                "nested": {\n                    "bar": "Bar2"\n                }\n            }\n        }\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'nested': {
-                'foo': 'Foo1',
+  _i1.test(
+    'RestJsonRecursiveShapes (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.RecursiveShapesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonRecursiveShapes',
+              documentation: 'Serializes recursive structures',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "nested": {\n        "foo": "Foo1",\n        "nested": {\n            "bar": "Bar1",\n            "recursiveMember": {\n                "foo": "Foo2",\n                "nested": {\n                    "bar": "Bar2"\n                }\n            }\n        }\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
                 'nested': {
-                  'bar': 'Bar1',
-                  'recursiveMember': {
-                    'foo': 'Foo2',
-                    'nested': {'bar': 'Bar2'}
+                  'foo': 'Foo1',
+                  'nested': {
+                    'bar': 'Bar1',
+                    'recursiveMember': {
+                      'foo': 'Foo2',
+                      'nested': {'bar': 'Bar2'}
+                    }
                   }
                 }
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/RecursiveShapes',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _RecursiveShapesInputOutputRestJson1Serializer(),
-          _RecursiveShapesInputOutputNested1RestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonRecursiveShapes (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.RecursiveShapesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonRecursiveShapes',
-            documentation: 'Serializes recursive structures',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "nested": {\n        "foo": "Foo1",\n        "nested": {\n            "bar": "Bar1",\n            "recursiveMember": {\n                "foo": "Foo2",\n                "nested": {\n                    "bar": "Bar2"\n                }\n            }\n        }\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'nested': {
-                'foo': 'Foo1',
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/RecursiveShapes',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _RecursiveShapesInputOutputRestJson1Serializer(),
+            _RecursiveShapesInputOutputNested1RestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonRecursiveShapes (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.RecursiveShapesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonRecursiveShapes',
+              documentation: 'Serializes recursive structures',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "nested": {\n        "foo": "Foo1",\n        "nested": {\n            "bar": "Bar1",\n            "recursiveMember": {\n                "foo": "Foo2",\n                "nested": {\n                    "bar": "Bar2"\n                }\n            }\n        }\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
                 'nested': {
-                  'bar': 'Bar1',
-                  'recursiveMember': {
-                    'foo': 'Foo2',
-                    'nested': {'bar': 'Bar2'}
+                  'foo': 'Foo1',
+                  'nested': {
+                    'bar': 'Bar1',
+                    'recursiveMember': {
+                      'foo': 'Foo2',
+                      'nested': {'bar': 'Bar2'}
+                    }
                   }
                 }
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _RecursiveShapesInputOutputRestJson1Serializer(),
-          _RecursiveShapesInputOutputNested1RestJson1Serializer()
-        ]);
-  });
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _RecursiveShapesInputOutputRestJson1Serializer(),
+            _RecursiveShapesInputOutputNested1RestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _RecursiveShapesInputOutputRestJson1Serializer

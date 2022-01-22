@@ -63,6 +63,9 @@ extension ShapeExt on Shape {
   /// Whether `this` is an enum.
   bool get isEnum => this is StringShape && hasTrait<EnumTrait>();
 
+  /// Whether `this` is an idempotency token.
+  bool get isIdempotencyToken => hasTrait<IdempotencyTokenTrait>();
+
   /// Whether `this` has the `@sparse` trait.
   bool get isSparse => hasTrait<SparseTrait>();
 

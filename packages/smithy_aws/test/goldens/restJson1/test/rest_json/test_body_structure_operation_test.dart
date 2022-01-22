@@ -13,70 +13,76 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonTestBodyStructure (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TestBodyStructureOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonTestBodyStructure',
-            documentation: 'Serializes a structure',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{"testConfig":\n    {"timeout": 10}\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'testConfig': {'timeout': 10}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: ['Content-Length'],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/body',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TestBodyStructureInputOutputRestJson1Serializer(),
-          _TestConfigRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonHttpWithEmptyBody (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TestBodyStructureOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpWithEmptyBody',
-            documentation: 'Serializes an empty structure in the body',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: ['Content-Length'],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/body',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TestBodyStructureInputOutputRestJson1Serializer(),
-          _TestConfigRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonTestBodyStructure (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TestBodyStructureOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonTestBodyStructure',
+              documentation: 'Serializes a structure',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{"testConfig":\n    {"timeout": 10}\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'testConfig': {'timeout': 10}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: ['Content-Length'],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/body',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TestBodyStructureInputOutputRestJson1Serializer(),
+            _TestConfigRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonHttpWithEmptyBody (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TestBodyStructureOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpWithEmptyBody',
+              documentation: 'Serializes an empty structure in the body',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: ['Content-Length'],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/body',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TestBodyStructureInputOutputRestJson1Serializer(),
+            _TestConfigRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _TestBodyStructureInputOutputRestJson1Serializer

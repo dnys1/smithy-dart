@@ -16,28 +16,34 @@ extension ExpressionUtil on Expression {
   }
 
   Code wrapWithBlockNullCheck(Expression check, bool isNullable) {
+    return isNullable
+        ? nullChecked.wrapWithBlockIf(check, isNullable)
+        : wrapWithBlockIf(check, isNullable);
+  }
+
+  Code wrapWithBlockIf(Expression check, [bool performCheck = true]) {
     return Block.of([
-      if (isNullable) ...[
+      if (performCheck) ...[
         const Code('if ('),
-        check.notEqualTo(literalNull).code,
+        check.code,
         const Code(') {'),
       ],
-      isNullable ? nullChecked.statement : statement,
-      if (isNullable) const Code('}')
+      statement,
+      if (performCheck) const Code('}')
     ]);
   }
 }
 
 extension CodeHelpers on Code {
-  Code wrapWithBlockNullCheck(Expression check, bool isNullable) {
+  Code wrapWithBlockIf(Expression check, [bool performCheck = true]) {
     return Block.of([
-      if (isNullable) ...[
+      if (performCheck) ...[
         const Code('if ('),
-        check.notEqualTo(literalNull).code,
+        check.code,
         const Code(') {'),
       ],
       this,
-      if (isNullable) const Code('}')
+      if (performCheck) const Code('}')
     ]);
   }
 }

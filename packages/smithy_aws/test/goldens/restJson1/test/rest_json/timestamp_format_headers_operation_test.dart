@@ -12,93 +12,100 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonTimestampFormatHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.TimestampFormatHeadersOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonTimestampFormatHeaders',
-            documentation: 'Tests how timestamp request headers are serialized',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'memberEpochSeconds': 1576540098,
-              'memberHttpDate': 1576540098,
-              'memberDateTime': 1576540098,
-              'defaultFormat': 1576540098,
-              'targetEpochSeconds': 1576540098,
-              'targetHttpDate': 1576540098,
-              'targetDateTime': 1576540098
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-memberEpochSeconds': '1576540098',
-              'X-memberHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
-              'X-memberDateTime': '2019-12-16T23:48:18Z',
-              'X-defaultFormat': 'Mon, 16 Dec 2019 23:48:18 GMT',
-              'X-targetEpochSeconds': '1576540098',
-              'X-targetHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
-              'X-targetDateTime': '2019-12-16T23:48:18Z'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/TimestampFormatHeaders',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _TimestampFormatHeadersIoRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonTimestampFormatHeaders (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.TimestampFormatHeadersOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonTimestampFormatHeaders',
-            documentation:
-                'Tests how timestamp response headers are serialized',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'memberEpochSeconds': 1576540098,
-              'memberHttpDate': 1576540098,
-              'memberDateTime': 1576540098,
-              'defaultFormat': 1576540098,
-              'targetEpochSeconds': 1576540098,
-              'targetHttpDate': 1576540098,
-              'targetDateTime': 1576540098
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-memberEpochSeconds': '1576540098',
-              'X-memberHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
-              'X-memberDateTime': '2019-12-16T23:48:18Z',
-              'X-defaultFormat': 'Mon, 16 Dec 2019 23:48:18 GMT',
-              'X-targetEpochSeconds': '1576540098',
-              'X-targetHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
-              'X-targetDateTime': '2019-12-16T23:48:18Z'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _TimestampFormatHeadersIoRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonTimestampFormatHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.TimestampFormatHeadersOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonTimestampFormatHeaders',
+              documentation:
+                  'Tests how timestamp request headers are serialized',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'memberEpochSeconds': 1576540098,
+                'memberHttpDate': 1576540098,
+                'memberDateTime': 1576540098,
+                'defaultFormat': 1576540098,
+                'targetEpochSeconds': 1576540098,
+                'targetHttpDate': 1576540098,
+                'targetDateTime': 1576540098
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-memberEpochSeconds': '1576540098',
+                'X-memberHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
+                'X-memberDateTime': '2019-12-16T23:48:18Z',
+                'X-defaultFormat': 'Mon, 16 Dec 2019 23:48:18 GMT',
+                'X-targetEpochSeconds': '1576540098',
+                'X-targetHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
+                'X-targetDateTime': '2019-12-16T23:48:18Z'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/TimestampFormatHeaders',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _TimestampFormatHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonTimestampFormatHeaders (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.TimestampFormatHeadersOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonTimestampFormatHeaders',
+              documentation:
+                  'Tests how timestamp response headers are serialized',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'memberEpochSeconds': 1576540098,
+                'memberHttpDate': 1576540098,
+                'memberDateTime': 1576540098,
+                'defaultFormat': 1576540098,
+                'targetEpochSeconds': 1576540098,
+                'targetHttpDate': 1576540098,
+                'targetDateTime': 1576540098
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-memberEpochSeconds': '1576540098',
+                'X-memberHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
+                'X-memberDateTime': '2019-12-16T23:48:18Z',
+                'X-defaultFormat': 'Mon, 16 Dec 2019 23:48:18 GMT',
+                'X-targetEpochSeconds': '1576540098',
+                'X-targetHttpDate': 'Mon, 16 Dec 2019 23:48:18 GMT',
+                'X-targetDateTime': '2019-12-16T23:48:18Z'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _TimestampFormatHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _TimestampFormatHeadersIoRestJson1Serializer

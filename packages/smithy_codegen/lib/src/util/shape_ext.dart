@@ -4,6 +4,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
+import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';

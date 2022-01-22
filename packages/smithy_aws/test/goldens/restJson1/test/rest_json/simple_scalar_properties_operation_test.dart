@@ -13,79 +13,85 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonSimpleScalarProperties (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSimpleScalarProperties',
-            documentation: 'Serializes simple scalar properties',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "trueBooleanValue": true,\n    "falseBooleanValue": false,\n    "byteValue": 1,\n    "shortValue": 2,\n    "integerValue": 3,\n    "longValue": 4,\n    "floatValue": 5.5,\n    "DoubleDribble": 6.5\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'foo': 'Foo',
-              'stringValue': 'string',
-              'trueBooleanValue': true,
-              'falseBooleanValue': false,
-              'byteValue': 1,
-              'shortValue': 2,
-              'integerValue': 3,
-              'longValue': 4,
-              'floatValue': 5.5,
-              'doubleValue': 6.5
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json', 'X-Foo': 'Foo'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/SimpleScalarProperties',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDoesntSerializeNullStructureValues (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonDoesntSerializeNullStructureValues',
-            documentation:
-                'Rest Json should not serialize null structure values',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {'stringValue': null},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            method: 'PUT',
-            uri: '/SimpleScalarProperties',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonSimpleScalarProperties (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSimpleScalarProperties',
+              documentation: 'Serializes simple scalar properties',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "trueBooleanValue": true,\n    "falseBooleanValue": false,\n    "byteValue": 1,\n    "shortValue": 2,\n    "integerValue": 3,\n    "longValue": 4,\n    "floatValue": 5.5,\n    "DoubleDribble": 6.5\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'foo': 'Foo',
+                'stringValue': 'string',
+                'trueBooleanValue': true,
+                'falseBooleanValue': false,
+                'byteValue': 1,
+                'shortValue': 2,
+                'integerValue': 3,
+                'longValue': 4,
+                'floatValue': 5.5,
+                'doubleValue': 6.5
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json', 'X-Foo': 'Foo'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/SimpleScalarProperties',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDoesntSerializeNullStructureValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonDoesntSerializeNullStructureValues',
+              documentation:
+                  'Rest Json should not serialize null structure values',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {'stringValue': null},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              method: 'PUT',
+              uri: '/SimpleScalarProperties',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
   _i1.test('RestJsonSupportsNaNFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
@@ -115,130 +121,142 @@ void main() {
         inputSerializers: const [
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
-  });
-  _i1.test('RestJsonSupportsInfinityFloatInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsInfinityFloatInputs',
-            documentation: 'Supports handling Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "Infinity",\n    "DoubleDribble": "Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/SimpleScalarProperties',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNegativeInfinityFloatInputs',
-            documentation: 'Supports handling -Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "-Infinity",\n    "DoubleDribble": "-Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/SimpleScalarProperties',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSimpleScalarProperties (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSimpleScalarProperties',
-            documentation: 'Serializes simple scalar properties',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "trueBooleanValue": true,\n    "falseBooleanValue": false,\n    "byteValue": 1,\n    "shortValue": 2,\n    "integerValue": 3,\n    "longValue": 4,\n    "floatValue": 5.5,\n    "DoubleDribble": 6.5\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'foo': 'Foo',
-              'stringValue': 'string',
-              'trueBooleanValue': true,
-              'falseBooleanValue': false,
-              'byteValue': 1,
-              'shortValue': 2,
-              'integerValue': 3,
-              'longValue': 4,
-              'floatValue': 5.5,
-              'doubleValue': 6.5
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json', 'X-Foo': 'Foo'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDoesntDeserializeNullStructureValues (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDoesntDeserializeNullStructureValues',
-            documentation:
-                'Rest Json should not deserialize null structure values',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "stringValue": null\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
+  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'RestJsonSupportsInfinityFloatInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsInfinityFloatInputs',
+              documentation: 'Supports handling Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "Infinity",\n    "DoubleDribble": "Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/SimpleScalarProperties',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNegativeInfinityFloatInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNegativeInfinityFloatInputs',
+              documentation: 'Supports handling -Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "-Infinity",\n    "DoubleDribble": "-Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/SimpleScalarProperties',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSimpleScalarProperties (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSimpleScalarProperties',
+              documentation: 'Serializes simple scalar properties',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "stringValue": "string",\n    "trueBooleanValue": true,\n    "falseBooleanValue": false,\n    "byteValue": 1,\n    "shortValue": 2,\n    "integerValue": 3,\n    "longValue": 4,\n    "floatValue": 5.5,\n    "DoubleDribble": 6.5\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'foo': 'Foo',
+                'stringValue': 'string',
+                'trueBooleanValue': true,
+                'falseBooleanValue': false,
+                'byteValue': 1,
+                'shortValue': 2,
+                'integerValue': 3,
+                'longValue': 4,
+                'floatValue': 5.5,
+                'doubleValue': 6.5
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json', 'X-Foo': 'Foo'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDoesntDeserializeNullStructureValues (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDoesntDeserializeNullStructureValues',
+              documentation:
+                  'Rest Json should not deserialize null structure values',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "stringValue": null\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
   _i1.test('RestJsonSupportsNaNFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
@@ -262,57 +280,63 @@ void main() {
         outputSerializers: const [
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
-  });
-  _i1.test('RestJsonSupportsInfinityFloatInputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSupportsInfinityFloatInputs',
-            documentation: 'Supports handling Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "Infinity",\n    "DoubleDribble": "Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSupportsNegativeInfinityFloatInputs',
-            documentation: 'Supports handling -Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "-Infinity",\n    "DoubleDribble": "-Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  });
+  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'RestJsonSupportsInfinityFloatInputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSupportsInfinityFloatInputs',
+              documentation: 'Supports handling Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "Infinity",\n    "DoubleDribble": "Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNegativeInfinityFloatInputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSupportsNegativeInfinityFloatInputs',
+              documentation: 'Supports handling -Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "-Infinity",\n    "DoubleDribble": "-Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _SimpleScalarPropertiesInputOutputRestJson1Serializer extends _i4

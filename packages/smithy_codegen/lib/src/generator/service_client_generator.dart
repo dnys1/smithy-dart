@@ -52,15 +52,21 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
               : DartTypes.async.future(operationOutput)
           ..name = operation.dartName.camelCase
           ..lambda = false
-          ..requiredParameters.add(Parameter((p) => p
-            ..type = operationInput
-            ..name = 'input'))
+          ..requiredParameters.addAll([
+            if (operationInput != DartTypes.smithy.unit)
+              Parameter((p) => p
+                ..type = operationInput
+                ..name = 'input')
+          ])
           ..body = context
               .symbolFor(operation.shapeId)
               .newInstance([])
               .property('run')
               .call([
-                refer('input'),
+                if (operationInput == DartTypes.smithy.unit)
+                  DartTypes.smithy.unit.constInstance([])
+                else
+                  refer('input'),
               ])
               .returned
               .statement,

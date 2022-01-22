@@ -12,54 +12,60 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpResponseCode (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.HttpResponseCodeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonHttpResponseCode',
-            documentation:
-                'Binds the http response code to an output structure. Note that\neven though all members are bound outside of the payload, an\nempty JSON object is serialized in the response. However,\nclients should be able to handle an empty JSON object or an\nempty payload without failing to deserialize a response.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {'Status': 201},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 201),
-        outputSerializers: const [
-          _HttpResponseCodeOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonHttpResponseCodeWithNoPayload (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.HttpResponseCodeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonHttpResponseCodeWithNoPayload',
-            documentation:
-                'This test ensures that clients gracefully handle cases where\nthe service responds with no payload rather than an empty JSON\nobject.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'Status': 201},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 201),
-        outputSerializers: const [
-          _HttpResponseCodeOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpResponseCode (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.HttpResponseCodeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonHttpResponseCode',
+              documentation:
+                  'Binds the http response code to an output structure. Note that\neven though all members are bound outside of the payload, an\nempty JSON object is serialized in the response. However,\nclients should be able to handle an empty JSON object or an\nempty payload without failing to deserialize a response.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {'Status': 201},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 201),
+          outputSerializers: const [
+            _HttpResponseCodeOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonHttpResponseCodeWithNoPayload (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.HttpResponseCodeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonHttpResponseCodeWithNoPayload',
+              documentation:
+                  'This test ensures that clients gracefully handle cases where\nthe service responds with no payload rather than an empty JSON\nobject.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'Status': 201},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 201),
+          outputSerializers: const [
+            _HttpResponseCodeOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpResponseCodeOutputRestJson1Serializer

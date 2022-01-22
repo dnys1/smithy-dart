@@ -14,64 +14,68 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (request)',
-      () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpPayloadTraitsWithMediaTypeOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpPayloadTraitsWithMediaTypeWithBlob',
-            documentation:
-                'Serializes a blob in the HTTP payload with a content-type',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: 'blobby blob blob',
-            bodyMediaType: 'application/octet-stream',
-            params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Foo': 'Foo', 'Content-Type': 'text/plain'},
-            forbidHeaders: [],
-            requireHeaders: ['Content-Length'],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/HttpPayloadTraitsWithMediaType',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (response)',
-      () async {
-    await _i2.httpResponseTest(
-        operation: _i3.HttpPayloadTraitsWithMediaTypeOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonHttpPayloadTraitsWithMediaTypeWithBlob',
-            documentation:
-                'Serializes a blob in the HTTP payload with a content-type',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: 'blobby blob blob',
-            bodyMediaType: 'application/octet-stream',
-            params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Foo': 'Foo', 'Content-Type': 'text/plain'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpPayloadTraitsWithMediaTypeOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpPayloadTraitsWithMediaTypeWithBlob',
+              documentation:
+                  'Serializes a blob in the HTTP payload with a content-type',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: 'blobby blob blob',
+              bodyMediaType: 'application/octet-stream',
+              params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Foo': 'Foo', 'Content-Type': 'text/plain'},
+              forbidHeaders: [],
+              requireHeaders: ['Content-Length'],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/HttpPayloadTraitsWithMediaType',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.HttpPayloadTraitsWithMediaTypeOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonHttpPayloadTraitsWithMediaTypeWithBlob',
+              documentation:
+                  'Serializes a blob in the HTTP payload with a content-type',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: 'blobby blob blob',
+              bodyMediaType: 'application/octet-stream',
+              params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Foo': 'Foo', 'Content-Type': 'text/plain'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer extends _i4

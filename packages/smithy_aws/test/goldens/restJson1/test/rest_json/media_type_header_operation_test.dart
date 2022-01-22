@@ -14,56 +14,64 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('MediaTypeHeaderInputBase64 (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.MediaTypeHeaderOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'MediaTypeHeaderInputBase64',
-            documentation:
-                'Headers that target strings with a mediaType are base64 encoded',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'json': 'true'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Json': 'dHJ1ZQ=='},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/MediaTypeHeader',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_MediaTypeHeaderInputRestJson1Serializer()]);
-  });
-  _i1.test('MediaTypeHeaderOutputBase64 (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.MediaTypeHeaderOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'MediaTypeHeaderOutputBase64',
-            documentation:
-                'Headers that target strings with a mediaType are base64 encoded',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {'json': 'true'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Json': 'dHJ1ZQ=='},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [_MediaTypeHeaderOutputRestJson1Serializer()]);
-  });
+  _i1.test(
+    'MediaTypeHeaderInputBase64 (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.MediaTypeHeaderOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'MediaTypeHeaderInputBase64',
+              documentation:
+                  'Headers that target strings with a mediaType are base64 encoded',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'json': 'true'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Json': 'dHJ1ZQ=='},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/MediaTypeHeader',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [_MediaTypeHeaderInputRestJson1Serializer()]);
+    },
+  );
+  _i1.test(
+    'MediaTypeHeaderOutputBase64 (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.MediaTypeHeaderOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'MediaTypeHeaderOutputBase64',
+              documentation:
+                  'Headers that target strings with a mediaType are base64 encoded',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {'json': 'true'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Json': 'dHJ1ZQ=='},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _MediaTypeHeaderOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _MediaTypeHeaderInputRestJson1Serializer

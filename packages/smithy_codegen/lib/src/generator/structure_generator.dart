@@ -171,14 +171,32 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             ..type = builderSymbol
             ..name = 'b'))
           ..body = Block.of([
-            for (var member in members)
-              if (member.defaultValue != null)
-                refer('b')
-                    .property(member.dartName)
-                    .assign(member.defaultValue!)
-                    .statement,
-          ]),
+            for (var member in members) _defaultValue(member),
+          ].whereType()),
       );
+
+  Code? _defaultValue(MemberShape member) {
+    final property = refer('b').property(member.dartName);
+    // In tests, client implementations that automatically provide values for
+    // members marked with the idempotencyToken trait MUST use a constant value
+    // of `00000000-0000-4000-8000-000000000000`.
+    //
+    // https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#parameter-format
+    if (member.isIdempotencyToken) {
+      return Block.of([
+        property
+            .assign(literalString('00000000-0000-4000-8000-000000000000'))
+            .wrapWithBlockIf(
+                DartTypes.core.bool.constInstanceNamed('hasEnvironment', [
+              literalString('SMITHY_TEST'),
+            ])),
+      ]);
+    }
+    if (member.defaultValue == null) {
+      return null;
+    }
+    return property.assign(member.defaultValue!).statement;
+  }
 
   /// Fields for this type.
   Iterable<Method> _fieldGetters(List<MemberShape> members) sync* {

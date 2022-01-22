@@ -15,32 +15,35 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('HttpPrefixHeadersResponse (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.HttpPrefixHeadersInResponseOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'HttpPrefixHeadersResponse',
-            documentation: '(de)serializes all response headers',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {
-              'prefixHeaders': {'X-Foo': 'Foo', 'Hello': 'Hello'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Foo': 'Foo', 'Hello': 'Hello'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'HttpPrefixHeadersResponse (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.HttpPrefixHeadersInResponseOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'HttpPrefixHeadersResponse',
+              documentation: '(de)serializes all response headers',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {
+                'prefixHeaders': {'X-Foo': 'Foo', 'Hello': 'Hello'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Foo': 'Foo', 'Hello': 'Hello'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpPrefixHeadersInResponseInputRestJson1Serializer extends _i4

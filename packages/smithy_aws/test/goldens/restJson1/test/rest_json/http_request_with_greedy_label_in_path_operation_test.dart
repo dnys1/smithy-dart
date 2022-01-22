@@ -12,37 +12,40 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpRequestWithGreedyLabelInPath (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpRequestWithGreedyLabelInPathOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpRequestWithGreedyLabelInPath',
-            documentation: 'Serializes greedy labels and normal labels',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'foo': 'hello/escape', 'baz': 'there/guy'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri:
-                '/HttpRequestWithGreedyLabelInPath/foo/hello%2Fescape/baz/there/guy',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpRequestWithGreedyLabelInPath (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpRequestWithGreedyLabelInPathOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpRequestWithGreedyLabelInPath',
+              documentation: 'Serializes greedy labels and normal labels',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'foo': 'hello/escape', 'baz': 'there/guy'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri:
+                  '/HttpRequestWithGreedyLabelInPath/foo/hello%2Fescape/baz/there/guy',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer extends _i4

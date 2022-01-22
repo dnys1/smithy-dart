@@ -180,7 +180,7 @@ import 'package:rest_json1/src/rest_json/operation/document_type_as_payload.dart
 import 'package:rest_json1/src/rest_json/operation/empty_input_and_empty_output.dart'
     as _i14;
 import 'package:rest_json1/src/rest_json/operation/endpoint_operation.dart'
-    as _i16;
+    as _i15;
 import 'package:rest_json1/src/rest_json/operation/endpoint_with_host_label_operation.dart'
     as _i18;
 import 'package:rest_json1/src/rest_json/operation/greeting_with_errors.dart'
@@ -328,7 +328,7 @@ import 'package:rest_json1/src/rest_json/operation/timestamp_format_headers.dart
     as _i171;
 import 'package:rest_json1/src/rest_json/operation/unit_input_and_output.dart'
     as _i172;
-import 'package:smithy/smithy.dart' as _i15;
+import 'package:smithy/smithy.dart' as _i16;
 
 class RestJsonClient {
   RestJsonClient();
@@ -365,21 +365,20 @@ class RestJsonClient {
     return _i14.EmptyInputAndEmptyOutputOperation().run(input);
   }
 
-  _i1.Future<void> endpointOperation(_i15.Unit input) {
-    return _i16.EndpointOperation().run(input);
+  _i1.Future<void> endpointOperation() {
+    return _i15.EndpointOperation().run(const _i16.Unit());
   }
 
   _i1.Future<void> endpointWithHostLabelOperation(_i17.HostLabelInput input) {
     return _i18.EndpointWithHostLabelOperation().run(input);
   }
 
-  _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrorsOperation(
-      _i15.Unit input) {
-    return _i20.GreetingWithErrorsOperation().run(input);
+  _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrorsOperation() {
+    return _i20.GreetingWithErrorsOperation().run(const _i16.Unit());
   }
 
-  _i1.Future<void> hostWithPathOperation(_i15.Unit input) {
-    return _i21.HostWithPathOperation().run(input);
+  _i1.Future<void> hostWithPathOperation() {
+    return _i21.HostWithPathOperation().run(const _i16.Unit());
   }
 
   _i1.Future<_i22.HttpChecksumRequiredInputOutput>
@@ -446,9 +445,8 @@ class RestJsonClient {
     return _i47.HttpRequestWithRegexLiteralOperation().run(input);
   }
 
-  _i1.Future<_i48.HttpResponseCodeOutput> httpResponseCodeOperation(
-      _i15.Unit input) {
-    return _i49.HttpResponseCodeOperation().run(input);
+  _i1.Future<_i48.HttpResponseCodeOutput> httpResponseCodeOperation() {
+    return _i49.HttpResponseCodeOperation().run(const _i16.Unit());
   }
 
   _i1.Future<_i50.StringPayloadInput> httpStringPayloadOperation(
@@ -457,8 +455,8 @@ class RestJsonClient {
   }
 
   _i1.Future<_i52.IgnoreQueryParamsInResponseOutput>
-      ignoreQueryParamsInResponseOperation(_i15.Unit input) {
-    return _i53.IgnoreQueryParamsInResponseOperation().run(input);
+      ignoreQueryParamsInResponseOperation() {
+    return _i53.IgnoreQueryParamsInResponseOperation().run(const _i16.Unit());
   }
 
   _i1.Future<_i54.InputAndOutputWithHeadersIo>
@@ -497,9 +495,8 @@ class RestJsonClient {
     return _i67.JsonUnionsOperation().run(input);
   }
 
-  _i1.Future<_i68.GreetingStruct> malformedAcceptWithBodyOperation(
-      _i15.Unit input) {
-    return _i69.MalformedAcceptWithBodyOperation().run(input);
+  _i1.Future<_i68.GreetingStruct> malformedAcceptWithBodyOperation() {
+    return _i69.MalformedAcceptWithBodyOperation().run(const _i16.Unit());
   }
 
   _i1.Future<void> malformedAcceptWithGenericStringOperation(
@@ -508,8 +505,8 @@ class RestJsonClient {
   }
 
   _i1.Future<_i72.MalformedAcceptWithPayloadOutput>
-      malformedAcceptWithPayloadOperation(_i15.Unit input) {
-    return _i73.MalformedAcceptWithPayloadOperation().run(input);
+      malformedAcceptWithPayloadOperation() {
+    return _i73.MalformedAcceptWithPayloadOperation().run(const _i16.Unit());
   }
 
   _i1.Future<void> malformedBlobOperation(_i74.MalformedBlobInput input) {
@@ -539,8 +536,9 @@ class RestJsonClient {
     return _i84.MalformedContentTypeWithPayloadOperation().run(input);
   }
 
-  _i1.Future<void> malformedContentTypeWithoutBodyOperation(_i15.Unit input) {
-    return _i85.MalformedContentTypeWithoutBodyOperation().run(input);
+  _i1.Future<void> malformedContentTypeWithoutBodyOperation() {
+    return _i85.MalformedContentTypeWithoutBodyOperation()
+        .run(const _i16.Unit());
   }
 
   _i1.Future<void> malformedDoubleOperation(_i86.MalformedDoubleInput input) {
@@ -653,13 +651,12 @@ class RestJsonClient {
     return _i134.MediaTypeHeaderOperation().run(input);
   }
 
-  _i1.Future<void> noInputAndNoOutputOperation(_i15.Unit input) {
-    return _i135.NoInputAndNoOutputOperation().run(input);
+  _i1.Future<void> noInputAndNoOutputOperation() {
+    return _i135.NoInputAndNoOutputOperation().run(const _i16.Unit());
   }
 
-  _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutputOperation(
-      _i15.Unit input) {
-    return _i137.NoInputAndOutputOperation().run(input);
+  _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutputOperation() {
+    return _i137.NoInputAndOutputOperation().run(const _i16.Unit());
   }
 
   _i1.Future<_i138.NullAndEmptyHeadersIo> nullAndEmptyHeadersClientOperation(
@@ -750,7 +747,7 @@ class RestJsonClient {
     return _i171.TimestampFormatHeadersOperation().run(input);
   }
 
-  _i1.Future<void> unitInputAndOutputOperation(_i15.Unit input) {
-    return _i172.UnitInputAndOutputOperation().run(input);
+  _i1.Future<void> unitInputAndOutputOperation() {
+    return _i172.UnitInputAndOutputOperation().run(const _i16.Unit());
   }
 }

@@ -15,253 +15,267 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonAllQueryStringTypes (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.AllQueryStringTypesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonAllQueryStringTypes',
-            documentation:
-                'Serializes query string parameters with all supported types',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'queryString': 'Hello there',
-              'queryStringList': ['a', 'b', 'c'],
-              'queryStringSet': ['a', 'b', 'c'],
-              'queryByte': 1,
-              'queryShort': 2,
-              'queryInteger': 3,
-              'queryIntegerList': [1, 2, 3],
-              'queryIntegerSet': [1, 2, 3],
-              'queryLong': 4,
-              'queryFloat': 1.1,
-              'queryDouble': 1.1,
-              'queryDoubleList': [1.1, 2.1, 3.1],
-              'queryBoolean': true,
-              'queryBooleanList': [true, false, true],
-              'queryTimestamp': 1,
-              'queryTimestampList': [1, 2, 3],
-              'queryEnum': 'Foo',
-              'queryEnumList': ['Foo', 'Baz', 'Bar']
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/AllQueryStringTypesInput',
-            host: null,
-            resolvedHost: null,
-            queryParams: [
-              'String=Hello%20there',
-              'StringList=a',
-              'StringList=b',
-              'StringList=c',
-              'StringSet=a',
-              'StringSet=b',
-              'StringSet=c',
-              'Byte=1',
-              'Short=2',
-              'Integer=3',
-              'IntegerList=1',
-              'IntegerList=2',
-              'IntegerList=3',
-              'IntegerSet=1',
-              'IntegerSet=2',
-              'IntegerSet=3',
-              'Long=4',
-              'Float=1.1',
-              'Double=1.1',
-              'DoubleList=1.1',
-              'DoubleList=2.1',
-              'DoubleList=3.1',
-              'Boolean=true',
-              'BooleanList=true',
-              'BooleanList=false',
-              'BooleanList=true',
-              'Timestamp=1970-01-01T00%3A00%3A01Z',
-              'TimestampList=1970-01-01T00%3A00%3A01Z',
-              'TimestampList=1970-01-01T00%3A00%3A02Z',
-              'TimestampList=1970-01-01T00%3A00%3A03Z',
-              'Enum=Foo',
-              'EnumList=Foo',
-              'EnumList=Baz',
-              'EnumList=Bar'
-            ],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _AllQueryStringTypesInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonQueryStringMap (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.AllQueryStringTypesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonQueryStringMap',
-            documentation: 'Handles query string maps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'queryParamsMapOfStringList': {
-                'QueryParamsStringKeyA': ['Foo'],
-                'QueryParamsStringKeyB': ['Bar']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/AllQueryStringTypesInput',
-            host: null,
-            resolvedHost: null,
-            queryParams: [
-              'QueryParamsStringKeyA=Foo',
-              'QueryParamsStringKeyB=Bar'
-            ],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _AllQueryStringTypesInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonQueryStringEscaping (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.AllQueryStringTypesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonQueryStringEscaping',
-            documentation:
-                'Handles escaping all required characters in the query string.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'queryString': '%:/?#[]@!\$&\'()*+,;=😹'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/AllQueryStringTypesInput',
-            host: null,
-            resolvedHost: null,
-            queryParams: [
-              'String=%25%3A%2F%3F%23%5B%5D%40%21%24%26%27%28%29%2A%2B%2C%3B%3D%F0%9F%98%B9'
-            ],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _AllQueryStringTypesInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNaNFloatQueryValues (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.AllQueryStringTypesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNaNFloatQueryValues',
-            documentation: 'Supports handling NaN float query values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'queryFloat': 'NaN', 'queryDouble': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/AllQueryStringTypesInput',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['Float=NaN', 'Double=NaN'],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _AllQueryStringTypesInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsInfinityFloatQueryValues (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.AllQueryStringTypesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsInfinityFloatQueryValues',
-            documentation: 'Supports handling Infinity float query values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'queryFloat': 'Infinity', 'queryDouble': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/AllQueryStringTypesInput',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['Float=Infinity', 'Double=Infinity'],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _AllQueryStringTypesInputRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatQueryValues (request)',
-      () async {
-    await _i2.httpRequestTest(
-        operation: _i3.AllQueryStringTypesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNegativeInfinityFloatQueryValues',
-            documentation: 'Supports handling -Infinity float query values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'queryFloat': '-Infinity', 'queryDouble': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/AllQueryStringTypesInput',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['Float=-Infinity', 'Double=-Infinity'],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _AllQueryStringTypesInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonAllQueryStringTypes (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.AllQueryStringTypesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonAllQueryStringTypes',
+              documentation:
+                  'Serializes query string parameters with all supported types',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'queryString': 'Hello there',
+                'queryStringList': ['a', 'b', 'c'],
+                'queryStringSet': ['a', 'b', 'c'],
+                'queryByte': 1,
+                'queryShort': 2,
+                'queryInteger': 3,
+                'queryIntegerList': [1, 2, 3],
+                'queryIntegerSet': [1, 2, 3],
+                'queryLong': 4,
+                'queryFloat': 1.1,
+                'queryDouble': 1.1,
+                'queryDoubleList': [1.1, 2.1, 3.1],
+                'queryBoolean': true,
+                'queryBooleanList': [true, false, true],
+                'queryTimestamp': 1,
+                'queryTimestampList': [1, 2, 3],
+                'queryEnum': 'Foo',
+                'queryEnumList': ['Foo', 'Baz', 'Bar']
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/AllQueryStringTypesInput',
+              host: null,
+              resolvedHost: null,
+              queryParams: [
+                'String=Hello%20there',
+                'StringList=a',
+                'StringList=b',
+                'StringList=c',
+                'StringSet=a',
+                'StringSet=b',
+                'StringSet=c',
+                'Byte=1',
+                'Short=2',
+                'Integer=3',
+                'IntegerList=1',
+                'IntegerList=2',
+                'IntegerList=3',
+                'IntegerSet=1',
+                'IntegerSet=2',
+                'IntegerSet=3',
+                'Long=4',
+                'Float=1.1',
+                'Double=1.1',
+                'DoubleList=1.1',
+                'DoubleList=2.1',
+                'DoubleList=3.1',
+                'Boolean=true',
+                'BooleanList=true',
+                'BooleanList=false',
+                'BooleanList=true',
+                'Timestamp=1970-01-01T00%3A00%3A01Z',
+                'TimestampList=1970-01-01T00%3A00%3A01Z',
+                'TimestampList=1970-01-01T00%3A00%3A02Z',
+                'TimestampList=1970-01-01T00%3A00%3A03Z',
+                'Enum=Foo',
+                'EnumList=Foo',
+                'EnumList=Baz',
+                'EnumList=Bar'
+              ],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _AllQueryStringTypesInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonQueryStringMap (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.AllQueryStringTypesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonQueryStringMap',
+              documentation: 'Handles query string maps',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'queryParamsMapOfStringList': {
+                  'QueryParamsStringKeyA': ['Foo'],
+                  'QueryParamsStringKeyB': ['Bar']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/AllQueryStringTypesInput',
+              host: null,
+              resolvedHost: null,
+              queryParams: [
+                'QueryParamsStringKeyA=Foo',
+                'QueryParamsStringKeyB=Bar'
+              ],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _AllQueryStringTypesInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonQueryStringEscaping (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.AllQueryStringTypesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonQueryStringEscaping',
+              documentation:
+                  'Handles escaping all required characters in the query string.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'queryString': '%:/?#[]@!\$&\'()*+,;=😹'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/AllQueryStringTypesInput',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['String=%25%3A%2F%3F%23%5B%5D%40%21%24%26%27%28%29%2A%2B%2C%3B%3D%F0%9F%98%B9'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _AllQueryStringTypesInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNaNFloatQueryValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.AllQueryStringTypesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNaNFloatQueryValues',
+              documentation: 'Supports handling NaN float query values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'queryFloat': 'NaN', 'queryDouble': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/AllQueryStringTypesInput',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['Float=NaN', 'Double=NaN'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _AllQueryStringTypesInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsInfinityFloatQueryValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.AllQueryStringTypesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsInfinityFloatQueryValues',
+              documentation: 'Supports handling Infinity float query values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'queryFloat': 'Infinity', 'queryDouble': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/AllQueryStringTypesInput',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['Float=Infinity', 'Double=Infinity'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _AllQueryStringTypesInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSupportsNegativeInfinityFloatQueryValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.AllQueryStringTypesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNegativeInfinityFloatQueryValues',
+              documentation: 'Supports handling -Infinity float query values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'queryFloat': '-Infinity', 'queryDouble': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/AllQueryStringTypesInput',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['Float=-Infinity', 'Double=-Infinity'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _AllQueryStringTypesInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _AllQueryStringTypesInputRestJson1Serializer

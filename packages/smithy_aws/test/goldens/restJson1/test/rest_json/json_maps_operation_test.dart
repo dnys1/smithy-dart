@@ -13,453 +13,491 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonJsonMaps (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonJsonMaps',
-            documentation: 'Serializes JSON maps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "denseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n    },\n    "sparseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseStructMap': {
-                'foo': {'hi': 'there'},
-                'baz': {'hi': 'bye'}
+  _i1.test(
+    'RestJsonJsonMaps (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonJsonMaps',
+              documentation: 'Serializes JSON maps',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "denseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n    },\n    "sparseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseStructMap': {
+                  'foo': {'hi': 'there'},
+                  'baz': {'hi': 'bye'}
+                },
+                'sparseStructMap': {
+                  'foo': {'hi': 'there'},
+                  'baz': {'hi': 'bye'}
+                }
               },
-              'sparseStructMap': {
-                'foo': {'hi': 'there'},
-                'baz': {'hi': 'bye'}
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/JsonMaps',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSerializesNullMapValues (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSerializesNullMapValues',
-            documentation: 'Serializes JSON map values in sparse maps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseBooleanMap": {\n        "x": null\n    },\n    "sparseNumberMap": {\n        "x": null\n    },\n    "sparseStringMap": {\n        "x": null\n    },\n    "sparseStructMap": {\n        "x": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseBooleanMap': {'x': null},
-              'sparseNumberMap': {'x': null},
-              'sparseStringMap': {'x': null},
-              'sparseStructMap': {'x': null}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/JsonMaps',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSerializesZeroValuesInMaps (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSerializesZeroValuesInMaps',
-            documentation:
-                'Ensure that 0 and false are sent over the wire in all maps and lists',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseNumberMap': {'x': 0},
-              'sparseNumberMap': {'x': 0},
-              'denseBooleanMap': {'x': false},
-              'sparseBooleanMap': {'x': false}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/JsonMaps',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSerializesSparseSetMap (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSerializesSparseSetMap',
-            documentation: 'A request that contains a sparse map of sets',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseSetMap': {
-                'x': [],
-                'y': ['a', 'b']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/JsonMaps',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSerializesDenseSetMap (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSerializesDenseSetMap',
-            documentation: 'A request that contains a dense map of sets.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseSetMap': {
-                'x': [],
-                'y': ['a', 'b']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/JsonMaps',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonSerializesSparseSetMapAndRetainsNull (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSerializesSparseSetMapAndRetainsNull',
-            documentation: 'A request that contains a sparse map of sets.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseSetMap': {
-                'x': [],
-                'y': ['a', 'b'],
-                'z': null
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/JsonMaps',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonJsonMaps (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonJsonMaps',
-            documentation: 'Deserializes JSON maps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "denseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n    },\n    "sparseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n   }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseStructMap': {
-                'foo': {'hi': 'there'},
-                'baz': {'hi': 'bye'}
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/JsonMaps',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSerializesNullMapValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSerializesNullMapValues',
+              documentation: 'Serializes JSON map values in sparse maps',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseBooleanMap": {\n        "x": null\n    },\n    "sparseNumberMap": {\n        "x": null\n    },\n    "sparseStringMap": {\n        "x": null\n    },\n    "sparseStructMap": {\n        "x": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseBooleanMap': {'x': null},
+                'sparseNumberMap': {'x': null},
+                'sparseStringMap': {'x': null},
+                'sparseStructMap': {'x': null}
               },
-              'sparseStructMap': {
-                'foo': {'hi': 'there'},
-                'baz': {'hi': 'bye'}
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDeserializesNullMapValues (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDeserializesNullMapValues',
-            documentation: 'Deserializes null JSON map values',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseBooleanMap": {\n        "x": null\n    },\n    "sparseNumberMap": {\n        "x": null\n    },\n    "sparseStringMap": {\n        "x": null\n    },\n    "sparseStructMap": {\n        "x": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseBooleanMap': {'x': null},
-              'sparseNumberMap': {'x': null},
-              'sparseStringMap': {'x': null},
-              'sparseStructMap': {'x': null}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDeserializesZeroValuesInMaps (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDeserializesZeroValuesInMaps',
-            documentation:
-                'Ensure that 0 and false are sent over the wire in all maps and lists',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseNumberMap': {'x': 0},
-              'sparseNumberMap': {'x': 0},
-              'denseBooleanMap': {'x': false},
-              'sparseBooleanMap': {'x': false}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDeserializesSparseSetMap (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDeserializesSparseSetMap',
-            documentation: 'A response that contains a sparse map of sets',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseSetMap': {
-                'x': [],
-                'y': ['a', 'b']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDeserializesDenseSetMap (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDeserializesDenseSetMap',
-            documentation: 'A response that contains a dense map of sets.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseSetMap': {
-                'x': [],
-                'y': ['a', 'b']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDeserializesSparseSetMapAndRetainsNull (response)',
-      () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDeserializesSparseSetMapAndRetainsNull',
-            documentation: 'A response that contains a sparse map of sets.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body:
-                '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseSetMap': {
-                'x': [],
-                'y': ['a', 'b'],
-                'z': null
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
-  _i1.test('RestJsonDeserializesDenseSetMapAndSkipsNull (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonMapsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonDeserializesDenseSetMapAndSkipsNull',
-            documentation:
-                'Clients SHOULD tolerate seeing a null value in a dense map, and they SHOULD\ndrop the null key-value pair.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'denseSetMap': {
-                'x': [],
-                'y': ['a', 'b']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 200),
-        outputSerializers: const [
-          _JsonMapsInputOutputRestJson1Serializer(),
-          _GreetingStructRestJson1Serializer()
-        ]);
-  });
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/JsonMaps',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSerializesZeroValuesInMaps (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSerializesZeroValuesInMaps',
+              documentation:
+                  'Ensure that 0 and false are sent over the wire in all maps and lists',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseNumberMap': {'x': 0},
+                'sparseNumberMap': {'x': 0},
+                'denseBooleanMap': {'x': false},
+                'sparseBooleanMap': {'x': false}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/JsonMaps',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSerializesSparseSetMap (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSerializesSparseSetMap',
+              documentation: 'A request that contains a sparse map of sets',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/JsonMaps',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSerializesDenseSetMap (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSerializesDenseSetMap',
+              documentation: 'A request that contains a dense map of sets.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/JsonMaps',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonSerializesSparseSetMapAndRetainsNull (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSerializesSparseSetMapAndRetainsNull',
+              documentation: 'A request that contains a sparse map of sets.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b'],
+                  'z': null
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/JsonMaps',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonJsonMaps (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonJsonMaps',
+              documentation: 'Deserializes JSON maps',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "denseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n    },\n    "sparseStructMap": {\n        "foo": {\n            "hi": "there"\n        },\n        "baz": {\n            "hi": "bye"\n        }\n   }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseStructMap': {
+                  'foo': {'hi': 'there'},
+                  'baz': {'hi': 'bye'}
+                },
+                'sparseStructMap': {
+                  'foo': {'hi': 'there'},
+                  'baz': {'hi': 'bye'}
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDeserializesNullMapValues (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDeserializesNullMapValues',
+              documentation: 'Deserializes null JSON map values',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseBooleanMap": {\n        "x": null\n    },\n    "sparseNumberMap": {\n        "x": null\n    },\n    "sparseStringMap": {\n        "x": null\n    },\n    "sparseStructMap": {\n        "x": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseBooleanMap': {'x': null},
+                'sparseNumberMap': {'x': null},
+                'sparseStringMap': {'x': null},
+                'sparseStructMap': {'x': null}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDeserializesZeroValuesInMaps (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDeserializesZeroValuesInMaps',
+              documentation:
+                  'Ensure that 0 and false are sent over the wire in all maps and lists',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseNumberMap': {'x': 0},
+                'sparseNumberMap': {'x': 0},
+                'denseBooleanMap': {'x': false},
+                'sparseBooleanMap': {'x': false}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDeserializesSparseSetMap (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDeserializesSparseSetMap',
+              documentation: 'A response that contains a sparse map of sets',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDeserializesDenseSetMap (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDeserializesDenseSetMap',
+              documentation: 'A response that contains a dense map of sets.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"]\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDeserializesSparseSetMapAndRetainsNull (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDeserializesSparseSetMapAndRetainsNull',
+              documentation: 'A response that contains a sparse map of sets.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b'],
+                  'z': null
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonDeserializesDenseSetMapAndSkipsNull (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonMapsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonDeserializesDenseSetMapAndSkipsNull',
+              documentation:
+                  'Clients SHOULD tolerate seeing a null value in a dense map, and they SHOULD\ndrop the null key-value pair.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'denseSetMap': {
+                  'x': [],
+                  'y': ['a', 'b']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 200),
+          outputSerializers: const [
+            _JsonMapsInputOutputRestJson1Serializer(),
+            _GreetingStructRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _JsonMapsInputOutputRestJson1Serializer

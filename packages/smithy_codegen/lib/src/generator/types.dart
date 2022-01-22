@@ -408,6 +408,9 @@ class _Smithy {
 
   static const _url = 'package:smithy/smithy.dart';
 
+  /// Creates a [smithy.BlobSerializer] reference.
+  Reference get blobSerializer => const Reference('BlobSerializer', _url);
+
   /// Creates a [smithy.EmptyPayload] reference.
   Reference get emptyPayload => const Reference('EmptyPayload', _url);
 

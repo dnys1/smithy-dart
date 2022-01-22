@@ -12,36 +12,39 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonToleratesRegexCharsInSegments (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpRequestWithRegexLiteralOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonToleratesRegexCharsInSegments',
-            documentation:
-                'Path matching is not broken by regex expressions in literal segments',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'str': 'abc'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/ReDosLiteral/abc/(a+)+',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpRequestWithRegexLiteralInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonToleratesRegexCharsInSegments (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpRequestWithRegexLiteralOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonToleratesRegexCharsInSegments',
+              documentation:
+                  'Path matching is not broken by regex expressions in literal segments',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'str': 'abc'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/ReDosLiteral/abc/(a+)+',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpRequestWithRegexLiteralInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpRequestWithRegexLiteralInputRestJson1Serializer extends _i4

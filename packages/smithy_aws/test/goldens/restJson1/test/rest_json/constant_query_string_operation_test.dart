@@ -12,36 +12,39 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonConstantQueryString (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.ConstantQueryStringOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonConstantQueryString',
-            documentation: 'Includes constant query string parameters',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'hello': 'hi'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri: '/ConstantQueryString/hi',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['foo=bar', 'hello'],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _ConstantQueryStringInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonConstantQueryString (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.ConstantQueryStringOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonConstantQueryString',
+              documentation: 'Includes constant query string parameters',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'hello': 'hi'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri: '/ConstantQueryString/hi',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['foo=bar', 'hello'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _ConstantQueryStringInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _ConstantQueryStringInputRestJson1Serializer

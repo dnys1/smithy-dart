@@ -13,41 +13,44 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonQueryParamsStringListMap (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.QueryParamsAsStringListMapOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonQueryParamsStringListMap',
-            documentation: 'Serialize query params from map of list strings',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'qux': 'named',
-              'foo': {
-                'baz': ['bar', 'qux']
-              }
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            method: 'POST',
-            uri: '/StringListMap',
-            host: null,
-            resolvedHost: null,
-            queryParams: ['corge=named', 'baz=bar', 'baz=qux'],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _QueryParamsAsStringListMapInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonQueryParamsStringListMap (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.QueryParamsAsStringListMapOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonQueryParamsStringListMap',
+              documentation: 'Serialize query params from map of list strings',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'qux': 'named',
+                'foo': {
+                  'baz': ['bar', 'qux']
+                }
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              method: 'POST',
+              uri: '/StringListMap',
+              host: null,
+              resolvedHost: null,
+              queryParams: ['corge=named', 'baz=bar', 'baz=qux'],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _QueryParamsAsStringListMapInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _QueryParamsAsStringListMapInputRestJson1Serializer extends _i4

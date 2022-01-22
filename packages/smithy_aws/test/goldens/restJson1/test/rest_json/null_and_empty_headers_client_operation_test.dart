@@ -13,34 +13,39 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonNullAndEmptyHeaders (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.NullAndEmptyHeadersClientOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonNullAndEmptyHeaders',
-            documentation:
-                'Do not send null values, empty strings, or empty lists over the wire in headers',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {'a': null, 'b': '', 'c': []},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: ['X-A', 'X-B', 'X-C'],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            method: 'GET',
-            uri: '/NullAndEmptyHeadersClient',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_NullAndEmptyHeadersIoRestJson1Serializer()]);
-  });
+  _i1.test(
+    'RestJsonNullAndEmptyHeaders (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.NullAndEmptyHeadersClientOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonNullAndEmptyHeaders',
+              documentation:
+                  'Do not send null values, empty strings, or empty lists over the wire in headers',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {'a': null, 'b': '', 'c': []},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: ['X-A', 'X-B', 'X-C'],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              method: 'GET',
+              uri: '/NullAndEmptyHeadersClient',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _NullAndEmptyHeadersIoRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _NullAndEmptyHeadersIoRestJson1Serializer

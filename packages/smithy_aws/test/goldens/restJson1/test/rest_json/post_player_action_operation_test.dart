@@ -15,62 +15,70 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonInputUnionWithUnitMember (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.PostPlayerActionOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonInputUnionWithUnitMember',
-            documentation:
-                'Unit types in unions are serialized like normal structures in requests.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "action": {\n        "quit": {}\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'action': {'quit': {}}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/MovePlayer',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_PostPlayerActionInputRestJson1Serializer()]);
-  });
-  _i1.test('RestJsonOutputUnionWithUnitMember (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.PostPlayerActionOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonOutputUnionWithUnitMember',
-            documentation:
-                'Unit types in unions are serialized like normal structures in responses.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "action": {\n        "quit": {}\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'action': {'quit': {}}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _PostPlayerActionOutputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonInputUnionWithUnitMember (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.PostPlayerActionOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonInputUnionWithUnitMember',
+              documentation:
+                  'Unit types in unions are serialized like normal structures in requests.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "action": {\n        "quit": {}\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'action': {'quit': {}}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/MovePlayer',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _PostPlayerActionInputRestJson1Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'RestJsonOutputUnionWithUnitMember (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.PostPlayerActionOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonOutputUnionWithUnitMember',
+              documentation:
+                  'Unit types in unions are serialized like normal structures in responses.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '{\n    "action": {\n        "quit": {}\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'action': {'quit': {}}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _PostPlayerActionOutputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _PostPlayerActionInputRestJson1Serializer

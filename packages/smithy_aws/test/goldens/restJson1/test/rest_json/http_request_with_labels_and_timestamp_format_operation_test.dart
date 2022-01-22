@@ -12,47 +12,49 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpRequestWithLabelsAndTimestampFormat (request)',
-      () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HttpRequestWithLabelsAndTimestampFormatOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonHttpRequestWithLabelsAndTimestampFormat',
-            documentation:
-                'Serializes different timestamp formats in URI labels',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '',
-            bodyMediaType: null,
-            params: {
-              'memberEpochSeconds': 1576540098,
-              'memberHttpDate': 1576540098,
-              'memberDateTime': 1576540098,
-              'defaultFormat': 1576540098,
-              'targetEpochSeconds': 1576540098,
-              'targetHttpDate': 1576540098,
-              'targetDateTime': 1576540098
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'GET',
-            uri:
-                '/HttpRequestWithLabelsAndTimestampFormat/1576540098/Mon%2C%2016%20Dec%202019%2023%3A48%3A18%20GMT/2019-12-16T23%3A48%3A18Z/2019-12-16T23%3A48%3A18Z/1576540098/Mon%2C%2016%20Dec%202019%2023%3A48%3A18%20GMT/2019-12-16T23%3A48%3A18Z',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer()
-        ]);
-  });
+  _i1.test(
+    'RestJsonHttpRequestWithLabelsAndTimestampFormat (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HttpRequestWithLabelsAndTimestampFormatOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonHttpRequestWithLabelsAndTimestampFormat',
+              documentation:
+                  'Serializes different timestamp formats in URI labels',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: '',
+              bodyMediaType: null,
+              params: {
+                'memberEpochSeconds': 1576540098,
+                'memberHttpDate': 1576540098,
+                'memberDateTime': 1576540098,
+                'defaultFormat': 1576540098,
+                'targetEpochSeconds': 1576540098,
+                'targetHttpDate': 1576540098,
+                'targetDateTime': 1576540098
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'GET',
+              uri:
+                  '/HttpRequestWithLabelsAndTimestampFormat/1576540098/Mon%2C%2016%20Dec%202019%2023%3A48%3A18%20GMT/2019-12-16T23%3A48%3A18Z/2019-12-16T23%3A48%3A18Z/1576540098/Mon%2C%2016%20Dec%202019%2023%3A48%3A18%20GMT/2019-12-16T23%3A48%3A18Z',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer()
+          ]);
+    },
+  );
 }
 
 class _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer

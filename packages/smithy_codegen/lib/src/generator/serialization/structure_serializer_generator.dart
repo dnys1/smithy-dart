@@ -218,7 +218,10 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
                 deserializerFor(member, memberSymbol: memberSymbol.unboxed),
               ])
               .statement
-              .wrapWithBlockNullCheck(value, isNullable)
+              .wrapWithBlockIf(
+                value.notEqualTo(literalNull),
+                isNullable,
+              )
         else
           refer('result')
               .property(member.dartName)
@@ -228,7 +231,10 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
                 memberSymbol: memberSymbol.unboxed,
               ))
               .statement
-              .wrapWithBlockNullCheck(value, isNullable),
+              .wrapWithBlockIf(
+                value.notEqualTo(literalNull),
+                isNullable,
+              ),
         const Code('break;'),
       ]);
     }
@@ -302,7 +308,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
             .cascade('add')
             .call([serializerFor(member, memberRef)])
             .statement
-            .wrapWithBlockNullCheck(memberRef, true),
+            .wrapWithBlockIf(memberRef.notEqualTo(literalNull), true),
       ]);
     }
 

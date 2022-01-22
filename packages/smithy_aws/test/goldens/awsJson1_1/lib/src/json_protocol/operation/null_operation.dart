@@ -10,16 +10,16 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class NullOperation extends _i1.HttpOperation<
-    _i2.NullOperationInputOutputPayload,
     _i2.NullOperationInputOutput,
-    _i2.NullOperationInputOutputPayload,
+    _i2.NullOperationInputOutput,
+    _i2.NullOperationInputOutput,
     _i2.NullOperationInputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.NullOperationInputOutputPayload,
           _i2.NullOperationInputOutput,
-          _i2.NullOperationInputOutputPayload,
+          _i2.NullOperationInputOutput,
+          _i2.NullOperationInputOutput,
           _i2.NullOperationInputOutput>> protocols = [
     _i3.AwsJson1_1Protocol(
         serializers: _i4.serializers,
@@ -37,18 +37,9 @@ class NullOperation extends _i1.HttpOperation<
         b.successCode = 200;
       });
   @override
-  _i2.NullOperationInputOutput buildOutput(
-          _i2.NullOperationInputOutputPayload payload,
+  _i2.NullOperationInputOutput buildOutput(_i2.NullOperationInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.NullOperationInputOutput((b) {
-        if (payload.sparseStringList != null) {
-          b.sparseStringList.replace(payload.sparseStringList!);
-        }
-        if (payload.sparseStringMap != null) {
-          b.sparseStringMap.replace(payload.sparseStringMap!);
-        }
-        b.string = payload.string;
-      });
+      _i2.NullOperationInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

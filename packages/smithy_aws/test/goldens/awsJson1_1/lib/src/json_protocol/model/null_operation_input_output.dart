@@ -5,16 +5,14 @@ library aws_json1_1.json_protocol.model.null_operation_input_output;
 import 'package:built_collection/built_collection.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'null_operation_input_output.g.dart';
 
 abstract class NullOperationInputOutput
-    with _i1.HttpInput<NullOperationInputOutputPayload>
+    with _i1.HttpInput<NullOperationInputOutput>
     implements
-        Built<NullOperationInputOutput, NullOperationInputOutputBuilder>,
-        _i1.HasPayload<NullOperationInputOutputPayload> {
+        Built<NullOperationInputOutput, NullOperationInputOutputBuilder> {
   factory NullOperationInputOutput(
           [void Function(NullOperationInputOutputBuilder) updates]) =
       _$NullOperationInputOutput;
@@ -30,31 +28,6 @@ abstract class NullOperationInputOutput
   _i2.BuiltList<String?>? get sparseStringList;
   _i2.BuiltMap<String, String?>? get sparseStringMap;
   String? get string;
-  @override
-  NullOperationInputOutputPayload getPayload() =>
-      NullOperationInputOutputPayload((b) => b
-        ..sparseStringList = sparseStringList
-        ..sparseStringMap = sparseStringMap
-        ..string = string);
-}
-
-@_i3.internal
-@BuiltValue(nestedBuilders: false)
-abstract class NullOperationInputOutputPayload
-    implements
-        Built<NullOperationInputOutputPayload,
-            NullOperationInputOutputPayloadBuilder> {
-  factory NullOperationInputOutputPayload(
-          [void Function(NullOperationInputOutputPayloadBuilder) updates]) =
-      _$NullOperationInputOutputPayload;
-
-  const NullOperationInputOutputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(NullOperationInputOutputPayloadBuilder b) {}
-  _i2.BuiltList<String?>? get sparseStringList;
-  _i2.BuiltMap<String, String?>? get sparseStringMap;
-  String? get string;
 }
 
 class _NullOperationInputOutputAwsJson11Serializer
@@ -63,12 +36,8 @@ class _NullOperationInputOutputAwsJson11Serializer
       : super('NullOperationInputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        NullOperationInputOutput,
-        _$NullOperationInputOutput,
-        NullOperationInputOutputPayload,
-        _$NullOperationInputOutputPayload
-      ];
+  Iterable<Type> get types =>
+      const [NullOperationInputOutput, _$NullOperationInputOutput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
@@ -121,21 +90,21 @@ class _NullOperationInputOutputAwsJson11Serializer
       result
         ..add('sparseStringList')
         ..add(serializers.serialize(payload.sparseStringList,
-            specifiedType:
-                FullType.nullable(_i2.BuiltList, [FullType.nullable(String)])));
+            specifiedType: const FullType.nullable(
+                _i2.BuiltList, [FullType.nullable(String)])));
     }
     if (payload.sparseStringMap != null) {
       result
         ..add('sparseStringMap')
         ..add(serializers.serialize(payload.sparseStringMap,
-            specifiedType: FullType.nullable(_i2.BuiltMap,
-                [const FullType(String), FullType.nullable(String)])));
+            specifiedType: const FullType.nullable(
+                _i2.BuiltMap, [FullType(String), FullType.nullable(String)])));
     }
     if (payload.string != null) {
       result
         ..add('string')
         ..add(serializers.serialize(payload.string,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

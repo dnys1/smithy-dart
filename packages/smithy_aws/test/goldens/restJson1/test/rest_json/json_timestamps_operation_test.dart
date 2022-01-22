@@ -11,7 +11,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonJsonTimestamps (restJson1)', () async {
+  _i1.test('RestJsonJsonTimestamps (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,7 +41,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestampsWithDateTimeFormat (restJson1)', () async {
+  _i1.test('RestJsonJsonTimestampsWithDateTimeFormat (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -71,8 +71,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestampsWithEpochSecondsFormat (restJson1)',
-      () async {
+  _i1.test('RestJsonJsonTimestampsWithEpochSecondsFormat (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -103,7 +102,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestampsWithHttpDateFormat (restJson1)', () async {
+  _i1.test('RestJsonJsonTimestampsWithHttpDateFormat (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -134,7 +133,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestamps (restJson1)', () async {
+  _i1.test('RestJsonJsonTimestamps (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -158,7 +157,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestampsWithDateTimeFormat (restJson1)', () async {
+  _i1.test('RestJsonJsonTimestampsWithDateTimeFormat (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -182,8 +181,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestampsWithEpochSecondsFormat (restJson1)',
-      () async {
+  _i1.test('RestJsonJsonTimestampsWithEpochSecondsFormat (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -208,7 +206,7 @@ void main() {
           _JsonTimestampsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonTimestampsWithHttpDateFormat (restJson1)', () async {
+  _i1.test('RestJsonJsonTimestampsWithHttpDateFormat (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonTimestampsOperation(),
         testCase: const _i2.HttpResponseTestCase(

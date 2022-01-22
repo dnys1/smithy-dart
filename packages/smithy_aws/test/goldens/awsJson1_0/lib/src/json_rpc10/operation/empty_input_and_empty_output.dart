@@ -16,16 +16,16 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 /// and empty output structure that reuses the same shape. While this should
 /// be rare, code generators must support this.
 class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
-    _i2.EmptyInputAndEmptyOutputInputPayload,
     _i2.EmptyInputAndEmptyOutputInput,
-    _i3.EmptyInputAndEmptyOutputOutputPayload,
+    _i2.EmptyInputAndEmptyOutputInput,
+    _i3.EmptyInputAndEmptyOutputOutput,
     _i3.EmptyInputAndEmptyOutputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.EmptyInputAndEmptyOutputInputPayload,
           _i2.EmptyInputAndEmptyOutputInput,
-          _i3.EmptyInputAndEmptyOutputOutputPayload,
+          _i2.EmptyInputAndEmptyOutputInput,
+          _i3.EmptyInputAndEmptyOutputOutput,
           _i3.EmptyInputAndEmptyOutputOutput>> protocols = [
     _i4.AwsJson1_0Protocol(
         serializers: _i5.serializers,
@@ -45,7 +45,7 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
       });
   @override
   _i3.EmptyInputAndEmptyOutputOutput buildOutput(
-          _i3.EmptyInputAndEmptyOutputOutputPayload payload,
+          _i3.EmptyInputAndEmptyOutputOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
       _i3.EmptyInputAndEmptyOutputOutput();
   @override

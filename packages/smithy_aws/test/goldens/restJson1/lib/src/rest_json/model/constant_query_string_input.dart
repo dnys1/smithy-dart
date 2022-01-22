@@ -12,7 +12,8 @@ part 'constant_query_string_input.g.dart';
 abstract class ConstantQueryStringInput
     with _i1.HttpInput<ConstantQueryStringInputPayload>
     implements
-        Built<ConstantQueryStringInput, ConstantQueryStringInputBuilder> {
+        Built<ConstantQueryStringInput, ConstantQueryStringInputBuilder>,
+        _i1.EmptyPayload {
   factory ConstantQueryStringInput(
           [void Function(ConstantQueryStringInputBuilder) updates]) =
       _$ConstantQueryStringInput;
@@ -44,7 +45,8 @@ abstract class ConstantQueryStringInput
 abstract class ConstantQueryStringInputPayload
     implements
         Built<ConstantQueryStringInputPayload,
-            ConstantQueryStringInputPayloadBuilder> {
+            ConstantQueryStringInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory ConstantQueryStringInputPayload(
           [void Function(ConstantQueryStringInputPayloadBuilder) updates]) =
       _$ConstantQueryStringInputPayload;

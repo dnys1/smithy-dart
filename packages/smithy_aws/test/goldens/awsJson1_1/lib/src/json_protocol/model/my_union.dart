@@ -228,38 +228,39 @@ class _MyUnionAwsJson11Serializer
     switch (key) {
       case 'blobValue':
         return _MyUnionBlobValue(((serializers.deserialize(value,
-                specifiedType: FullType.nullable(_i2.Uint8List))
+                specifiedType: const FullType.nullable(_i2.Uint8List))
             as _i2.Uint8List?) as _i2.Uint8List));
       case 'booleanValue':
         return _MyUnionBooleanValue(((serializers.deserialize(value,
-            specifiedType: FullType.nullable(bool)) as bool?) as bool));
+            specifiedType: const FullType.nullable(bool)) as bool?) as bool));
       case 'enumValue':
         return _MyUnionEnumValue(((serializers.deserialize(value,
-                specifiedType: FullType.nullable(_i3.FooEnum)) as _i3.FooEnum?)
-            as _i3.FooEnum));
+                specifiedType: const FullType.nullable(_i3.FooEnum))
+            as _i3.FooEnum?) as _i3.FooEnum));
       case 'listValue':
         return _MyUnionListValue(((serializers.deserialize(value,
                 specifiedType:
-                    FullType.nullable(_i4.BuiltList, [const FullType(String)]))
+                    const FullType.nullable(_i4.BuiltList, [FullType(String)]))
             as _i4.BuiltList<String>?) as _i4.BuiltList<String>));
       case 'mapValue':
         return _MyUnionMapValue(((serializers.deserialize(value,
-                specifiedType: FullType.nullable(_i4.BuiltMap,
-                    [const FullType(String), const FullType(String)]))
+                specifiedType: const FullType.nullable(
+                    _i4.BuiltMap, [FullType(String), FullType(String)]))
             as _i4.BuiltMap<String, String>?) as _i4.BuiltMap<String, String>));
       case 'numberValue':
         return _MyUnionNumberValue(((serializers.deserialize(value,
-            specifiedType: FullType.nullable(int)) as int?) as int));
+            specifiedType: const FullType.nullable(int)) as int?) as int));
       case 'stringValue':
         return _MyUnionStringValue(((serializers.deserialize(value,
-            specifiedType: FullType.nullable(String)) as String?) as String));
+                specifiedType: const FullType.nullable(String)) as String?)
+            as String));
       case 'structureValue':
         return _MyUnionStructureValue(((serializers.deserialize(value,
-                specifiedType: FullType.nullable(_i5.GreetingStruct))
+                specifiedType: const FullType.nullable(_i5.GreetingStruct))
             as _i5.GreetingStruct?) as _i5.GreetingStruct));
       case 'timestampValue':
         return _MyUnionTimestampValue(((serializers.deserialize(value,
-                specifiedType: FullType.nullable(DateTime)) as DateTime?)
+                specifiedType: const FullType.nullable(DateTime)) as DateTime?)
             as DateTime));
     }
     return _MyUnionSdkUnknown(key, value);
@@ -272,25 +273,24 @@ class _MyUnionAwsJson11Serializer
     return [
       object.name,
       object.when<Object?>(
-          blobValue: (_i2.Uint8List? blobValue) => serializers.serialize(
-              blobValue,
-              specifiedType: FullType.nullable(_i2.Uint8List)),
-          booleanValue: (bool? booleanValue) => serializers
-              .serialize(booleanValue, specifiedType: FullType.nullable(bool)),
+          blobValue: (_i2.Uint8List? blobValue) => serializers.serialize(blobValue,
+              specifiedType: const FullType.nullable(_i2.Uint8List)),
+          booleanValue: (bool? booleanValue) => serializers.serialize(booleanValue,
+              specifiedType: const FullType.nullable(bool)),
           enumValue: (_i3.FooEnum? enumValue) => serializers.serialize(enumValue,
-              specifiedType: FullType.nullable(_i3.FooEnum)),
-          listValue: (_i4.BuiltList<String>? listValue) => serializers.serialize(
-              listValue,
+              specifiedType: const FullType.nullable(_i3.FooEnum)),
+          listValue: (_i4.BuiltList<String>? listValue) => serializers.serialize(listValue,
               specifiedType:
-                  FullType.nullable(_i4.BuiltList, [const FullType(String)])),
+                  const FullType.nullable(_i4.BuiltList, [FullType(String)])),
           mapValue: (_i4.BuiltMap<String, String>? mapValue) =>
               serializers.serialize(mapValue,
-                  specifiedType: FullType.nullable(
-                      _i4.BuiltMap, [const FullType(String), const FullType(String)])),
-          numberValue: (int? numberValue) => serializers.serialize(numberValue, specifiedType: FullType.nullable(int)),
-          stringValue: (String? stringValue) => serializers.serialize(stringValue, specifiedType: FullType.nullable(String)),
-          structureValue: (_i5.GreetingStruct? structureValue) => serializers.serialize(structureValue, specifiedType: FullType.nullable(_i5.GreetingStruct)),
-          timestampValue: (DateTime? timestampValue) => serializers.serialize(timestampValue, specifiedType: FullType.nullable(DateTime)),
+                  specifiedType: const FullType.nullable(
+                      _i4.BuiltMap, [FullType(String), FullType(String)])),
+          numberValue: (int? numberValue) =>
+              serializers.serialize(numberValue, specifiedType: const FullType.nullable(int)),
+          stringValue: (String? stringValue) => serializers.serialize(stringValue, specifiedType: const FullType.nullable(String)),
+          structureValue: (_i5.GreetingStruct? structureValue) => serializers.serialize(structureValue, specifiedType: const FullType.nullable(_i5.GreetingStruct)),
+          timestampValue: (DateTime? timestampValue) => serializers.serialize(timestampValue, specifiedType: const FullType.nullable(DateTime)),
           sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
     ];
   }

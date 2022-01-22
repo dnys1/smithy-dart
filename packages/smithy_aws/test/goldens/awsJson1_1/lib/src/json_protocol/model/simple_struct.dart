@@ -65,7 +65,7 @@ class _SimpleStructAwsJson11Serializer
       result
         ..add('Value')
         ..add(serializers.serialize(payload.value,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

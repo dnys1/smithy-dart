@@ -4,16 +4,14 @@ library aws_json1_0.json_rpc10.model.simple_scalar_properties_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'simple_scalar_properties_input.g.dart';
 
 abstract class SimpleScalarPropertiesInput
-    with _i1.HttpInput<SimpleScalarPropertiesInputPayload>
+    with _i1.HttpInput<SimpleScalarPropertiesInput>
     implements
-        Built<SimpleScalarPropertiesInput, SimpleScalarPropertiesInputBuilder>,
-        _i1.HasPayload<SimpleScalarPropertiesInputPayload> {
+        Built<SimpleScalarPropertiesInput, SimpleScalarPropertiesInputBuilder> {
   factory SimpleScalarPropertiesInput(
           [void Function(SimpleScalarPropertiesInputBuilder) updates]) =
       _$SimpleScalarPropertiesInput;
@@ -28,29 +26,6 @@ abstract class SimpleScalarPropertiesInput
   static void _init(SimpleScalarPropertiesInputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
-  @override
-  SimpleScalarPropertiesInputPayload getPayload() =>
-      SimpleScalarPropertiesInputPayload((b) => b
-        ..doubleValue = doubleValue
-        ..floatValue = floatValue);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class SimpleScalarPropertiesInputPayload
-    implements
-        Built<SimpleScalarPropertiesInputPayload,
-            SimpleScalarPropertiesInputPayloadBuilder> {
-  factory SimpleScalarPropertiesInputPayload(
-          [void Function(SimpleScalarPropertiesInputPayloadBuilder) updates]) =
-      _$SimpleScalarPropertiesInputPayload;
-
-  const SimpleScalarPropertiesInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesInputPayloadBuilder b) {}
-  double? get doubleValue;
-  double? get floatValue;
 }
 
 class _SimpleScalarPropertiesInputAwsJson10Serializer
@@ -59,12 +34,8 @@ class _SimpleScalarPropertiesInputAwsJson10Serializer
       : super('SimpleScalarPropertiesInput');
 
   @override
-  Iterable<Type> get types => const [
-        SimpleScalarPropertiesInput,
-        _$SimpleScalarPropertiesInput,
-        SimpleScalarPropertiesInputPayload,
-        _$SimpleScalarPropertiesInputPayload
-      ];
+  Iterable<Type> get types =>
+      const [SimpleScalarPropertiesInput, _$SimpleScalarPropertiesInput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -106,13 +77,13 @@ class _SimpleScalarPropertiesInputAwsJson10Serializer
       result
         ..add('doubleValue')
         ..add(serializers.serialize(payload.doubleValue,
-            specifiedType: FullType.nullable(double)));
+            specifiedType: const FullType.nullable(double)));
     }
     if (payload.floatValue != null) {
       result
         ..add('floatValue')
         ..add(serializers.serialize(payload.floatValue,
-            specifiedType: FullType.nullable(double)));
+            specifiedType: const FullType.nullable(double)));
     }
     return result;
   }

@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonSimpleScalarProperties (restJson1)', () async {
+  _i1.test('RestJsonSimpleScalarProperties (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -55,7 +55,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDoesntSerializeNullStructureValues (restJson1)', () async {
+  _i1.test('RestJsonDoesntSerializeNullStructureValues (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -86,7 +86,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNaNFloatInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsNaNFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -116,7 +116,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsInfinityFloatInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsInfinityFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -147,7 +147,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -178,7 +178,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSimpleScalarProperties (restJson1)', () async {
+  _i1.test('RestJsonSimpleScalarProperties (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -214,8 +214,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDoesntDeserializeNullStructureValues (restJson1)',
-      () async {
+  _i1.test('RestJsonDoesntDeserializeNullStructureValues (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -240,7 +239,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNaNFloatInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsNaNFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -264,7 +263,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsInfinityFloatInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsInfinityFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -289,7 +288,7 @@ void main() {
           _SimpleScalarPropertiesInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(

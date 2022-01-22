@@ -14,7 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonEmptyInputAndEmptyOutput (restJson1)', () async {
+  _i1.test('RestJsonEmptyInputAndEmptyOutput (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.EmptyInputAndEmptyOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -44,7 +44,7 @@ void main() {
           _EmptyInputAndEmptyOutputInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonEmptyInputAndEmptyOutput (restJson1)', () async {
+  _i1.test('RestJsonEmptyInputAndEmptyOutput (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.EmptyInputAndEmptyOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -68,7 +68,7 @@ void main() {
           _EmptyInputAndEmptyOutputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonEmptyInputAndEmptyOutputJsonObjectOutput (restJson1)',
+  _i1.test('RestJsonEmptyInputAndEmptyOutputJsonObjectOutput (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.EmptyInputAndEmptyOutputOperation(),

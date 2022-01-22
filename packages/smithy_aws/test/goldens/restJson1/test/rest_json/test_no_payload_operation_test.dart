@@ -11,7 +11,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpWithNoModeledBody (restJson1)', () async {
+  _i1.test('RestJsonHttpWithNoModeledBody (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.TestNoPayloadOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,7 +41,7 @@ void main() {
           _TestNoPayloadInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpWithHeaderMemberNoModeledBody (restJson1)', () async {
+  _i1.test('RestJsonHttpWithHeaderMemberNoModeledBody (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.TestNoPayloadOperation(),
         testCase: const _i2.HttpRequestTestCase(

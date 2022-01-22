@@ -4,18 +4,16 @@ library aws_json1_1.json_protocol.model.operation_with_optional_input_output_inp
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'operation_with_optional_input_output_input.g.dart';
 
 abstract class OperationWithOptionalInputOutputInput
     with
-        _i1.HttpInput<OperationWithOptionalInputOutputInputPayload>
+        _i1.HttpInput<OperationWithOptionalInputOutputInput>
     implements
         Built<OperationWithOptionalInputOutputInput,
-            OperationWithOptionalInputOutputInputBuilder>,
-        _i1.HasPayload<OperationWithOptionalInputOutputInputPayload> {
+            OperationWithOptionalInputOutputInputBuilder> {
   factory OperationWithOptionalInputOutputInput(
       [void Function(OperationWithOptionalInputOutputInputBuilder)
           updates]) = _$OperationWithOptionalInputOutputInput;
@@ -29,26 +27,6 @@ abstract class OperationWithOptionalInputOutputInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(OperationWithOptionalInputOutputInputBuilder b) {}
   String? get value;
-  @override
-  OperationWithOptionalInputOutputInputPayload getPayload() =>
-      OperationWithOptionalInputOutputInputPayload((b) => b..value = value);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class OperationWithOptionalInputOutputInputPayload
-    implements
-        Built<OperationWithOptionalInputOutputInputPayload,
-            OperationWithOptionalInputOutputInputPayloadBuilder> {
-  factory OperationWithOptionalInputOutputInputPayload(
-      [void Function(OperationWithOptionalInputOutputInputPayloadBuilder)
-          updates]) = _$OperationWithOptionalInputOutputInputPayload;
-
-  const OperationWithOptionalInputOutputInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OperationWithOptionalInputOutputInputPayloadBuilder b) {}
-  String? get value;
 }
 
 class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i1
@@ -59,9 +37,7 @@ class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i1
   @override
   Iterable<Type> get types => const [
         OperationWithOptionalInputOutputInput,
-        _$OperationWithOptionalInputOutputInput,
-        OperationWithOptionalInputOutputInputPayload,
-        _$OperationWithOptionalInputOutputInputPayload
+        _$OperationWithOptionalInputOutputInput
       ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
@@ -98,7 +74,7 @@ class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i1
       result
         ..add('Value')
         ..add(serializers.serialize(payload.value,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

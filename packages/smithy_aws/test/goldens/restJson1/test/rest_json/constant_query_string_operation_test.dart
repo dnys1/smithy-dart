@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonConstantQueryString (restJson1)', () async {
+  _i1.test('RestJsonConstantQueryString (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.ConstantQueryStringOperation(),
         testCase: const _i2.HttpRequestTestCase(

@@ -15,7 +15,8 @@ part 'all_query_string_types_input.g.dart';
 abstract class AllQueryStringTypesInput
     with _i1.HttpInput<AllQueryStringTypesInputPayload>
     implements
-        Built<AllQueryStringTypesInput, AllQueryStringTypesInputBuilder> {
+        Built<AllQueryStringTypesInput, AllQueryStringTypesInputBuilder>,
+        _i1.EmptyPayload {
   factory AllQueryStringTypesInput(
           [void Function(AllQueryStringTypesInputBuilder) updates]) =
       _$AllQueryStringTypesInput;
@@ -56,7 +57,8 @@ abstract class AllQueryStringTypesInput
 abstract class AllQueryStringTypesInputPayload
     implements
         Built<AllQueryStringTypesInputPayload,
-            AllQueryStringTypesInputPayloadBuilder> {
+            AllQueryStringTypesInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory AllQueryStringTypesInputPayload(
           [void Function(AllQueryStringTypesInputPayloadBuilder) updates]) =
       _$AllQueryStringTypesInputPayload;

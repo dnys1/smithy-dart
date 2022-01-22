@@ -11,7 +11,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'media_type_header_output.g.dart';
 
 abstract class MediaTypeHeaderOutput
-    implements Built<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder> {
+    implements
+        Built<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder>,
+        _i1.EmptyPayload {
   factory MediaTypeHeaderOutput(
           [void Function(MediaTypeHeaderOutputBuilder) updates]) =
       _$MediaTypeHeaderOutput;
@@ -33,7 +35,8 @@ abstract class MediaTypeHeaderOutput
 abstract class MediaTypeHeaderOutputPayload
     implements
         Built<MediaTypeHeaderOutputPayload,
-            MediaTypeHeaderOutputPayloadBuilder> {
+            MediaTypeHeaderOutputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory MediaTypeHeaderOutputPayload(
           [void Function(MediaTypeHeaderOutputPayloadBuilder) updates]) =
       _$MediaTypeHeaderOutputPayload;

@@ -65,7 +65,7 @@ class _GreetingStructAwsJson11Serializer
       result
         ..add('hi')
         ..add(serializers.serialize(payload.hi,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

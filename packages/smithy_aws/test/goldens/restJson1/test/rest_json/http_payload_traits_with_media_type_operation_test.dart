@@ -14,7 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (restJson1)',
+  _i1.test('RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpPayloadTraitsWithMediaTypeOperation(),
@@ -46,7 +46,7 @@ void main() {
           _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (restJson1)',
+  _i1.test('RestJsonHttpPayloadTraitsWithMediaTypeWithBlob (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.HttpPayloadTraitsWithMediaTypeOperation(),

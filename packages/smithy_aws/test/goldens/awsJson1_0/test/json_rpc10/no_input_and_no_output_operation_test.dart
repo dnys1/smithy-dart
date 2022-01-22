@@ -9,7 +9,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10MustAlwaysSendEmptyJsonPayload (awsJson1_0)', () async {
+  _i1.test('AwsJson10MustAlwaysSendEmptyJsonPayload (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.NoInputAndNoOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -38,9 +38,10 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
-  _i1.test('AwsJson10HandlesEmptyOutputShape (awsJson1_0)', () async {
+  _i1.test('AwsJson10HandlesEmptyOutputShape (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NoInputAndNoOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -60,9 +61,10 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: _i2.AppliesTo.client,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
-  _i1.test('AwsJson10HandlesUnexpectedJsonOutput (awsJson1_0)', () async {
+  _i1.test('AwsJson10HandlesUnexpectedJsonOutput (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NoInputAndNoOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -82,9 +84,10 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: _i2.AppliesTo.client,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
-  _i1.test('AwsJson10ServiceRespondsWithNoPayload (awsJson1_0)', () async {
+  _i1.test('AwsJson10ServiceRespondsWithNoPayload (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NoInputAndNoOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -104,6 +107,7 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: null,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
 }

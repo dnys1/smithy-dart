@@ -9,7 +9,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('sends_requests_to_slash (awsJson1_1)', () async {
+  _i1.test('sends_requests_to_slash (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.EmptyOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -34,9 +34,10 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
-  _i1.test('includes_x_amz_target_and_content_type (awsJson1_1)', () async {
+  _i1.test('includes_x_amz_target_and_content_type (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.EmptyOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -64,10 +65,10 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
-  _i1.test(
-      'json_1_1_client_sends_empty_payload_for_no_input_shape (awsJson1_1)',
+  _i1.test('json_1_1_client_sends_empty_payload_for_no_input_shape (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.EmptyOperation(),
@@ -94,9 +95,10 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
-  _i1.test('handles_empty_output_shape (awsJson1_1)', () async {
+  _i1.test('handles_empty_output_shape (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.EmptyOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -116,9 +118,10 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: _i2.AppliesTo.client,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
-  _i1.test('handles_unexpected_json_output (awsJson1_1)', () async {
+  _i1.test('handles_unexpected_json_output (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.EmptyOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -138,9 +141,10 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: _i2.AppliesTo.client,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
-  _i1.test('json_1_1_service_responds_with_no_payload (awsJson1_1)', () async {
+  _i1.test('json_1_1_service_responds_with_no_payload (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.EmptyOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -160,6 +164,7 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: null,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
 }

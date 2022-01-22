@@ -41,7 +41,9 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
   _i3.HttpPrefixHeadersInResponseOutput buildOutput(
           _i3.HttpPrefixHeadersInResponseOutputPayload payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.HttpPrefixHeadersInResponseOutput((b) {});
+      _i3.HttpPrefixHeadersInResponseOutput((b) {
+        b.prefixHeaders.addEntries(response.headers.entries);
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

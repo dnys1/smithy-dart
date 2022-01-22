@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonQueryIdempotencyTokenAutoFill (restJson1)', () async {
+  _i1.test('RestJsonQueryIdempotencyTokenAutoFill (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.QueryIdempotencyTokenAutoFillOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -42,7 +42,7 @@ void main() {
           _QueryIdempotencyTokenAutoFillInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonQueryIdempotencyTokenAutoFillIsSet (restJson1)', () async {
+  _i1.test('RestJsonQueryIdempotencyTokenAutoFillIsSet (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.QueryIdempotencyTokenAutoFillOperation(),
         testCase: const _i2.HttpRequestTestCase(

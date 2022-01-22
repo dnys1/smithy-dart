@@ -1,4 +1,8 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:fixnum/fixnum.dart';
+import 'package:http/http.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
@@ -74,7 +78,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
 
     for (var entry in httpInputTraits.httpHeaders.entries) {
-      yield _httpHeader(
+      yield _inputHttpHeader(
         literalString(entry.key),
         entry.value,
         input.property(entry.value.dartName),
@@ -108,6 +112,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
     final payloadShape = outputShape.payloadShape(context);
 
+    // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {
       final targetShapeType = context.shapeFor(member.target).getType();
       final isNestedBuilder = [
@@ -133,7 +138,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       }
     }
 
-    // Add all payload members to the output builder.
+    // Add all payload members to the output.
     if (payloadShape != null) {
       yield _putShape(payloadShape, payload);
     } else if (outputShape.hasBuiltPayload(context)) {
@@ -143,12 +148,73 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       }
     }
 
-    // TODO: Add HTTP metadata
-    final nonSerializableMembers = outputShape.metadataMembers(context);
+    // Add HTTP headers to the output.
+    final headersRef = response.property('headers');
+    for (final entry in httpOutputTraits.httpHeaders.entries) {
+      yield _outputHttpHeader(
+        headersRef.index(literalString(entry.key)),
+        entry.value,
+        builder.property(entry.value.dartName),
+        isNullable: entry.value.isNullable(outputShape),
+      );
+    }
+
+    // Add all HTTP headers with a certain prefix to the output.
+    final prefixHeaders = httpOutputTraits.httpPrefixHeaders;
+    if (prefixHeaders != null) {
+      yield builder
+          .property(prefixHeaders.member.dartName)
+          .property('addEntries')
+          .call([
+        prefixHeaders.trait.value == ''
+            ? headersRef.property('entries')
+            : headersRef
+                .property('entries')
+                .property('where')
+                .call([
+                  Method((m) => m
+                    ..requiredParameters.add(Parameter((p) => p.name = 'el'))
+                    ..lambda = true
+                    ..body = refer('el')
+                        .property('key')
+                        .property('startsWith')
+                        .call([
+                      literalString(prefixHeaders.trait.value)
+                    ]).code).closure
+                ])
+                .property('map')
+                .call([
+                  Method(
+                    (m) => m
+                      ..requiredParameters.add(Parameter((p) => p.name = 'el'))
+                      ..lambda = true
+                      ..body = DartTypes.core.mapEntry.newInstance([
+                        refer('el')
+                            .property('key')
+                            .property('replaceFirst')
+                            .call([
+                          literalString(prefixHeaders.trait.value),
+                          literalString(''),
+                        ]),
+                        refer('el').property('value'),
+                      ]).code,
+                  ).closure,
+                ])
+      ]).statement;
+    }
+
+    // Add the HTTP status code to the output.
+    final statusCode = httpOutputTraits.httpResponseCode;
+    if (statusCode != null) {
+      yield builder
+          .property(statusCode.dartName)
+          .assign(response.property('statusCode'))
+          .statement;
+    }
   }
 
   /// Adds the header to the request's headers map.
-  Code _httpHeader(
+  Code _inputHttpHeader(
     Expression key,
     Shape value,
     Expression valueRef, {
@@ -189,7 +255,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         case ShapeType.timestamp:
           final format = shape.timestampFormat ??
               targetShape.timestampFormat ??
-              TimestampFormat.unknown;
+              TimestampFormat.httpDate;
           return DartTypes.smithy.timestamp
               .newInstance([ref])
               .property('format')
@@ -244,7 +310,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           .property('entries')
           .code,
       const Code(') {'),
-      _httpHeader(
+      _inputHttpHeader(
         literalString(headers.trait.value)
             .operatorAdd(refer('entry').property('key')),
         valueTarget,
@@ -253,6 +319,111 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       ),
       const Code('}'),
     ]).wrapWithBlockNullCheck(mapRef, isNullableMap);
+  }
+
+  /// Adds the header to the request's headers map.
+  Code _outputHttpHeader(
+    Expression headerRef,
+    Shape value,
+    Expression valueRef, {
+    required bool isNullable,
+  }) {
+    // Creates the expression to parse the header into the type of `shape`.
+    Expression fromString(Expression headerRef, Shape shape) {
+      final targetShape =
+          shape is MemberShape ? context.shapeFor(shape.target) : shape;
+
+      final type = targetShape.getType();
+      switch (type) {
+        case ShapeType.boolean:
+          return headerRef.equalTo(literalString('true'));
+
+        case ShapeType.bigInteger:
+          return DartTypes.core.bigInt.property('parse').call([headerRef]);
+
+        case ShapeType.bigDecimal:
+        case ShapeType.double:
+        case ShapeType.float:
+          return DartTypes.core.double.property('parse').call([headerRef]);
+
+        case ShapeType.byte:
+        case ShapeType.integer:
+        case ShapeType.short:
+          return DartTypes.core.int.property('parse').call([headerRef]);
+
+        case ShapeType.long:
+          return DartTypes.fixNum.int64.property('parseInt').call([headerRef]);
+
+        // string values with a mediaType trait are always base64 encoded.
+        case ShapeType.string:
+          if (targetShape.isEnum) {
+            final targetSymbol = context.symbolFor(targetShape.shapeId).unboxed;
+            return targetSymbol
+                .property('values')
+                .property('byValue')
+                .call([headerRef]);
+          }
+          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
+          switch (mediaType) {
+            case 'application/json':
+              return DartTypes.builtValue.jsonObject.newInstance([
+                DartTypes.convert.jsonDecode.call([headerRef]),
+              ]);
+          }
+          return headerRef;
+
+        // timestamp values are serialized using the http-date format by
+        // default. The timestampFormat trait MAY be used to use a custom
+        // serialization format.
+        case ShapeType.timestamp:
+          final format = shape.timestampFormat ??
+              targetShape.timestampFormat ??
+              TimestampFormat.httpDate;
+          return DartTypes.smithy.timestamp.property('parse').call([
+            format == TimestampFormat.epochSeconds
+                ? DartTypes.core.int.property('parse').call([headerRef])
+                : headerRef
+          ], {
+            'format': DartTypes.smithy.timestampFormat.property(format.name),
+          }).property('asDateTime');
+
+        // When a list shape is targeted, each member of the shape is
+        // serialized as a separate HTTP header either by concatenating the
+        // values with a comma on a single line or by serializing each header
+        // value on its own line.
+        case ShapeType.list:
+        case ShapeType.set:
+          final memberShape = (targetShape as CollectionShape).member;
+          return headerRef
+              .property('split')
+              .call([literalString(',')])
+              .property('map')
+              .call([
+                Method((m) => m
+                  ..requiredParameters.add(Parameter((p) => p..name = 'el'))
+                  ..lambda = true
+                  ..body = fromString(
+                          refer('el').property('trim').call([]), memberShape)
+                      .code).closure,
+              ]);
+        default:
+          throw ArgumentError('Invalid header shape type: $type');
+      }
+    }
+
+    final fromStringExp = fromString(
+      (isNullable ? headerRef.nullChecked : headerRef),
+      value,
+    );
+    final targetShape =
+        value is MemberShape ? context.shapeFor(value.target) : value;
+    Code addHeader;
+    if (targetShape is CollectionShape) {
+      addHeader = valueRef.property('addAll').call([fromStringExp]).statement;
+    } else {
+      addHeader = valueRef.assign(fromStringExp).statement;
+    }
+    return addHeader.wrapWithBlockNullCheck(headerRef, isNullable);
   }
 
   /// Adds the shape to the request's query parameters.
@@ -472,6 +643,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                 'serializers': context.serializersRef,
                 'builderFactories': context.builderFactoriesRef,
                 'interceptors': literalList(_protocolInterceptors(protocol)),
+                ...?_protocolParameters(protocol),
               }),
           ]).code,
       );
@@ -505,6 +677,24 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       case RestJson1Trait:
       case RestXmlTrait:
       default:
+    }
+  }
+
+  Map<String, Expression>? _protocolParameters(
+      ProtocolDefinitionTrait protocol) {
+    switch (protocol.runtimeType) {
+      case RestJson1Trait:
+        String? mediaType;
+        final payloadShape = inputPayload.member;
+        if (payloadShape != null) {
+          final targetShape = context.shapeFor(payloadShape.target);
+          mediaType = (payloadShape.getTrait<MediaTypeTrait>() ??
+                  targetShape.getTrait<MediaTypeTrait>())
+              ?.value;
+        }
+        return {
+          if (mediaType != null) 'mediaType': literalString(mediaType),
+        };
     }
   }
 }

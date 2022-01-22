@@ -8,7 +8,8 @@ import 'package:smithy/smithy.dart' as _i1;
 
 part 'empty_struct.g.dart';
 
-abstract class EmptyStruct implements Built<EmptyStruct, EmptyStructBuilder> {
+abstract class EmptyStruct
+    implements Built<EmptyStruct, EmptyStructBuilder>, _i1.EmptyPayload {
   factory EmptyStruct([void Function(EmptyStructBuilder) updates]) =
       _$EmptyStruct;
 

@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonTestBodyStructure (restJson1)', () async {
+  _i1.test('RestJsonTestBodyStructure (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.TestBodyStructureOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -46,7 +46,7 @@ void main() {
           _TestConfigRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpWithEmptyBody (restJson1)', () async {
+  _i1.test('RestJsonHttpWithEmptyBody (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.TestBodyStructureOperation(),
         testCase: const _i2.HttpRequestTestCase(

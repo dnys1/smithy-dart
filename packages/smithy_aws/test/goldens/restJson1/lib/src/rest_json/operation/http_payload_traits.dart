@@ -45,6 +45,9 @@ class HttpPayloadTraitsOperation extends _i1.HttpOperation<
           _i2.Uint8List? payload, _i6.AWSStreamedHttpResponse response) =>
       _i3.HttpPayloadTraitsInputOutput((b) {
         b.blob = payload;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
       });
   @override
   List<_i1.SmithyError> get errorTypes => const [];

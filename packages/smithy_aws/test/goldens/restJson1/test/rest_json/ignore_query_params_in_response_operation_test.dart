@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonIgnoreQueryParamsInResponse (restJson1)', () async {
+  _i1.test('RestJsonIgnoreQueryParamsInResponse (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.IgnoreQueryParamsInResponseOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -36,8 +36,7 @@ void main() {
           _IgnoreQueryParamsInResponseOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonIgnoreQueryParamsInResponseNoPayload (restJson1)',
-      () async {
+  _i1.test('RestJsonIgnoreQueryParamsInResponseNoPayload (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.IgnoreQueryParamsInResponseOperation(),
         testCase: const _i2.HttpResponseTestCase(

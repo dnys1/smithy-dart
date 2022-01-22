@@ -4,7 +4,6 @@ library aws_json1_0.json_rpc10.model.invalid_greeting;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'invalid_greeting.g.dart';
@@ -12,9 +11,7 @@ part 'invalid_greeting.g.dart';
 /// This error is thrown when an invalid greeting value is provided.
 abstract class InvalidGreeting
     with _i1.SmithyException
-    implements
-        Built<InvalidGreeting, InvalidGreetingBuilder>,
-        _i1.HasPayload<InvalidGreetingPayload> {
+    implements Built<InvalidGreeting, InvalidGreetingBuilder> {
   factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
       _$InvalidGreeting;
 
@@ -29,26 +26,7 @@ abstract class InvalidGreeting
   @override
   String? get message;
   @override
-  InvalidGreetingPayload getPayload() =>
-      InvalidGreetingPayload((b) => b..message = message);
-  @override
   bool get isRetryable => false;
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class InvalidGreetingPayload
-    implements Built<InvalidGreetingPayload, InvalidGreetingPayloadBuilder> {
-  factory InvalidGreetingPayload(
-          [void Function(InvalidGreetingPayloadBuilder) updates]) =
-      _$InvalidGreetingPayload;
-
-  const InvalidGreetingPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(InvalidGreetingPayloadBuilder b) {}
-  @override
-  String? get message;
 }
 
 class _InvalidGreetingAwsJson10Serializer
@@ -56,12 +34,7 @@ class _InvalidGreetingAwsJson10Serializer
   const _InvalidGreetingAwsJson10Serializer() : super('InvalidGreeting');
 
   @override
-  Iterable<Type> get types => const [
-        InvalidGreeting,
-        _$InvalidGreeting,
-        InvalidGreetingPayload,
-        _$InvalidGreetingPayload
-      ];
+  Iterable<Type> get types => const [InvalidGreeting, _$InvalidGreeting];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -97,7 +70,7 @@ class _InvalidGreetingAwsJson10Serializer
       result
         ..add('Message')
         ..add(serializers.serialize(payload.message,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

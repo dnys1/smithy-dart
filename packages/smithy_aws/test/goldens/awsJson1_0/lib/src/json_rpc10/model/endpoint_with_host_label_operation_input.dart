@@ -4,18 +4,16 @@ library aws_json1_0.json_rpc10.model.endpoint_with_host_label_operation_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'endpoint_with_host_label_operation_input.g.dart';
 
 abstract class EndpointWithHostLabelOperationInput
     with
-        _i1.HttpInput<EndpointWithHostLabelOperationInputPayload>
+        _i1.HttpInput<EndpointWithHostLabelOperationInput>
     implements
         Built<EndpointWithHostLabelOperationInput,
-            EndpointWithHostLabelOperationInputBuilder>,
-        _i1.HasPayload<EndpointWithHostLabelOperationInputPayload> {
+            EndpointWithHostLabelOperationInputBuilder> {
   factory EndpointWithHostLabelOperationInput(
           [void Function(EndpointWithHostLabelOperationInputBuilder) updates]) =
       _$EndpointWithHostLabelOperationInput;
@@ -33,30 +31,10 @@ abstract class EndpointWithHostLabelOperationInput
   String labelFor(String key) {
     switch (key) {
       case 'label':
-        return label.toString();
+        return label;
     }
     throw _i1.MissingLabelException(this, key);
   }
-
-  @override
-  EndpointWithHostLabelOperationInputPayload getPayload() =>
-      EndpointWithHostLabelOperationInputPayload();
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class EndpointWithHostLabelOperationInputPayload
-    implements
-        Built<EndpointWithHostLabelOperationInputPayload,
-            EndpointWithHostLabelOperationInputPayloadBuilder> {
-  factory EndpointWithHostLabelOperationInputPayload(
-      [void Function(EndpointWithHostLabelOperationInputPayloadBuilder)
-          updates]) = _$EndpointWithHostLabelOperationInputPayload;
-
-  const EndpointWithHostLabelOperationInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EndpointWithHostLabelOperationInputPayloadBuilder b) {}
 }
 
 class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1
@@ -67,9 +45,7 @@ class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1
   @override
   Iterable<Type> get types => const [
         EndpointWithHostLabelOperationInput,
-        _$EndpointWithHostLabelOperationInput,
-        EndpointWithHostLabelOperationInputPayload,
-        _$EndpointWithHostLabelOperationInputPayload
+        _$EndpointWithHostLabelOperationInput
       ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
@@ -86,7 +62,7 @@ class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1
       final value = iterator.current;
       switch (key) {
         case 'label':
-          result.label = (serializers.deserialize(value,
+          result.label = (serializers.deserialize(value!,
               specifiedType: const FullType(String)) as String);
           break;
       }

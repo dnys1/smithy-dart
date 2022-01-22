@@ -14,7 +14,8 @@ abstract class QueryIdempotencyTokenAutoFillInput
         _i1.HttpInput<QueryIdempotencyTokenAutoFillInputPayload>
     implements
         Built<QueryIdempotencyTokenAutoFillInput,
-            QueryIdempotencyTokenAutoFillInputBuilder> {
+            QueryIdempotencyTokenAutoFillInputBuilder>,
+        _i1.EmptyPayload {
   factory QueryIdempotencyTokenAutoFillInput(
           [void Function(QueryIdempotencyTokenAutoFillInputBuilder) updates]) =
       _$QueryIdempotencyTokenAutoFillInput;
@@ -37,7 +38,8 @@ abstract class QueryIdempotencyTokenAutoFillInput
 abstract class QueryIdempotencyTokenAutoFillInputPayload
     implements
         Built<QueryIdempotencyTokenAutoFillInputPayload,
-            QueryIdempotencyTokenAutoFillInputPayloadBuilder> {
+            QueryIdempotencyTokenAutoFillInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory QueryIdempotencyTokenAutoFillInputPayload(
       [void Function(QueryIdempotencyTokenAutoFillInputPayloadBuilder)
           updates]) = _$QueryIdempotencyTokenAutoFillInputPayload;

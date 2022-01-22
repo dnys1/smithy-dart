@@ -12,16 +12,16 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
-    _i2.OperationWithOptionalInputOutputInputPayload,
     _i2.OperationWithOptionalInputOutputInput,
-    _i3.OperationWithOptionalInputOutputOutputPayload,
+    _i2.OperationWithOptionalInputOutputInput,
+    _i3.OperationWithOptionalInputOutputOutput,
     _i3.OperationWithOptionalInputOutputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.OperationWithOptionalInputOutputInputPayload,
           _i2.OperationWithOptionalInputOutputInput,
-          _i3.OperationWithOptionalInputOutputOutputPayload,
+          _i2.OperationWithOptionalInputOutputInput,
+          _i3.OperationWithOptionalInputOutputOutput,
           _i3.OperationWithOptionalInputOutputOutput>> protocols = [
     _i4.AwsJson1_1Protocol(
         serializers: _i5.serializers,
@@ -42,11 +42,9 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
       });
   @override
   _i3.OperationWithOptionalInputOutputOutput buildOutput(
-          _i3.OperationWithOptionalInputOutputOutputPayload payload,
+          _i3.OperationWithOptionalInputOutputOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.OperationWithOptionalInputOutputOutput((b) {
-        b.value = payload.value;
-      });
+      _i3.OperationWithOptionalInputOutputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

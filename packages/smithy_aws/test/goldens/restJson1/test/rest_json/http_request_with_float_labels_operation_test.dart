@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonSupportsNaNFloatLabels (restJson1)', () async {
+  _i1.test('RestJsonSupportsNaNFloatLabels (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpRequestWithFloatLabelsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -42,7 +42,7 @@ void main() {
           _HttpRequestWithFloatLabelsInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsInfinityFloatLabels (restJson1)', () async {
+  _i1.test('RestJsonSupportsInfinityFloatLabels (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpRequestWithFloatLabelsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -72,7 +72,7 @@ void main() {
           _HttpRequestWithFloatLabelsInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatLabels (restJson1)', () async {
+  _i1.test('RestJsonSupportsNegativeInfinityFloatLabels (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpRequestWithFloatLabelsOperation(),
         testCase: const _i2.HttpRequestTestCase(

@@ -23,7 +23,8 @@ class MalformedContentTypeWithPayloadOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [],
+        mediaType: 'image/jpeg')
   ];
 
   @override

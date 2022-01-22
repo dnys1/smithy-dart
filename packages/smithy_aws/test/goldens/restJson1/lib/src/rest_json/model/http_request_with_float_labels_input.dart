@@ -14,7 +14,8 @@ abstract class HttpRequestWithFloatLabelsInput
         _i1.HttpInput<HttpRequestWithFloatLabelsInputPayload>
     implements
         Built<HttpRequestWithFloatLabelsInput,
-            HttpRequestWithFloatLabelsInputBuilder> {
+            HttpRequestWithFloatLabelsInputBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithFloatLabelsInput(
           [void Function(HttpRequestWithFloatLabelsInputBuilder) updates]) =
       _$HttpRequestWithFloatLabelsInput;
@@ -49,7 +50,8 @@ abstract class HttpRequestWithFloatLabelsInput
 abstract class HttpRequestWithFloatLabelsInputPayload
     implements
         Built<HttpRequestWithFloatLabelsInputPayload,
-            HttpRequestWithFloatLabelsInputPayloadBuilder> {
+            HttpRequestWithFloatLabelsInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithFloatLabelsInputPayload(
       [void Function(HttpRequestWithFloatLabelsInputPayloadBuilder)
           updates]) = _$HttpRequestWithFloatLabelsInputPayload;

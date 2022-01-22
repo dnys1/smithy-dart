@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('StringPayloadRequest (restJson1)', () async {
+  _i1.test('StringPayloadRequest (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpStringPayloadOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -40,7 +40,7 @@ void main() {
             requireQueryParams: []),
         inputSerializers: const [_StringPayloadInputRestJson1Serializer()]);
   });
-  _i1.test('StringPayloadResponse (restJson1)', () async {
+  _i1.test('StringPayloadResponse (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.HttpStringPayloadOperation(),
         testCase: const _i2.HttpResponseTestCase(

@@ -14,7 +14,8 @@ abstract class MalformedTimestampHeaderDefaultInput
         _i1.HttpInput<MalformedTimestampHeaderDefaultInputPayload>
     implements
         Built<MalformedTimestampHeaderDefaultInput,
-            MalformedTimestampHeaderDefaultInputBuilder> {
+            MalformedTimestampHeaderDefaultInputBuilder>,
+        _i1.EmptyPayload {
   factory MalformedTimestampHeaderDefaultInput(
       [void Function(MalformedTimestampHeaderDefaultInputBuilder)
           updates]) = _$MalformedTimestampHeaderDefaultInput;
@@ -37,7 +38,8 @@ abstract class MalformedTimestampHeaderDefaultInput
 abstract class MalformedTimestampHeaderDefaultInputPayload
     implements
         Built<MalformedTimestampHeaderDefaultInputPayload,
-            MalformedTimestampHeaderDefaultInputPayloadBuilder> {
+            MalformedTimestampHeaderDefaultInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory MalformedTimestampHeaderDefaultInputPayload(
       [void Function(MalformedTimestampHeaderDefaultInputPayloadBuilder)
           updates]) = _$MalformedTimestampHeaderDefaultInputPayload;

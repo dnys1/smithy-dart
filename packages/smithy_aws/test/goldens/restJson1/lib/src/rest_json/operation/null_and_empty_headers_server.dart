@@ -48,7 +48,18 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
   _i2.NullAndEmptyHeadersIo buildOutput(
           _i2.NullAndEmptyHeadersIoPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.NullAndEmptyHeadersIo((b) {});
+      _i2.NullAndEmptyHeadersIo((b) {
+        if (response.headers['X-A'] != null) {
+          b.a = response.headers['X-A']!;
+        }
+        if (response.headers['X-B'] != null) {
+          b.b = response.headers['X-B']!;
+        }
+        if (response.headers['X-C'] != null) {
+          b.c.addAll(
+              response.headers['X-C']!.split(',').map((el) => el.trim()));
+        }
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

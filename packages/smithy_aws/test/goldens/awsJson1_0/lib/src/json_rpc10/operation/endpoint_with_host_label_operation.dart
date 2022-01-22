@@ -10,14 +10,14 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class EndpointWithHostLabelOperation extends _i1.HttpOperation<
-    _i2.EndpointWithHostLabelOperationInputPayload,
+    _i2.EndpointWithHostLabelOperationInput,
     _i2.EndpointWithHostLabelOperationInput,
     _i1.Unit,
     _i1.Unit> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.EndpointWithHostLabelOperationInputPayload,
+          _i2.EndpointWithHostLabelOperationInput,
           _i2.EndpointWithHostLabelOperationInput,
           _i1.Unit,
           _i1.Unit>> protocols = [

@@ -49,6 +49,9 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
           _i2.Uint8List? payload, _i6.AWSStreamedHttpResponse response) =>
       _i3.TestPayloadBlobInputOutput((b) {
         b.data = payload;
+        if (response.headers['Content-Type'] != null) {
+          b.contentType = response.headers['Content-Type']!;
+        }
       });
   @override
   List<_i1.SmithyError> get errorTypes => const [];

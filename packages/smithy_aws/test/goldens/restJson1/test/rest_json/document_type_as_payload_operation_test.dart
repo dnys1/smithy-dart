@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('DocumentTypeAsPayloadInput (restJson1)', () async {
+  _i1.test('DocumentTypeAsPayloadInput (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeAsPayloadOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -46,7 +46,7 @@ void main() {
           _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentTypeAsPayloadInputString (restJson1)', () async {
+  _i1.test('DocumentTypeAsPayloadInputString (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeAsPayloadOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -76,7 +76,7 @@ void main() {
           _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentTypeAsPayloadOutput (restJson1)', () async {
+  _i1.test('DocumentTypeAsPayloadOutput (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeAsPayloadOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -103,7 +103,7 @@ void main() {
           _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentTypeAsPayloadOutputString (restJson1)', () async {
+  _i1.test('DocumentTypeAsPayloadOutputString (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeAsPayloadOperation(),
         testCase: const _i2.HttpResponseTestCase(

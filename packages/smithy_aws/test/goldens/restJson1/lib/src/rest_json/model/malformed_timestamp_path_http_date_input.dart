@@ -14,7 +14,8 @@ abstract class MalformedTimestampPathHttpDateInput
         _i1.HttpInput<MalformedTimestampPathHttpDateInputPayload>
     implements
         Built<MalformedTimestampPathHttpDateInput,
-            MalformedTimestampPathHttpDateInputBuilder> {
+            MalformedTimestampPathHttpDateInputBuilder>,
+        _i1.EmptyPayload {
   factory MalformedTimestampPathHttpDateInput(
           [void Function(MalformedTimestampPathHttpDateInputBuilder) updates]) =
       _$MalformedTimestampPathHttpDateInput;
@@ -48,7 +49,8 @@ abstract class MalformedTimestampPathHttpDateInput
 abstract class MalformedTimestampPathHttpDateInputPayload
     implements
         Built<MalformedTimestampPathHttpDateInputPayload,
-            MalformedTimestampPathHttpDateInputPayloadBuilder> {
+            MalformedTimestampPathHttpDateInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory MalformedTimestampPathHttpDateInputPayload(
       [void Function(MalformedTimestampPathHttpDateInputPayloadBuilder)
           updates]) = _$MalformedTimestampPathHttpDateInputPayload;

@@ -4,7 +4,6 @@ library aws_json1_0.json_rpc10.model.foo_error;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'foo_error.g.dart';
@@ -13,9 +12,7 @@ part 'foo_error.g.dart';
 /// framework history. It should only be implemented by clients.
 abstract class FooError
     with _i1.SmithyException
-    implements
-        Built<FooError, FooErrorBuilder>,
-        _i1.HasPayload<FooErrorPayload> {
+    implements Built<FooError, FooErrorBuilder>, _i1.EmptyPayload {
   factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();
@@ -27,24 +24,9 @@ abstract class FooError
   @BuiltValueHook(initializeBuilder: true)
   static void _init(FooErrorBuilder b) {}
   @override
-  FooErrorPayload getPayload() => FooErrorPayload();
-  @override
   String? get message => null;
   @override
   bool get isRetryable => false;
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class FooErrorPayload
-    implements Built<FooErrorPayload, FooErrorPayloadBuilder> {
-  factory FooErrorPayload([void Function(FooErrorPayloadBuilder) updates]) =
-      _$FooErrorPayload;
-
-  const FooErrorPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(FooErrorPayloadBuilder b) {}
 }
 
 class _FooErrorAwsJson10Serializer
@@ -52,8 +34,7 @@ class _FooErrorAwsJson10Serializer
   const _FooErrorAwsJson10Serializer() : super('FooError');
 
   @override
-  Iterable<Type> get types =>
-      const [FooError, _$FooError, FooErrorPayload, _$FooErrorPayload];
+  Iterable<Type> get types => const [FooError, _$FooError];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];

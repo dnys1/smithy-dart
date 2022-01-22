@@ -4,15 +4,13 @@ library aws_json1_1.json_protocol.model.greeting_with_errors_output;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'greeting_with_errors_output.g.dart';
 
 abstract class GreetingWithErrorsOutput
     implements
-        Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
-        _i1.HasPayload<GreetingWithErrorsOutputPayload> {
+        Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder> {
   factory GreetingWithErrorsOutput(
           [void Function(GreetingWithErrorsOutputBuilder) updates]) =
       _$GreetingWithErrorsOutput;
@@ -26,26 +24,6 @@ abstract class GreetingWithErrorsOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
-  @override
-  GreetingWithErrorsOutputPayload getPayload() =>
-      GreetingWithErrorsOutputPayload((b) => b..greeting = greeting);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class GreetingWithErrorsOutputPayload
-    implements
-        Built<GreetingWithErrorsOutputPayload,
-            GreetingWithErrorsOutputPayloadBuilder> {
-  factory GreetingWithErrorsOutputPayload(
-          [void Function(GreetingWithErrorsOutputPayloadBuilder) updates]) =
-      _$GreetingWithErrorsOutputPayload;
-
-  const GreetingWithErrorsOutputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingWithErrorsOutputPayloadBuilder b) {}
-  String? get greeting;
 }
 
 class _GreetingWithErrorsOutputAwsJson11Serializer
@@ -54,12 +32,8 @@ class _GreetingWithErrorsOutputAwsJson11Serializer
       : super('GreetingWithErrorsOutput');
 
   @override
-  Iterable<Type> get types => const [
-        GreetingWithErrorsOutput,
-        _$GreetingWithErrorsOutput,
-        GreetingWithErrorsOutputPayload,
-        _$GreetingWithErrorsOutputPayload
-      ];
+  Iterable<Type> get types =>
+      const [GreetingWithErrorsOutput, _$GreetingWithErrorsOutput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
@@ -95,7 +69,7 @@ class _GreetingWithErrorsOutputAwsJson11Serializer
       result
         ..add('greeting')
         ..add(serializers.serialize(payload.greeting,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

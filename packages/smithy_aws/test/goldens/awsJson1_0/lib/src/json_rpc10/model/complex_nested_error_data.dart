@@ -68,7 +68,7 @@ class _ComplexNestedErrorDataAwsJson10Serializer
       result
         ..add('Foo')
         ..add(serializers.serialize(payload.foo,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

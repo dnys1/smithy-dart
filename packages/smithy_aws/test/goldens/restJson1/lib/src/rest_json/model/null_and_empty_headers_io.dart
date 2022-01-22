@@ -12,7 +12,9 @@ part 'null_and_empty_headers_io.g.dart';
 
 abstract class NullAndEmptyHeadersIo
     with _i1.HttpInput<NullAndEmptyHeadersIoPayload>
-    implements Built<NullAndEmptyHeadersIo, NullAndEmptyHeadersIoBuilder> {
+    implements
+        Built<NullAndEmptyHeadersIo, NullAndEmptyHeadersIoBuilder>,
+        _i1.EmptyPayload {
   factory NullAndEmptyHeadersIo(
           [void Function(NullAndEmptyHeadersIoBuilder) updates]) =
       _$NullAndEmptyHeadersIo;
@@ -36,7 +38,8 @@ abstract class NullAndEmptyHeadersIo
 abstract class NullAndEmptyHeadersIoPayload
     implements
         Built<NullAndEmptyHeadersIoPayload,
-            NullAndEmptyHeadersIoPayloadBuilder> {
+            NullAndEmptyHeadersIoPayloadBuilder>,
+        _i1.EmptyPayload {
   factory NullAndEmptyHeadersIoPayload(
           [void Function(NullAndEmptyHeadersIoPayloadBuilder) updates]) =
       _$NullAndEmptyHeadersIoPayload;

@@ -47,6 +47,9 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
         if (payload != null) {
           b.payloadConfig.replace(payload);
         }
+        if (response.headers['x-amz-test-id'] != null) {
+          b.testId = response.headers['x-amz-test-id']!;
+        }
       });
   @override
   List<_i1.SmithyError> get errorTypes => const [];

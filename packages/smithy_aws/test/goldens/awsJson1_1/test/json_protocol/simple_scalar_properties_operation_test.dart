@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11SupportsNaNFloatInputs (awsJson1_1)', () async {
+  _i1.test('AwsJson11SupportsNaNFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,10 +41,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11SupportsInfinityFloatInputs (awsJson1_1)', () async {
+  _i1.test('AwsJson11SupportsInfinityFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -74,11 +75,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11SupportsNegativeInfinityFloatInputs (awsJson1_1)',
-      () async {
+  _i1.test('AwsJson11SupportsNegativeInfinityFloatInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -108,10 +109,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11SupportsNaNFloatInputs (awsJson1_1)', () async {
+  _i1.test('AwsJson11SupportsNaNFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -131,10 +133,11 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11SupportsInfinityFloatInputs (awsJson1_1)', () async {
+  _i1.test('AwsJson11SupportsInfinityFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -155,11 +158,11 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11SupportsNegativeInfinityFloatInputs (awsJson1_1)',
-      () async {
+  _i1.test('AwsJson11SupportsNegativeInfinityFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -180,8 +183,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+        ]);
   });
 }
 
@@ -191,10 +195,7 @@ class _SimpleScalarPropertiesInputOutputAwsJson11Serializer extends _i4
       : super('SimpleScalarPropertiesInputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        _i5.SimpleScalarPropertiesInputOutput,
-        _i5.SimpleScalarPropertiesInputOutputPayload
-      ];
+  Iterable<Type> get types => const [_i5.SimpleScalarPropertiesInputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

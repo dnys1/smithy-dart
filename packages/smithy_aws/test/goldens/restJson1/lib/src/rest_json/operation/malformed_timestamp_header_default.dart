@@ -35,7 +35,7 @@ class MalformedTimestampHeaderDefaultOperation extends _i1.HttpOperation<
         b.path = '/MalformedTimestampHeaderDefault';
         b.successCode = 200;
         b.headers['timestamp'] = _i1.Timestamp(input.timestamp)
-            .format(_i1.TimestampFormat.unknown)
+            .format(_i1.TimestampFormat.httpDate)
             .toString();
       });
   @override

@@ -91,8 +91,8 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
     // wire; if a key needs to be percent-encoded, then it MUST appear
     // percent-encoded in this list.
     expect(
-      request.uri.queryParameters.containsKey(queryParamName),
-      isTrue,
+      request.uri.queryParameters,
+      contains(queryParamName),
     );
   }
 
@@ -103,8 +103,8 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   // request value.
   for (var headerEntry in testCase.headers.entries) {
     expect(
-      request.headers[headerEntry.key],
-      equals(headerEntry.value),
+      request.headers,
+      containsPair(headerEntry.key, headerEntry.value),
     );
   }
 
@@ -122,8 +122,8 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   // headers do not need to appear in this list.
   for (var headerName in testCase.requireHeaders) {
     expect(
-      request.headers.containsKey(headerName),
-      isTrue,
+      request.headers,
+      contains(headerName),
     );
   }
 
@@ -155,8 +155,12 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
         break;
       case 'application/json':
         final expectedJsonBody = jsonDecode(expectedBody);
-        final jsonBody =
-            bodyBytes.isEmpty ? '' : jsonDecode(utf8.decode(bodyBytes));
+        final Object? jsonBody;
+        if (bodyBytes.isEmpty) {
+          jsonBody = '';
+        } else {
+          jsonBody = jsonDecode(utf8.decode(bodyBytes));
+        }
         expect(jsonBody, equals(expectedJsonBody));
         break;
       default:

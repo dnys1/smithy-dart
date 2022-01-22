@@ -14,7 +14,8 @@ abstract class HttpRequestWithRegexLiteralInput
         _i1.HttpInput<HttpRequestWithRegexLiteralInputPayload>
     implements
         Built<HttpRequestWithRegexLiteralInput,
-            HttpRequestWithRegexLiteralInputBuilder> {
+            HttpRequestWithRegexLiteralInputBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithRegexLiteralInput(
           [void Function(HttpRequestWithRegexLiteralInputBuilder) updates]) =
       _$HttpRequestWithRegexLiteralInput;
@@ -46,7 +47,8 @@ abstract class HttpRequestWithRegexLiteralInput
 abstract class HttpRequestWithRegexLiteralInputPayload
     implements
         Built<HttpRequestWithRegexLiteralInputPayload,
-            HttpRequestWithRegexLiteralInputPayloadBuilder> {
+            HttpRequestWithRegexLiteralInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithRegexLiteralInputPayload(
       [void Function(HttpRequestWithRegexLiteralInputPayloadBuilder)
           updates]) = _$HttpRequestWithRegexLiteralInputPayload;

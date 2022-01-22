@@ -15,7 +15,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonInputAndOutputWithStringHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithStringHeaders (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -53,8 +53,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (restJson1)',
-      () async {
+  _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -86,7 +85,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithNumericHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithNumericHeaders (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -132,7 +131,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithBooleanHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithBooleanHeaders (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -170,7 +169,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithTimestampHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithTimestampHeaders (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -205,7 +204,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithEnumHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithEnumHeaders (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -238,7 +237,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNaNFloatHeaderInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsNaNFloatHeaderInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -268,7 +267,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsInfinityFloatHeaderInputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsInfinityFloatHeaderInputs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -298,7 +297,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderInputs (restJson1)',
+  _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderInputs (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
@@ -329,7 +328,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithStringHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithStringHeaders (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -361,7 +360,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (restJson1)',
+  _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
@@ -388,7 +387,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithNumericHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithNumericHeaders (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -428,7 +427,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithBooleanHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithBooleanHeaders (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -460,7 +459,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithTimestampHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithTimestampHeaders (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -489,7 +488,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonInputAndOutputWithEnumHeaders (restJson1)', () async {
+  _i1.test('RestJsonInputAndOutputWithEnumHeaders (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -516,7 +515,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNaNFloatHeaderOutputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsNaNFloatHeaderOutputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -540,7 +539,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsInfinityFloatHeaderOutputs (restJson1)', () async {
+  _i1.test('RestJsonSupportsInfinityFloatHeaderOutputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -564,7 +563,7 @@ void main() {
           _InputAndOutputWithHeadersIoRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderOutputs (restJson1)',
+  _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderOutputs (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.InputAndOutputWithHeadersOperation(),

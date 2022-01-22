@@ -11,7 +11,8 @@ part 'empty_input_and_empty_output_output.g.dart';
 abstract class EmptyInputAndEmptyOutputOutput
     implements
         Built<EmptyInputAndEmptyOutputOutput,
-            EmptyInputAndEmptyOutputOutputBuilder> {
+            EmptyInputAndEmptyOutputOutputBuilder>,
+        _i1.EmptyPayload {
   factory EmptyInputAndEmptyOutputOutput(
           [void Function(EmptyInputAndEmptyOutputOutputBuilder) updates]) =
       _$EmptyInputAndEmptyOutputOutput;

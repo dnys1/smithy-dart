@@ -116,6 +116,9 @@ class _Core {
           ..types.add(value),
       );
 
+  /// Creates an [core.MapEntry] reference.
+  Reference get mapEntry => const Reference('MapEntry', _url);
+
   /// Creates an [core.Object] reference.
   Reference get object => const Reference('Object', _url);
 
@@ -404,6 +407,9 @@ class _Smithy {
   const _Smithy();
 
   static const _url = 'package:smithy/smithy.dart';
+
+  /// Creates a [smithy.EmptyPayload] reference.
+  Reference get emptyPayload => const Reference('EmptyPayload', _url);
 
   /// Creates a [smithy.ErrorKind] reference.
   Reference get errorKind => const Reference('ErrorKind', _url);

@@ -52,7 +52,7 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
         }
         if (input.defaultFormat != null) {
           b.headers['X-defaultFormat'] = _i1.Timestamp(input.defaultFormat!)
-              .format(_i1.TimestampFormat.unknown)
+              .format(_i1.TimestampFormat.httpDate)
               .toString();
         }
         if (input.targetEpochSeconds != null) {
@@ -76,7 +76,50 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
   _i2.TimestampFormatHeadersIo buildOutput(
           _i2.TimestampFormatHeadersIoPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.TimestampFormatHeadersIo((b) {});
+      _i2.TimestampFormatHeadersIo((b) {
+        if (response.headers['X-memberEpochSeconds'] != null) {
+          b.memberEpochSeconds = _i1.Timestamp.parse(
+                  int.parse(response.headers['X-memberEpochSeconds']!),
+                  format: _i1.TimestampFormat.epochSeconds)
+              .asDateTime;
+        }
+        if (response.headers['X-memberHttpDate'] != null) {
+          b.memberHttpDate = _i1.Timestamp.parse(
+                  response.headers['X-memberHttpDate']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+        if (response.headers['X-memberDateTime'] != null) {
+          b.memberDateTime = _i1.Timestamp.parse(
+                  response.headers['X-memberDateTime']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+        if (response.headers['X-defaultFormat'] != null) {
+          b.defaultFormat = _i1.Timestamp.parse(
+                  response.headers['X-defaultFormat']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+        if (response.headers['X-targetEpochSeconds'] != null) {
+          b.targetEpochSeconds = _i1.Timestamp.parse(
+                  int.parse(response.headers['X-targetEpochSeconds']!),
+                  format: _i1.TimestampFormat.epochSeconds)
+              .asDateTime;
+        }
+        if (response.headers['X-targetHttpDate'] != null) {
+          b.targetHttpDate = _i1.Timestamp.parse(
+                  response.headers['X-targetHttpDate']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+        if (response.headers['X-targetDateTime'] != null) {
+          b.targetDateTime = _i1.Timestamp.parse(
+                  response.headers['X-targetDateTime']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

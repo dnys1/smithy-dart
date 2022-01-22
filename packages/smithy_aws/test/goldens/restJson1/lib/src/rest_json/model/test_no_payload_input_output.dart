@@ -12,7 +12,8 @@ part 'test_no_payload_input_output.g.dart';
 abstract class TestNoPayloadInputOutput
     with _i1.HttpInput<TestNoPayloadInputOutputPayload>
     implements
-        Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder> {
+        Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder>,
+        _i1.EmptyPayload {
   factory TestNoPayloadInputOutput(
           [void Function(TestNoPayloadInputOutputBuilder) updates]) =
       _$TestNoPayloadInputOutput;
@@ -35,7 +36,8 @@ abstract class TestNoPayloadInputOutput
 abstract class TestNoPayloadInputOutputPayload
     implements
         Built<TestNoPayloadInputOutputPayload,
-            TestNoPayloadInputOutputPayloadBuilder> {
+            TestNoPayloadInputOutputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory TestNoPayloadInputOutputPayload(
           [void Function(TestNoPayloadInputOutputPayloadBuilder) updates]) =
       _$TestNoPayloadInputOutputPayload;

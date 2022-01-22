@@ -14,7 +14,8 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
         _i1.HttpInput<HttpRequestWithLabelsAndTimestampFormatInputPayload>
     implements
         Built<HttpRequestWithLabelsAndTimestampFormatInput,
-            HttpRequestWithLabelsAndTimestampFormatInputBuilder> {
+            HttpRequestWithLabelsAndTimestampFormatInputBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithLabelsAndTimestampFormatInput(
       [void Function(HttpRequestWithLabelsAndTimestampFormatInputBuilder)
           updates]) = _$HttpRequestWithLabelsAndTimestampFormatInput;
@@ -78,7 +79,8 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
 abstract class HttpRequestWithLabelsAndTimestampFormatInputPayload
     implements
         Built<HttpRequestWithLabelsAndTimestampFormatInputPayload,
-            HttpRequestWithLabelsAndTimestampFormatInputPayloadBuilder> {
+            HttpRequestWithLabelsAndTimestampFormatInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithLabelsAndTimestampFormatInputPayload(
       [void Function(HttpRequestWithLabelsAndTimestampFormatInputPayloadBuilder)
           updates]) = _$HttpRequestWithLabelsAndTimestampFormatInputPayload;

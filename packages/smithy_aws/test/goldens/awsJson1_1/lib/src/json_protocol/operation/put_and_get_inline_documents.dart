@@ -11,16 +11,16 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// This example serializes an inline document as part of the payload.
 class PutAndGetInlineDocumentsOperation extends _i1.HttpOperation<
-    _i2.PutAndGetInlineDocumentsInputOutputPayload,
     _i2.PutAndGetInlineDocumentsInputOutput,
-    _i2.PutAndGetInlineDocumentsInputOutputPayload,
+    _i2.PutAndGetInlineDocumentsInputOutput,
+    _i2.PutAndGetInlineDocumentsInputOutput,
     _i2.PutAndGetInlineDocumentsInputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.PutAndGetInlineDocumentsInputOutputPayload,
           _i2.PutAndGetInlineDocumentsInputOutput,
-          _i2.PutAndGetInlineDocumentsInputOutputPayload,
+          _i2.PutAndGetInlineDocumentsInputOutput,
+          _i2.PutAndGetInlineDocumentsInputOutput,
           _i2.PutAndGetInlineDocumentsInputOutput>> protocols = [
     _i3.AwsJson1_1Protocol(
         serializers: _i4.serializers,
@@ -40,11 +40,9 @@ class PutAndGetInlineDocumentsOperation extends _i1.HttpOperation<
       });
   @override
   _i2.PutAndGetInlineDocumentsInputOutput buildOutput(
-          _i2.PutAndGetInlineDocumentsInputOutputPayload payload,
+          _i2.PutAndGetInlineDocumentsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.PutAndGetInlineDocumentsInputOutput((b) {
-        b.inlineDocument = payload.inlineDocument;
-      });
+      _i2.PutAndGetInlineDocumentsInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

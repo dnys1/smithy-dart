@@ -12,16 +12,16 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
-    _i2.SimpleScalarPropertiesInputPayload,
     _i2.SimpleScalarPropertiesInput,
-    _i3.SimpleScalarPropertiesOutputPayload,
+    _i2.SimpleScalarPropertiesInput,
+    _i3.SimpleScalarPropertiesOutput,
     _i3.SimpleScalarPropertiesOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.SimpleScalarPropertiesInputPayload,
           _i2.SimpleScalarPropertiesInput,
-          _i3.SimpleScalarPropertiesOutputPayload,
+          _i2.SimpleScalarPropertiesInput,
+          _i3.SimpleScalarPropertiesOutput,
           _i3.SimpleScalarPropertiesOutput>> protocols = [
     _i4.AwsJson1_0Protocol(
         serializers: _i5.serializers,
@@ -41,12 +41,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       });
   @override
   _i3.SimpleScalarPropertiesOutput buildOutput(
-          _i3.SimpleScalarPropertiesOutputPayload payload,
+          _i3.SimpleScalarPropertiesOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.SimpleScalarPropertiesOutput((b) {
-        b.doubleValue = payload.doubleValue;
-        b.floatValue = payload.floatValue;
-      });
+      _i3.SimpleScalarPropertiesOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -12,7 +12,9 @@ part 'malformed_string_input.g.dart';
 
 abstract class MalformedStringInput
     with _i1.HttpInput<MalformedStringInputPayload>
-    implements Built<MalformedStringInput, MalformedStringInputBuilder> {
+    implements
+        Built<MalformedStringInput, MalformedStringInputBuilder>,
+        _i1.EmptyPayload {
   factory MalformedStringInput(
           [void Function(MalformedStringInputBuilder) updates]) =
       _$MalformedStringInput;
@@ -33,7 +35,8 @@ abstract class MalformedStringInput
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedStringInputPayload
     implements
-        Built<MalformedStringInputPayload, MalformedStringInputPayloadBuilder> {
+        Built<MalformedStringInputPayload, MalformedStringInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory MalformedStringInputPayload(
           [void Function(MalformedStringInputPayloadBuilder) updates]) =
       _$MalformedStringInputPayload;

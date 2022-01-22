@@ -14,7 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpPayloadTraitsWithBlob (restJson1)', () async {
+  _i1.test('RestJsonHttpPayloadTraitsWithBlob (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpPayloadTraitsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -47,7 +47,7 @@ void main() {
           _HttpPayloadTraitsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpPayloadTraitsWithNoBlobBody (restJson1)', () async {
+  _i1.test('RestJsonHttpPayloadTraitsWithNoBlobBody (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpPayloadTraitsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -77,7 +77,7 @@ void main() {
           _HttpPayloadTraitsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpPayloadTraitsWithBlob (restJson1)', () async {
+  _i1.test('RestJsonHttpPayloadTraitsWithBlob (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.HttpPayloadTraitsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -101,7 +101,7 @@ void main() {
           _HttpPayloadTraitsInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpPayloadTraitsWithNoBlobBody (restJson1)', () async {
+  _i1.test('RestJsonHttpPayloadTraitsWithNoBlobBody (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.HttpPayloadTraitsOperation(),
         testCase: const _i2.HttpResponseTestCase(

@@ -29,7 +29,7 @@ abstract class TestPayloadStructureInputOutput
   static void _init(TestPayloadStructureInputOutputBuilder b) {}
   _i2.PayloadConfig? get payloadConfig;
   String? get testId;
-  _i2.PayloadConfig? getPayload() => payloadConfig;
+  _i2.PayloadConfig? getPayload() => payloadConfig ?? _i2.PayloadConfig();
 }
 
 class _TestPayloadStructureInputOutputRestJson1Serializer

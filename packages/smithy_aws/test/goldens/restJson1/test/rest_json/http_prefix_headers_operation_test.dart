@@ -15,7 +15,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpPrefixHeadersArePresent (restJson1)', () async {
+  _i1.test('RestJsonHttpPrefixHeadersArePresent (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpPrefixHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -50,7 +50,7 @@ void main() {
             requireQueryParams: []),
         inputSerializers: const [_HttpPrefixHeadersInputRestJson1Serializer()]);
   });
-  _i1.test('RestJsonHttpPrefixHeadersAreNotPresent (restJson1)', () async {
+  _i1.test('RestJsonHttpPrefixHeadersAreNotPresent (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpPrefixHeadersOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -79,7 +79,7 @@ void main() {
             requireQueryParams: []),
         inputSerializers: const [_HttpPrefixHeadersInputRestJson1Serializer()]);
   });
-  _i1.test('RestJsonHttpPrefixHeadersArePresent (restJson1)', () async {
+  _i1.test('RestJsonHttpPrefixHeadersArePresent (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.HttpPrefixHeadersOperation(),
         testCase: const _i2.HttpResponseTestCase(

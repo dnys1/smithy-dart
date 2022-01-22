@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonJsonMaps (restJson1)', () async {
+  _i1.test('RestJsonJsonMaps (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -54,7 +54,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSerializesNullMapValues (restJson1)', () async {
+  _i1.test('RestJsonSerializesNullMapValues (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -91,7 +91,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSerializesZeroValuesInMaps (restJson1)', () async {
+  _i1.test('RestJsonSerializesZeroValuesInMaps (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -127,7 +127,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSerializesSparseSetMap (restJson1)', () async {
+  _i1.test('RestJsonSerializesSparseSetMap (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -164,7 +164,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSerializesDenseSetMap (restJson1)', () async {
+  _i1.test('RestJsonSerializesDenseSetMap (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -201,8 +201,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSerializesSparseSetMapAndRetainsNull (restJson1)',
-      () async {
+  _i1.test('RestJsonSerializesSparseSetMapAndRetainsNull (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -240,7 +239,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonJsonMaps (restJson1)', () async {
+  _i1.test('RestJsonJsonMaps (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -275,7 +274,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDeserializesNullMapValues (restJson1)', () async {
+  _i1.test('RestJsonDeserializesNullMapValues (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -306,7 +305,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDeserializesZeroValuesInMaps (restJson1)', () async {
+  _i1.test('RestJsonDeserializesZeroValuesInMaps (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -336,7 +335,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDeserializesSparseSetMap (restJson1)', () async {
+  _i1.test('RestJsonDeserializesSparseSetMap (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -367,7 +366,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDeserializesDenseSetMap (restJson1)', () async {
+  _i1.test('RestJsonDeserializesDenseSetMap (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -398,7 +397,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDeserializesSparseSetMapAndRetainsNull (restJson1)',
+  _i1.test('RestJsonDeserializesSparseSetMapAndRetainsNull (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
@@ -431,7 +430,7 @@ void main() {
           _GreetingStructRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonDeserializesDenseSetMapAndSkipsNull (restJson1)', () async {
+  _i1.test('RestJsonDeserializesDenseSetMapAndSkipsNull (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonMapsOperation(),
         testCase: const _i2.HttpResponseTestCase(

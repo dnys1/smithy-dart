@@ -4,6 +4,8 @@ import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
+/// Generates the `serializers` and `builderFactories` fields necessary for shared
+/// use by the operation protocols.
 class SerializersGenerator extends Generator<Library> {
   SerializersGenerator(this.context);
 

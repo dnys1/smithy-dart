@@ -13,7 +13,8 @@ part 'http_request_with_labels_input.g.dart';
 abstract class HttpRequestWithLabelsInput
     with _i1.HttpInput<HttpRequestWithLabelsInputPayload>
     implements
-        Built<HttpRequestWithLabelsInput, HttpRequestWithLabelsInputBuilder> {
+        Built<HttpRequestWithLabelsInput, HttpRequestWithLabelsInputBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithLabelsInput(
           [void Function(HttpRequestWithLabelsInputBuilder) updates]) =
       _$HttpRequestWithLabelsInput;
@@ -72,7 +73,8 @@ abstract class HttpRequestWithLabelsInput
 abstract class HttpRequestWithLabelsInputPayload
     implements
         Built<HttpRequestWithLabelsInputPayload,
-            HttpRequestWithLabelsInputPayloadBuilder> {
+            HttpRequestWithLabelsInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithLabelsInputPayload(
           [void Function(HttpRequestWithLabelsInputPayloadBuilder) updates]) =
       _$HttpRequestWithLabelsInputPayload;

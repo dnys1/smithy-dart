@@ -1,4 +1,3 @@
-import 'package:aws_common/aws_common.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -18,6 +17,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     CodegenContext context,
   ) : super(shape, context: context);
 
+  /// The members marked with the `hostLabel` or `httpLabel` traits.
   late final List<MemberShape> labels = shape.isInputShape
       ? [
           ...httpInputTraits!.httpLabels,
@@ -50,6 +50,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
+
+            // A marker trait for empty payloads, which should be serialized
+            // than payloads with all null members.
+            if (payloadShape == null && payloadMembers.isEmpty)
+              DartTypes.smithy.emptyPayload,
           ])
           ..mixins.addAll([
             if (shape.isError)
@@ -82,7 +87,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ]),
       );
 
-  /// The struct's payload class.
+  /// The struct's built payload class.
   Class get _payloadClass => Class(
         (c) => c
           ..name = '${className}Payload'
@@ -100,6 +105,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol!),
+
+            // A marker trait for empty payloads, which should be serialized
+            // than payloads with all null members.
+            if (payloadMembers.isEmpty) DartTypes.smithy.emptyPayload,
           ])
           ..constructors.addAll([
             _factoryConstructor(
@@ -183,6 +192,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             // Add override annotation for this specific field when the class
             // implements SmithyError. Per the docs, this field should be
             // treated specially.
+            //
             // https://awslabs.github.io/smithy/1.0/spec/core/type-refinement-traits.html#error-trait
             if (shape.isError && member.dartName == 'message')
               DartTypes.core.override,
@@ -209,7 +219,17 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Code get _buildPayload {
     // If an instance member, return it.
     if (payloadShape != null) {
-      return refer(payloadShape!.dartName).code;
+      Expression payload = refer(payloadShape!.dartName);
+      // If the payload shape is empty or has only nullable instance members,
+      // and this shape's instance member is null, return a built payload.
+      final targetShape = context.shapeFor(payloadShape!.target);
+      if (targetShape is StructureShape &&
+          targetShape.members.values.map((member) {
+            return member.isNullable(targetShape);
+          }).every((isNullable) => isNullable)) {
+        payload = payload.ifNullThen(payloadSymbol.unboxed.newInstance([]));
+      }
+      return payload.code;
     }
 
     // Build the payload using the payload builder class.
@@ -225,6 +245,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     ]).code;
   }
 
+  /// Creates the `toString` equivalent for [labelShape] in the context of the
+  /// `labelFor` method.
+  ///
+  /// Labels must be marked `@required`, thus we do not have to do null checks.
+  ///
+  /// See: https://awslabs.github.io/smithy/1.0/spec/core/http-traits.html?highlight=http#httplabel-trait
   Expression _labelToString(MemberShape labelShape, Expression labelRef) {
     final targetShape = context.shapeFor(labelShape.target);
     final type = targetShape.getType();
@@ -267,8 +293,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             .call([
               DartTypes.smithy.timestampFormat.property(format.name),
             ])
-            .property('toString')
+            .property('toString') // Since we can get a num or String back.
             .call([]);
+
+      // The `httpLabel` trait can be applied to `structure` members marked with
+      // the `required` trait that target a `string`, `number`, `boolean`, or
+      // `timestamp`.
       default:
         throw ArgumentError('Invalid label shape type: $type');
     }
@@ -281,7 +311,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // The `labelFor` method
-
     if (labels.isNotEmpty) {
       yield Method(
         (m) => m
@@ -368,7 +397,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // `message` getter
-    if (!CaseInsensitiveSet(shape.members.keys).contains('message')) {
+    if (!shape.members.values.map((m) => m.dartName).contains('message')) {
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)

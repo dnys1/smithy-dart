@@ -6,7 +6,6 @@ import 'package:aws_json1_0/src/json_rpc10/model/complex_nested_error_data.dart'
     as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'complex_error.g.dart';
@@ -14,9 +13,7 @@ part 'complex_error.g.dart';
 /// This error is thrown when a request is invalid.
 abstract class ComplexError
     with _i1.SmithyException
-    implements
-        Built<ComplexError, ComplexErrorBuilder>,
-        _i1.HasPayload<ComplexErrorPayload> {
+    implements Built<ComplexError, ComplexErrorBuilder> {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
@@ -31,29 +28,9 @@ abstract class ComplexError
   _i2.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override
-  ComplexErrorPayload getPayload() => ComplexErrorPayload((b) => b
-    ..nested = nested
-    ..topLevel = topLevel);
-  @override
   String? get message => null;
   @override
   bool get isRetryable => false;
-}
-
-@_i3.internal
-@BuiltValue(nestedBuilders: false)
-abstract class ComplexErrorPayload
-    implements Built<ComplexErrorPayload, ComplexErrorPayloadBuilder> {
-  factory ComplexErrorPayload(
-          [void Function(ComplexErrorPayloadBuilder) updates]) =
-      _$ComplexErrorPayload;
-
-  const ComplexErrorPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ComplexErrorPayloadBuilder b) {}
-  _i2.ComplexNestedErrorData? get nested;
-  String? get topLevel;
 }
 
 class _ComplexErrorAwsJson10Serializer
@@ -61,12 +38,7 @@ class _ComplexErrorAwsJson10Serializer
   const _ComplexErrorAwsJson10Serializer() : super('ComplexError');
 
   @override
-  Iterable<Type> get types => const [
-        ComplexError,
-        _$ComplexError,
-        ComplexErrorPayload,
-        _$ComplexErrorPayload
-      ];
+  Iterable<Type> get types => const [ComplexError, _$ComplexError];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -109,13 +81,14 @@ class _ComplexErrorAwsJson10Serializer
       result
         ..add('Nested')
         ..add(serializers.serialize(payload.nested,
-            specifiedType: FullType.nullable(_i2.ComplexNestedErrorData)));
+            specifiedType:
+                const FullType.nullable(_i2.ComplexNestedErrorData)));
     }
     if (payload.topLevel != null) {
       result
         ..add('TopLevel')
         ..add(serializers.serialize(payload.topLevel,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

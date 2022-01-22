@@ -13,7 +13,8 @@ abstract class HttpPrefixHeadersInResponseInput
         _i1.HttpInput<HttpPrefixHeadersInResponseInput>
     implements
         Built<HttpPrefixHeadersInResponseInput,
-            HttpPrefixHeadersInResponseInputBuilder> {
+            HttpPrefixHeadersInResponseInputBuilder>,
+        _i1.EmptyPayload {
   factory HttpPrefixHeadersInResponseInput(
           [void Function(HttpPrefixHeadersInResponseInputBuilder) updates]) =
       _$HttpPrefixHeadersInResponseInput;

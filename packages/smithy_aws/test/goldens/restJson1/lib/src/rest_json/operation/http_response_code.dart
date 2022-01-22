@@ -31,7 +31,9 @@ class HttpResponseCodeOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
   _i2.HttpResponseCodeOutput buildOutput(
           _i2.HttpResponseCodeOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.HttpResponseCodeOutput((b) {});
+      _i2.HttpResponseCodeOutput((b) {
+        b.status = response.statusCode;
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

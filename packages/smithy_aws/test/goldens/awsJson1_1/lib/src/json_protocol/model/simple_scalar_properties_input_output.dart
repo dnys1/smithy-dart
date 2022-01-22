@@ -4,18 +4,16 @@ library aws_json1_1.json_protocol.model.simple_scalar_properties_input_output;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'simple_scalar_properties_input_output.g.dart';
 
 abstract class SimpleScalarPropertiesInputOutput
     with
-        _i1.HttpInput<SimpleScalarPropertiesInputOutputPayload>
+        _i1.HttpInput<SimpleScalarPropertiesInputOutput>
     implements
         Built<SimpleScalarPropertiesInputOutput,
-            SimpleScalarPropertiesInputOutputBuilder>,
-        _i1.HasPayload<SimpleScalarPropertiesInputOutputPayload> {
+            SimpleScalarPropertiesInputOutputBuilder> {
   factory SimpleScalarPropertiesInputOutput(
           [void Function(SimpleScalarPropertiesInputOutputBuilder) updates]) =
       _$SimpleScalarPropertiesInputOutput;
@@ -30,29 +28,6 @@ abstract class SimpleScalarPropertiesInputOutput
   static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
-  @override
-  SimpleScalarPropertiesInputOutputPayload getPayload() =>
-      SimpleScalarPropertiesInputOutputPayload((b) => b
-        ..doubleValue = doubleValue
-        ..floatValue = floatValue);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class SimpleScalarPropertiesInputOutputPayload
-    implements
-        Built<SimpleScalarPropertiesInputOutputPayload,
-            SimpleScalarPropertiesInputOutputPayloadBuilder> {
-  factory SimpleScalarPropertiesInputOutputPayload(
-      [void Function(SimpleScalarPropertiesInputOutputPayloadBuilder)
-          updates]) = _$SimpleScalarPropertiesInputOutputPayload;
-
-  const SimpleScalarPropertiesInputOutputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesInputOutputPayloadBuilder b) {}
-  double? get doubleValue;
-  double? get floatValue;
 }
 
 class _SimpleScalarPropertiesInputOutputAwsJson11Serializer
@@ -63,9 +38,7 @@ class _SimpleScalarPropertiesInputOutputAwsJson11Serializer
   @override
   Iterable<Type> get types => const [
         SimpleScalarPropertiesInputOutput,
-        _$SimpleScalarPropertiesInputOutput,
-        SimpleScalarPropertiesInputOutputPayload,
-        _$SimpleScalarPropertiesInputOutputPayload
+        _$SimpleScalarPropertiesInputOutput
       ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
@@ -108,13 +81,13 @@ class _SimpleScalarPropertiesInputOutputAwsJson11Serializer
       result
         ..add('doubleValue')
         ..add(serializers.serialize(payload.doubleValue,
-            specifiedType: FullType.nullable(double)));
+            specifiedType: const FullType.nullable(double)));
     }
     if (payload.floatValue != null) {
       result
         ..add('floatValue')
         ..add(serializers.serialize(payload.floatValue,
-            specifiedType: FullType.nullable(double)));
+            specifiedType: const FullType.nullable(double)));
     }
     return result;
   }

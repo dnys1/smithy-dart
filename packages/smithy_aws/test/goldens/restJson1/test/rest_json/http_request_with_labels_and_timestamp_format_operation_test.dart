@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpRequestWithLabelsAndTimestampFormat (restJson1)',
+  _i1.test('RestJsonHttpRequestWithLabelsAndTimestampFormat (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpRequestWithLabelsAndTimestampFormatOperation(),

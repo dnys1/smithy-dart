@@ -11,12 +11,12 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 /// This operation uses unions for inputs and outputs.
-class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInputPayload,
-    _i2.JsonUnionsInput, _i3.JsonUnionsOutputPayload, _i3.JsonUnionsOutput> {
+class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
+    _i2.JsonUnionsInput, _i3.JsonUnionsOutput, _i3.JsonUnionsOutput> {
   @override
   late final List<
-      _i1.HttpProtocol<_i2.JsonUnionsInputPayload, _i2.JsonUnionsInput,
-          _i3.JsonUnionsOutputPayload, _i3.JsonUnionsOutput>> protocols = [
+      _i1.HttpProtocol<_i2.JsonUnionsInput, _i2.JsonUnionsInput,
+          _i3.JsonUnionsOutput, _i3.JsonUnionsOutput>> protocols = [
     _i4.AwsJson1_0Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
@@ -33,11 +33,9 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInputPayload,
         b.successCode = 200;
       });
   @override
-  _i3.JsonUnionsOutput buildOutput(_i3.JsonUnionsOutputPayload payload,
-          _i6.AWSStreamedHttpResponse response) =>
-      _i3.JsonUnionsOutput((b) {
-        b.contents = payload.contents;
-      });
+  _i3.JsonUnionsOutput buildOutput(
+          _i3.JsonUnionsOutput payload, _i6.AWSStreamedHttpResponse response) =>
+      _i3.JsonUnionsOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

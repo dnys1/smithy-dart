@@ -15,7 +15,8 @@ abstract class QueryParamsAsStringListMapInput
         _i1.HttpInput<QueryParamsAsStringListMapInputPayload>
     implements
         Built<QueryParamsAsStringListMapInput,
-            QueryParamsAsStringListMapInputBuilder> {
+            QueryParamsAsStringListMapInputBuilder>,
+        _i1.EmptyPayload {
   factory QueryParamsAsStringListMapInput(
           [void Function(QueryParamsAsStringListMapInputBuilder) updates]) =
       _$QueryParamsAsStringListMapInput;
@@ -39,7 +40,8 @@ abstract class QueryParamsAsStringListMapInput
 abstract class QueryParamsAsStringListMapInputPayload
     implements
         Built<QueryParamsAsStringListMapInputPayload,
-            QueryParamsAsStringListMapInputPayloadBuilder> {
+            QueryParamsAsStringListMapInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory QueryParamsAsStringListMapInputPayload(
       [void Function(QueryParamsAsStringListMapInputPayloadBuilder)
           updates]) = _$QueryParamsAsStringListMapInputPayload;

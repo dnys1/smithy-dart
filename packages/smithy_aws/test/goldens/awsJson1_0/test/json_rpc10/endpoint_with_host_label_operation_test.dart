@@ -12,15 +12,14 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10EndpointTraitWithHostLabel (awsJson1_0)', () async {
+  _i1.test('AwsJson10EndpointTraitWithHostLabel (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.EndpointWithHostLabelOperation(),
         testCase: const _i2.HttpRequestTestCase(
             id: 'AwsJson10EndpointTraitWithHostLabel',
             documentation:
                 'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
             authScheme: null,
             body: '{"label": "bar"}',
             bodyMediaType: 'application/json',
@@ -39,8 +38,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _EndpointWithHostLabelOperationInputAwsJson10Serializer());
+        inputSerializers: const [
+          _EndpointWithHostLabelOperationInputAwsJson10Serializer()
+        ]);
   });
 }
 
@@ -50,10 +50,7 @@ class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i4
       : super('EndpointWithHostLabelOperationInput');
 
   @override
-  Iterable<Type> get types => const [
-        _i5.EndpointWithHostLabelOperationInput,
-        _i5.EndpointWithHostLabelOperationInputPayload
-      ];
+  Iterable<Type> get types => const [_i5.EndpointWithHostLabelOperationInput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -69,7 +66,7 @@ class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i4
       final value = iterator.current;
       switch (key) {
         case 'label':
-          result.label = (serializers.deserialize(value,
+          result.label = (serializers.deserialize(value!,
               specifiedType: const FullType(String)) as String);
           break;
       }

@@ -11,17 +11,14 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// This example serializes enums as top level properties, in lists, sets, and maps.
 class JsonEnumsOperation extends _i1.HttpOperation<
-    _i2.JsonEnumsInputOutputPayload,
     _i2.JsonEnumsInputOutput,
-    _i2.JsonEnumsInputOutputPayload,
+    _i2.JsonEnumsInputOutput,
+    _i2.JsonEnumsInputOutput,
     _i2.JsonEnumsInputOutput> {
   @override
   late final List<
-      _i1.HttpProtocol<
-          _i2.JsonEnumsInputOutputPayload,
-          _i2.JsonEnumsInputOutput,
-          _i2.JsonEnumsInputOutputPayload,
-          _i2.JsonEnumsInputOutput>> protocols = [
+      _i1.HttpProtocol<_i2.JsonEnumsInputOutput, _i2.JsonEnumsInputOutput,
+          _i2.JsonEnumsInputOutput, _i2.JsonEnumsInputOutput>> protocols = [
     _i3.AwsJson1_1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
@@ -38,22 +35,9 @@ class JsonEnumsOperation extends _i1.HttpOperation<
         b.successCode = 200;
       });
   @override
-  _i2.JsonEnumsInputOutput buildOutput(_i2.JsonEnumsInputOutputPayload payload,
+  _i2.JsonEnumsInputOutput buildOutput(_i2.JsonEnumsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.JsonEnumsInputOutput((b) {
-        b.fooEnum1 = payload.fooEnum1;
-        b.fooEnum2 = payload.fooEnum2;
-        b.fooEnum3 = payload.fooEnum3;
-        if (payload.fooEnumList != null) {
-          b.fooEnumList.replace(payload.fooEnumList!);
-        }
-        if (payload.fooEnumMap != null) {
-          b.fooEnumMap.replace(payload.fooEnumMap!);
-        }
-        if (payload.fooEnumSet != null) {
-          b.fooEnumSet.replace(payload.fooEnumSet!);
-        }
-      });
+      _i2.JsonEnumsInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

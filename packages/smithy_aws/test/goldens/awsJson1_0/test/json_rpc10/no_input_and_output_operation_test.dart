@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10NoInputAndOutput (awsJson1_0)', () async {
+  _i1.test('AwsJson10NoInputAndOutput (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.NoInputAndOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,9 +41,10 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
-  _i1.test('AwsJson10NoInputAndOutput (awsJson1_0)', () async {
+  _i1.test('AwsJson10NoInputAndOutput (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NoInputAndOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -64,7 +65,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _NoInputAndOutputOutputAwsJson10Serializer());
+        outputSerializers: const [
+          _NoInputAndOutputOutputAwsJson10Serializer()
+        ]);
   });
 }
 
@@ -74,8 +77,7 @@ class _NoInputAndOutputOutputAwsJson10Serializer
       : super('NoInputAndOutputOutput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i5.NoInputAndOutputOutput, _i5.NoInputAndOutputOutputPayload];
+  Iterable<Type> get types => const [_i5.NoInputAndOutputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];

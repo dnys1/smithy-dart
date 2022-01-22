@@ -14,7 +14,8 @@ abstract class ConstantAndVariableQueryStringInput
         _i1.HttpInput<ConstantAndVariableQueryStringInputPayload>
     implements
         Built<ConstantAndVariableQueryStringInput,
-            ConstantAndVariableQueryStringInputBuilder> {
+            ConstantAndVariableQueryStringInputBuilder>,
+        _i1.EmptyPayload {
   factory ConstantAndVariableQueryStringInput(
           [void Function(ConstantAndVariableQueryStringInputBuilder) updates]) =
       _$ConstantAndVariableQueryStringInput;
@@ -38,7 +39,8 @@ abstract class ConstantAndVariableQueryStringInput
 abstract class ConstantAndVariableQueryStringInputPayload
     implements
         Built<ConstantAndVariableQueryStringInputPayload,
-            ConstantAndVariableQueryStringInputPayloadBuilder> {
+            ConstantAndVariableQueryStringInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory ConstantAndVariableQueryStringInputPayload(
       [void Function(ConstantAndVariableQueryStringInputPayloadBuilder)
           updates]) = _$ConstantAndVariableQueryStringInputPayload;

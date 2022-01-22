@@ -6,16 +6,13 @@ import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i2;
 import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'error_with_members.g.dart';
 
 abstract class ErrorWithMembers
     with _i1.SmithyException
-    implements
-        Built<ErrorWithMembers, ErrorWithMembersBuilder>,
-        _i1.HasPayload<ErrorWithMembersPayload> {
+    implements Built<ErrorWithMembers, ErrorWithMembersBuilder> {
   factory ErrorWithMembers([void Function(ErrorWithMembersBuilder) updates]) =
       _$ErrorWithMembers;
 
@@ -38,40 +35,7 @@ abstract class ErrorWithMembers
   /// abc
   String? get stringField;
   @override
-  ErrorWithMembersPayload getPayload() => ErrorWithMembersPayload((b) => b
-    ..code = code
-    ..complexData = complexData
-    ..integerField = integerField
-    ..listField = listField
-    ..mapField = mapField
-    ..message = message
-    ..stringField = stringField);
-  @override
   bool get isRetryable => false;
-}
-
-@_i4.internal
-@BuiltValue(nestedBuilders: false)
-abstract class ErrorWithMembersPayload
-    implements Built<ErrorWithMembersPayload, ErrorWithMembersPayloadBuilder> {
-  factory ErrorWithMembersPayload(
-          [void Function(ErrorWithMembersPayloadBuilder) updates]) =
-      _$ErrorWithMembersPayload;
-
-  const ErrorWithMembersPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ErrorWithMembersPayloadBuilder b) {}
-  String? get code;
-  _i2.KitchenSink? get complexData;
-  int? get integerField;
-  _i3.BuiltList<String>? get listField;
-  _i3.BuiltMap<String, String>? get mapField;
-  @override
-  String? get message;
-
-  /// abc
-  String? get stringField;
 }
 
 class _ErrorWithMembersAwsJson11Serializer
@@ -79,12 +43,7 @@ class _ErrorWithMembersAwsJson11Serializer
   const _ErrorWithMembersAwsJson11Serializer() : super('ErrorWithMembers');
 
   @override
-  Iterable<Type> get types => const [
-        ErrorWithMembers,
-        _$ErrorWithMembers,
-        ErrorWithMembersPayload,
-        _$ErrorWithMembersPayload
-      ];
+  Iterable<Type> get types => const [ErrorWithMembers, _$ErrorWithMembers];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
@@ -161,45 +120,45 @@ class _ErrorWithMembersAwsJson11Serializer
       result
         ..add('Code')
         ..add(serializers.serialize(payload.code,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.complexData != null) {
       result
         ..add('ComplexData')
         ..add(serializers.serialize(payload.complexData,
-            specifiedType: FullType.nullable(_i2.KitchenSink)));
+            specifiedType: const FullType.nullable(_i2.KitchenSink)));
     }
     if (payload.integerField != null) {
       result
         ..add('IntegerField')
         ..add(serializers.serialize(payload.integerField,
-            specifiedType: FullType.nullable(int)));
+            specifiedType: const FullType.nullable(int)));
     }
     if (payload.listField != null) {
       result
         ..add('ListField')
         ..add(serializers.serialize(payload.listField,
             specifiedType:
-                FullType.nullable(_i3.BuiltList, [const FullType(String)])));
+                const FullType.nullable(_i3.BuiltList, [FullType(String)])));
     }
     if (payload.mapField != null) {
       result
         ..add('MapField')
         ..add(serializers.serialize(payload.mapField,
-            specifiedType: FullType.nullable(_i3.BuiltMap,
-                [const FullType(String), const FullType(String)])));
+            specifiedType: const FullType.nullable(
+                _i3.BuiltMap, [FullType(String), FullType(String)])));
     }
     if (payload.message != null) {
       result
         ..add('Message')
         ..add(serializers.serialize(payload.message,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.stringField != null) {
       result
         ..add('StringField')
         ..add(serializers.serialize(payload.stringField,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

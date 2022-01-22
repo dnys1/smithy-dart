@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11SerializeStringUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeStringUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -45,9 +45,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeBooleanUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeBooleanUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -79,9 +79,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeNumberUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeNumberUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -112,9 +112,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeBlobUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeBlobUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -145,9 +145,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeTimestampUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeTimestampUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -179,9 +179,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeEnumUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeEnumUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -212,9 +212,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeListUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeListUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -248,9 +248,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeMapUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeMapUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -284,9 +284,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11SerializeStructureUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11SerializeStructureUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -320,9 +320,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        inputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeStringUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeStringUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -345,9 +345,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeBooleanUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeBooleanUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -370,9 +370,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeNumberUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeNumberUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -394,9 +394,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeBlobUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeBlobUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -418,9 +418,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeTimestampUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeTimestampUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -443,9 +443,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeEnumUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeEnumUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -467,9 +467,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeListUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeListUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -494,9 +494,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeMapUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeMapUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -521,9 +521,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11DeserializeStructureUnionValue (awsJson1_1)', () async {
+  _i1.test('AwsJson11DeserializeStructureUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -548,7 +548,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputAwsJson11Serializer());
+        outputSerializers: const [_UnionInputOutputAwsJson11Serializer()]);
   });
 }
 
@@ -557,8 +557,7 @@ class _UnionInputOutputAwsJson11Serializer
   const _UnionInputOutputAwsJson11Serializer() : super('UnionInputOutput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i5.UnionInputOutput, _i5.UnionInputOutputPayload];
+  Iterable<Type> get types => const [_i5.UnionInputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

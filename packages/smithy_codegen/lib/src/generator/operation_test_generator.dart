@@ -10,6 +10,8 @@ import 'package:smithy_codegen/src/generator/serialization/structure_serializer_
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
+enum TestType { request, response, error }
+
 /// Generates test classes for shapes with HTTP tests.
 class OperationTestGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
@@ -50,6 +52,9 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           context.serviceProtocols.firstWhere((p) => p.shapeId == protocol))
       .toList();
 
+  /// When deserializing the `params` of a test case, we need to consider not
+  /// only the input type but also any generated types it references, either in
+  /// lists, maps, sets, or direct children.
   Iterable<Class?> _collectSerializers(
     StructureShape shape,
     ProtocolDefinitionTrait protocol,
@@ -196,7 +201,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             refer(serializer.name).constInstance([])
         ]),
       });
-      yield _buildTest(testCase, testCall);
+      yield _buildTest(testCase, testCall, type: TestType.request);
     }
   }
 
@@ -214,7 +219,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             refer(serializer.name).constInstance([])
         ]),
       });
-      yield _buildTest(testCase, testCall);
+      yield _buildTest(testCase, testCall, type: TestType.response);
     }
   }
 
@@ -234,22 +239,34 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             for (final serializer in _uniqueSerializers(serializers))
               refer(serializer.name).constInstance([])
           ]),
-        });
-        yield _buildTest(testCase, testCall);
+        }, [
+          inputPayload.symbol,
+          inputSymbol,
+          outputPayload.symbol,
+          outputSymbol,
+          context.symbolFor(shape.shapeId),
+        ]);
+        yield _buildTest(testCase, testCall, type: TestType.error);
       }
     }
   }
 
-  Code _buildTest(HttpMessageTestCase testCase, Expression testCall) {
+  Code _buildTest(
+    HttpMessageTestCase testCase,
+    Expression testCall, {
+    required TestType type,
+  }) {
     return Block.of([
       Code.scope((allocate) =>
           allocate(DartTypes.test.test) +
-          "('${testCase.id} (${testCase.protocol.shape})', () async {"),
+          "('${testCase.id} (${type.name})', () async {"),
       testCall.awaited.statement,
       Code('});'),
     ]);
   }
 
+  /// Builds a call to instantiate an [HttpResponseTestCase], shared between
+  /// response and error tests.
   Expression _buildResponseTestCase(HttpResponseTestCase testCase) =>
       DartTypes.smithyTest.httpResponseTestCase.constInstance([], {
         'id': literal(testCase.id),
@@ -274,8 +291,12 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         'code': literal(testCase.code),
       });
 
-  String _escapeBody(String body) => body.replaceAll('\$', '\\\$');
+  /// Create strings which are safe for printing in Dart code.
+  String _escapeBody(String body) =>
+      body.replaceAll('\\', '\\\\').replaceAll('\$', '\\\$');
 
+  /// Recursively escape strings in the parameters since the translation from
+  /// IDL creates non-Dart-y strings.
   Map<String, Object?> _escapeParams(Map<String, Object?> params) =>
       {...params}..updateAll((key, value) {
           if (value is String) {

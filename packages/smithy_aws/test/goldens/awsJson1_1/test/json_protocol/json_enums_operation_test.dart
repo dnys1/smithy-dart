@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11Enums (awsJson1_1)', () async {
+  _i1.test('AwsJson11Enums (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonEnumsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -47,9 +47,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonEnumsInputOutputAwsJson11Serializer());
+        inputSerializers: const [_JsonEnumsInputOutputAwsJson11Serializer()]);
   });
-  _i1.test('AwsJson11Enums (awsJson1_1)', () async {
+  _i1.test('AwsJson11Enums (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonEnumsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -77,7 +77,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonEnumsInputOutputAwsJson11Serializer());
+        outputSerializers: const [_JsonEnumsInputOutputAwsJson11Serializer()]);
   });
 }
 
@@ -87,8 +87,7 @@ class _JsonEnumsInputOutputAwsJson11Serializer
       : super('JsonEnumsInputOutput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i5.JsonEnumsInputOutput, _i5.JsonEnumsInputOutputPayload];
+  Iterable<Type> get types => const [_i5.JsonEnumsInputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

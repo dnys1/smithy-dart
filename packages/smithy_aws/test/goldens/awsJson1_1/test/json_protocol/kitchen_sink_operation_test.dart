@@ -6,25 +6,24 @@ import 'dart:typed_data' as _i6;
 
 import 'package:aws_json1_1/src/json_protocol/model/empty_struct.dart' as _i7;
 import 'package:aws_json1_1/src/json_protocol/model/error_with_members.dart'
-    as _i13;
-import 'package:aws_json1_1/src/json_protocol/model/error_without_members.dart'
-    as _i14;
-import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i5;
-import 'package:aws_json1_1/src/json_protocol/model/simple_struct.dart' as _i10;
-import 'package:aws_json1_1/src/json_protocol/model/struct_with_json_name.dart'
     as _i12;
+import 'package:aws_json1_1/src/json_protocol/model/error_without_members.dart'
+    as _i13;
+import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i5;
+import 'package:aws_json1_1/src/json_protocol/model/simple_struct.dart' as _i9;
+import 'package:aws_json1_1/src/json_protocol/model/struct_with_json_name.dart'
+    as _i11;
 import 'package:aws_json1_1/src/json_protocol/operation/kitchen_sink_operation.dart'
     as _i3;
-import 'package:built_collection/built_collection.dart' as _i9;
-import 'package:built_value/json_object.dart' as _i8;
+import 'package:built_collection/built_collection.dart' as _i8;
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i11;
+import 'package:fixnum/fixnum.dart' as _i10;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('serializes_string_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_string_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -50,10 +49,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_string_shapes_with_jsonvalue_trait (awsJson1_1)',
-      () async {
+  _i1.test('serializes_string_shapes_with_jsonvalue_trait (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -83,9 +86,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_integer_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_integer_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -111,9 +119,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_long_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_long_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -139,9 +152,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_float_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_float_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -167,9 +185,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_double_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_double_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -195,9 +218,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_blob_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_blob_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -223,9 +251,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_boolean_shapes_true (awsJson1_1)', () async {
+  _i1.test('serializes_boolean_shapes_true (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -251,9 +284,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_boolean_shapes_false (awsJson1_1)', () async {
+  _i1.test('serializes_boolean_shapes_false (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -279,9 +317,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_timestamp_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_timestamp_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -307,10 +350,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test(
-      'serializes_timestamp_shapes_with_iso8601_timestampformat (awsJson1_1)',
+  _i1.test('serializes_timestamp_shapes_with_iso8601_timestampformat (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
@@ -338,10 +385,15 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
   _i1.test(
-      'serializes_timestamp_shapes_with_httpdate_timestampformat (awsJson1_1)',
+      'serializes_timestamp_shapes_with_httpdate_timestampformat (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
@@ -369,10 +421,15 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
   _i1.test(
-      'serializes_timestamp_shapes_with_unixtimestamp_timestampformat (awsJson1_1)',
+      'serializes_timestamp_shapes_with_unixtimestamp_timestampformat (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
@@ -401,9 +458,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_list_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_list_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -431,9 +493,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_empty_list_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_empty_list_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -459,9 +526,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_list_of_map_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_list_of_map_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -494,9 +566,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_list_of_structure_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_list_of_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -529,10 +606,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_list_of_recursive_structure_shapes (awsJson1_1)',
-      () async {
+  _i1.test('serializes_list_of_recursive_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -571,9 +652,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_map_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_map_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -601,9 +687,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_empty_map_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_empty_map_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -629,9 +720,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_map_of_list_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_map_of_list_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -663,9 +759,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_map_of_structure_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_map_of_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -697,10 +798,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_map_of_recursive_structure_shapes (awsJson1_1)',
-      () async {
+  _i1.test('serializes_map_of_recursive_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -739,9 +844,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_structure_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -769,9 +879,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_structure_members_with_locationname_traits (awsJson1_1)',
+  _i1.test('serializes_structure_members_with_locationname_traits (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
@@ -801,9 +916,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_empty_structure_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_empty_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -829,9 +949,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_structure_which_have_no_members (awsJson1_1)', () async {
+  _i1.test('serializes_structure_which_have_no_members (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -857,9 +982,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('serializes_recursive_structure_shapes (awsJson1_1)', () async {
+  _i1.test('serializes_recursive_structure_shapes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -901,9 +1031,14 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _KitchenSinkAwsJson11Serializer());
+        inputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_operations_with_empty_json_bodies (awsJson1_1)', () async {
+  _i1.test('parses_operations_with_empty_json_bodies (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -923,9 +1058,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_string_shapes (awsJson1_1)', () async {
+  _i1.test('parses_string_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -945,9 +1085,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_integer_shapes (awsJson1_1)', () async {
+  _i1.test('parses_integer_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -967,9 +1112,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_long_shapes (awsJson1_1)', () async {
+  _i1.test('parses_long_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -989,9 +1139,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_float_shapes (awsJson1_1)', () async {
+  _i1.test('parses_float_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1011,9 +1166,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_double_shapes (awsJson1_1)', () async {
+  _i1.test('parses_double_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1033,9 +1193,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_boolean_shapes_true (awsJson1_1)', () async {
+  _i1.test('parses_boolean_shapes_true (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1055,9 +1220,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_boolean_false (awsJson1_1)', () async {
+  _i1.test('parses_boolean_false (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1077,9 +1247,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_blob_shapes (awsJson1_1)', () async {
+  _i1.test('parses_blob_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1099,9 +1274,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_timestamp_shapes (awsJson1_1)', () async {
+  _i1.test('parses_timestamp_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1121,9 +1301,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_iso8601_timestamps (awsJson1_1)', () async {
+  _i1.test('parses_iso8601_timestamps (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1143,9 +1328,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_httpdate_timestamps (awsJson1_1)', () async {
+  _i1.test('parses_httpdate_timestamps (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1165,9 +1355,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_list_shapes (awsJson1_1)', () async {
+  _i1.test('parses_list_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1189,9 +1384,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_list_of_map_shapes (awsJson1_1)', () async {
+  _i1.test('parses_list_of_map_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1216,9 +1416,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_list_of_list_shapes (awsJson1_1)', () async {
+  _i1.test('parses_list_of_list_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1243,9 +1448,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_list_of_structure_shapes (awsJson1_1)', () async {
+  _i1.test('parses_list_of_structure_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1270,9 +1480,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_list_of_recursive_structure_shapes (awsJson1_1)', () async {
+  _i1.test('parses_list_of_recursive_structure_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1305,9 +1520,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_map_shapes (awsJson1_1)', () async {
+  _i1.test('parses_map_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1329,9 +1549,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_map_of_list_shapes (awsJson1_1)', () async {
+  _i1.test('parses_map_of_list_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1357,9 +1582,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_map_of_map_shapes (awsJson1_1)', () async {
+  _i1.test('parses_map_of_map_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1385,9 +1615,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_map_of_structure_shapes (awsJson1_1)', () async {
+  _i1.test('parses_map_of_structure_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1413,9 +1648,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_map_of_recursive_structure_shapes (awsJson1_1)', () async {
+  _i1.test('parses_map_of_recursive_structure_shapes (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1448,9 +1688,14 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
-  _i1.test('parses_the_request_id_from_the_response (awsJson1_1)', () async {
+  _i1.test('parses_the_request_id_from_the_response (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.KitchenSinkOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -1473,7 +1718,12 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _KitchenSinkAwsJson11Serializer());
+        outputSerializers: const [
+          _KitchenSinkAwsJson11Serializer(),
+          _EmptyStructAwsJson11Serializer(),
+          _SimpleStructAwsJson11Serializer(),
+          _StructWithJsonNameAwsJson11Serializer()
+        ]);
   });
 }
 
@@ -1482,7 +1732,7 @@ class _KitchenSinkAwsJson11Serializer
   const _KitchenSinkAwsJson11Serializer() : super('KitchenSink');
 
   @override
-  Iterable<Type> get types => const [_i5.KitchenSink, _i5.KitchenSinkPayload];
+  Iterable<Type> get types => const [_i5.KitchenSink];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
@@ -1530,8 +1780,8 @@ class _KitchenSinkAwsJson11Serializer
           break;
         case 'HttpdateTimestamp':
           if (value != null) {
-            result.httpdateTimestamp = (_i4.TimestampSerializer.epochSeconds
-                .deserialize(serializers, value) as DateTime);
+            result.httpdateTimestamp = _i4.TimestampSerializer.epochSeconds
+                .deserialize(serializers, value);
           }
           break;
         case 'Integer':
@@ -1542,104 +1792,104 @@ class _KitchenSinkAwsJson11Serializer
           break;
         case 'Iso8601Timestamp':
           if (value != null) {
-            result.iso8601Timestamp = (_i4.TimestampSerializer.epochSeconds
-                .deserialize(serializers, value) as DateTime);
+            result.iso8601Timestamp = _i4.TimestampSerializer.epochSeconds
+                .deserialize(serializers, value);
           }
           break;
         case 'JsonValue':
           if (value != null) {
-            result.jsonValue = (const _i4.EncodedJsonObjectSerializer()
-                .deserialize(serializers, value) as _i8.JsonObject);
+            result.jsonValue = const _i4.EncodedJsonObjectSerializer()
+                .deserialize(serializers, value);
           }
           break;
         case 'ListOfLists':
           if (value != null) {
             result.listOfLists.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i9.BuiltList, [
-                  FullType(_i9.BuiltList, [FullType(String)])
-                ])) as _i9.BuiltList<_i9.BuiltList<String>>));
+                specifiedType: const FullType(_i8.BuiltList, [
+                  FullType(_i8.BuiltList, [FullType(String)])
+                ])) as _i8.BuiltList<_i8.BuiltList<String>>));
           }
           break;
         case 'ListOfMapsOfStrings':
           if (value != null) {
             result.listOfMapsOfStrings.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i9.BuiltList, [
-                  FullType(_i9.BuiltMap, [FullType(String), FullType(String)])
-                ])) as _i9.BuiltList<_i9.BuiltMap<String, String>>));
+                specifiedType: const FullType(_i8.BuiltList, [
+                  FullType(_i8.BuiltMap, [FullType(String), FullType(String)])
+                ])) as _i8.BuiltList<_i8.BuiltMap<String, String>>));
           }
           break;
         case 'ListOfStrings':
           if (value != null) {
             result.listOfStrings.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i9.BuiltList, [FullType(String)]))
-                as _i9.BuiltList<String>));
+                        const FullType(_i8.BuiltList, [FullType(String)]))
+                as _i8.BuiltList<String>));
           }
           break;
         case 'ListOfStructs':
           if (value != null) {
             result.listOfStructs.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i9.BuiltList, [FullType(_i10.SimpleStruct)]))
-                as _i9.BuiltList<_i10.SimpleStruct>));
+                        _i8.BuiltList, [FullType(_i9.SimpleStruct)]))
+                as _i8.BuiltList<_i9.SimpleStruct>));
           }
           break;
         case 'Long':
           if (value != null) {
             result.long = (serializers.deserialize(value,
-                specifiedType: const FullType(_i11.Int64)) as _i11.Int64);
+                specifiedType: const FullType(_i10.Int64)) as _i10.Int64);
           }
           break;
         case 'MapOfListsOfStrings':
           if (value != null) {
             result.mapOfListsOfStrings.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i9.BuiltListMultimap, [
+                specifiedType: const FullType(_i8.BuiltListMultimap, [
                   FullType(String),
                   FullType(String)
-                ])) as _i9.BuiltListMultimap<String, String>));
+                ])) as _i8.BuiltListMultimap<String, String>));
           }
           break;
         case 'MapOfMaps':
           if (value != null) {
             result.mapOfMaps.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i9.BuiltMap, [
+                specifiedType: const FullType(_i8.BuiltMap, [
                   FullType(String),
-                  FullType(_i9.BuiltMap, [FullType(String), FullType(String)])
-                ])) as _i9.BuiltMap<String, _i9.BuiltMap<String, String>>));
+                  FullType(_i8.BuiltMap, [FullType(String), FullType(String)])
+                ])) as _i8.BuiltMap<String, _i8.BuiltMap<String, String>>));
           }
           break;
         case 'MapOfStrings':
           if (value != null) {
             result.mapOfStrings.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i9.BuiltMap, [FullType(String), FullType(String)]))
-                as _i9.BuiltMap<String, String>));
+                        _i8.BuiltMap, [FullType(String), FullType(String)]))
+                as _i8.BuiltMap<String, String>));
           }
           break;
         case 'MapOfStructs':
           if (value != null) {
             result.mapOfStructs.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i9.BuiltMap, [
+                specifiedType: const FullType(_i8.BuiltMap, [
                   FullType(String),
-                  FullType(_i10.SimpleStruct)
-                ])) as _i9.BuiltMap<String, _i10.SimpleStruct>));
+                  FullType(_i9.SimpleStruct)
+                ])) as _i8.BuiltMap<String, _i9.SimpleStruct>));
           }
           break;
         case 'RecursiveList':
           if (value != null) {
             result.recursiveList.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i9.BuiltList, [FullType(_i5.KitchenSink)]))
-                as _i9.BuiltList<_i5.KitchenSink>));
+                        _i8.BuiltList, [FullType(_i5.KitchenSink)]))
+                as _i8.BuiltList<_i5.KitchenSink>));
           }
           break;
         case 'RecursiveMap':
           if (value != null) {
             result.recursiveMap.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i9.BuiltMap, [
+                specifiedType: const FullType(_i8.BuiltMap, [
                   FullType(String),
                   FullType(_i5.KitchenSink)
-                ])) as _i9.BuiltMap<String, _i5.KitchenSink>));
+                ])) as _i8.BuiltMap<String, _i5.KitchenSink>));
           }
           break;
         case 'RecursiveStruct':
@@ -1652,8 +1902,8 @@ class _KitchenSinkAwsJson11Serializer
         case 'SimpleStruct':
           if (value != null) {
             result.simpleStruct.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i10.SimpleStruct))
-                as _i10.SimpleStruct));
+                    specifiedType: const FullType(_i9.SimpleStruct))
+                as _i9.SimpleStruct));
           }
           break;
         case 'String':
@@ -1665,20 +1915,121 @@ class _KitchenSinkAwsJson11Serializer
         case 'StructWithJsonName':
           if (value != null) {
             result.structWithJsonName.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i12.StructWithJsonName))
-                as _i12.StructWithJsonName));
+                    specifiedType: const FullType(_i11.StructWithJsonName))
+                as _i11.StructWithJsonName));
           }
           break;
         case 'Timestamp':
           if (value != null) {
-            result.timestamp = (_i4.TimestampSerializer.epochSeconds
-                .deserialize(serializers, value) as DateTime);
+            result.timestamp = _i4.TimestampSerializer.epochSeconds
+                .deserialize(serializers, value);
           }
           break;
         case 'UnixTimestamp':
           if (value != null) {
-            result.unixTimestamp = (_i4.TimestampSerializer.epochSeconds
-                .deserialize(serializers, value) as DateTime);
+            result.unixTimestamp = _i4.TimestampSerializer.epochSeconds
+                .deserialize(serializers, value);
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _EmptyStructAwsJson11Serializer
+    extends _i4.StructuredSmithySerializer<_i7.EmptyStruct> {
+  const _EmptyStructAwsJson11Serializer() : super('EmptyStruct');
+
+  @override
+  Iterable<Type> get types => const [_i7.EmptyStruct];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  @override
+  _i7.EmptyStruct deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return _i7.EmptyStructBuilder().build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _SimpleStructAwsJson11Serializer
+    extends _i4.StructuredSmithySerializer<_i9.SimpleStruct> {
+  const _SimpleStructAwsJson11Serializer() : super('SimpleStruct');
+
+  @override
+  Iterable<Type> get types => const [_i9.SimpleStruct];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  @override
+  _i9.SimpleStruct deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i9.SimpleStructBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'Value':
+          if (value != null) {
+            result.value = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _StructWithJsonNameAwsJson11Serializer
+    extends _i4.StructuredSmithySerializer<_i11.StructWithJsonName> {
+  const _StructWithJsonNameAwsJson11Serializer() : super('StructWithJsonName');
+
+  @override
+  Iterable<Type> get types => const [_i11.StructWithJsonName];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  @override
+  _i11.StructWithJsonName deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i11.StructWithJsonNameBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'Value':
+          if (value != null) {
+            result.value = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
           }
           break;
       }
@@ -1695,20 +2046,19 @@ class _KitchenSinkAwsJson11Serializer
 }
 
 class _ErrorWithMembersAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<_i13.ErrorWithMembers> {
+    extends _i4.StructuredSmithySerializer<_i12.ErrorWithMembers> {
   const _ErrorWithMembersAwsJson11Serializer() : super('ErrorWithMembers');
 
   @override
-  Iterable<Type> get types =>
-      const [_i13.ErrorWithMembers, _i13.ErrorWithMembersPayload];
+  Iterable<Type> get types => const [_i12.ErrorWithMembers];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i13.ErrorWithMembers deserialize(
+  _i12.ErrorWithMembers deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i13.ErrorWithMembersBuilder();
+    final result = _i12.ErrorWithMembersBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -1738,16 +2088,16 @@ class _ErrorWithMembersAwsJson11Serializer
           if (value != null) {
             result.listField.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i9.BuiltList, [FullType(String)]))
-                as _i9.BuiltList<String>));
+                        const FullType(_i8.BuiltList, [FullType(String)]))
+                as _i8.BuiltList<String>));
           }
           break;
         case 'MapField':
           if (value != null) {
             result.mapField.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i9.BuiltMap, [FullType(String), FullType(String)]))
-                as _i9.BuiltMap<String, String>));
+                        _i8.BuiltMap, [FullType(String), FullType(String)]))
+                as _i8.BuiltMap<String, String>));
           }
           break;
         case 'Message':
@@ -1776,21 +2126,20 @@ class _ErrorWithMembersAwsJson11Serializer
 }
 
 class _ErrorWithoutMembersAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<_i14.ErrorWithoutMembers> {
+    extends _i4.StructuredSmithySerializer<_i13.ErrorWithoutMembers> {
   const _ErrorWithoutMembersAwsJson11Serializer()
       : super('ErrorWithoutMembers');
 
   @override
-  Iterable<Type> get types =>
-      const [_i14.ErrorWithoutMembers, _i14.ErrorWithoutMembersPayload];
+  Iterable<Type> get types => const [_i13.ErrorWithoutMembers];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i14.ErrorWithoutMembers deserialize(
+  _i13.ErrorWithoutMembers deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return _i14.ErrorWithoutMembersBuilder().build();
+    return _i13.ErrorWithoutMembersBuilder().build();
   }
 
   @override

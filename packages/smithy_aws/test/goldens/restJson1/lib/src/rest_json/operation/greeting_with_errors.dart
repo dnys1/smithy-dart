@@ -44,7 +44,11 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
   _i2.GreetingWithErrorsOutput buildOutput(
           _i2.GreetingWithErrorsOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.GreetingWithErrorsOutput((b) {});
+      _i2.GreetingWithErrorsOutput((b) {
+        if (response.headers['X-Greeting'] != null) {
+          b.greeting = response.headers['X-Greeting']!;
+        }
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [
         _i1.SmithyError(

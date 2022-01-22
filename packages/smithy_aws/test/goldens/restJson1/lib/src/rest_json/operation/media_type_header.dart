@@ -5,6 +5,7 @@ library rest_json1.rest_json.operation.media_type_header;
 import 'dart:convert' as _i6;
 
 import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:built_value/json_object.dart' as _i8;
 import 'package:rest_json1/src/rest_json/model/media_type_header_input.dart'
     as _i2;
 import 'package:rest_json1/src/rest_json/model/media_type_header_output.dart'
@@ -46,7 +47,11 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
   _i3.MediaTypeHeaderOutput buildOutput(
           _i3.MediaTypeHeaderOutputPayload payload,
           _i7.AWSStreamedHttpResponse response) =>
-      _i3.MediaTypeHeaderOutput((b) {});
+      _i3.MediaTypeHeaderOutput((b) {
+        if (response.headers['X-Json'] != null) {
+          b.json = _i8.JsonObject(_i6.jsonDecode(response.headers['X-Json']!));
+        }
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

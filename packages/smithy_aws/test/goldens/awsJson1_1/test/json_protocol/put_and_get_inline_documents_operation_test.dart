@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('PutAndGetInlineDocumentsInput (awsJson1_1)', () async {
+  _i1.test('PutAndGetInlineDocumentsInput (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.PutAndGetInlineDocumentsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,10 +41,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('PutAndGetInlineDocumentsInput (awsJson1_1)', () async {
+  _i1.test('PutAndGetInlineDocumentsInput (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.PutAndGetInlineDocumentsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -66,8 +67,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
+        ]);
   });
 }
 
@@ -77,10 +79,7 @@ class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i4
       : super('PutAndGetInlineDocumentsInputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        _i5.PutAndGetInlineDocumentsInputOutput,
-        _i5.PutAndGetInlineDocumentsInputOutputPayload
-      ];
+  Iterable<Type> get types => const [_i5.PutAndGetInlineDocumentsInputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

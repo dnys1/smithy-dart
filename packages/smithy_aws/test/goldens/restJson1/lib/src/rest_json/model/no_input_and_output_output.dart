@@ -9,7 +9,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'no_input_and_output_output.g.dart';
 
 abstract class NoInputAndOutputOutput
-    implements Built<NoInputAndOutputOutput, NoInputAndOutputOutputBuilder> {
+    implements
+        Built<NoInputAndOutputOutput, NoInputAndOutputOutputBuilder>,
+        _i1.EmptyPayload {
   factory NoInputAndOutputOutput(
           [void Function(NoInputAndOutputOutputBuilder) updates]) =
       _$NoInputAndOutputOutput;

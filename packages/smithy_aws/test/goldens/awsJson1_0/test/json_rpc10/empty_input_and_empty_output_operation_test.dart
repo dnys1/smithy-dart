@@ -14,7 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10EmptyInputAndEmptyOutput (awsJson1_0)', () async {
+  _i1.test('AwsJson10EmptyInputAndEmptyOutput (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.EmptyInputAndEmptyOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -44,10 +44,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _EmptyInputAndEmptyOutputInputAwsJson10Serializer());
+        inputSerializers: const [
+          _EmptyInputAndEmptyOutputInputAwsJson10Serializer()
+        ]);
   });
-  _i1.test('AwsJson10EmptyInputAndEmptyOutputSendJsonObject (awsJson1_0)',
+  _i1.test('AwsJson10EmptyInputAndEmptyOutputSendJsonObject (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.EmptyInputAndEmptyOutputOperation(),
@@ -55,8 +56,7 @@ void main() {
             id: 'AwsJson10EmptyInputAndEmptyOutputSendJsonObject',
             documentation:
                 'A service will always return a JSON object for operations with modeled output.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
             authScheme: null,
             body: '{}',
             bodyMediaType: 'application/json',
@@ -69,8 +69,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _EmptyInputAndEmptyOutputOutputAwsJson10Serializer());
+        outputSerializers: const [
+          _EmptyInputAndEmptyOutputOutputAwsJson10Serializer()
+        ]);
   });
 }
 
@@ -80,10 +81,7 @@ class _EmptyInputAndEmptyOutputInputAwsJson10Serializer
       : super('EmptyInputAndEmptyOutputInput');
 
   @override
-  Iterable<Type> get types => const [
-        _i5.EmptyInputAndEmptyOutputInput,
-        _i5.EmptyInputAndEmptyOutputInputPayload
-      ];
+  Iterable<Type> get types => const [_i5.EmptyInputAndEmptyOutputInput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -107,10 +105,7 @@ class _EmptyInputAndEmptyOutputOutputAwsJson10Serializer
       : super('EmptyInputAndEmptyOutputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        _i6.EmptyInputAndEmptyOutputOutput,
-        _i6.EmptyInputAndEmptyOutputOutputPayload
-      ];
+  Iterable<Type> get types => const [_i6.EmptyInputAndEmptyOutputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];

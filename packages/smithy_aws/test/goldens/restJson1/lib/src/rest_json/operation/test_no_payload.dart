@@ -47,7 +47,11 @@ class TestNoPayloadOperation extends _i1.HttpOperation<
   _i2.TestNoPayloadInputOutput buildOutput(
           _i2.TestNoPayloadInputOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.TestNoPayloadInputOutput((b) {});
+      _i2.TestNoPayloadInputOutput((b) {
+        if (response.headers['X-Amz-Test-Id'] != null) {
+          b.testId = response.headers['X-Amz-Test-Id']!;
+        }
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

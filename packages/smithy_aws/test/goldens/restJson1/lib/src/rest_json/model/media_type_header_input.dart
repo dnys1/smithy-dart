@@ -12,7 +12,9 @@ part 'media_type_header_input.g.dart';
 
 abstract class MediaTypeHeaderInput
     with _i1.HttpInput<MediaTypeHeaderInputPayload>
-    implements Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder> {
+    implements
+        Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder>,
+        _i1.EmptyPayload {
   factory MediaTypeHeaderInput(
           [void Function(MediaTypeHeaderInputBuilder) updates]) =
       _$MediaTypeHeaderInput;
@@ -33,7 +35,8 @@ abstract class MediaTypeHeaderInput
 @BuiltValue(nestedBuilders: false)
 abstract class MediaTypeHeaderInputPayload
     implements
-        Built<MediaTypeHeaderInputPayload, MediaTypeHeaderInputPayloadBuilder> {
+        Built<MediaTypeHeaderInputPayload, MediaTypeHeaderInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory MediaTypeHeaderInputPayload(
           [void Function(MediaTypeHeaderInputPayloadBuilder) updates]) =
       _$MediaTypeHeaderInputPayload;

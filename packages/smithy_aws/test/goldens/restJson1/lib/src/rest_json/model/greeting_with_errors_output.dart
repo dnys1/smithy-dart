@@ -11,7 +11,8 @@ part 'greeting_with_errors_output.g.dart';
 
 abstract class GreetingWithErrorsOutput
     implements
-        Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder> {
+        Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
+        _i1.EmptyPayload {
   factory GreetingWithErrorsOutput(
           [void Function(GreetingWithErrorsOutputBuilder) updates]) =
       _$GreetingWithErrorsOutput;
@@ -34,7 +35,8 @@ abstract class GreetingWithErrorsOutput
 abstract class GreetingWithErrorsOutputPayload
     implements
         Built<GreetingWithErrorsOutputPayload,
-            GreetingWithErrorsOutputPayloadBuilder> {
+            GreetingWithErrorsOutputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory GreetingWithErrorsOutputPayload(
           [void Function(GreetingWithErrorsOutputPayloadBuilder) updates]) =
       _$GreetingWithErrorsOutputPayload;

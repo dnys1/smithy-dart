@@ -12,7 +12,7 @@ part 'foo_error.g.dart';
 /// framework history. It should only be implemented by clients.
 abstract class FooError
     with _i1.SmithyHttpException
-    implements Built<FooError, FooErrorBuilder> {
+    implements Built<FooError, FooErrorBuilder>, _i1.EmptyPayload {
   factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();

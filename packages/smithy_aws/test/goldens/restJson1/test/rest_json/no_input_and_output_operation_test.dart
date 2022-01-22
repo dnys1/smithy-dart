@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonNoInputAndOutput (restJson1)', () async {
+  _i1.test('RestJsonNoInputAndOutput (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.NoInputAndOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,7 +41,7 @@ void main() {
             requireQueryParams: []),
         inputSerializers: const []);
   });
-  _i1.test('RestJsonNoInputAndOutputWithJson (restJson1)', () async {
+  _i1.test('RestJsonNoInputAndOutputWithJson (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NoInputAndOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -65,7 +65,7 @@ void main() {
           _NoInputAndOutputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonNoInputAndOutputNoPayload (restJson1)', () async {
+  _i1.test('RestJsonNoInputAndOutputNoPayload (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NoInputAndOutputOperation(),
         testCase: const _i2.HttpResponseTestCase(

@@ -5,11 +5,11 @@ library rest_json1.rest_json.operation.greeting_with_errors_test;
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json/model/complex_error.dart' as _i6;
 import 'package:rest_json1/src/rest_json/model/complex_nested_error_data.dart'
-    as _i7;
-import 'package:rest_json1/src/rest_json/model/foo_error.dart' as _i8;
+    as _i9;
+import 'package:rest_json1/src/rest_json/model/foo_error.dart' as _i7;
 import 'package:rest_json1/src/rest_json/model/greeting_with_errors_output.dart'
     as _i5;
-import 'package:rest_json1/src/rest_json/model/invalid_greeting.dart' as _i9;
+import 'package:rest_json1/src/rest_json/model/invalid_greeting.dart' as _i8;
 import 'package:rest_json1/src/rest_json/operation/greeting_with_errors.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
@@ -17,7 +17,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonGreetingWithErrors (restJson1)', () async {
+  _i1.test('RestJsonGreetingWithErrors (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -41,7 +41,7 @@ void main() {
           _GreetingWithErrorsOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonGreetingWithErrorsNoPayload (restJson1)', () async {
+  _i1.test('RestJsonGreetingWithErrorsNoPayload (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -65,8 +65,13 @@ void main() {
           _GreetingWithErrorsOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonComplexErrorWithNoMessage (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonComplexErrorWithNoMessage (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i6.ComplexError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonComplexErrorWithNoMessage',
@@ -99,8 +104,13 @@ void main() {
           _ComplexNestedErrorDataRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonEmptyComplexErrorWithNoMessage (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonEmptyComplexErrorWithNoMessage (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i6.ComplexError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonEmptyComplexErrorWithNoMessage',
@@ -127,8 +137,13 @@ void main() {
           _ComplexNestedErrorDataRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonFooErrorUsingXAmznErrorType (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorUsingXAmznErrorType (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorUsingXAmznErrorType',
@@ -149,8 +164,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorUsingXAmznErrorTypeWithUri (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorUsingXAmznErrorTypeWithUri (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUri',
@@ -174,9 +194,14 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace (restJson1)',
+  _i1.test('RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace (error)',
       () async {
-    await _i2.httpErrorResponseTest(
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace',
@@ -200,8 +225,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorUsingCode (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorUsingCode (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorUsingCode',
@@ -222,8 +252,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorUsingCodeAndNamespace (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorUsingCodeAndNamespace (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorUsingCodeAndNamespace',
@@ -244,8 +279,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorUsingCodeUriAndNamespace (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorUsingCodeUriAndNamespace (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorUsingCodeUriAndNamespace',
@@ -266,8 +306,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorWithDunderType (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorWithDunderType (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorWithDunderType',
@@ -288,8 +333,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorWithDunderTypeAndNamespace (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorWithDunderTypeAndNamespace (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorWithDunderTypeAndNamespace',
@@ -310,9 +360,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonFooErrorWithDunderTypeUriAndNamespace (restJson1)',
-      () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonFooErrorWithDunderTypeUriAndNamespace (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i7.FooError>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonFooErrorWithDunderTypeUriAndNamespace',
@@ -333,8 +387,13 @@ void main() {
             code: 500),
         errorSerializers: const [_FooErrorRestJson1Serializer()]);
   });
-  _i1.test('RestJsonInvalidGreetingError (restJson1)', () async {
-    await _i2.httpErrorResponseTest(
+  _i1.test('RestJsonInvalidGreetingError (error)', () async {
+    await _i2.httpErrorResponseTest<
+            _i4.Unit,
+            _i4.Unit,
+            _i5.GreetingWithErrorsOutputPayload,
+            _i5.GreetingWithErrorsOutput,
+            _i8.InvalidGreeting>(
         operation: _i3.GreetingWithErrorsOperation(),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonInvalidGreetingError',
@@ -429,8 +488,8 @@ class _ComplexErrorRestJson1Serializer
         case 'Nested':
           if (value != null) {
             result.nested.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i7.ComplexNestedErrorData))
-                as _i7.ComplexNestedErrorData));
+                    specifiedType: const FullType(_i9.ComplexNestedErrorData))
+                as _i9.ComplexNestedErrorData));
           }
           break;
         case 'TopLevel':
@@ -453,20 +512,20 @@ class _ComplexErrorRestJson1Serializer
 }
 
 class _ComplexNestedErrorDataRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i7.ComplexNestedErrorData> {
+    extends _i4.StructuredSmithySerializer<_i9.ComplexNestedErrorData> {
   const _ComplexNestedErrorDataRestJson1Serializer()
       : super('ComplexNestedErrorData');
 
   @override
-  Iterable<Type> get types => const [_i7.ComplexNestedErrorData];
+  Iterable<Type> get types => const [_i9.ComplexNestedErrorData];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  _i7.ComplexNestedErrorData deserialize(
+  _i9.ComplexNestedErrorData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i7.ComplexNestedErrorDataBuilder();
+    final result = _i9.ComplexNestedErrorDataBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -493,19 +552,19 @@ class _ComplexNestedErrorDataRestJson1Serializer
 }
 
 class _FooErrorRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i8.FooError> {
+    extends _i4.StructuredSmithySerializer<_i7.FooError> {
   const _FooErrorRestJson1Serializer() : super('FooError');
 
   @override
-  Iterable<Type> get types => const [_i8.FooError];
+  Iterable<Type> get types => const [_i7.FooError];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  _i8.FooError deserialize(
+  _i7.FooError deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return _i8.FooErrorBuilder().build();
+    return _i7.FooErrorBuilder().build();
   }
 
   @override
@@ -516,19 +575,19 @@ class _FooErrorRestJson1Serializer
 }
 
 class _InvalidGreetingRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<_i9.InvalidGreeting> {
+    extends _i4.StructuredSmithySerializer<_i8.InvalidGreeting> {
   const _InvalidGreetingRestJson1Serializer() : super('InvalidGreeting');
 
   @override
-  Iterable<Type> get types => const [_i9.InvalidGreeting];
+  Iterable<Type> get types => const [_i8.InvalidGreeting];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  _i9.InvalidGreeting deserialize(
+  _i8.InvalidGreeting deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i9.InvalidGreetingBuilder();
+    final result = _i8.InvalidGreetingBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;

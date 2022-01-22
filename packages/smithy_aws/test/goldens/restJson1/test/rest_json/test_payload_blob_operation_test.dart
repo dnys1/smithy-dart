@@ -14,7 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonHttpWithEmptyBlobPayload (restJson1)', () async {
+  _i1.test('RestJsonHttpWithEmptyBlobPayload (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.TestPayloadBlobOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -44,7 +44,7 @@ void main() {
           _TestPayloadBlobInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonTestPayloadBlob (restJson1)', () async {
+  _i1.test('RestJsonTestPayloadBlob (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.TestPayloadBlobOperation(),
         testCase: const _i2.HttpRequestTestCase(

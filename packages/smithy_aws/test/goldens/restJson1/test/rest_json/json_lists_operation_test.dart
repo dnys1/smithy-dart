@@ -15,7 +15,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonLists (restJson1)', () async {
+  _i1.test('RestJsonLists (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonListsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -62,7 +62,7 @@ void main() {
           _StructureListMemberRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonListsEmpty (restJson1)', () async {
+  _i1.test('RestJsonListsEmpty (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonListsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -93,7 +93,7 @@ void main() {
           _StructureListMemberRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonListsSerializeNull (restJson1)', () async {
+  _i1.test('RestJsonListsSerializeNull (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonListsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -127,7 +127,7 @@ void main() {
           _StructureListMemberRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonLists (restJson1)', () async {
+  _i1.test('RestJsonLists (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonListsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -168,7 +168,7 @@ void main() {
           _StructureListMemberRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonListsEmpty (restJson1)', () async {
+  _i1.test('RestJsonListsEmpty (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonListsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -193,7 +193,7 @@ void main() {
           _StructureListMemberRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonListsSerializeNull (restJson1)', () async {
+  _i1.test('RestJsonListsSerializeNull (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonListsOperation(),
         testCase: const _i2.HttpResponseTestCase(

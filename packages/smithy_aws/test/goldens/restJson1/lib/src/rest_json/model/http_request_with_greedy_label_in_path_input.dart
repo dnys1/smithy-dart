@@ -14,7 +14,8 @@ abstract class HttpRequestWithGreedyLabelInPathInput
         _i1.HttpInput<HttpRequestWithGreedyLabelInPathInputPayload>
     implements
         Built<HttpRequestWithGreedyLabelInPathInput,
-            HttpRequestWithGreedyLabelInPathInputBuilder> {
+            HttpRequestWithGreedyLabelInPathInputBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithGreedyLabelInPathInput(
       [void Function(HttpRequestWithGreedyLabelInPathInputBuilder)
           updates]) = _$HttpRequestWithGreedyLabelInPathInput;
@@ -49,7 +50,8 @@ abstract class HttpRequestWithGreedyLabelInPathInput
 abstract class HttpRequestWithGreedyLabelInPathInputPayload
     implements
         Built<HttpRequestWithGreedyLabelInPathInputPayload,
-            HttpRequestWithGreedyLabelInPathInputPayloadBuilder> {
+            HttpRequestWithGreedyLabelInPathInputPayloadBuilder>,
+        _i1.EmptyPayload {
   factory HttpRequestWithGreedyLabelInPathInputPayload(
       [void Function(HttpRequestWithGreedyLabelInPathInputPayloadBuilder)
           updates]) = _$HttpRequestWithGreedyLabelInPathInputPayload;

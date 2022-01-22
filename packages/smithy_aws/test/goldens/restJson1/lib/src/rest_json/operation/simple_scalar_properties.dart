@@ -51,6 +51,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         b.shortValue = payload.shortValue;
         b.stringValue = payload.stringValue;
         b.trueBooleanValue = payload.trueBooleanValue;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
       });
   @override
   List<_i1.SmithyError> get errorTypes => const [];

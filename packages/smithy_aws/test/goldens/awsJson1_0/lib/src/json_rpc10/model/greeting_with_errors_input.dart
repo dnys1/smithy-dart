@@ -4,16 +4,13 @@ library aws_json1_0.json_rpc10.model.greeting_with_errors_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'greeting_with_errors_input.g.dart';
 
 abstract class GreetingWithErrorsInput
-    with _i1.HttpInput<GreetingWithErrorsInputPayload>
-    implements
-        Built<GreetingWithErrorsInput, GreetingWithErrorsInputBuilder>,
-        _i1.HasPayload<GreetingWithErrorsInputPayload> {
+    with _i1.HttpInput<GreetingWithErrorsInput>
+    implements Built<GreetingWithErrorsInput, GreetingWithErrorsInputBuilder> {
   factory GreetingWithErrorsInput(
           [void Function(GreetingWithErrorsInputBuilder) updates]) =
       _$GreetingWithErrorsInput;
@@ -27,26 +24,6 @@ abstract class GreetingWithErrorsInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsInputBuilder b) {}
   String? get greeting;
-  @override
-  GreetingWithErrorsInputPayload getPayload() =>
-      GreetingWithErrorsInputPayload((b) => b..greeting = greeting);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class GreetingWithErrorsInputPayload
-    implements
-        Built<GreetingWithErrorsInputPayload,
-            GreetingWithErrorsInputPayloadBuilder> {
-  factory GreetingWithErrorsInputPayload(
-          [void Function(GreetingWithErrorsInputPayloadBuilder) updates]) =
-      _$GreetingWithErrorsInputPayload;
-
-  const GreetingWithErrorsInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingWithErrorsInputPayloadBuilder b) {}
-  String? get greeting;
 }
 
 class _GreetingWithErrorsInputAwsJson10Serializer
@@ -55,12 +32,8 @@ class _GreetingWithErrorsInputAwsJson10Serializer
       : super('GreetingWithErrorsInput');
 
   @override
-  Iterable<Type> get types => const [
-        GreetingWithErrorsInput,
-        _$GreetingWithErrorsInput,
-        GreetingWithErrorsInputPayload,
-        _$GreetingWithErrorsInputPayload
-      ];
+  Iterable<Type> get types =>
+      const [GreetingWithErrorsInput, _$GreetingWithErrorsInput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -96,7 +69,7 @@ class _GreetingWithErrorsInputAwsJson10Serializer
       result
         ..add('greeting')
         ..add(serializers.serialize(payload.greeting,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

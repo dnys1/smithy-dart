@@ -22,10 +22,10 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 /// Implementations must be able to successfully take a response and
 /// properly deserialize successful and error responses.
 class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
-    _i2.GreetingWithErrorsOutputPayload, _i2.GreetingWithErrorsOutput> {
+    _i2.GreetingWithErrorsOutput, _i2.GreetingWithErrorsOutput> {
   @override
   late final List<
-      _i1.HttpProtocol<_i1.Unit, _i1.Unit, _i2.GreetingWithErrorsOutputPayload,
+      _i1.HttpProtocol<_i1.Unit, _i1.Unit, _i2.GreetingWithErrorsOutput,
           _i2.GreetingWithErrorsOutput>> protocols = [
     _i3.AwsJson1_1Protocol(
         serializers: _i4.serializers,
@@ -43,12 +43,9 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
         b.successCode = 200;
       });
   @override
-  _i2.GreetingWithErrorsOutput buildOutput(
-          _i2.GreetingWithErrorsOutputPayload payload,
+  _i2.GreetingWithErrorsOutput buildOutput(_i2.GreetingWithErrorsOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.GreetingWithErrorsOutput((b) {
-        b.greeting = payload.greeting;
-      });
+      _i2.GreetingWithErrorsOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [
         _i1.SmithyError(

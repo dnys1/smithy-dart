@@ -13,7 +13,8 @@ abstract class EmptyInputAndEmptyOutputInput
         _i1.HttpInput<EmptyInputAndEmptyOutputInput>
     implements
         Built<EmptyInputAndEmptyOutputInput,
-            EmptyInputAndEmptyOutputInputBuilder> {
+            EmptyInputAndEmptyOutputInputBuilder>,
+        _i1.EmptyPayload {
   factory EmptyInputAndEmptyOutputInput(
           [void Function(EmptyInputAndEmptyOutputInputBuilder) updates]) =
       _$EmptyInputAndEmptyOutputInput;

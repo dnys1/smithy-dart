@@ -14,7 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('can_call_operation_with_no_input_or_output (awsJson1_1)', () async {
+  _i1.test('can_call_operation_with_no_input_or_output (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.OperationWithOptionalInputOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -43,10 +43,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _OperationWithOptionalInputOutputInputAwsJson11Serializer());
+        inputSerializers: const [
+          _OperationWithOptionalInputOutputInputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('can_call_operation_with_optional_input (awsJson1_1)', () async {
+  _i1.test('can_call_operation_with_optional_input (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.OperationWithOptionalInputOutputOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -75,8 +76,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _OperationWithOptionalInputOutputInputAwsJson11Serializer());
+        inputSerializers: const [
+          _OperationWithOptionalInputOutputInputAwsJson11Serializer()
+        ]);
   });
 }
 
@@ -86,10 +88,7 @@ class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i4
       : super('OperationWithOptionalInputOutputInput');
 
   @override
-  Iterable<Type> get types => const [
-        _i5.OperationWithOptionalInputOutputInput,
-        _i5.OperationWithOptionalInputOutputInputPayload
-      ];
+  Iterable<Type> get types => const [_i5.OperationWithOptionalInputOutputInput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
@@ -129,10 +128,8 @@ class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i4
       : super('OperationWithOptionalInputOutputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        _i6.OperationWithOptionalInputOutputOutput,
-        _i6.OperationWithOptionalInputOutputOutputPayload
-      ];
+  Iterable<Type> get types =>
+      const [_i6.OperationWithOptionalInputOutputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

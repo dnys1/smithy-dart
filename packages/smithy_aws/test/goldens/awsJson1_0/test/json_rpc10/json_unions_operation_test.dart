@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10SerializeStringUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeStringUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -45,9 +45,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeBooleanUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeBooleanUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -79,9 +79,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeNumberUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeNumberUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -112,9 +112,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeBlobUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeBlobUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -145,9 +145,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeTimestampUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeTimestampUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -179,9 +179,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeEnumUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeEnumUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -212,9 +212,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeListUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeListUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -248,9 +248,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeMapUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeMapUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -284,9 +284,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10SerializeStructureUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10SerializeStructureUnionValue (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -320,9 +320,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonUnionsInputAwsJson10Serializer());
+        inputSerializers: const [_JsonUnionsInputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeStringUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeStringUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -345,9 +345,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeBooleanUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeBooleanUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -370,9 +370,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeNumberUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeNumberUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -394,9 +394,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeBlobUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeBlobUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -418,9 +418,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeTimestampUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeTimestampUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -443,9 +443,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeEnumUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeEnumUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -467,9 +467,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeListUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeListUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -494,9 +494,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeMapUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeMapUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -521,9 +521,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
-  _i1.test('AwsJson10DeserializeStructureUnionValue (awsJson1_0)', () async {
+  _i1.test('AwsJson10DeserializeStructureUnionValue (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonUnionsOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -548,7 +548,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonUnionsOutputAwsJson10Serializer());
+        outputSerializers: const [_JsonUnionsOutputAwsJson10Serializer()]);
   });
 }
 
@@ -557,8 +557,7 @@ class _JsonUnionsInputAwsJson10Serializer
   const _JsonUnionsInputAwsJson10Serializer() : super('JsonUnionsInput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i5.JsonUnionsInput, _i5.JsonUnionsInputPayload];
+  Iterable<Type> get types => const [_i5.JsonUnionsInput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
@@ -597,8 +596,7 @@ class _JsonUnionsOutputAwsJson10Serializer
   const _JsonUnionsOutputAwsJson10Serializer() : super('JsonUnionsOutput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i7.JsonUnionsOutput, _i7.JsonUnionsOutputPayload];
+  Iterable<Type> get types => const [_i7.JsonUnionsOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];

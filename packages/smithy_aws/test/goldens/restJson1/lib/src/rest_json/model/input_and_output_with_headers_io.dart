@@ -15,7 +15,8 @@ part 'input_and_output_with_headers_io.g.dart';
 abstract class InputAndOutputWithHeadersIo
     with _i1.HttpInput<InputAndOutputWithHeadersIoPayload>
     implements
-        Built<InputAndOutputWithHeadersIo, InputAndOutputWithHeadersIoBuilder> {
+        Built<InputAndOutputWithHeadersIo, InputAndOutputWithHeadersIoBuilder>,
+        _i1.EmptyPayload {
   factory InputAndOutputWithHeadersIo(
           [void Function(InputAndOutputWithHeadersIoBuilder) updates]) =
       _$InputAndOutputWithHeadersIo;
@@ -53,7 +54,8 @@ abstract class InputAndOutputWithHeadersIo
 abstract class InputAndOutputWithHeadersIoPayload
     implements
         Built<InputAndOutputWithHeadersIoPayload,
-            InputAndOutputWithHeadersIoPayloadBuilder> {
+            InputAndOutputWithHeadersIoPayloadBuilder>,
+        _i1.EmptyPayload {
   factory InputAndOutputWithHeadersIoPayload(
           [void Function(InputAndOutputWithHeadersIoPayloadBuilder) updates]) =
       _$InputAndOutputWithHeadersIoPayload;

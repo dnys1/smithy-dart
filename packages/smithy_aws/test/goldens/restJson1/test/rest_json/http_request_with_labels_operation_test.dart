@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonInputWithHeadersAndAllParams (restJson1)', () async {
+  _i1.test('RestJsonInputWithHeadersAndAllParams (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpRequestWithLabelsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -53,7 +53,7 @@ void main() {
           _HttpRequestWithLabelsInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonHttpRequestLabelEscaping (restJson1)', () async {
+  _i1.test('RestJsonHttpRequestLabelEscaping (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.HttpRequestWithLabelsOperation(),
         testCase: const _i2.HttpRequestTestCase(

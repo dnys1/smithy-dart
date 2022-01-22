@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonConstantAndVariableQueryStringMissingOneValue (restJson1)',
+  _i1.test('RestJsonConstantAndVariableQueryStringMissingOneValue (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.ConstantAndVariableQueryStringOperation(),
@@ -44,7 +44,7 @@ void main() {
           _ConstantAndVariableQueryStringInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonConstantAndVariableQueryStringAllValues (restJson1)',
+  _i1.test('RestJsonConstantAndVariableQueryStringAllValues (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.ConstantAndVariableQueryStringOperation(),

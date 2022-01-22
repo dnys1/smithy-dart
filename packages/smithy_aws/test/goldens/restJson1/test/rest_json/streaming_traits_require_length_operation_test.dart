@@ -14,8 +14,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (restJson1)',
-      () async {
+  _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.StreamingTraitsRequireLengthOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -49,7 +48,7 @@ void main() {
           _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonStreamingTraitsRequireLengthWithNoBlobBody (restJson1)',
+  _i1.test('RestJsonStreamingTraitsRequireLengthWithNoBlobBody (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.StreamingTraitsRequireLengthOperation(),
@@ -80,8 +79,7 @@ void main() {
           _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (restJson1)',
-      () async {
+  _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.StreamingTraitsRequireLengthOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -109,7 +107,7 @@ void main() {
           _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonStreamingTraitsRequireLengthWithNoBlobBody (restJson1)',
+  _i1.test('RestJsonStreamingTraitsRequireLengthWithNoBlobBody (response)',
       () async {
     await _i2.httpResponseTest(
         operation: _i3.StreamingTraitsRequireLengthOperation(),

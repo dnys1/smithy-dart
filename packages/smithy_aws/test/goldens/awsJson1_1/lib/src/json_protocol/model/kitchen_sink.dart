@@ -13,16 +13,13 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/json_object.dart' as _i4;
 import 'package:built_value/serializer.dart';
 import 'package:fixnum/fixnum.dart' as _i7;
-import 'package:meta/meta.dart' as _i9;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'kitchen_sink.g.dart';
 
 abstract class KitchenSink
-    with _i1.HttpInput<KitchenSinkPayload>
-    implements
-        Built<KitchenSink, KitchenSinkBuilder>,
-        _i1.HasPayload<KitchenSinkPayload> {
+    with _i1.HttpInput<KitchenSink>
+    implements Built<KitchenSink, KitchenSinkBuilder> {
   factory KitchenSink([void Function(KitchenSinkBuilder) updates]) =
       _$KitchenSink;
 
@@ -60,74 +57,6 @@ abstract class KitchenSink
   _i8.StructWithJsonName? get structWithJsonName;
   DateTime? get timestamp;
   DateTime? get unixTimestamp;
-  @override
-  KitchenSinkPayload getPayload() => KitchenSinkPayload((b) => b
-    ..blob = blob
-    ..boolean = boolean
-    ..double$ = double$
-    ..emptyStruct = emptyStruct
-    ..float = float
-    ..httpdateTimestamp = httpdateTimestamp
-    ..integer = integer
-    ..iso8601Timestamp = iso8601Timestamp
-    ..jsonValue = jsonValue
-    ..listOfLists = listOfLists
-    ..listOfMapsOfStrings = listOfMapsOfStrings
-    ..listOfStrings = listOfStrings
-    ..listOfStructs = listOfStructs
-    ..long = long
-    ..mapOfListsOfStrings = mapOfListsOfStrings
-    ..mapOfMaps = mapOfMaps
-    ..mapOfStrings = mapOfStrings
-    ..mapOfStructs = mapOfStructs
-    ..recursiveList = recursiveList
-    ..recursiveMap = recursiveMap
-    ..recursiveStruct = recursiveStruct
-    ..simpleStruct = simpleStruct
-    ..string = string
-    ..structWithJsonName = structWithJsonName
-    ..timestamp = timestamp
-    ..unixTimestamp = unixTimestamp);
-}
-
-@_i9.internal
-@BuiltValue(nestedBuilders: false)
-abstract class KitchenSinkPayload
-    implements Built<KitchenSinkPayload, KitchenSinkPayloadBuilder> {
-  factory KitchenSinkPayload(
-          [void Function(KitchenSinkPayloadBuilder) updates]) =
-      _$KitchenSinkPayload;
-
-  const KitchenSinkPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(KitchenSinkPayloadBuilder b) {}
-  _i2.Uint8List? get blob;
-  bool? get boolean;
-  double? get double$;
-  _i3.EmptyStruct? get emptyStruct;
-  double? get float;
-  DateTime? get httpdateTimestamp;
-  int? get integer;
-  DateTime? get iso8601Timestamp;
-  _i4.JsonObject? get jsonValue;
-  _i5.BuiltList<_i5.BuiltList<String>>? get listOfLists;
-  _i5.BuiltList<_i5.BuiltMap<String, String>>? get listOfMapsOfStrings;
-  _i5.BuiltList<String>? get listOfStrings;
-  _i5.BuiltList<_i6.SimpleStruct>? get listOfStructs;
-  _i7.Int64? get long;
-  _i5.BuiltListMultimap<String, String>? get mapOfListsOfStrings;
-  _i5.BuiltMap<String, _i5.BuiltMap<String, String>>? get mapOfMaps;
-  _i5.BuiltMap<String, String>? get mapOfStrings;
-  _i5.BuiltMap<String, _i6.SimpleStruct>? get mapOfStructs;
-  _i5.BuiltList<KitchenSink>? get recursiveList;
-  _i5.BuiltMap<String, KitchenSink>? get recursiveMap;
-  KitchenSink? get recursiveStruct;
-  _i6.SimpleStruct? get simpleStruct;
-  String? get string;
-  _i8.StructWithJsonName? get structWithJsonName;
-  DateTime? get timestamp;
-  DateTime? get unixTimestamp;
 }
 
 class _KitchenSinkAwsJson11Serializer
@@ -135,12 +64,7 @@ class _KitchenSinkAwsJson11Serializer
   const _KitchenSinkAwsJson11Serializer() : super('KitchenSink');
 
   @override
-  Iterable<Type> get types => const [
-        KitchenSink,
-        _$KitchenSink,
-        KitchenSinkPayload,
-        _$KitchenSinkPayload
-      ];
+  Iterable<Type> get types => const [KitchenSink, _$KitchenSink];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
@@ -187,8 +111,8 @@ class _KitchenSinkAwsJson11Serializer
           break;
         case 'HttpdateTimestamp':
           if (value != null) {
-            result.httpdateTimestamp = (_i1.TimestampSerializer.httpDate
-                .deserialize(serializers, value) as DateTime);
+            result.httpdateTimestamp = _i1.TimestampSerializer.httpDate
+                .deserialize(serializers, value);
           }
           break;
         case 'Integer':
@@ -199,14 +123,14 @@ class _KitchenSinkAwsJson11Serializer
           break;
         case 'Iso8601Timestamp':
           if (value != null) {
-            result.iso8601Timestamp = (_i1.TimestampSerializer.dateTime
-                .deserialize(serializers, value) as DateTime);
+            result.iso8601Timestamp = _i1.TimestampSerializer.dateTime
+                .deserialize(serializers, value);
           }
           break;
         case 'JsonValue':
           if (value != null) {
-            result.jsonValue = (const _i1.EncodedJsonObjectSerializer()
-                .deserialize(serializers, value) as _i4.JsonObject);
+            result.jsonValue = const _i1.EncodedJsonObjectSerializer()
+                .deserialize(serializers, value);
           }
           break;
         case 'ListOfLists':
@@ -333,8 +257,8 @@ class _KitchenSinkAwsJson11Serializer
           break;
         case 'UnixTimestamp':
           if (value != null) {
-            result.unixTimestamp = (_i1.TimestampSerializer.epochSeconds
-                .deserialize(serializers, value) as DateTime);
+            result.unixTimestamp = _i1.TimestampSerializer.epochSeconds
+                .deserialize(serializers, value);
           }
           break;
       }
@@ -352,31 +276,31 @@ class _KitchenSinkAwsJson11Serializer
       result
         ..add('Blob')
         ..add(serializers.serialize(payload.blob,
-            specifiedType: FullType.nullable(_i2.Uint8List)));
+            specifiedType: const FullType.nullable(_i2.Uint8List)));
     }
     if (payload.boolean != null) {
       result
         ..add('Boolean')
         ..add(serializers.serialize(payload.boolean,
-            specifiedType: FullType.nullable(bool)));
+            specifiedType: const FullType.nullable(bool)));
     }
     if (payload.double$ != null) {
       result
         ..add('Double')
         ..add(serializers.serialize(payload.double$,
-            specifiedType: FullType.nullable(double)));
+            specifiedType: const FullType.nullable(double)));
     }
     if (payload.emptyStruct != null) {
       result
         ..add('EmptyStruct')
         ..add(serializers.serialize(payload.emptyStruct,
-            specifiedType: FullType.nullable(_i3.EmptyStruct)));
+            specifiedType: const FullType.nullable(_i3.EmptyStruct)));
     }
     if (payload.float != null) {
       result
         ..add('Float')
         ..add(serializers.serialize(payload.float,
-            specifiedType: FullType.nullable(double)));
+            specifiedType: const FullType.nullable(double)));
     }
     if (payload.httpdateTimestamp != null) {
       result
@@ -388,7 +312,7 @@ class _KitchenSinkAwsJson11Serializer
       result
         ..add('Integer')
         ..add(serializers.serialize(payload.integer,
-            specifiedType: FullType.nullable(int)));
+            specifiedType: const FullType.nullable(int)));
     }
     if (payload.iso8601Timestamp != null) {
       result
@@ -406,16 +330,16 @@ class _KitchenSinkAwsJson11Serializer
       result
         ..add('ListOfLists')
         ..add(serializers.serialize(payload.listOfLists,
-            specifiedType: FullType.nullable(_i5.BuiltList, [
-              const FullType(_i5.BuiltList, [FullType(String)])
+            specifiedType: const FullType.nullable(_i5.BuiltList, [
+              FullType(_i5.BuiltList, [FullType(String)])
             ])));
     }
     if (payload.listOfMapsOfStrings != null) {
       result
         ..add('ListOfMapsOfStrings')
         ..add(serializers.serialize(payload.listOfMapsOfStrings,
-            specifiedType: FullType.nullable(_i5.BuiltList, [
-              const FullType(_i5.BuiltMap, [FullType(String), FullType(String)])
+            specifiedType: const FullType.nullable(_i5.BuiltList, [
+              FullType(_i5.BuiltMap, [FullType(String), FullType(String)])
             ])));
     }
     if (payload.listOfStrings != null) {
@@ -423,94 +347,94 @@ class _KitchenSinkAwsJson11Serializer
         ..add('ListOfStrings')
         ..add(serializers.serialize(payload.listOfStrings,
             specifiedType:
-                FullType.nullable(_i5.BuiltList, [const FullType(String)])));
+                const FullType.nullable(_i5.BuiltList, [FullType(String)])));
     }
     if (payload.listOfStructs != null) {
       result
         ..add('ListOfStructs')
         ..add(serializers.serialize(payload.listOfStructs,
-            specifiedType: FullType.nullable(
-                _i5.BuiltList, [const FullType(_i6.SimpleStruct)])));
+            specifiedType: const FullType.nullable(
+                _i5.BuiltList, [FullType(_i6.SimpleStruct)])));
     }
     if (payload.long != null) {
       result
         ..add('Long')
         ..add(serializers.serialize(payload.long,
-            specifiedType: FullType.nullable(_i7.Int64)));
+            specifiedType: const FullType.nullable(_i7.Int64)));
     }
     if (payload.mapOfListsOfStrings != null) {
       result
         ..add('MapOfListsOfStrings')
         ..add(serializers.serialize(payload.mapOfListsOfStrings,
-            specifiedType: FullType.nullable(_i5.BuiltListMultimap,
-                [const FullType(String), const FullType(String)])));
+            specifiedType: const FullType.nullable(
+                _i5.BuiltListMultimap, [FullType(String), FullType(String)])));
     }
     if (payload.mapOfMaps != null) {
       result
         ..add('MapOfMaps')
         ..add(serializers.serialize(payload.mapOfMaps,
-            specifiedType: FullType.nullable(_i5.BuiltMap, [
-              const FullType(String),
-              const FullType(_i5.BuiltMap, [FullType(String), FullType(String)])
+            specifiedType: const FullType.nullable(_i5.BuiltMap, [
+              FullType(String),
+              FullType(_i5.BuiltMap, [FullType(String), FullType(String)])
             ])));
     }
     if (payload.mapOfStrings != null) {
       result
         ..add('MapOfStrings')
         ..add(serializers.serialize(payload.mapOfStrings,
-            specifiedType: FullType.nullable(_i5.BuiltMap,
-                [const FullType(String), const FullType(String)])));
+            specifiedType: const FullType.nullable(
+                _i5.BuiltMap, [FullType(String), FullType(String)])));
     }
     if (payload.mapOfStructs != null) {
       result
         ..add('MapOfStructs')
         ..add(serializers.serialize(payload.mapOfStructs,
-            specifiedType: FullType.nullable(_i5.BuiltMap,
-                [const FullType(String), const FullType(_i6.SimpleStruct)])));
+            specifiedType: const FullType.nullable(
+                _i5.BuiltMap, [FullType(String), FullType(_i6.SimpleStruct)])));
     }
     if (payload.recursiveList != null) {
       result
         ..add('RecursiveList')
         ..add(serializers.serialize(payload.recursiveList,
-            specifiedType: FullType.nullable(
-                _i5.BuiltList, [const FullType(KitchenSink)])));
+            specifiedType: const FullType.nullable(
+                _i5.BuiltList, [FullType(KitchenSink)])));
     }
     if (payload.recursiveMap != null) {
       result
         ..add('RecursiveMap')
         ..add(serializers.serialize(payload.recursiveMap,
-            specifiedType: FullType.nullable(_i5.BuiltMap,
-                [const FullType(String), const FullType(KitchenSink)])));
+            specifiedType: const FullType.nullable(
+                _i5.BuiltMap, [FullType(String), FullType(KitchenSink)])));
     }
     if (payload.recursiveStruct != null) {
       result
         ..add('RecursiveStruct')
         ..add(serializers.serialize(payload.recursiveStruct,
-            specifiedType: FullType.nullable(KitchenSink)));
+            specifiedType: const FullType.nullable(KitchenSink)));
     }
     if (payload.simpleStruct != null) {
       result
         ..add('SimpleStruct')
         ..add(serializers.serialize(payload.simpleStruct,
-            specifiedType: FullType.nullable(_i6.SimpleStruct)));
+            specifiedType: const FullType.nullable(_i6.SimpleStruct)));
     }
     if (payload.string != null) {
       result
         ..add('String')
         ..add(serializers.serialize(payload.string,
-            specifiedType: FullType.nullable(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.structWithJsonName != null) {
       result
         ..add('StructWithJsonName')
         ..add(serializers.serialize(payload.structWithJsonName,
-            specifiedType: FullType.nullable(_i8.StructWithJsonName)));
+            specifiedType: const FullType.nullable(_i8.StructWithJsonName)));
     }
     if (payload.timestamp != null) {
       result
         ..add('Timestamp')
         ..add(serializers.serialize(payload.timestamp,
-            specifiedType: FullType.nullable(DateTime)));
+            specifiedType: const FullType.nullable(DateTime)));
     }
     if (payload.unixTimestamp != null) {
       result

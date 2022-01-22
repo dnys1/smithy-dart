@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonJsonBlobs (restJson1)', () async {
+  _i1.test('RestJsonJsonBlobs (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.JsonBlobsOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -41,7 +41,7 @@ void main() {
             requireQueryParams: []),
         inputSerializers: const [_JsonBlobsInputOutputRestJson1Serializer()]);
   });
-  _i1.test('RestJsonJsonBlobs (restJson1)', () async {
+  _i1.test('RestJsonJsonBlobs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.JsonBlobsOperation(),
         testCase: const _i2.HttpResponseTestCase(

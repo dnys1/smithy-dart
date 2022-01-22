@@ -12,7 +12,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('DocumentTypeInputWithObject (restJson1)', () async {
+  _i1.test('DocumentTypeInputWithObject (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -45,7 +45,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentInputWithString (restJson1)', () async {
+  _i1.test('DocumentInputWithString (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -76,7 +76,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentInputWithNumber (restJson1)', () async {
+  _i1.test('DocumentInputWithNumber (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -106,7 +106,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentInputWithBoolean (restJson1)', () async {
+  _i1.test('DocumentInputWithBoolean (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -137,7 +137,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentInputWithList (restJson1)', () async {
+  _i1.test('DocumentInputWithList (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -180,7 +180,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentOutput (restJson1)', () async {
+  _i1.test('DocumentOutput (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -207,7 +207,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentOutputString (restJson1)', () async {
+  _i1.test('DocumentOutputString (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -232,7 +232,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentOutputNumber (restJson1)', () async {
+  _i1.test('DocumentOutputNumber (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -256,7 +256,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentOutputBoolean (restJson1)', () async {
+  _i1.test('DocumentOutputBoolean (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -281,7 +281,7 @@ void main() {
           _DocumentTypeInputOutputRestJson1Serializer()
         ]);
   });
-  _i1.test('DocumentOutputArray (restJson1)', () async {
+  _i1.test('DocumentOutputArray (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.DocumentTypeOperation(),
         testCase: const _i2.HttpResponseTestCase(

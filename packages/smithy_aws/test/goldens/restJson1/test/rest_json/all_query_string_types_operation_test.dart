@@ -15,7 +15,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonAllQueryStringTypes (restJson1)', () async {
+  _i1.test('RestJsonAllQueryStringTypes (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.AllQueryStringTypesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -100,7 +100,7 @@ void main() {
           _AllQueryStringTypesInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonQueryStringMap (restJson1)', () async {
+  _i1.test('RestJsonQueryStringMap (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.AllQueryStringTypesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -138,7 +138,7 @@ void main() {
           _AllQueryStringTypesInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonQueryStringEscaping (restJson1)', () async {
+  _i1.test('RestJsonQueryStringEscaping (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.AllQueryStringTypesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -171,7 +171,7 @@ void main() {
           _AllQueryStringTypesInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNaNFloatQueryValues (restJson1)', () async {
+  _i1.test('RestJsonSupportsNaNFloatQueryValues (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.AllQueryStringTypesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -201,7 +201,7 @@ void main() {
           _AllQueryStringTypesInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsInfinityFloatQueryValues (restJson1)', () async {
+  _i1.test('RestJsonSupportsInfinityFloatQueryValues (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.AllQueryStringTypesOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -231,7 +231,7 @@ void main() {
           _AllQueryStringTypesInputRestJson1Serializer()
         ]);
   });
-  _i1.test('RestJsonSupportsNegativeInfinityFloatQueryValues (restJson1)',
+  _i1.test('RestJsonSupportsNegativeInfinityFloatQueryValues (request)',
       () async {
     await _i2.httpRequestTest(
         operation: _i3.AllQueryStringTypesOperation(),

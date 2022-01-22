@@ -4,18 +4,17 @@ library aws_json1_0.json_rpc10.model.empty_input_and_empty_output_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'empty_input_and_empty_output_input.g.dart';
 
 abstract class EmptyInputAndEmptyOutputInput
     with
-        _i1.HttpInput<EmptyInputAndEmptyOutputInputPayload>
+        _i1.HttpInput<EmptyInputAndEmptyOutputInput>
     implements
         Built<EmptyInputAndEmptyOutputInput,
             EmptyInputAndEmptyOutputInputBuilder>,
-        _i1.HasPayload<EmptyInputAndEmptyOutputInputPayload> {
+        _i1.EmptyPayload {
   factory EmptyInputAndEmptyOutputInput(
           [void Function(EmptyInputAndEmptyOutputInputBuilder) updates]) =
       _$EmptyInputAndEmptyOutputInput;
@@ -28,25 +27,6 @@ abstract class EmptyInputAndEmptyOutputInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(EmptyInputAndEmptyOutputInputBuilder b) {}
-  @override
-  EmptyInputAndEmptyOutputInputPayload getPayload() =>
-      EmptyInputAndEmptyOutputInputPayload();
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class EmptyInputAndEmptyOutputInputPayload
-    implements
-        Built<EmptyInputAndEmptyOutputInputPayload,
-            EmptyInputAndEmptyOutputInputPayloadBuilder> {
-  factory EmptyInputAndEmptyOutputInputPayload(
-      [void Function(EmptyInputAndEmptyOutputInputPayloadBuilder)
-          updates]) = _$EmptyInputAndEmptyOutputInputPayload;
-
-  const EmptyInputAndEmptyOutputInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EmptyInputAndEmptyOutputInputPayloadBuilder b) {}
 }
 
 class _EmptyInputAndEmptyOutputInputAwsJson10Serializer
@@ -55,12 +35,8 @@ class _EmptyInputAndEmptyOutputInputAwsJson10Serializer
       : super('EmptyInputAndEmptyOutputInput');
 
   @override
-  Iterable<Type> get types => const [
-        EmptyInputAndEmptyOutputInput,
-        _$EmptyInputAndEmptyOutputInput,
-        EmptyInputAndEmptyOutputInputPayload,
-        _$EmptyInputAndEmptyOutputInputPayload
-      ];
+  Iterable<Type> get types =>
+      const [EmptyInputAndEmptyOutputInput, _$EmptyInputAndEmptyOutputInput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];

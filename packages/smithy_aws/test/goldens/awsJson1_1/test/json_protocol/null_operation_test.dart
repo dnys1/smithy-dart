@@ -13,7 +13,7 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11StructuresDontSerializeNullValues (awsJson1_1)', () async {
+  _i1.test('AwsJson11StructuresDontSerializeNullValues (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.NullOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -39,9 +39,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _NullOperationInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _NullOperationInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11MapsSerializeNullValues (awsJson1_1)', () async {
+  _i1.test('AwsJson11MapsSerializeNullValues (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.NullOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -69,9 +71,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _NullOperationInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _NullOperationInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11ListsSerializeNull (awsJson1_1)', () async {
+  _i1.test('AwsJson11ListsSerializeNull (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.NullOperation(),
         testCase: const _i2.HttpRequestTestCase(
@@ -99,10 +103,11 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _NullOperationInputOutputAwsJson11Serializer());
+        inputSerializers: const [
+          _NullOperationInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11StructuresDontDeserializeNullValues (awsJson1_1)',
-      () async {
+  _i1.test('AwsJson11StructuresDontDeserializeNullValues (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NullOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -122,9 +127,11 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 200),
-        outputSerializer: const _NullOperationInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _NullOperationInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11MapsDeserializeNullValues (awsJson1_1)', () async {
+  _i1.test('AwsJson11MapsDeserializeNullValues (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NullOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -146,9 +153,11 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _NullOperationInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _NullOperationInputOutputAwsJson11Serializer()
+        ]);
   });
-  _i1.test('AwsJson11ListsDeserializeNull (awsJson1_1)', () async {
+  _i1.test('AwsJson11ListsDeserializeNull (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.NullOperation(),
         testCase: const _i2.HttpResponseTestCase(
@@ -170,7 +179,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _NullOperationInputOutputAwsJson11Serializer());
+        outputSerializers: const [
+          _NullOperationInputOutputAwsJson11Serializer()
+        ]);
   });
 }
 
@@ -180,8 +191,7 @@ class _NullOperationInputOutputAwsJson11Serializer
       : super('NullOperationInputOutput');
 
   @override
-  Iterable<Type> get types =>
-      const [_i5.NullOperationInputOutput, _i5.NullOperationInputOutputPayload];
+  Iterable<Type> get types => const [_i5.NullOperationInputOutput];
   @override
   Iterable<_i4.ShapeId> get supportedProtocols =>
       const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];

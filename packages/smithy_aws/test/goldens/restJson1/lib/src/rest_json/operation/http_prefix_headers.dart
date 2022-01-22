@@ -49,7 +49,15 @@ class HttpPrefixHeadersOperation extends _i1.HttpOperation<
   _i3.HttpPrefixHeadersOutput buildOutput(
           _i3.HttpPrefixHeadersOutputPayload payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.HttpPrefixHeadersOutput((b) {});
+      _i3.HttpPrefixHeadersOutput((b) {
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+        b.fooMap.addEntries(response.headers.entries
+            .where((el) => el.key.startsWith('X-Foo-'))
+            .map(
+                (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
+      });
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

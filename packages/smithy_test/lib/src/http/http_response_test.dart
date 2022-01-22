@@ -16,14 +16,6 @@ final _dummyHttpRequest = AWSStreamedHttpRequest(
   body: const Stream.empty(),
 );
 
-const _skipEqualityTests = {
-  'AwsJson10SupportsNaNFloatInputs':
-      "NaN != NaN, so there's no way to compare the outputs",
-  'AwsJson11SupportsNaNFloatInputs':
-      "NaN != NaN, so there's no way to compare the outputs",
-  'parses_blob_shapes': 'Blobs cannot be compared right now',
-};
-
 /// Performs an HTTP response test for [operation] for a test case from an
 /// [HttpResponseTestsTrait].
 Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
@@ -59,11 +51,7 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
     protocol: protocol,
   );
 
-  expect(
-    output,
-    equals(expectedOutput),
-    skip: _skipEqualityTests[testCase.id],
-  );
+  expect(output, equals(expectedOutput));
 }
 
 /// Performs an HTTP error response test for [operation] for a test case from an

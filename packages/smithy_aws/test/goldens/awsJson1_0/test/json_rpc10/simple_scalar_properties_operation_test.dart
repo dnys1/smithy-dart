@@ -46,75 +46,81 @@ void main() {
         inputSerializers: const [
           _SimpleScalarPropertiesInputAwsJson10Serializer()
         ]);
-  });
-  _i1.test('AwsJson10SupportsInfinityFloatInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson10SupportsInfinityFloatInputs',
-            documentation: 'Supports handling Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "Infinity",\n    "doubleValue": "Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.0',
-              'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputAwsJson10Serializer()
-        ]);
-  });
-  _i1.test('AwsJson10SupportsNegativeInfinityFloatInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
-            documentation: 'Supports handling -Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "-Infinity",\n    "doubleValue": "-Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.0',
-              'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputAwsJson10Serializer()
-        ]);
-  });
+  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'AwsJson10SupportsInfinityFloatInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson10SupportsInfinityFloatInputs',
+              documentation: 'Supports handling Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "Infinity",\n    "doubleValue": "Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.0',
+                'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputAwsJson10Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson10SupportsNegativeInfinityFloatInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
+              documentation: 'Supports handling -Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "-Infinity",\n    "doubleValue": "-Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.0',
+                'X-Amz-Target': 'JsonRpc10.SimpleScalarProperties'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputAwsJson10Serializer()
+          ]);
+    },
+  );
   _i1.test('AwsJson10SupportsNaNFloatInputs (response)', () async {
     await _i2.httpResponseTest(
         operation: _i3.SimpleScalarPropertiesOperation(),
@@ -138,57 +144,63 @@ void main() {
         outputSerializers: const [
           _SimpleScalarPropertiesOutputAwsJson10Serializer()
         ]);
-  });
-  _i1.test('AwsJson10SupportsInfinityFloatInputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson10SupportsInfinityFloatInputs',
-            documentation: 'Supports handling Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "Infinity",\n    "doubleValue": "Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.0'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesOutputAwsJson10Serializer()
-        ]);
-  });
-  _i1.test('AwsJson10SupportsNegativeInfinityFloatInputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
-            documentation: 'Supports handling -Infinity float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body:
-                '{\n    "floatValue": "-Infinity",\n    "doubleValue": "-Infinity"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.0'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesOutputAwsJson10Serializer()
-        ]);
-  });
+  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'AwsJson10SupportsInfinityFloatInputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson10SupportsInfinityFloatInputs',
+              documentation: 'Supports handling Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "Infinity",\n    "doubleValue": "Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'Infinity', 'doubleValue': 'Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.0'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesOutputAwsJson10Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson10SupportsNegativeInfinityFloatInputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
+              documentation: 'Supports handling -Infinity float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "-Infinity",\n    "doubleValue": "-Infinity"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': '-Infinity', 'doubleValue': '-Infinity'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.0'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesOutputAwsJson10Serializer()
+          ]);
+    },
+  );
 }
 
 class _SimpleScalarPropertiesInputAwsJson10Serializer

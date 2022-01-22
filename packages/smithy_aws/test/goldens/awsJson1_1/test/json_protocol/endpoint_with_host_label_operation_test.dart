@@ -12,34 +12,37 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11EndpointTraitWithHostLabel (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.EndpointWithHostLabelOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11EndpointTraitWithHostLabel',
-            documentation:
-                'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{"label": "bar"}',
-            bodyMediaType: 'application/json',
-            params: {'label': 'bar'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: 'example.com',
-            resolvedHost: 'foo.bar.example.com',
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_HostLabelInputAwsJson11Serializer()]);
-  });
+  _i1.test(
+    'AwsJson11EndpointTraitWithHostLabel (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.EndpointWithHostLabelOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11EndpointTraitWithHostLabel',
+              documentation:
+                  'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{"label": "bar"}',
+              bodyMediaType: 'application/json',
+              params: {'label': 'bar'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: 'example.com',
+              resolvedHost: 'foo.bar.example.com',
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [_HostLabelInputAwsJson11Serializer()]);
+    },
+  );
 }
 
 class _HostLabelInputAwsJson11Serializer

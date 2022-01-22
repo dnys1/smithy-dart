@@ -12,63 +12,69 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10NoInputAndOutput (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.NoInputAndOutputOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson10NoInputAndOutput',
-            documentation:
-                'A client should always send and empty JSON object payload.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.0',
-              'X-Amz-Target': 'JsonRpc10.NoInputAndOutput'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const []);
-  });
-  _i1.test('AwsJson10NoInputAndOutput (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.NoInputAndOutputOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson10NoInputAndOutput',
-            documentation:
-                'Empty output always serializes an empty object payload.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.0'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _NoInputAndOutputOutputAwsJson10Serializer()
-        ]);
-  });
+  _i1.test(
+    'AwsJson10NoInputAndOutput (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.NoInputAndOutputOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson10NoInputAndOutput',
+              documentation:
+                  'A client should always send and empty JSON object payload.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.0',
+                'X-Amz-Target': 'JsonRpc10.NoInputAndOutput'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const []);
+    },
+  );
+  _i1.test(
+    'AwsJson10NoInputAndOutput (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.NoInputAndOutputOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson10NoInputAndOutput',
+              documentation:
+                  'Empty output always serializes an empty object payload.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.0'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _NoInputAndOutputOutputAwsJson10Serializer()
+          ]);
+    },
+  );
 }
 
 class _NoInputAndOutputOutputAwsJson10Serializer

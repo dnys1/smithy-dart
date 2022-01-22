@@ -9,32 +9,36 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11HostWithPath (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.HostWithPathOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11HostWithPath',
-            documentation: 'Custom endpoints supplied by users can have paths',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            method: 'POST',
-            uri: '/custom/',
-            host: 'example.com/custom',
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const []);
-  });
+  _i1.test(
+    'AwsJson11HostWithPath (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.HostWithPathOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11HostWithPath',
+              documentation:
+                  'Custom endpoints supplied by users can have paths',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              method: 'POST',
+              uri: '/custom/',
+              host: 'example.com/custom',
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const []);
+    },
+  );
 }

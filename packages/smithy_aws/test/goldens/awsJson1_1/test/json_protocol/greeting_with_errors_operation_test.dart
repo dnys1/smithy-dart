@@ -18,347 +18,383 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11ComplexError (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i5.ComplexError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11ComplexError',
-            documentation: 'Parses a complex error with no message member',
-            protocol:
-                _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body:
-                '{\n    "__type": "ComplexError",\n    "TopLevel": "Top level",\n    "Nested": {\n        "Foo": "bar"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'TopLevel': 'Top level',
-              'Nested': {'Foo': 'bar'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 400),
-        errorSerializers: const [
-          _ComplexErrorAwsJson11Serializer(),
-          _ComplexNestedErrorDataAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11EmptyComplexError (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i5.ComplexError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11EmptyComplexError',
-            documentation: null,
-            protocol:
-                _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "__type": "ComplexError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 400),
-        errorSerializers: const [
-          _ComplexErrorAwsJson11Serializer(),
-          _ComplexNestedErrorDataAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11FooErrorUsingXAmznErrorType (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorUsingXAmznErrorType',
-            documentation:
-                'Serializes the X-Amzn-ErrorType header. For an example service, see Amazon EKS.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'X-Amzn-Errortype': 'FooError'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorUsingXAmznErrorTypeWithUri (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorUsingXAmznErrorTypeWithUri',
-            documentation:
-                'Some X-Amzn-Errortype headers contain URLs. Clients need to split the URL on \':\' and take only the first half of the string. For example, \'ValidationException:http://internal.amazon.com/coral/com.amazon.coral.validate/\'\nis to be interpreted as \'ValidationException\'.\n\nFor an example service see Amazon Polly.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Amzn-Errortype':
-                  'FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorUsingXAmznErrorTypeWithUriAndNamespace (error)',
-      () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorUsingXAmznErrorTypeWithUriAndNamespace',
-            documentation:
-                'X-Amzn-Errortype might contain a URL and a namespace. Client should extract only the shape name. This is a pathalogical case that might not actually happen in any deployed AWS service.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: null,
-            bodyMediaType: null,
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Amzn-Errortype':
-                  'aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorUsingCode (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorUsingCode',
-            documentation:
-                'This example uses the \'code\' property in the output rather than X-Amzn-Errortype. Some services do this though it\'s preferable to send the X-Amzn-Errortype. Client implementations must first check for the X-Amzn-Errortype and then check for a top-level \'code\' property.\n\nFor example service see Amazon S3 Glacier.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "code": "FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorUsingCodeAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorUsingCodeAndNamespace',
-            documentation:
-                'Some services serialize errors using code, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "code": "aws.protocoltests.restjson#FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorUsingCodeUriAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorUsingCodeUriAndNamespace',
-            documentation:
-                'Some services serialize errors using code, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "code": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorWithDunderType (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorWithDunderType',
-            documentation: 'Some services serialize errors using __type.',
-            protocol:
-                _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "__type": "FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorWithDunderTypeAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorWithDunderTypeAndNamespace',
-            documentation:
-                'Some services serialize errors using __type, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "__type": "aws.protocoltests.restjson#FooError"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11FooErrorWithDunderTypeUriAndNamespace (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i7.FooError>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11FooErrorWithDunderTypeUriAndNamespace',
-            documentation:
-                'Some services serialize errors using __type, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
-            protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "__type": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 500),
-        errorSerializers: const [_FooErrorAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11InvalidGreetingError (error)', () async {
-    await _i2.httpErrorResponseTest<
-            _i3.Unit,
-            _i3.Unit,
-            _i4.GreetingWithErrorsOutput,
-            _i4.GreetingWithErrorsOutput,
-            _i8.InvalidGreeting>(
-        operation: _i6.GreetingWithErrorsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11InvalidGreetingError',
-            documentation: 'Parses simple JSON errors',
-            protocol:
-                _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "__type": "InvalidGreeting",\n    "Message": "Hi"\n}',
-            bodyMediaType: 'application/json',
-            params: {'Message': 'Hi'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 400),
-        errorSerializers: const [_InvalidGreetingAwsJson11Serializer()]);
-  });
+  _i1.test(
+    'AwsJson11ComplexError (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i5.ComplexError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11ComplexError',
+              documentation: 'Parses a complex error with no message member',
+              protocol:
+                  _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body:
+                  '{\n    "__type": "ComplexError",\n    "TopLevel": "Top level",\n    "Nested": {\n        "Foo": "bar"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'TopLevel': 'Top level',
+                'Nested': {'Foo': 'bar'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 400),
+          errorSerializers: const [
+            _ComplexErrorAwsJson11Serializer(),
+            _ComplexNestedErrorDataAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11EmptyComplexError (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i5.ComplexError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11EmptyComplexError',
+              documentation: null,
+              protocol:
+                  _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "__type": "ComplexError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 400),
+          errorSerializers: const [
+            _ComplexErrorAwsJson11Serializer(),
+            _ComplexNestedErrorDataAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorUsingXAmznErrorType (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorUsingXAmznErrorType',
+              documentation:
+                  'Serializes the X-Amzn-ErrorType header. For an example service, see Amazon EKS.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'X-Amzn-Errortype': 'FooError'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorUsingXAmznErrorTypeWithUri (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorUsingXAmznErrorTypeWithUri',
+              documentation:
+                  'Some X-Amzn-Errortype headers contain URLs. Clients need to split the URL on \':\' and take only the first half of the string. For example, \'ValidationException:http://internal.amazon.com/coral/com.amazon.coral.validate/\'\nis to be interpreted as \'ValidationException\'.\n\nFor an example service see Amazon Polly.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Amzn-Errortype':
+                    'FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorUsingXAmznErrorTypeWithUriAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorUsingXAmznErrorTypeWithUriAndNamespace',
+              documentation:
+                  'X-Amzn-Errortype might contain a URL and a namespace. Client should extract only the shape name. This is a pathalogical case that might not actually happen in any deployed AWS service.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: null,
+              bodyMediaType: null,
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Amzn-Errortype':
+                    'aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorUsingCode (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorUsingCode',
+              documentation:
+                  'This example uses the \'code\' property in the output rather than X-Amzn-Errortype. Some services do this though it\'s preferable to send the X-Amzn-Errortype. Client implementations must first check for the X-Amzn-Errortype and then check for a top-level \'code\' property.\n\nFor example service see Amazon S3 Glacier.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "code": "FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorUsingCodeAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorUsingCodeAndNamespace',
+              documentation:
+                  'Some services serialize errors using code, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "code": "aws.protocoltests.restjson#FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorUsingCodeUriAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorUsingCodeUriAndNamespace',
+              documentation:
+                  'Some services serialize errors using code, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "code": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorWithDunderType (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorWithDunderType',
+              documentation: 'Some services serialize errors using __type.',
+              protocol:
+                  _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "__type": "FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorWithDunderTypeAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorWithDunderTypeAndNamespace',
+              documentation:
+                  'Some services serialize errors using __type, and it might contain a namespace. Clients should just take the last part of the string after \'#\'.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "__type": "aws.protocoltests.restjson#FooError"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11FooErrorWithDunderTypeUriAndNamespace (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i7.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11FooErrorWithDunderTypeUriAndNamespace',
+              documentation:
+                  'Some services serialize errors using __type, and it might contain a namespace. It also might contain a URI. Clients should just take the last part of the string after \'#\' and before ":". This is a pathalogical case that might not occur in any deployed AWS service.',
+              protocol: _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "__type": "aws.protocoltests.restjson#FooError:http://internal.amazon.com/coral/com.amazon.coral.validate/"\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 500),
+          errorSerializers: const [_FooErrorAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11InvalidGreetingError (error)',
+    () async {
+      await _i2.httpErrorResponseTest<
+              _i3.Unit,
+              _i3.Unit,
+              _i4.GreetingWithErrorsOutput,
+              _i4.GreetingWithErrorsOutput,
+              _i8.InvalidGreeting>(
+          operation: _i6.GreetingWithErrorsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11InvalidGreetingError',
+              documentation: 'Parses simple JSON errors',
+              protocol:
+                  _i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body:
+                  '{\n    "__type": "InvalidGreeting",\n    "Message": "Hi"\n}',
+              bodyMediaType: 'application/json',
+              params: {'Message': 'Hi'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 400),
+          errorSerializers: const [_InvalidGreetingAwsJson11Serializer()]);
+    },
+  );
 }
 
 class _GreetingWithErrorsOutputAwsJson11Serializer

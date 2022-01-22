@@ -13,64 +13,70 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('PutAndGetInlineDocumentsInput (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.PutAndGetInlineDocumentsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'PutAndGetInlineDocumentsInput',
-            documentation: 'Serializes inline documents in a JSON request.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "inlineDocument": {"foo": "bar"}\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'inlineDocument': {'foo': 'bar'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: ['Content-Length'],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('PutAndGetInlineDocumentsInput (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.PutAndGetInlineDocumentsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'PutAndGetInlineDocumentsInput',
-            documentation: 'Serializes inline documents in a JSON response.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "inlineDocument": {"foo": "bar"}\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'inlineDocument': {'foo': 'bar'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
-        ]);
-  });
+  _i1.test(
+    'PutAndGetInlineDocumentsInput (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.PutAndGetInlineDocumentsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'PutAndGetInlineDocumentsInput',
+              documentation: 'Serializes inline documents in a JSON request.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "inlineDocument": {"foo": "bar"}\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'inlineDocument': {'foo': 'bar'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: ['Content-Length'],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'PutAndGetInlineDocumentsInput (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.PutAndGetInlineDocumentsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'PutAndGetInlineDocumentsInput',
+              documentation: 'Serializes inline documents in a JSON response.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "inlineDocument": {"foo": "bar"}\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'inlineDocument': {'foo': 'bar'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
 }
 
 class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i4

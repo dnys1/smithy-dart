@@ -14,65 +14,69 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson10EmptyInputAndEmptyOutput (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.EmptyInputAndEmptyOutputOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson10EmptyInputAndEmptyOutput',
-            documentation:
-                'Clients must always send an empty object if input is modeled.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.0',
-              'X-Amz-Target': 'JsonRpc10.EmptyInputAndEmptyOutput'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _EmptyInputAndEmptyOutputInputAwsJson10Serializer()
-        ]);
-  });
-  _i1.test('AwsJson10EmptyInputAndEmptyOutputSendJsonObject (response)',
-      () async {
-    await _i2.httpResponseTest(
-        operation: _i3.EmptyInputAndEmptyOutputOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson10EmptyInputAndEmptyOutputSendJsonObject',
-            documentation:
-                'A service will always return a JSON object for operations with modeled output.',
-            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.0'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _EmptyInputAndEmptyOutputOutputAwsJson10Serializer()
-        ]);
-  });
+  _i1.test(
+    'AwsJson10EmptyInputAndEmptyOutput (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.EmptyInputAndEmptyOutputOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson10EmptyInputAndEmptyOutput',
+              documentation:
+                  'Clients must always send an empty object if input is modeled.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.0',
+                'X-Amz-Target': 'JsonRpc10.EmptyInputAndEmptyOutput'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _EmptyInputAndEmptyOutputInputAwsJson10Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson10EmptyInputAndEmptyOutputSendJsonObject (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.EmptyInputAndEmptyOutputOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson10EmptyInputAndEmptyOutputSendJsonObject',
+              documentation:
+                  'A service will always return a JSON object for operations with modeled output.',
+              protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.0'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _EmptyInputAndEmptyOutputOutputAwsJson10Serializer()
+          ]);
+    },
+  );
 }
 
 class _EmptyInputAndEmptyOutputInputAwsJson10Serializer

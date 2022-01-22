@@ -14,72 +14,78 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('can_call_operation_with_no_input_or_output (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.OperationWithOptionalInputOutputOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'can_call_operation_with_no_input_or_output',
-            documentation: 'Can call operations with no input or output',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.1',
-              'X-Amz-Target': 'JsonProtocol.OperationWithOptionalInputOutput'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _OperationWithOptionalInputOutputInputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('can_call_operation_with_optional_input (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.OperationWithOptionalInputOutputOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'can_call_operation_with_optional_input',
-            documentation: 'Can invoke operations with optional input',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{"Value":"Hi"}',
-            bodyMediaType: 'application/json',
-            params: {'Value': 'Hi'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.1',
-              'X-Amz-Target': 'JsonProtocol.OperationWithOptionalInputOutput'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _OperationWithOptionalInputOutputInputAwsJson11Serializer()
-        ]);
-  });
+  _i1.test(
+    'can_call_operation_with_no_input_or_output (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.OperationWithOptionalInputOutputOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'can_call_operation_with_no_input_or_output',
+              documentation: 'Can call operations with no input or output',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.1',
+                'X-Amz-Target': 'JsonProtocol.OperationWithOptionalInputOutput'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _OperationWithOptionalInputOutputInputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'can_call_operation_with_optional_input (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.OperationWithOptionalInputOutputOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'can_call_operation_with_optional_input',
+              documentation: 'Can invoke operations with optional input',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{"Value":"Hi"}',
+              bodyMediaType: 'application/json',
+              params: {'Value': 'Hi'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.1',
+                'X-Amz-Target': 'JsonProtocol.OperationWithOptionalInputOutput'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _OperationWithOptionalInputOutputInputAwsJson11Serializer()
+          ]);
+    },
+  );
 }
 
 class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i4

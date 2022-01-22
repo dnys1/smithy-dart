@@ -13,176 +13,196 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11StructuresDontSerializeNullValues (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.NullOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11StructuresDontSerializeNullValues',
-            documentation: 'Null structure values are dropped',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{}',
-            bodyMediaType: 'application/json',
-            params: {'string': null},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _NullOperationInputOutputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11MapsSerializeNullValues (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.NullOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11MapsSerializeNullValues',
-            documentation: 'Serializes null values in maps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "sparseStringMap": {\n        "foo": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseStringMap': {'foo': null}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _NullOperationInputOutputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11ListsSerializeNull (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.NullOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11ListsSerializeNull',
-            documentation: 'Serializes null values in lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "sparseStringList": [\n        null\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseStringList': [null]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _NullOperationInputOutputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11StructuresDontDeserializeNullValues (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.NullOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11StructuresDontDeserializeNullValues',
-            documentation: 'Null structure values are dropped',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "string": null\n}',
-            bodyMediaType: 'application/json',
-            params: {},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: _i2.AppliesTo.client,
-            code: 200),
-        outputSerializers: const [
-          _NullOperationInputOutputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11MapsDeserializeNullValues (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.NullOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11MapsDeserializeNullValues',
-            documentation: 'Deserializes null values in maps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "sparseStringMap": {\n        "foo": null\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseStringMap': {'foo': null}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _NullOperationInputOutputAwsJson11Serializer()
-        ]);
-  });
-  _i1.test('AwsJson11ListsDeserializeNull (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.NullOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11ListsDeserializeNull',
-            documentation: 'Deserializes null values in lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "sparseStringList": [\n        null\n    ]\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'sparseStringList': [null]
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _NullOperationInputOutputAwsJson11Serializer()
-        ]);
-  });
+  _i1.test(
+    'AwsJson11StructuresDontSerializeNullValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.NullOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11StructuresDontSerializeNullValues',
+              documentation: 'Null structure values are dropped',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{}',
+              bodyMediaType: 'application/json',
+              params: {'string': null},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _NullOperationInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11MapsSerializeNullValues (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.NullOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11MapsSerializeNullValues',
+              documentation: 'Serializes null values in maps',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseStringMap": {\n        "foo": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseStringMap': {'foo': null}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _NullOperationInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11ListsSerializeNull (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.NullOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11ListsSerializeNull',
+              documentation: 'Serializes null values in lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "sparseStringList": [\n        null\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseStringList': [null]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _NullOperationInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11StructuresDontDeserializeNullValues (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.NullOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11StructuresDontDeserializeNullValues',
+              documentation: 'Null structure values are dropped',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "string": null\n}',
+              bodyMediaType: 'application/json',
+              params: {},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: _i2.AppliesTo.client,
+              code: 200),
+          outputSerializers: const [
+            _NullOperationInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11MapsDeserializeNullValues (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.NullOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11MapsDeserializeNullValues',
+              documentation: 'Deserializes null values in maps',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body:
+                  '{\n    "sparseStringMap": {\n        "foo": null\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseStringMap': {'foo': null}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _NullOperationInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
+  _i1.test(
+    'AwsJson11ListsDeserializeNull (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.NullOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11ListsDeserializeNull',
+              documentation: 'Deserializes null values in lists',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "sparseStringList": [\n        null\n    ]\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'sparseStringList': [null]
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _NullOperationInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
 }
 
 class _NullOperationInputOutputAwsJson11Serializer

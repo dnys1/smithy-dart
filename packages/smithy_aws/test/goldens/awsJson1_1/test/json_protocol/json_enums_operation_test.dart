@@ -13,72 +13,80 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11Enums (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.JsonEnumsOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11Enums',
-            documentation: 'Serializes simple scalar properties',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body:
-                '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'fooEnum1': 'Foo',
-              'fooEnum2': '0',
-              'fooEnum3': '1',
-              'fooEnumList': ['Foo', '0'],
-              'fooEnumSet': ['Foo', '0'],
-              'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [_JsonEnumsInputOutputAwsJson11Serializer()]);
-  });
-  _i1.test('AwsJson11Enums (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.JsonEnumsOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11Enums',
-            documentation: 'Serializes simple scalar properties',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body:
-                '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
-            bodyMediaType: 'application/json',
-            params: {
-              'fooEnum1': 'Foo',
-              'fooEnum2': '0',
-              'fooEnum3': '1',
-              'fooEnumList': ['Foo', '0'],
-              'fooEnumSet': ['Foo', '0'],
-              'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
-            },
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [_JsonEnumsInputOutputAwsJson11Serializer()]);
-  });
+  _i1.test(
+    'AwsJson11Enums (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.JsonEnumsOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11Enums',
+              documentation: 'Serializes simple scalar properties',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body:
+                  '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'fooEnum1': 'Foo',
+                'fooEnum2': '0',
+                'fooEnum3': '1',
+                'fooEnumList': ['Foo', '0'],
+                'fooEnumSet': ['Foo', '0'],
+                'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [_JsonEnumsInputOutputAwsJson11Serializer()]);
+    },
+  );
+  _i1.test(
+    'AwsJson11Enums (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.JsonEnumsOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11Enums',
+              documentation: 'Serializes simple scalar properties',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body:
+                  '{\n    "fooEnum1": "Foo",\n    "fooEnum2": "0",\n    "fooEnum3": "1",\n    "fooEnumList": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumSet": [\n        "Foo",\n        "0"\n    ],\n    "fooEnumMap": {\n        "hi": "Foo",\n        "zero": "0"\n    }\n}',
+              bodyMediaType: 'application/json',
+              params: {
+                'fooEnum1': 'Foo',
+                'fooEnum2': '0',
+                'fooEnum3': '1',
+                'fooEnumList': ['Foo', '0'],
+                'fooEnumSet': ['Foo', '0'],
+                'fooEnumMap': {'hi': 'Foo', 'zero': '0'}
+              },
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _JsonEnumsInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
 }
 
 class _JsonEnumsInputOutputAwsJson11Serializer

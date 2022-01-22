@@ -18,6 +18,17 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   OperationTestGenerator(OperationShape shape, CodegenContext context)
       : super(shape, context: context);
 
+  /// Test cases which should be skipped right now and the reasons why.
+  static const Map<String, String> _skip = {
+    'AwsJson10SupportsNaNFloatInputs':
+        "NaN != NaN, so there's no way to compare the outputs",
+    'AwsJson11SupportsNaNFloatInputs':
+        "NaN != NaN, so there's no way to compare the outputs",
+    'RestJsonSupportsNaNFloatInputs':
+        "NaN != NaN, so there's no way to compare the outputs",
+    'parses_blob_shapes': 'Blobs cannot be compared right now',
+  };
+
   late final httpRequestTestCases = shape
           .getTrait<HttpRequestTestsTrait>()
           ?.testCases
@@ -176,7 +187,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
               ? literalNull
               : literalString(_escapeBody(testCase.body!)),
           'bodyMediaType': literal(testCase.bodyMediaType),
-          'params': literal(_escapeParams(testCase.params)),
+          'params': literal(_escapeParams(testCase, testCase.params)),
           'vendorParamsShape':
               testCase.vendorParamsShape?.constructed ?? literalNull,
           'vendorParams': literal(testCase.vendorParams),
@@ -256,12 +267,20 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     Expression testCall, {
     required TestType type,
   }) {
+    final skipReason = _skip[testCase.id];
+    final skipOnWeb = _skipOnWeb.contains(testCase.id);
     return Block.of([
       Code.scope((allocate) =>
           allocate(DartTypes.test.test) +
           "('${testCase.id} (${type.name})', () async {"),
       testCall.awaited.statement,
-      Code('});'),
+      const Code('},'),
+      if (skipOnWeb) const Code("testOn:'vm',"),
+      if (skipReason != null) ...[
+        const Code("skip: "),
+        literalString(skipReason).code,
+      ],
+      const Code(');'),
     ]);
   }
 
@@ -277,7 +296,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             ? literalNull
             : literalString(_escapeBody(testCase.body!)),
         'bodyMediaType': literal(testCase.bodyMediaType),
-        'params': literal(_escapeParams(testCase.params)),
+        'params': literal(_escapeParams(testCase, testCase.params)),
         'vendorParamsShape':
             testCase.vendorParamsShape?.constructed ?? literalNull,
         'vendorParams': literal(testCase.vendorParams),
@@ -295,16 +314,29 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   String _escapeBody(String body) =>
       body.replaceAll('\\', '\\\\').replaceAll('\$', '\\\$');
 
-  /// Recursively escape strings in the parameters since the translation from
-  /// IDL creates non-Dart-y strings.
-  Map<String, Object?> _escapeParams(Map<String, Object?> params) =>
+  /// Recursively checks parameters for:
+  /// 1. Escapes string since the translation from  IDL creates non-Dart-y strings.
+  /// 2. Long ints so we know to skip the test on Web. We also call toString
+  /// because the file will not even compile for Web otherwise.
+  Map<String, Object?> _escapeParams(
+          HttpMessageTestCase testCase, Map<String, Object?> params) =>
       {...params}..updateAll((key, value) {
+          // Use String values for Longs which cannot be represented in JS, so
+          // that we can test their values properly in the Web.
+          if (value is int && value > _maxSafeJsInt) {
+            _skipOnWeb.add(testCase.id);
+            return value.toString();
+          }
           if (value is String) {
             return _escapeBody(value);
           }
           if (value is Map) {
-            return _escapeParams(value.cast());
+            return _escapeParams(testCase, value.cast());
           }
           return value;
         });
+
+  static const int _maxSafeJsInt = (1 << 53) - 1;
+
+  final Set<String> _skipOnWeb = {};
 }

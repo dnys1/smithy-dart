@@ -2,8 +2,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:built_value/serializer.dart';
+import 'package:fixnum/fixnum.dart';
+import 'package:smithy/smithy.dart' hide Serializer;
 
-const testSerializers = [_BinaryTestSerializer()];
+const List<Serializer> testSerializers = [
+  _BinaryTestSerializer(),
+  _Int64Serializer(),
+];
 
 /// Parameter values that contain binary data MUST be defined using values that
 /// can be represented in plain text (for example, use "foo" and not "Zm9vCg==").
@@ -31,4 +36,28 @@ class _BinaryTestSerializer implements PrimitiveSerializer<Uint8List> {
 
   @override
   String get wireName => 'Blob';
+}
+
+class _Int64Serializer implements PrimitiveSerializer<Int64> {
+  const _Int64Serializer();
+
+  @override
+  final Iterable<Type> types = const [Int64];
+
+  @override
+  final String wireName = 'Long';
+
+  @override
+  Object serialize(Serializers serializers, Int64 int64,
+      {FullType specifiedType = FullType.unspecified}) {
+    return int64.toInt();
+  }
+
+  @override
+  Int64 deserialize(Serializers serializers, Object? serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return serialized is num
+        ? Int64(serialized.toInt())
+        : Int64.parseInt(serialized as String);
+  }
 }

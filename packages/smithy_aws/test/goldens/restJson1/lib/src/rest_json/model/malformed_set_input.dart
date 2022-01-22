@@ -5,16 +5,13 @@ library rest_json1.rest_json.model.malformed_set_input;
 import 'package:built_collection/built_collection.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_set_input.g.dart';
 
 abstract class MalformedSetInput
-    with _i1.HttpInput<MalformedSetInputPayload>
-    implements
-        Built<MalformedSetInput, MalformedSetInputBuilder>,
-        _i1.HasPayload<MalformedSetInputPayload> {
+    with _i1.HttpInput<MalformedSetInput>
+    implements Built<MalformedSetInput, MalformedSetInputBuilder> {
   factory MalformedSetInput([void Function(MalformedSetInputBuilder) updates]) =
       _$MalformedSetInput;
 
@@ -27,46 +24,22 @@ abstract class MalformedSetInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedSetInputBuilder b) {}
   _i2.BuiltSet<String>? get set;
-  @override
-  MalformedSetInputPayload getPayload() =>
-      MalformedSetInputPayload((b) => b..set = set);
-}
-
-@_i3.internal
-@BuiltValue(nestedBuilders: false)
-abstract class MalformedSetInputPayload
-    implements
-        Built<MalformedSetInputPayload, MalformedSetInputPayloadBuilder> {
-  factory MalformedSetInputPayload(
-          [void Function(MalformedSetInputPayloadBuilder) updates]) =
-      _$MalformedSetInputPayload;
-
-  const MalformedSetInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedSetInputPayloadBuilder b) {}
-  _i2.BuiltSet<String>? get set;
 }
 
 class _MalformedSetInputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<MalformedSetInputPayload> {
+    extends _i1.StructuredSmithySerializer<MalformedSetInput> {
   const _MalformedSetInputRestJson1Serializer() : super('MalformedSetInput');
 
   @override
-  Iterable<Type> get types => const [
-        MalformedSetInput,
-        _$MalformedSetInput,
-        MalformedSetInputPayload,
-        _$MalformedSetInputPayload
-      ];
+  Iterable<Type> get types => const [MalformedSetInput, _$MalformedSetInput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  MalformedSetInputPayload deserialize(
+  MalformedSetInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = MalformedSetInputPayloadBuilder();
+    final result = MalformedSetInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -75,10 +48,10 @@ class _MalformedSetInputRestJson1Serializer
       switch (key) {
         case 'set':
           if (value != null) {
-            result.set = (serializers.deserialize(value,
+            result.set.replace((serializers.deserialize(value,
                     specifiedType:
                         const FullType(_i2.BuiltSet, [FullType(String)]))
-                as _i2.BuiltSet<String>);
+                as _i2.BuiltSet<String>));
           }
           break;
       }
@@ -90,9 +63,7 @@ class _MalformedSetInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is MalformedSetInput
-        ? object.getPayload()
-        : (object as MalformedSetInputPayload);
+    final payload = (object as MalformedSetInput);
     final result = <Object?>[];
     if (payload.set != null) {
       result

@@ -12,9 +12,7 @@ part 'malformed_long_input.g.dart';
 
 abstract class MalformedLongInput
     with _i1.HttpInput<MalformedLongInputPayload>
-    implements
-        Built<MalformedLongInput, MalformedLongInputBuilder>,
-        _i1.HasPayload<MalformedLongInputPayload> {
+    implements Built<MalformedLongInput, MalformedLongInputBuilder> {
   factory MalformedLongInput(
           [void Function(MalformedLongInputBuilder) updates]) =
       _$MalformedLongInput;
@@ -40,7 +38,6 @@ abstract class MalformedLongInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedLongInputPayload getPayload() =>
       MalformedLongInputPayload((b) => b..longInBody = longInBody);
 }

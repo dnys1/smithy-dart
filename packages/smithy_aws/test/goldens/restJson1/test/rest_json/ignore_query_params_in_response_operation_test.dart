@@ -19,8 +19,7 @@ void main() {
             id: 'RestJsonIgnoreQueryParamsInResponse',
             documentation:
                 'Query parameters must be ignored when serializing the output\nof an operation. As of January 2021, server implementations\nare expected to respond with a JSON object regardless of\nif the output parameters are empty.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{}',
             bodyMediaType: 'application/json',
@@ -33,8 +32,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _IgnoreQueryParamsInResponseOutputRestJson1Serializer());
+        outputSerializers: const [
+          _IgnoreQueryParamsInResponseOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonIgnoreQueryParamsInResponseNoPayload (restJson1)',
       () async {
@@ -44,8 +44,7 @@ void main() {
             id: 'RestJsonIgnoreQueryParamsInResponseNoPayload',
             documentation:
                 'This test is similar to RestJsonIgnoreQueryParamsInResponse,\nbut it ensures that clients gracefully handle responses from\nthe server that do not serialize an empty JSON object.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -58,8 +57,9 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 200),
-        outputSerializer:
-            const _IgnoreQueryParamsInResponseOutputRestJson1Serializer());
+        outputSerializers: const [
+          _IgnoreQueryParamsInResponseOutputRestJson1Serializer()
+        ]);
   });
 }
 

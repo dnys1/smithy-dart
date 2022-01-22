@@ -39,8 +39,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer()
+        ]);
   });
 }
 

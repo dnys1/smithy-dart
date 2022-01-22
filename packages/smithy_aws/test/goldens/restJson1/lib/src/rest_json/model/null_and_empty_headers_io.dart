@@ -12,9 +12,7 @@ part 'null_and_empty_headers_io.g.dart';
 
 abstract class NullAndEmptyHeadersIo
     with _i1.HttpInput<NullAndEmptyHeadersIoPayload>
-    implements
-        Built<NullAndEmptyHeadersIo, NullAndEmptyHeadersIoBuilder>,
-        _i1.HasPayload<NullAndEmptyHeadersIoPayload> {
+    implements Built<NullAndEmptyHeadersIo, NullAndEmptyHeadersIoBuilder> {
   factory NullAndEmptyHeadersIo(
           [void Function(NullAndEmptyHeadersIoBuilder) updates]) =
       _$NullAndEmptyHeadersIo;
@@ -30,7 +28,6 @@ abstract class NullAndEmptyHeadersIo
   String? get a;
   String? get b;
   _i2.BuiltList<String>? get c;
-  @override
   NullAndEmptyHeadersIoPayload getPayload() => NullAndEmptyHeadersIoPayload();
 }
 

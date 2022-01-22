@@ -15,7 +15,7 @@ import 'serializers.dart';
 Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required HttpRequestTestCase testCase,
-  SmithySerializer? inputSerializer,
+  List<SmithySerializer>? inputSerializers,
 }) async {
   final baseUri = Uri.parse('https://${testCase.host}');
   final protocol = operation.resolveProtocol(
@@ -24,7 +24,7 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   final serializers = (protocol.serializers.toBuilder()
         ..addAll([
           ...testSerializers,
-          if (inputSerializer != null) inputSerializer,
+          ...?inputSerializers,
         ]))
       .build();
   final input = serializers.deserialize(
@@ -37,6 +37,10 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
     protocol,
     input,
   );
+
+  // The request-target of the HTTP request, not including the query string
+  // (for example, "/foo/bar").
+  expect(request.uri.path, equals(testCase.uri));
 
   // The expected host present in the `Host` header of the request, not
   // including the path or scheme (for example, "prefix.example.com").
@@ -141,7 +145,13 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
 
     switch (contentType) {
       case 'application/octet-stream':
-        expectBytes(base64Decode(expectedBody));
+        List<int> bytes;
+        try {
+          bytes = base64Decode(expectedBody);
+        } on FormatException {
+          bytes = utf8.encode(expectedBody);
+        }
+        expectBytes(bytes);
         break;
       case 'application/json':
         final expectedJsonBody = jsonDecode(expectedBody);

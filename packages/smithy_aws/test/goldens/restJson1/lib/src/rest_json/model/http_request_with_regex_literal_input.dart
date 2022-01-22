@@ -14,8 +14,7 @@ abstract class HttpRequestWithRegexLiteralInput
         _i1.HttpInput<HttpRequestWithRegexLiteralInputPayload>
     implements
         Built<HttpRequestWithRegexLiteralInput,
-            HttpRequestWithRegexLiteralInputBuilder>,
-        _i1.HasPayload<HttpRequestWithRegexLiteralInputPayload> {
+            HttpRequestWithRegexLiteralInputBuilder> {
   factory HttpRequestWithRegexLiteralInput(
           [void Function(HttpRequestWithRegexLiteralInputBuilder) updates]) =
       _$HttpRequestWithRegexLiteralInput;
@@ -33,12 +32,11 @@ abstract class HttpRequestWithRegexLiteralInput
   String labelFor(String key) {
     switch (key) {
       case 'str':
-        return str.toString();
+        return str;
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   HttpRequestWithRegexLiteralInputPayload getPayload() =>
       HttpRequestWithRegexLiteralInputPayload();
 }

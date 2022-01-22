@@ -18,8 +18,7 @@ void main() {
             id: 'RestJsonEndpointTraitWithHostLabel',
             documentation:
                 'Operations can prepend to the given host if they define the\nendpoint trait, and can use the host label trait to define\nfurther customization based on user input.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{"label": "bar"}',
             bodyMediaType: 'application/json',
@@ -38,7 +37,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _HostLabelInputRestJson1Serializer());
+        inputSerializers: const [_HostLabelInputRestJson1Serializer()]);
   });
 }
 

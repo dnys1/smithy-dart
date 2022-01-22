@@ -14,8 +14,7 @@ abstract class HttpRequestWithFloatLabelsInput
         _i1.HttpInput<HttpRequestWithFloatLabelsInputPayload>
     implements
         Built<HttpRequestWithFloatLabelsInput,
-            HttpRequestWithFloatLabelsInputBuilder>,
-        _i1.HasPayload<HttpRequestWithFloatLabelsInputPayload> {
+            HttpRequestWithFloatLabelsInputBuilder> {
   factory HttpRequestWithFloatLabelsInput(
           [void Function(HttpRequestWithFloatLabelsInputBuilder) updates]) =
       _$HttpRequestWithFloatLabelsInput;
@@ -41,7 +40,6 @@ abstract class HttpRequestWithFloatLabelsInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   HttpRequestWithFloatLabelsInputPayload getPayload() =>
       HttpRequestWithFloatLabelsInputPayload();
 }

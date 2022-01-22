@@ -12,8 +12,7 @@ part 'test_no_payload_input_output.g.dart';
 abstract class TestNoPayloadInputOutput
     with _i1.HttpInput<TestNoPayloadInputOutputPayload>
     implements
-        Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder>,
-        _i1.HasPayload<TestNoPayloadInputOutputPayload> {
+        Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder> {
   factory TestNoPayloadInputOutput(
           [void Function(TestNoPayloadInputOutputBuilder) updates]) =
       _$TestNoPayloadInputOutput;
@@ -27,7 +26,6 @@ abstract class TestNoPayloadInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TestNoPayloadInputOutputBuilder b) {}
   String? get testId;
-  @override
   TestNoPayloadInputOutputPayload getPayload() =>
       TestNoPayloadInputOutputPayload();
 }

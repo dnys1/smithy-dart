@@ -38,8 +38,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _OmitsNullSerializesEmptyStringInputRestJson1Serializer());
+        inputSerializers: const [
+          _OmitsNullSerializesEmptyStringInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSerializesEmptyQueryValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -67,8 +68,9 @@ void main() {
             queryParams: ['Empty='],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _OmitsNullSerializesEmptyStringInputRestJson1Serializer());
+        inputSerializers: const [
+          _OmitsNullSerializesEmptyStringInputRestJson1Serializer()
+        ]);
   });
 }
 

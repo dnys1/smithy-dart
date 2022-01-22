@@ -22,7 +22,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
 
   @override
   Reference get serializedSymbol =>
-      config.usePayload ? payloadSymbol?.unboxed ?? symbol : symbol;
+      config.usePayload ? payloadSymbol.unboxed : symbol;
 
   /// The members which get serialized.
   ///
@@ -128,7 +128,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
             symbol,
             if (config.usePrivateSymbols) builtSymbol,
             if (isStructuredSerializer && config.usePayload) ...[
-              if (payloadSymbol != null) payloadSymbol!,
+              if (hasBuiltPayload) payloadSymbol,
               if (config.usePrivateSymbols && builtPayloadSymbol != null)
                 builtPayloadSymbol,
             ],
@@ -204,7 +204,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
           // Since payload types have `nestedBuilders: false`, the member has
           // a nested builder only when the shape has a payload & we're using
           // payloads.
-          (!shape.hasPayload || !config.usePayload);
+          (!shape.hasPayload(context) || !config.usePayload);
       final value = refer('value');
       yield Block.of([
         const Code('case '),
@@ -252,7 +252,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     // Get the payload, since we handle serializing the input & payload types
     // in the same serializer.
     final payloadSymbol = this.payloadSymbol;
-    if (config.usePayload && payloadSymbol != null) {
+    if (hasPayload && config.usePayload) {
       builder.addExpression(
         object
             .isA(symbol)

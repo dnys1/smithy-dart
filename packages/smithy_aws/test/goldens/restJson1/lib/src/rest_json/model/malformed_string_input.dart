@@ -12,9 +12,7 @@ part 'malformed_string_input.g.dart';
 
 abstract class MalformedStringInput
     with _i1.HttpInput<MalformedStringInputPayload>
-    implements
-        Built<MalformedStringInput, MalformedStringInputBuilder>,
-        _i1.HasPayload<MalformedStringInputPayload> {
+    implements Built<MalformedStringInput, MalformedStringInputBuilder> {
   factory MalformedStringInput(
           [void Function(MalformedStringInputBuilder) updates]) =
       _$MalformedStringInput;
@@ -28,7 +26,6 @@ abstract class MalformedStringInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedStringInputBuilder b) {}
   _i2.JsonObject? get blob;
-  @override
   MalformedStringInputPayload getPayload() => MalformedStringInputPayload();
 }
 

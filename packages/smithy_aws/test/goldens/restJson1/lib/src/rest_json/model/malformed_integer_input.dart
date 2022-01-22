@@ -11,9 +11,7 @@ part 'malformed_integer_input.g.dart';
 
 abstract class MalformedIntegerInput
     with _i1.HttpInput<MalformedIntegerInputPayload>
-    implements
-        Built<MalformedIntegerInput, MalformedIntegerInputBuilder>,
-        _i1.HasPayload<MalformedIntegerInputPayload> {
+    implements Built<MalformedIntegerInput, MalformedIntegerInputBuilder> {
   factory MalformedIntegerInput(
           [void Function(MalformedIntegerInputBuilder) updates]) =
       _$MalformedIntegerInput;
@@ -39,7 +37,6 @@ abstract class MalformedIntegerInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedIntegerInputPayload getPayload() =>
       MalformedIntegerInputPayload((b) => b..integerInBody = integerInBody);
 }

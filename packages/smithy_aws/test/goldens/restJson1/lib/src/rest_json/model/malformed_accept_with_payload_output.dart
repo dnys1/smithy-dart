@@ -13,8 +13,7 @@ part 'malformed_accept_with_payload_output.g.dart';
 abstract class MalformedAcceptWithPayloadOutput
     implements
         Built<MalformedAcceptWithPayloadOutput,
-            MalformedAcceptWithPayloadOutputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
+            MalformedAcceptWithPayloadOutputBuilder> {
   factory MalformedAcceptWithPayloadOutput(
           [void Function(MalformedAcceptWithPayloadOutputBuilder) updates]) =
       _$MalformedAcceptWithPayloadOutput;
@@ -28,7 +27,6 @@ abstract class MalformedAcceptWithPayloadOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedAcceptWithPayloadOutputBuilder b) {}
   _i2.Uint8List? get payload;
-  @override
   _i2.Uint8List? getPayload() => payload;
 }
 

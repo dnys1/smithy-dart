@@ -11,16 +11,16 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// This example serializes a document as part of the payload.
 class DocumentTypeOperation extends _i1.HttpOperation<
-    _i2.DocumentTypeInputOutputPayload,
     _i2.DocumentTypeInputOutput,
-    _i2.DocumentTypeInputOutputPayload,
+    _i2.DocumentTypeInputOutput,
+    _i2.DocumentTypeInputOutput,
     _i2.DocumentTypeInputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.DocumentTypeInputOutputPayload,
           _i2.DocumentTypeInputOutput,
-          _i2.DocumentTypeInputOutputPayload,
+          _i2.DocumentTypeInputOutput,
+          _i2.DocumentTypeInputOutput,
           _i2.DocumentTypeInputOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
@@ -36,13 +36,9 @@ class DocumentTypeOperation extends _i1.HttpOperation<
         b.successCode = 200;
       });
   @override
-  _i2.DocumentTypeInputOutput buildOutput(
-          _i2.DocumentTypeInputOutputPayload payload,
+  _i2.DocumentTypeInputOutput buildOutput(_i2.DocumentTypeInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.DocumentTypeInputOutput((b) {
-        b.documentValue = payload.documentValue;
-        b.stringValue = payload.stringValue;
-      });
+      _i2.DocumentTypeInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

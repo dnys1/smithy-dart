@@ -13,14 +13,14 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 /// Clients that perform this test extract all headers from the response.
 class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
-    _i2.HttpPrefixHeadersInResponseInputPayload,
+    _i2.HttpPrefixHeadersInResponseInput,
     _i2.HttpPrefixHeadersInResponseInput,
     _i3.HttpPrefixHeadersInResponseOutputPayload,
     _i3.HttpPrefixHeadersInResponseOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.HttpPrefixHeadersInResponseInputPayload,
+          _i2.HttpPrefixHeadersInResponseInput,
           _i2.HttpPrefixHeadersInResponseInput,
           _i3.HttpPrefixHeadersInResponseOutputPayload,
           _i3.HttpPrefixHeadersInResponseOutput>> protocols = [

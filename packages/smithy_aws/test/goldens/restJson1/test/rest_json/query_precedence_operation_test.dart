@@ -42,7 +42,7 @@ void main() {
             queryParams: ['bar=named', 'qux=alsoFromMap'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _QueryPrecedenceInputRestJson1Serializer());
+        inputSerializers: const [_QueryPrecedenceInputRestJson1Serializer()]);
   });
 }
 

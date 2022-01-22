@@ -49,7 +49,6 @@ abstract class HttpInputTraits
 
   /// Shapes marked with an [HttpLabelTrait] annotation.
   BuiltSet<MemberShape> get httpLabels;
-  HttpPayload get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;
   MemberShape? get hostLabel;
   BuiltMap<String, MemberShape> get httpQuery;
@@ -63,7 +62,6 @@ abstract class HttpOutputTraits
   HttpOutputTraits._();
 
   BuiltMap<String, MemberShape> get httpHeaders;
-  HttpPayload get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;
   MemberShape? get httpResponseCode;
 }
@@ -80,7 +78,6 @@ abstract class HttpErrorTraits
   RetryConfig? get retryConfig;
   int? get statusCode;
   BuiltMap<String, MemberShape> get httpHeaders;
-  HttpPayload get httpPayload;
   HttpPrefixHeaders? get httpPrefixHeaders;
 }
 

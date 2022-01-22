@@ -49,8 +49,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer()
+        ]);
   });
 }
 

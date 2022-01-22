@@ -96,7 +96,9 @@ void main() {
             ],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _AllQueryStringTypesInputRestJson1Serializer());
+        inputSerializers: const [
+          _AllQueryStringTypesInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonQueryStringMap (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -132,7 +134,9 @@ void main() {
             ],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _AllQueryStringTypesInputRestJson1Serializer());
+        inputSerializers: const [
+          _AllQueryStringTypesInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonQueryStringEscaping (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -163,7 +167,9 @@ void main() {
             ],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _AllQueryStringTypesInputRestJson1Serializer());
+        inputSerializers: const [
+          _AllQueryStringTypesInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNaNFloatQueryValues (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -191,7 +197,9 @@ void main() {
             queryParams: ['Float=NaN', 'Double=NaN'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _AllQueryStringTypesInputRestJson1Serializer());
+        inputSerializers: const [
+          _AllQueryStringTypesInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsInfinityFloatQueryValues (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -219,7 +227,9 @@ void main() {
             queryParams: ['Float=Infinity', 'Double=Infinity'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _AllQueryStringTypesInputRestJson1Serializer());
+        inputSerializers: const [
+          _AllQueryStringTypesInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNegativeInfinityFloatQueryValues (restJson1)',
       () async {
@@ -248,7 +258,9 @@ void main() {
             queryParams: ['Float=-Infinity', 'Double=-Infinity'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _AllQueryStringTypesInputRestJson1Serializer());
+        inputSerializers: const [
+          _AllQueryStringTypesInputRestJson1Serializer()
+        ]);
   });
 }
 

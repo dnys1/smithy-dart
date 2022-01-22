@@ -4,16 +4,14 @@ library rest_json1.rest_json.model.malformed_request_body_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_request_body_input.g.dart';
 
 abstract class MalformedRequestBodyInput
-    with _i1.HttpInput<MalformedRequestBodyInputPayload>
+    with _i1.HttpInput<MalformedRequestBodyInput>
     implements
-        Built<MalformedRequestBodyInput, MalformedRequestBodyInputBuilder>,
-        _i1.HasPayload<MalformedRequestBodyInputPayload> {
+        Built<MalformedRequestBodyInput, MalformedRequestBodyInputBuilder> {
   factory MalformedRequestBodyInput(
           [void Function(MalformedRequestBodyInputBuilder) updates]) =
       _$MalformedRequestBodyInput;
@@ -28,51 +26,24 @@ abstract class MalformedRequestBodyInput
   static void _init(MalformedRequestBodyInputBuilder b) {}
   double? get float;
   int? get int$;
-  @override
-  MalformedRequestBodyInputPayload getPayload() =>
-      MalformedRequestBodyInputPayload((b) => b
-        ..float = float
-        ..int$ = int$);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class MalformedRequestBodyInputPayload
-    implements
-        Built<MalformedRequestBodyInputPayload,
-            MalformedRequestBodyInputPayloadBuilder> {
-  factory MalformedRequestBodyInputPayload(
-          [void Function(MalformedRequestBodyInputPayloadBuilder) updates]) =
-      _$MalformedRequestBodyInputPayload;
-
-  const MalformedRequestBodyInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedRequestBodyInputPayloadBuilder b) {}
-  double? get float;
-  int? get int$;
 }
 
 class _MalformedRequestBodyInputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<MalformedRequestBodyInputPayload> {
+    extends _i1.StructuredSmithySerializer<MalformedRequestBodyInput> {
   const _MalformedRequestBodyInputRestJson1Serializer()
       : super('MalformedRequestBodyInput');
 
   @override
-  Iterable<Type> get types => const [
-        MalformedRequestBodyInput,
-        _$MalformedRequestBodyInput,
-        MalformedRequestBodyInputPayload,
-        _$MalformedRequestBodyInputPayload
-      ];
+  Iterable<Type> get types =>
+      const [MalformedRequestBodyInput, _$MalformedRequestBodyInput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  MalformedRequestBodyInputPayload deserialize(
+  MalformedRequestBodyInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = MalformedRequestBodyInputPayloadBuilder();
+    final result = MalformedRequestBodyInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -100,9 +71,7 @@ class _MalformedRequestBodyInputRestJson1Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is MalformedRequestBodyInput
-        ? object.getPayload()
-        : (object as MalformedRequestBodyInputPayload);
+    final payload = (object as MalformedRequestBodyInput);
     final result = <Object?>[];
     if (payload.float != null) {
       result

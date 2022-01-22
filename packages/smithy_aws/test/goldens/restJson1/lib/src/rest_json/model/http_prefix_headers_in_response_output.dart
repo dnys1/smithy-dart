@@ -13,8 +13,7 @@ part 'http_prefix_headers_in_response_output.g.dart';
 abstract class HttpPrefixHeadersInResponseOutput
     implements
         Built<HttpPrefixHeadersInResponseOutput,
-            HttpPrefixHeadersInResponseOutputBuilder>,
-        _i1.HasPayload<HttpPrefixHeadersInResponseOutputPayload> {
+            HttpPrefixHeadersInResponseOutputBuilder> {
   factory HttpPrefixHeadersInResponseOutput(
           [void Function(HttpPrefixHeadersInResponseOutputBuilder) updates]) =
       _$HttpPrefixHeadersInResponseOutput;
@@ -28,7 +27,6 @@ abstract class HttpPrefixHeadersInResponseOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPrefixHeadersInResponseOutputBuilder b) {}
   _i2.BuiltMap<String, String>? get prefixHeaders;
-  @override
   HttpPrefixHeadersInResponseOutputPayload getPayload() =>
       HttpPrefixHeadersInResponseOutputPayload();
 }

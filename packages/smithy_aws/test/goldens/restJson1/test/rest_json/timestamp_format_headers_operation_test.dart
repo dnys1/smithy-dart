@@ -54,7 +54,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _TimestampFormatHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _TimestampFormatHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonTimestampFormatHeaders (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -93,7 +95,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _TimestampFormatHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _TimestampFormatHeadersIoRestJson1Serializer()
+        ]);
   });
 }
 

@@ -40,8 +40,9 @@ void main() {
             queryParams: ['foo=bar', 'baz=bam'],
             forbidQueryParams: ['maybeSet'],
             requireQueryParams: []),
-        inputSerializer:
-            const _ConstantAndVariableQueryStringInputRestJson1Serializer());
+        inputSerializers: const [
+          _ConstantAndVariableQueryStringInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonConstantAndVariableQueryStringAllValues (restJson1)',
       () async {
@@ -71,8 +72,9 @@ void main() {
             queryParams: ['foo=bar', 'baz=bam', 'maybeSet=yes'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _ConstantAndVariableQueryStringInputRestJson1Serializer());
+        inputSerializers: const [
+          _ConstantAndVariableQueryStringInputRestJson1Serializer()
+        ]);
   });
 }
 

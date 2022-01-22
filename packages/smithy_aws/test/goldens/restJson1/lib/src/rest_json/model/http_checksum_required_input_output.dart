@@ -4,18 +4,16 @@ library rest_json1.rest_json.model.http_checksum_required_input_output;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_checksum_required_input_output.g.dart';
 
 abstract class HttpChecksumRequiredInputOutput
     with
-        _i1.HttpInput<HttpChecksumRequiredInputOutputPayload>
+        _i1.HttpInput<HttpChecksumRequiredInputOutput>
     implements
         Built<HttpChecksumRequiredInputOutput,
-            HttpChecksumRequiredInputOutputBuilder>,
-        _i1.HasPayload<HttpChecksumRequiredInputOutputPayload> {
+            HttpChecksumRequiredInputOutputBuilder> {
   factory HttpChecksumRequiredInputOutput(
           [void Function(HttpChecksumRequiredInputOutputBuilder) updates]) =
       _$HttpChecksumRequiredInputOutput;
@@ -29,48 +27,26 @@ abstract class HttpChecksumRequiredInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpChecksumRequiredInputOutputBuilder b) {}
   String? get foo;
-  @override
-  HttpChecksumRequiredInputOutputPayload getPayload() =>
-      HttpChecksumRequiredInputOutputPayload((b) => b..foo = foo);
 }
 
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class HttpChecksumRequiredInputOutputPayload
-    implements
-        Built<HttpChecksumRequiredInputOutputPayload,
-            HttpChecksumRequiredInputOutputPayloadBuilder> {
-  factory HttpChecksumRequiredInputOutputPayload(
-      [void Function(HttpChecksumRequiredInputOutputPayloadBuilder)
-          updates]) = _$HttpChecksumRequiredInputOutputPayload;
-
-  const HttpChecksumRequiredInputOutputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpChecksumRequiredInputOutputPayloadBuilder b) {}
-  String? get foo;
-}
-
-class _HttpChecksumRequiredInputOutputRestJson1Serializer extends _i1
-    .StructuredSmithySerializer<HttpChecksumRequiredInputOutputPayload> {
+class _HttpChecksumRequiredInputOutputRestJson1Serializer
+    extends _i1.StructuredSmithySerializer<HttpChecksumRequiredInputOutput> {
   const _HttpChecksumRequiredInputOutputRestJson1Serializer()
       : super('HttpChecksumRequiredInputOutput');
 
   @override
   Iterable<Type> get types => const [
         HttpChecksumRequiredInputOutput,
-        _$HttpChecksumRequiredInputOutput,
-        HttpChecksumRequiredInputOutputPayload,
-        _$HttpChecksumRequiredInputOutputPayload
+        _$HttpChecksumRequiredInputOutput
       ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  HttpChecksumRequiredInputOutputPayload deserialize(
+  HttpChecksumRequiredInputOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = HttpChecksumRequiredInputOutputPayloadBuilder();
+    final result = HttpChecksumRequiredInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -92,9 +68,7 @@ class _HttpChecksumRequiredInputOutputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is HttpChecksumRequiredInputOutput
-        ? object.getPayload()
-        : (object as HttpChecksumRequiredInputOutputPayload);
+    final payload = (object as HttpChecksumRequiredInputOutput);
     final result = <Object?>[];
     if (payload.foo != null) {
       result

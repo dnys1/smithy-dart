@@ -13,17 +13,14 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 /// This operation defines a union with a Unit member.
 class PostPlayerActionOperation extends _i1.HttpOperation<
-    _i2.PostPlayerActionInputPayload,
     _i2.PostPlayerActionInput,
-    _i3.PostPlayerActionOutputPayload,
+    _i2.PostPlayerActionInput,
+    _i3.PostPlayerActionOutput,
     _i3.PostPlayerActionOutput> {
   @override
   late final List<
-      _i1.HttpProtocol<
-          _i2.PostPlayerActionInputPayload,
-          _i2.PostPlayerActionInput,
-          _i3.PostPlayerActionOutputPayload,
-          _i3.PostPlayerActionOutput>> protocols = [
+      _i1.HttpProtocol<_i2.PostPlayerActionInput, _i2.PostPlayerActionInput,
+          _i3.PostPlayerActionOutput, _i3.PostPlayerActionOutput>> protocols = [
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
@@ -38,12 +35,9 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
         b.successCode = 200;
       });
   @override
-  _i3.PostPlayerActionOutput buildOutput(
-          _i3.PostPlayerActionOutputPayload payload,
+  _i3.PostPlayerActionOutput buildOutput(_i3.PostPlayerActionOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.PostPlayerActionOutput((b) {
-        b.action = payload.action;
-      });
+      _i3.PostPlayerActionOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -18,6 +18,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     CodegenContext context,
   ) : super(shape, context: context);
 
+  late final List<MemberShape> labels = shape.isInputShape
+      ? [
+          ...httpInputTraits!.httpLabels,
+          if (httpInputTraits!.hostLabel != null) httpInputTraits!.hostLabel!,
+        ]
+      : const [];
+
   @override
   Library generate() {
     // Add .g.dart part directive
@@ -43,7 +50,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
-            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol!.unboxed)
           ])
           ..mixins.addAll([
             if (shape.isError)
@@ -52,7 +58,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               else
                 DartTypes.smithy.smithyException,
             if (shape.isInputShape)
-              DartTypes.smithy.httpInput(payloadSymbol!.unboxed)
+              DartTypes.smithy.httpInput(payloadSymbol.unboxed)
           ])
           ..constructors.addAll([
             _factoryConstructor(
@@ -93,7 +99,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             }),
           ])
           ..implements.addAll([
-            DartTypes.builtValue.built(payloadSymbol!, payloadBuilderSymbol!),
+            DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol!),
           ])
           ..constructors.addAll([
             _factoryConstructor(
@@ -194,7 +200,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   /// The `getPayload` method.
   Method get _getPayload => Method(
         (m) => m
-          ..annotations.add(DartTypes.core.override)
           ..returns = payloadSymbol
           ..name = 'getPayload'
           ..lambda = true
@@ -212,12 +217,61 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     for (final member in payloadMembers) {
       builder = builder.cascade(member.dartName).assign(refer(member.dartName));
     }
-    return payloadSymbol!.newInstance([
+    return payloadSymbol.newInstance([
       if (payloadMembers.isNotEmpty)
         Method((m) => m
           ..requiredParameters.add(Parameter((p) => p..name = 'b'))
           ..body = builder.code).closure,
     ]).code;
+  }
+
+  Expression _labelToString(MemberShape labelShape, Expression labelRef) {
+    final targetShape = context.shapeFor(labelShape.target);
+    final type = targetShape.getType();
+    switch (type) {
+      case ShapeType.boolean:
+      case ShapeType.bigDecimal:
+      case ShapeType.bigInteger:
+      case ShapeType.byte:
+      case ShapeType.double:
+      case ShapeType.float:
+      case ShapeType.integer:
+      case ShapeType.long:
+      case ShapeType.short:
+        return labelRef.property('toString').call([]);
+
+      // string values with a mediaType trait are always base64 encoded.
+      case ShapeType.string:
+        if (targetShape.isEnum) {
+          return labelRef.property('value');
+        }
+        final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
+        switch (mediaType) {
+          case 'application/json':
+            return DartTypes.convert.jsonEncode
+                .call([labelRef.property('value')]);
+        }
+        return labelRef;
+
+      // timestamp values are serialized as an RFC 3339 string by default
+      // (for example, 1985-04-12T23:20:50.52Z, and with percent-encoding,
+      // 1985-04-12T23%3A20%3A50.52Z). The timestampFormat trait MAY be used
+      // to use a custom serialization format.
+      case ShapeType.timestamp:
+        final format = labelShape.timestampFormat ??
+            targetShape.timestampFormat ??
+            TimestampFormat.dateTime;
+        return DartTypes.smithy.timestamp
+            .newInstance([labelRef])
+            .property('format')
+            .call([
+              DartTypes.smithy.timestampFormat.property(format.name),
+            ])
+            .property('toString')
+            .call([]);
+      default:
+        throw ArgumentError('Invalid label shape type: $type');
+    }
   }
 
   /// Methods to conform to `HttpInput`.
@@ -227,11 +281,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // The `labelFor` method
-    final inputTraits = httpInputTraits!;
-    final labels = [
-      ...inputTraits.httpLabels,
-      if (inputTraits.hostLabel != null) inputTraits.hostLabel!,
-    ];
+
     if (labels.isNotEmpty) {
       yield Method(
         (m) => m
@@ -245,12 +295,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             const Code('switch (key) {'),
             for (var label in labels) ...[
               Code("case '${label.memberName}':"),
-              refer(label.dartName)
-                  // TODO: proper toString (timestamps, etc.)
-                  .property('toString')
-                  .call([])
-                  .returned
-                  .statement,
+              _labelToString(label, refer(label.dartName)).returned.statement,
             ],
             const Code('}'),
             DartTypes.smithy.missingLabelException

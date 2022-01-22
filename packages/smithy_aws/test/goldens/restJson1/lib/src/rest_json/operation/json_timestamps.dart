@@ -13,16 +13,16 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 /// default format of date-time and various @timestampFormat trait
 /// values.
 class JsonTimestampsOperation extends _i1.HttpOperation<
-    _i2.JsonTimestampsInputOutputPayload,
     _i2.JsonTimestampsInputOutput,
-    _i2.JsonTimestampsInputOutputPayload,
+    _i2.JsonTimestampsInputOutput,
+    _i2.JsonTimestampsInputOutput,
     _i2.JsonTimestampsInputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.JsonTimestampsInputOutputPayload,
           _i2.JsonTimestampsInputOutput,
-          _i2.JsonTimestampsInputOutputPayload,
+          _i2.JsonTimestampsInputOutput,
+          _i2.JsonTimestampsInputOutput,
           _i2.JsonTimestampsInputOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
@@ -39,14 +39,9 @@ class JsonTimestampsOperation extends _i1.HttpOperation<
       });
   @override
   _i2.JsonTimestampsInputOutput buildOutput(
-          _i2.JsonTimestampsInputOutputPayload payload,
+          _i2.JsonTimestampsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.JsonTimestampsInputOutput((b) {
-        b.dateTime = payload.dateTime;
-        b.epochSeconds = payload.epochSeconds;
-        b.httpDate = payload.httpDate;
-        b.normal = payload.normal;
-      });
+      _i2.JsonTimestampsInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

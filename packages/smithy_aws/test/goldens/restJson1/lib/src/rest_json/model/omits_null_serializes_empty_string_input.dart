@@ -14,8 +14,7 @@ abstract class OmitsNullSerializesEmptyStringInput
         _i1.HttpInput<OmitsNullSerializesEmptyStringInputPayload>
     implements
         Built<OmitsNullSerializesEmptyStringInput,
-            OmitsNullSerializesEmptyStringInputBuilder>,
-        _i1.HasPayload<OmitsNullSerializesEmptyStringInputPayload> {
+            OmitsNullSerializesEmptyStringInputBuilder> {
   factory OmitsNullSerializesEmptyStringInput(
           [void Function(OmitsNullSerializesEmptyStringInputBuilder) updates]) =
       _$OmitsNullSerializesEmptyStringInput;
@@ -30,7 +29,6 @@ abstract class OmitsNullSerializesEmptyStringInput
   static void _init(OmitsNullSerializesEmptyStringInputBuilder b) {}
   String? get emptyString;
   String? get nullValue;
-  @override
   OmitsNullSerializesEmptyStringInputPayload getPayload() =>
       OmitsNullSerializesEmptyStringInputPayload();
 }

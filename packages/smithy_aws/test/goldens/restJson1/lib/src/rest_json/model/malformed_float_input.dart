@@ -11,9 +11,7 @@ part 'malformed_float_input.g.dart';
 
 abstract class MalformedFloatInput
     with _i1.HttpInput<MalformedFloatInputPayload>
-    implements
-        Built<MalformedFloatInput, MalformedFloatInputBuilder>,
-        _i1.HasPayload<MalformedFloatInputPayload> {
+    implements Built<MalformedFloatInput, MalformedFloatInputBuilder> {
   factory MalformedFloatInput(
           [void Function(MalformedFloatInputBuilder) updates]) =
       _$MalformedFloatInput;
@@ -39,7 +37,6 @@ abstract class MalformedFloatInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedFloatInputPayload getPayload() =>
       MalformedFloatInputPayload((b) => b..floatInBody = floatInBody);
 }

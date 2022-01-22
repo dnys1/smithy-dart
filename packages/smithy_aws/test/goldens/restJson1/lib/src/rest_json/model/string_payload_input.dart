@@ -10,9 +10,7 @@ part 'string_payload_input.g.dart';
 
 abstract class StringPayloadInput
     with _i1.HttpInput<String>
-    implements
-        Built<StringPayloadInput, StringPayloadInputBuilder>,
-        _i1.HasPayload<String> {
+    implements Built<StringPayloadInput, StringPayloadInputBuilder> {
   factory StringPayloadInput(
           [void Function(StringPayloadInputBuilder) updates]) =
       _$StringPayloadInput;
@@ -26,7 +24,6 @@ abstract class StringPayloadInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(StringPayloadInputBuilder b) {}
   String? get payload;
-  @override
   String? getPayload() => payload;
 }
 

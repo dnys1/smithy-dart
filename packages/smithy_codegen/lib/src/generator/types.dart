@@ -554,6 +554,9 @@ class _Smithy {
   /// Creates a [smithy.Unit] reference.
   Reference get unit => const Reference('Unit', _url);
 
+  /// Creates a [smithy.WithChecksum] reference.
+  Reference get withChecksum => const Reference('WithChecksum', _url);
+
   /// Creates a [smithy.WithContentLength] reference.
   Reference get withContentType => const Reference('WithContentType', _url);
 

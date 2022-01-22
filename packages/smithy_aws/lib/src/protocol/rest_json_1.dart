@@ -23,7 +23,9 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
           interceptors: interceptors,
         );
 
-  static const _coreInterceptors = <HttpInterceptor>[];
+  static const _coreInterceptors = <HttpInterceptor>[
+    WithContentLength(),
+  ];
 
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())

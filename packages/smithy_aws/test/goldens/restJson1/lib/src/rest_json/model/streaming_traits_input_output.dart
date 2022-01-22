@@ -13,8 +13,7 @@ part 'streaming_traits_input_output.g.dart';
 abstract class StreamingTraitsInputOutput
     with _i1.HttpInput<_i2.Stream<List<int>>>
     implements
-        Built<StreamingTraitsInputOutput, StreamingTraitsInputOutputBuilder>,
-        _i1.HasPayload<_i2.Stream<List<int>>> {
+        Built<StreamingTraitsInputOutput, StreamingTraitsInputOutputBuilder> {
   factory StreamingTraitsInputOutput(
           [void Function(StreamingTraitsInputOutputBuilder) updates]) =
       _$StreamingTraitsInputOutput;
@@ -29,7 +28,6 @@ abstract class StreamingTraitsInputOutput
   static void _init(StreamingTraitsInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
-  @override
   _i2.Stream<List<int>>? getPayload() => blob;
 }
 

@@ -14,10 +14,10 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 /// output is empty. While this should be rare, code generators must support
 /// this.
 class NoInputAndOutputOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
-    _i2.NoInputAndOutputOutputPayload, _i2.NoInputAndOutputOutput> {
+    _i2.NoInputAndOutputOutput, _i2.NoInputAndOutputOutput> {
   @override
   late final List<
-      _i1.HttpProtocol<_i1.Unit, _i1.Unit, _i2.NoInputAndOutputOutputPayload,
+      _i1.HttpProtocol<_i1.Unit, _i1.Unit, _i2.NoInputAndOutputOutput,
           _i2.NoInputAndOutputOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
@@ -32,8 +32,7 @@ class NoInputAndOutputOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
         b.successCode = 200;
       });
   @override
-  _i2.NoInputAndOutputOutput buildOutput(
-          _i2.NoInputAndOutputOutputPayload payload,
+  _i2.NoInputAndOutputOutput buildOutput(_i2.NoInputAndOutputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
       _i2.NoInputAndOutputOutput();
   @override

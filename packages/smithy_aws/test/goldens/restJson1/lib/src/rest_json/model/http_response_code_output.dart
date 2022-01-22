@@ -10,9 +10,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'http_response_code_output.g.dart';
 
 abstract class HttpResponseCodeOutput
-    implements
-        Built<HttpResponseCodeOutput, HttpResponseCodeOutputBuilder>,
-        _i1.HasPayload<HttpResponseCodeOutputPayload> {
+    implements Built<HttpResponseCodeOutput, HttpResponseCodeOutputBuilder> {
   factory HttpResponseCodeOutput(
           [void Function(HttpResponseCodeOutputBuilder) updates]) =
       _$HttpResponseCodeOutput;
@@ -26,7 +24,6 @@ abstract class HttpResponseCodeOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpResponseCodeOutputBuilder b) {}
   int? get status;
-  @override
   HttpResponseCodeOutputPayload getPayload() => HttpResponseCodeOutputPayload();
 }
 

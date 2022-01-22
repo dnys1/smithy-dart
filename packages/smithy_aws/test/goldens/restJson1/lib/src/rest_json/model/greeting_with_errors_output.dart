@@ -11,8 +11,7 @@ part 'greeting_with_errors_output.g.dart';
 
 abstract class GreetingWithErrorsOutput
     implements
-        Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
-        _i1.HasPayload<GreetingWithErrorsOutputPayload> {
+        Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder> {
   factory GreetingWithErrorsOutput(
           [void Function(GreetingWithErrorsOutputBuilder) updates]) =
       _$GreetingWithErrorsOutput;
@@ -26,7 +25,6 @@ abstract class GreetingWithErrorsOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
-  @override
   GreetingWithErrorsOutputPayload getPayload() =>
       GreetingWithErrorsOutputPayload();
 }

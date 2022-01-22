@@ -19,8 +19,7 @@ void main() {
             id: 'RestJsonToleratesRegexCharsInSegments',
             documentation:
                 'Path matching is not broken by regex expressions in literal segments',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -39,8 +38,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithRegexLiteralInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithRegexLiteralInputRestJson1Serializer()
+        ]);
   });
 }
 

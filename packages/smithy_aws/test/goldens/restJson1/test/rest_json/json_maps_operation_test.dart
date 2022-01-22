@@ -49,7 +49,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSerializesNullMapValues (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -83,7 +86,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSerializesZeroValuesInMaps (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -92,11 +98,9 @@ void main() {
             id: 'RestJsonSerializesZeroValuesInMaps',
             documentation:
                 'Ensure that 0 and false are sent over the wire in all maps and lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
-            body:
-                '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
+            body: '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
             bodyMediaType: 'application/json',
             params: {
               'denseNumberMap': {'x': 0},
@@ -118,7 +122,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSerializesSparseSetMap (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -152,7 +159,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSerializesDenseSetMap (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -186,7 +196,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSerializesSparseSetMapAndRetainsNull (restJson1)',
       () async {
@@ -222,7 +235,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonMaps (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -254,7 +270,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDeserializesNullMapValues (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -282,7 +301,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDeserializesZeroValuesInMaps (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -291,11 +313,9 @@ void main() {
             id: 'RestJsonDeserializesZeroValuesInMaps',
             documentation:
                 'Ensure that 0 and false are sent over the wire in all maps and lists',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
-            body:
-                '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
+            body: '{\n    "denseNumberMap": {\n        "x": 0\n    },\n    "sparseNumberMap": {\n        "x": 0\n    },\n    "denseBooleanMap": {\n        "x": false\n    },\n    "sparseBooleanMap": {\n        "x": false\n    }\n}',
             bodyMediaType: 'application/json',
             params: {
               'denseNumberMap': {'x': 0},
@@ -311,7 +331,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDeserializesSparseSetMap (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -339,7 +362,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDeserializesDenseSetMap (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -367,7 +393,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDeserializesSparseSetMapAndRetainsNull (restJson1)',
       () async {
@@ -397,7 +426,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDeserializesDenseSetMapAndSkipsNull (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -406,11 +438,9 @@ void main() {
             id: 'RestJsonDeserializesDenseSetMapAndSkipsNull',
             documentation:
                 'Clients SHOULD tolerate seeing a null value in a dense map, and they SHOULD\ndrop the null key-value pair.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
-            body:
-                '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
+            body: '{\n    "denseSetMap": {\n        "x": [],\n        "y": ["a", "b"],\n        "z": null\n    }\n}',
             bodyMediaType: 'application/json',
             params: {
               'denseSetMap': {
@@ -426,7 +456,10 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 200),
-        outputSerializer: const _JsonMapsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonMapsInputOutputRestJson1Serializer(),
+          _GreetingStructRestJson1Serializer()
+        ]);
   });
 }
 
@@ -536,6 +569,45 @@ class _JsonMapsInputOutputRestJson1Serializer
                   FullType(String),
                   FullType.nullable(_i7.GreetingStruct)
                 ])) as _i6.BuiltMap<String, _i7.GreetingStruct?>));
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _GreetingStructRestJson1Serializer
+    extends _i4.StructuredSmithySerializer<_i7.GreetingStruct> {
+  const _GreetingStructRestJson1Serializer() : super('GreetingStruct');
+
+  @override
+  Iterable<Type> get types => const [_i7.GreetingStruct];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  @override
+  _i7.GreetingStruct deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i7.GreetingStructBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'hi':
+          if (value != null) {
+            result.hi = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
           }
           break;
       }

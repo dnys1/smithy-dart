@@ -15,8 +15,7 @@ abstract class MalformedAcceptWithGenericStringInput
         _i1.HttpInput<_i2.Uint8List>
     implements
         Built<MalformedAcceptWithGenericStringInput,
-            MalformedAcceptWithGenericStringInputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
+            MalformedAcceptWithGenericStringInputBuilder> {
   factory MalformedAcceptWithGenericStringInput(
       [void Function(MalformedAcceptWithGenericStringInputBuilder)
           updates]) = _$MalformedAcceptWithGenericStringInput;
@@ -30,7 +29,6 @@ abstract class MalformedAcceptWithGenericStringInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedAcceptWithGenericStringInputBuilder b) {}
   _i2.Uint8List? get payload;
-  @override
   _i2.Uint8List? getPayload() => payload;
 }
 

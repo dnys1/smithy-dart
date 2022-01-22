@@ -14,8 +14,7 @@ abstract class ConstantAndVariableQueryStringInput
         _i1.HttpInput<ConstantAndVariableQueryStringInputPayload>
     implements
         Built<ConstantAndVariableQueryStringInput,
-            ConstantAndVariableQueryStringInputBuilder>,
-        _i1.HasPayload<ConstantAndVariableQueryStringInputPayload> {
+            ConstantAndVariableQueryStringInputBuilder> {
   factory ConstantAndVariableQueryStringInput(
           [void Function(ConstantAndVariableQueryStringInputBuilder) updates]) =
       _$ConstantAndVariableQueryStringInput;
@@ -30,7 +29,6 @@ abstract class ConstantAndVariableQueryStringInput
   static void _init(ConstantAndVariableQueryStringInputBuilder b) {}
   String? get baz;
   String? get maybeSet;
-  @override
   ConstantAndVariableQueryStringInputPayload getPayload() =>
       ConstantAndVariableQueryStringInputPayload();
 }

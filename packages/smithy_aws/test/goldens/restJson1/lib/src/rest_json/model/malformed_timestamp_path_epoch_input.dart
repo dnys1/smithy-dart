@@ -14,8 +14,7 @@ abstract class MalformedTimestampPathEpochInput
         _i1.HttpInput<MalformedTimestampPathEpochInputPayload>
     implements
         Built<MalformedTimestampPathEpochInput,
-            MalformedTimestampPathEpochInputBuilder>,
-        _i1.HasPayload<MalformedTimestampPathEpochInputPayload> {
+            MalformedTimestampPathEpochInputBuilder> {
   factory MalformedTimestampPathEpochInput(
           [void Function(MalformedTimestampPathEpochInputBuilder) updates]) =
       _$MalformedTimestampPathEpochInput;
@@ -33,12 +32,13 @@ abstract class MalformedTimestampPathEpochInput
   String labelFor(String key) {
     switch (key) {
       case 'timestamp':
-        return timestamp.toString();
+        return _i1.Timestamp(timestamp)
+            .format(_i1.TimestampFormat.epochSeconds)
+            .toString();
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedTimestampPathEpochInputPayload getPayload() =>
       MalformedTimestampPathEpochInputPayload();
 }

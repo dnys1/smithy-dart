@@ -11,17 +11,14 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// Blobs are base64 encoded
 class JsonBlobsOperation extends _i1.HttpOperation<
-    _i2.JsonBlobsInputOutputPayload,
     _i2.JsonBlobsInputOutput,
-    _i2.JsonBlobsInputOutputPayload,
+    _i2.JsonBlobsInputOutput,
+    _i2.JsonBlobsInputOutput,
     _i2.JsonBlobsInputOutput> {
   @override
   late final List<
-      _i1.HttpProtocol<
-          _i2.JsonBlobsInputOutputPayload,
-          _i2.JsonBlobsInputOutput,
-          _i2.JsonBlobsInputOutputPayload,
-          _i2.JsonBlobsInputOutput>> protocols = [
+      _i1.HttpProtocol<_i2.JsonBlobsInputOutput, _i2.JsonBlobsInputOutput,
+          _i2.JsonBlobsInputOutput, _i2.JsonBlobsInputOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
@@ -36,11 +33,9 @@ class JsonBlobsOperation extends _i1.HttpOperation<
         b.successCode = 200;
       });
   @override
-  _i2.JsonBlobsInputOutput buildOutput(_i2.JsonBlobsInputOutputPayload payload,
+  _i2.JsonBlobsInputOutput buildOutput(_i2.JsonBlobsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.JsonBlobsInputOutput((b) {
-        b.data = payload.data;
-      });
+      _i2.JsonBlobsInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

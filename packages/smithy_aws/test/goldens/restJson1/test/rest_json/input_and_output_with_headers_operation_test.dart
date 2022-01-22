@@ -49,8 +49,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (restJson1)',
       () async {
@@ -60,8 +61,7 @@ void main() {
             id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
             documentation:
                 'Tests requests with string list header bindings that require quoting',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -82,8 +82,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithNumericHeaders (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -127,8 +128,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithBooleanHeaders (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -164,8 +166,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithTimestampHeaders (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -198,8 +201,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithEnumHeaders (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -230,8 +234,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNaNFloatHeaderInputs (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -259,8 +264,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsInfinityFloatHeaderInputs (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -288,8 +294,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderInputs (restJson1)',
       () async {
@@ -318,8 +325,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        inputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithStringHeaders (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -349,8 +357,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithQuotedStringHeaders (restJson1)',
       () async {
@@ -360,8 +369,7 @@ void main() {
             id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
             documentation:
                 'Tests responses with string list header bindings that require quoting',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: null,
             bodyMediaType: null,
@@ -376,8 +384,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithNumericHeaders (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -415,8 +424,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithBooleanHeaders (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -446,8 +456,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithTimestampHeaders (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -474,8 +485,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonInputAndOutputWithEnumHeaders (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -500,8 +512,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNaNFloatHeaderOutputs (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -523,8 +536,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsInfinityFloatHeaderOutputs (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -546,8 +560,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNegativeInfinityFloatHeaderOutputs (restJson1)',
       () async {
@@ -570,8 +585,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _InputAndOutputWithHeadersIoRestJson1Serializer());
+        outputSerializers: const [
+          _InputAndOutputWithHeadersIoRestJson1Serializer()
+        ]);
   });
 }
 

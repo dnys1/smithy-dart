@@ -11,16 +11,16 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// Recursive shapes
 class RecursiveShapesOperation extends _i1.HttpOperation<
-    _i2.RecursiveShapesInputOutputPayload,
     _i2.RecursiveShapesInputOutput,
-    _i2.RecursiveShapesInputOutputPayload,
+    _i2.RecursiveShapesInputOutput,
+    _i2.RecursiveShapesInputOutput,
     _i2.RecursiveShapesInputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.RecursiveShapesInputOutputPayload,
           _i2.RecursiveShapesInputOutput,
-          _i2.RecursiveShapesInputOutputPayload,
+          _i2.RecursiveShapesInputOutput,
+          _i2.RecursiveShapesInputOutput,
           _i2.RecursiveShapesInputOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
@@ -37,13 +37,9 @@ class RecursiveShapesOperation extends _i1.HttpOperation<
       });
   @override
   _i2.RecursiveShapesInputOutput buildOutput(
-          _i2.RecursiveShapesInputOutputPayload payload,
+          _i2.RecursiveShapesInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.RecursiveShapesInputOutput((b) {
-        if (payload.nested != null) {
-          b.nested.replace(payload.nested!);
-        }
-      });
+      _i2.RecursiveShapesInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

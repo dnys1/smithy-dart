@@ -38,8 +38,9 @@ void main() {
             queryParams: ['token=00000000-0000-4000-8000-000000000000'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _QueryIdempotencyTokenAutoFillInputRestJson1Serializer());
+        inputSerializers: const [
+          _QueryIdempotencyTokenAutoFillInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonQueryIdempotencyTokenAutoFillIsSet (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -67,8 +68,9 @@ void main() {
             queryParams: ['token=00000000-0000-4000-8000-000000000000'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _QueryIdempotencyTokenAutoFillInputRestJson1Serializer());
+        inputSerializers: const [
+          _QueryIdempotencyTokenAutoFillInputRestJson1Serializer()
+        ]);
   });
 }
 

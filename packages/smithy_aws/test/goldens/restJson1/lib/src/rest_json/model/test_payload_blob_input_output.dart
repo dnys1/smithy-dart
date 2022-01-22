@@ -13,8 +13,7 @@ part 'test_payload_blob_input_output.g.dart';
 abstract class TestPayloadBlobInputOutput
     with _i1.HttpInput<_i2.Uint8List>
     implements
-        Built<TestPayloadBlobInputOutput, TestPayloadBlobInputOutputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
+        Built<TestPayloadBlobInputOutput, TestPayloadBlobInputOutputBuilder> {
   factory TestPayloadBlobInputOutput(
           [void Function(TestPayloadBlobInputOutputBuilder) updates]) =
       _$TestPayloadBlobInputOutput;
@@ -29,7 +28,6 @@ abstract class TestPayloadBlobInputOutput
   static void _init(TestPayloadBlobInputOutputBuilder b) {}
   String? get contentType;
   _i2.Uint8List? get data;
-  @override
   _i2.Uint8List? getPayload() => data;
 }
 

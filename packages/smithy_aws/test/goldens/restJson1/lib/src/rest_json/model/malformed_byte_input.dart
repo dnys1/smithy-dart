@@ -11,9 +11,7 @@ part 'malformed_byte_input.g.dart';
 
 abstract class MalformedByteInput
     with _i1.HttpInput<MalformedByteInputPayload>
-    implements
-        Built<MalformedByteInput, MalformedByteInputBuilder>,
-        _i1.HasPayload<MalformedByteInputPayload> {
+    implements Built<MalformedByteInput, MalformedByteInputBuilder> {
   factory MalformedByteInput(
           [void Function(MalformedByteInputBuilder) updates]) =
       _$MalformedByteInput;
@@ -39,7 +37,6 @@ abstract class MalformedByteInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedByteInputPayload getPayload() =>
       MalformedByteInputPayload((b) => b..byteInBody = byteInBody);
 }

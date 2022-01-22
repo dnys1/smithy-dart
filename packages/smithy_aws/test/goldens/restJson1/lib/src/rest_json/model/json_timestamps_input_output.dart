@@ -4,16 +4,14 @@ library rest_json1.rest_json.model.json_timestamps_input_output;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'json_timestamps_input_output.g.dart';
 
 abstract class JsonTimestampsInputOutput
-    with _i1.HttpInput<JsonTimestampsInputOutputPayload>
+    with _i1.HttpInput<JsonTimestampsInputOutput>
     implements
-        Built<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder>,
-        _i1.HasPayload<JsonTimestampsInputOutputPayload> {
+        Built<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder> {
   factory JsonTimestampsInputOutput(
           [void Function(JsonTimestampsInputOutputBuilder) updates]) =
       _$JsonTimestampsInputOutput;
@@ -30,55 +28,24 @@ abstract class JsonTimestampsInputOutput
   DateTime? get epochSeconds;
   DateTime? get httpDate;
   DateTime? get normal;
-  @override
-  JsonTimestampsInputOutputPayload getPayload() =>
-      JsonTimestampsInputOutputPayload((b) => b
-        ..dateTime = dateTime
-        ..epochSeconds = epochSeconds
-        ..httpDate = httpDate
-        ..normal = normal);
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class JsonTimestampsInputOutputPayload
-    implements
-        Built<JsonTimestampsInputOutputPayload,
-            JsonTimestampsInputOutputPayloadBuilder> {
-  factory JsonTimestampsInputOutputPayload(
-          [void Function(JsonTimestampsInputOutputPayloadBuilder) updates]) =
-      _$JsonTimestampsInputOutputPayload;
-
-  const JsonTimestampsInputOutputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(JsonTimestampsInputOutputPayloadBuilder b) {}
-  DateTime? get dateTime;
-  DateTime? get epochSeconds;
-  DateTime? get httpDate;
-  DateTime? get normal;
 }
 
 class _JsonTimestampsInputOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<JsonTimestampsInputOutputPayload> {
+    extends _i1.StructuredSmithySerializer<JsonTimestampsInputOutput> {
   const _JsonTimestampsInputOutputRestJson1Serializer()
       : super('JsonTimestampsInputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        JsonTimestampsInputOutput,
-        _$JsonTimestampsInputOutput,
-        JsonTimestampsInputOutputPayload,
-        _$JsonTimestampsInputOutputPayload
-      ];
+  Iterable<Type> get types =>
+      const [JsonTimestampsInputOutput, _$JsonTimestampsInputOutput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  JsonTimestampsInputOutputPayload deserialize(
+  JsonTimestampsInputOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = JsonTimestampsInputOutputPayloadBuilder();
+    final result = JsonTimestampsInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -118,9 +85,7 @@ class _JsonTimestampsInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is JsonTimestampsInputOutput
-        ? object.getPayload()
-        : (object as JsonTimestampsInputOutputPayload);
+    final payload = (object as JsonTimestampsInputOutput);
     final result = <Object?>[];
     if (payload.dateTime != null) {
       result

@@ -187,7 +187,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         // default. The timestampFormat trait MAY be used to use a custom
         // serialization format.
         case ShapeType.timestamp:
-          final format = shape.timestampFormat ?? TimestampFormat.httpDate;
+          final format = shape.timestampFormat ??
+              targetShape.timestampFormat ??
+              TimestampFormat.unknown;
           return DartTypes.smithy.timestamp
               .newInstance([ref])
               .property('format')
@@ -213,7 +215,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   ..body = toString(refer('el'), memberShape).code).closure,
               ])
               .property('join')
-              .call([literalString(',')]);
+              .call([literalString(', ')]);
         default:
           throw ArgumentError('Invalid header shape type: $type');
       }
@@ -317,7 +319,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         // percent-encoding, 1985-04-12T23%3A20%3A50.52Z). The timestampFormat
         // trait MAY be used to use a custom serialization format.
         case ShapeType.timestamp:
-          final format = shape.timestampFormat ?? TimestampFormat.dateTime;
+          final format = shape.timestampFormat ??
+              targetShape.timestampFormat ??
+              TimestampFormat.dateTime;
           return DartTypes.smithy.timestamp
               .newInstance([ref])
               .property('format')
@@ -472,31 +476,35 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ]).code,
       );
 
-  /// Additional interceptors for the protocol.
-  List<Expression> _protocolInterceptors(ProtocolDefinitionTrait protocol) {
+  /// Interceptors for the protocol.
+  Iterable<Expression> _protocolInterceptors(
+      ProtocolDefinitionTrait protocol) sync* {
+    // HTTP checksum (supported by all)
+    if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
+      yield DartTypes.smithy.withChecksum.constInstance([]);
+    }
+
     switch (protocol.runtimeType) {
       case AwsJson1_0Trait:
       case AwsJson1_1Trait:
-        return [
-          DartTypes.smithy.withHeader.constInstance([
-            literalString('X-Amz-Target'),
+        yield DartTypes.smithy.withHeader.constInstance([
+          literalString('X-Amz-Target'),
 
-            // The value of this header is the shape name of the service's Shape
-            // ID joined to the shape name of the operation's Shape ID,
-            // separated by a single period (.) character.
-            //
-            // For example, the value for the operation `ns.example#MyOp` of the
-            // service `ns.example#MyService` is MyService.MyOp.
-            literalString([
-              context.service!.shapeId.shape,
-              shape.shapeId.shape,
-            ].join('.'))
-          ]),
-        ];
+          // The value of this header is the shape name of the service's Shape
+          // ID joined to the shape name of the operation's Shape ID,
+          // separated by a single period (.) character.
+          //
+          // For example, the value for the operation `ns.example#MyOp` of the
+          // service `ns.example#MyService` is MyService.MyOp.
+          literalString([
+            context.service!.shapeId.shape,
+            shape.shapeId.shape,
+          ].join('.'))
+        ]);
+        break;
       case RestJson1Trait:
       case RestXmlTrait:
       default:
-        return const [];
     }
   }
 }

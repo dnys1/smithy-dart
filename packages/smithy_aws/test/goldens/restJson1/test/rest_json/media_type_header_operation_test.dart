@@ -21,8 +21,7 @@ void main() {
             id: 'MediaTypeHeaderInputBase64',
             documentation:
                 'Headers that target strings with a mediaType are base64 encoded',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -41,7 +40,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _MediaTypeHeaderInputRestJson1Serializer());
+        inputSerializers: const [_MediaTypeHeaderInputRestJson1Serializer()]);
   });
   _i1.test('MediaTypeHeaderOutputBase64 (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -50,8 +49,7 @@ void main() {
             id: 'MediaTypeHeaderOutputBase64',
             documentation:
                 'Headers that target strings with a mediaType are base64 encoded',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: null,
             bodyMediaType: null,
@@ -64,7 +62,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _MediaTypeHeaderOutputRestJson1Serializer());
+        outputSerializers: const [_MediaTypeHeaderOutputRestJson1Serializer()]);
   });
 }
 

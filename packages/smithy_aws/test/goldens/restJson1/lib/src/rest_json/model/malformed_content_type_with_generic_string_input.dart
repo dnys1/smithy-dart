@@ -13,8 +13,7 @@ abstract class MalformedContentTypeWithGenericStringInput
         _i1.HttpInput<String>
     implements
         Built<MalformedContentTypeWithGenericStringInput,
-            MalformedContentTypeWithGenericStringInputBuilder>,
-        _i1.HasPayload<String> {
+            MalformedContentTypeWithGenericStringInputBuilder> {
   factory MalformedContentTypeWithGenericStringInput(
       [void Function(MalformedContentTypeWithGenericStringInputBuilder)
           updates]) = _$MalformedContentTypeWithGenericStringInput;
@@ -28,7 +27,6 @@ abstract class MalformedContentTypeWithGenericStringInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedContentTypeWithGenericStringInputBuilder b) {}
   String? get payload;
-  @override
   String? getPayload() => payload;
 }
 

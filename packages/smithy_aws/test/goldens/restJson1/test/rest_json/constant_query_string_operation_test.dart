@@ -38,7 +38,9 @@ void main() {
             queryParams: ['foo=bar', 'hello'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _ConstantQueryStringInputRestJson1Serializer());
+        inputSerializers: const [
+          _ConstantQueryStringInputRestJson1Serializer()
+        ]);
   });
 }
 

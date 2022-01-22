@@ -10,14 +10,14 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class MalformedTimestampBodyDefaultOperation extends _i1.HttpOperation<
-    _i2.MalformedTimestampBodyDefaultInputPayload,
+    _i2.MalformedTimestampBodyDefaultInput,
     _i2.MalformedTimestampBodyDefaultInput,
     _i1.Unit,
     _i1.Unit> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.MalformedTimestampBodyDefaultInputPayload,
+          _i2.MalformedTimestampBodyDefaultInput,
           _i2.MalformedTimestampBodyDefaultInput,
           _i1.Unit,
           _i1.Unit>> protocols = [

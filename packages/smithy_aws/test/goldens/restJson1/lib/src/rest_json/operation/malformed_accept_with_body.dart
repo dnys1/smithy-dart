@@ -8,11 +8,11 @@ import 'package:rest_json1/src/rest_json/serializers.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-class MalformedAcceptWithBodyOperation extends _i1.HttpOperation<_i1.Unit,
-    _i1.Unit, _i2.GreetingStructPayload, _i2.GreetingStruct> {
+class MalformedAcceptWithBodyOperation extends _i1
+    .HttpOperation<_i1.Unit, _i1.Unit, _i2.GreetingStruct, _i2.GreetingStruct> {
   @override
   late final List<
-      _i1.HttpProtocol<_i1.Unit, _i1.Unit, _i2.GreetingStructPayload,
+      _i1.HttpProtocol<_i1.Unit, _i1.Unit, _i2.GreetingStruct,
           _i2.GreetingStruct>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
@@ -27,11 +27,9 @@ class MalformedAcceptWithBodyOperation extends _i1.HttpOperation<_i1.Unit,
         b.successCode = 200;
       });
   @override
-  _i2.GreetingStruct buildOutput(_i2.GreetingStructPayload payload,
-          _i5.AWSStreamedHttpResponse response) =>
-      _i2.GreetingStruct((b) {
-        b.hi = payload.hi;
-      });
+  _i2.GreetingStruct buildOutput(
+          _i2.GreetingStruct payload, _i5.AWSStreamedHttpResponse response) =>
+      _i2.GreetingStruct((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

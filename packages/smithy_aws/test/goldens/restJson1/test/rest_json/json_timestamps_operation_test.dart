@@ -37,7 +37,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonTimestampsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestampsWithDateTimeFormat (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -46,8 +48,7 @@ void main() {
             id: 'RestJsonJsonTimestampsWithDateTimeFormat',
             documentation:
                 'Ensures that the timestampFormat of date-time works like normal timestamps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{\n    "dateTime": "2014-04-29T18:30:38Z"\n}',
             bodyMediaType: 'application/json',
@@ -66,7 +67,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonTimestampsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestampsWithEpochSecondsFormat (restJson1)',
       () async {
@@ -96,7 +99,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonTimestampsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestampsWithHttpDateFormat (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -125,7 +130,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonTimestampsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestamps (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -147,8 +154,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _JsonTimestampsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestampsWithDateTimeFormat (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -157,8 +165,7 @@ void main() {
             id: 'RestJsonJsonTimestampsWithDateTimeFormat',
             documentation:
                 'Ensures that the timestampFormat of date-time works like normal timestamps',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{\n    "dateTime": "2014-04-29T18:30:38Z"\n}',
             bodyMediaType: 'application/json',
@@ -171,8 +178,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _JsonTimestampsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestampsWithEpochSecondsFormat (restJson1)',
       () async {
@@ -196,8 +204,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _JsonTimestampsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonJsonTimestampsWithHttpDateFormat (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -220,8 +229,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _JsonTimestampsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonTimestampsInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

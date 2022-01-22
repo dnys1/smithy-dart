@@ -13,8 +13,7 @@ part 'http_request_with_labels_input.g.dart';
 abstract class HttpRequestWithLabelsInput
     with _i1.HttpInput<HttpRequestWithLabelsInputPayload>
     implements
-        Built<HttpRequestWithLabelsInput, HttpRequestWithLabelsInputBuilder>,
-        _i1.HasPayload<HttpRequestWithLabelsInputPayload> {
+        Built<HttpRequestWithLabelsInput, HttpRequestWithLabelsInputBuilder> {
   factory HttpRequestWithLabelsInput(
           [void Function(HttpRequestWithLabelsInputBuilder) updates]) =
       _$HttpRequestWithLabelsInput;
@@ -43,7 +42,7 @@ abstract class HttpRequestWithLabelsInput
   String labelFor(String key) {
     switch (key) {
       case 'string':
-        return string.toString();
+        return string;
       case 'short':
         return short.toString();
       case 'integer':
@@ -57,12 +56,13 @@ abstract class HttpRequestWithLabelsInput
       case 'boolean':
         return boolean.toString();
       case 'timestamp':
-        return timestamp.toString();
+        return _i1.Timestamp(timestamp)
+            .format(_i1.TimestampFormat.dateTime)
+            .toString();
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   HttpRequestWithLabelsInputPayload getPayload() =>
       HttpRequestWithLabelsInputPayload();
 }

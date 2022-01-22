@@ -14,8 +14,7 @@ abstract class DocumentTypeAsPayloadInputOutput
         _i1.HttpInput<_i2.JsonObject>
     implements
         Built<DocumentTypeAsPayloadInputOutput,
-            DocumentTypeAsPayloadInputOutputBuilder>,
-        _i1.HasPayload<_i2.JsonObject> {
+            DocumentTypeAsPayloadInputOutputBuilder> {
   factory DocumentTypeAsPayloadInputOutput(
           [void Function(DocumentTypeAsPayloadInputOutputBuilder) updates]) =
       _$DocumentTypeAsPayloadInputOutput;
@@ -29,7 +28,6 @@ abstract class DocumentTypeAsPayloadInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(DocumentTypeAsPayloadInputOutputBuilder b) {}
   _i2.JsonObject? get documentValue;
-  @override
   _i2.JsonObject? getPayload() => documentValue;
 }
 

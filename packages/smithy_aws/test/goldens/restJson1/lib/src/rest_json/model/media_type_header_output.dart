@@ -11,9 +11,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'media_type_header_output.g.dart';
 
 abstract class MediaTypeHeaderOutput
-    implements
-        Built<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder>,
-        _i1.HasPayload<MediaTypeHeaderOutputPayload> {
+    implements Built<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder> {
   factory MediaTypeHeaderOutput(
           [void Function(MediaTypeHeaderOutputBuilder) updates]) =
       _$MediaTypeHeaderOutput;
@@ -27,7 +25,6 @@ abstract class MediaTypeHeaderOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MediaTypeHeaderOutputBuilder b) {}
   _i2.JsonObject? get json;
-  @override
   MediaTypeHeaderOutputPayload getPayload() => MediaTypeHeaderOutputPayload();
 }
 

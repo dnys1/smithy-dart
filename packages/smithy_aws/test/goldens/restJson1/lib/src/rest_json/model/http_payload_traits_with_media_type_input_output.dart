@@ -15,8 +15,7 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
         _i1.HttpInput<_i2.Uint8List>
     implements
         Built<HttpPayloadTraitsWithMediaTypeInputOutput,
-            HttpPayloadTraitsWithMediaTypeInputOutputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
+            HttpPayloadTraitsWithMediaTypeInputOutputBuilder> {
   factory HttpPayloadTraitsWithMediaTypeInputOutput(
       [void Function(HttpPayloadTraitsWithMediaTypeInputOutputBuilder)
           updates]) = _$HttpPayloadTraitsWithMediaTypeInputOutput;
@@ -31,7 +30,6 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
   static void _init(HttpPayloadTraitsWithMediaTypeInputOutputBuilder b) {}
   _i2.Uint8List? get blob;
   String? get foo;
-  @override
   _i2.Uint8List? getPayload() => blob;
 }
 

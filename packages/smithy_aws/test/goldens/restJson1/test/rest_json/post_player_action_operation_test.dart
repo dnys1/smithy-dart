@@ -22,8 +22,7 @@ void main() {
             id: 'RestJsonInputUnionWithUnitMember',
             documentation:
                 'Unit types in unions are serialized like normal structures in requests.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{\n    "action": {\n        "quit": {}\n    }\n}',
             bodyMediaType: 'application/json',
@@ -44,7 +43,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _PostPlayerActionInputRestJson1Serializer());
+        inputSerializers: const [_PostPlayerActionInputRestJson1Serializer()]);
   });
   _i1.test('RestJsonOutputUnionWithUnitMember (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -53,8 +52,7 @@ void main() {
             id: 'RestJsonOutputUnionWithUnitMember',
             documentation:
                 'Unit types in unions are serialized like normal structures in responses.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{\n    "action": {\n        "quit": {}\n    }\n}',
             bodyMediaType: 'application/json',
@@ -69,7 +67,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _PostPlayerActionOutputRestJson1Serializer());
+        outputSerializers: const [
+          _PostPlayerActionOutputRestJson1Serializer()
+        ]);
   });
 }
 

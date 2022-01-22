@@ -15,8 +15,7 @@ abstract class QueryParamsAsStringListMapInput
         _i1.HttpInput<QueryParamsAsStringListMapInputPayload>
     implements
         Built<QueryParamsAsStringListMapInput,
-            QueryParamsAsStringListMapInputBuilder>,
-        _i1.HasPayload<QueryParamsAsStringListMapInputPayload> {
+            QueryParamsAsStringListMapInputBuilder> {
   factory QueryParamsAsStringListMapInput(
           [void Function(QueryParamsAsStringListMapInputBuilder) updates]) =
       _$QueryParamsAsStringListMapInput;
@@ -31,7 +30,6 @@ abstract class QueryParamsAsStringListMapInput
   static void _init(QueryParamsAsStringListMapInputBuilder b) {}
   _i2.BuiltListMultimap<String, String>? get foo;
   String? get qux;
-  @override
   QueryParamsAsStringListMapInputPayload getPayload() =>
       QueryParamsAsStringListMapInputPayload();
 }

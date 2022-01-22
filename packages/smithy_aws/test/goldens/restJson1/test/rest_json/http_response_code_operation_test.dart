@@ -19,8 +19,7 @@ void main() {
             id: 'RestJsonHttpResponseCode',
             documentation:
                 'Binds the http response code to an output structure. Note that\neven though all members are bound outside of the payload, an\nempty JSON object is serialized in the response. However,\nclients should be able to handle an empty JSON object or an\nempty payload without failing to deserialize a response.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{}',
             bodyMediaType: 'application/json',
@@ -33,7 +32,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 201),
-        outputSerializer: const _HttpResponseCodeOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpResponseCodeOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpResponseCodeWithNoPayload (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -42,8 +43,7 @@ void main() {
             id: 'RestJsonHttpResponseCodeWithNoPayload',
             documentation:
                 'This test ensures that clients gracefully handle cases where\nthe service responds with no payload rather than an empty JSON\nobject.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -56,7 +56,9 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 201),
-        outputSerializer: const _HttpResponseCodeOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpResponseCodeOutputRestJson1Serializer()
+        ]);
   });
 }
 

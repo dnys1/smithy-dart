@@ -15,8 +15,7 @@ abstract class MalformedContentTypeWithPayloadInput
         _i1.HttpInput<_i2.Uint8List>
     implements
         Built<MalformedContentTypeWithPayloadInput,
-            MalformedContentTypeWithPayloadInputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
+            MalformedContentTypeWithPayloadInputBuilder> {
   factory MalformedContentTypeWithPayloadInput(
       [void Function(MalformedContentTypeWithPayloadInputBuilder)
           updates]) = _$MalformedContentTypeWithPayloadInput;
@@ -30,7 +29,6 @@ abstract class MalformedContentTypeWithPayloadInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedContentTypeWithPayloadInputBuilder b) {}
   _i2.Uint8List? get payload;
-  @override
   _i2.Uint8List? getPayload() => payload;
 }
 

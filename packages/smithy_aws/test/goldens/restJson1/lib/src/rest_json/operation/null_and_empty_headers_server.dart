@@ -41,7 +41,7 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
           b.headers['X-B'] = input.b!;
         }
         if (input.c != null) {
-          b.headers['X-C'] = input.c!.map((el) => el).join(',');
+          b.headers['X-C'] = input.c!.map((el) => el).join(', ');
         }
       });
   @override

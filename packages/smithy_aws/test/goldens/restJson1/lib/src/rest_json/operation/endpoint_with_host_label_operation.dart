@@ -8,11 +8,11 @@ import 'package:rest_json1/src/rest_json/serializers.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-class EndpointWithHostLabelOperation extends _i1.HttpOperation<
-    _i2.HostLabelInputPayload, _i2.HostLabelInput, _i1.Unit, _i1.Unit> {
+class EndpointWithHostLabelOperation extends _i1
+    .HttpOperation<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit, _i1.Unit> {
   @override
   late final List<
-      _i1.HttpProtocol<_i2.HostLabelInputPayload, _i2.HostLabelInput, _i1.Unit,
+      _i1.HttpProtocol<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit,
           _i1.Unit>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,

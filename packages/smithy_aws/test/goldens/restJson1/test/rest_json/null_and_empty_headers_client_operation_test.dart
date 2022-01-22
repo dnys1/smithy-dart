@@ -20,8 +20,7 @@ void main() {
             id: 'RestJsonNullAndEmptyHeaders',
             documentation:
                 'Do not send null values, empty strings, or empty lists over the wire in headers',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -40,7 +39,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _NullAndEmptyHeadersIoRestJson1Serializer());
+        inputSerializers: const [_NullAndEmptyHeadersIoRestJson1Serializer()]);
   });
 }
 

@@ -14,9 +14,7 @@ part 'complex_error.g.dart';
 /// This error is thrown when a request is invalid.
 abstract class ComplexError
     with _i1.SmithyHttpException
-    implements
-        Built<ComplexError, ComplexErrorBuilder>,
-        _i1.HasPayload<ComplexErrorPayload> {
+    implements Built<ComplexError, ComplexErrorBuilder> {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
@@ -31,7 +29,6 @@ abstract class ComplexError
   String? get header;
   _i2.ComplexNestedErrorData? get nested;
   String? get topLevel;
-  @override
   ComplexErrorPayload getPayload() => ComplexErrorPayload((b) => b
     ..nested = nested
     ..topLevel = topLevel);

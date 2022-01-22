@@ -29,7 +29,7 @@ const _skipEqualityTests = {
 Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
   required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required HttpResponseTestCase testCase,
-  SmithySerializer<Output>? outputSerializer,
+  List<SmithySerializer>? outputSerializers,
 }) async {
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
@@ -37,7 +37,7 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
   final serializers = (protocol.serializers.toBuilder()
         ..addAll([
           ...testSerializers,
-          if (outputSerializer != null) outputSerializer,
+          ...?outputSerializers,
         ]))
       .build();
   final expectedOutput = serializers.deserialize(
@@ -72,7 +72,7 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
     ExpectedError extends SmithyException>({
   required HttpOperation<InputPayload, Input, OutputPayload, Output> operation,
   required HttpResponseTestCase testCase,
-  SmithySerializer<ExpectedError>? errorSerializer,
+  List<SmithySerializer>? errorSerializers,
 }) async {
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
@@ -80,7 +80,7 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
   final serializers = (protocol.serializers.toBuilder()
         ..addAll([
           ...testSerializers,
-          if (errorSerializer != null) errorSerializer,
+          ...?errorSerializers,
         ]))
       .build();
   final expectedError = serializers.deserialize(

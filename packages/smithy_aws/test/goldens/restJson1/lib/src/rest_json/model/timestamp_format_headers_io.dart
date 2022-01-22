@@ -12,8 +12,7 @@ part 'timestamp_format_headers_io.g.dart';
 abstract class TimestampFormatHeadersIo
     with _i1.HttpInput<TimestampFormatHeadersIoPayload>
     implements
-        Built<TimestampFormatHeadersIo, TimestampFormatHeadersIoBuilder>,
-        _i1.HasPayload<TimestampFormatHeadersIoPayload> {
+        Built<TimestampFormatHeadersIo, TimestampFormatHeadersIoBuilder> {
   factory TimestampFormatHeadersIo(
           [void Function(TimestampFormatHeadersIoBuilder) updates]) =
       _$TimestampFormatHeadersIo;
@@ -33,7 +32,6 @@ abstract class TimestampFormatHeadersIo
   DateTime? get targetDateTime;
   DateTime? get targetEpochSeconds;
   DateTime? get targetHttpDate;
-  @override
   TimestampFormatHeadersIoPayload getPayload() =>
       TimestampFormatHeadersIoPayload();
 }

@@ -14,8 +14,7 @@ abstract class MalformedTimestampPathDefaultInput
         _i1.HttpInput<MalformedTimestampPathDefaultInputPayload>
     implements
         Built<MalformedTimestampPathDefaultInput,
-            MalformedTimestampPathDefaultInputBuilder>,
-        _i1.HasPayload<MalformedTimestampPathDefaultInputPayload> {
+            MalformedTimestampPathDefaultInputBuilder> {
   factory MalformedTimestampPathDefaultInput(
           [void Function(MalformedTimestampPathDefaultInputBuilder) updates]) =
       _$MalformedTimestampPathDefaultInput;
@@ -33,12 +32,13 @@ abstract class MalformedTimestampPathDefaultInput
   String labelFor(String key) {
     switch (key) {
       case 'timestamp':
-        return timestamp.toString();
+        return _i1.Timestamp(timestamp)
+            .format(_i1.TimestampFormat.dateTime)
+            .toString();
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedTimestampPathDefaultInputPayload getPayload() =>
       MalformedTimestampPathDefaultInputPayload();
 }

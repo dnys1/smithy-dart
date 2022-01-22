@@ -7,6 +7,8 @@ import 'package:rest_json1/src/rest_json/model/recursive_shapes_input_output.dar
     as _i5;
 import 'package:rest_json1/src/rest_json/model/recursive_shapes_input_output_nested1.dart'
     as _i6;
+import 'package:rest_json1/src/rest_json/model/recursive_shapes_input_output_nested2.dart'
+    as _i7;
 import 'package:rest_json1/src/rest_json/operation/recursive_shapes.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
@@ -52,8 +54,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _RecursiveShapesInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _RecursiveShapesInputOutputRestJson1Serializer(),
+          _RecursiveShapesInputOutputNested1RestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonRecursiveShapes (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -87,8 +91,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _RecursiveShapesInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _RecursiveShapesInputOutputRestJson1Serializer(),
+          _RecursiveShapesInputOutputNested1RestJson1Serializer()
+        ]);
   });
 }
 
@@ -119,6 +125,54 @@ class _RecursiveShapesInputOutputRestJson1Serializer
                     specifiedType:
                         const FullType(_i6.RecursiveShapesInputOutputNested1))
                 as _i6.RecursiveShapesInputOutputNested1));
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _RecursiveShapesInputOutputNested1RestJson1Serializer extends _i4
+    .StructuredSmithySerializer<_i6.RecursiveShapesInputOutputNested1> {
+  const _RecursiveShapesInputOutputNested1RestJson1Serializer()
+      : super('RecursiveShapesInputOutputNested1');
+
+  @override
+  Iterable<Type> get types => const [_i6.RecursiveShapesInputOutputNested1];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  @override
+  _i6.RecursiveShapesInputOutputNested1 deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i6.RecursiveShapesInputOutputNested1Builder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'foo':
+          if (value != null) {
+            result.foo = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+        case 'nested':
+          if (value != null) {
+            result.nested.replace((serializers.deserialize(value,
+                    specifiedType:
+                        const FullType(_i7.RecursiveShapesInputOutputNested2))
+                as _i7.RecursiveShapesInputOutputNested2));
           }
           break;
       }

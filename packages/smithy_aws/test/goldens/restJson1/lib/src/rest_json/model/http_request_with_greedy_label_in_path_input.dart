@@ -14,8 +14,7 @@ abstract class HttpRequestWithGreedyLabelInPathInput
         _i1.HttpInput<HttpRequestWithGreedyLabelInPathInputPayload>
     implements
         Built<HttpRequestWithGreedyLabelInPathInput,
-            HttpRequestWithGreedyLabelInPathInputBuilder>,
-        _i1.HasPayload<HttpRequestWithGreedyLabelInPathInputPayload> {
+            HttpRequestWithGreedyLabelInPathInputBuilder> {
   factory HttpRequestWithGreedyLabelInPathInput(
       [void Function(HttpRequestWithGreedyLabelInPathInputBuilder)
           updates]) = _$HttpRequestWithGreedyLabelInPathInput;
@@ -34,14 +33,13 @@ abstract class HttpRequestWithGreedyLabelInPathInput
   String labelFor(String key) {
     switch (key) {
       case 'foo':
-        return foo.toString();
+        return foo;
       case 'baz':
-        return baz.toString();
+        return baz;
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   HttpRequestWithGreedyLabelInPathInputPayload getPayload() =>
       HttpRequestWithGreedyLabelInPathInputPayload();
 }

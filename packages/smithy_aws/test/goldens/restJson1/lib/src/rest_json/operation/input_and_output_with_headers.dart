@@ -64,33 +64,33 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
         }
         if (input.headerStringList != null) {
           b.headers['X-StringList'] =
-              input.headerStringList!.map((el) => el).join(',');
+              input.headerStringList!.map((el) => el).join(', ');
         }
         if (input.headerStringSet != null) {
           b.headers['X-StringSet'] =
-              input.headerStringSet!.map((el) => el).join(',');
+              input.headerStringSet!.map((el) => el).join(', ');
         }
         if (input.headerIntegerList != null) {
           b.headers['X-IntegerList'] =
-              input.headerIntegerList!.map((el) => el.toString()).join(',');
+              input.headerIntegerList!.map((el) => el.toString()).join(', ');
         }
         if (input.headerBooleanList != null) {
           b.headers['X-BooleanList'] =
-              input.headerBooleanList!.map((el) => el.toString()).join(',');
+              input.headerBooleanList!.map((el) => el.toString()).join(', ');
         }
         if (input.headerTimestampList != null) {
           b.headers['X-TimestampList'] = input.headerTimestampList!
               .map((el) => _i1.Timestamp(el)
-                  .format(_i1.TimestampFormat.httpDate)
+                  .format(_i1.TimestampFormat.unknown)
                   .toString())
-              .join(',');
+              .join(', ');
         }
         if (input.headerEnum != null) {
           b.headers['X-Enum'] = input.headerEnum!.value;
         }
         if (input.headerEnumList != null) {
           b.headers['X-EnumList'] =
-              input.headerEnumList!.map((el) => el.value).join(',');
+              input.headerEnumList!.map((el) => el.value).join(', ');
         }
       });
   @override

@@ -48,7 +48,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _HttpPrefixHeadersInputRestJson1Serializer());
+        inputSerializers: const [_HttpPrefixHeadersInputRestJson1Serializer()]);
   });
   _i1.test('RestJsonHttpPrefixHeadersAreNotPresent (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -77,7 +77,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _HttpPrefixHeadersInputRestJson1Serializer());
+        inputSerializers: const [_HttpPrefixHeadersInputRestJson1Serializer()]);
   });
   _i1.test('RestJsonHttpPrefixHeadersArePresent (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -106,7 +106,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _HttpPrefixHeadersOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpPrefixHeadersOutputRestJson1Serializer()
+        ]);
   });
 }
 

@@ -40,7 +40,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeBooleanUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -71,7 +71,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeNumberUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -101,7 +101,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeBlobUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -131,7 +131,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeTimestampUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -162,7 +162,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeEnumUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -192,7 +192,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeListUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -225,7 +225,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeMapUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -258,7 +258,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeStructureUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -291,7 +291,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonSerializeRenamedStructureUnionValue (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -324,7 +324,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _UnionInputOutputRestJson1Serializer());
+        inputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeStringUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -349,7 +349,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeBooleanUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -374,7 +374,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeNumberUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -398,7 +398,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeBlobUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -422,7 +422,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeTimestampUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -447,7 +447,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeEnumUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -471,7 +471,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeListUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -498,7 +498,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeMapUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -525,7 +525,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonDeserializeStructureUnionValue (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -552,7 +552,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _UnionInputOutputRestJson1Serializer());
+        outputSerializers: const [_UnionInputOutputRestJson1Serializer()]);
   });
 }
 

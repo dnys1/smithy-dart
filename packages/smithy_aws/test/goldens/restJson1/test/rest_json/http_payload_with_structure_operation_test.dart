@@ -41,8 +41,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpPayloadWithStructureInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpPayloadWithStructureInputOutputRestJson1Serializer(),
+          _NestedPayloadRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpPayloadWithStructure (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -66,8 +68,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _HttpPayloadWithStructureInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpPayloadWithStructureInputOutputRestJson1Serializer(),
+          _NestedPayloadRestJson1Serializer()
+        ]);
   });
 }
 
@@ -97,6 +101,51 @@ class _HttpPayloadWithStructureInputOutputRestJson1Serializer extends _i4
             result.nested.replace((serializers.deserialize(value,
                     specifiedType: const FullType(_i6.NestedPayload))
                 as _i6.NestedPayload));
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _NestedPayloadRestJson1Serializer
+    extends _i4.StructuredSmithySerializer<_i6.NestedPayload> {
+  const _NestedPayloadRestJson1Serializer() : super('NestedPayload');
+
+  @override
+  Iterable<Type> get types => const [_i6.NestedPayload];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  @override
+  _i6.NestedPayload deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i6.NestedPayloadBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'greeting':
+          if (value != null) {
+            result.greeting = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+        case 'name':
+          if (value != null) {
+            result.name = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
           }
           break;
       }

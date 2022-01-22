@@ -41,8 +41,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _TestBodyStructureInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _TestBodyStructureInputOutputRestJson1Serializer(),
+          _TestConfigRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpWithEmptyBody (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -70,8 +72,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _TestBodyStructureInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _TestBodyStructureInputOutputRestJson1Serializer(),
+          _TestConfigRestJson1Serializer()
+        ]);
   });
 }
 
@@ -107,6 +111,45 @@ class _TestBodyStructureInputOutputRestJson1Serializer
           if (value != null) {
             result.testId = (serializers.deserialize(value,
                 specifiedType: const FullType(String)) as String);
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _TestConfigRestJson1Serializer
+    extends _i4.StructuredSmithySerializer<_i6.TestConfig> {
+  const _TestConfigRestJson1Serializer() : super('TestConfig');
+
+  @override
+  Iterable<Type> get types => const [_i6.TestConfig];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  @override
+  _i6.TestConfig deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i6.TestConfigBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'timeout':
+          if (value != null) {
+            result.timeout = (serializers.deserialize(value,
+                specifiedType: const FullType(int)) as int);
           }
           break;
       }

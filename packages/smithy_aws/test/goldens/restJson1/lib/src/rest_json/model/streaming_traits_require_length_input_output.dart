@@ -15,8 +15,7 @@ abstract class StreamingTraitsRequireLengthInputOutput
         _i1.HttpInput<_i2.Stream<List<int>>>
     implements
         Built<StreamingTraitsRequireLengthInputOutput,
-            StreamingTraitsRequireLengthInputOutputBuilder>,
-        _i1.HasPayload<_i2.Stream<List<int>>> {
+            StreamingTraitsRequireLengthInputOutputBuilder> {
   factory StreamingTraitsRequireLengthInputOutput(
       [void Function(StreamingTraitsRequireLengthInputOutputBuilder)
           updates]) = _$StreamingTraitsRequireLengthInputOutput;
@@ -31,7 +30,6 @@ abstract class StreamingTraitsRequireLengthInputOutput
   static void _init(StreamingTraitsRequireLengthInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
-  @override
   _i2.Stream<List<int>>? getPayload() => blob;
 }
 

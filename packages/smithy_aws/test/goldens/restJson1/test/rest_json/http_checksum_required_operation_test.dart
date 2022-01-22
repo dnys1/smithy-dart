@@ -41,8 +41,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpChecksumRequiredInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpChecksumRequiredInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

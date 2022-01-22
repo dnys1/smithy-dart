@@ -52,13 +52,13 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
         }
         if (input.defaultFormat != null) {
           b.headers['X-defaultFormat'] = _i1.Timestamp(input.defaultFormat!)
-              .format(_i1.TimestampFormat.httpDate)
+              .format(_i1.TimestampFormat.unknown)
               .toString();
         }
         if (input.targetEpochSeconds != null) {
           b.headers['X-targetEpochSeconds'] =
               _i1.Timestamp(input.targetEpochSeconds!)
-                  .format(_i1.TimestampFormat.httpDate)
+                  .format(_i1.TimestampFormat.epochSeconds)
                   .toString();
         }
         if (input.targetHttpDate != null) {
@@ -68,7 +68,7 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
         }
         if (input.targetDateTime != null) {
           b.headers['X-targetDateTime'] = _i1.Timestamp(input.targetDateTime!)
-              .format(_i1.TimestampFormat.httpDate)
+              .format(_i1.TimestampFormat.dateTime)
               .toString();
         }
       });

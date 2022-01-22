@@ -12,9 +12,7 @@ part 'http_prefix_headers_input.g.dart';
 
 abstract class HttpPrefixHeadersInput
     with _i1.HttpInput<HttpPrefixHeadersInputPayload>
-    implements
-        Built<HttpPrefixHeadersInput, HttpPrefixHeadersInputBuilder>,
-        _i1.HasPayload<HttpPrefixHeadersInputPayload> {
+    implements Built<HttpPrefixHeadersInput, HttpPrefixHeadersInputBuilder> {
   factory HttpPrefixHeadersInput(
           [void Function(HttpPrefixHeadersInputBuilder) updates]) =
       _$HttpPrefixHeadersInput;
@@ -29,7 +27,6 @@ abstract class HttpPrefixHeadersInput
   static void _init(HttpPrefixHeadersInputBuilder b) {}
   String? get foo;
   _i2.BuiltMap<String, String>? get fooMap;
-  @override
   HttpPrefixHeadersInputPayload getPayload() => HttpPrefixHeadersInputPayload();
 }
 

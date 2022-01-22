@@ -14,8 +14,7 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
         _i1.HttpInput<HttpRequestWithLabelsAndTimestampFormatInputPayload>
     implements
         Built<HttpRequestWithLabelsAndTimestampFormatInput,
-            HttpRequestWithLabelsAndTimestampFormatInputBuilder>,
-        _i1.HasPayload<HttpRequestWithLabelsAndTimestampFormatInputPayload> {
+            HttpRequestWithLabelsAndTimestampFormatInputBuilder> {
   factory HttpRequestWithLabelsAndTimestampFormatInput(
       [void Function(HttpRequestWithLabelsAndTimestampFormatInputBuilder)
           updates]) = _$HttpRequestWithLabelsAndTimestampFormatInput;
@@ -39,24 +38,37 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
   String labelFor(String key) {
     switch (key) {
       case 'memberEpochSeconds':
-        return memberEpochSeconds.toString();
+        return _i1.Timestamp(memberEpochSeconds)
+            .format(_i1.TimestampFormat.epochSeconds)
+            .toString();
       case 'memberHttpDate':
-        return memberHttpDate.toString();
+        return _i1.Timestamp(memberHttpDate)
+            .format(_i1.TimestampFormat.httpDate)
+            .toString();
       case 'memberDateTime':
-        return memberDateTime.toString();
+        return _i1.Timestamp(memberDateTime)
+            .format(_i1.TimestampFormat.dateTime)
+            .toString();
       case 'defaultFormat':
-        return defaultFormat.toString();
+        return _i1.Timestamp(defaultFormat)
+            .format(_i1.TimestampFormat.dateTime)
+            .toString();
       case 'targetEpochSeconds':
-        return targetEpochSeconds.toString();
+        return _i1.Timestamp(targetEpochSeconds)
+            .format(_i1.TimestampFormat.epochSeconds)
+            .toString();
       case 'targetHttpDate':
-        return targetHttpDate.toString();
+        return _i1.Timestamp(targetHttpDate)
+            .format(_i1.TimestampFormat.httpDate)
+            .toString();
       case 'targetDateTime':
-        return targetDateTime.toString();
+        return _i1.Timestamp(targetDateTime)
+            .format(_i1.TimestampFormat.dateTime)
+            .toString();
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   HttpRequestWithLabelsAndTimestampFormatInputPayload getPayload() =>
       HttpRequestWithLabelsAndTimestampFormatInputPayload();
 }

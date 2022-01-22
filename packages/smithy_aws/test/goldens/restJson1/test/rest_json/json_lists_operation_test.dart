@@ -57,7 +57,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonListsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonListsInputOutputRestJson1Serializer(),
+          _StructureListMemberRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonListsEmpty (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -85,7 +88,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonListsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonListsInputOutputRestJson1Serializer(),
+          _StructureListMemberRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonListsSerializeNull (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -116,7 +122,10 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonListsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _JsonListsInputOutputRestJson1Serializer(),
+          _StructureListMemberRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonLists (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -154,7 +163,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonListsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonListsInputOutputRestJson1Serializer(),
+          _StructureListMemberRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonListsEmpty (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -176,7 +188,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonListsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonListsInputOutputRestJson1Serializer(),
+          _StructureListMemberRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonListsSerializeNull (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -201,7 +216,10 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonListsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _JsonListsInputOutputRestJson1Serializer(),
+          _StructureListMemberRestJson1Serializer()
+        ]);
   });
 }
 
@@ -296,6 +314,52 @@ class _JsonListsInputOutputRestJson1Serializer
                     specifiedType:
                         const FullType(_i6.BuiltList, [FullType(DateTime)]))
                 as _i6.BuiltList<DateTime>));
+          }
+          break;
+      }
+    }
+
+    return result.build();
+  }
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Object? object,
+      {FullType specifiedType = FullType.unspecified}) {
+    throw StateError('Not supported for tests');
+  }
+}
+
+class _StructureListMemberRestJson1Serializer
+    extends _i4.StructuredSmithySerializer<_i8.StructureListMember> {
+  const _StructureListMemberRestJson1Serializer()
+      : super('StructureListMember');
+
+  @override
+  Iterable<Type> get types => const [_i8.StructureListMember];
+  @override
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  @override
+  _i8.StructureListMember deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = _i8.StructureListMemberBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'a':
+          if (value != null) {
+            result.a = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+        case 'b':
+          if (value != null) {
+            result.b = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
           }
           break;
       }

@@ -49,8 +49,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithLabelsInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithLabelsInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpRequestLabelEscaping (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -88,8 +89,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithLabelsInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithLabelsInputRestJson1Serializer()
+        ]);
   });
 }
 

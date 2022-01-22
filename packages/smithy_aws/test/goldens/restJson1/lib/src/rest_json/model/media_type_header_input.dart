@@ -12,9 +12,7 @@ part 'media_type_header_input.g.dart';
 
 abstract class MediaTypeHeaderInput
     with _i1.HttpInput<MediaTypeHeaderInputPayload>
-    implements
-        Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder>,
-        _i1.HasPayload<MediaTypeHeaderInputPayload> {
+    implements Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder> {
   factory MediaTypeHeaderInput(
           [void Function(MediaTypeHeaderInputBuilder) updates]) =
       _$MediaTypeHeaderInput;
@@ -28,7 +26,6 @@ abstract class MediaTypeHeaderInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MediaTypeHeaderInputBuilder b) {}
   _i2.JsonObject? get json;
-  @override
   MediaTypeHeaderInputPayload getPayload() => MediaTypeHeaderInputPayload();
 }
 

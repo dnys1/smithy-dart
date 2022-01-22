@@ -21,8 +21,7 @@ void main() {
             id: 'RestJsonEmptyInputAndEmptyOutput',
             documentation:
                 'Clients should not serialize a JSON payload when no parameters\nare given that are sent in the body. A service will tolerate\nclients that omit a payload or that send a JSON object.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -41,8 +40,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _EmptyInputAndEmptyOutputInputRestJson1Serializer());
+        inputSerializers: const [
+          _EmptyInputAndEmptyOutputInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonEmptyInputAndEmptyOutput (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -51,8 +51,7 @@ void main() {
             id: 'RestJsonEmptyInputAndEmptyOutput',
             documentation:
                 'As of January 2021, server implementations are expected to\nrespond with a JSON object regardless of if the output\nparameters are empty.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{}',
             bodyMediaType: 'application/json',
@@ -65,8 +64,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _EmptyInputAndEmptyOutputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _EmptyInputAndEmptyOutputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonEmptyInputAndEmptyOutputJsonObjectOutput (restJson1)',
       () async {
@@ -76,8 +76,7 @@ void main() {
             id: 'RestJsonEmptyInputAndEmptyOutputJsonObjectOutput',
             documentation:
                 'This test ensures that clients can gracefully handle\nsituations where a service omits a JSON payload entirely.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -90,8 +89,9 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 200),
-        outputSerializer:
-            const _EmptyInputAndEmptyOutputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _EmptyInputAndEmptyOutputOutputRestJson1Serializer()
+        ]);
   });
 }
 

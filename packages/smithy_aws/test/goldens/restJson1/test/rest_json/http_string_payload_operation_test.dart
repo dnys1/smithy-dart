@@ -38,7 +38,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _StringPayloadInputRestJson1Serializer());
+        inputSerializers: const [_StringPayloadInputRestJson1Serializer()]);
   });
   _i1.test('StringPayloadResponse (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -60,7 +60,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _StringPayloadInputRestJson1Serializer());
+        outputSerializers: const [_StringPayloadInputRestJson1Serializer()]);
   });
 }
 

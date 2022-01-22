@@ -15,8 +15,7 @@ part 'input_and_output_with_headers_io.g.dart';
 abstract class InputAndOutputWithHeadersIo
     with _i1.HttpInput<InputAndOutputWithHeadersIoPayload>
     implements
-        Built<InputAndOutputWithHeadersIo, InputAndOutputWithHeadersIoBuilder>,
-        _i1.HasPayload<InputAndOutputWithHeadersIoPayload> {
+        Built<InputAndOutputWithHeadersIo, InputAndOutputWithHeadersIoBuilder> {
   factory InputAndOutputWithHeadersIo(
           [void Function(InputAndOutputWithHeadersIoBuilder) updates]) =
       _$InputAndOutputWithHeadersIo;
@@ -45,7 +44,6 @@ abstract class InputAndOutputWithHeadersIo
   _i2.BuiltSet<String>? get headerStringSet;
   _i2.BuiltList<DateTime>? get headerTimestampList;
   bool? get headerTrueBool;
-  @override
   InputAndOutputWithHeadersIoPayload getPayload() =>
       InputAndOutputWithHeadersIoPayload();
 }

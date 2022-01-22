@@ -15,8 +15,7 @@ abstract class TestBodyStructureInputOutput
         _i1.HttpInput<TestBodyStructureInputOutputPayload>
     implements
         Built<TestBodyStructureInputOutput,
-            TestBodyStructureInputOutputBuilder>,
-        _i1.HasPayload<TestBodyStructureInputOutputPayload> {
+            TestBodyStructureInputOutputBuilder> {
   factory TestBodyStructureInputOutput(
           [void Function(TestBodyStructureInputOutputBuilder) updates]) =
       _$TestBodyStructureInputOutput;
@@ -31,7 +30,6 @@ abstract class TestBodyStructureInputOutput
   static void _init(TestBodyStructureInputOutputBuilder b) {}
   _i2.TestConfig? get testConfig;
   String? get testId;
-  @override
   TestBodyStructureInputOutputPayload getPayload() =>
       TestBodyStructureInputOutputPayload((b) => b..testConfig = testConfig);
 }

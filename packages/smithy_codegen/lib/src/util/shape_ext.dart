@@ -174,7 +174,7 @@ extension StructureShapeUtil on StructureShape {
     });
     if (payloadMember == null) {
       var symbol = context.symbolFor(shapeId);
-      if (shapeId != Shape.unit) {
+      if (hasPayload(context) && shapeId != Shape.unit) {
         symbol = symbol.typeRef.rebuild((t) => t.symbol = '${t.symbol}Payload');
       }
       return HttpPayload((b) => b.symbol = symbol);
@@ -195,7 +195,6 @@ extension StructureShapeUtil on StructureShape {
       return null;
     }
     final builder = HttpOutputTraitsBuilder();
-    builder.httpPayload.replace(httpPayload(context));
     for (var member in members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
@@ -223,7 +222,6 @@ extension StructureShapeUtil on StructureShape {
       return null;
     }
     final builder = HttpInputTraitsBuilder();
-    builder.httpPayload.replace(httpPayload(context));
     for (var member in members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
@@ -271,7 +269,6 @@ extension StructureShapeUtil on StructureShape {
         isThrottlingError: retryTrait.throttling,
       );
     }
-    builder.httpPayload.replace(httpPayload(context));
     for (var member in members.values) {
       final headerTrait = member.getTrait<HttpHeaderTrait>();
       if (headerTrait != null) {
@@ -303,9 +300,7 @@ extension StructureShapeUtil on StructureShape {
 
   /// The member shape to serialize when [HttpPayloadTrait] is used.
   MemberShape? payloadShape(CodegenContext context) =>
-      httpInputTraits(context)?.httpPayload.member ??
-      httpOutputTraits(context)?.httpPayload.member ??
-      httpErrorTraits(context)?.httpPayload.member;
+      httpPayload(context).member;
 
   /// The list of all members which convey some information about the request,
   /// and for most protocols are not included in the body of the request.
@@ -315,19 +310,15 @@ extension StructureShapeUtil on StructureShape {
     final httpErrorTraits = this.httpErrorTraits(context);
 
     return <MemberShape?>{
-      httpInputTraits?.hostLabel,
       ...?httpInputTraits?.httpHeaders.values,
       httpInputTraits?.httpQueryParams,
       ...?httpInputTraits?.httpLabels,
-      httpInputTraits?.httpPayload.member,
       httpInputTraits?.httpPrefixHeaders?.member,
       ...?httpInputTraits?.httpQuery.values,
       httpOutputTraits?.httpResponseCode,
       ...?httpOutputTraits?.httpHeaders.values,
-      httpOutputTraits?.httpPayload.member,
       httpOutputTraits?.httpPrefixHeaders?.member,
       ...?httpErrorTraits?.httpHeaders.values,
-      httpErrorTraits?.httpPayload.member,
       httpErrorTraits?.httpPrefixHeaders?.member,
     }.whereType<MemberShape>().toList()
       ..sorted((a, b) => a.dartName.compareTo(b.dartName));
@@ -340,16 +331,22 @@ extension StructureShapeUtil on StructureShape {
       .toList();
 
   /// Whether the structure has an HTTP payload.
-  bool get hasPayload => isInputShape || isOutputShape || isError;
+  bool hasPayload(CodegenContext context) =>
+      (isInputShape || isOutputShape || isError) &&
+      (metadataMembers(context).isNotEmpty ||
+          members.values.firstWhereOrNull((shape) {
+                return shape.hasTrait<HttpPayloadTrait>();
+              }) !=
+              null);
 
   /// Whether the structure needs a payload struct.
   bool hasBuiltPayload(CodegenContext context) =>
-      hasPayload && payloadShape(context) == null;
+      hasPayload(context) && payloadShape(context) == null;
 
   /// Whether the structure has a streaming payload.
   bool hasStreamingPayload(CodegenContext context) {
     final payloadShape = this.payloadShape(context);
-    return hasPayload &&
+    return hasPayload(context) &&
         payloadShape != null &&
         (payloadShape.isStreaming ||
             context.shapeFor(payloadShape.target).isStreaming);

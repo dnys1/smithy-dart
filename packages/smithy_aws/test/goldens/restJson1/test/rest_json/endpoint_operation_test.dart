@@ -35,6 +35,7 @@ void main() {
             resolvedHost: 'foo.example.com',
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
 }

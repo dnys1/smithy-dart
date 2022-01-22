@@ -11,9 +11,7 @@ part 'malformed_double_input.g.dart';
 
 abstract class MalformedDoubleInput
     with _i1.HttpInput<MalformedDoubleInputPayload>
-    implements
-        Built<MalformedDoubleInput, MalformedDoubleInputBuilder>,
-        _i1.HasPayload<MalformedDoubleInputPayload> {
+    implements Built<MalformedDoubleInput, MalformedDoubleInputBuilder> {
   factory MalformedDoubleInput(
           [void Function(MalformedDoubleInputBuilder) updates]) =
       _$MalformedDoubleInput;
@@ -39,7 +37,6 @@ abstract class MalformedDoubleInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedDoubleInputPayload getPayload() =>
       MalformedDoubleInputPayload((b) => b..doubleInBody = doubleInBody);
 }

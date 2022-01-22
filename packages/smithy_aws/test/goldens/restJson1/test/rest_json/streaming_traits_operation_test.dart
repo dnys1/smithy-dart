@@ -43,8 +43,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _StreamingTraitsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _StreamingTraitsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsWithNoBlobBody (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -72,8 +73,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _StreamingTraitsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _StreamingTraitsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsWithBlob (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -98,8 +100,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _StreamingTraitsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _StreamingTraitsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsWithNoBlobBody (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -121,8 +124,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _StreamingTraitsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _StreamingTraitsInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

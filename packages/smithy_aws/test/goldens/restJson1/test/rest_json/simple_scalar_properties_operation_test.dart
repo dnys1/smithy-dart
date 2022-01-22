@@ -51,8 +51,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDoesntSerializeNullStructureValues (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -81,8 +82,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNaNFloatInputs (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -110,8 +112,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsInfinityFloatInputs (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -140,8 +143,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -170,8 +174,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSimpleScalarProperties (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -205,8 +210,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonDoesntDeserializeNullStructureValues (restJson1)',
       () async {
@@ -230,8 +236,9 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNaNFloatInputs (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -253,8 +260,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsInfinityFloatInputs (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -277,8 +285,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNegativeInfinityFloatInputs (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -301,8 +310,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _SimpleScalarPropertiesInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

@@ -11,21 +11,21 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 /// This example tests httpChecksumRequired trait
 class HttpChecksumRequiredOperation extends _i1.HttpOperation<
-    _i2.HttpChecksumRequiredInputOutputPayload,
     _i2.HttpChecksumRequiredInputOutput,
-    _i2.HttpChecksumRequiredInputOutputPayload,
+    _i2.HttpChecksumRequiredInputOutput,
+    _i2.HttpChecksumRequiredInputOutput,
     _i2.HttpChecksumRequiredInputOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
-          _i2.HttpChecksumRequiredInputOutputPayload,
           _i2.HttpChecksumRequiredInputOutput,
-          _i2.HttpChecksumRequiredInputOutputPayload,
+          _i2.HttpChecksumRequiredInputOutput,
+          _i2.HttpChecksumRequiredInputOutput,
           _i2.HttpChecksumRequiredInputOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithChecksum()])
   ];
 
   @override
@@ -37,11 +37,9 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
       });
   @override
   _i2.HttpChecksumRequiredInputOutput buildOutput(
-          _i2.HttpChecksumRequiredInputOutputPayload payload,
+          _i2.HttpChecksumRequiredInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.HttpChecksumRequiredInputOutput((b) {
-        b.foo = payload.foo;
-      });
+      _i2.HttpChecksumRequiredInputOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

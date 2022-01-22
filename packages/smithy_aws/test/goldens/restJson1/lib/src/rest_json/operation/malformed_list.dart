@@ -9,12 +9,12 @@ import 'package:rest_json1/src/rest_json/serializers.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-class MalformedListOperation extends _i1.HttpOperation<
-    _i2.MalformedListInputPayload, _i2.MalformedListInput, _i1.Unit, _i1.Unit> {
+class MalformedListOperation extends _i1.HttpOperation<_i2.MalformedListInput,
+    _i2.MalformedListInput, _i1.Unit, _i1.Unit> {
   @override
   late final List<
-      _i1.HttpProtocol<_i2.MalformedListInputPayload, _i2.MalformedListInput,
-          _i1.Unit, _i1.Unit>> protocols = [
+      _i1.HttpProtocol<_i2.MalformedListInput, _i2.MalformedListInput, _i1.Unit,
+          _i1.Unit>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,

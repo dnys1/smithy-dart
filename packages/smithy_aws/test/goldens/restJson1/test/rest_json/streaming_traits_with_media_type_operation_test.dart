@@ -42,8 +42,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsWithMediaTypeWithBlob (restJson1)',
       () async {
@@ -67,8 +68,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

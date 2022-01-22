@@ -43,8 +43,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpPayloadTraitsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpPayloadTraitsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpPayloadTraitsWithNoBlobBody (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -72,8 +73,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpPayloadTraitsInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpPayloadTraitsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpPayloadTraitsWithBlob (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -95,8 +97,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _HttpPayloadTraitsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpPayloadTraitsInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpPayloadTraitsWithNoBlobBody (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -118,8 +121,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _HttpPayloadTraitsInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpPayloadTraitsInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

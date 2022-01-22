@@ -4,7 +4,6 @@ library rest_json1.rest_json.model.recursive_shapes_input_output;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
 import 'package:rest_json1/src/rest_json/model/recursive_shapes_input_output_nested1.dart'
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
@@ -12,10 +11,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'recursive_shapes_input_output.g.dart';
 
 abstract class RecursiveShapesInputOutput
-    with _i1.HttpInput<RecursiveShapesInputOutputPayload>
+    with _i1.HttpInput<RecursiveShapesInputOutput>
     implements
-        Built<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder>,
-        _i1.HasPayload<RecursiveShapesInputOutputPayload> {
+        Built<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder> {
   factory RecursiveShapesInputOutput(
           [void Function(RecursiveShapesInputOutputBuilder) updates]) =
       _$RecursiveShapesInputOutput;
@@ -29,48 +27,24 @@ abstract class RecursiveShapesInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(RecursiveShapesInputOutputBuilder b) {}
   _i2.RecursiveShapesInputOutputNested1? get nested;
-  @override
-  RecursiveShapesInputOutputPayload getPayload() =>
-      RecursiveShapesInputOutputPayload((b) => b..nested = nested);
-}
-
-@_i3.internal
-@BuiltValue(nestedBuilders: false)
-abstract class RecursiveShapesInputOutputPayload
-    implements
-        Built<RecursiveShapesInputOutputPayload,
-            RecursiveShapesInputOutputPayloadBuilder> {
-  factory RecursiveShapesInputOutputPayload(
-          [void Function(RecursiveShapesInputOutputPayloadBuilder) updates]) =
-      _$RecursiveShapesInputOutputPayload;
-
-  const RecursiveShapesInputOutputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RecursiveShapesInputOutputPayloadBuilder b) {}
-  _i2.RecursiveShapesInputOutputNested1? get nested;
 }
 
 class _RecursiveShapesInputOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<RecursiveShapesInputOutputPayload> {
+    extends _i1.StructuredSmithySerializer<RecursiveShapesInputOutput> {
   const _RecursiveShapesInputOutputRestJson1Serializer()
       : super('RecursiveShapesInputOutput');
 
   @override
-  Iterable<Type> get types => const [
-        RecursiveShapesInputOutput,
-        _$RecursiveShapesInputOutput,
-        RecursiveShapesInputOutputPayload,
-        _$RecursiveShapesInputOutputPayload
-      ];
+  Iterable<Type> get types =>
+      const [RecursiveShapesInputOutput, _$RecursiveShapesInputOutput];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  RecursiveShapesInputOutputPayload deserialize(
+  RecursiveShapesInputOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = RecursiveShapesInputOutputPayloadBuilder();
+    final result = RecursiveShapesInputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -79,10 +53,10 @@ class _RecursiveShapesInputOutputRestJson1Serializer
       switch (key) {
         case 'nested':
           if (value != null) {
-            result.nested = (serializers.deserialize(value,
+            result.nested.replace((serializers.deserialize(value,
                     specifiedType:
                         const FullType(_i2.RecursiveShapesInputOutputNested1))
-                as _i2.RecursiveShapesInputOutputNested1);
+                as _i2.RecursiveShapesInputOutputNested1));
           }
           break;
       }
@@ -94,9 +68,7 @@ class _RecursiveShapesInputOutputRestJson1Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is RecursiveShapesInputOutput
-        ? object.getPayload()
-        : (object as RecursiveShapesInputOutputPayload);
+    final payload = (object as RecursiveShapesInputOutput);
     final result = <Object?>[];
     if (payload.nested != null) {
       result

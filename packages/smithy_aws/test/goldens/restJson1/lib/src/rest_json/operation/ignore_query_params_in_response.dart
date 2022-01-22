@@ -15,14 +15,14 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 class IgnoreQueryParamsInResponseOperation extends _i1.HttpOperation<
     _i1.Unit,
     _i1.Unit,
-    _i2.IgnoreQueryParamsInResponseOutputPayload,
+    _i2.IgnoreQueryParamsInResponseOutput,
     _i2.IgnoreQueryParamsInResponseOutput> {
   @override
   late final List<
       _i1.HttpProtocol<
           _i1.Unit,
           _i1.Unit,
-          _i2.IgnoreQueryParamsInResponseOutputPayload,
+          _i2.IgnoreQueryParamsInResponseOutput,
           _i2.IgnoreQueryParamsInResponseOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
@@ -38,11 +38,9 @@ class IgnoreQueryParamsInResponseOperation extends _i1.HttpOperation<
       });
   @override
   _i2.IgnoreQueryParamsInResponseOutput buildOutput(
-          _i2.IgnoreQueryParamsInResponseOutputPayload payload,
+          _i2.IgnoreQueryParamsInResponseOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.IgnoreQueryParamsInResponseOutput((b) {
-        b.baz = payload.baz;
-      });
+      _i2.IgnoreQueryParamsInResponseOutput((b) {});
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

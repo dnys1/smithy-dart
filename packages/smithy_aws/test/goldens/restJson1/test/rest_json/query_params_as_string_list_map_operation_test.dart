@@ -44,8 +44,9 @@ void main() {
             queryParams: ['corge=named', 'baz=bar', 'baz=qux'],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _QueryParamsAsStringListMapInputRestJson1Serializer());
+        inputSerializers: const [
+          _QueryParamsAsStringListMapInputRestJson1Serializer()
+        ]);
   });
 }
 

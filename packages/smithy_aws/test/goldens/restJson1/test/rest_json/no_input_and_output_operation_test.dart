@@ -38,7 +38,8 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
   _i1.test('RestJsonNoInputAndOutputWithJson (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -47,8 +48,7 @@ void main() {
             id: 'RestJsonNoInputAndOutputWithJson',
             documentation:
                 'Operations that define output and do not bind anything to\nthe payload return a JSON object in the response.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '{}',
             bodyMediaType: 'application/json',
@@ -61,7 +61,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _NoInputAndOutputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _NoInputAndOutputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonNoInputAndOutputNoPayload (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -70,8 +72,7 @@ void main() {
             id: 'RestJsonNoInputAndOutputNoPayload',
             documentation:
                 'This test is similar to RestJsonNoInputAndOutputWithJson, but\nit ensures that clients can gracefully handle responses that\nomit a JSON payload.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -84,7 +85,9 @@ void main() {
             tags: [],
             appliesTo: _i2.AppliesTo.client,
             code: 200),
-        outputSerializer: const _NoInputAndOutputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _NoInputAndOutputOutputRestJson1Serializer()
+        ]);
   });
 }
 

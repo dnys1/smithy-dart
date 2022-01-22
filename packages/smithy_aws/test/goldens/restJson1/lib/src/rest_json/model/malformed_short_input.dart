@@ -11,9 +11,7 @@ part 'malformed_short_input.g.dart';
 
 abstract class MalformedShortInput
     with _i1.HttpInput<MalformedShortInputPayload>
-    implements
-        Built<MalformedShortInput, MalformedShortInputBuilder>,
-        _i1.HasPayload<MalformedShortInputPayload> {
+    implements Built<MalformedShortInput, MalformedShortInputBuilder> {
   factory MalformedShortInput(
           [void Function(MalformedShortInputBuilder) updates]) =
       _$MalformedShortInput;
@@ -39,7 +37,6 @@ abstract class MalformedShortInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedShortInputPayload getPayload() =>
       MalformedShortInputPayload((b) => b..shortInBody = shortInBody);
 }

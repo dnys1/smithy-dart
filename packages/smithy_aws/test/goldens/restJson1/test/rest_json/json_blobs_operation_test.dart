@@ -39,7 +39,7 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _JsonBlobsInputOutputRestJson1Serializer());
+        inputSerializers: const [_JsonBlobsInputOutputRestJson1Serializer()]);
   });
   _i1.test('RestJsonJsonBlobs (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -61,7 +61,7 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _JsonBlobsInputOutputRestJson1Serializer());
+        outputSerializers: const [_JsonBlobsInputOutputRestJson1Serializer()]);
   });
 }
 

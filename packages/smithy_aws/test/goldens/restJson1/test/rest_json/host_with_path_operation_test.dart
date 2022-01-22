@@ -34,6 +34,7 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
 }

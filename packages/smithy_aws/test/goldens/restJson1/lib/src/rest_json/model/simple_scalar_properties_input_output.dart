@@ -15,8 +15,7 @@ abstract class SimpleScalarPropertiesInputOutput
         _i1.HttpInput<SimpleScalarPropertiesInputOutputPayload>
     implements
         Built<SimpleScalarPropertiesInputOutput,
-            SimpleScalarPropertiesInputOutputBuilder>,
-        _i1.HasPayload<SimpleScalarPropertiesInputOutputPayload> {
+            SimpleScalarPropertiesInputOutputBuilder> {
   factory SimpleScalarPropertiesInputOutput(
           [void Function(SimpleScalarPropertiesInputOutputBuilder) updates]) =
       _$SimpleScalarPropertiesInputOutput;
@@ -39,7 +38,6 @@ abstract class SimpleScalarPropertiesInputOutput
   int? get shortValue;
   String? get stringValue;
   bool? get trueBooleanValue;
-  @override
   SimpleScalarPropertiesInputOutputPayload getPayload() =>
       SimpleScalarPropertiesInputOutputPayload((b) => b
         ..byteValue = byteValue

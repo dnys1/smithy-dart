@@ -35,7 +35,8 @@ void main() {
             resolvedHost: null,
             queryParams: [],
             forbidQueryParams: [],
-            requireQueryParams: []));
+            requireQueryParams: []),
+        inputSerializers: const []);
   });
   _i1.test('RestJsonNoInputAndNoOutput (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -57,6 +58,7 @@ void main() {
             requireHeaders: [],
             tags: [],
             appliesTo: null,
-            code: 200));
+            code: 200),
+        outputSerializers: const []);
   });
 }

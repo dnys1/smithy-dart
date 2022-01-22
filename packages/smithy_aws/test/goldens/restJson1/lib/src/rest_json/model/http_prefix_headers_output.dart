@@ -11,9 +11,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'http_prefix_headers_output.g.dart';
 
 abstract class HttpPrefixHeadersOutput
-    implements
-        Built<HttpPrefixHeadersOutput, HttpPrefixHeadersOutputBuilder>,
-        _i1.HasPayload<HttpPrefixHeadersOutputPayload> {
+    implements Built<HttpPrefixHeadersOutput, HttpPrefixHeadersOutputBuilder> {
   factory HttpPrefixHeadersOutput(
           [void Function(HttpPrefixHeadersOutputBuilder) updates]) =
       _$HttpPrefixHeadersOutput;
@@ -28,7 +26,6 @@ abstract class HttpPrefixHeadersOutput
   static void _init(HttpPrefixHeadersOutputBuilder b) {}
   String? get foo;
   _i2.BuiltMap<String, String>? get fooMap;
-  @override
   HttpPrefixHeadersOutputPayload getPayload() =>
       HttpPrefixHeadersOutputPayload();
 }

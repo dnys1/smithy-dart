@@ -4,18 +4,16 @@ library rest_json1.rest_json.model.malformed_timestamp_body_default_input;
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_timestamp_body_default_input.g.dart';
 
 abstract class MalformedTimestampBodyDefaultInput
     with
-        _i1.HttpInput<MalformedTimestampBodyDefaultInputPayload>
+        _i1.HttpInput<MalformedTimestampBodyDefaultInput>
     implements
         Built<MalformedTimestampBodyDefaultInput,
-            MalformedTimestampBodyDefaultInputBuilder>,
-        _i1.HasPayload<MalformedTimestampBodyDefaultInputPayload> {
+            MalformedTimestampBodyDefaultInputBuilder> {
   factory MalformedTimestampBodyDefaultInput(
           [void Function(MalformedTimestampBodyDefaultInputBuilder) updates]) =
       _$MalformedTimestampBodyDefaultInput;
@@ -29,49 +27,26 @@ abstract class MalformedTimestampBodyDefaultInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampBodyDefaultInputBuilder b) {}
   DateTime get timestamp;
-  @override
-  MalformedTimestampBodyDefaultInputPayload getPayload() =>
-      MalformedTimestampBodyDefaultInputPayload(
-          (b) => b..timestamp = timestamp);
 }
 
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class MalformedTimestampBodyDefaultInputPayload
-    implements
-        Built<MalformedTimestampBodyDefaultInputPayload,
-            MalformedTimestampBodyDefaultInputPayloadBuilder> {
-  factory MalformedTimestampBodyDefaultInputPayload(
-      [void Function(MalformedTimestampBodyDefaultInputPayloadBuilder)
-          updates]) = _$MalformedTimestampBodyDefaultInputPayload;
-
-  const MalformedTimestampBodyDefaultInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedTimestampBodyDefaultInputPayloadBuilder b) {}
-  DateTime get timestamp;
-}
-
-class _MalformedTimestampBodyDefaultInputRestJson1Serializer extends _i1
-    .StructuredSmithySerializer<MalformedTimestampBodyDefaultInputPayload> {
+class _MalformedTimestampBodyDefaultInputRestJson1Serializer
+    extends _i1.StructuredSmithySerializer<MalformedTimestampBodyDefaultInput> {
   const _MalformedTimestampBodyDefaultInputRestJson1Serializer()
       : super('MalformedTimestampBodyDefaultInput');
 
   @override
   Iterable<Type> get types => const [
         MalformedTimestampBodyDefaultInput,
-        _$MalformedTimestampBodyDefaultInput,
-        MalformedTimestampBodyDefaultInputPayload,
-        _$MalformedTimestampBodyDefaultInputPayload
+        _$MalformedTimestampBodyDefaultInput
       ];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  MalformedTimestampBodyDefaultInputPayload deserialize(
+  MalformedTimestampBodyDefaultInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = MalformedTimestampBodyDefaultInputPayloadBuilder();
+    final result = MalformedTimestampBodyDefaultInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -91,9 +66,7 @@ class _MalformedTimestampBodyDefaultInputRestJson1Serializer extends _i1
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is MalformedTimestampBodyDefaultInput
-        ? object.getPayload()
-        : (object as MalformedTimestampBodyDefaultInputPayload);
+    final payload = (object as MalformedTimestampBodyDefaultInput);
     final result = <Object?>[
       'timestamp',
       serializers.serialize(payload.timestamp,

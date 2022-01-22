@@ -50,36 +50,83 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           context.serviceProtocols.firstWhere((p) => p.shapeId == protocol))
       .toList();
 
+  Iterable<Class?> _collectSerializers(
+    StructureShape shape,
+    ProtocolDefinitionTrait protocol,
+  ) sync* {
+    for (final member in shape.members.values) {
+      var targetShape = context.shapeFor(member.target);
+      var targetType = targetShape.getType();
+      const collectionTypes = [
+        ShapeType.map,
+        ShapeType.list,
+        ShapeType.set,
+      ];
+      while (collectionTypes.contains(targetType)) {
+        if (targetShape is CollectionShape) {
+          targetShape = context.shapeFor(targetShape.member.target);
+        } else if (targetShape is MapShape) {
+          targetShape = context.shapeFor(targetShape.value.target);
+        }
+        targetType = targetShape.getType();
+      }
+      if (targetShape is StructureShape) {
+        yield StructureSerializerGenerator(
+          targetShape,
+          context,
+          protocol,
+          config: const SerializerConfig.test(),
+        ).generate();
+      }
+    }
+  }
+
   late final inputSerializers = {
     for (final protocol in testProtocols)
-      protocol.shapeId: StructureSerializerGenerator(
-        inputShape,
-        context,
-        protocol,
-        config: const SerializerConfig.test(),
-      ).generate(),
+      protocol.shapeId: [
+        StructureSerializerGenerator(
+          inputShape,
+          context,
+          protocol,
+          config: const SerializerConfig.test(),
+        ).generate(),
+        ..._collectSerializers(inputShape, protocol),
+      ],
   };
   late final outputSerializers = {
     for (final protocol in testProtocols)
-      protocol.shapeId: StructureSerializerGenerator(
-        outputShape,
-        context,
-        protocol,
-        config: const SerializerConfig.test(),
-      ).generate(),
+      protocol.shapeId: [
+        StructureSerializerGenerator(
+          outputShape,
+          context,
+          protocol,
+          config: const SerializerConfig.test(),
+        ).generate(),
+        ..._collectSerializers(outputShape, protocol),
+      ],
   };
   late final errorSerializers = {
     for (final errorShape in errorShapes)
       errorShape: {
         for (final protocol in testProtocols)
-          protocol.shapeId: StructureSerializerGenerator(
-            errorShape,
-            context,
-            protocol,
-            config: const SerializerConfig.test(),
-          ).generate(),
+          protocol.shapeId: [
+            StructureSerializerGenerator(
+              errorShape,
+              context,
+              protocol,
+              config: const SerializerConfig.test(),
+            ).generate(),
+            ..._collectSerializers(errorShape, protocol),
+          ],
       }
   };
+
+  Iterable<Class> _uniqueSerializers(Iterable<Class?> serializers) {
+    return LinkedHashSet<Class>(
+      equals: (a, b) => a.name == b.name,
+      hashCode: (key) => key.name.hashCode,
+    )..addAll(serializers.whereType());
+  }
 
   @override
   Library generate() {
@@ -88,16 +135,11 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     // Generic JSON serializer for deserializing the input params
     builder.body.addAll([
       _mainMethod,
-      ...LinkedHashSet<Class>(
-        equals: (a, b) => a.name == b.name,
-        hashCode: (key) => key.name.hashCode,
-      )..addAll([
-          ...inputSerializers.values.whereType<Class>(),
-          ...outputSerializers.values.whereType<Class>(),
-          ...errorSerializers.values
-              .expand((el) => el.values)
-              .whereType<Class>()
-        ]),
+      ..._uniqueSerializers([
+        ...inputSerializers.values.expand((el) => el),
+        ...outputSerializers.values.expand((el) => el),
+        ...errorSerializers.values.expand((el) => el.values).expand((el) => el),
+      ]),
     ]);
 
     return builder.build();
@@ -117,7 +159,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   /// HTTP request tests.
   Iterable<Code> get _httpRequestTests sync* {
     for (var testCase in httpRequestTestCases) {
-      final serializer = inputSerializers[testCase.protocol];
+      final serializers = inputSerializers[testCase.protocol] ?? const [];
       final testCall = DartTypes.smithyTest.httpRequestTest.call([], {
         'operation': symbol.newInstance([]),
         'testCase': DartTypes.smithyTest.httpRequestTestCase.constInstance([], {
@@ -149,8 +191,10 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           'forbidQueryParams': literal(testCase.forbidQueryParams),
           'requireQueryParams': literal(testCase.requireQueryParams),
         }),
-        if (serializer != null)
-          'inputSerializer': refer(serializer.name).constInstance([]),
+        'inputSerializers': literalConstList([
+          for (final serializer in _uniqueSerializers(serializers))
+            refer(serializer.name).constInstance([])
+        ]),
       });
       yield _buildTest(testCase, testCall);
     }
@@ -161,12 +205,14 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   /// https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#httpresponsetests
   Iterable<Code> get _httpResponseTests sync* {
     for (var testCase in httpResponseTestCases) {
-      final serializer = outputSerializers[testCase.protocol];
+      final serializers = outputSerializers[testCase.protocol] ?? const [];
       final testCall = DartTypes.smithyTest.httpResponseTest.call([], {
         'operation': symbol.newInstance([]),
         'testCase': _buildResponseTestCase(testCase),
-        if (serializer != null)
-          'outputSerializer': refer(serializer.name).constInstance([]),
+        'outputSerializers': literalConstList([
+          for (final serializer in _uniqueSerializers(serializers))
+            refer(serializer.name).constInstance([])
+        ]),
       });
       yield _buildTest(testCase, testCall);
     }
@@ -179,12 +225,15 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     for (final shape in errorShapes) {
       final testCases = httpErrorResponseTestCases[shape]!;
       for (var testCase in testCases) {
-        final serializer = errorSerializers[shape]![testCase.protocol];
+        final serializers =
+            errorSerializers[shape]![testCase.protocol] ?? const [];
         final testCall = DartTypes.smithyTest.httpErrorResponseTest.call([], {
           'operation': symbol.newInstance([]),
           'testCase': _buildResponseTestCase(testCase),
-          if (serializer != null)
-            'errorSerializer': refer(serializer.name).constInstance([]),
+          'errorSerializers': literalConstList([
+            for (final serializer in _uniqueSerializers(serializers))
+              refer(serializer.name).constInstance([])
+          ]),
         });
         yield _buildTest(testCase, testCall);
       }

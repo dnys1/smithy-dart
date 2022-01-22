@@ -45,8 +45,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _StreamingTraitsRequireLengthInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsRequireLengthWithNoBlobBody (restJson1)',
       () async {
@@ -75,8 +76,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _StreamingTraitsRequireLengthInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (restJson1)',
       () async {
@@ -103,8 +105,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _StreamingTraitsRequireLengthInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonStreamingTraitsRequireLengthWithNoBlobBody (restJson1)',
       () async {
@@ -127,8 +130,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _StreamingTraitsRequireLengthInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

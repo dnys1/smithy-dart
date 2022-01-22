@@ -11,9 +11,7 @@ part 'malformed_boolean_input.g.dart';
 
 abstract class MalformedBooleanInput
     with _i1.HttpInput<MalformedBooleanInputPayload>
-    implements
-        Built<MalformedBooleanInput, MalformedBooleanInputBuilder>,
-        _i1.HasPayload<MalformedBooleanInputPayload> {
+    implements Built<MalformedBooleanInput, MalformedBooleanInputBuilder> {
   factory MalformedBooleanInput(
           [void Function(MalformedBooleanInputBuilder) updates]) =
       _$MalformedBooleanInput;
@@ -39,7 +37,6 @@ abstract class MalformedBooleanInput
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   MalformedBooleanInputPayload getPayload() =>
       MalformedBooleanInputPayload((b) => b..booleanInBody = booleanInBody);
 }

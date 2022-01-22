@@ -12,8 +12,7 @@ part 'constant_query_string_input.g.dart';
 abstract class ConstantQueryStringInput
     with _i1.HttpInput<ConstantQueryStringInputPayload>
     implements
-        Built<ConstantQueryStringInput, ConstantQueryStringInputBuilder>,
-        _i1.HasPayload<ConstantQueryStringInputPayload> {
+        Built<ConstantQueryStringInput, ConstantQueryStringInputBuilder> {
   factory ConstantQueryStringInput(
           [void Function(ConstantQueryStringInputBuilder) updates]) =
       _$ConstantQueryStringInput;
@@ -31,12 +30,11 @@ abstract class ConstantQueryStringInput
   String labelFor(String key) {
     switch (key) {
       case 'hello':
-        return hello.toString();
+        return hello;
     }
     throw _i1.MissingLabelException(this, key);
   }
 
-  @override
   ConstantQueryStringInputPayload getPayload() =>
       ConstantQueryStringInputPayload();
 }

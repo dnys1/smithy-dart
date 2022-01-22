@@ -42,8 +42,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _DocumentTypeAsPayloadInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentTypeAsPayloadInputString (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -52,8 +53,7 @@ void main() {
             id: 'DocumentTypeAsPayloadInputString',
             documentation:
                 'Serializes a document as the target of the httpPayload trait using a string.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '"hello"',
             bodyMediaType: 'application/json',
@@ -72,8 +72,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _DocumentTypeAsPayloadInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentTypeAsPayloadOutput (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -98,8 +99,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _DocumentTypeAsPayloadInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentTypeAsPayloadOutputString (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -121,8 +123,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _DocumentTypeAsPayloadInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

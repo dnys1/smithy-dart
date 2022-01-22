@@ -137,7 +137,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
 
     // For timestamps, check if there is a custom serializer needed.
     if (type == ShapeType.timestamp) {
-      final format = member.timestampFormat ?? shape.timestampFormat;
+      final format = member.timestampFormat ?? targetShape.timestampFormat;
       if (format != null) {
         return DartTypes.smithy.timestampSerializer
             .property(format.name)
@@ -186,7 +186,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
       final format = config.isTest
           // Test params are always in epoch seconds for some reason
           ? TimestampFormat.epochSeconds
-          : member.timestampFormat ?? shape.timestampFormat;
+          : member.timestampFormat ?? targetShape.timestampFormat;
       if (format != null) {
         return DartTypes.smithy.timestampSerializer
             .property(format.name)

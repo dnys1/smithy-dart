@@ -19,11 +19,9 @@ void main() {
             id: 'DocumentTypeInputWithObject',
             documentation:
                 'Serializes document types as part of the JSON request payload with no escaping.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
+            body: '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
             bodyMediaType: 'application/json',
             params: {
               'stringValue': 'string',
@@ -43,7 +41,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentInputWithString (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -72,7 +72,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentInputWithNumber (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -100,7 +102,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentInputWithBoolean (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -129,7 +133,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentInputWithList (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -170,7 +176,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentOutput (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -179,11 +187,9 @@ void main() {
             id: 'DocumentOutput',
             documentation:
                 'Serializes documents as part of the JSON response payload with no escaping.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
-            body:
-                '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
+            body: '{\n    "stringValue": "string",\n    "documentValue": {\n        "foo": "bar"\n    }\n}',
             bodyMediaType: 'application/json',
             params: {
               'stringValue': 'string',
@@ -197,7 +203,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentOutputString (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -220,7 +228,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentOutputNumber (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -242,7 +252,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentOutputBoolean (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -265,7 +277,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('DocumentOutputArray (restJson1)', () async {
     await _i2.httpResponseTest(
@@ -291,7 +305,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer: const _DocumentTypeInputOutputRestJson1Serializer());
+        outputSerializers: const [
+          _DocumentTypeInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

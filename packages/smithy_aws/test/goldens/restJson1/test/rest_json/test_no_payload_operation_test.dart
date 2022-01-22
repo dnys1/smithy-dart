@@ -37,7 +37,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _TestNoPayloadInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _TestNoPayloadInputOutputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonHttpWithHeaderMemberNoModeledBody (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -46,8 +48,7 @@ void main() {
             id: 'RestJsonHttpWithHeaderMemberNoModeledBody',
             documentation:
                 'Serializes a GET request with header member but no modeled body',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+            protocol: _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
             authScheme: null,
             body: '',
             bodyMediaType: null,
@@ -66,7 +67,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer: const _TestNoPayloadInputOutputRestJson1Serializer());
+        inputSerializers: const [
+          _TestNoPayloadInputOutputRestJson1Serializer()
+        ]);
   });
 }
 

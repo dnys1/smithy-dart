@@ -38,8 +38,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithFloatLabelsInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithFloatLabelsInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsInfinityFloatLabels (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -67,8 +68,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithFloatLabelsInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithFloatLabelsInputRestJson1Serializer()
+        ]);
   });
   _i1.test('RestJsonSupportsNegativeInfinityFloatLabels (restJson1)', () async {
     await _i2.httpRequestTest(
@@ -96,8 +98,9 @@ void main() {
             queryParams: [],
             forbidQueryParams: [],
             requireQueryParams: []),
-        inputSerializer:
-            const _HttpRequestWithFloatLabelsInputRestJson1Serializer());
+        inputSerializers: const [
+          _HttpRequestWithFloatLabelsInputRestJson1Serializer()
+        ]);
   });
 }
 

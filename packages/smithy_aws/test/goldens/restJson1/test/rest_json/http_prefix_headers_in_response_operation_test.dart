@@ -37,8 +37,9 @@ void main() {
             tags: [],
             appliesTo: null,
             code: 200),
-        outputSerializer:
-            const _HttpPrefixHeadersInResponseOutputRestJson1Serializer());
+        outputSerializers: const [
+          _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
+        ]);
   });
 }
 

@@ -15,8 +15,7 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
         _i1.HttpInput<_i2.Stream<List<int>>>
     implements
         Built<StreamingTraitsWithMediaTypeInputOutput,
-            StreamingTraitsWithMediaTypeInputOutputBuilder>,
-        _i1.HasPayload<_i2.Stream<List<int>>> {
+            StreamingTraitsWithMediaTypeInputOutputBuilder> {
   factory StreamingTraitsWithMediaTypeInputOutput(
       [void Function(StreamingTraitsWithMediaTypeInputOutputBuilder)
           updates]) = _$StreamingTraitsWithMediaTypeInputOutput;
@@ -31,7 +30,6 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
   static void _init(StreamingTraitsWithMediaTypeInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
-  @override
   _i2.Stream<List<int>>? getPayload() => blob;
 }
 

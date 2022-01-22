@@ -14,8 +14,7 @@ abstract class MalformedTimestampQueryEpochInput
         _i1.HttpInput<MalformedTimestampQueryEpochInputPayload>
     implements
         Built<MalformedTimestampQueryEpochInput,
-            MalformedTimestampQueryEpochInputBuilder>,
-        _i1.HasPayload<MalformedTimestampQueryEpochInputPayload> {
+            MalformedTimestampQueryEpochInputBuilder> {
   factory MalformedTimestampQueryEpochInput(
           [void Function(MalformedTimestampQueryEpochInputBuilder) updates]) =
       _$MalformedTimestampQueryEpochInput;
@@ -29,7 +28,6 @@ abstract class MalformedTimestampQueryEpochInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampQueryEpochInputBuilder b) {}
   DateTime get timestamp;
-  @override
   MalformedTimestampQueryEpochInputPayload getPayload() =>
       MalformedTimestampQueryEpochInputPayload();
 }

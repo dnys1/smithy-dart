@@ -11,9 +11,7 @@ part 'enum_payload_input.g.dart';
 
 abstract class EnumPayloadInput
     with _i1.HttpInput<_i2.StringEnum>
-    implements
-        Built<EnumPayloadInput, EnumPayloadInputBuilder>,
-        _i1.HasPayload<_i2.StringEnum> {
+    implements Built<EnumPayloadInput, EnumPayloadInputBuilder> {
   factory EnumPayloadInput([void Function(EnumPayloadInputBuilder) updates]) =
       _$EnumPayloadInput;
 
@@ -26,7 +24,6 @@ abstract class EnumPayloadInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(EnumPayloadInputBuilder b) {}
   _i2.StringEnum? get payload;
-  @override
   _i2.StringEnum? getPayload() => payload;
 }
 

@@ -12,9 +12,7 @@ part 'query_precedence_input.g.dart';
 
 abstract class QueryPrecedenceInput
     with _i1.HttpInput<QueryPrecedenceInputPayload>
-    implements
-        Built<QueryPrecedenceInput, QueryPrecedenceInputBuilder>,
-        _i1.HasPayload<QueryPrecedenceInputPayload> {
+    implements Built<QueryPrecedenceInput, QueryPrecedenceInputBuilder> {
   factory QueryPrecedenceInput(
           [void Function(QueryPrecedenceInputBuilder) updates]) =
       _$QueryPrecedenceInput;
@@ -29,7 +27,6 @@ abstract class QueryPrecedenceInput
   static void _init(QueryPrecedenceInputBuilder b) {}
   _i2.BuiltMap<String, String>? get baz;
   String? get foo;
-  @override
   QueryPrecedenceInputPayload getPayload() => QueryPrecedenceInputPayload();
 }
 

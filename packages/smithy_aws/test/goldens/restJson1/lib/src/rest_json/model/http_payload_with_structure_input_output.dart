@@ -14,8 +14,7 @@ abstract class HttpPayloadWithStructureInputOutput
         _i1.HttpInput<_i2.NestedPayload>
     implements
         Built<HttpPayloadWithStructureInputOutput,
-            HttpPayloadWithStructureInputOutputBuilder>,
-        _i1.HasPayload<_i2.NestedPayload> {
+            HttpPayloadWithStructureInputOutputBuilder> {
   factory HttpPayloadWithStructureInputOutput(
           [void Function(HttpPayloadWithStructureInputOutputBuilder) updates]) =
       _$HttpPayloadWithStructureInputOutput;
@@ -29,7 +28,6 @@ abstract class HttpPayloadWithStructureInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPayloadWithStructureInputOutputBuilder b) {}
   _i2.NestedPayload? get nested;
-  @override
   _i2.NestedPayload? getPayload() => nested;
 }
 

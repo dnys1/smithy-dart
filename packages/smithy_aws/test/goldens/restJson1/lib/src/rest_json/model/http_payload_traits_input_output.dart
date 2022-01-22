@@ -15,8 +15,7 @@ abstract class HttpPayloadTraitsInputOutput
         _i1.HttpInput<_i2.Uint8List>
     implements
         Built<HttpPayloadTraitsInputOutput,
-            HttpPayloadTraitsInputOutputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
+            HttpPayloadTraitsInputOutputBuilder> {
   factory HttpPayloadTraitsInputOutput(
           [void Function(HttpPayloadTraitsInputOutputBuilder) updates]) =
       _$HttpPayloadTraitsInputOutput;
@@ -31,7 +30,6 @@ abstract class HttpPayloadTraitsInputOutput
   static void _init(HttpPayloadTraitsInputOutputBuilder b) {}
   _i2.Uint8List? get blob;
   String? get foo;
-  @override
   _i2.Uint8List? getPayload() => blob;
 }
 

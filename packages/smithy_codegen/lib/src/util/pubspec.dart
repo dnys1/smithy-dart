@@ -19,6 +19,7 @@ dependencies:
     ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy')}' : ''}
   smithy_aws: ${smithyPath == null ? '^$packageVersion' : ''}
     ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy_aws')}' : ''}
+  uuid: ^3.0.0
 
 dev_dependencies:
   build_runner: ^2.0.0

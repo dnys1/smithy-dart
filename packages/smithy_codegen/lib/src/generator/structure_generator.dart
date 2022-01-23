@@ -240,6 +240,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
                 DartTypes.core.bool.constInstanceNamed('hasEnvironment', [
               literalString('SMITHY_TEST'),
             ])),
+        const Code('else {'),
+        property
+            .assign(
+              DartTypes.uuid.uuid.constInstance([]).property('v4').call([]),
+            )
+            .statement,
+        const Code('}'),
       ]);
     }
     if (member.defaultValue == null) {

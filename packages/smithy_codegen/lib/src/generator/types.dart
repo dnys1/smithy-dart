@@ -58,6 +58,9 @@ abstract class DartTypes {
 
   /// `dart:typed_data` types.
   static const typedData = _TypedData();
+
+  /// `package:uuid` types.
+  static const uuid = _Uuid();
 }
 
 /// `dart:core` types
@@ -658,4 +661,14 @@ class _TypedData {
 
   /// Creates a [Uint8List] reference.
   Reference get uint8List => const Reference('Uint8List', _url);
+}
+
+/// `package:uuid` types
+class _Uuid {
+  const _Uuid();
+
+  static const _url = 'package:uuid/uuid.dart';
+
+  /// Creates a `Uuid` reference.
+  Reference get uuid => const Reference('Uuid', _url);
 }

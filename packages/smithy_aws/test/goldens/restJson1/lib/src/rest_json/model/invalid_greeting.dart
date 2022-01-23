@@ -11,7 +11,7 @@ part 'invalid_greeting.g.dart';
 
 /// This error is thrown when an invalid greeting value is provided.
 abstract class InvalidGreeting
-    with _i1.SmithyHttpException, _i2.AWSEquatable<InvalidGreeting>
+    with _i1.SmithyException, _i2.AWSEquatable<InvalidGreeting>
     implements Built<InvalidGreeting, InvalidGreetingBuilder> {
   factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
       _$InvalidGreeting;
@@ -31,11 +31,7 @@ abstract class InvalidGreeting
   @override
   String? get message;
   @override
-  _i1.ErrorKind get kind => _i1.ErrorKind.client;
-  @override
-  int? get statusCode => 400;
-  @override
-  bool get isRetryable => false;
+  _i1.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [message];
 }

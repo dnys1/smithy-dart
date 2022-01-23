@@ -12,7 +12,7 @@ part 'foo_error.g.dart';
 /// This error has test cases that test some of the dark corners of Amazon service
 /// framework history. It should only be implemented by clients.
 abstract class FooError
-    with _i1.SmithyHttpException, _i2.AWSEquatable<FooError>
+    with _i1.SmithyException, _i2.AWSEquatable<FooError>
     implements Built<FooError, FooErrorBuilder>, _i1.EmptyPayload {
   factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
@@ -29,13 +29,9 @@ abstract class FooError
   @BuiltValueHook(initializeBuilder: true)
   static void _init(FooErrorBuilder b) {}
   @override
-  _i1.ErrorKind get kind => _i1.ErrorKind.server;
-  @override
-  int? get statusCode => 500;
-  @override
   String? get message => null;
   @override
-  bool get isRetryable => false;
+  _i1.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [];
 }

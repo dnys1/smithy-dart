@@ -530,10 +530,6 @@ class _Smithy {
   /// Creates a [smithy.SmithyException] reference.
   Reference get smithyException => const Reference('SmithyException', _url);
 
-  /// Creates a [smithy.SmithyHttpException] reference.
-  Reference get smithyHttpException =>
-      const Reference('SmithyHttpException', _url);
-
   /// Creates a [smithy.SmithyUnion] reference for [ref], the union class.
   Reference smithyUnion(Reference ref) => TypeReference(
         (t) => t

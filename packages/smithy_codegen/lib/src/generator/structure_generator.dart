@@ -60,11 +60,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol.unboxed)
           ])
           ..mixins.addAll([
-            if (shape.isError)
-              if (shape.isHttpError)
-                DartTypes.smithy.smithyHttpException
-              else
-                DartTypes.smithy.smithyException,
+            if (shape.isError) DartTypes.smithy.smithyException,
             if (shape.isInputShape)
               DartTypes.smithy.httpInput(payloadSymbol.unboxed),
             DartTypes.awsCommon.awsEquatable(symbol),
@@ -448,33 +444,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     if (errorTraits == null) {
       return;
     }
-    if (shape.isHttpError) {
-      // `kind` getter
-      yield Method(
-        (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.smithy.errorKind
-          ..name = 'kind'
-          ..type = MethodType.getter
-          ..lambda = true
-          ..body =
-              DartTypes.smithy.errorKind.property(errorTraits.kind.name).code,
-      );
-
-      // `statusCode` getter
-      final statusCode = errorTraits.statusCode;
-      if (statusCode != null) {
-        yield Method(
-          (m) => m
-            ..annotations.add(DartTypes.core.override)
-            ..returns = DartTypes.core.int.boxed
-            ..name = 'statusCode'
-            ..type = MethodType.getter
-            ..lambda = true
-            ..body = literalNum(statusCode).code,
-        );
-      }
-    }
 
     // `message` getter
     if (!shape.members.values.map((m) => m.dartName).contains('message')) {
@@ -489,15 +458,20 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
     }
 
-    // `isRetryable` getter
+    // `retryConfig` getter
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = DartTypes.core.bool
-        ..name = 'isRetryable'
+        ..returns = DartTypes.smithy.retryConfig.boxed
+        ..name = 'retryConfig'
         ..type = MethodType.getter
         ..lambda = true
-        ..body = literalBool(errorTraits.retryConfig != null).code,
+        ..body = errorTraits.retryConfig == null
+            ? literalNull.code
+            : DartTypes.smithy.retryConfig.constInstance([], {
+                'isThrottlingError':
+                    literalBool(errorTraits.retryConfig!.isThrottlingError),
+              }).code,
     );
   }
 

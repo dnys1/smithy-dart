@@ -1,10 +1,4 @@
-import 'dart:convert';
-
-import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:fixnum/fixnum.dart';
-import 'package:http/http.dart';
-import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';

@@ -18,7 +18,7 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -26,14 +26,13 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/EnumPayload';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.EnumPayloadInput? output]) => 200;
   @override
   _i3.EnumPayloadInput buildOutput(
           _i2.StringEnum? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.EnumPayloadInput((b) {
-        b.payload = payload;
-      });
+      _i3.EnumPayloadInput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

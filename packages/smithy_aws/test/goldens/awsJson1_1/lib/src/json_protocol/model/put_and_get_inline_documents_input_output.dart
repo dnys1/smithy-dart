@@ -2,8 +2,9 @@
 
 library aws_json1_1.json_protocol.model.put_and_get_inline_documents_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
-import 'package:built_value/json_object.dart' as _i2;
+import 'package:built_value/json_object.dart' as _i3;
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
@@ -11,7 +12,8 @@ part 'put_and_get_inline_documents_input_output.g.dart';
 
 abstract class PutAndGetInlineDocumentsInputOutput
     with
-        _i1.HttpInput<PutAndGetInlineDocumentsInputOutput>
+        _i1.HttpInput<PutAndGetInlineDocumentsInputOutput>,
+        _i2.AWSEquatable<PutAndGetInlineDocumentsInputOutput>
     implements
         Built<PutAndGetInlineDocumentsInputOutput,
             PutAndGetInlineDocumentsInputOutputBuilder> {
@@ -21,13 +23,22 @@ abstract class PutAndGetInlineDocumentsInputOutput
 
   const PutAndGetInlineDocumentsInputOutput._();
 
+  factory PutAndGetInlineDocumentsInputOutput.fromResponse(
+          PutAndGetInlineDocumentsInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PutAndGetInlineDocumentsInputOutputBuilder b) {}
-  _i2.JsonObject? get inlineDocument;
+  _i3.JsonObject? get inlineDocument;
+  @override
+  PutAndGetInlineDocumentsInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [inlineDocument];
 }
 
 class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1
@@ -57,8 +68,8 @@ class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1
         case 'inlineDocument':
           if (value != null) {
             result.inlineDocument = (serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.JsonObject))
-                as _i2.JsonObject);
+                    specifiedType: const FullType(_i3.JsonObject))
+                as _i3.JsonObject);
           }
           break;
       }
@@ -76,7 +87,7 @@ class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1
       result
         ..add('inlineDocument')
         ..add(serializers.serialize(payload.inlineDocument,
-            specifiedType: const FullType.nullable(_i2.JsonObject)));
+            specifiedType: const FullType.nullable(_i3.JsonObject)));
     }
     return result;
   }

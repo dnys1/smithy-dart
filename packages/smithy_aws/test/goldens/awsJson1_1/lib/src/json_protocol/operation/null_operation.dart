@@ -25,6 +25,7 @@ class NullOperation extends _i1.HttpOperation<
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.NullOperation')
         ])
   ];
@@ -34,12 +35,13 @@ class NullOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.NullOperationInputOutput? output]) => 200;
   @override
   _i2.NullOperationInputOutput buildOutput(_i2.NullOperationInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.NullOperationInputOutput((b) {});
+      _i2.NullOperationInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

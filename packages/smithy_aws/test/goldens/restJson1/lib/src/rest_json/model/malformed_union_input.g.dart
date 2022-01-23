@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.malformed_union_input;
 
 class _$MalformedUnionInput extends MalformedUnionInput {
   @override
-  final _i2.SimpleUnion? union;
+  final _i3.SimpleUnion? union;
 
   factory _$MalformedUnionInput(
           [void Function(MalformedUnionInputBuilder)? updates]) =>
@@ -48,9 +48,9 @@ class MalformedUnionInputBuilder
     implements Builder<MalformedUnionInput, MalformedUnionInputBuilder> {
   _$MalformedUnionInput? _$v;
 
-  _i2.SimpleUnion? _union;
-  _i2.SimpleUnion? get union => _$this._union;
-  set union(_i2.SimpleUnion? union) => _$this._union = union;
+  _i3.SimpleUnion? _union;
+  _i3.SimpleUnion? get union => _$this._union;
+  set union(_i3.SimpleUnion? union) => _$this._union = union;
 
   MalformedUnionInputBuilder() {
     MalformedUnionInput._init(this);

@@ -2,36 +2,40 @@
 
 library aws_json1_1.json_protocol.model.empty_struct;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'empty_struct.g.dart';
 
 abstract class EmptyStruct
-    implements Built<EmptyStruct, EmptyStructBuilder>, _i1.EmptyPayload {
+    with _i1.AWSEquatable<EmptyStruct>
+    implements Built<EmptyStruct, EmptyStructBuilder>, _i2.EmptyPayload {
   factory EmptyStruct([void Function(EmptyStructBuilder) updates]) =
       _$EmptyStruct;
 
   const EmptyStruct._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _EmptyStructAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(EmptyStructBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _EmptyStructAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<EmptyStruct> {
+    extends _i2.StructuredSmithySerializer<EmptyStruct> {
   const _EmptyStructAwsJson11Serializer() : super('EmptyStruct');
 
   @override
   Iterable<Type> get types => const [EmptyStruct, _$EmptyStruct];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   EmptyStruct deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

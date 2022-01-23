@@ -30,7 +30,11 @@ class TestNoPayloadOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -38,20 +42,19 @@ class TestNoPayloadOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = '/no_payload';
-        b.successCode = 200;
         if (input.testId != null) {
-          b.headers['X-Amz-Test-Id'] = input.testId!;
+          if (input.testId!.isNotEmpty) {
+            b.headers['X-Amz-Test-Id'] = input.testId!;
+          }
         }
       });
+  @override
+  int successCode([_i2.TestNoPayloadInputOutput? output]) => 200;
   @override
   _i2.TestNoPayloadInputOutput buildOutput(
           _i2.TestNoPayloadInputOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.TestNoPayloadInputOutput((b) {
-        if (response.headers['X-Amz-Test-Id'] != null) {
-          b.testId = response.headers['X-Amz-Test-Id']!;
-        }
-      });
+      _i2.TestNoPayloadInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

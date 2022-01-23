@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.enum_payload_input;
 
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json/model/string_enum.dart' as _i2;
@@ -10,12 +11,20 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'enum_payload_input.g.dart';
 
 abstract class EnumPayloadInput
-    with _i1.HttpInput<_i2.StringEnum>
-    implements Built<EnumPayloadInput, EnumPayloadInputBuilder> {
+    with _i1.HttpInput<_i2.StringEnum>, _i3.AWSEquatable<EnumPayloadInput>
+    implements
+        Built<EnumPayloadInput, EnumPayloadInputBuilder>,
+        _i1.HasPayload<_i2.StringEnum> {
   factory EnumPayloadInput([void Function(EnumPayloadInputBuilder) updates]) =
       _$EnumPayloadInput;
 
   const EnumPayloadInput._();
+
+  factory EnumPayloadInput.fromResponse(
+          _i2.StringEnum? payload, _i3.AWSStreamedHttpResponse response) =>
+      EnumPayloadInput((b) {
+        b.payload = payload;
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _EnumPayloadInputRestJson1Serializer()
@@ -24,7 +33,10 @@ abstract class EnumPayloadInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(EnumPayloadInputBuilder b) {}
   _i2.StringEnum? get payload;
+  @override
   _i2.StringEnum? getPayload() => payload;
+  @override
+  List<Object?> get props => [payload];
 }
 
 class _EnumPayloadInputRestJson1Serializer
@@ -50,6 +62,6 @@ class _EnumPayloadInputRestJson1Serializer
         ? object.getPayload()
         : (object as _i2.StringEnum?);
     return (serializers.serialize(payload,
-        specifiedType: const FullType.nullable(_i2.StringEnum)) as Object);
+        specifiedType: const FullType(_i2.StringEnum)) as Object);
   }
 }

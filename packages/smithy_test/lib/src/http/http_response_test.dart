@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/smithy.dart';
-import 'package:test/test.dart';
+import 'package:smithy_test/smithy_test.dart';
 
 import 'serializers.dart';
 
@@ -47,11 +47,34 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
   final output = await operation.innerSend(
     client: HttpClient.v1(Uri(), baseClient: client),
     httpRequest: _dummyHttpRequest,
-    successCode: 200,
     protocol: protocol,
   );
 
-  expect(output, equals(expectedOutput));
+  if (output is AWSEquatable && expectedOutput is AWSEquatable) {
+    expect(output.props.where((el) => el is! Stream),
+        deepEquals(expectedOutput.props.where((el) => el is! Stream)));
+    final outputStreams = output.props.whereType<Stream>().toList();
+    final expectedOutputStreams =
+        expectedOutput.props.whereType<Stream>().toList();
+    expect(outputStreams.length, equals(expectedOutputStreams.length));
+    for (var i = 0; i < outputStreams.length; i++) {
+      final outputStream = outputStreams[i];
+      final expectedStream = expectedOutputStreams[i];
+
+      Object? output = await outputStream.toList();
+      if (output is List<Iterable>) {
+        output = output.expand((el) => el);
+      }
+      Object? expected = await expectedStream.toList();
+      if (expected is List<Iterable>) {
+        expected = expected.expand((el) => el);
+      }
+
+      expect(output, deepEquals(expected));
+    }
+  } else {
+    expect(output, equals(expectedOutput));
+  }
 }
 
 /// Performs an HTTP error response test for [operation] for a test case from an
@@ -87,7 +110,6 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
     await operation.innerSend(
       client: HttpClient.v1(Uri(), baseClient: client),
       httpRequest: _dummyHttpRequest,
-      successCode: 200,
       protocol: protocol,
     );
     fail('Operation should throw');

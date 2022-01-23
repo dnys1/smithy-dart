@@ -3,8 +3,6 @@
 library rest_json1.rest_json.operation.input_and_output_with_headers;
 
 import 'package:aws_common/aws_common.dart' as _i5;
-import 'package:fixnum/fixnum.dart' as _i6;
-import 'package:rest_json1/src/rest_json/model/foo_enum.dart' as _i7;
 import 'package:rest_json1/src/rest_json/model/input_and_output_with_headers_io.dart'
     as _i2;
 import 'package:rest_json1/src/rest_json/serializers.dart' as _i4;
@@ -28,7 +26,11 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -36,9 +38,10 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/InputAndOutputWithHeaders';
-        b.successCode = 200;
         if (input.headerString != null) {
-          b.headers['X-String'] = input.headerString!;
+          if (input.headerString!.isNotEmpty) {
+            b.headers['X-String'] = input.headerString!;
+          }
         }
         if (input.headerByte != null) {
           b.headers['X-Byte'] = input.headerByte!.toString();
@@ -65,105 +68,60 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
           b.headers['X-Boolean2'] = input.headerFalseBool!.toString();
         }
         if (input.headerStringList != null) {
-          b.headers['X-StringList'] =
-              input.headerStringList!.map((el) => el).join(', ');
+          if (input.headerStringList!.isNotEmpty) {
+            b.headers['X-StringList'] = input.headerStringList!
+                .map((el) => _i1.sanitizeHeader(el))
+                .join(', ');
+          }
         }
         if (input.headerStringSet != null) {
-          b.headers['X-StringSet'] =
-              input.headerStringSet!.map((el) => el).join(', ');
+          if (input.headerStringSet!.isNotEmpty) {
+            b.headers['X-StringSet'] = input.headerStringSet!
+                .map((el) => _i1.sanitizeHeader(el))
+                .join(', ');
+          }
         }
         if (input.headerIntegerList != null) {
-          b.headers['X-IntegerList'] =
-              input.headerIntegerList!.map((el) => el.toString()).join(', ');
+          if (input.headerIntegerList!.isNotEmpty) {
+            b.headers['X-IntegerList'] = input.headerIntegerList!
+                .map((el) => _i1.sanitizeHeader(el.toString()))
+                .join(', ');
+          }
         }
         if (input.headerBooleanList != null) {
-          b.headers['X-BooleanList'] =
-              input.headerBooleanList!.map((el) => el.toString()).join(', ');
+          if (input.headerBooleanList!.isNotEmpty) {
+            b.headers['X-BooleanList'] = input.headerBooleanList!
+                .map((el) => _i1.sanitizeHeader(el.toString()))
+                .join(', ');
+          }
         }
         if (input.headerTimestampList != null) {
-          b.headers['X-TimestampList'] = input.headerTimestampList!
-              .map((el) => _i1.Timestamp(el)
-                  .format(_i1.TimestampFormat.httpDate)
-                  .toString())
-              .join(', ');
+          if (input.headerTimestampList!.isNotEmpty) {
+            b.headers['X-TimestampList'] = input.headerTimestampList!
+                .map((el) => _i1.sanitizeHeader(_i1.Timestamp(el)
+                    .format(_i1.TimestampFormat.httpDate)
+                    .toString()))
+                .join(', ');
+          }
         }
         if (input.headerEnum != null) {
           b.headers['X-Enum'] = input.headerEnum!.value;
         }
         if (input.headerEnumList != null) {
-          b.headers['X-EnumList'] =
-              input.headerEnumList!.map((el) => el.value).join(', ');
+          if (input.headerEnumList!.isNotEmpty) {
+            b.headers['X-EnumList'] = input.headerEnumList!
+                .map((el) => _i1.sanitizeHeader(el.value))
+                .join(', ');
+          }
         }
       });
+  @override
+  int successCode([_i2.InputAndOutputWithHeadersIo? output]) => 200;
   @override
   _i2.InputAndOutputWithHeadersIo buildOutput(
           _i2.InputAndOutputWithHeadersIoPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.InputAndOutputWithHeadersIo((b) {
-        if (response.headers['X-String'] != null) {
-          b.headerString = response.headers['X-String']!;
-        }
-        if (response.headers['X-Byte'] != null) {
-          b.headerByte = int.parse(response.headers['X-Byte']!);
-        }
-        if (response.headers['X-Short'] != null) {
-          b.headerShort = int.parse(response.headers['X-Short']!);
-        }
-        if (response.headers['X-Integer'] != null) {
-          b.headerInteger = int.parse(response.headers['X-Integer']!);
-        }
-        if (response.headers['X-Long'] != null) {
-          b.headerLong = _i6.Int64.parseInt(response.headers['X-Long']!);
-        }
-        if (response.headers['X-Float'] != null) {
-          b.headerFloat = double.parse(response.headers['X-Float']!);
-        }
-        if (response.headers['X-Double'] != null) {
-          b.headerDouble = double.parse(response.headers['X-Double']!);
-        }
-        if (response.headers['X-Boolean1'] != null) {
-          b.headerTrueBool = response.headers['X-Boolean1']! == 'true';
-        }
-        if (response.headers['X-Boolean2'] != null) {
-          b.headerFalseBool = response.headers['X-Boolean2']! == 'true';
-        }
-        if (response.headers['X-StringList'] != null) {
-          b.headerStringList.addAll(response.headers['X-StringList']!
-              .split(',')
-              .map((el) => el.trim()));
-        }
-        if (response.headers['X-StringSet'] != null) {
-          b.headerStringSet.addAll(response.headers['X-StringSet']!
-              .split(',')
-              .map((el) => el.trim()));
-        }
-        if (response.headers['X-IntegerList'] != null) {
-          b.headerIntegerList.addAll(response.headers['X-IntegerList']!
-              .split(',')
-              .map((el) => int.parse(el.trim())));
-        }
-        if (response.headers['X-BooleanList'] != null) {
-          b.headerBooleanList.addAll(response.headers['X-BooleanList']!
-              .split(',')
-              .map((el) => el.trim() == 'true'));
-        }
-        if (response.headers['X-TimestampList'] != null) {
-          b.headerTimestampList.addAll(response.headers['X-TimestampList']!
-              .split(',')
-              .map((el) => _i1.Timestamp.parse(el.trim(),
-                      format: _i1.TimestampFormat.httpDate)
-                  .asDateTime));
-        }
-        if (response.headers['X-Enum'] != null) {
-          b.headerEnum =
-              _i7.FooEnum.values.byValue(response.headers['X-Enum']!);
-        }
-        if (response.headers['X-EnumList'] != null) {
-          b.headerEnumList.addAll(response.headers['X-EnumList']!
-              .split(',')
-              .map((el) => _i7.FooEnum.values.byValue(el.trim())));
-        }
-      });
+      _i2.InputAndOutputWithHeadersIo.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

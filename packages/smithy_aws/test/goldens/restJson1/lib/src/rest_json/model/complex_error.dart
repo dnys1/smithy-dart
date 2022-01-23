@@ -2,23 +2,38 @@
 
 library rest_json1.rest_json.model.complex_error;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:rest_json1/src/rest_json/model/complex_nested_error_data.dart'
-    as _i2;
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'complex_error.g.dart';
 
 /// This error is thrown when a request is invalid.
 abstract class ComplexError
-    with _i1.SmithyHttpException
-    implements Built<ComplexError, ComplexErrorBuilder> {
+    with _i1.SmithyHttpException, _i2.AWSEquatable<ComplexError>
+    implements
+        Built<ComplexError, ComplexErrorBuilder>,
+        _i1.HasPayload<ComplexErrorPayload> {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
   const ComplexError._();
+
+  factory ComplexError.fromResponse(
+          ComplexErrorPayload payload, _i2.AWSStreamedHttpResponse response) =>
+      ComplexError((b) {
+        if (payload.nested != null) {
+          b.nested.replace(payload.nested!);
+        }
+        b.topLevel = payload.topLevel;
+        if (response.headers['X-Header'] != null) {
+          b.header = response.headers['X-Header']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _ComplexErrorRestJson1Serializer()
@@ -27,8 +42,9 @@ abstract class ComplexError
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ComplexErrorBuilder b) {}
   String? get header;
-  _i2.ComplexNestedErrorData? get nested;
+  _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
+  @override
   ComplexErrorPayload getPayload() => ComplexErrorPayload((b) => b
     ..nested = nested
     ..topLevel = topLevel);
@@ -40,11 +56,14 @@ abstract class ComplexError
   String? get message => null;
   @override
   bool get isRetryable => false;
+  @override
+  List<Object?> get props => [header, nested, topLevel];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class ComplexErrorPayload
+    with _i2.AWSEquatable<ComplexErrorPayload>
     implements Built<ComplexErrorPayload, ComplexErrorPayloadBuilder> {
   factory ComplexErrorPayload(
           [void Function(ComplexErrorPayloadBuilder) updates]) =
@@ -54,8 +73,10 @@ abstract class ComplexErrorPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ComplexErrorPayloadBuilder b) {}
-  _i2.ComplexNestedErrorData? get nested;
+  _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
+  @override
+  List<Object?> get props => [nested, topLevel];
 }
 
 class _ComplexErrorRestJson1Serializer
@@ -86,8 +107,8 @@ class _ComplexErrorRestJson1Serializer
         case 'Nested':
           if (value != null) {
             result.nested = (serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.ComplexNestedErrorData))
-                as _i2.ComplexNestedErrorData);
+                    specifiedType: const FullType(_i3.ComplexNestedErrorData))
+                as _i3.ComplexNestedErrorData);
           }
           break;
         case 'TopLevel':
@@ -114,7 +135,7 @@ class _ComplexErrorRestJson1Serializer
         ..add('Nested')
         ..add(serializers.serialize(payload.nested,
             specifiedType:
-                const FullType.nullable(_i2.ComplexNestedErrorData)));
+                const FullType.nullable(_i3.ComplexNestedErrorData)));
     }
     if (payload.topLevel != null) {
       result

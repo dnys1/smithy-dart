@@ -2,37 +2,41 @@
 
 library rest_json1.rest_json.model.payload_config;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'payload_config.g.dart';
 
 abstract class PayloadConfig
+    with _i1.AWSEquatable<PayloadConfig>
     implements Built<PayloadConfig, PayloadConfigBuilder> {
   factory PayloadConfig([void Function(PayloadConfigBuilder) updates]) =
       _$PayloadConfig;
 
   const PayloadConfig._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _PayloadConfigRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PayloadConfigBuilder b) {}
   int? get data;
+  @override
+  List<Object?> get props => [data];
 }
 
 class _PayloadConfigRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<PayloadConfig> {
+    extends _i2.StructuredSmithySerializer<PayloadConfig> {
   const _PayloadConfigRestJson1Serializer() : super('PayloadConfig');
 
   @override
   Iterable<Type> get types => const [PayloadConfig, _$PayloadConfig];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   PayloadConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,

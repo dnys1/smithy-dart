@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.model.invalid_greeting;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,12 +11,16 @@ part 'invalid_greeting.g.dart';
 
 /// This error is thrown when an invalid greeting value is provided.
 abstract class InvalidGreeting
-    with _i1.SmithyException
+    with _i1.SmithyException, _i2.AWSEquatable<InvalidGreeting>
     implements Built<InvalidGreeting, InvalidGreetingBuilder> {
   factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
       _$InvalidGreeting;
 
   const InvalidGreeting._();
+
+  factory InvalidGreeting.fromResponse(
+          InvalidGreeting payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _InvalidGreetingAwsJson10Serializer()
@@ -27,6 +32,8 @@ abstract class InvalidGreeting
   String? get message;
   @override
   bool get isRetryable => false;
+  @override
+  List<Object?> get props => [message];
 }
 
 class _InvalidGreetingAwsJson10Serializer

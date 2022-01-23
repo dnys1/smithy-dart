@@ -401,22 +401,32 @@ class HttpInputTraitsBuilder
   }
 }
 
+abstract class HttpResponseTraitsBuilder {
+  void replace(HttpResponseTraits other);
+  void update(void Function(HttpResponseTraitsBuilder) updates);
+  MapBuilder<String, MemberShape> get httpHeaders;
+  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders);
+
+  HttpPrefixHeadersBuilder get httpPrefixHeaders;
+  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders);
+}
+
 class _$HttpOutputTraits extends HttpOutputTraits {
+  @override
+  final MemberShape? httpResponseCode;
   @override
   final BuiltMap<String, MemberShape> httpHeaders;
   @override
   final HttpPrefixHeaders? httpPrefixHeaders;
-  @override
-  final MemberShape? httpResponseCode;
 
   factory _$HttpOutputTraits(
           [void Function(HttpOutputTraitsBuilder)? updates]) =>
       (new HttpOutputTraitsBuilder()..update(updates)).build();
 
   _$HttpOutputTraits._(
-      {required this.httpHeaders,
-      this.httpPrefixHeaders,
-      this.httpResponseCode})
+      {this.httpResponseCode,
+      required this.httpHeaders,
+      this.httpPrefixHeaders})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         httpHeaders, 'HttpOutputTraits', 'httpHeaders');
@@ -434,65 +444,67 @@ class _$HttpOutputTraits extends HttpOutputTraits {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpOutputTraits &&
+        httpResponseCode == other.httpResponseCode &&
         httpHeaders == other.httpHeaders &&
-        httpPrefixHeaders == other.httpPrefixHeaders &&
-        httpResponseCode == other.httpResponseCode;
+        httpPrefixHeaders == other.httpPrefixHeaders;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, httpHeaders.hashCode), httpPrefixHeaders.hashCode),
-        httpResponseCode.hashCode));
+    return $jf($jc($jc($jc(0, httpResponseCode.hashCode), httpHeaders.hashCode),
+        httpPrefixHeaders.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HttpOutputTraits')
+          ..add('httpResponseCode', httpResponseCode)
           ..add('httpHeaders', httpHeaders)
-          ..add('httpPrefixHeaders', httpPrefixHeaders)
-          ..add('httpResponseCode', httpResponseCode))
+          ..add('httpPrefixHeaders', httpPrefixHeaders))
         .toString();
   }
 }
 
 class HttpOutputTraitsBuilder
-    implements Builder<HttpOutputTraits, HttpOutputTraitsBuilder> {
+    implements
+        Builder<HttpOutputTraits, HttpOutputTraitsBuilder>,
+        HttpResponseTraitsBuilder {
   _$HttpOutputTraits? _$v;
+
+  MemberShapeBuilder? _httpResponseCode;
+  MemberShapeBuilder get httpResponseCode =>
+      _$this._httpResponseCode ??= new MemberShapeBuilder();
+  set httpResponseCode(covariant MemberShapeBuilder? httpResponseCode) =>
+      _$this._httpResponseCode = httpResponseCode;
 
   MapBuilder<String, MemberShape>? _httpHeaders;
   MapBuilder<String, MemberShape> get httpHeaders =>
       _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
-  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders) =>
+  set httpHeaders(covariant MapBuilder<String, MemberShape>? httpHeaders) =>
       _$this._httpHeaders = httpHeaders;
 
   HttpPrefixHeadersBuilder? _httpPrefixHeaders;
   HttpPrefixHeadersBuilder get httpPrefixHeaders =>
       _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
-  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
+  set httpPrefixHeaders(
+          covariant HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
       _$this._httpPrefixHeaders = httpPrefixHeaders;
-
-  MemberShapeBuilder? _httpResponseCode;
-  MemberShapeBuilder get httpResponseCode =>
-      _$this._httpResponseCode ??= new MemberShapeBuilder();
-  set httpResponseCode(MemberShapeBuilder? httpResponseCode) =>
-      _$this._httpResponseCode = httpResponseCode;
 
   HttpOutputTraitsBuilder();
 
   HttpOutputTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _httpResponseCode = $v.httpResponseCode?.toBuilder();
       _httpHeaders = $v.httpHeaders.toBuilder();
       _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
-      _httpResponseCode = $v.httpResponseCode?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(HttpOutputTraits other) {
+  void replace(covariant HttpOutputTraits other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$HttpOutputTraits;
   }
@@ -508,18 +520,18 @@ class HttpOutputTraitsBuilder
     try {
       _$result = _$v ??
           new _$HttpOutputTraits._(
+              httpResponseCode: _httpResponseCode?.build(),
               httpHeaders: httpHeaders.build(),
-              httpPrefixHeaders: _httpPrefixHeaders?.build(),
-              httpResponseCode: _httpResponseCode?.build());
+              httpPrefixHeaders: _httpPrefixHeaders?.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'httpResponseCode';
+        _httpResponseCode?.build();
         _$failedField = 'httpHeaders';
         httpHeaders.build();
         _$failedField = 'httpPrefixHeaders';
         _httpPrefixHeaders?.build();
-        _$failedField = 'httpResponseCode';
-        _httpResponseCode?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'HttpOutputTraits', _$failedField, e.toString());
@@ -617,40 +629,43 @@ class _$HttpErrorTraits extends HttpErrorTraits {
 }
 
 class HttpErrorTraitsBuilder
-    implements Builder<HttpErrorTraits, HttpErrorTraitsBuilder> {
+    implements
+        Builder<HttpErrorTraits, HttpErrorTraitsBuilder>,
+        HttpResponseTraitsBuilder {
   _$HttpErrorTraits? _$v;
 
   ShapeId? _shapeId;
   ShapeId? get shapeId => _$this._shapeId;
-  set shapeId(ShapeId? shapeId) => _$this._shapeId = shapeId;
+  set shapeId(covariant ShapeId? shapeId) => _$this._shapeId = shapeId;
 
   ErrorKind? _kind;
   ErrorKind? get kind => _$this._kind;
-  set kind(ErrorKind? kind) => _$this._kind = kind;
+  set kind(covariant ErrorKind? kind) => _$this._kind = kind;
 
   Reference? _symbol;
   Reference? get symbol => _$this._symbol;
-  set symbol(Reference? symbol) => _$this._symbol = symbol;
+  set symbol(covariant Reference? symbol) => _$this._symbol = symbol;
 
   RetryConfig? _retryConfig;
   RetryConfig? get retryConfig => _$this._retryConfig;
-  set retryConfig(RetryConfig? retryConfig) =>
+  set retryConfig(covariant RetryConfig? retryConfig) =>
       _$this._retryConfig = retryConfig;
 
   int? _statusCode;
   int? get statusCode => _$this._statusCode;
-  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+  set statusCode(covariant int? statusCode) => _$this._statusCode = statusCode;
 
   MapBuilder<String, MemberShape>? _httpHeaders;
   MapBuilder<String, MemberShape> get httpHeaders =>
       _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
-  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders) =>
+  set httpHeaders(covariant MapBuilder<String, MemberShape>? httpHeaders) =>
       _$this._httpHeaders = httpHeaders;
 
   HttpPrefixHeadersBuilder? _httpPrefixHeaders;
   HttpPrefixHeadersBuilder get httpPrefixHeaders =>
       _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
-  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
+  set httpPrefixHeaders(
+          covariant HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
       _$this._httpPrefixHeaders = httpPrefixHeaders;
 
   HttpErrorTraitsBuilder();
@@ -671,7 +686,7 @@ class HttpErrorTraitsBuilder
   }
 
   @override
-  void replace(HttpErrorTraits other) {
+  void replace(covariant HttpErrorTraits other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$HttpErrorTraits;
   }

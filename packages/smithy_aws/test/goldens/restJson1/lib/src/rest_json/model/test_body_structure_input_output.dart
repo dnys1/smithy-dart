@@ -2,25 +2,40 @@
 
 library rest_json1.rest_json.model.test_body_structure_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
-import 'package:rest_json1/src/rest_json/model/test_config.dart' as _i2;
+import 'package:meta/meta.dart' as _i4;
+import 'package:rest_json1/src/rest_json/model/test_config.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'test_body_structure_input_output.g.dart';
 
 abstract class TestBodyStructureInputOutput
     with
-        _i1.HttpInput<TestBodyStructureInputOutputPayload>
+        _i1.HttpInput<TestBodyStructureInputOutputPayload>,
+        _i2.AWSEquatable<TestBodyStructureInputOutput>
     implements
         Built<TestBodyStructureInputOutput,
-            TestBodyStructureInputOutputBuilder> {
+            TestBodyStructureInputOutputBuilder>,
+        _i1.HasPayload<TestBodyStructureInputOutputPayload> {
   factory TestBodyStructureInputOutput(
           [void Function(TestBodyStructureInputOutputBuilder) updates]) =
       _$TestBodyStructureInputOutput;
 
   const TestBodyStructureInputOutput._();
+
+  factory TestBodyStructureInputOutput.fromResponse(
+          TestBodyStructureInputOutputPayload payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      TestBodyStructureInputOutput((b) {
+        if (payload.testConfig != null) {
+          b.testConfig.replace(payload.testConfig!);
+        }
+        if (response.headers['x-amz-test-id'] != null) {
+          b.testId = response.headers['x-amz-test-id']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestBodyStructureInputOutputRestJson1Serializer()
@@ -28,15 +43,20 @@ abstract class TestBodyStructureInputOutput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TestBodyStructureInputOutputBuilder b) {}
-  _i2.TestConfig? get testConfig;
+  _i3.TestConfig? get testConfig;
   String? get testId;
+  @override
   TestBodyStructureInputOutputPayload getPayload() =>
       TestBodyStructureInputOutputPayload((b) => b..testConfig = testConfig);
+  @override
+  List<Object?> get props => [testConfig, testId];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class TestBodyStructureInputOutputPayload
+    with
+        _i2.AWSEquatable<TestBodyStructureInputOutputPayload>
     implements
         Built<TestBodyStructureInputOutputPayload,
             TestBodyStructureInputOutputPayloadBuilder> {
@@ -48,7 +68,9 @@ abstract class TestBodyStructureInputOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TestBodyStructureInputOutputPayloadBuilder b) {}
-  _i2.TestConfig? get testConfig;
+  _i3.TestConfig? get testConfig;
+  @override
+  List<Object?> get props => [testConfig];
 }
 
 class _TestBodyStructureInputOutputRestJson1Serializer extends _i1
@@ -80,8 +102,8 @@ class _TestBodyStructureInputOutputRestJson1Serializer extends _i1
         case 'testConfig':
           if (value != null) {
             result.testConfig = (serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.TestConfig))
-                as _i2.TestConfig);
+                    specifiedType: const FullType(_i3.TestConfig))
+                as _i3.TestConfig);
           }
           break;
       }
@@ -101,7 +123,7 @@ class _TestBodyStructureInputOutputRestJson1Serializer extends _i1
       result
         ..add('testConfig')
         ..add(serializers.serialize(payload.testConfig,
-            specifiedType: const FullType.nullable(_i2.TestConfig)));
+            specifiedType: const FullType.nullable(_i3.TestConfig)));
     }
     return result;
   }

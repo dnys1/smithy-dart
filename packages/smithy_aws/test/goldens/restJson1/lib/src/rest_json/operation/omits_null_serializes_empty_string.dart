@@ -25,7 +25,11 @@ class OmitsNullSerializesEmptyStringOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -33,7 +37,6 @@ class OmitsNullSerializesEmptyStringOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = '/OmitsNullSerializesEmptyString';
-        b.successCode = 200;
         if (input.nullValue != null) {
           b.queryParameters.add('Null', input.nullValue!);
         }
@@ -41,6 +44,8 @@ class OmitsNullSerializesEmptyStringOperation extends _i1.HttpOperation<
           b.queryParameters.add('Empty', input.emptyString!);
         }
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>

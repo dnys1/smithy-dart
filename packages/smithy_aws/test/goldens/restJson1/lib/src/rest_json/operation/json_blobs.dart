@@ -22,7 +22,7 @@ class JsonBlobsOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -30,12 +30,13 @@ class JsonBlobsOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/JsonBlobs';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.JsonBlobsInputOutput? output]) => 200;
   @override
   _i2.JsonBlobsInputOutput buildOutput(_i2.JsonBlobsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.JsonBlobsInputOutput((b) {});
+      _i2.JsonBlobsInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

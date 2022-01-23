@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.foo_error;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -11,11 +12,15 @@ part 'foo_error.g.dart';
 /// This error has test cases that test some of the dark corners of Amazon service
 /// framework history. It should only be implemented by clients.
 abstract class FooError
-    with _i1.SmithyHttpException
+    with _i1.SmithyHttpException, _i2.AWSEquatable<FooError>
     implements Built<FooError, FooErrorBuilder>, _i1.EmptyPayload {
   factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();
+
+  factory FooError.fromResponse(
+          FooError payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _FooErrorRestJson1Serializer()
@@ -31,6 +36,8 @@ abstract class FooError
   String? get message => null;
   @override
   bool get isRetryable => false;
+  @override
+  List<Object?> get props => [];
 }
 
 class _FooErrorRestJson1Serializer

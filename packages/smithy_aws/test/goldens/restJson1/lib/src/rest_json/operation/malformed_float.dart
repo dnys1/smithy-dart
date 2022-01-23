@@ -21,7 +21,7 @@ class MalformedFloatOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -29,7 +29,6 @@ class MalformedFloatOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedFloat/{floatInPath}';
-        b.successCode = 200;
         if (input.floatInHeader != null) {
           b.headers['floatInHeader'] = input.floatInHeader!.toString();
         }
@@ -37,6 +36,8 @@ class MalformedFloatOperation extends _i1.HttpOperation<
           b.queryParameters.add('floatInQuery', input.floatInQuery!.toString());
         }
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>

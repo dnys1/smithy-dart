@@ -8,7 +8,7 @@ part of aws_json1_0.json_rpc10.model.json_unions_input;
 
 class _$JsonUnionsInput extends JsonUnionsInput {
   @override
-  final _i2.MyUnion? contents;
+  final _i3.MyUnion? contents;
 
   factory _$JsonUnionsInput([void Function(JsonUnionsInputBuilder)? updates]) =>
       (new JsonUnionsInputBuilder()..update(updates)).build();
@@ -46,9 +46,9 @@ class JsonUnionsInputBuilder
     implements Builder<JsonUnionsInput, JsonUnionsInputBuilder> {
   _$JsonUnionsInput? _$v;
 
-  _i2.MyUnion? _contents;
-  _i2.MyUnion? get contents => _$this._contents;
-  set contents(_i2.MyUnion? contents) => _$this._contents = contents;
+  _i3.MyUnion? _contents;
+  _i3.MyUnion? get contents => _$this._contents;
+  set contents(_i3.MyUnion? contents) => _$this._contents = contents;
 
   JsonUnionsInputBuilder() {
     JsonUnionsInput._init(this);

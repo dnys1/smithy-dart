@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.json_blobs_input_output;
 
 class _$JsonBlobsInputOutput extends JsonBlobsInputOutput {
   @override
-  final _i2.Uint8List? data;
+  final _i3.Uint8List? data;
 
   factory _$JsonBlobsInputOutput(
           [void Function(JsonBlobsInputOutputBuilder)? updates]) =>
@@ -48,9 +48,9 @@ class JsonBlobsInputOutputBuilder
     implements Builder<JsonBlobsInputOutput, JsonBlobsInputOutputBuilder> {
   _$JsonBlobsInputOutput? _$v;
 
-  _i2.Uint8List? _data;
-  _i2.Uint8List? get data => _$this._data;
-  set data(_i2.Uint8List? data) => _$this._data = data;
+  _i3.Uint8List? _data;
+  _i3.Uint8List? get data => _$this._data;
+  set data(_i3.Uint8List? data) => _$this._data = data;
 
   JsonBlobsInputOutputBuilder() {
     JsonBlobsInputOutput._init(this);

@@ -31,7 +31,7 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -39,20 +39,18 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/blob_payload';
-        b.successCode = 200;
         if (input.contentType != null) {
-          b.headers['Content-Type'] = input.contentType!;
+          if (input.contentType!.isNotEmpty) {
+            b.headers['Content-Type'] = input.contentType!;
+          }
         }
       });
   @override
+  int successCode([_i3.TestPayloadBlobInputOutput? output]) => 200;
+  @override
   _i3.TestPayloadBlobInputOutput buildOutput(
           _i2.Uint8List? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.TestPayloadBlobInputOutput((b) {
-        b.data = payload;
-        if (response.headers['Content-Type'] != null) {
-          b.contentType = response.headers['Content-Type']!;
-        }
-      });
+      _i3.TestPayloadBlobInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

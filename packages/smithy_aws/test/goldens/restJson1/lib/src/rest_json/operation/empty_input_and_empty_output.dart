@@ -30,7 +30,11 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -38,13 +42,14 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/EmptyInputAndEmptyOutput';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.EmptyInputAndEmptyOutputOutput? output]) => 200;
   @override
   _i3.EmptyInputAndEmptyOutputOutput buildOutput(
           _i3.EmptyInputAndEmptyOutputOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.EmptyInputAndEmptyOutputOutput();
+      _i3.EmptyInputAndEmptyOutputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

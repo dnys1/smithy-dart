@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.query_precedence_input;
 
 class _$QueryPrecedenceInput extends QueryPrecedenceInput {
   @override
-  final _i2.BuiltMap<String, String>? baz;
+  final _i3.BuiltMap<String, String>? baz;
   @override
   final String? foo;
 
@@ -53,10 +53,10 @@ class QueryPrecedenceInputBuilder
     implements Builder<QueryPrecedenceInput, QueryPrecedenceInputBuilder> {
   _$QueryPrecedenceInput? _$v;
 
-  _i2.MapBuilder<String, String>? _baz;
-  _i2.MapBuilder<String, String> get baz =>
-      _$this._baz ??= new _i2.MapBuilder<String, String>();
-  set baz(_i2.MapBuilder<String, String>? baz) => _$this._baz = baz;
+  _i3.MapBuilder<String, String>? _baz;
+  _i3.MapBuilder<String, String> get baz =>
+      _$this._baz ??= new _i3.MapBuilder<String, String>();
+  set baz(_i3.MapBuilder<String, String>? baz) => _$this._baz = baz;
 
   String? _foo;
   String? get foo => _$this._foo;

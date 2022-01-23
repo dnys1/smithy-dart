@@ -14,19 +14,15 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     Map<FullType, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
-          _coreInterceptors,
           serializers: serializers,
           builderFactories: builderFactories,
           interceptors: interceptors,
         );
 
-  static const _coreInterceptors = <HttpInterceptor>[];
-
   static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(const XmlPlugin())
         ..addAll([
           BigIntSerializer.asString,
-          const BlobSerializer(),
           const DoubleSerializer(),
           Int64Serializer.asNum,
           TimestampSerializer.dateTime,

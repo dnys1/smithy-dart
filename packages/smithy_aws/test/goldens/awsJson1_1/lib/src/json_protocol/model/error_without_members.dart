@@ -2,6 +2,7 @@
 
 library aws_json1_1.json_protocol.model.error_without_members;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,7 +10,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'error_without_members.g.dart';
 
 abstract class ErrorWithoutMembers
-    with _i1.SmithyException
+    with _i1.SmithyException, _i2.AWSEquatable<ErrorWithoutMembers>
     implements
         Built<ErrorWithoutMembers, ErrorWithoutMembersBuilder>,
         _i1.EmptyPayload {
@@ -18,6 +19,10 @@ abstract class ErrorWithoutMembers
       _$ErrorWithoutMembers;
 
   const ErrorWithoutMembers._();
+
+  factory ErrorWithoutMembers.fromResponse(
+          ErrorWithoutMembers payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _ErrorWithoutMembersAwsJson11Serializer()
@@ -29,6 +34,8 @@ abstract class ErrorWithoutMembers
   String? get message => null;
   @override
   bool get isRetryable => false;
+  @override
+  List<Object?> get props => [];
 }
 
 class _ErrorWithoutMembersAwsJson11Serializer

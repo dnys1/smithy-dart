@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.http_request_with_greedy_label_in_path_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_request_with_greedy_label_in_path_input.g.dart';
 
 abstract class HttpRequestWithGreedyLabelInPathInput
     with
-        _i1.HttpInput<HttpRequestWithGreedyLabelInPathInputPayload>
+        _i1.HttpInput<HttpRequestWithGreedyLabelInPathInputPayload>,
+        _i2.AWSEquatable<HttpRequestWithGreedyLabelInPathInput>
     implements
         Built<HttpRequestWithGreedyLabelInPathInput,
             HttpRequestWithGreedyLabelInPathInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<HttpRequestWithGreedyLabelInPathInputPayload> {
   factory HttpRequestWithGreedyLabelInPathInput(
       [void Function(HttpRequestWithGreedyLabelInPathInputBuilder)
           updates]) = _$HttpRequestWithGreedyLabelInPathInput;
@@ -41,13 +44,18 @@ abstract class HttpRequestWithGreedyLabelInPathInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   HttpRequestWithGreedyLabelInPathInputPayload getPayload() =>
       HttpRequestWithGreedyLabelInPathInputPayload();
+  @override
+  List<Object?> get props => [baz, foo];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithGreedyLabelInPathInputPayload
+    with
+        _i2.AWSEquatable<HttpRequestWithGreedyLabelInPathInputPayload>
     implements
         Built<HttpRequestWithGreedyLabelInPathInputPayload,
             HttpRequestWithGreedyLabelInPathInputPayloadBuilder>,
@@ -60,6 +68,8 @@ abstract class HttpRequestWithGreedyLabelInPathInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpRequestWithGreedyLabelInPathInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer extends _i1

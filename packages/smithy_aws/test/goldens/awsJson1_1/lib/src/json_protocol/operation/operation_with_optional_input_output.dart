@@ -27,6 +27,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.OperationWithOptionalInputOutput')
         ])
@@ -38,13 +39,15 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.OperationWithOptionalInputOutputOutput? output]) => 200;
   @override
   _i3.OperationWithOptionalInputOutputOutput buildOutput(
           _i3.OperationWithOptionalInputOutputOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.OperationWithOptionalInputOutputOutput((b) {});
+      _i3.OperationWithOptionalInputOutputOutput.fromResponse(
+          payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.malformed_blob_input;
 
 class _$MalformedBlobInput extends MalformedBlobInput {
   @override
-  final _i2.Uint8List? blob;
+  final _i3.Uint8List? blob;
 
   factory _$MalformedBlobInput(
           [void Function(MalformedBlobInputBuilder)? updates]) =>
@@ -48,9 +48,9 @@ class MalformedBlobInputBuilder
     implements Builder<MalformedBlobInput, MalformedBlobInputBuilder> {
   _$MalformedBlobInput? _$v;
 
-  _i2.Uint8List? _blob;
-  _i2.Uint8List? get blob => _$this._blob;
-  set blob(_i2.Uint8List? blob) => _$this._blob = blob;
+  _i3.Uint8List? _blob;
+  _i3.Uint8List? get blob => _$this._blob;
+  set blob(_i3.Uint8List? blob) => _$this._blob = blob;
 
   MalformedBlobInputBuilder() {
     MalformedBlobInput._init(this);

@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.http_request_with_float_labels_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_request_with_float_labels_input.g.dart';
 
 abstract class HttpRequestWithFloatLabelsInput
     with
-        _i1.HttpInput<HttpRequestWithFloatLabelsInputPayload>
+        _i1.HttpInput<HttpRequestWithFloatLabelsInputPayload>,
+        _i2.AWSEquatable<HttpRequestWithFloatLabelsInput>
     implements
         Built<HttpRequestWithFloatLabelsInput,
             HttpRequestWithFloatLabelsInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<HttpRequestWithFloatLabelsInputPayload> {
   factory HttpRequestWithFloatLabelsInput(
           [void Function(HttpRequestWithFloatLabelsInputBuilder) updates]) =
       _$HttpRequestWithFloatLabelsInput;
@@ -41,13 +44,18 @@ abstract class HttpRequestWithFloatLabelsInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   HttpRequestWithFloatLabelsInputPayload getPayload() =>
       HttpRequestWithFloatLabelsInputPayload();
+  @override
+  List<Object?> get props => [double$, float];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithFloatLabelsInputPayload
+    with
+        _i2.AWSEquatable<HttpRequestWithFloatLabelsInputPayload>
     implements
         Built<HttpRequestWithFloatLabelsInputPayload,
             HttpRequestWithFloatLabelsInputPayloadBuilder>,
@@ -60,6 +68,8 @@ abstract class HttpRequestWithFloatLabelsInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpRequestWithFloatLabelsInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpRequestWithFloatLabelsInputRestJson1Serializer extends _i1

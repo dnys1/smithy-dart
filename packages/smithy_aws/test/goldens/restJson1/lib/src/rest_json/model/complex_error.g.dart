@@ -10,7 +10,7 @@ class _$ComplexError extends ComplexError {
   @override
   final String? header;
   @override
-  final _i2.ComplexNestedErrorData? nested;
+  final _i3.ComplexNestedErrorData? nested;
   @override
   final String? topLevel;
 
@@ -59,10 +59,10 @@ class ComplexErrorBuilder
   String? get header => _$this._header;
   set header(String? header) => _$this._header = header;
 
-  _i2.ComplexNestedErrorDataBuilder? _nested;
-  _i2.ComplexNestedErrorDataBuilder get nested =>
-      _$this._nested ??= new _i2.ComplexNestedErrorDataBuilder();
-  set nested(_i2.ComplexNestedErrorDataBuilder? nested) =>
+  _i3.ComplexNestedErrorDataBuilder? _nested;
+  _i3.ComplexNestedErrorDataBuilder get nested =>
+      _$this._nested ??= new _i3.ComplexNestedErrorDataBuilder();
+  set nested(_i3.ComplexNestedErrorDataBuilder? nested) =>
       _$this._nested = nested;
 
   String? _topLevel;
@@ -120,7 +120,7 @@ class ComplexErrorBuilder
 
 class _$ComplexErrorPayload extends ComplexErrorPayload {
   @override
-  final _i2.ComplexNestedErrorData? nested;
+  final _i3.ComplexNestedErrorData? nested;
   @override
   final String? topLevel;
 
@@ -165,9 +165,9 @@ class ComplexErrorPayloadBuilder
     implements Builder<ComplexErrorPayload, ComplexErrorPayloadBuilder> {
   _$ComplexErrorPayload? _$v;
 
-  _i2.ComplexNestedErrorData? _nested;
-  _i2.ComplexNestedErrorData? get nested => _$this._nested;
-  set nested(_i2.ComplexNestedErrorData? nested) => _$this._nested = nested;
+  _i3.ComplexNestedErrorData? _nested;
+  _i3.ComplexNestedErrorData? get nested => _$this._nested;
+  set nested(_i3.ComplexNestedErrorData? nested) => _$this._nested = nested;
 
   String? _topLevel;
   String? get topLevel => _$this._topLevel;

@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.model.endpoint_with_host_label_operation_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'endpoint_with_host_label_operation_input.g.dart';
 
 abstract class EndpointWithHostLabelOperationInput
     with
-        _i1.HttpInput<EndpointWithHostLabelOperationInput>
+        _i1.HttpInput<EndpointWithHostLabelOperationInput>,
+        _i2.AWSEquatable<EndpointWithHostLabelOperationInput>
     implements
         Built<EndpointWithHostLabelOperationInput,
             EndpointWithHostLabelOperationInputBuilder> {
@@ -35,6 +37,11 @@ abstract class EndpointWithHostLabelOperationInput
     }
     throw _i1.MissingLabelException(this, key);
   }
+
+  @override
+  EndpointWithHostLabelOperationInput getPayload() => this;
+  @override
+  List<Object?> get props => [label];
 }
 
 class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1

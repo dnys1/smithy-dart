@@ -15,21 +15,15 @@ class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
     Map<FullType, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
-          _coreInterceptors,
           serializers: serializers,
           builderFactories: builderFactories,
           interceptors: interceptors,
         );
 
-  static const _coreInterceptors = [
-    WithContentLength(),
-  ];
-
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
         ..addAll([
           BigIntSerializer.asNum,
-          const BlobSerializer(),
           const DoubleSerializer(),
           Int64Serializer.asNum,
           TimestampSerializer.epochSeconds,

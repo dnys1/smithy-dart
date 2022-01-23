@@ -10,7 +10,7 @@ class _$HttpPrefixHeadersInput extends HttpPrefixHeadersInput {
   @override
   final String? foo;
   @override
-  final _i2.BuiltMap<String, String>? fooMap;
+  final _i3.BuiltMap<String, String>? fooMap;
 
   factory _$HttpPrefixHeadersInput(
           [void Function(HttpPrefixHeadersInputBuilder)? updates]) =>
@@ -57,10 +57,10 @@ class HttpPrefixHeadersInputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  _i2.MapBuilder<String, String>? _fooMap;
-  _i2.MapBuilder<String, String> get fooMap =>
-      _$this._fooMap ??= new _i2.MapBuilder<String, String>();
-  set fooMap(_i2.MapBuilder<String, String>? fooMap) => _$this._fooMap = fooMap;
+  _i3.MapBuilder<String, String>? _fooMap;
+  _i3.MapBuilder<String, String> get fooMap =>
+      _$this._fooMap ??= new _i3.MapBuilder<String, String>();
+  set fooMap(_i3.MapBuilder<String, String>? fooMap) => _$this._fooMap = fooMap;
 
   HttpPrefixHeadersInputBuilder() {
     HttpPrefixHeadersInput._init(this);

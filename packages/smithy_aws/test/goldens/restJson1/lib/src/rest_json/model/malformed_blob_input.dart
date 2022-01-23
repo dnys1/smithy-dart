@@ -2,8 +2,9 @@
 
 library rest_json1.rest_json.model.malformed_blob_input;
 
-import 'dart:typed_data' as _i2;
+import 'dart:typed_data' as _i3;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -11,7 +12,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'malformed_blob_input.g.dart';
 
 abstract class MalformedBlobInput
-    with _i1.HttpInput<MalformedBlobInput>
+    with _i1.HttpInput<MalformedBlobInput>, _i2.AWSEquatable<MalformedBlobInput>
     implements Built<MalformedBlobInput, MalformedBlobInputBuilder> {
   factory MalformedBlobInput(
           [void Function(MalformedBlobInputBuilder) updates]) =
@@ -25,7 +26,11 @@ abstract class MalformedBlobInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedBlobInputBuilder b) {}
-  _i2.Uint8List? get blob;
+  _i3.Uint8List? get blob;
+  @override
+  MalformedBlobInput getPayload() => this;
+  @override
+  List<Object?> get props => [blob];
 }
 
 class _MalformedBlobInputRestJson1Serializer
@@ -51,7 +56,7 @@ class _MalformedBlobInputRestJson1Serializer
         case 'blob':
           if (value != null) {
             result.blob = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.Uint8List)) as _i2.Uint8List);
+                specifiedType: const FullType(_i3.Uint8List)) as _i3.Uint8List);
           }
           break;
       }
@@ -69,7 +74,7 @@ class _MalformedBlobInputRestJson1Serializer
       result
         ..add('blob')
         ..add(serializers.serialize(payload.blob,
-            specifiedType: const FullType.nullable(_i2.Uint8List)));
+            specifiedType: const FullType.nullable(_i3.Uint8List)));
     }
     return result;
   }

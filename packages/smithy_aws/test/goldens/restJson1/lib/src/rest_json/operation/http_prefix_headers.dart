@@ -27,7 +27,11 @@ class HttpPrefixHeadersOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -35,29 +39,26 @@ class HttpPrefixHeadersOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = '/HttpPrefixHeaders';
-        b.successCode = 200;
         if (input.foo != null) {
-          b.headers['X-Foo'] = input.foo!;
+          if (input.foo!.isNotEmpty) {
+            b.headers['X-Foo'] = input.foo!;
+          }
         }
         if (input.fooMap != null) {
           for (var entry in input.fooMap!.toMap().entries) {
-            b.headers['X-Foo-' + entry.key] = entry.value;
+            if (entry.value.isNotEmpty) {
+              b.headers['X-Foo-' + entry.key] = entry.value;
+            }
           }
         }
       });
   @override
+  int successCode([_i3.HttpPrefixHeadersOutput? output]) => 200;
+  @override
   _i3.HttpPrefixHeadersOutput buildOutput(
           _i3.HttpPrefixHeadersOutputPayload payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.HttpPrefixHeadersOutput((b) {
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-        b.fooMap.addEntries(response.headers.entries
-            .where((el) => el.key.startsWith('X-Foo-'))
-            .map(
-                (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
-      });
+      _i3.HttpPrefixHeadersOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -21,7 +21,7 @@ class MalformedBooleanOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -29,7 +29,6 @@ class MalformedBooleanOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedBoolean/{booleanInPath}';
-        b.successCode = 200;
         if (input.booleanInHeader != null) {
           b.headers['booleanInHeader'] = input.booleanInHeader!.toString();
         }
@@ -38,6 +37,8 @@ class MalformedBooleanOperation extends _i1.HttpOperation<
               .add('booleanInQuery', input.booleanInQuery!.toString());
         }
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>

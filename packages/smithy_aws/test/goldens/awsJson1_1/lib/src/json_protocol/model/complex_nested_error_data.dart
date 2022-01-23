@@ -2,13 +2,15 @@
 
 library aws_json1_1.json_protocol.model.complex_nested_error_data;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'complex_nested_error_data.g.dart';
 
 abstract class ComplexNestedErrorData
+    with _i1.AWSEquatable<ComplexNestedErrorData>
     implements Built<ComplexNestedErrorData, ComplexNestedErrorDataBuilder> {
   factory ComplexNestedErrorData(
           [void Function(ComplexNestedErrorDataBuilder) updates]) =
@@ -16,17 +18,19 @@ abstract class ComplexNestedErrorData
 
   const ComplexNestedErrorData._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _ComplexNestedErrorDataAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ComplexNestedErrorDataBuilder b) {}
   String? get foo;
+  @override
+  List<Object?> get props => [foo];
 }
 
 class _ComplexNestedErrorDataAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<ComplexNestedErrorData> {
+    extends _i2.StructuredSmithySerializer<ComplexNestedErrorData> {
   const _ComplexNestedErrorDataAwsJson11Serializer()
       : super('ComplexNestedErrorData');
 
@@ -34,8 +38,8 @@ class _ComplexNestedErrorDataAwsJson11Serializer
   Iterable<Type> get types =>
       const [ComplexNestedErrorData, _$ComplexNestedErrorData];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   ComplexNestedErrorData deserialize(
       Serializers serializers, Iterable<Object?> serialized,

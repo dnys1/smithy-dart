@@ -2,7 +2,8 @@
 
 library rest_json1.rest_json.model.malformed_map_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'malformed_map_input.g.dart';
 
 abstract class MalformedMapInput
-    with _i1.HttpInput<MalformedMapInput>
+    with _i1.HttpInput<MalformedMapInput>, _i2.AWSEquatable<MalformedMapInput>
     implements Built<MalformedMapInput, MalformedMapInputBuilder> {
   factory MalformedMapInput([void Function(MalformedMapInputBuilder) updates]) =
       _$MalformedMapInput;
@@ -23,7 +24,11 @@ abstract class MalformedMapInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedMapInputBuilder b) {}
-  _i2.BuiltMap<String, String>? get bodyMap;
+  _i3.BuiltMap<String, String>? get bodyMap;
+  @override
+  MalformedMapInput getPayload() => this;
+  @override
+  List<Object?> get props => [bodyMap];
 }
 
 class _MalformedMapInputRestJson1Serializer
@@ -50,8 +55,8 @@ class _MalformedMapInputRestJson1Serializer
           if (value != null) {
             result.bodyMap.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i2.BuiltMap, [FullType(String), FullType(String)]))
-                as _i2.BuiltMap<String, String>));
+                        _i3.BuiltMap, [FullType(String), FullType(String)]))
+                as _i3.BuiltMap<String, String>));
           }
           break;
       }
@@ -70,7 +75,7 @@ class _MalformedMapInputRestJson1Serializer
         ..add('bodyMap')
         ..add(serializers.serialize(payload.bodyMap,
             specifiedType: const FullType.nullable(
-                _i2.BuiltMap, [FullType(String), FullType(String)])));
+                _i3.BuiltMap, [FullType(String), FullType(String)])));
     }
     return result;
   }

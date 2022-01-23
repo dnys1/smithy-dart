@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.model.simple_scalar_properties_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,7 +10,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'simple_scalar_properties_input.g.dart';
 
 abstract class SimpleScalarPropertiesInput
-    with _i1.HttpInput<SimpleScalarPropertiesInput>
+    with
+        _i1.HttpInput<SimpleScalarPropertiesInput>,
+        _i2.AWSEquatable<SimpleScalarPropertiesInput>
     implements
         Built<SimpleScalarPropertiesInput, SimpleScalarPropertiesInputBuilder> {
   factory SimpleScalarPropertiesInput(
@@ -26,6 +29,10 @@ abstract class SimpleScalarPropertiesInput
   static void _init(SimpleScalarPropertiesInputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
+  @override
+  SimpleScalarPropertiesInput getPayload() => this;
+  @override
+  List<Object?> get props => [doubleValue, floatValue];
 }
 
 class _SimpleScalarPropertiesInputAwsJson10Serializer

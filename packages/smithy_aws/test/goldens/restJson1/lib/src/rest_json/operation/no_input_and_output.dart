@@ -22,19 +22,24 @@ class NoInputAndOutputOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/NoInputAndOutputOutput';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.NoInputAndOutputOutput? output]) => 200;
   @override
   _i2.NoInputAndOutputOutput buildOutput(_i2.NoInputAndOutputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.NoInputAndOutputOutput();
+      _i2.NoInputAndOutputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

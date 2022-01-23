@@ -17,7 +17,7 @@ class MalformedSetOperation extends _i1.HttpOperation<_i2.MalformedSetInput,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -25,8 +25,9 @@ class MalformedSetOperation extends _i1.HttpOperation<_i2.MalformedSetInput,
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedSet';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>

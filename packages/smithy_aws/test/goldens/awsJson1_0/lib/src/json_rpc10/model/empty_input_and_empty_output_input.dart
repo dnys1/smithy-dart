@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.model.empty_input_and_empty_output_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'empty_input_and_empty_output_input.g.dart';
 
 abstract class EmptyInputAndEmptyOutputInput
     with
-        _i1.HttpInput<EmptyInputAndEmptyOutputInput>
+        _i1.HttpInput<EmptyInputAndEmptyOutputInput>,
+        _i2.AWSEquatable<EmptyInputAndEmptyOutputInput>
     implements
         Built<EmptyInputAndEmptyOutputInput,
             EmptyInputAndEmptyOutputInputBuilder>,
@@ -27,6 +29,10 @@ abstract class EmptyInputAndEmptyOutputInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(EmptyInputAndEmptyOutputInputBuilder b) {}
+  @override
+  EmptyInputAndEmptyOutputInput getPayload() => this;
+  @override
+  List<Object?> get props => [];
 }
 
 class _EmptyInputAndEmptyOutputInputAwsJson10Serializer

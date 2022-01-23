@@ -2,21 +2,24 @@
 
 library rest_json1.rest_json.model.query_params_as_string_list_map_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'query_params_as_string_list_map_input.g.dart';
 
 abstract class QueryParamsAsStringListMapInput
     with
-        _i1.HttpInput<QueryParamsAsStringListMapInputPayload>
+        _i1.HttpInput<QueryParamsAsStringListMapInputPayload>,
+        _i2.AWSEquatable<QueryParamsAsStringListMapInput>
     implements
         Built<QueryParamsAsStringListMapInput,
             QueryParamsAsStringListMapInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<QueryParamsAsStringListMapInputPayload> {
   factory QueryParamsAsStringListMapInput(
           [void Function(QueryParamsAsStringListMapInputBuilder) updates]) =
       _$QueryParamsAsStringListMapInput;
@@ -29,15 +32,20 @@ abstract class QueryParamsAsStringListMapInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(QueryParamsAsStringListMapInputBuilder b) {}
-  _i2.BuiltListMultimap<String, String>? get foo;
+  _i3.BuiltListMultimap<String, String>? get foo;
   String? get qux;
+  @override
   QueryParamsAsStringListMapInputPayload getPayload() =>
       QueryParamsAsStringListMapInputPayload();
+  @override
+  List<Object?> get props => [foo, qux];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class QueryParamsAsStringListMapInputPayload
+    with
+        _i2.AWSEquatable<QueryParamsAsStringListMapInputPayload>
     implements
         Built<QueryParamsAsStringListMapInputPayload,
             QueryParamsAsStringListMapInputPayloadBuilder>,
@@ -50,6 +58,8 @@ abstract class QueryParamsAsStringListMapInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(QueryParamsAsStringListMapInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _QueryParamsAsStringListMapInputRestJson1Serializer extends _i1

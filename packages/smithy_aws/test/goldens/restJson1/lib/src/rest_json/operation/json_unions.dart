@@ -18,7 +18,7 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -26,12 +26,13 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
       _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = '/JsonUnions';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.UnionInputOutput? output]) => 200;
   @override
   _i2.UnionInputOutput buildOutput(
           _i2.UnionInputOutput payload, _i5.AWSStreamedHttpResponse response) =>
-      _i2.UnionInputOutput((b) {});
+      _i2.UnionInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

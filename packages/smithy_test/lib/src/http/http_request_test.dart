@@ -155,11 +155,15 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
         break;
       case 'application/json':
         final expectedJsonBody = jsonDecode(expectedBody);
-        final Object? jsonBody;
+        Object? jsonBody;
         if (bodyBytes.isEmpty) {
           jsonBody = '';
         } else {
-          jsonBody = jsonDecode(utf8.decode(bodyBytes));
+          try {
+            jsonBody = jsonDecode(utf8.decode(bodyBytes));
+          } on FormatException {
+            jsonBody = utf8.decode(bodyBytes);
+          }
         }
         expect(jsonBody, equals(expectedJsonBody));
         break;

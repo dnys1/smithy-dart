@@ -21,6 +21,7 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.JsonUnions')
         ])
   ];
@@ -30,12 +31,13 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.JsonUnionsOutput? output]) => 200;
   @override
   _i3.JsonUnionsOutput buildOutput(
           _i3.JsonUnionsOutput payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.JsonUnionsOutput((b) {});
+      _i3.JsonUnionsOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

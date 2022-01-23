@@ -4,6 +4,7 @@ library rest_json1.rest_json.model.malformed_content_type_with_payload_input;
 
 import 'dart:typed_data' as _i2;
 
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -12,10 +13,12 @@ part 'malformed_content_type_with_payload_input.g.dart';
 
 abstract class MalformedContentTypeWithPayloadInput
     with
-        _i1.HttpInput<_i2.Uint8List>
+        _i1.HttpInput<_i2.Uint8List>,
+        _i3.AWSEquatable<MalformedContentTypeWithPayloadInput>
     implements
         Built<MalformedContentTypeWithPayloadInput,
-            MalformedContentTypeWithPayloadInputBuilder> {
+            MalformedContentTypeWithPayloadInputBuilder>,
+        _i1.HasPayload<_i2.Uint8List> {
   factory MalformedContentTypeWithPayloadInput(
       [void Function(MalformedContentTypeWithPayloadInputBuilder)
           updates]) = _$MalformedContentTypeWithPayloadInput;
@@ -29,7 +32,10 @@ abstract class MalformedContentTypeWithPayloadInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedContentTypeWithPayloadInputBuilder b) {}
   _i2.Uint8List? get payload;
+  @override
   _i2.Uint8List? getPayload() => payload;
+  @override
+  List<Object?> get props => [payload];
 }
 
 class _MalformedContentTypeWithPayloadInputRestJson1Serializer
@@ -59,6 +65,6 @@ class _MalformedContentTypeWithPayloadInputRestJson1Serializer
         ? object.getPayload()
         : (object as _i2.Uint8List?);
     return (serializers.serialize(payload,
-        specifiedType: const FullType.nullable(_i2.Uint8List)) as Object);
+        specifiedType: const FullType(_i2.Uint8List)) as Object);
   }
 }

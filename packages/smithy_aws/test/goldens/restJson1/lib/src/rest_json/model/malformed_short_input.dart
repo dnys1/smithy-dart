@@ -2,16 +2,21 @@
 
 library rest_json1.rest_json.model.malformed_short_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_short_input.g.dart';
 
 abstract class MalformedShortInput
-    with _i1.HttpInput<MalformedShortInputPayload>
-    implements Built<MalformedShortInput, MalformedShortInputBuilder> {
+    with
+        _i1.HttpInput<MalformedShortInputPayload>,
+        _i2.AWSEquatable<MalformedShortInput>
+    implements
+        Built<MalformedShortInput, MalformedShortInputBuilder>,
+        _i1.HasPayload<MalformedShortInputPayload> {
   factory MalformedShortInput(
           [void Function(MalformedShortInputBuilder) updates]) =
       _$MalformedShortInput;
@@ -37,13 +42,18 @@ abstract class MalformedShortInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedShortInputPayload getPayload() =>
       MalformedShortInputPayload((b) => b..shortInBody = shortInBody);
+  @override
+  List<Object?> get props =>
+      [shortInBody, shortInHeader, shortInPath, shortInQuery];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedShortInputPayload
+    with _i2.AWSEquatable<MalformedShortInputPayload>
     implements
         Built<MalformedShortInputPayload, MalformedShortInputPayloadBuilder> {
   factory MalformedShortInputPayload(
@@ -55,6 +65,8 @@ abstract class MalformedShortInputPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedShortInputPayloadBuilder b) {}
   int? get shortInBody;
+  @override
+  List<Object?> get props => [shortInBody];
 }
 
 class _MalformedShortInputRestJson1Serializer

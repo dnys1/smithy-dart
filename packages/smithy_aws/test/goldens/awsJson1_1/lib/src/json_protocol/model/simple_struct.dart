@@ -2,37 +2,41 @@
 
 library aws_json1_1.json_protocol.model.simple_struct;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'simple_struct.g.dart';
 
 abstract class SimpleStruct
+    with _i1.AWSEquatable<SimpleStruct>
     implements Built<SimpleStruct, SimpleStructBuilder> {
   factory SimpleStruct([void Function(SimpleStructBuilder) updates]) =
       _$SimpleStruct;
 
   const SimpleStruct._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _SimpleStructAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(SimpleStructBuilder b) {}
   String? get value;
+  @override
+  List<Object?> get props => [value];
 }
 
 class _SimpleStructAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<SimpleStruct> {
+    extends _i2.StructuredSmithySerializer<SimpleStruct> {
   const _SimpleStructAwsJson11Serializer() : super('SimpleStruct');
 
   @override
   Iterable<Type> get types => const [SimpleStruct, _$SimpleStruct];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   SimpleStruct deserialize(
       Serializers serializers, Iterable<Object?> serialized,

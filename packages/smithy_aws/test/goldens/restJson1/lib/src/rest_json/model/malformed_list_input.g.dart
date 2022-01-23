@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.malformed_list_input;
 
 class _$MalformedListInput extends MalformedListInput {
   @override
-  final _i2.BuiltList<String>? bodyList;
+  final _i3.BuiltList<String>? bodyList;
 
   factory _$MalformedListInput(
           [void Function(MalformedListInputBuilder)? updates]) =>
@@ -48,10 +48,10 @@ class MalformedListInputBuilder
     implements Builder<MalformedListInput, MalformedListInputBuilder> {
   _$MalformedListInput? _$v;
 
-  _i2.ListBuilder<String>? _bodyList;
-  _i2.ListBuilder<String> get bodyList =>
-      _$this._bodyList ??= new _i2.ListBuilder<String>();
-  set bodyList(_i2.ListBuilder<String>? bodyList) =>
+  _i3.ListBuilder<String>? _bodyList;
+  _i3.ListBuilder<String> get bodyList =>
+      _$this._bodyList ??= new _i3.ListBuilder<String>();
+  set bodyList(_i3.ListBuilder<String>? bodyList) =>
       _$this._bodyList = bodyList;
 
   MalformedListInputBuilder() {

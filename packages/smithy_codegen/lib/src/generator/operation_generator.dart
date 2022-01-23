@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:fixnum/fixnum.dart';
@@ -64,10 +66,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         .property('path')
         .assign(literalString(httpTrait!.uri))
         .statement;
-    yield builder
-        .property('successCode')
-        .assign(literalNum(httpTrait!.code))
-        .statement;
 
     final hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
     if (hostPrefix != null) {
@@ -104,115 +102,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
   }
 
-  /// The statements of the output builder.
-  Iterable<Code> get _outputBuilder sync* {
-    final builder = refer('b');
-    final payload = refer('payload');
-    final response = refer('response');
-
-    final payloadShape = outputShape.payloadShape(context);
-
-    // Adds a shape from the payload to the output.
-    Code _putShape(MemberShape member, Expression payloadProp) {
-      final targetShapeType = context.shapeFor(member.target).getType();
-      final isNestedBuilder = [
-        ShapeType.map,
-        ShapeType.list,
-        ShapeType.set,
-        ShapeType.structure
-      ].contains(targetShapeType);
-      if (isNestedBuilder) {
-        final isNullable = shape.isNullable(outputShape);
-        return builder
-            .property(member.dartName)
-            .property('replace')
-            .call([
-              isNullable && member != payloadShape
-                  ? payloadProp.nullChecked
-                  : payloadProp
-            ])
-            .statement
-            .wrapWithBlockIf(payloadProp.notEqualTo(literalNull), isNullable);
-      } else {
-        return builder.property(member.dartName).assign(payloadProp).statement;
-      }
-    }
-
-    // Add all payload members to the output.
-    if (payloadShape != null) {
-      yield _putShape(payloadShape, payload);
-    } else if (outputShape.hasBuiltPayload(context)) {
-      for (final member in outputShape.payloadMembers(context)) {
-        final payloadProp = payload.property(member.dartName);
-        yield _putShape(member, payloadProp);
-      }
-    }
-
-    // Add HTTP headers to the output.
-    final headersRef = response.property('headers');
-    for (final entry in httpOutputTraits.httpHeaders.entries) {
-      yield _outputHttpHeader(
-        headersRef.index(literalString(entry.key)),
-        entry.value,
-        builder.property(entry.value.dartName),
-        isNullable: entry.value.isNullable(outputShape),
-      );
-    }
-
-    // Add all HTTP headers with a certain prefix to the output.
-    final prefixHeaders = httpOutputTraits.httpPrefixHeaders;
-    if (prefixHeaders != null) {
-      yield builder
-          .property(prefixHeaders.member.dartName)
-          .property('addEntries')
-          .call([
-        prefixHeaders.trait.value == ''
-            ? headersRef.property('entries')
-            : headersRef
-                .property('entries')
-                .property('where')
-                .call([
-                  Method((m) => m
-                    ..requiredParameters.add(Parameter((p) => p.name = 'el'))
-                    ..lambda = true
-                    ..body = refer('el')
-                        .property('key')
-                        .property('startsWith')
-                        .call([
-                      literalString(prefixHeaders.trait.value)
-                    ]).code).closure
-                ])
-                .property('map')
-                .call([
-                  Method(
-                    (m) => m
-                      ..requiredParameters.add(Parameter((p) => p.name = 'el'))
-                      ..lambda = true
-                      ..body = DartTypes.core.mapEntry.newInstance([
-                        refer('el')
-                            .property('key')
-                            .property('replaceFirst')
-                            .call([
-                          literalString(prefixHeaders.trait.value),
-                          literalString(''),
-                        ]),
-                        refer('el').property('value'),
-                      ]).code,
-                  ).closure,
-                ])
-      ]).statement;
-    }
-
-    // Add the HTTP status code to the output.
-    final statusCode = httpOutputTraits.httpResponseCode;
-    if (statusCode != null) {
-      yield builder
-          .property(statusCode.dartName)
-          .assign(response.property('statusCode'))
-          .statement;
-    }
-  }
-
   /// Adds the header to the request's headers map.
   Code _inputHttpHeader(
     Expression key,
@@ -243,9 +132,19 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             return ref.property('value');
           }
           final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          switch (mediaType) {
-            case 'application/json':
-              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
+          // From the restJson1 test suite:
+          // "Headers that target strings with a mediaType are base64 encoded"
+          if (mediaType != null) {
+            switch (mediaType) {
+              case 'application/json':
+                ref = DartTypes.convert.jsonEncode.call([
+                  ref.property('value'),
+                ]);
+                break;
+            }
+            return DartTypes.convert.base64Encode.call([
+              DartTypes.convert.utf8.property('encode').call([ref]),
+            ]);
           }
           return ref;
 
@@ -278,7 +177,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                 Method((m) => m
                   ..requiredParameters.add(Parameter((p) => p..name = 'el'))
                   ..lambda = true
-                  ..body = toString(refer('el'), memberShape).code).closure,
+                  ..body = DartTypes.smithy.sanitizeHeader.call([
+                    toString(refer('el'), memberShape),
+                  ]).code).closure,
               ])
               .property('join')
               .call([literalString(', ')]);
@@ -287,16 +188,28 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       }
     }
 
-    var toStringExp = toString(
+    final toStringExp = toString(
       (isNullable ? valueRef.nullChecked : valueRef),
       value,
     );
     final addHeader =
         builder.property('headers').index(key).assign(toStringExp).statement;
-    return addHeader.wrapWithBlockIf(
-      valueRef.notEqualTo(literalNull),
-      isNullable,
-    );
+    final targetShape =
+        value is MemberShape ? context.shapeFor(value.target) : value;
+    return addHeader
+        // From restJson1 test suite:
+        // "Do not send null values, empty strings, or empty lists over the wire in headers"
+        .wrapWithBlockIf(
+            (isNullable ? valueRef.nullChecked : valueRef)
+                .property('isNotEmpty'),
+            const [ShapeType.list, ShapeType.set, ShapeType.string]
+                    .contains(targetShape.getType()) &&
+                !targetShape.hasTrait<MediaTypeTrait>() &&
+                !targetShape.isEnum)
+        .wrapWithBlockIf(
+          valueRef.notEqualTo(literalNull),
+          isNullable,
+        );
   }
 
   /// Adds the prefixed headers to the request's headers map.
@@ -322,114 +235,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       ),
       const Code('}'),
     ]).wrapWithBlockIf(mapRef.notEqualTo(literalNull), isNullableMap);
-  }
-
-  /// Adds the header to the request's headers map.
-  Code _outputHttpHeader(
-    Expression headerRef,
-    Shape value,
-    Expression valueRef, {
-    required bool isNullable,
-  }) {
-    // Creates the expression to parse the header into the type of `shape`.
-    Expression fromString(Expression headerRef, Shape shape) {
-      final targetShape =
-          shape is MemberShape ? context.shapeFor(shape.target) : shape;
-
-      final type = targetShape.getType();
-      switch (type) {
-        case ShapeType.boolean:
-          return headerRef.equalTo(literalString('true'));
-
-        case ShapeType.bigInteger:
-          return DartTypes.core.bigInt.property('parse').call([headerRef]);
-
-        case ShapeType.bigDecimal:
-        case ShapeType.double:
-        case ShapeType.float:
-          return DartTypes.core.double.property('parse').call([headerRef]);
-
-        case ShapeType.byte:
-        case ShapeType.integer:
-        case ShapeType.short:
-          return DartTypes.core.int.property('parse').call([headerRef]);
-
-        case ShapeType.long:
-          return DartTypes.fixNum.int64.property('parseInt').call([headerRef]);
-
-        // string values with a mediaType trait are always base64 encoded.
-        case ShapeType.string:
-          if (targetShape.isEnum) {
-            final targetSymbol = context.symbolFor(targetShape.shapeId).unboxed;
-            return targetSymbol
-                .property('values')
-                .property('byValue')
-                .call([headerRef]);
-          }
-          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          switch (mediaType) {
-            case 'application/json':
-              return DartTypes.builtValue.jsonObject.newInstance([
-                DartTypes.convert.jsonDecode.call([headerRef]),
-              ]);
-          }
-          return headerRef;
-
-        // timestamp values are serialized using the http-date format by
-        // default. The timestampFormat trait MAY be used to use a custom
-        // serialization format.
-        case ShapeType.timestamp:
-          final format = shape.timestampFormat ??
-              targetShape.timestampFormat ??
-              TimestampFormat.httpDate;
-          return DartTypes.smithy.timestamp.property('parse').call([
-            format == TimestampFormat.epochSeconds
-                ? DartTypes.core.int.property('parse').call([headerRef])
-                : headerRef
-          ], {
-            'format': DartTypes.smithy.timestampFormat.property(format.name),
-          }).property('asDateTime');
-
-        // When a list shape is targeted, each member of the shape is
-        // serialized as a separate HTTP header either by concatenating the
-        // values with a comma on a single line or by serializing each header
-        // value on its own line.
-        case ShapeType.list:
-        case ShapeType.set:
-          final memberShape = (targetShape as CollectionShape).member;
-          return headerRef
-              .property('split')
-              .call([literalString(',')])
-              .property('map')
-              .call([
-                Method((m) => m
-                  ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                  ..lambda = true
-                  ..body = fromString(
-                          refer('el').property('trim').call([]), memberShape)
-                      .code).closure,
-              ]);
-        default:
-          throw ArgumentError('Invalid header shape type: $type');
-      }
-    }
-
-    final fromStringExp = fromString(
-      (isNullable ? headerRef.nullChecked : headerRef),
-      value,
-    );
-    final targetShape =
-        value is MemberShape ? context.shapeFor(value.target) : value;
-    Code addHeader;
-    if (targetShape is CollectionShape) {
-      addHeader = valueRef.property('addAll').call([fromStringExp]).statement;
-    } else {
-      addHeader = valueRef.assign(fromStringExp).statement;
-    }
-    return addHeader.wrapWithBlockIf(
-      headerRef.notEqualTo(literalNull),
-      isNullable,
-    );
   }
 
   /// Adds the shape to the request's query parameters.
@@ -576,17 +381,32 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ..body = request.code,
     );
 
+    // The `successCode` method
+    var successCode = literalNum(200);
+    final responseCodeMember = httpOutputTraits.httpResponseCode;
+    if (responseCodeMember != null) {
+      successCode = refer('output')
+          .nullSafeProperty(responseCodeMember.dartName)
+          .ifNullThen(successCode);
+    }
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.int
+        ..name = 'successCode'
+        ..lambda = true
+        ..optionalParameters.add(Parameter((p) => p
+          ..name = 'output'
+          ..type = outputSymbol.boxed))
+        ..body = successCode.code,
+    );
+
     // The `buildOutput` method
     final output = outputPayload.symbol == DartTypes.smithy.unit
         ? refer('payload')
-        : outputSymbol.newInstance([
-            if (outputShape.members.isNotEmpty)
-              Method(
-                (m) => m
-                  ..requiredParameters.add(Parameter((p) => p..name = 'b'))
-                  ..lambda = false
-                  ..body = Block.of(_outputBuilder),
-              ).closure,
+        : outputSymbol.newInstanceNamed('fromResponse', [
+            refer('payload'),
+            refer('response'),
           ]);
     yield Method(
       (m) => m
@@ -625,7 +445,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                 'retryConfig': DartTypes.smithy.retryConfig.constInstance([], {
                   'isThrottlingError':
                       literalBool(error.retryConfig!.isThrottlingError),
-                })
+                }),
+              'builder': error.symbol.property('fromResponse'),
             })
         ]).code,
     );
@@ -659,22 +480,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
   Expression _protocolSerializers(ProtocolDefinitionTrait protocol) {
     final additionalSerializers = <Expression>[];
-    if (protocol.traits.contains(HttpPayloadTrait.id)) {
-      final payloadMember = inputPayload.member;
-      final targetShape =
-          payloadMember != null ? context.shapeFor(payloadMember.target) : null;
-      if (targetShape != null && targetShape is BlobShape) {
-        final mediaType = (payloadMember!.getTrait<MediaTypeTrait>() ??
-                targetShape.getTrait<MediaTypeTrait>())
-            ?.value;
-        if (mediaType != null) {
-          additionalSerializers
-              .add(DartTypes.smithy.blobSerializer.constInstance([
-            literalString(mediaType),
-          ]));
-        }
-      }
-    }
     return additionalSerializers.isNotEmpty
         ? literalConstList([
             context.serializersRef.spread,
@@ -689,6 +494,18 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     // HTTP checksum (supported by all)
     if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
       yield DartTypes.smithy.withChecksum.constInstance([]);
+    }
+
+    var needsContentLength = true;
+    final payloadMember = inputPayload.member;
+    if (payloadMember != null) {
+      final targetShape = context.shapeFor(payloadMember.target);
+      needsContentLength = targetShape is! BlobShape ||
+          !targetShape.isStreaming ||
+          targetShape.hasTrait<RequiresLengthTrait>();
+    }
+    if (needsContentLength) {
+      yield DartTypes.smithy.withContentLength.constInstance([]);
     }
 
     switch (protocol.runtimeType) {
@@ -710,6 +527,17 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ]);
         break;
       case RestJson1Trait:
+        // Empty payloads should not contain `Content-Length` and `Content-Type`
+        // headers.
+        if (inputShape.payloadMembers(context).isEmpty) {
+          yield* [
+            DartTypes.smithy.withNoContentLength.constInstance([]),
+            DartTypes.smithy.withNoHeader.constInstance([
+              literalString('Content-Type'),
+            ]),
+          ];
+        }
+        break;
       case RestXmlTrait:
       default:
     }

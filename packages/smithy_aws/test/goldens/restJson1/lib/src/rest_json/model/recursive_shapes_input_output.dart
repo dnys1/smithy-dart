@@ -2,16 +2,19 @@
 
 library rest_json1.rest_json.model.recursive_shapes_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json/model/recursive_shapes_input_output_nested1.dart'
-    as _i2;
+    as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'recursive_shapes_input_output.g.dart';
 
 abstract class RecursiveShapesInputOutput
-    with _i1.HttpInput<RecursiveShapesInputOutput>
+    with
+        _i1.HttpInput<RecursiveShapesInputOutput>,
+        _i2.AWSEquatable<RecursiveShapesInputOutput>
     implements
         Built<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder> {
   factory RecursiveShapesInputOutput(
@@ -20,13 +23,22 @@ abstract class RecursiveShapesInputOutput
 
   const RecursiveShapesInputOutput._();
 
+  factory RecursiveShapesInputOutput.fromResponse(
+          RecursiveShapesInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _RecursiveShapesInputOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(RecursiveShapesInputOutputBuilder b) {}
-  _i2.RecursiveShapesInputOutputNested1? get nested;
+  _i3.RecursiveShapesInputOutputNested1? get nested;
+  @override
+  RecursiveShapesInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [nested];
 }
 
 class _RecursiveShapesInputOutputRestJson1Serializer
@@ -55,8 +67,8 @@ class _RecursiveShapesInputOutputRestJson1Serializer
           if (value != null) {
             result.nested.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i2.RecursiveShapesInputOutputNested1))
-                as _i2.RecursiveShapesInputOutputNested1));
+                        const FullType(_i3.RecursiveShapesInputOutputNested1))
+                as _i3.RecursiveShapesInputOutputNested1));
           }
           break;
       }
@@ -75,7 +87,7 @@ class _RecursiveShapesInputOutputRestJson1Serializer
         ..add('nested')
         ..add(serializers.serialize(payload.nested,
             specifiedType: const FullType.nullable(
-                _i2.RecursiveShapesInputOutputNested1)));
+                _i3.RecursiveShapesInputOutputNested1)));
     }
     return result;
   }

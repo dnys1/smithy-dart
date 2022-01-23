@@ -10,41 +10,41 @@ class _$AllQueryStringTypesInput extends AllQueryStringTypesInput {
   @override
   final bool? queryBoolean;
   @override
-  final _i2.BuiltList<bool>? queryBooleanList;
+  final _i3.BuiltList<bool>? queryBooleanList;
   @override
   final int? queryByte;
   @override
   final double? queryDouble;
   @override
-  final _i2.BuiltList<double>? queryDoubleList;
+  final _i3.BuiltList<double>? queryDoubleList;
   @override
-  final _i3.FooEnum? queryEnum;
+  final _i4.FooEnum? queryEnum;
   @override
-  final _i2.BuiltList<_i3.FooEnum>? queryEnumList;
+  final _i3.BuiltList<_i4.FooEnum>? queryEnumList;
   @override
   final double? queryFloat;
   @override
   final int? queryInteger;
   @override
-  final _i2.BuiltList<int>? queryIntegerList;
+  final _i3.BuiltList<int>? queryIntegerList;
   @override
-  final _i2.BuiltSet<int>? queryIntegerSet;
+  final _i3.BuiltSet<int>? queryIntegerSet;
   @override
-  final _i4.Int64? queryLong;
+  final _i5.Int64? queryLong;
   @override
-  final _i2.BuiltListMultimap<String, String>? queryParamsMapOfStringList;
+  final _i3.BuiltListMultimap<String, String>? queryParamsMapOfStringList;
   @override
   final int? queryShort;
   @override
   final String? queryString;
   @override
-  final _i2.BuiltList<String>? queryStringList;
+  final _i3.BuiltList<String>? queryStringList;
   @override
-  final _i2.BuiltSet<String>? queryStringSet;
+  final _i3.BuiltSet<String>? queryStringSet;
   @override
   final DateTime? queryTimestamp;
   @override
-  final _i2.BuiltList<DateTime>? queryTimestampList;
+  final _i3.BuiltList<DateTime>? queryTimestampList;
 
   factory _$AllQueryStringTypesInput(
           [void Function(AllQueryStringTypesInputBuilder)? updates]) =>
@@ -189,10 +189,10 @@ class AllQueryStringTypesInputBuilder
   bool? get queryBoolean => _$this._queryBoolean;
   set queryBoolean(bool? queryBoolean) => _$this._queryBoolean = queryBoolean;
 
-  _i2.ListBuilder<bool>? _queryBooleanList;
-  _i2.ListBuilder<bool> get queryBooleanList =>
-      _$this._queryBooleanList ??= new _i2.ListBuilder<bool>();
-  set queryBooleanList(_i2.ListBuilder<bool>? queryBooleanList) =>
+  _i3.ListBuilder<bool>? _queryBooleanList;
+  _i3.ListBuilder<bool> get queryBooleanList =>
+      _$this._queryBooleanList ??= new _i3.ListBuilder<bool>();
+  set queryBooleanList(_i3.ListBuilder<bool>? queryBooleanList) =>
       _$this._queryBooleanList = queryBooleanList;
 
   int? _queryByte;
@@ -203,20 +203,20 @@ class AllQueryStringTypesInputBuilder
   double? get queryDouble => _$this._queryDouble;
   set queryDouble(double? queryDouble) => _$this._queryDouble = queryDouble;
 
-  _i2.ListBuilder<double>? _queryDoubleList;
-  _i2.ListBuilder<double> get queryDoubleList =>
-      _$this._queryDoubleList ??= new _i2.ListBuilder<double>();
-  set queryDoubleList(_i2.ListBuilder<double>? queryDoubleList) =>
+  _i3.ListBuilder<double>? _queryDoubleList;
+  _i3.ListBuilder<double> get queryDoubleList =>
+      _$this._queryDoubleList ??= new _i3.ListBuilder<double>();
+  set queryDoubleList(_i3.ListBuilder<double>? queryDoubleList) =>
       _$this._queryDoubleList = queryDoubleList;
 
-  _i3.FooEnum? _queryEnum;
-  _i3.FooEnum? get queryEnum => _$this._queryEnum;
-  set queryEnum(_i3.FooEnum? queryEnum) => _$this._queryEnum = queryEnum;
+  _i4.FooEnum? _queryEnum;
+  _i4.FooEnum? get queryEnum => _$this._queryEnum;
+  set queryEnum(_i4.FooEnum? queryEnum) => _$this._queryEnum = queryEnum;
 
-  _i2.ListBuilder<_i3.FooEnum>? _queryEnumList;
-  _i2.ListBuilder<_i3.FooEnum> get queryEnumList =>
-      _$this._queryEnumList ??= new _i2.ListBuilder<_i3.FooEnum>();
-  set queryEnumList(_i2.ListBuilder<_i3.FooEnum>? queryEnumList) =>
+  _i3.ListBuilder<_i4.FooEnum>? _queryEnumList;
+  _i3.ListBuilder<_i4.FooEnum> get queryEnumList =>
+      _$this._queryEnumList ??= new _i3.ListBuilder<_i4.FooEnum>();
+  set queryEnumList(_i3.ListBuilder<_i4.FooEnum>? queryEnumList) =>
       _$this._queryEnumList = queryEnumList;
 
   double? _queryFloat;
@@ -227,28 +227,28 @@ class AllQueryStringTypesInputBuilder
   int? get queryInteger => _$this._queryInteger;
   set queryInteger(int? queryInteger) => _$this._queryInteger = queryInteger;
 
-  _i2.ListBuilder<int>? _queryIntegerList;
-  _i2.ListBuilder<int> get queryIntegerList =>
-      _$this._queryIntegerList ??= new _i2.ListBuilder<int>();
-  set queryIntegerList(_i2.ListBuilder<int>? queryIntegerList) =>
+  _i3.ListBuilder<int>? _queryIntegerList;
+  _i3.ListBuilder<int> get queryIntegerList =>
+      _$this._queryIntegerList ??= new _i3.ListBuilder<int>();
+  set queryIntegerList(_i3.ListBuilder<int>? queryIntegerList) =>
       _$this._queryIntegerList = queryIntegerList;
 
-  _i2.SetBuilder<int>? _queryIntegerSet;
-  _i2.SetBuilder<int> get queryIntegerSet =>
-      _$this._queryIntegerSet ??= new _i2.SetBuilder<int>();
-  set queryIntegerSet(_i2.SetBuilder<int>? queryIntegerSet) =>
+  _i3.SetBuilder<int>? _queryIntegerSet;
+  _i3.SetBuilder<int> get queryIntegerSet =>
+      _$this._queryIntegerSet ??= new _i3.SetBuilder<int>();
+  set queryIntegerSet(_i3.SetBuilder<int>? queryIntegerSet) =>
       _$this._queryIntegerSet = queryIntegerSet;
 
-  _i4.Int64? _queryLong;
-  _i4.Int64? get queryLong => _$this._queryLong;
-  set queryLong(_i4.Int64? queryLong) => _$this._queryLong = queryLong;
+  _i5.Int64? _queryLong;
+  _i5.Int64? get queryLong => _$this._queryLong;
+  set queryLong(_i5.Int64? queryLong) => _$this._queryLong = queryLong;
 
-  _i2.ListMultimapBuilder<String, String>? _queryParamsMapOfStringList;
-  _i2.ListMultimapBuilder<String, String> get queryParamsMapOfStringList =>
+  _i3.ListMultimapBuilder<String, String>? _queryParamsMapOfStringList;
+  _i3.ListMultimapBuilder<String, String> get queryParamsMapOfStringList =>
       _$this._queryParamsMapOfStringList ??=
-          new _i2.ListMultimapBuilder<String, String>();
+          new _i3.ListMultimapBuilder<String, String>();
   set queryParamsMapOfStringList(
-          _i2.ListMultimapBuilder<String, String>?
+          _i3.ListMultimapBuilder<String, String>?
               queryParamsMapOfStringList) =>
       _$this._queryParamsMapOfStringList = queryParamsMapOfStringList;
 
@@ -260,16 +260,16 @@ class AllQueryStringTypesInputBuilder
   String? get queryString => _$this._queryString;
   set queryString(String? queryString) => _$this._queryString = queryString;
 
-  _i2.ListBuilder<String>? _queryStringList;
-  _i2.ListBuilder<String> get queryStringList =>
-      _$this._queryStringList ??= new _i2.ListBuilder<String>();
-  set queryStringList(_i2.ListBuilder<String>? queryStringList) =>
+  _i3.ListBuilder<String>? _queryStringList;
+  _i3.ListBuilder<String> get queryStringList =>
+      _$this._queryStringList ??= new _i3.ListBuilder<String>();
+  set queryStringList(_i3.ListBuilder<String>? queryStringList) =>
       _$this._queryStringList = queryStringList;
 
-  _i2.SetBuilder<String>? _queryStringSet;
-  _i2.SetBuilder<String> get queryStringSet =>
-      _$this._queryStringSet ??= new _i2.SetBuilder<String>();
-  set queryStringSet(_i2.SetBuilder<String>? queryStringSet) =>
+  _i3.SetBuilder<String>? _queryStringSet;
+  _i3.SetBuilder<String> get queryStringSet =>
+      _$this._queryStringSet ??= new _i3.SetBuilder<String>();
+  set queryStringSet(_i3.SetBuilder<String>? queryStringSet) =>
       _$this._queryStringSet = queryStringSet;
 
   DateTime? _queryTimestamp;
@@ -277,10 +277,10 @@ class AllQueryStringTypesInputBuilder
   set queryTimestamp(DateTime? queryTimestamp) =>
       _$this._queryTimestamp = queryTimestamp;
 
-  _i2.ListBuilder<DateTime>? _queryTimestampList;
-  _i2.ListBuilder<DateTime> get queryTimestampList =>
-      _$this._queryTimestampList ??= new _i2.ListBuilder<DateTime>();
-  set queryTimestampList(_i2.ListBuilder<DateTime>? queryTimestampList) =>
+  _i3.ListBuilder<DateTime>? _queryTimestampList;
+  _i3.ListBuilder<DateTime> get queryTimestampList =>
+      _$this._queryTimestampList ??= new _i3.ListBuilder<DateTime>();
+  set queryTimestampList(_i3.ListBuilder<DateTime>? queryTimestampList) =>
       _$this._queryTimestampList = queryTimestampList;
 
   AllQueryStringTypesInputBuilder() {

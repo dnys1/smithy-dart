@@ -2,16 +2,21 @@
 
 library rest_json1.rest_json.model.malformed_byte_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_byte_input.g.dart';
 
 abstract class MalformedByteInput
-    with _i1.HttpInput<MalformedByteInputPayload>
-    implements Built<MalformedByteInput, MalformedByteInputBuilder> {
+    with
+        _i1.HttpInput<MalformedByteInputPayload>,
+        _i2.AWSEquatable<MalformedByteInput>
+    implements
+        Built<MalformedByteInput, MalformedByteInputBuilder>,
+        _i1.HasPayload<MalformedByteInputPayload> {
   factory MalformedByteInput(
           [void Function(MalformedByteInputBuilder) updates]) =
       _$MalformedByteInput;
@@ -37,13 +42,18 @@ abstract class MalformedByteInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedByteInputPayload getPayload() =>
       MalformedByteInputPayload((b) => b..byteInBody = byteInBody);
+  @override
+  List<Object?> get props =>
+      [byteInBody, byteInHeader, byteInPath, byteInQuery];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedByteInputPayload
+    with _i2.AWSEquatable<MalformedByteInputPayload>
     implements
         Built<MalformedByteInputPayload, MalformedByteInputPayloadBuilder> {
   factory MalformedByteInputPayload(
@@ -55,6 +65,8 @@ abstract class MalformedByteInputPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedByteInputPayloadBuilder b) {}
   int? get byteInBody;
+  @override
+  List<Object?> get props => [byteInBody];
 }
 
 class _MalformedByteInputRestJson1Serializer

@@ -23,6 +23,7 @@ class NoInputAndOutputOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.NoInputAndOutput')
         ])
   ];
@@ -31,12 +32,13 @@ class NoInputAndOutputOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.NoInputAndOutputOutput? output]) => 200;
   @override
   _i2.NoInputAndOutputOutput buildOutput(_i2.NoInputAndOutputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.NoInputAndOutputOutput();
+      _i2.NoInputAndOutputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

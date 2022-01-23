@@ -2,6 +2,7 @@
 
 library aws_json1_1.json_protocol.model.operation_with_optional_input_output_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'operation_with_optional_input_output_input.g.dart';
 
 abstract class OperationWithOptionalInputOutputInput
     with
-        _i1.HttpInput<OperationWithOptionalInputOutputInput>
+        _i1.HttpInput<OperationWithOptionalInputOutputInput>,
+        _i2.AWSEquatable<OperationWithOptionalInputOutputInput>
     implements
         Built<OperationWithOptionalInputOutputInput,
             OperationWithOptionalInputOutputInputBuilder> {
@@ -27,6 +29,10 @@ abstract class OperationWithOptionalInputOutputInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(OperationWithOptionalInputOutputInputBuilder b) {}
   String? get value;
+  @override
+  OperationWithOptionalInputOutputInput getPayload() => this;
+  @override
+  List<Object?> get props => [value];
 }
 
 class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i1

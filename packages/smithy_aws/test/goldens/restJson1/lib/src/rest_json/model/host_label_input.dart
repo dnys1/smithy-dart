@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.host_label_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,7 +10,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'host_label_input.g.dart';
 
 abstract class HostLabelInput
-    with _i1.HttpInput<HostLabelInput>
+    with _i1.HttpInput<HostLabelInput>, _i2.AWSEquatable<HostLabelInput>
     implements Built<HostLabelInput, HostLabelInputBuilder> {
   factory HostLabelInput([void Function(HostLabelInputBuilder) updates]) =
       _$HostLabelInput;
@@ -31,6 +32,11 @@ abstract class HostLabelInput
     }
     throw _i1.MissingLabelException(this, key);
   }
+
+  @override
+  HostLabelInput getPayload() => this;
+  @override
+  List<Object?> get props => [label];
 }
 
 class _HostLabelInputRestJson1Serializer

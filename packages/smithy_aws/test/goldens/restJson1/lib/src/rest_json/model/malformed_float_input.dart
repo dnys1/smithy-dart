@@ -2,16 +2,21 @@
 
 library rest_json1.rest_json.model.malformed_float_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_float_input.g.dart';
 
 abstract class MalformedFloatInput
-    with _i1.HttpInput<MalformedFloatInputPayload>
-    implements Built<MalformedFloatInput, MalformedFloatInputBuilder> {
+    with
+        _i1.HttpInput<MalformedFloatInputPayload>,
+        _i2.AWSEquatable<MalformedFloatInput>
+    implements
+        Built<MalformedFloatInput, MalformedFloatInputBuilder>,
+        _i1.HasPayload<MalformedFloatInputPayload> {
   factory MalformedFloatInput(
           [void Function(MalformedFloatInputBuilder) updates]) =
       _$MalformedFloatInput;
@@ -37,13 +42,18 @@ abstract class MalformedFloatInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedFloatInputPayload getPayload() =>
       MalformedFloatInputPayload((b) => b..floatInBody = floatInBody);
+  @override
+  List<Object?> get props =>
+      [floatInBody, floatInHeader, floatInPath, floatInQuery];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedFloatInputPayload
+    with _i2.AWSEquatable<MalformedFloatInputPayload>
     implements
         Built<MalformedFloatInputPayload, MalformedFloatInputPayloadBuilder> {
   factory MalformedFloatInputPayload(
@@ -55,6 +65,8 @@ abstract class MalformedFloatInputPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedFloatInputPayloadBuilder b) {}
   double? get floatInBody;
+  @override
+  List<Object?> get props => [floatInBody];
 }
 
 class _MalformedFloatInputRestJson1Serializer

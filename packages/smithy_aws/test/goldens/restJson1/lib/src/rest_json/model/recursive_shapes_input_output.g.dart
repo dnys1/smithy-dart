@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.recursive_shapes_input_output;
 
 class _$RecursiveShapesInputOutput extends RecursiveShapesInputOutput {
   @override
-  final _i2.RecursiveShapesInputOutputNested1? nested;
+  final _i3.RecursiveShapesInputOutputNested1? nested;
 
   factory _$RecursiveShapesInputOutput(
           [void Function(RecursiveShapesInputOutputBuilder)? updates]) =>
@@ -49,10 +49,10 @@ class RecursiveShapesInputOutputBuilder
         Builder<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder> {
   _$RecursiveShapesInputOutput? _$v;
 
-  _i2.RecursiveShapesInputOutputNested1Builder? _nested;
-  _i2.RecursiveShapesInputOutputNested1Builder get nested =>
-      _$this._nested ??= new _i2.RecursiveShapesInputOutputNested1Builder();
-  set nested(_i2.RecursiveShapesInputOutputNested1Builder? nested) =>
+  _i3.RecursiveShapesInputOutputNested1Builder? _nested;
+  _i3.RecursiveShapesInputOutputNested1Builder get nested =>
+      _$this._nested ??= new _i3.RecursiveShapesInputOutputNested1Builder();
+  set nested(_i3.RecursiveShapesInputOutputNested1Builder? nested) =>
       _$this._nested = nested;
 
   RecursiveShapesInputOutputBuilder() {

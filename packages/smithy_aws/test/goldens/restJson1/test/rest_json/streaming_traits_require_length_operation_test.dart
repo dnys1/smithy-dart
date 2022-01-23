@@ -175,6 +175,7 @@ class _StreamingTraitsRequireLengthInputOutputRestJson1Serializer extends _i4
       }
     }
 
+    result.blob ??= const _i6.Stream.empty();
     return result.build();
   }
 

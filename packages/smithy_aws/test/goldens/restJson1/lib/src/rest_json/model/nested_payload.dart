@@ -2,20 +2,22 @@
 
 library rest_json1.rest_json.model.nested_payload;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'nested_payload.g.dart';
 
 abstract class NestedPayload
+    with _i1.AWSEquatable<NestedPayload>
     implements Built<NestedPayload, NestedPayloadBuilder> {
   factory NestedPayload([void Function(NestedPayloadBuilder) updates]) =
       _$NestedPayload;
 
   const NestedPayload._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _NestedPayloadRestJson1Serializer()
   ];
 
@@ -23,17 +25,19 @@ abstract class NestedPayload
   static void _init(NestedPayloadBuilder b) {}
   String? get greeting;
   String? get name;
+  @override
+  List<Object?> get props => [greeting, name];
 }
 
 class _NestedPayloadRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<NestedPayload> {
+    extends _i2.StructuredSmithySerializer<NestedPayload> {
   const _NestedPayloadRestJson1Serializer() : super('NestedPayload');
 
   @override
   Iterable<Type> get types => const [NestedPayload, _$NestedPayload];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   NestedPayload deserialize(
       Serializers serializers, Iterable<Object?> serialized,

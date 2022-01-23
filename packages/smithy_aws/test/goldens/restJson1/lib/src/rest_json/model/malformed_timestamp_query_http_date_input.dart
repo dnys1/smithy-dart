@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.malformed_timestamp_query_http_date_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_timestamp_query_http_date_input.g.dart';
 
 abstract class MalformedTimestampQueryHttpDateInput
     with
-        _i1.HttpInput<MalformedTimestampQueryHttpDateInputPayload>
+        _i1.HttpInput<MalformedTimestampQueryHttpDateInputPayload>,
+        _i2.AWSEquatable<MalformedTimestampQueryHttpDateInput>
     implements
         Built<MalformedTimestampQueryHttpDateInput,
             MalformedTimestampQueryHttpDateInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<MalformedTimestampQueryHttpDateInputPayload> {
   factory MalformedTimestampQueryHttpDateInput(
       [void Function(MalformedTimestampQueryHttpDateInputBuilder)
           updates]) = _$MalformedTimestampQueryHttpDateInput;
@@ -29,13 +32,18 @@ abstract class MalformedTimestampQueryHttpDateInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampQueryHttpDateInputBuilder b) {}
   DateTime get timestamp;
+  @override
   MalformedTimestampQueryHttpDateInputPayload getPayload() =>
       MalformedTimestampQueryHttpDateInputPayload();
+  @override
+  List<Object?> get props => [timestamp];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampQueryHttpDateInputPayload
+    with
+        _i2.AWSEquatable<MalformedTimestampQueryHttpDateInputPayload>
     implements
         Built<MalformedTimestampQueryHttpDateInputPayload,
             MalformedTimestampQueryHttpDateInputPayloadBuilder>,
@@ -48,6 +56,8 @@ abstract class MalformedTimestampQueryHttpDateInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampQueryHttpDateInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _MalformedTimestampQueryHttpDateInputRestJson1Serializer extends _i1

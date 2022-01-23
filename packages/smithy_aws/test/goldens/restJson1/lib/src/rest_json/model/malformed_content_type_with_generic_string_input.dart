@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.malformed_content_type_with_generic_string_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,10 +11,12 @@ part 'malformed_content_type_with_generic_string_input.g.dart';
 
 abstract class MalformedContentTypeWithGenericStringInput
     with
-        _i1.HttpInput<String>
+        _i1.HttpInput<String>,
+        _i2.AWSEquatable<MalformedContentTypeWithGenericStringInput>
     implements
         Built<MalformedContentTypeWithGenericStringInput,
-            MalformedContentTypeWithGenericStringInputBuilder> {
+            MalformedContentTypeWithGenericStringInputBuilder>,
+        _i1.HasPayload<String> {
   factory MalformedContentTypeWithGenericStringInput(
       [void Function(MalformedContentTypeWithGenericStringInputBuilder)
           updates]) = _$MalformedContentTypeWithGenericStringInput;
@@ -27,7 +30,10 @@ abstract class MalformedContentTypeWithGenericStringInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedContentTypeWithGenericStringInputBuilder b) {}
   String? get payload;
+  @override
   String? getPayload() => payload;
+  @override
+  List<Object?> get props => [payload];
 }
 
 class _MalformedContentTypeWithGenericStringInputRestJson1Serializer
@@ -57,6 +63,6 @@ class _MalformedContentTypeWithGenericStringInputRestJson1Serializer
         ? object.getPayload()
         : (object as String?);
     return (serializers.serialize(payload,
-        specifiedType: const FullType.nullable(String)) as Object);
+        specifiedType: const FullType(String)) as Object);
   }
 }

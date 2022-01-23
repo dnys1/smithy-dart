@@ -2,41 +2,61 @@
 
 library rest_json1.rest_json.model.media_type_header_output;
 
+import 'dart:convert' as _i4;
+
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
-import 'package:built_value/json_object.dart' as _i2;
+import 'package:built_value/json_object.dart' as _i3;
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:meta/meta.dart' as _i5;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'media_type_header_output.g.dart';
 
 abstract class MediaTypeHeaderOutput
+    with _i1.AWSEquatable<MediaTypeHeaderOutput>
     implements
         Built<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload,
+        _i2.HasPayload<MediaTypeHeaderOutputPayload> {
   factory MediaTypeHeaderOutput(
           [void Function(MediaTypeHeaderOutputBuilder) updates]) =
       _$MediaTypeHeaderOutput;
 
   const MediaTypeHeaderOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory MediaTypeHeaderOutput.fromResponse(
+          MediaTypeHeaderOutputPayload payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      MediaTypeHeaderOutput((b) {
+        if (response.headers['X-Json'] != null) {
+          b.json = _i3.JsonObject(_i4.jsonDecode(
+              _i4.utf8.decode(_i4.base64Decode(response.headers['X-Json']!))));
+        }
+      });
+
+  static const List<_i2.SmithySerializer> serializers = [
     _MediaTypeHeaderOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MediaTypeHeaderOutputBuilder b) {}
-  _i2.JsonObject? get json;
+  _i3.JsonObject? get json;
+  @override
   MediaTypeHeaderOutputPayload getPayload() => MediaTypeHeaderOutputPayload();
+  @override
+  List<Object?> get props => [json];
 }
 
-@_i3.internal
+@_i5.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MediaTypeHeaderOutputPayload
+    with
+        _i1.AWSEquatable<MediaTypeHeaderOutputPayload>
     implements
         Built<MediaTypeHeaderOutputPayload,
             MediaTypeHeaderOutputPayloadBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload {
   factory MediaTypeHeaderOutputPayload(
           [void Function(MediaTypeHeaderOutputPayloadBuilder) updates]) =
       _$MediaTypeHeaderOutputPayload;
@@ -45,10 +65,12 @@ abstract class MediaTypeHeaderOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MediaTypeHeaderOutputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _MediaTypeHeaderOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<MediaTypeHeaderOutputPayload> {
+    extends _i2.StructuredSmithySerializer<MediaTypeHeaderOutputPayload> {
   const _MediaTypeHeaderOutputRestJson1Serializer()
       : super('MediaTypeHeaderOutput');
 
@@ -60,8 +82,8 @@ class _MediaTypeHeaderOutputRestJson1Serializer
         _$MediaTypeHeaderOutputPayload
       ];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   MediaTypeHeaderOutputPayload deserialize(
       Serializers serializers, Iterable<Object?> serialized,

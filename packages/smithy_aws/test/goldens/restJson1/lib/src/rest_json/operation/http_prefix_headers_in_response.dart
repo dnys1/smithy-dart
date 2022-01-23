@@ -27,7 +27,11 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -35,15 +39,14 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = '/HttpPrefixHeadersResponse';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.HttpPrefixHeadersInResponseOutput? output]) => 200;
   @override
   _i3.HttpPrefixHeadersInResponseOutput buildOutput(
           _i3.HttpPrefixHeadersInResponseOutputPayload payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.HttpPrefixHeadersInResponseOutput((b) {
-        b.prefixHeaders.addEntries(response.headers.entries);
-      });
+      _i3.HttpPrefixHeadersInResponseOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

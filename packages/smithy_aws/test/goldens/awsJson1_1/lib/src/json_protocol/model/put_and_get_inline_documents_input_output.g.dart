@@ -9,7 +9,7 @@ part of aws_json1_1.json_protocol.model.put_and_get_inline_documents_input_outpu
 class _$PutAndGetInlineDocumentsInputOutput
     extends PutAndGetInlineDocumentsInputOutput {
   @override
-  final _i2.JsonObject? inlineDocument;
+  final _i3.JsonObject? inlineDocument;
 
   factory _$PutAndGetInlineDocumentsInputOutput(
           [void Function(PutAndGetInlineDocumentsInputOutputBuilder)?
@@ -54,9 +54,9 @@ class PutAndGetInlineDocumentsInputOutputBuilder
             PutAndGetInlineDocumentsInputOutputBuilder> {
   _$PutAndGetInlineDocumentsInputOutput? _$v;
 
-  _i2.JsonObject? _inlineDocument;
-  _i2.JsonObject? get inlineDocument => _$this._inlineDocument;
-  set inlineDocument(_i2.JsonObject? inlineDocument) =>
+  _i3.JsonObject? _inlineDocument;
+  _i3.JsonObject? get inlineDocument => _$this._inlineDocument;
+  set inlineDocument(_i3.JsonObject? inlineDocument) =>
       _$this._inlineDocument = inlineDocument;
 
   PutAndGetInlineDocumentsInputOutputBuilder() {

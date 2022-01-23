@@ -2,32 +2,40 @@
 
 library rest_json1.rest_json.model.no_input_and_output_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'no_input_and_output_output.g.dart';
 
 abstract class NoInputAndOutputOutput
+    with _i1.AWSEquatable<NoInputAndOutputOutput>
     implements
         Built<NoInputAndOutputOutput, NoInputAndOutputOutputBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload {
   factory NoInputAndOutputOutput(
           [void Function(NoInputAndOutputOutputBuilder) updates]) =
       _$NoInputAndOutputOutput;
 
   const NoInputAndOutputOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory NoInputAndOutputOutput.fromResponse(NoInputAndOutputOutput payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      payload;
+
+  static const List<_i2.SmithySerializer> serializers = [
     _NoInputAndOutputOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(NoInputAndOutputOutputBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _NoInputAndOutputOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<NoInputAndOutputOutput> {
+    extends _i2.StructuredSmithySerializer<NoInputAndOutputOutput> {
   const _NoInputAndOutputOutputRestJson1Serializer()
       : super('NoInputAndOutputOutput');
 
@@ -35,8 +43,8 @@ class _NoInputAndOutputOutputRestJson1Serializer
   Iterable<Type> get types =>
       const [NoInputAndOutputOutput, _$NoInputAndOutputOutput];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   NoInputAndOutputOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,

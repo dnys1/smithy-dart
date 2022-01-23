@@ -2,19 +2,23 @@
 
 library rest_json1.rest_json.model.query_precedence_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'query_precedence_input.g.dart';
 
 abstract class QueryPrecedenceInput
-    with _i1.HttpInput<QueryPrecedenceInputPayload>
+    with
+        _i1.HttpInput<QueryPrecedenceInputPayload>,
+        _i2.AWSEquatable<QueryPrecedenceInput>
     implements
         Built<QueryPrecedenceInput, QueryPrecedenceInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<QueryPrecedenceInputPayload> {
   factory QueryPrecedenceInput(
           [void Function(QueryPrecedenceInputBuilder) updates]) =
       _$QueryPrecedenceInput;
@@ -27,14 +31,18 @@ abstract class QueryPrecedenceInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(QueryPrecedenceInputBuilder b) {}
-  _i2.BuiltMap<String, String>? get baz;
+  _i3.BuiltMap<String, String>? get baz;
   String? get foo;
+  @override
   QueryPrecedenceInputPayload getPayload() => QueryPrecedenceInputPayload();
+  @override
+  List<Object?> get props => [baz, foo];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class QueryPrecedenceInputPayload
+    with _i2.AWSEquatable<QueryPrecedenceInputPayload>
     implements
         Built<QueryPrecedenceInputPayload, QueryPrecedenceInputPayloadBuilder>,
         _i1.EmptyPayload {
@@ -46,6 +54,8 @@ abstract class QueryPrecedenceInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(QueryPrecedenceInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _QueryPrecedenceInputRestJson1Serializer

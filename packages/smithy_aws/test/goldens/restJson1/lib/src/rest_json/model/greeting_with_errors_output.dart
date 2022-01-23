@@ -2,41 +2,58 @@
 
 library rest_json1.rest_json.model.greeting_with_errors_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:meta/meta.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'greeting_with_errors_output.g.dart';
 
 abstract class GreetingWithErrorsOutput
+    with _i1.AWSEquatable<GreetingWithErrorsOutput>
     implements
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload,
+        _i2.HasPayload<GreetingWithErrorsOutputPayload> {
   factory GreetingWithErrorsOutput(
           [void Function(GreetingWithErrorsOutputBuilder) updates]) =
       _$GreetingWithErrorsOutput;
 
   const GreetingWithErrorsOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory GreetingWithErrorsOutput.fromResponse(
+          GreetingWithErrorsOutputPayload payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      GreetingWithErrorsOutput((b) {
+        if (response.headers['X-Greeting'] != null) {
+          b.greeting = response.headers['X-Greeting']!;
+        }
+      });
+
+  static const List<_i2.SmithySerializer> serializers = [
     _GreetingWithErrorsOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
+  @override
   GreetingWithErrorsOutputPayload getPayload() =>
       GreetingWithErrorsOutputPayload();
+  @override
+  List<Object?> get props => [greeting];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class GreetingWithErrorsOutputPayload
+    with
+        _i1.AWSEquatable<GreetingWithErrorsOutputPayload>
     implements
         Built<GreetingWithErrorsOutputPayload,
             GreetingWithErrorsOutputPayloadBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload {
   factory GreetingWithErrorsOutputPayload(
           [void Function(GreetingWithErrorsOutputPayloadBuilder) updates]) =
       _$GreetingWithErrorsOutputPayload;
@@ -45,10 +62,12 @@ abstract class GreetingWithErrorsOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsOutputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _GreetingWithErrorsOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<GreetingWithErrorsOutputPayload> {
+    extends _i2.StructuredSmithySerializer<GreetingWithErrorsOutputPayload> {
   const _GreetingWithErrorsOutputRestJson1Serializer()
       : super('GreetingWithErrorsOutput');
 
@@ -60,8 +79,8 @@ class _GreetingWithErrorsOutputRestJson1Serializer
         _$GreetingWithErrorsOutputPayload
       ];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   GreetingWithErrorsOutputPayload deserialize(
       Serializers serializers, Iterable<Object?> serialized,

@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.malformed_set_input;
 
 class _$MalformedSetInput extends MalformedSetInput {
   @override
-  final _i2.BuiltSet<String>? set;
+  final _i3.BuiltSet<String>? set;
 
   factory _$MalformedSetInput(
           [void Function(MalformedSetInputBuilder)? updates]) =>
@@ -46,10 +46,10 @@ class MalformedSetInputBuilder
     implements Builder<MalformedSetInput, MalformedSetInputBuilder> {
   _$MalformedSetInput? _$v;
 
-  _i2.SetBuilder<String>? _set;
-  _i2.SetBuilder<String> get set =>
-      _$this._set ??= new _i2.SetBuilder<String>();
-  set set(_i2.SetBuilder<String>? set) => _$this._set = set;
+  _i3.SetBuilder<String>? _set;
+  _i3.SetBuilder<String> get set =>
+      _$this._set ??= new _i3.SetBuilder<String>();
+  set set(_i3.SetBuilder<String>? set) => _$this._set = set;
 
   MalformedSetInputBuilder() {
     MalformedSetInput._init(this);

@@ -335,10 +335,7 @@ extension StructureShapeUtil on StructureShape {
   bool hasPayload(CodegenContext context) =>
       (isInputShape || isOutputShape || isError) &&
       (metadataMembers(context).isNotEmpty ||
-          members.values.firstWhereOrNull((shape) {
-                return shape.hasTrait<HttpPayloadTrait>();
-              }) !=
-              null);
+          members.values.any((shape) => shape.hasTrait<HttpPayloadTrait>()));
 
   /// Whether the structure needs a payload struct.
   bool hasBuiltPayload(CodegenContext context) =>

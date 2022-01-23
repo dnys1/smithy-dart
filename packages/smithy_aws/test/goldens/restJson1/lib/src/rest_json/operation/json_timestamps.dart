@@ -27,7 +27,7 @@ class JsonTimestampsOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -35,13 +35,14 @@ class JsonTimestampsOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/JsonTimestamps';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.JsonTimestampsInputOutput? output]) => 200;
   @override
   _i2.JsonTimestampsInputOutput buildOutput(
           _i2.JsonTimestampsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.JsonTimestampsInputOutput((b) {});
+      _i2.JsonTimestampsInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

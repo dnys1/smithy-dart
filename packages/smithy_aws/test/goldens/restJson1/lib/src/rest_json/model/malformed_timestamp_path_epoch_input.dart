@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.malformed_timestamp_path_epoch_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_timestamp_path_epoch_input.g.dart';
 
 abstract class MalformedTimestampPathEpochInput
     with
-        _i1.HttpInput<MalformedTimestampPathEpochInputPayload>
+        _i1.HttpInput<MalformedTimestampPathEpochInputPayload>,
+        _i2.AWSEquatable<MalformedTimestampPathEpochInput>
     implements
         Built<MalformedTimestampPathEpochInput,
             MalformedTimestampPathEpochInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<MalformedTimestampPathEpochInputPayload> {
   factory MalformedTimestampPathEpochInput(
           [void Function(MalformedTimestampPathEpochInputBuilder) updates]) =
       _$MalformedTimestampPathEpochInput;
@@ -40,13 +43,18 @@ abstract class MalformedTimestampPathEpochInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedTimestampPathEpochInputPayload getPayload() =>
       MalformedTimestampPathEpochInputPayload();
+  @override
+  List<Object?> get props => [timestamp];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampPathEpochInputPayload
+    with
+        _i2.AWSEquatable<MalformedTimestampPathEpochInputPayload>
     implements
         Built<MalformedTimestampPathEpochInputPayload,
             MalformedTimestampPathEpochInputPayloadBuilder>,
@@ -59,6 +67,8 @@ abstract class MalformedTimestampPathEpochInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampPathEpochInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _MalformedTimestampPathEpochInputRestJson1Serializer extends _i1

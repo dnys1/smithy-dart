@@ -5,7 +5,6 @@ library rest_json1.rest_json.operation.media_type_header;
 import 'dart:convert' as _i6;
 
 import 'package:aws_common/aws_common.dart' as _i7;
-import 'package:built_value/json_object.dart' as _i8;
 import 'package:rest_json1/src/rest_json/model/media_type_header_input.dart'
     as _i2;
 import 'package:rest_json1/src/rest_json/model/media_type_header_output.dart'
@@ -30,7 +29,11 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -38,20 +41,18 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = '/MediaTypeHeader';
-        b.successCode = 200;
         if (input.json != null) {
-          b.headers['X-Json'] = _i6.jsonEncode(input.json!.value);
+          b.headers['X-Json'] = _i6
+              .base64Encode(_i6.utf8.encode(_i6.jsonEncode(input.json!.value)));
         }
       });
+  @override
+  int successCode([_i3.MediaTypeHeaderOutput? output]) => 200;
   @override
   _i3.MediaTypeHeaderOutput buildOutput(
           _i3.MediaTypeHeaderOutputPayload payload,
           _i7.AWSStreamedHttpResponse response) =>
-      _i3.MediaTypeHeaderOutput((b) {
-        if (response.headers['X-Json'] != null) {
-          b.json = _i8.JsonObject(_i6.jsonDecode(response.headers['X-Json']!));
-        }
-      });
+      _i3.MediaTypeHeaderOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

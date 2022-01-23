@@ -31,6 +31,7 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.EmptyInputAndEmptyOutput')
         ])
@@ -41,13 +42,14 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.EmptyInputAndEmptyOutputOutput? output]) => 200;
   @override
   _i3.EmptyInputAndEmptyOutputOutput buildOutput(
           _i3.EmptyInputAndEmptyOutputOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.EmptyInputAndEmptyOutputOutput();
+      _i3.EmptyInputAndEmptyOutputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

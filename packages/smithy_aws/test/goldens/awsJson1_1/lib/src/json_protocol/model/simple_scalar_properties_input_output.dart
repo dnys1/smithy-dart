@@ -2,6 +2,7 @@
 
 library aws_json1_1.json_protocol.model.simple_scalar_properties_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'simple_scalar_properties_input_output.g.dart';
 
 abstract class SimpleScalarPropertiesInputOutput
     with
-        _i1.HttpInput<SimpleScalarPropertiesInputOutput>
+        _i1.HttpInput<SimpleScalarPropertiesInputOutput>,
+        _i2.AWSEquatable<SimpleScalarPropertiesInputOutput>
     implements
         Built<SimpleScalarPropertiesInputOutput,
             SimpleScalarPropertiesInputOutputBuilder> {
@@ -20,6 +22,11 @@ abstract class SimpleScalarPropertiesInputOutput
 
   const SimpleScalarPropertiesInputOutput._();
 
+  factory SimpleScalarPropertiesInputOutput.fromResponse(
+          SimpleScalarPropertiesInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
   ];
@@ -28,6 +35,10 @@ abstract class SimpleScalarPropertiesInputOutput
   static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
+  @override
+  SimpleScalarPropertiesInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [doubleValue, floatValue];
 }
 
 class _SimpleScalarPropertiesInputOutputAwsJson11Serializer

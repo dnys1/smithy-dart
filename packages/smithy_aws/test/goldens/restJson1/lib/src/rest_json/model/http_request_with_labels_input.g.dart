@@ -16,7 +16,7 @@ class _$HttpRequestWithLabelsInput extends HttpRequestWithLabelsInput {
   @override
   final int integer;
   @override
-  final _i2.Int64 long;
+  final _i3.Int64 long;
   @override
   final int short;
   @override
@@ -131,9 +131,9 @@ class HttpRequestWithLabelsInputBuilder
   int? get integer => _$this._integer;
   set integer(int? integer) => _$this._integer = integer;
 
-  _i2.Int64? _long;
-  _i2.Int64? get long => _$this._long;
-  set long(_i2.Int64? long) => _$this._long = long;
+  _i3.Int64? _long;
+  _i3.Int64? get long => _$this._long;
+  set long(_i3.Int64? long) => _$this._long = long;
 
   int? _short;
   int? get short => _$this._short;

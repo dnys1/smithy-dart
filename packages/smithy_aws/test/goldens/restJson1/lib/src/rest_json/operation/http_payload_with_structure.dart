@@ -29,7 +29,7 @@ class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -37,16 +37,13 @@ class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = '/HttpPayloadWithStructure';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.HttpPayloadWithStructureInputOutput? output]) => 200;
   @override
   _i3.HttpPayloadWithStructureInputOutput buildOutput(
           _i2.NestedPayload? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.HttpPayloadWithStructureInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i3.HttpPayloadWithStructureInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -2,7 +2,8 @@
 
 library aws_json1_0.json_rpc10.model.json_unions_input;
 
-import 'package:aws_json1_0/src/json_rpc10/model/my_union.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_json1_0/src/json_rpc10/model/my_union.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'json_unions_input.g.dart';
 
 abstract class JsonUnionsInput
-    with _i1.HttpInput<JsonUnionsInput>
+    with _i1.HttpInput<JsonUnionsInput>, _i2.AWSEquatable<JsonUnionsInput>
     implements Built<JsonUnionsInput, JsonUnionsInputBuilder> {
   factory JsonUnionsInput([void Function(JsonUnionsInputBuilder) updates]) =
       _$JsonUnionsInput;
@@ -23,7 +24,11 @@ abstract class JsonUnionsInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(JsonUnionsInputBuilder b) {}
-  _i2.MyUnion? get contents;
+  _i3.MyUnion? get contents;
+  @override
+  JsonUnionsInput getPayload() => this;
+  @override
+  List<Object?> get props => [contents];
 }
 
 class _JsonUnionsInputAwsJson10Serializer
@@ -49,7 +54,7 @@ class _JsonUnionsInputAwsJson10Serializer
         case 'contents':
           if (value != null) {
             result.contents = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.MyUnion)) as _i2.MyUnion);
+                specifiedType: const FullType(_i3.MyUnion)) as _i3.MyUnion);
           }
           break;
       }
@@ -67,7 +72,7 @@ class _JsonUnionsInputAwsJson10Serializer
       result
         ..add('contents')
         ..add(serializers.serialize(payload.contents,
-            specifiedType: const FullType.nullable(_i2.MyUnion)));
+            specifiedType: const FullType.nullable(_i3.MyUnion)));
     }
     return result;
   }

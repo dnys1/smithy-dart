@@ -27,6 +27,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.SimpleScalarProperties')
         ])
@@ -37,13 +38,14 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.SimpleScalarPropertiesOutput? output]) => 200;
   @override
   _i3.SimpleScalarPropertiesOutput buildOutput(
           _i3.SimpleScalarPropertiesOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.SimpleScalarPropertiesOutput((b) {});
+      _i3.SimpleScalarPropertiesOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

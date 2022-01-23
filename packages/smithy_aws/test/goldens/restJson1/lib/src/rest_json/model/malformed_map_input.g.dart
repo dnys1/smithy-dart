@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.malformed_map_input;
 
 class _$MalformedMapInput extends MalformedMapInput {
   @override
-  final _i2.BuiltMap<String, String>? bodyMap;
+  final _i3.BuiltMap<String, String>? bodyMap;
 
   factory _$MalformedMapInput(
           [void Function(MalformedMapInputBuilder)? updates]) =>
@@ -47,10 +47,10 @@ class MalformedMapInputBuilder
     implements Builder<MalformedMapInput, MalformedMapInputBuilder> {
   _$MalformedMapInput? _$v;
 
-  _i2.MapBuilder<String, String>? _bodyMap;
-  _i2.MapBuilder<String, String> get bodyMap =>
-      _$this._bodyMap ??= new _i2.MapBuilder<String, String>();
-  set bodyMap(_i2.MapBuilder<String, String>? bodyMap) =>
+  _i3.MapBuilder<String, String>? _bodyMap;
+  _i3.MapBuilder<String, String> get bodyMap =>
+      _$this._bodyMap ??= new _i3.MapBuilder<String, String>();
+  set bodyMap(_i3.MapBuilder<String, String>? bodyMap) =>
       _$this._bodyMap = bodyMap;
 
   MalformedMapInputBuilder() {

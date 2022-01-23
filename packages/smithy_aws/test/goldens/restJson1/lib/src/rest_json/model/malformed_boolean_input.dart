@@ -2,16 +2,21 @@
 
 library rest_json1.rest_json.model.malformed_boolean_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_boolean_input.g.dart';
 
 abstract class MalformedBooleanInput
-    with _i1.HttpInput<MalformedBooleanInputPayload>
-    implements Built<MalformedBooleanInput, MalformedBooleanInputBuilder> {
+    with
+        _i1.HttpInput<MalformedBooleanInputPayload>,
+        _i2.AWSEquatable<MalformedBooleanInput>
+    implements
+        Built<MalformedBooleanInput, MalformedBooleanInputBuilder>,
+        _i1.HasPayload<MalformedBooleanInputPayload> {
   factory MalformedBooleanInput(
           [void Function(MalformedBooleanInputBuilder) updates]) =
       _$MalformedBooleanInput;
@@ -37,13 +42,19 @@ abstract class MalformedBooleanInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedBooleanInputPayload getPayload() =>
       MalformedBooleanInputPayload((b) => b..booleanInBody = booleanInBody);
+  @override
+  List<Object?> get props =>
+      [booleanInBody, booleanInHeader, booleanInPath, booleanInQuery];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedBooleanInputPayload
+    with
+        _i2.AWSEquatable<MalformedBooleanInputPayload>
     implements
         Built<MalformedBooleanInputPayload,
             MalformedBooleanInputPayloadBuilder> {
@@ -56,6 +67,8 @@ abstract class MalformedBooleanInputPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedBooleanInputPayloadBuilder b) {}
   bool? get booleanInBody;
+  @override
+  List<Object?> get props => [booleanInBody];
 }
 
 class _MalformedBooleanInputRestJson1Serializer

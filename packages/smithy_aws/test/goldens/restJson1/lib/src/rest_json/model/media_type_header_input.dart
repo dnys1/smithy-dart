@@ -2,19 +2,23 @@
 
 library rest_json1.rest_json.model.media_type_header_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
-import 'package:built_value/json_object.dart' as _i2;
+import 'package:built_value/json_object.dart' as _i3;
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'media_type_header_input.g.dart';
 
 abstract class MediaTypeHeaderInput
-    with _i1.HttpInput<MediaTypeHeaderInputPayload>
+    with
+        _i1.HttpInput<MediaTypeHeaderInputPayload>,
+        _i2.AWSEquatable<MediaTypeHeaderInput>
     implements
         Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<MediaTypeHeaderInputPayload> {
   factory MediaTypeHeaderInput(
           [void Function(MediaTypeHeaderInputBuilder) updates]) =
       _$MediaTypeHeaderInput;
@@ -27,13 +31,17 @@ abstract class MediaTypeHeaderInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MediaTypeHeaderInputBuilder b) {}
-  _i2.JsonObject? get json;
+  _i3.JsonObject? get json;
+  @override
   MediaTypeHeaderInputPayload getPayload() => MediaTypeHeaderInputPayload();
+  @override
+  List<Object?> get props => [json];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MediaTypeHeaderInputPayload
+    with _i2.AWSEquatable<MediaTypeHeaderInputPayload>
     implements
         Built<MediaTypeHeaderInputPayload, MediaTypeHeaderInputPayloadBuilder>,
         _i1.EmptyPayload {
@@ -45,6 +53,8 @@ abstract class MediaTypeHeaderInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MediaTypeHeaderInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _MediaTypeHeaderInputRestJson1Serializer

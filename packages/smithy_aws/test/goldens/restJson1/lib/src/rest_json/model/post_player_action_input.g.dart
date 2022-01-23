@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.post_player_action_input;
 
 class _$PostPlayerActionInput extends PostPlayerActionInput {
   @override
-  final _i2.PlayerAction action;
+  final _i3.PlayerAction action;
 
   factory _$PostPlayerActionInput(
           [void Function(PostPlayerActionInputBuilder)? updates]) =>
@@ -51,9 +51,9 @@ class PostPlayerActionInputBuilder
     implements Builder<PostPlayerActionInput, PostPlayerActionInputBuilder> {
   _$PostPlayerActionInput? _$v;
 
-  _i2.PlayerAction? _action;
-  _i2.PlayerAction? get action => _$this._action;
-  set action(_i2.PlayerAction? action) => _$this._action = action;
+  _i3.PlayerAction? _action;
+  _i3.PlayerAction? get action => _$this._action;
+  set action(_i3.PlayerAction? action) => _$this._action = action;
 
   PostPlayerActionInputBuilder() {
     PostPlayerActionInput._init(this);

@@ -25,7 +25,11 @@ class NullAndEmptyHeadersClientOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -33,33 +37,30 @@ class NullAndEmptyHeadersClientOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path = '/NullAndEmptyHeadersClient';
-        b.successCode = 200;
         if (input.a != null) {
-          b.headers['X-A'] = input.a!;
+          if (input.a!.isNotEmpty) {
+            b.headers['X-A'] = input.a!;
+          }
         }
         if (input.b != null) {
-          b.headers['X-B'] = input.b!;
+          if (input.b!.isNotEmpty) {
+            b.headers['X-B'] = input.b!;
+          }
         }
         if (input.c != null) {
-          b.headers['X-C'] = input.c!.map((el) => el).join(', ');
+          if (input.c!.isNotEmpty) {
+            b.headers['X-C'] =
+                input.c!.map((el) => _i1.sanitizeHeader(el)).join(', ');
+          }
         }
       });
+  @override
+  int successCode([_i2.NullAndEmptyHeadersIo? output]) => 200;
   @override
   _i2.NullAndEmptyHeadersIo buildOutput(
           _i2.NullAndEmptyHeadersIoPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.NullAndEmptyHeadersIo((b) {
-        if (response.headers['X-A'] != null) {
-          b.a = response.headers['X-A']!;
-        }
-        if (response.headers['X-B'] != null) {
-          b.b = response.headers['X-B']!;
-        }
-        if (response.headers['X-C'] != null) {
-          b.c.addAll(
-              response.headers['X-C']!.split(',').map((el) => el.trim()));
-        }
-      });
+      _i2.NullAndEmptyHeadersIo.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

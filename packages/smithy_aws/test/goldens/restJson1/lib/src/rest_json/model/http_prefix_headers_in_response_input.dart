@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.http_prefix_headers_in_response_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'http_prefix_headers_in_response_input.g.dart';
 
 abstract class HttpPrefixHeadersInResponseInput
     with
-        _i1.HttpInput<HttpPrefixHeadersInResponseInput>
+        _i1.HttpInput<HttpPrefixHeadersInResponseInput>,
+        _i2.AWSEquatable<HttpPrefixHeadersInResponseInput>
     implements
         Built<HttpPrefixHeadersInResponseInput,
             HttpPrefixHeadersInResponseInputBuilder>,
@@ -27,6 +29,10 @@ abstract class HttpPrefixHeadersInResponseInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPrefixHeadersInResponseInputBuilder b) {}
+  @override
+  HttpPrefixHeadersInResponseInput getPayload() => this;
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpPrefixHeadersInResponseInputRestJson1Serializer

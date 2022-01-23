@@ -2,13 +2,15 @@
 
 library aws_json1_1.json_protocol.model.struct_with_json_name;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'struct_with_json_name.g.dart';
 
 abstract class StructWithJsonName
+    with _i1.AWSEquatable<StructWithJsonName>
     implements Built<StructWithJsonName, StructWithJsonNameBuilder> {
   factory StructWithJsonName(
           [void Function(StructWithJsonNameBuilder) updates]) =
@@ -16,24 +18,26 @@ abstract class StructWithJsonName
 
   const StructWithJsonName._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _StructWithJsonNameAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(StructWithJsonNameBuilder b) {}
   String? get value;
+  @override
+  List<Object?> get props => [value];
 }
 
 class _StructWithJsonNameAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<StructWithJsonName> {
+    extends _i2.StructuredSmithySerializer<StructWithJsonName> {
   const _StructWithJsonNameAwsJson11Serializer() : super('StructWithJsonName');
 
   @override
   Iterable<Type> get types => const [StructWithJsonName, _$StructWithJsonName];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   StructWithJsonName deserialize(
       Serializers serializers, Iterable<Object?> serialized,

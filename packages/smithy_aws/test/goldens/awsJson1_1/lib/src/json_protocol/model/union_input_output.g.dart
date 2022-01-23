@@ -8,7 +8,7 @@ part of aws_json1_1.json_protocol.model.union_input_output;
 
 class _$UnionInputOutput extends UnionInputOutput {
   @override
-  final _i2.MyUnion? contents;
+  final _i3.MyUnion? contents;
 
   factory _$UnionInputOutput(
           [void Function(UnionInputOutputBuilder)? updates]) =>
@@ -47,9 +47,9 @@ class UnionInputOutputBuilder
     implements Builder<UnionInputOutput, UnionInputOutputBuilder> {
   _$UnionInputOutput? _$v;
 
-  _i2.MyUnion? _contents;
-  _i2.MyUnion? get contents => _$this._contents;
-  set contents(_i2.MyUnion? contents) => _$this._contents = contents;
+  _i3.MyUnion? _contents;
+  _i3.MyUnion? get contents => _$this._contents;
+  set contents(_i3.MyUnion? contents) => _$this._contents = contents;
 
   UnionInputOutputBuilder() {
     UnionInputOutput._init(this);

@@ -38,6 +38,7 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.GreetingWithErrors')
         ])
   ];
@@ -47,29 +48,33 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.GreetingWithErrorsOutput? output]) => 200;
   @override
   _i3.GreetingWithErrorsOutput buildOutput(_i3.GreetingWithErrorsOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.GreetingWithErrorsOutput((b) {});
+      _i3.GreetingWithErrorsOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.json10', shape: 'ComplexError'),
             _i1.ErrorKind.client,
-            _i7.ComplexError),
+            _i7.ComplexError,
+            builder: _i7.ComplexError.fromResponse),
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.json10', shape: 'FooError'),
             _i1.ErrorKind.server,
-            _i8.FooError),
+            _i8.FooError,
+            builder: _i8.FooError.fromResponse),
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.json10',
                 shape: 'InvalidGreeting'),
             _i1.ErrorKind.client,
-            _i9.InvalidGreeting)
+            _i9.InvalidGreeting,
+            builder: _i9.InvalidGreeting.fromResponse)
       ];
 }

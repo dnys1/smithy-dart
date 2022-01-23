@@ -24,7 +24,7 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -32,12 +32,13 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/PostPlayerInput';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.PostPlayerActionOutput? output]) => 200;
   @override
   _i3.PostPlayerActionOutput buildOutput(_i3.PostPlayerActionOutput payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.PostPlayerActionOutput((b) {});
+      _i3.PostPlayerActionOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

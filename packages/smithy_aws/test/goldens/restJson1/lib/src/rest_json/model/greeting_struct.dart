@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.greeting_struct;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,12 +10,16 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'greeting_struct.g.dart';
 
 abstract class GreetingStruct
-    with _i1.HttpInput<GreetingStruct>
+    with _i1.HttpInput<GreetingStruct>, _i2.AWSEquatable<GreetingStruct>
     implements Built<GreetingStruct, GreetingStructBuilder> {
   factory GreetingStruct([void Function(GreetingStructBuilder) updates]) =
       _$GreetingStruct;
 
   const GreetingStruct._();
+
+  factory GreetingStruct.fromResponse(
+          GreetingStruct payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _GreetingStructRestJson1Serializer()
@@ -23,6 +28,10 @@ abstract class GreetingStruct
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingStructBuilder b) {}
   String? get hi;
+  @override
+  GreetingStruct getPayload() => this;
+  @override
+  List<Object?> get props => [hi];
 }
 
 class _GreetingStructRestJson1Serializer

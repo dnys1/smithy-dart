@@ -2,23 +2,36 @@
 
 library rest_json1.rest_json.model.test_no_payload_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'test_no_payload_input_output.g.dart';
 
 abstract class TestNoPayloadInputOutput
-    with _i1.HttpInput<TestNoPayloadInputOutputPayload>
+    with
+        _i1.HttpInput<TestNoPayloadInputOutputPayload>,
+        _i2.AWSEquatable<TestNoPayloadInputOutput>
     implements
         Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<TestNoPayloadInputOutputPayload> {
   factory TestNoPayloadInputOutput(
           [void Function(TestNoPayloadInputOutputBuilder) updates]) =
       _$TestNoPayloadInputOutput;
 
   const TestNoPayloadInputOutput._();
+
+  factory TestNoPayloadInputOutput.fromResponse(
+          TestNoPayloadInputOutputPayload payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      TestNoPayloadInputOutput((b) {
+        if (response.headers['X-Amz-Test-Id'] != null) {
+          b.testId = response.headers['X-Amz-Test-Id']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestNoPayloadInputOutputRestJson1Serializer()
@@ -27,13 +40,18 @@ abstract class TestNoPayloadInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TestNoPayloadInputOutputBuilder b) {}
   String? get testId;
+  @override
   TestNoPayloadInputOutputPayload getPayload() =>
       TestNoPayloadInputOutputPayload();
+  @override
+  List<Object?> get props => [testId];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class TestNoPayloadInputOutputPayload
+    with
+        _i2.AWSEquatable<TestNoPayloadInputOutputPayload>
     implements
         Built<TestNoPayloadInputOutputPayload,
             TestNoPayloadInputOutputPayloadBuilder>,
@@ -46,6 +64,8 @@ abstract class TestNoPayloadInputOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TestNoPayloadInputOutputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _TestNoPayloadInputOutputRestJson1Serializer

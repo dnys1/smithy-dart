@@ -71,7 +71,10 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
         Code("case '${member.memberName}':"),
         refer(variantClassName(member))
             .newInstance([
-              deserializerFor(member).asA(memberSymbols[member]!.unboxed),
+              deserializerFor(
+                member,
+                memberSymbol: memberSymbols[member]!.unboxed,
+              ),
             ])
             .returned
             .statement,
@@ -106,10 +109,14 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
             member.dartName: Method(
               (m) => m
                 ..requiredParameters.add(Parameter((p) => p
-                  ..type = memberSymbols[member]!
+                  ..type = memberSymbols[member]!.unboxed
                   ..name = member.dartName))
                 ..lambda = true
-                ..body = serializerFor(member, refer(member.dartName)).code,
+                ..body = serializerFor(
+                  member,
+                  refer(member.dartName),
+                  memberSymbol: memberSymbols[member]!.unboxed,
+                ).code,
             ).closure,
 
           // Do not try to serialize the unknown type since

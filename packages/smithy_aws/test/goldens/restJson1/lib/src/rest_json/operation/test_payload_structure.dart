@@ -27,7 +27,7 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -35,22 +35,18 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/payload';
-        b.successCode = 200;
         if (input.testId != null) {
-          b.headers['x-amz-test-id'] = input.testId!;
+          if (input.testId!.isNotEmpty) {
+            b.headers['x-amz-test-id'] = input.testId!;
+          }
         }
       });
   @override
+  int successCode([_i3.TestPayloadStructureInputOutput? output]) => 200;
+  @override
   _i3.TestPayloadStructureInputOutput buildOutput(
           _i2.PayloadConfig? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.TestPayloadStructureInputOutput((b) {
-        if (payload != null) {
-          b.payloadConfig.replace(payload);
-        }
-        if (response.headers['x-amz-test-id'] != null) {
-          b.testId = response.headers['x-amz-test-id']!;
-        }
-      });
+      _i3.TestPayloadStructureInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

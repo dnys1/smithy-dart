@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.malformed_timestamp_path_http_date_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_timestamp_path_http_date_input.g.dart';
 
 abstract class MalformedTimestampPathHttpDateInput
     with
-        _i1.HttpInput<MalformedTimestampPathHttpDateInputPayload>
+        _i1.HttpInput<MalformedTimestampPathHttpDateInputPayload>,
+        _i2.AWSEquatable<MalformedTimestampPathHttpDateInput>
     implements
         Built<MalformedTimestampPathHttpDateInput,
             MalformedTimestampPathHttpDateInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<MalformedTimestampPathHttpDateInputPayload> {
   factory MalformedTimestampPathHttpDateInput(
           [void Function(MalformedTimestampPathHttpDateInputBuilder) updates]) =
       _$MalformedTimestampPathHttpDateInput;
@@ -40,13 +43,18 @@ abstract class MalformedTimestampPathHttpDateInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedTimestampPathHttpDateInputPayload getPayload() =>
       MalformedTimestampPathHttpDateInputPayload();
+  @override
+  List<Object?> get props => [timestamp];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampPathHttpDateInputPayload
+    with
+        _i2.AWSEquatable<MalformedTimestampPathHttpDateInputPayload>
     implements
         Built<MalformedTimestampPathHttpDateInputPayload,
             MalformedTimestampPathHttpDateInputPayloadBuilder>,
@@ -59,6 +67,8 @@ abstract class MalformedTimestampPathHttpDateInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampPathHttpDateInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _MalformedTimestampPathHttpDateInputRestJson1Serializer extends _i1

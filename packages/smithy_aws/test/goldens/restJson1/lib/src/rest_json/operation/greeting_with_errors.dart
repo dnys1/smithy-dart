@@ -31,24 +31,25 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = '/GreetingWithErrors';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.GreetingWithErrorsOutput? output]) => 200;
   @override
   _i2.GreetingWithErrorsOutput buildOutput(
           _i2.GreetingWithErrorsOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.GreetingWithErrorsOutput((b) {
-        if (response.headers['X-Greeting'] != null) {
-          b.greeting = response.headers['X-Greeting']!;
-        }
-      });
+      _i2.GreetingWithErrorsOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
         _i1.SmithyError(
@@ -56,19 +57,22 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
                 namespace: 'aws.protocoltests.restjson', shape: 'ComplexError'),
             _i1.ErrorKind.client,
             _i6.ComplexError,
-            statusCode: 403),
+            statusCode: 403,
+            builder: _i6.ComplexError.fromResponse),
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.restjson', shape: 'FooError'),
             _i1.ErrorKind.server,
             _i7.FooError,
-            statusCode: 500),
+            statusCode: 500,
+            builder: _i7.FooError.fromResponse),
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.restjson',
                 shape: 'InvalidGreeting'),
             _i1.ErrorKind.client,
             _i8.InvalidGreeting,
-            statusCode: 400)
+            statusCode: 400,
+            builder: _i8.InvalidGreeting.fromResponse)
       ];
 }

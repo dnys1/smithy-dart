@@ -8,17 +8,17 @@ part of aws_json1_1.json_protocol.model.json_enums_input_output;
 
 class _$JsonEnumsInputOutput extends JsonEnumsInputOutput {
   @override
-  final _i2.FooEnum? fooEnum1;
+  final _i3.FooEnum? fooEnum1;
   @override
-  final _i2.FooEnum? fooEnum2;
+  final _i3.FooEnum? fooEnum2;
   @override
-  final _i2.FooEnum? fooEnum3;
+  final _i3.FooEnum? fooEnum3;
   @override
-  final _i3.BuiltList<_i2.FooEnum>? fooEnumList;
+  final _i4.BuiltList<_i3.FooEnum>? fooEnumList;
   @override
-  final _i3.BuiltMap<String, _i2.FooEnum>? fooEnumMap;
+  final _i4.BuiltMap<String, _i3.FooEnum>? fooEnumMap;
   @override
-  final _i3.BuiltSet<_i2.FooEnum>? fooEnumSet;
+  final _i4.BuiltSet<_i3.FooEnum>? fooEnumSet;
 
   factory _$JsonEnumsInputOutput(
           [void Function(JsonEnumsInputOutputBuilder)? updates]) =>
@@ -83,34 +83,34 @@ class JsonEnumsInputOutputBuilder
     implements Builder<JsonEnumsInputOutput, JsonEnumsInputOutputBuilder> {
   _$JsonEnumsInputOutput? _$v;
 
-  _i2.FooEnum? _fooEnum1;
-  _i2.FooEnum? get fooEnum1 => _$this._fooEnum1;
-  set fooEnum1(_i2.FooEnum? fooEnum1) => _$this._fooEnum1 = fooEnum1;
+  _i3.FooEnum? _fooEnum1;
+  _i3.FooEnum? get fooEnum1 => _$this._fooEnum1;
+  set fooEnum1(_i3.FooEnum? fooEnum1) => _$this._fooEnum1 = fooEnum1;
 
-  _i2.FooEnum? _fooEnum2;
-  _i2.FooEnum? get fooEnum2 => _$this._fooEnum2;
-  set fooEnum2(_i2.FooEnum? fooEnum2) => _$this._fooEnum2 = fooEnum2;
+  _i3.FooEnum? _fooEnum2;
+  _i3.FooEnum? get fooEnum2 => _$this._fooEnum2;
+  set fooEnum2(_i3.FooEnum? fooEnum2) => _$this._fooEnum2 = fooEnum2;
 
-  _i2.FooEnum? _fooEnum3;
-  _i2.FooEnum? get fooEnum3 => _$this._fooEnum3;
-  set fooEnum3(_i2.FooEnum? fooEnum3) => _$this._fooEnum3 = fooEnum3;
+  _i3.FooEnum? _fooEnum3;
+  _i3.FooEnum? get fooEnum3 => _$this._fooEnum3;
+  set fooEnum3(_i3.FooEnum? fooEnum3) => _$this._fooEnum3 = fooEnum3;
 
-  _i3.ListBuilder<_i2.FooEnum>? _fooEnumList;
-  _i3.ListBuilder<_i2.FooEnum> get fooEnumList =>
-      _$this._fooEnumList ??= new _i3.ListBuilder<_i2.FooEnum>();
-  set fooEnumList(_i3.ListBuilder<_i2.FooEnum>? fooEnumList) =>
+  _i4.ListBuilder<_i3.FooEnum>? _fooEnumList;
+  _i4.ListBuilder<_i3.FooEnum> get fooEnumList =>
+      _$this._fooEnumList ??= new _i4.ListBuilder<_i3.FooEnum>();
+  set fooEnumList(_i4.ListBuilder<_i3.FooEnum>? fooEnumList) =>
       _$this._fooEnumList = fooEnumList;
 
-  _i3.MapBuilder<String, _i2.FooEnum>? _fooEnumMap;
-  _i3.MapBuilder<String, _i2.FooEnum> get fooEnumMap =>
-      _$this._fooEnumMap ??= new _i3.MapBuilder<String, _i2.FooEnum>();
-  set fooEnumMap(_i3.MapBuilder<String, _i2.FooEnum>? fooEnumMap) =>
+  _i4.MapBuilder<String, _i3.FooEnum>? _fooEnumMap;
+  _i4.MapBuilder<String, _i3.FooEnum> get fooEnumMap =>
+      _$this._fooEnumMap ??= new _i4.MapBuilder<String, _i3.FooEnum>();
+  set fooEnumMap(_i4.MapBuilder<String, _i3.FooEnum>? fooEnumMap) =>
       _$this._fooEnumMap = fooEnumMap;
 
-  _i3.SetBuilder<_i2.FooEnum>? _fooEnumSet;
-  _i3.SetBuilder<_i2.FooEnum> get fooEnumSet =>
-      _$this._fooEnumSet ??= new _i3.SetBuilder<_i2.FooEnum>();
-  set fooEnumSet(_i3.SetBuilder<_i2.FooEnum>? fooEnumSet) =>
+  _i4.SetBuilder<_i3.FooEnum>? _fooEnumSet;
+  _i4.SetBuilder<_i3.FooEnum> get fooEnumSet =>
+      _$this._fooEnumSet ??= new _i4.SetBuilder<_i3.FooEnum>();
+  set fooEnumSet(_i4.SetBuilder<_i3.FooEnum>? fooEnumSet) =>
       _$this._fooEnumSet = fooEnumSet;
 
   JsonEnumsInputOutputBuilder() {

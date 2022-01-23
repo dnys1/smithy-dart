@@ -2,19 +2,23 @@
 
 library rest_json1.rest_json.model.http_prefix_headers_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_prefix_headers_input.g.dart';
 
 abstract class HttpPrefixHeadersInput
-    with _i1.HttpInput<HttpPrefixHeadersInputPayload>
+    with
+        _i1.HttpInput<HttpPrefixHeadersInputPayload>,
+        _i2.AWSEquatable<HttpPrefixHeadersInput>
     implements
         Built<HttpPrefixHeadersInput, HttpPrefixHeadersInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<HttpPrefixHeadersInputPayload> {
   factory HttpPrefixHeadersInput(
           [void Function(HttpPrefixHeadersInputBuilder) updates]) =
       _$HttpPrefixHeadersInput;
@@ -28,13 +32,18 @@ abstract class HttpPrefixHeadersInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPrefixHeadersInputBuilder b) {}
   String? get foo;
-  _i2.BuiltMap<String, String>? get fooMap;
+  _i3.BuiltMap<String, String>? get fooMap;
+  @override
   HttpPrefixHeadersInputPayload getPayload() => HttpPrefixHeadersInputPayload();
+  @override
+  List<Object?> get props => [foo, fooMap];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpPrefixHeadersInputPayload
+    with
+        _i2.AWSEquatable<HttpPrefixHeadersInputPayload>
     implements
         Built<HttpPrefixHeadersInputPayload,
             HttpPrefixHeadersInputPayloadBuilder>,
@@ -47,6 +56,8 @@ abstract class HttpPrefixHeadersInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPrefixHeadersInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpPrefixHeadersInputRestJson1Serializer

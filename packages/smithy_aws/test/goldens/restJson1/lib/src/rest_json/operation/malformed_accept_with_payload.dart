@@ -20,21 +20,24 @@ class MalformedAcceptWithPayloadOperation extends _i1.HttpOperation<_i1.Unit,
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedAcceptWithPayload';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.MalformedAcceptWithPayloadOutput? output]) => 200;
   @override
   _i3.MalformedAcceptWithPayloadOutput buildOutput(
           _i2.Uint8List? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.MalformedAcceptWithPayloadOutput((b) {
-        b.payload = payload;
-      });
+      _i3.MalformedAcceptWithPayloadOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

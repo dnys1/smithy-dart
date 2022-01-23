@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.malformed_request_body_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,7 +10,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'malformed_request_body_input.g.dart';
 
 abstract class MalformedRequestBodyInput
-    with _i1.HttpInput<MalformedRequestBodyInput>
+    with
+        _i1.HttpInput<MalformedRequestBodyInput>,
+        _i2.AWSEquatable<MalformedRequestBodyInput>
     implements
         Built<MalformedRequestBodyInput, MalformedRequestBodyInputBuilder> {
   factory MalformedRequestBodyInput(
@@ -26,6 +29,10 @@ abstract class MalformedRequestBodyInput
   static void _init(MalformedRequestBodyInputBuilder b) {}
   double? get float;
   int? get int$;
+  @override
+  MalformedRequestBodyInput getPayload() => this;
+  @override
+  List<Object?> get props => [float, int$];
 }
 
 class _MalformedRequestBodyInputRestJson1Serializer

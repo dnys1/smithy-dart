@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.json_timestamps_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,7 +10,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'json_timestamps_input_output.g.dart';
 
 abstract class JsonTimestampsInputOutput
-    with _i1.HttpInput<JsonTimestampsInputOutput>
+    with
+        _i1.HttpInput<JsonTimestampsInputOutput>,
+        _i2.AWSEquatable<JsonTimestampsInputOutput>
     implements
         Built<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder> {
   factory JsonTimestampsInputOutput(
@@ -17,6 +20,11 @@ abstract class JsonTimestampsInputOutput
       _$JsonTimestampsInputOutput;
 
   const JsonTimestampsInputOutput._();
+
+  factory JsonTimestampsInputOutput.fromResponse(
+          JsonTimestampsInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _JsonTimestampsInputOutputRestJson1Serializer()
@@ -28,6 +36,10 @@ abstract class JsonTimestampsInputOutput
   DateTime? get epochSeconds;
   DateTime? get httpDate;
   DateTime? get normal;
+  @override
+  JsonTimestampsInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [dateTime, epochSeconds, httpDate, normal];
 }
 
 class _JsonTimestampsInputOutputRestJson1Serializer

@@ -2,13 +2,15 @@
 
 library rest_json1.rest_json.model.structure_list_member;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'structure_list_member.g.dart';
 
 abstract class StructureListMember
+    with _i1.AWSEquatable<StructureListMember>
     implements Built<StructureListMember, StructureListMemberBuilder> {
   factory StructureListMember(
           [void Function(StructureListMemberBuilder) updates]) =
@@ -16,7 +18,7 @@ abstract class StructureListMember
 
   const StructureListMember._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _StructureListMemberRestJson1Serializer()
   ];
 
@@ -24,10 +26,12 @@ abstract class StructureListMember
   static void _init(StructureListMemberBuilder b) {}
   String? get a;
   String? get b;
+  @override
+  List<Object?> get props => [a, b];
 }
 
 class _StructureListMemberRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<StructureListMember> {
+    extends _i2.StructuredSmithySerializer<StructureListMember> {
   const _StructureListMemberRestJson1Serializer()
       : super('StructureListMember');
 
@@ -35,8 +39,8 @@ class _StructureListMemberRestJson1Serializer
   Iterable<Type> get types =>
       const [StructureListMember, _$StructureListMember];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   StructureListMember deserialize(
       Serializers serializers, Iterable<Object?> serialized,

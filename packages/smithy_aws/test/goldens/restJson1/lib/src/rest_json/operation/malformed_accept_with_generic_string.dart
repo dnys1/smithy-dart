@@ -23,7 +23,7 @@ class MalformedAcceptWithGenericStringOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -32,8 +32,9 @@ class MalformedAcceptWithGenericStringOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedAcceptWithGenericString';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>

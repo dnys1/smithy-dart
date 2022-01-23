@@ -2,7 +2,8 @@
 
 library aws_json1_1.json_protocol.model.null_operation_input_output;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'null_operation_input_output.g.dart';
 
 abstract class NullOperationInputOutput
-    with _i1.HttpInput<NullOperationInputOutput>
+    with
+        _i1.HttpInput<NullOperationInputOutput>,
+        _i2.AWSEquatable<NullOperationInputOutput>
     implements
         Built<NullOperationInputOutput, NullOperationInputOutputBuilder> {
   factory NullOperationInputOutput(
@@ -19,15 +22,24 @@ abstract class NullOperationInputOutput
 
   const NullOperationInputOutput._();
 
+  factory NullOperationInputOutput.fromResponse(
+          NullOperationInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _NullOperationInputOutputAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(NullOperationInputOutputBuilder b) {}
-  _i2.BuiltList<String?>? get sparseStringList;
-  _i2.BuiltMap<String, String?>? get sparseStringMap;
+  _i3.BuiltList<String?>? get sparseStringList;
+  _i3.BuiltMap<String, String?>? get sparseStringMap;
   String? get string;
+  @override
+  NullOperationInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [sparseStringList, sparseStringMap, string];
 }
 
 class _NullOperationInputOutputAwsJson11Serializer
@@ -56,17 +68,17 @@ class _NullOperationInputOutputAwsJson11Serializer
           if (value != null) {
             result.sparseStringList.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i2.BuiltList, [FullType.nullable(String)]))
-                as _i2.BuiltList<String?>));
+                        _i3.BuiltList, [FullType.nullable(String)]))
+                as _i3.BuiltList<String?>));
           }
           break;
         case 'sparseStringMap':
           if (value != null) {
             result.sparseStringMap.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i2.BuiltMap, [
+                specifiedType: const FullType(_i3.BuiltMap, [
                   FullType(String),
                   FullType.nullable(String)
-                ])) as _i2.BuiltMap<String, String?>));
+                ])) as _i3.BuiltMap<String, String?>));
           }
           break;
         case 'string':
@@ -91,14 +103,14 @@ class _NullOperationInputOutputAwsJson11Serializer
         ..add('sparseStringList')
         ..add(serializers.serialize(payload.sparseStringList,
             specifiedType: const FullType.nullable(
-                _i2.BuiltList, [FullType.nullable(String)])));
+                _i3.BuiltList, [FullType.nullable(String)])));
     }
     if (payload.sparseStringMap != null) {
       result
         ..add('sparseStringMap')
         ..add(serializers.serialize(payload.sparseStringMap,
             specifiedType: const FullType.nullable(
-                _i2.BuiltMap, [FullType(String), FullType.nullable(String)])));
+                _i3.BuiltMap, [FullType(String), FullType.nullable(String)])));
     }
     if (payload.string != null) {
       result

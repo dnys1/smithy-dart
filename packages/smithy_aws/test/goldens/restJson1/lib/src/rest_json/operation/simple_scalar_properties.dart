@@ -24,7 +24,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -32,29 +32,19 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = '/SimpleScalarProperties';
-        b.successCode = 200;
         if (input.foo != null) {
-          b.headers['X-Foo'] = input.foo!;
+          if (input.foo!.isNotEmpty) {
+            b.headers['X-Foo'] = input.foo!;
+          }
         }
       });
+  @override
+  int successCode([_i2.SimpleScalarPropertiesInputOutput? output]) => 200;
   @override
   _i2.SimpleScalarPropertiesInputOutput buildOutput(
           _i2.SimpleScalarPropertiesInputOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.SimpleScalarPropertiesInputOutput((b) {
-        b.byteValue = payload.byteValue;
-        b.doubleValue = payload.doubleValue;
-        b.falseBooleanValue = payload.falseBooleanValue;
-        b.floatValue = payload.floatValue;
-        b.integerValue = payload.integerValue;
-        b.longValue = payload.longValue;
-        b.shortValue = payload.shortValue;
-        b.stringValue = payload.stringValue;
-        b.trueBooleanValue = payload.trueBooleanValue;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      _i2.SimpleScalarPropertiesInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

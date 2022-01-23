@@ -175,6 +175,7 @@ class _HttpPayloadTraitsInputOutputRestJson1Serializer
       }
     }
 
+    result.blob ??= _i6.Uint8List(0);
     return result.build();
   }
 

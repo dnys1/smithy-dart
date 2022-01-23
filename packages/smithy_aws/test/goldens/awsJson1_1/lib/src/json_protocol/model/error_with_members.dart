@@ -2,8 +2,9 @@
 
 library aws_json1_1.json_protocol.model.error_with_members;
 
-import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i4;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -11,12 +12,16 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'error_with_members.g.dart';
 
 abstract class ErrorWithMembers
-    with _i1.SmithyException
+    with _i1.SmithyException, _i2.AWSEquatable<ErrorWithMembers>
     implements Built<ErrorWithMembers, ErrorWithMembersBuilder> {
   factory ErrorWithMembers([void Function(ErrorWithMembersBuilder) updates]) =
       _$ErrorWithMembers;
 
   const ErrorWithMembers._();
+
+  factory ErrorWithMembers.fromResponse(
+          ErrorWithMembers payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _ErrorWithMembersAwsJson11Serializer()
@@ -25,10 +30,10 @@ abstract class ErrorWithMembers
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ErrorWithMembersBuilder b) {}
   String? get code;
-  _i2.KitchenSink? get complexData;
+  _i3.KitchenSink? get complexData;
   int? get integerField;
-  _i3.BuiltList<String>? get listField;
-  _i3.BuiltMap<String, String>? get mapField;
+  _i4.BuiltList<String>? get listField;
+  _i4.BuiltMap<String, String>? get mapField;
   @override
   String? get message;
 
@@ -36,6 +41,16 @@ abstract class ErrorWithMembers
   String? get stringField;
   @override
   bool get isRetryable => false;
+  @override
+  List<Object?> get props => [
+        code,
+        complexData,
+        integerField,
+        listField,
+        mapField,
+        message,
+        stringField
+      ];
 }
 
 class _ErrorWithMembersAwsJson11Serializer
@@ -67,8 +82,8 @@ class _ErrorWithMembersAwsJson11Serializer
         case 'ComplexData':
           if (value != null) {
             result.complexData.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.KitchenSink))
-                as _i2.KitchenSink));
+                    specifiedType: const FullType(_i3.KitchenSink))
+                as _i3.KitchenSink));
           }
           break;
         case 'IntegerField':
@@ -81,16 +96,16 @@ class _ErrorWithMembersAwsJson11Serializer
           if (value != null) {
             result.listField.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i3.BuiltList, [FullType(String)]))
-                as _i3.BuiltList<String>));
+                        const FullType(_i4.BuiltList, [FullType(String)]))
+                as _i4.BuiltList<String>));
           }
           break;
         case 'MapField':
           if (value != null) {
             result.mapField.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i3.BuiltMap, [FullType(String), FullType(String)]))
-                as _i3.BuiltMap<String, String>));
+                        _i4.BuiltMap, [FullType(String), FullType(String)]))
+                as _i4.BuiltMap<String, String>));
           }
           break;
         case 'Message':
@@ -126,7 +141,7 @@ class _ErrorWithMembersAwsJson11Serializer
       result
         ..add('ComplexData')
         ..add(serializers.serialize(payload.complexData,
-            specifiedType: const FullType.nullable(_i2.KitchenSink)));
+            specifiedType: const FullType.nullable(_i3.KitchenSink)));
     }
     if (payload.integerField != null) {
       result
@@ -139,14 +154,14 @@ class _ErrorWithMembersAwsJson11Serializer
         ..add('ListField')
         ..add(serializers.serialize(payload.listField,
             specifiedType:
-                const FullType.nullable(_i3.BuiltList, [FullType(String)])));
+                const FullType.nullable(_i4.BuiltList, [FullType(String)])));
     }
     if (payload.mapField != null) {
       result
         ..add('MapField')
         ..add(serializers.serialize(payload.mapField,
             specifiedType: const FullType.nullable(
-                _i3.BuiltMap, [FullType(String), FullType(String)])));
+                _i4.BuiltMap, [FullType(String), FullType(String)])));
     }
     if (payload.message != null) {
       result

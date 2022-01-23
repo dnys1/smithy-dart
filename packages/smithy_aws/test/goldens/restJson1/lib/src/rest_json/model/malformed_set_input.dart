@@ -2,7 +2,8 @@
 
 library rest_json1.rest_json.model.malformed_set_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'malformed_set_input.g.dart';
 
 abstract class MalformedSetInput
-    with _i1.HttpInput<MalformedSetInput>
+    with _i1.HttpInput<MalformedSetInput>, _i2.AWSEquatable<MalformedSetInput>
     implements Built<MalformedSetInput, MalformedSetInputBuilder> {
   factory MalformedSetInput([void Function(MalformedSetInputBuilder) updates]) =
       _$MalformedSetInput;
@@ -23,7 +24,11 @@ abstract class MalformedSetInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedSetInputBuilder b) {}
-  _i2.BuiltSet<String>? get set;
+  _i3.BuiltSet<String>? get set;
+  @override
+  MalformedSetInput getPayload() => this;
+  @override
+  List<Object?> get props => [set];
 }
 
 class _MalformedSetInputRestJson1Serializer
@@ -50,8 +55,8 @@ class _MalformedSetInputRestJson1Serializer
           if (value != null) {
             result.set.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i2.BuiltSet, [FullType(String)]))
-                as _i2.BuiltSet<String>));
+                        const FullType(_i3.BuiltSet, [FullType(String)]))
+                as _i3.BuiltSet<String>));
           }
           break;
       }
@@ -70,7 +75,7 @@ class _MalformedSetInputRestJson1Serializer
         ..add('set')
         ..add(serializers.serialize(payload.set,
             specifiedType:
-                const FullType.nullable(_i2.BuiltSet, [FullType(String)])));
+                const FullType.nullable(_i3.BuiltSet, [FullType(String)])));
     }
     return result;
   }

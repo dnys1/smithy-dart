@@ -70,9 +70,8 @@ class _PlayerActionRestJson1Serializer
     final value = iterator.current as Object;
     switch (key) {
       case 'quit':
-        return _PlayerActionQuit(((serializers.deserialize(value,
-                specifiedType: const FullType.nullable(_i1.Unit)) as _i1.Unit?)
-            as _i1.Unit));
+        return _PlayerActionQuit((serializers.deserialize(value,
+            specifiedType: const FullType(_i1.Unit)) as _i1.Unit));
     }
     return _PlayerActionSdkUnknown(key, value);
   }
@@ -84,8 +83,8 @@ class _PlayerActionRestJson1Serializer
     return [
       object.name,
       object.when<Object?>(
-          quit: (_i1.Unit? quit) => serializers.serialize(quit,
-              specifiedType: const FullType.nullable(_i1.Unit)),
+          quit: (_i1.Unit quit) => serializers.serialize(quit,
+              specifiedType: const FullType(_i1.Unit)),
           sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
     ];
   }

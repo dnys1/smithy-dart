@@ -92,36 +92,40 @@ void main() {
           ]);
     },
   );
-  _i1.test('RestJsonSupportsNaNFloatInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonSupportsNaNFloatInputs',
-            documentation: 'Supports handling NaN float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "floatValue": "NaN",\n    "DoubleDribble": "NaN"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'PUT',
-            uri: '/SimpleScalarProperties',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'RestJsonSupportsNaNFloatInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonSupportsNaNFloatInputs',
+              documentation: 'Supports handling NaN float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "NaN",\n    "DoubleDribble": "NaN"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'PUT',
+              uri: '/SimpleScalarProperties',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'RestJsonSupportsInfinityFloatInputs (request)',
     () async {
@@ -257,30 +261,34 @@ void main() {
           ]);
     },
   );
-  _i1.test('RestJsonSupportsNaNFloatInputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonSupportsNaNFloatInputs',
-            documentation: 'Supports handling NaN float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: '{\n    "floatValue": "NaN",\n    "DoubleDribble": "NaN"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/json'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesInputOutputRestJson1Serializer()
-        ]);
-  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'RestJsonSupportsNaNFloatInputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonSupportsNaNFloatInputs',
+              documentation: 'Supports handling NaN float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body:
+                  '{\n    "floatValue": "NaN",\n    "DoubleDribble": "NaN"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/json'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'RestJsonSupportsInfinityFloatInputs (response)',
     () async {

@@ -1357,33 +1357,36 @@ void main() {
           ]);
     },
   );
-  _i1.test('parses_blob_shapes (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.KitchenSinkOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'parses_blob_shapes',
-            documentation: 'Parses blob shapes',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{"Blob":"YmluYXJ5LXZhbHVl"}',
-            bodyMediaType: 'application/json',
-            params: {'Blob': 'binary-value'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _KitchenSinkAwsJson11Serializer(),
-          _EmptyStructAwsJson11Serializer(),
-          _SimpleStructAwsJson11Serializer(),
-          _StructWithJsonNameAwsJson11Serializer()
-        ]);
-  }, skip: 'Blobs cannot be compared right now');
+  _i1.test(
+    'parses_blob_shapes (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.KitchenSinkOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'parses_blob_shapes',
+              documentation: 'Parses blob shapes',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{"Blob":"YmluYXJ5LXZhbHVl"}',
+              bodyMediaType: 'application/json',
+              params: {'Blob': 'binary-value'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _KitchenSinkAwsJson11Serializer(),
+            _EmptyStructAwsJson11Serializer(),
+            _SimpleStructAwsJson11Serializer(),
+            _StructWithJsonNameAwsJson11Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'parses_timestamp_shapes (response)',
     () async {

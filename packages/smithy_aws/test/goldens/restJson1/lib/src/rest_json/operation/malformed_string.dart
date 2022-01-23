@@ -23,7 +23,11 @@ class MalformedStringOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
@@ -31,12 +35,13 @@ class MalformedStringOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedString';
-        b.successCode = 200;
         if (input.blob != null) {
-          b.headers['amz-media-typed-header'] =
-              _i5.jsonEncode(input.blob!.value);
+          b.headers['amz-media-typed-header'] = _i5
+              .base64Encode(_i5.utf8.encode(_i5.jsonEncode(input.blob!.value)));
         }
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>

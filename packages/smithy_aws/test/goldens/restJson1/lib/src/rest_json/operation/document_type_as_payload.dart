@@ -23,7 +23,7 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -31,14 +31,13 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = '/DocumentTypeAsPayload';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i3.DocumentTypeAsPayloadInputOutput? output]) => 200;
   @override
   _i3.DocumentTypeAsPayloadInputOutput buildOutput(
           _i2.JsonObject? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.DocumentTypeAsPayloadInputOutput((b) {
-        b.documentValue = payload;
-      });
+      _i3.DocumentTypeAsPayloadInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

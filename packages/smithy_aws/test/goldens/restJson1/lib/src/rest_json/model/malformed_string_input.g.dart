@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.malformed_string_input;
 
 class _$MalformedStringInput extends MalformedStringInput {
   @override
-  final _i2.JsonObject? blob;
+  final _i3.JsonObject? blob;
 
   factory _$MalformedStringInput(
           [void Function(MalformedStringInputBuilder)? updates]) =>
@@ -48,9 +48,9 @@ class MalformedStringInputBuilder
     implements Builder<MalformedStringInput, MalformedStringInputBuilder> {
   _$MalformedStringInput? _$v;
 
-  _i2.JsonObject? _blob;
-  _i2.JsonObject? get blob => _$this._blob;
-  set blob(_i2.JsonObject? blob) => _$this._blob = blob;
+  _i3.JsonObject? _blob;
+  _i3.JsonObject? get blob => _$this._blob;
+  set blob(_i3.JsonObject? blob) => _$this._blob = blob;
 
   MalformedStringInputBuilder() {
     MalformedStringInput._init(this);

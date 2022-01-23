@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.http_request_with_regex_literal_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_request_with_regex_literal_input.g.dart';
 
 abstract class HttpRequestWithRegexLiteralInput
     with
-        _i1.HttpInput<HttpRequestWithRegexLiteralInputPayload>
+        _i1.HttpInput<HttpRequestWithRegexLiteralInputPayload>,
+        _i2.AWSEquatable<HttpRequestWithRegexLiteralInput>
     implements
         Built<HttpRequestWithRegexLiteralInput,
             HttpRequestWithRegexLiteralInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<HttpRequestWithRegexLiteralInputPayload> {
   factory HttpRequestWithRegexLiteralInput(
           [void Function(HttpRequestWithRegexLiteralInputBuilder) updates]) =
       _$HttpRequestWithRegexLiteralInput;
@@ -38,13 +41,18 @@ abstract class HttpRequestWithRegexLiteralInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   HttpRequestWithRegexLiteralInputPayload getPayload() =>
       HttpRequestWithRegexLiteralInputPayload();
+  @override
+  List<Object?> get props => [str];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithRegexLiteralInputPayload
+    with
+        _i2.AWSEquatable<HttpRequestWithRegexLiteralInputPayload>
     implements
         Built<HttpRequestWithRegexLiteralInputPayload,
             HttpRequestWithRegexLiteralInputPayloadBuilder>,
@@ -57,6 +65,8 @@ abstract class HttpRequestWithRegexLiteralInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpRequestWithRegexLiteralInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpRequestWithRegexLiteralInputRestJson1Serializer extends _i1

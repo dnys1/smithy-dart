@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.media_type_header_output;
 
 class _$MediaTypeHeaderOutput extends MediaTypeHeaderOutput {
   @override
-  final _i2.JsonObject? json;
+  final _i3.JsonObject? json;
 
   factory _$MediaTypeHeaderOutput(
           [void Function(MediaTypeHeaderOutputBuilder)? updates]) =>
@@ -48,9 +48,9 @@ class MediaTypeHeaderOutputBuilder
     implements Builder<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder> {
   _$MediaTypeHeaderOutput? _$v;
 
-  _i2.JsonObject? _json;
-  _i2.JsonObject? get json => _$this._json;
-  set json(_i2.JsonObject? json) => _$this._json = json;
+  _i3.JsonObject? _json;
+  _i3.JsonObject? get json => _$this._json;
+  set json(_i3.JsonObject? json) => _$this._json = json;
 
   MediaTypeHeaderOutputBuilder() {
     MediaTypeHeaderOutput._init(this);

@@ -2,13 +2,16 @@
 
 library aws_json1_1.json_protocol.model.operation_with_optional_input_output_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'operation_with_optional_input_output_output.g.dart';
 
 abstract class OperationWithOptionalInputOutputOutput
+    with
+        _i1.AWSEquatable<OperationWithOptionalInputOutputOutput>
     implements
         Built<OperationWithOptionalInputOutputOutput,
             OperationWithOptionalInputOutputOutputBuilder> {
@@ -18,16 +21,23 @@ abstract class OperationWithOptionalInputOutputOutput
 
   const OperationWithOptionalInputOutputOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory OperationWithOptionalInputOutputOutput.fromResponse(
+          OperationWithOptionalInputOutputOutput payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      payload;
+
+  static const List<_i2.SmithySerializer> serializers = [
     _OperationWithOptionalInputOutputOutputAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(OperationWithOptionalInputOutputOutputBuilder b) {}
   String? get value;
+  @override
+  List<Object?> get props => [value];
 }
 
-class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i1
+class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i2
     .StructuredSmithySerializer<OperationWithOptionalInputOutputOutput> {
   const _OperationWithOptionalInputOutputOutputAwsJson11Serializer()
       : super('OperationWithOptionalInputOutputOutput');
@@ -38,8 +48,8 @@ class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i1
         _$OperationWithOptionalInputOutputOutput
       ];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   OperationWithOptionalInputOutputOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,

@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.malformed_timestamp_header_epoch_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_timestamp_header_epoch_input.g.dart';
 
 abstract class MalformedTimestampHeaderEpochInput
     with
-        _i1.HttpInput<MalformedTimestampHeaderEpochInputPayload>
+        _i1.HttpInput<MalformedTimestampHeaderEpochInputPayload>,
+        _i2.AWSEquatable<MalformedTimestampHeaderEpochInput>
     implements
         Built<MalformedTimestampHeaderEpochInput,
             MalformedTimestampHeaderEpochInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<MalformedTimestampHeaderEpochInputPayload> {
   factory MalformedTimestampHeaderEpochInput(
           [void Function(MalformedTimestampHeaderEpochInputBuilder) updates]) =
       _$MalformedTimestampHeaderEpochInput;
@@ -29,13 +32,18 @@ abstract class MalformedTimestampHeaderEpochInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampHeaderEpochInputBuilder b) {}
   DateTime get timestamp;
+  @override
   MalformedTimestampHeaderEpochInputPayload getPayload() =>
       MalformedTimestampHeaderEpochInputPayload();
+  @override
+  List<Object?> get props => [timestamp];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampHeaderEpochInputPayload
+    with
+        _i2.AWSEquatable<MalformedTimestampHeaderEpochInputPayload>
     implements
         Built<MalformedTimestampHeaderEpochInputPayload,
             MalformedTimestampHeaderEpochInputPayloadBuilder>,
@@ -48,6 +56,8 @@ abstract class MalformedTimestampHeaderEpochInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampHeaderEpochInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _MalformedTimestampHeaderEpochInputRestJson1Serializer extends _i1

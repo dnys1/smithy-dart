@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.test_body_structure_input_output;
 
 class _$TestBodyStructureInputOutput extends TestBodyStructureInputOutput {
   @override
-  final _i2.TestConfig? testConfig;
+  final _i3.TestConfig? testConfig;
   @override
   final String? testId;
 
@@ -55,10 +55,10 @@ class TestBodyStructureInputOutputBuilder
             TestBodyStructureInputOutputBuilder> {
   _$TestBodyStructureInputOutput? _$v;
 
-  _i2.TestConfigBuilder? _testConfig;
-  _i2.TestConfigBuilder get testConfig =>
-      _$this._testConfig ??= new _i2.TestConfigBuilder();
-  set testConfig(_i2.TestConfigBuilder? testConfig) =>
+  _i3.TestConfigBuilder? _testConfig;
+  _i3.TestConfigBuilder get testConfig =>
+      _$this._testConfig ??= new _i3.TestConfigBuilder();
+  set testConfig(_i3.TestConfigBuilder? testConfig) =>
       _$this._testConfig = testConfig;
 
   String? _testId;
@@ -116,7 +116,7 @@ class TestBodyStructureInputOutputBuilder
 class _$TestBodyStructureInputOutputPayload
     extends TestBodyStructureInputOutputPayload {
   @override
-  final _i2.TestConfig? testConfig;
+  final _i3.TestConfig? testConfig;
 
   factory _$TestBodyStructureInputOutputPayload(
           [void Function(TestBodyStructureInputOutputPayloadBuilder)?
@@ -161,9 +161,9 @@ class TestBodyStructureInputOutputPayloadBuilder
             TestBodyStructureInputOutputPayloadBuilder> {
   _$TestBodyStructureInputOutputPayload? _$v;
 
-  _i2.TestConfig? _testConfig;
-  _i2.TestConfig? get testConfig => _$this._testConfig;
-  set testConfig(_i2.TestConfig? testConfig) => _$this._testConfig = testConfig;
+  _i3.TestConfig? _testConfig;
+  _i3.TestConfig? get testConfig => _$this._testConfig;
+  set testConfig(_i3.TestConfig? testConfig) => _$this._testConfig = testConfig;
 
   TestBodyStructureInputOutputPayloadBuilder() {
     TestBodyStructureInputOutputPayload._init(this);

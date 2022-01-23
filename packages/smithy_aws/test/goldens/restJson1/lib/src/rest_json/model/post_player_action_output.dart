@@ -2,14 +2,16 @@
 
 library rest_json1.rest_json.model.post_player_action_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1/src/rest_json/model/player_action.dart' as _i2;
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:rest_json1/src/rest_json/model/player_action.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'post_player_action_output.g.dart';
 
 abstract class PostPlayerActionOutput
+    with _i1.AWSEquatable<PostPlayerActionOutput>
     implements Built<PostPlayerActionOutput, PostPlayerActionOutputBuilder> {
   factory PostPlayerActionOutput(
           [void Function(PostPlayerActionOutputBuilder) updates]) =
@@ -17,17 +19,23 @@ abstract class PostPlayerActionOutput
 
   const PostPlayerActionOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory PostPlayerActionOutput.fromResponse(PostPlayerActionOutput payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      payload;
+
+  static const List<_i2.SmithySerializer> serializers = [
     _PostPlayerActionOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PostPlayerActionOutputBuilder b) {}
-  _i2.PlayerAction get action;
+  _i3.PlayerAction get action;
+  @override
+  List<Object?> get props => [action];
 }
 
 class _PostPlayerActionOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<PostPlayerActionOutput> {
+    extends _i2.StructuredSmithySerializer<PostPlayerActionOutput> {
   const _PostPlayerActionOutputRestJson1Serializer()
       : super('PostPlayerActionOutput');
 
@@ -35,8 +43,8 @@ class _PostPlayerActionOutputRestJson1Serializer
   Iterable<Type> get types =>
       const [PostPlayerActionOutput, _$PostPlayerActionOutput];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   PostPlayerActionOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -50,8 +58,8 @@ class _PostPlayerActionOutputRestJson1Serializer
       switch (key) {
         case 'action':
           result.action = (serializers.deserialize(value!,
-                  specifiedType: const FullType(_i2.PlayerAction))
-              as _i2.PlayerAction);
+                  specifiedType: const FullType(_i3.PlayerAction))
+              as _i3.PlayerAction);
           break;
       }
     }
@@ -66,7 +74,7 @@ class _PostPlayerActionOutputRestJson1Serializer
     final result = <Object?>[
       'action',
       serializers.serialize(payload.action,
-          specifiedType: const FullType(_i2.PlayerAction))
+          specifiedType: const FullType(_i3.PlayerAction))
     ];
     return result;
   }

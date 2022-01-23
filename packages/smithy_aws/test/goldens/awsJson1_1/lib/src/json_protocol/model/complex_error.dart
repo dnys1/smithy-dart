@@ -2,8 +2,9 @@
 
 library aws_json1_1.json_protocol.model.complex_error;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'
-    as _i2;
+    as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -12,12 +13,16 @@ part 'complex_error.g.dart';
 
 /// This error is thrown when a request is invalid.
 abstract class ComplexError
-    with _i1.SmithyException
+    with _i1.SmithyException, _i2.AWSEquatable<ComplexError>
     implements Built<ComplexError, ComplexErrorBuilder> {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
   const ComplexError._();
+
+  factory ComplexError.fromResponse(
+          ComplexError payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _ComplexErrorAwsJson11Serializer()
@@ -25,12 +30,14 @@ abstract class ComplexError
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ComplexErrorBuilder b) {}
-  _i2.ComplexNestedErrorData? get nested;
+  _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override
   String? get message => null;
   @override
   bool get isRetryable => false;
+  @override
+  List<Object?> get props => [nested, topLevel];
 }
 
 class _ComplexErrorAwsJson11Serializer
@@ -56,8 +63,8 @@ class _ComplexErrorAwsJson11Serializer
         case 'Nested':
           if (value != null) {
             result.nested.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.ComplexNestedErrorData))
-                as _i2.ComplexNestedErrorData));
+                    specifiedType: const FullType(_i3.ComplexNestedErrorData))
+                as _i3.ComplexNestedErrorData));
           }
           break;
         case 'TopLevel':
@@ -82,7 +89,7 @@ class _ComplexErrorAwsJson11Serializer
         ..add('Nested')
         ..add(serializers.serialize(payload.nested,
             specifiedType:
-                const FullType.nullable(_i2.ComplexNestedErrorData)));
+                const FullType.nullable(_i3.ComplexNestedErrorData)));
     }
     if (payload.topLevel != null) {
       result

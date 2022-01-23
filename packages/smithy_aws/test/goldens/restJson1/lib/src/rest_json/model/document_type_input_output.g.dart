@@ -8,7 +8,7 @@ part of rest_json1.rest_json.model.document_type_input_output;
 
 class _$DocumentTypeInputOutput extends DocumentTypeInputOutput {
   @override
-  final _i2.JsonObject? documentValue;
+  final _i3.JsonObject? documentValue;
   @override
   final String? stringValue;
 
@@ -55,9 +55,9 @@ class DocumentTypeInputOutputBuilder
         Builder<DocumentTypeInputOutput, DocumentTypeInputOutputBuilder> {
   _$DocumentTypeInputOutput? _$v;
 
-  _i2.JsonObject? _documentValue;
-  _i2.JsonObject? get documentValue => _$this._documentValue;
-  set documentValue(_i2.JsonObject? documentValue) =>
+  _i3.JsonObject? _documentValue;
+  _i3.JsonObject? get documentValue => _$this._documentValue;
+  set documentValue(_i3.JsonObject? documentValue) =>
       _$this._documentValue = documentValue;
 
   String? _stringValue;

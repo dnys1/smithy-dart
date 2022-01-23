@@ -115,6 +115,7 @@ class _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer extends _i4
       }
     }
 
+    result.blob ??= _i6.Uint8List(0);
     return result.build();
   }
 

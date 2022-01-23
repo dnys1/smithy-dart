@@ -26,12 +26,9 @@ class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
           _i2.Uint8List,
           _i3.HttpPayloadTraitsWithMediaTypeInputOutput>> protocols = [
     _i4.RestJson1Protocol(
-        serializers: const [
-          ..._i5.serializers,
-          _i1.BlobSerializer('text/plain')
-        ],
+        serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [],
+        interceptors: [const _i1.WithContentLength()],
         mediaType: 'text/plain')
   ];
 
@@ -41,20 +38,20 @@ class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/HttpPayloadTraitsWithMediaType';
-        b.successCode = 200;
         if (input.foo != null) {
-          b.headers['X-Foo'] = input.foo!;
+          if (input.foo!.isNotEmpty) {
+            b.headers['X-Foo'] = input.foo!;
+          }
         }
       });
   @override
+  int successCode([_i3.HttpPayloadTraitsWithMediaTypeInputOutput? output]) =>
+      200;
+  @override
   _i3.HttpPayloadTraitsWithMediaTypeInputOutput buildOutput(
           _i2.Uint8List? payload, _i6.AWSStreamedHttpResponse response) =>
-      _i3.HttpPayloadTraitsWithMediaTypeInputOutput((b) {
-        b.blob = payload;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      _i3.HttpPayloadTraitsWithMediaTypeInputOutput.fromResponse(
+          payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -2,7 +2,8 @@
 
 library rest_json1.rest_json.model.malformed_list_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,7 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'malformed_list_input.g.dart';
 
 abstract class MalformedListInput
-    with _i1.HttpInput<MalformedListInput>
+    with _i1.HttpInput<MalformedListInput>, _i2.AWSEquatable<MalformedListInput>
     implements Built<MalformedListInput, MalformedListInputBuilder> {
   factory MalformedListInput(
           [void Function(MalformedListInputBuilder) updates]) =
@@ -24,7 +25,11 @@ abstract class MalformedListInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedListInputBuilder b) {}
-  _i2.BuiltList<String>? get bodyList;
+  _i3.BuiltList<String>? get bodyList;
+  @override
+  MalformedListInput getPayload() => this;
+  @override
+  List<Object?> get props => [bodyList];
 }
 
 class _MalformedListInputRestJson1Serializer
@@ -51,8 +56,8 @@ class _MalformedListInputRestJson1Serializer
           if (value != null) {
             result.bodyList.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i2.BuiltList, [FullType(String)]))
-                as _i2.BuiltList<String>));
+                        const FullType(_i3.BuiltList, [FullType(String)]))
+                as _i3.BuiltList<String>));
           }
           break;
       }
@@ -71,7 +76,7 @@ class _MalformedListInputRestJson1Serializer
         ..add('bodyList')
         ..add(serializers.serialize(payload.bodyList,
             specifiedType:
-                const FullType.nullable(_i2.BuiltList, [FullType(String)])));
+                const FullType.nullable(_i3.BuiltList, [FullType(String)])));
     }
     return result;
   }

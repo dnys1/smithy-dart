@@ -12,39 +12,42 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('AwsJson11SupportsNaNFloatInputs (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'AwsJson11SupportsNaNFloatInputs',
-            documentation: 'Supports handling NaN float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "floatValue": "NaN",\n    "doubleValue": "NaN"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'Content-Type': 'application/x-amz-json-1.1',
-              'X-Amz-Target': 'JsonProtocol.SimpleScalarProperties'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
-        ]);
-  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'AwsJson11SupportsNaNFloatInputs (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'AwsJson11SupportsNaNFloatInputs',
+              documentation: 'Supports handling NaN float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "floatValue": "NaN",\n    "doubleValue": "NaN"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'Content-Type': 'application/x-amz-json-1.1',
+                'X-Amz-Target': 'JsonProtocol.SimpleScalarProperties'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'AwsJson11SupportsInfinityFloatInputs (request)',
     () async {
@@ -119,30 +122,33 @@ void main() {
           ]);
     },
   );
-  _i1.test('AwsJson11SupportsNaNFloatInputs (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.SimpleScalarPropertiesOperation(),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'AwsJson11SupportsNaNFloatInputs',
-            documentation: 'Supports handling NaN float values.',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
-            authScheme: null,
-            body: '{\n    "floatValue": "NaN",\n    "doubleValue": "NaN"\n}',
-            bodyMediaType: 'application/json',
-            params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {'Content-Type': 'application/x-amz-json-1.1'},
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
-        ]);
-  }, skip: 'NaN != NaN, so there\'s no way to compare the outputs');
+  _i1.test(
+    'AwsJson11SupportsNaNFloatInputs (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.SimpleScalarPropertiesOperation(),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'AwsJson11SupportsNaNFloatInputs',
+              documentation: 'Supports handling NaN float values.',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+              authScheme: null,
+              body: '{\n    "floatValue": "NaN",\n    "doubleValue": "NaN"\n}',
+              bodyMediaType: 'application/json',
+              params: {'floatValue': 'NaN', 'doubleValue': 'NaN'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {'Content-Type': 'application/x-amz-json-1.1'},
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'AwsJson11SupportsInfinityFloatInputs (response)',
     () async {

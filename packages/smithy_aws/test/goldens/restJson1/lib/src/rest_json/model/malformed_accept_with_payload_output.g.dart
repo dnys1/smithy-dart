@@ -9,7 +9,7 @@ part of rest_json1.rest_json.model.malformed_accept_with_payload_output;
 class _$MalformedAcceptWithPayloadOutput
     extends MalformedAcceptWithPayloadOutput {
   @override
-  final _i2.Uint8List? payload;
+  final _i3.Uint8List? payload;
 
   factory _$MalformedAcceptWithPayloadOutput(
           [void Function(MalformedAcceptWithPayloadOutputBuilder)? updates]) =>
@@ -52,9 +52,9 @@ class MalformedAcceptWithPayloadOutputBuilder
             MalformedAcceptWithPayloadOutputBuilder> {
   _$MalformedAcceptWithPayloadOutput? _$v;
 
-  _i2.Uint8List? _payload;
-  _i2.Uint8List? get payload => _$this._payload;
-  set payload(_i2.Uint8List? payload) => _$this._payload = payload;
+  _i3.Uint8List? _payload;
+  _i3.Uint8List? get payload => _$this._payload;
+  set payload(_i3.Uint8List? payload) => _$this._payload = payload;
 
   MalformedAcceptWithPayloadOutputBuilder() {
     MalformedAcceptWithPayloadOutput._init(this);

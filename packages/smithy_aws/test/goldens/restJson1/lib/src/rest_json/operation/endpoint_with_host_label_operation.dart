@@ -17,7 +17,7 @@ class EndpointWithHostLabelOperation extends _i1
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -25,9 +25,10 @@ class EndpointWithHostLabelOperation extends _i1
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/EndpointWithHostLabelOperation';
-        b.successCode = 200;
         b.hostPrefix = 'foo.{label}.';
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>

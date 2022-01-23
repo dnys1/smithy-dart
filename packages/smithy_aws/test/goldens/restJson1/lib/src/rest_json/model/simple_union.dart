@@ -87,12 +87,11 @@ class _SimpleUnionRestJson1Serializer
     final value = iterator.current as Object;
     switch (key) {
       case 'int':
-        return _SimpleUnionInt(((serializers.deserialize(value,
-            specifiedType: const FullType.nullable(int)) as int?) as int));
+        return _SimpleUnionInt((serializers.deserialize(value,
+            specifiedType: const FullType(int)) as int));
       case 'string':
-        return _SimpleUnionString(((serializers.deserialize(value,
-                specifiedType: const FullType.nullable(String)) as String?)
-            as String));
+        return _SimpleUnionString((serializers.deserialize(value,
+            specifiedType: const FullType(String)) as String));
     }
     return _SimpleUnionSdkUnknown(key, value);
   }
@@ -104,10 +103,10 @@ class _SimpleUnionRestJson1Serializer
     return [
       object.name,
       object.when<Object?>(
-          int$: (int? int$) => serializers.serialize(int$,
-              specifiedType: const FullType.nullable(int)),
-          string: (String? string) => serializers.serialize(string,
-              specifiedType: const FullType.nullable(String)),
+          int$: (int int$) =>
+              serializers.serialize(int$, specifiedType: const FullType(int)),
+          string: (String string) => serializers.serialize(string,
+              specifiedType: const FullType(String)),
           sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
     ];
   }

@@ -8,13 +8,13 @@ part of rest_json1.rest_json.model.malformed_long_input;
 
 class _$MalformedLongInput extends MalformedLongInput {
   @override
-  final _i2.Int64? longInBody;
+  final _i3.Int64? longInBody;
   @override
-  final _i2.Int64? longInHeader;
+  final _i3.Int64? longInHeader;
   @override
-  final _i2.Int64 longInPath;
+  final _i3.Int64 longInPath;
   @override
-  final _i2.Int64? longInQuery;
+  final _i3.Int64? longInQuery;
 
   factory _$MalformedLongInput(
           [void Function(MalformedLongInputBuilder)? updates]) =>
@@ -72,22 +72,22 @@ class MalformedLongInputBuilder
     implements Builder<MalformedLongInput, MalformedLongInputBuilder> {
   _$MalformedLongInput? _$v;
 
-  _i2.Int64? _longInBody;
-  _i2.Int64? get longInBody => _$this._longInBody;
-  set longInBody(_i2.Int64? longInBody) => _$this._longInBody = longInBody;
+  _i3.Int64? _longInBody;
+  _i3.Int64? get longInBody => _$this._longInBody;
+  set longInBody(_i3.Int64? longInBody) => _$this._longInBody = longInBody;
 
-  _i2.Int64? _longInHeader;
-  _i2.Int64? get longInHeader => _$this._longInHeader;
-  set longInHeader(_i2.Int64? longInHeader) =>
+  _i3.Int64? _longInHeader;
+  _i3.Int64? get longInHeader => _$this._longInHeader;
+  set longInHeader(_i3.Int64? longInHeader) =>
       _$this._longInHeader = longInHeader;
 
-  _i2.Int64? _longInPath;
-  _i2.Int64? get longInPath => _$this._longInPath;
-  set longInPath(_i2.Int64? longInPath) => _$this._longInPath = longInPath;
+  _i3.Int64? _longInPath;
+  _i3.Int64? get longInPath => _$this._longInPath;
+  set longInPath(_i3.Int64? longInPath) => _$this._longInPath = longInPath;
 
-  _i2.Int64? _longInQuery;
-  _i2.Int64? get longInQuery => _$this._longInQuery;
-  set longInQuery(_i2.Int64? longInQuery) => _$this._longInQuery = longInQuery;
+  _i3.Int64? _longInQuery;
+  _i3.Int64? get longInQuery => _$this._longInQuery;
+  set longInQuery(_i3.Int64? longInQuery) => _$this._longInQuery = longInQuery;
 
   MalformedLongInputBuilder() {
     MalformedLongInput._init(this);
@@ -132,7 +132,7 @@ class MalformedLongInputBuilder
 
 class _$MalformedLongInputPayload extends MalformedLongInputPayload {
   @override
-  final _i2.Int64? longInBody;
+  final _i3.Int64? longInBody;
 
   factory _$MalformedLongInputPayload(
           [void Function(MalformedLongInputPayloadBuilder)? updates]) =>
@@ -173,9 +173,9 @@ class MalformedLongInputPayloadBuilder
         Builder<MalformedLongInputPayload, MalformedLongInputPayloadBuilder> {
   _$MalformedLongInputPayload? _$v;
 
-  _i2.Int64? _longInBody;
-  _i2.Int64? get longInBody => _$this._longInBody;
-  set longInBody(_i2.Int64? longInBody) => _$this._longInBody = longInBody;
+  _i3.Int64? _longInBody;
+  _i3.Int64? get longInBody => _$this._longInBody;
+  set longInBody(_i3.Int64? longInBody) => _$this._longInBody = longInBody;
 
   MalformedLongInputPayloadBuilder() {
     MalformedLongInputPayload._init(this);

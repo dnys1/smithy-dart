@@ -2,25 +2,46 @@
 
 library rest_json1.rest_json.model.simple_scalar_properties_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i2;
-import 'package:meta/meta.dart' as _i3;
+import 'package:fixnum/fixnum.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'simple_scalar_properties_input_output.g.dart';
 
 abstract class SimpleScalarPropertiesInputOutput
     with
-        _i1.HttpInput<SimpleScalarPropertiesInputOutputPayload>
+        _i1.HttpInput<SimpleScalarPropertiesInputOutputPayload>,
+        _i2.AWSEquatable<SimpleScalarPropertiesInputOutput>
     implements
         Built<SimpleScalarPropertiesInputOutput,
-            SimpleScalarPropertiesInputOutputBuilder> {
+            SimpleScalarPropertiesInputOutputBuilder>,
+        _i1.HasPayload<SimpleScalarPropertiesInputOutputPayload> {
   factory SimpleScalarPropertiesInputOutput(
           [void Function(SimpleScalarPropertiesInputOutputBuilder) updates]) =
       _$SimpleScalarPropertiesInputOutput;
 
   const SimpleScalarPropertiesInputOutput._();
+
+  factory SimpleScalarPropertiesInputOutput.fromResponse(
+          SimpleScalarPropertiesInputOutputPayload payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      SimpleScalarPropertiesInputOutput((b) {
+        b.byteValue = payload.byteValue;
+        b.doubleValue = payload.doubleValue;
+        b.falseBooleanValue = payload.falseBooleanValue;
+        b.floatValue = payload.floatValue;
+        b.integerValue = payload.integerValue;
+        b.longValue = payload.longValue;
+        b.shortValue = payload.shortValue;
+        b.stringValue = payload.stringValue;
+        b.trueBooleanValue = payload.trueBooleanValue;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _SimpleScalarPropertiesInputOutputRestJson1Serializer()
@@ -34,10 +55,11 @@ abstract class SimpleScalarPropertiesInputOutput
   double? get floatValue;
   String? get foo;
   int? get integerValue;
-  _i2.Int64? get longValue;
+  _i3.Int64? get longValue;
   int? get shortValue;
   String? get stringValue;
   bool? get trueBooleanValue;
+  @override
   SimpleScalarPropertiesInputOutputPayload getPayload() =>
       SimpleScalarPropertiesInputOutputPayload((b) => b
         ..byteValue = byteValue
@@ -49,11 +71,26 @@ abstract class SimpleScalarPropertiesInputOutput
         ..shortValue = shortValue
         ..stringValue = stringValue
         ..trueBooleanValue = trueBooleanValue);
+  @override
+  List<Object?> get props => [
+        byteValue,
+        doubleValue,
+        falseBooleanValue,
+        floatValue,
+        foo,
+        integerValue,
+        longValue,
+        shortValue,
+        stringValue,
+        trueBooleanValue
+      ];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class SimpleScalarPropertiesInputOutputPayload
+    with
+        _i2.AWSEquatable<SimpleScalarPropertiesInputOutputPayload>
     implements
         Built<SimpleScalarPropertiesInputOutputPayload,
             SimpleScalarPropertiesInputOutputPayloadBuilder> {
@@ -70,10 +107,22 @@ abstract class SimpleScalarPropertiesInputOutputPayload
   bool? get falseBooleanValue;
   double? get floatValue;
   int? get integerValue;
-  _i2.Int64? get longValue;
+  _i3.Int64? get longValue;
   int? get shortValue;
   String? get stringValue;
   bool? get trueBooleanValue;
+  @override
+  List<Object?> get props => [
+        byteValue,
+        doubleValue,
+        falseBooleanValue,
+        floatValue,
+        integerValue,
+        longValue,
+        shortValue,
+        stringValue,
+        trueBooleanValue
+      ];
 }
 
 class _SimpleScalarPropertiesInputOutputRestJson1Serializer extends _i1
@@ -135,7 +184,7 @@ class _SimpleScalarPropertiesInputOutputRestJson1Serializer extends _i1
         case 'longValue':
           if (value != null) {
             result.longValue = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.Int64)) as _i2.Int64);
+                specifiedType: const FullType(_i3.Int64)) as _i3.Int64);
           }
           break;
         case 'shortValue':
@@ -203,7 +252,7 @@ class _SimpleScalarPropertiesInputOutputRestJson1Serializer extends _i1
       result
         ..add('longValue')
         ..add(serializers.serialize(payload.longValue,
-            specifiedType: const FullType.nullable(_i2.Int64)));
+            specifiedType: const FullType.nullable(_i3.Int64)));
     }
     if (payload.shortValue != null) {
       result

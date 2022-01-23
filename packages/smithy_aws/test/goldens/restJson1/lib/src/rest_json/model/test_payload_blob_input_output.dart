@@ -4,6 +4,7 @@ library rest_json1.rest_json.model.test_payload_blob_input_output;
 
 import 'dart:typed_data' as _i2;
 
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -11,14 +12,26 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'test_payload_blob_input_output.g.dart';
 
 abstract class TestPayloadBlobInputOutput
-    with _i1.HttpInput<_i2.Uint8List>
+    with
+        _i1.HttpInput<_i2.Uint8List>,
+        _i3.AWSEquatable<TestPayloadBlobInputOutput>
     implements
-        Built<TestPayloadBlobInputOutput, TestPayloadBlobInputOutputBuilder> {
+        Built<TestPayloadBlobInputOutput, TestPayloadBlobInputOutputBuilder>,
+        _i1.HasPayload<_i2.Uint8List> {
   factory TestPayloadBlobInputOutput(
           [void Function(TestPayloadBlobInputOutputBuilder) updates]) =
       _$TestPayloadBlobInputOutput;
 
   const TestPayloadBlobInputOutput._();
+
+  factory TestPayloadBlobInputOutput.fromResponse(
+          _i2.Uint8List? payload, _i3.AWSStreamedHttpResponse response) =>
+      TestPayloadBlobInputOutput((b) {
+        b.data = payload;
+        if (response.headers['Content-Type'] != null) {
+          b.contentType = response.headers['Content-Type']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestPayloadBlobInputOutputRestJson1Serializer()
@@ -28,7 +41,10 @@ abstract class TestPayloadBlobInputOutput
   static void _init(TestPayloadBlobInputOutputBuilder b) {}
   String? get contentType;
   _i2.Uint8List? get data;
+  @override
   _i2.Uint8List? getPayload() => data;
+  @override
+  List<Object?> get props => [contentType, data];
 }
 
 class _TestPayloadBlobInputOutputRestJson1Serializer
@@ -56,6 +72,6 @@ class _TestPayloadBlobInputOutputRestJson1Serializer
         ? object.getPayload()
         : (object as _i2.Uint8List?);
     return (serializers.serialize(payload,
-        specifiedType: const FullType.nullable(_i2.Uint8List)) as Object);
+        specifiedType: const FullType(_i2.Uint8List)) as Object);
   }
 }

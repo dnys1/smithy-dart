@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.http_payload_with_structure_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json/model/nested_payload.dart' as _i2;
@@ -11,15 +12,25 @@ part 'http_payload_with_structure_input_output.g.dart';
 
 abstract class HttpPayloadWithStructureInputOutput
     with
-        _i1.HttpInput<_i2.NestedPayload>
+        _i1.HttpInput<_i2.NestedPayload>,
+        _i3.AWSEquatable<HttpPayloadWithStructureInputOutput>
     implements
         Built<HttpPayloadWithStructureInputOutput,
-            HttpPayloadWithStructureInputOutputBuilder> {
+            HttpPayloadWithStructureInputOutputBuilder>,
+        _i1.HasPayload<_i2.NestedPayload> {
   factory HttpPayloadWithStructureInputOutput(
           [void Function(HttpPayloadWithStructureInputOutputBuilder) updates]) =
       _$HttpPayloadWithStructureInputOutput;
 
   const HttpPayloadWithStructureInputOutput._();
+
+  factory HttpPayloadWithStructureInputOutput.fromResponse(
+          _i2.NestedPayload? payload, _i3.AWSStreamedHttpResponse response) =>
+      HttpPayloadWithStructureInputOutput((b) {
+        if (payload != null) {
+          b.nested.replace(payload);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadWithStructureInputOutputRestJson1Serializer()
@@ -28,7 +39,10 @@ abstract class HttpPayloadWithStructureInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPayloadWithStructureInputOutputBuilder b) {}
   _i2.NestedPayload? get nested;
+  @override
   _i2.NestedPayload? getPayload() => nested ?? _i2.NestedPayload();
+  @override
+  List<Object?> get props => [nested];
 }
 
 class _HttpPayloadWithStructureInputOutputRestJson1Serializer
@@ -58,6 +72,6 @@ class _HttpPayloadWithStructureInputOutputRestJson1Serializer
         ? object.getPayload()
         : (object as _i2.NestedPayload?);
     return (serializers.serialize(payload,
-        specifiedType: const FullType.nullable(_i2.NestedPayload)) as Object);
+        specifiedType: const FullType(_i2.NestedPayload)) as Object);
   }
 }

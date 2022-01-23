@@ -2,15 +2,18 @@
 
 library rest_json1.rest_json.model.malformed_union_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1/src/rest_json/model/simple_union.dart' as _i2;
+import 'package:rest_json1/src/rest_json/model/simple_union.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_union_input.g.dart';
 
 abstract class MalformedUnionInput
-    with _i1.HttpInput<MalformedUnionInput>
+    with
+        _i1.HttpInput<MalformedUnionInput>,
+        _i2.AWSEquatable<MalformedUnionInput>
     implements Built<MalformedUnionInput, MalformedUnionInputBuilder> {
   factory MalformedUnionInput(
           [void Function(MalformedUnionInputBuilder) updates]) =
@@ -24,7 +27,11 @@ abstract class MalformedUnionInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedUnionInputBuilder b) {}
-  _i2.SimpleUnion? get union;
+  _i3.SimpleUnion? get union;
+  @override
+  MalformedUnionInput getPayload() => this;
+  @override
+  List<Object?> get props => [union];
 }
 
 class _MalformedUnionInputRestJson1Serializer
@@ -52,8 +59,8 @@ class _MalformedUnionInputRestJson1Serializer
         case 'union':
           if (value != null) {
             result.union = (serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.SimpleUnion))
-                as _i2.SimpleUnion);
+                    specifiedType: const FullType(_i3.SimpleUnion))
+                as _i3.SimpleUnion);
           }
           break;
       }
@@ -71,7 +78,7 @@ class _MalformedUnionInputRestJson1Serializer
       result
         ..add('union')
         ..add(serializers.serialize(payload.union,
-            specifiedType: const FullType.nullable(_i2.SimpleUnion)));
+            specifiedType: const FullType.nullable(_i3.SimpleUnion)));
     }
     return result;
   }

@@ -2,8 +2,9 @@
 
 library rest_json1.rest_json.model.json_blobs_input_output;
 
-import 'dart:typed_data' as _i2;
+import 'dart:typed_data' as _i3;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -11,7 +12,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'json_blobs_input_output.g.dart';
 
 abstract class JsonBlobsInputOutput
-    with _i1.HttpInput<JsonBlobsInputOutput>
+    with
+        _i1.HttpInput<JsonBlobsInputOutput>,
+        _i2.AWSEquatable<JsonBlobsInputOutput>
     implements Built<JsonBlobsInputOutput, JsonBlobsInputOutputBuilder> {
   factory JsonBlobsInputOutput(
           [void Function(JsonBlobsInputOutputBuilder) updates]) =
@@ -19,13 +22,21 @@ abstract class JsonBlobsInputOutput
 
   const JsonBlobsInputOutput._();
 
+  factory JsonBlobsInputOutput.fromResponse(
+          JsonBlobsInputOutput payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _JsonBlobsInputOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(JsonBlobsInputOutputBuilder b) {}
-  _i2.Uint8List? get data;
+  _i3.Uint8List? get data;
+  @override
+  JsonBlobsInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [data];
 }
 
 class _JsonBlobsInputOutputRestJson1Serializer
@@ -53,7 +64,7 @@ class _JsonBlobsInputOutputRestJson1Serializer
         case 'data':
           if (value != null) {
             result.data = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.Uint8List)) as _i2.Uint8List);
+                specifiedType: const FullType(_i3.Uint8List)) as _i3.Uint8List);
           }
           break;
       }
@@ -71,7 +82,7 @@ class _JsonBlobsInputOutputRestJson1Serializer
       result
         ..add('data')
         ..add(serializers.serialize(payload.data,
-            specifiedType: const FullType.nullable(_i2.Uint8List)));
+            specifiedType: const FullType.nullable(_i3.Uint8List)));
     }
     return result;
   }

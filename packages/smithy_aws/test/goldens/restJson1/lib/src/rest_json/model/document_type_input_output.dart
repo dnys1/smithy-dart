@@ -2,15 +2,18 @@
 
 library rest_json1.rest_json.model.document_type_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
-import 'package:built_value/json_object.dart' as _i2;
+import 'package:built_value/json_object.dart' as _i3;
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'document_type_input_output.g.dart';
 
 abstract class DocumentTypeInputOutput
-    with _i1.HttpInput<DocumentTypeInputOutput>
+    with
+        _i1.HttpInput<DocumentTypeInputOutput>,
+        _i2.AWSEquatable<DocumentTypeInputOutput>
     implements Built<DocumentTypeInputOutput, DocumentTypeInputOutputBuilder> {
   factory DocumentTypeInputOutput(
           [void Function(DocumentTypeInputOutputBuilder) updates]) =
@@ -18,14 +21,22 @@ abstract class DocumentTypeInputOutput
 
   const DocumentTypeInputOutput._();
 
+  factory DocumentTypeInputOutput.fromResponse(DocumentTypeInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _DocumentTypeInputOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(DocumentTypeInputOutputBuilder b) {}
-  _i2.JsonObject? get documentValue;
+  _i3.JsonObject? get documentValue;
   String? get stringValue;
+  @override
+  DocumentTypeInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [documentValue, stringValue];
 }
 
 class _DocumentTypeInputOutputRestJson1Serializer
@@ -53,8 +64,8 @@ class _DocumentTypeInputOutputRestJson1Serializer
         case 'documentValue':
           if (value != null) {
             result.documentValue = (serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.JsonObject))
-                as _i2.JsonObject);
+                    specifiedType: const FullType(_i3.JsonObject))
+                as _i3.JsonObject);
           }
           break;
         case 'stringValue':
@@ -78,7 +89,7 @@ class _DocumentTypeInputOutputRestJson1Serializer
       result
         ..add('documentValue')
         ..add(serializers.serialize(payload.documentValue,
-            specifiedType: const FullType.nullable(_i2.JsonObject)));
+            specifiedType: const FullType.nullable(_i3.JsonObject)));
     }
     if (payload.stringValue != null) {
       result

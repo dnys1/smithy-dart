@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.http_checksum_required_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'http_checksum_required_input_output.g.dart';
 
 abstract class HttpChecksumRequiredInputOutput
     with
-        _i1.HttpInput<HttpChecksumRequiredInputOutput>
+        _i1.HttpInput<HttpChecksumRequiredInputOutput>,
+        _i2.AWSEquatable<HttpChecksumRequiredInputOutput>
     implements
         Built<HttpChecksumRequiredInputOutput,
             HttpChecksumRequiredInputOutputBuilder> {
@@ -20,6 +22,11 @@ abstract class HttpChecksumRequiredInputOutput
 
   const HttpChecksumRequiredInputOutput._();
 
+  factory HttpChecksumRequiredInputOutput.fromResponse(
+          HttpChecksumRequiredInputOutput payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _HttpChecksumRequiredInputOutputRestJson1Serializer()
   ];
@@ -27,6 +34,10 @@ abstract class HttpChecksumRequiredInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpChecksumRequiredInputOutputBuilder b) {}
   String? get foo;
+  @override
+  HttpChecksumRequiredInputOutput getPayload() => this;
+  @override
+  List<Object?> get props => [foo];
 }
 
 class _HttpChecksumRequiredInputOutputRestJson1Serializer

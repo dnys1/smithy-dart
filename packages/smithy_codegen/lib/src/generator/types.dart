@@ -164,11 +164,13 @@ class _Async {
       );
 
   /// Creates a [Stream] reference.
-  Reference stream(Reference ref) => TypeReference(
+  Reference stream([Reference? ref]) => TypeReference(
         (t) => t
           ..symbol = 'Stream'
           ..url = _url
-          ..types.add(ref),
+          ..types.addAll([
+            if (ref != null) ref,
+          ]),
       );
 }
 
@@ -348,6 +350,9 @@ class _Convert {
 
   /// Creates a [convert.jsonDecode] reference.
   Reference get jsonDecode => const Reference('jsonDecode', _url);
+
+  /// Creates a [convert.utf8] reference.
+  Reference get utf8 => const Reference('utf8', _url);
 }
 
 /// `package:fixnum` types
@@ -481,8 +486,25 @@ class _Smithy {
   Reference get missingLabelException =>
       const Reference('MissingLabelException', _url);
 
+  /// Creates a [smithy.parseHeader] reference.
+  Reference get parseHeader => const Reference('parseHeader', _url);
+
+  /// Creates a [smithy.PrimitiveSmithySerializer] reference for [ref], the
+  /// class being serialized.
+  Reference primitiveSmithySerializer([Reference? ref]) => TypeReference(
+        (t) => t
+          ..symbol = 'PrimitiveSmithySerializer'
+          ..url = _url
+          ..types.addAll([
+            if (ref != null) ref,
+          ]),
+      );
+
   /// Creates a [smithy.RetryConfig] reference.
   Reference get retryConfig => const Reference('RetryConfig', _url);
+
+  /// Creates a [smithy.sanitizeHeader] reference.
+  Reference get sanitizeHeader => const Reference('sanitizeHeader', _url);
 
   /// Creates a [smithy.ShapeId] AST reference.
   Reference get shapeId => const Reference('ShapeId', _url);
@@ -539,17 +561,6 @@ class _Smithy {
           ]),
       );
 
-  /// Creates a [smithy.PrimitiveSmithySerializer] reference for [ref], the
-  /// class being serialized.
-  Reference primitiveSmithySerializer([Reference? ref]) => TypeReference(
-        (t) => t
-          ..symbol = 'PrimitiveSmithySerializer'
-          ..url = _url
-          ..types.addAll([
-            if (ref != null) ref,
-          ]),
-      );
-
   /// Creates a [smithy.Timestamp] reference.
   Reference get timestamp => const Reference('Timestamp', _url);
 
@@ -567,10 +578,17 @@ class _Smithy {
   Reference get withChecksum => const Reference('WithChecksum', _url);
 
   /// Creates a [smithy.WithContentLength] reference.
-  Reference get withContentType => const Reference('WithContentType', _url);
+  Reference get withContentLength => const Reference('WithContentLength', _url);
+
+  /// Creates a [smithy.WithNoContentLength] reference.
+  Reference get withNoContentLength =>
+      const Reference('WithNoContentLength', _url);
 
   /// Creates a [smithy.WithHeader] reference.
   Reference get withHeader => const Reference('WithHeader', _url);
+
+  /// Creates a [smithy.WithNoHeader] reference.
+  Reference get withNoHeader => const Reference('WithNoHeader', _url);
 }
 
 /// `package:smithy_aws` types.

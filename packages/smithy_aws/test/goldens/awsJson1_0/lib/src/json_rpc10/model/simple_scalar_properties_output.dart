@@ -2,13 +2,16 @@
 
 library aws_json1_0.json_rpc10.model.simple_scalar_properties_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'simple_scalar_properties_output.g.dart';
 
 abstract class SimpleScalarPropertiesOutput
+    with
+        _i1.AWSEquatable<SimpleScalarPropertiesOutput>
     implements
         Built<SimpleScalarPropertiesOutput,
             SimpleScalarPropertiesOutputBuilder> {
@@ -18,7 +21,12 @@ abstract class SimpleScalarPropertiesOutput
 
   const SimpleScalarPropertiesOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory SimpleScalarPropertiesOutput.fromResponse(
+          SimpleScalarPropertiesOutput payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      payload;
+
+  static const List<_i2.SmithySerializer> serializers = [
     _SimpleScalarPropertiesOutputAwsJson10Serializer()
   ];
 
@@ -26,10 +34,12 @@ abstract class SimpleScalarPropertiesOutput
   static void _init(SimpleScalarPropertiesOutputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
+  @override
+  List<Object?> get props => [doubleValue, floatValue];
 }
 
 class _SimpleScalarPropertiesOutputAwsJson10Serializer
-    extends _i1.StructuredSmithySerializer<SimpleScalarPropertiesOutput> {
+    extends _i2.StructuredSmithySerializer<SimpleScalarPropertiesOutput> {
   const _SimpleScalarPropertiesOutputAwsJson10Serializer()
       : super('SimpleScalarPropertiesOutput');
 
@@ -37,8 +47,8 @@ class _SimpleScalarPropertiesOutputAwsJson10Serializer
   Iterable<Type> get types =>
       const [SimpleScalarPropertiesOutput, _$SimpleScalarPropertiesOutput];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   SimpleScalarPropertiesOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,

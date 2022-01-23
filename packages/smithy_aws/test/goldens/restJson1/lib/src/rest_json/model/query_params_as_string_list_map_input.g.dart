@@ -9,7 +9,7 @@ part of rest_json1.rest_json.model.query_params_as_string_list_map_input;
 class _$QueryParamsAsStringListMapInput
     extends QueryParamsAsStringListMapInput {
   @override
-  final _i2.BuiltListMultimap<String, String>? foo;
+  final _i3.BuiltListMultimap<String, String>? foo;
   @override
   final String? qux;
 
@@ -56,10 +56,10 @@ class QueryParamsAsStringListMapInputBuilder
             QueryParamsAsStringListMapInputBuilder> {
   _$QueryParamsAsStringListMapInput? _$v;
 
-  _i2.ListMultimapBuilder<String, String>? _foo;
-  _i2.ListMultimapBuilder<String, String> get foo =>
-      _$this._foo ??= new _i2.ListMultimapBuilder<String, String>();
-  set foo(_i2.ListMultimapBuilder<String, String>? foo) => _$this._foo = foo;
+  _i3.ListMultimapBuilder<String, String>? _foo;
+  _i3.ListMultimapBuilder<String, String> get foo =>
+      _$this._foo ??= new _i3.ListMultimapBuilder<String, String>();
+  set foo(_i3.ListMultimapBuilder<String, String>? foo) => _$this._foo = foo;
 
   String? _qux;
   String? get qux => _$this._qux;

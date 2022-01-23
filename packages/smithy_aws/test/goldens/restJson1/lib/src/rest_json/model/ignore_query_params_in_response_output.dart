@@ -2,13 +2,16 @@
 
 library rest_json1.rest_json.model.ignore_query_params_in_response_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'ignore_query_params_in_response_output.g.dart';
 
 abstract class IgnoreQueryParamsInResponseOutput
+    with
+        _i1.AWSEquatable<IgnoreQueryParamsInResponseOutput>
     implements
         Built<IgnoreQueryParamsInResponseOutput,
             IgnoreQueryParamsInResponseOutputBuilder> {
@@ -18,17 +21,24 @@ abstract class IgnoreQueryParamsInResponseOutput
 
   const IgnoreQueryParamsInResponseOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory IgnoreQueryParamsInResponseOutput.fromResponse(
+          IgnoreQueryParamsInResponseOutput payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      payload;
+
+  static const List<_i2.SmithySerializer> serializers = [
     _IgnoreQueryParamsInResponseOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(IgnoreQueryParamsInResponseOutputBuilder b) {}
   String? get baz;
+  @override
+  List<Object?> get props => [baz];
 }
 
 class _IgnoreQueryParamsInResponseOutputRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<IgnoreQueryParamsInResponseOutput> {
+    extends _i2.StructuredSmithySerializer<IgnoreQueryParamsInResponseOutput> {
   const _IgnoreQueryParamsInResponseOutputRestJson1Serializer()
       : super('IgnoreQueryParamsInResponseOutput');
 
@@ -38,8 +48,8 @@ class _IgnoreQueryParamsInResponseOutputRestJson1Serializer
         _$IgnoreQueryParamsInResponseOutput
       ];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   IgnoreQueryParamsInResponseOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,

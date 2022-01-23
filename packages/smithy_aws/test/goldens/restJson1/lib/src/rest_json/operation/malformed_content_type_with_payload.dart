@@ -21,12 +21,9 @@ class MalformedContentTypeWithPayloadOperation extends _i1.HttpOperation<
       _i1.HttpProtocol<_i2.Uint8List, _i3.MalformedContentTypeWithPayloadInput,
           _i1.Unit, _i1.Unit>> protocols = [
     _i4.RestJson1Protocol(
-        serializers: const [
-          ..._i5.serializers,
-          _i1.BlobSerializer('image/jpeg')
-        ],
+        serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [],
+        interceptors: [const _i1.WithContentLength()],
         mediaType: 'image/jpeg')
   ];
 
@@ -36,8 +33,9 @@ class MalformedContentTypeWithPayloadOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/MalformedContentTypeWithPayload';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>

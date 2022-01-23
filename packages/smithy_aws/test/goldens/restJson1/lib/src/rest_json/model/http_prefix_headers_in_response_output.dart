@@ -2,43 +2,59 @@
 
 library rest_json1.rest_json.model.http_prefix_headers_in_response_output;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:meta/meta.dart' as _i4;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'http_prefix_headers_in_response_output.g.dart';
 
 abstract class HttpPrefixHeadersInResponseOutput
+    with
+        _i1.AWSEquatable<HttpPrefixHeadersInResponseOutput>
     implements
         Built<HttpPrefixHeadersInResponseOutput,
             HttpPrefixHeadersInResponseOutputBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload,
+        _i2.HasPayload<HttpPrefixHeadersInResponseOutputPayload> {
   factory HttpPrefixHeadersInResponseOutput(
           [void Function(HttpPrefixHeadersInResponseOutputBuilder) updates]) =
       _$HttpPrefixHeadersInResponseOutput;
 
   const HttpPrefixHeadersInResponseOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory HttpPrefixHeadersInResponseOutput.fromResponse(
+          HttpPrefixHeadersInResponseOutputPayload payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      HttpPrefixHeadersInResponseOutput((b) {
+        b.prefixHeaders.addEntries(response.headers.entries);
+      });
+
+  static const List<_i2.SmithySerializer> serializers = [
     _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPrefixHeadersInResponseOutputBuilder b) {}
-  _i2.BuiltMap<String, String>? get prefixHeaders;
+  _i3.BuiltMap<String, String>? get prefixHeaders;
+  @override
   HttpPrefixHeadersInResponseOutputPayload getPayload() =>
       HttpPrefixHeadersInResponseOutputPayload();
+  @override
+  List<Object?> get props => [prefixHeaders];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpPrefixHeadersInResponseOutputPayload
+    with
+        _i1.AWSEquatable<HttpPrefixHeadersInResponseOutputPayload>
     implements
         Built<HttpPrefixHeadersInResponseOutputPayload,
             HttpPrefixHeadersInResponseOutputPayloadBuilder>,
-        _i1.EmptyPayload {
+        _i2.EmptyPayload {
   factory HttpPrefixHeadersInResponseOutputPayload(
       [void Function(HttpPrefixHeadersInResponseOutputPayloadBuilder)
           updates]) = _$HttpPrefixHeadersInResponseOutputPayload;
@@ -47,9 +63,11 @@ abstract class HttpPrefixHeadersInResponseOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpPrefixHeadersInResponseOutputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
-class _HttpPrefixHeadersInResponseOutputRestJson1Serializer extends _i1
+class _HttpPrefixHeadersInResponseOutputRestJson1Serializer extends _i2
     .StructuredSmithySerializer<HttpPrefixHeadersInResponseOutputPayload> {
   const _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
       : super('HttpPrefixHeadersInResponseOutput');
@@ -62,8 +80,8 @@ class _HttpPrefixHeadersInResponseOutputRestJson1Serializer extends _i1
         _$HttpPrefixHeadersInResponseOutputPayload
       ];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   HttpPrefixHeadersInResponseOutputPayload deserialize(
       Serializers serializers, Iterable<Object?> serialized,

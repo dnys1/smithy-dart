@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.document_type_as_payload_input_output;
 
+import 'package:aws_common/aws_common.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/json_object.dart' as _i2;
 import 'package:built_value/serializer.dart';
@@ -11,15 +12,23 @@ part 'document_type_as_payload_input_output.g.dart';
 
 abstract class DocumentTypeAsPayloadInputOutput
     with
-        _i1.HttpInput<_i2.JsonObject>
+        _i1.HttpInput<_i2.JsonObject>,
+        _i3.AWSEquatable<DocumentTypeAsPayloadInputOutput>
     implements
         Built<DocumentTypeAsPayloadInputOutput,
-            DocumentTypeAsPayloadInputOutputBuilder> {
+            DocumentTypeAsPayloadInputOutputBuilder>,
+        _i1.HasPayload<_i2.JsonObject> {
   factory DocumentTypeAsPayloadInputOutput(
           [void Function(DocumentTypeAsPayloadInputOutputBuilder) updates]) =
       _$DocumentTypeAsPayloadInputOutput;
 
   const DocumentTypeAsPayloadInputOutput._();
+
+  factory DocumentTypeAsPayloadInputOutput.fromResponse(
+          _i2.JsonObject? payload, _i3.AWSStreamedHttpResponse response) =>
+      DocumentTypeAsPayloadInputOutput((b) {
+        b.documentValue = payload;
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _DocumentTypeAsPayloadInputOutputRestJson1Serializer()
@@ -28,7 +37,10 @@ abstract class DocumentTypeAsPayloadInputOutput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(DocumentTypeAsPayloadInputOutputBuilder b) {}
   _i2.JsonObject? get documentValue;
+  @override
   _i2.JsonObject? getPayload() => documentValue;
+  @override
+  List<Object?> get props => [documentValue];
 }
 
 class _DocumentTypeAsPayloadInputOutputRestJson1Serializer
@@ -58,6 +70,6 @@ class _DocumentTypeAsPayloadInputOutputRestJson1Serializer
         ? object.getPayload()
         : (object as _i2.JsonObject?);
     return (serializers.serialize(payload,
-        specifiedType: const FullType.nullable(_i2.JsonObject)) as Object);
+        specifiedType: const FullType(_i2.JsonObject)) as Object);
   }
 }

@@ -26,6 +26,7 @@ class PutAndGetInlineDocumentsOperation extends _i1.HttpOperation<
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.PutAndGetInlineDocuments')
         ])
@@ -36,13 +37,14 @@ class PutAndGetInlineDocumentsOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.PutAndGetInlineDocumentsInputOutput? output]) => 200;
   @override
   _i2.PutAndGetInlineDocumentsInputOutput buildOutput(
           _i2.PutAndGetInlineDocumentsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.PutAndGetInlineDocumentsInputOutput((b) {});
+      _i2.PutAndGetInlineDocumentsInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc10.model.greeting_with_errors_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -9,7 +10,9 @@ import 'package:smithy/smithy.dart' as _i1;
 part 'greeting_with_errors_input.g.dart';
 
 abstract class GreetingWithErrorsInput
-    with _i1.HttpInput<GreetingWithErrorsInput>
+    with
+        _i1.HttpInput<GreetingWithErrorsInput>,
+        _i2.AWSEquatable<GreetingWithErrorsInput>
     implements Built<GreetingWithErrorsInput, GreetingWithErrorsInputBuilder> {
   factory GreetingWithErrorsInput(
           [void Function(GreetingWithErrorsInputBuilder) updates]) =
@@ -24,6 +27,10 @@ abstract class GreetingWithErrorsInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsInputBuilder b) {}
   String? get greeting;
+  @override
+  GreetingWithErrorsInput getPayload() => this;
+  @override
+  List<Object?> get props => [greeting];
 }
 
 class _GreetingWithErrorsInputAwsJson10Serializer

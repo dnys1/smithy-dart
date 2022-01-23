@@ -22,6 +22,7 @@ class KitchenSinkOperation extends _i1.HttpOperation<_i2.KitchenSink,
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.KitchenSinkOperation')
         ])
@@ -31,24 +32,27 @@ class KitchenSinkOperation extends _i1.HttpOperation<_i2.KitchenSink,
   _i1.HttpRequest buildRequest(_i2.KitchenSink input) => _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.KitchenSink? output]) => 200;
   @override
   _i2.KitchenSink buildOutput(
           _i2.KitchenSink payload, _i5.AWSStreamedHttpResponse response) =>
-      _i2.KitchenSink((b) {});
+      _i2.KitchenSink.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.json', shape: 'ErrorWithMembers'),
             _i1.ErrorKind.client,
-            _i6.ErrorWithMembers),
+            _i6.ErrorWithMembers,
+            builder: _i6.ErrorWithMembers.fromResponse),
         _i1.SmithyError(
             _i1.ShapeId(
                 namespace: 'aws.protocoltests.json',
                 shape: 'ErrorWithoutMembers'),
             _i1.ErrorKind.server,
-            _i7.ErrorWithoutMembers)
+            _i7.ErrorWithoutMembers,
+            builder: _i7.ErrorWithoutMembers.fromResponse)
       ];
 }

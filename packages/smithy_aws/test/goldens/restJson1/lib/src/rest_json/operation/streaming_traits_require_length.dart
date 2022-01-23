@@ -31,7 +31,7 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -40,21 +40,20 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/StreamingTraitsRequireLength';
-        b.successCode = 200;
         if (input.foo != null) {
-          b.headers['X-Foo'] = input.foo!;
+          if (input.foo!.isNotEmpty) {
+            b.headers['X-Foo'] = input.foo!;
+          }
         }
       });
+  @override
+  int successCode([_i3.StreamingTraitsRequireLengthInputOutput? output]) => 200;
   @override
   _i3.StreamingTraitsRequireLengthInputOutput buildOutput(
           _i2.Stream<List<int>>? payload,
           _i6.AWSStreamedHttpResponse response) =>
-      _i3.StreamingTraitsRequireLengthInputOutput((b) {
-        b.blob = payload;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      _i3.StreamingTraitsRequireLengthInputOutput.fromResponse(
+          payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

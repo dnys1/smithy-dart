@@ -8,7 +8,7 @@ part of aws_json1_1.json_protocol.model.complex_error;
 
 class _$ComplexError extends ComplexError {
   @override
-  final _i2.ComplexNestedErrorData? nested;
+  final _i3.ComplexNestedErrorData? nested;
   @override
   final String? topLevel;
 
@@ -50,10 +50,10 @@ class ComplexErrorBuilder
     implements Builder<ComplexError, ComplexErrorBuilder> {
   _$ComplexError? _$v;
 
-  _i2.ComplexNestedErrorDataBuilder? _nested;
-  _i2.ComplexNestedErrorDataBuilder get nested =>
-      _$this._nested ??= new _i2.ComplexNestedErrorDataBuilder();
-  set nested(_i2.ComplexNestedErrorDataBuilder? nested) =>
+  _i3.ComplexNestedErrorDataBuilder? _nested;
+  _i3.ComplexNestedErrorDataBuilder get nested =>
+      _$this._nested ??= new _i3.ComplexNestedErrorDataBuilder();
+  set nested(_i3.ComplexNestedErrorDataBuilder? nested) =>
       _$this._nested = nested;
 
   String? _topLevel;

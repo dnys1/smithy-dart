@@ -21,7 +21,7 @@ class _$SimpleScalarPropertiesInputOutput
   @override
   final int? integerValue;
   @override
-  final _i2.Int64? longValue;
+  final _i3.Int64? longValue;
   @override
   final int? shortValue;
   @override
@@ -141,9 +141,9 @@ class SimpleScalarPropertiesInputOutputBuilder
   int? get integerValue => _$this._integerValue;
   set integerValue(int? integerValue) => _$this._integerValue = integerValue;
 
-  _i2.Int64? _longValue;
-  _i2.Int64? get longValue => _$this._longValue;
-  set longValue(_i2.Int64? longValue) => _$this._longValue = longValue;
+  _i3.Int64? _longValue;
+  _i3.Int64? get longValue => _$this._longValue;
+  set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
 
   int? _shortValue;
   int? get shortValue => _$this._shortValue;
@@ -224,7 +224,7 @@ class _$SimpleScalarPropertiesInputOutputPayload
   @override
   final int? integerValue;
   @override
-  final _i2.Int64? longValue;
+  final _i3.Int64? longValue;
   @override
   final int? shortValue;
   @override
@@ -339,9 +339,9 @@ class SimpleScalarPropertiesInputOutputPayloadBuilder
   int? get integerValue => _$this._integerValue;
   set integerValue(int? integerValue) => _$this._integerValue = integerValue;
 
-  _i2.Int64? _longValue;
-  _i2.Int64? get longValue => _$this._longValue;
-  set longValue(_i2.Int64? longValue) => _$this._longValue = longValue;
+  _i3.Int64? _longValue;
+  _i3.Int64? get longValue => _$this._longValue;
+  set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
 
   int? _shortValue;
   int? get shortValue => _$this._shortValue;

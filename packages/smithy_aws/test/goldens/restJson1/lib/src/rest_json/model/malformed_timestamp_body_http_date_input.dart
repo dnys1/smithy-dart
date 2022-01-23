@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json.model.malformed_timestamp_body_http_date_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -10,7 +11,8 @@ part 'malformed_timestamp_body_http_date_input.g.dart';
 
 abstract class MalformedTimestampBodyHttpDateInput
     with
-        _i1.HttpInput<MalformedTimestampBodyHttpDateInput>
+        _i1.HttpInput<MalformedTimestampBodyHttpDateInput>,
+        _i2.AWSEquatable<MalformedTimestampBodyHttpDateInput>
     implements
         Built<MalformedTimestampBodyHttpDateInput,
             MalformedTimestampBodyHttpDateInputBuilder> {
@@ -27,6 +29,10 @@ abstract class MalformedTimestampBodyHttpDateInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedTimestampBodyHttpDateInputBuilder b) {}
   DateTime get timestamp;
+  @override
+  MalformedTimestampBodyHttpDateInput getPayload() => this;
+  @override
+  List<Object?> get props => [timestamp];
 }
 
 class _MalformedTimestampBodyHttpDateInputRestJson1Serializer extends _i1

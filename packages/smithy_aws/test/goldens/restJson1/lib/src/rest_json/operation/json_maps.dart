@@ -19,7 +19,7 @@ class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   @override
@@ -27,12 +27,13 @@ class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/JsonMaps';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.JsonMapsInputOutput? output]) => 200;
   @override
   _i2.JsonMapsInputOutput buildOutput(_i2.JsonMapsInputOutput payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.JsonMapsInputOutput((b) {});
+      _i2.JsonMapsInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

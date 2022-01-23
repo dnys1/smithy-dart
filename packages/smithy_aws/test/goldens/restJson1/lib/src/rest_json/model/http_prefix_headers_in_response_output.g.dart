@@ -9,7 +9,7 @@ part of rest_json1.rest_json.model.http_prefix_headers_in_response_output;
 class _$HttpPrefixHeadersInResponseOutput
     extends HttpPrefixHeadersInResponseOutput {
   @override
-  final _i2.BuiltMap<String, String>? prefixHeaders;
+  final _i3.BuiltMap<String, String>? prefixHeaders;
 
   factory _$HttpPrefixHeadersInResponseOutput(
           [void Function(HttpPrefixHeadersInResponseOutputBuilder)? updates]) =>
@@ -52,10 +52,10 @@ class HttpPrefixHeadersInResponseOutputBuilder
             HttpPrefixHeadersInResponseOutputBuilder> {
   _$HttpPrefixHeadersInResponseOutput? _$v;
 
-  _i2.MapBuilder<String, String>? _prefixHeaders;
-  _i2.MapBuilder<String, String> get prefixHeaders =>
-      _$this._prefixHeaders ??= new _i2.MapBuilder<String, String>();
-  set prefixHeaders(_i2.MapBuilder<String, String>? prefixHeaders) =>
+  _i3.MapBuilder<String, String>? _prefixHeaders;
+  _i3.MapBuilder<String, String> get prefixHeaders =>
+      _$this._prefixHeaders ??= new _i3.MapBuilder<String, String>();
+  set prefixHeaders(_i3.MapBuilder<String, String>? prefixHeaders) =>
       _$this._prefixHeaders = prefixHeaders;
 
   HttpPrefixHeadersInResponseOutputBuilder() {

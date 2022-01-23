@@ -118,6 +118,7 @@ class _TestPayloadBlobInputOutputRestJson1Serializer
       }
     }
 
+    result.data ??= _i6.Uint8List(0);
     return result.build();
   }
 

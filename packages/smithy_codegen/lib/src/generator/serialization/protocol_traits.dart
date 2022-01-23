@@ -55,19 +55,27 @@ abstract class HttpInputTraits
   MemberShape? get httpQueryParams;
 }
 
+@BuiltValue(instantiable: false)
+abstract class HttpResponseTraits {
+  BuiltMap<String, MemberShape> get httpHeaders;
+  HttpPrefixHeaders? get httpPrefixHeaders;
+}
+
 abstract class HttpOutputTraits
-    implements Built<HttpOutputTraits, HttpOutputTraitsBuilder> {
+    implements
+        HttpResponseTraits,
+        Built<HttpOutputTraits, HttpOutputTraitsBuilder> {
   factory HttpOutputTraits([void Function(HttpOutputTraitsBuilder) updates]) =
       _$HttpOutputTraits;
   HttpOutputTraits._();
 
-  BuiltMap<String, MemberShape> get httpHeaders;
-  HttpPrefixHeaders? get httpPrefixHeaders;
   MemberShape? get httpResponseCode;
 }
 
 abstract class HttpErrorTraits
-    implements Built<HttpErrorTraits, HttpErrorTraitsBuilder> {
+    implements
+        HttpResponseTraits,
+        Built<HttpErrorTraits, HttpErrorTraitsBuilder> {
   factory HttpErrorTraits([void Function(HttpErrorTraitsBuilder) updates]) =
       _$HttpErrorTraits;
   HttpErrorTraits._();
@@ -77,8 +85,6 @@ abstract class HttpErrorTraits
   Reference get symbol;
   RetryConfig? get retryConfig;
   int? get statusCode;
-  BuiltMap<String, MemberShape> get httpHeaders;
-  HttpPrefixHeaders? get httpPrefixHeaders;
 }
 
 abstract class JsonProtocolTraits

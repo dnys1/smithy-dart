@@ -2,19 +2,23 @@
 
 library rest_json1.rest_json.model.http_request_with_labels_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i2;
-import 'package:meta/meta.dart' as _i3;
+import 'package:fixnum/fixnum.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_request_with_labels_input.g.dart';
 
 abstract class HttpRequestWithLabelsInput
-    with _i1.HttpInput<HttpRequestWithLabelsInputPayload>
+    with
+        _i1.HttpInput<HttpRequestWithLabelsInputPayload>,
+        _i2.AWSEquatable<HttpRequestWithLabelsInput>
     implements
         Built<HttpRequestWithLabelsInput, HttpRequestWithLabelsInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<HttpRequestWithLabelsInputPayload> {
   factory HttpRequestWithLabelsInput(
           [void Function(HttpRequestWithLabelsInputBuilder) updates]) =
       _$HttpRequestWithLabelsInput;
@@ -33,7 +37,7 @@ abstract class HttpRequestWithLabelsInput
   double get double$;
   double get float;
   int get integer;
-  _i2.Int64 get long;
+  _i3.Int64 get long;
   int get short;
   String get string;
 
@@ -64,13 +68,19 @@ abstract class HttpRequestWithLabelsInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   HttpRequestWithLabelsInputPayload getPayload() =>
       HttpRequestWithLabelsInputPayload();
+  @override
+  List<Object?> get props =>
+      [boolean, double$, float, integer, long, short, string, timestamp];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithLabelsInputPayload
+    with
+        _i2.AWSEquatable<HttpRequestWithLabelsInputPayload>
     implements
         Built<HttpRequestWithLabelsInputPayload,
             HttpRequestWithLabelsInputPayloadBuilder>,
@@ -83,6 +93,8 @@ abstract class HttpRequestWithLabelsInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(HttpRequestWithLabelsInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpRequestWithLabelsInputRestJson1Serializer

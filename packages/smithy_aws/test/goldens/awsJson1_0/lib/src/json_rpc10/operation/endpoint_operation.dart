@@ -16,6 +16,7 @@ class EndpointOperation
         serializers: _i3.serializers,
         builderFactories: _i3.builderFactories,
         interceptors: [
+          const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.EndpointOperation')
         ])
   ];
@@ -24,9 +25,10 @@ class EndpointOperation
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
         b.hostPrefix = 'foo.';
       });
+  @override
+  int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
           _i1.Unit payload, _i4.AWSStreamedHttpResponse response) =>

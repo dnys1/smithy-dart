@@ -2,13 +2,15 @@
 
 library aws_json1_0.json_rpc10.model.greeting_with_errors_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'greeting_with_errors_output.g.dart';
 
 abstract class GreetingWithErrorsOutput
+    with _i1.AWSEquatable<GreetingWithErrorsOutput>
     implements
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder> {
   factory GreetingWithErrorsOutput(
@@ -17,17 +19,24 @@ abstract class GreetingWithErrorsOutput
 
   const GreetingWithErrorsOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory GreetingWithErrorsOutput.fromResponse(
+          GreetingWithErrorsOutput payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      payload;
+
+  static const List<_i2.SmithySerializer> serializers = [
     _GreetingWithErrorsOutputAwsJson10Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
+  @override
+  List<Object?> get props => [greeting];
 }
 
 class _GreetingWithErrorsOutputAwsJson10Serializer
-    extends _i1.StructuredSmithySerializer<GreetingWithErrorsOutput> {
+    extends _i2.StructuredSmithySerializer<GreetingWithErrorsOutput> {
   const _GreetingWithErrorsOutputAwsJson10Serializer()
       : super('GreetingWithErrorsOutput');
 
@@ -35,8 +44,8 @@ class _GreetingWithErrorsOutputAwsJson10Serializer
   Iterable<Type> get types =>
       const [GreetingWithErrorsOutput, _$GreetingWithErrorsOutput];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   GreetingWithErrorsOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,

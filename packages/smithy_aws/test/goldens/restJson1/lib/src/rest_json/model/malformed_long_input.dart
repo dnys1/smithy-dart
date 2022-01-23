@@ -2,17 +2,22 @@
 
 library rest_json1.rest_json.model.malformed_long_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i2;
-import 'package:meta/meta.dart' as _i3;
+import 'package:fixnum/fixnum.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_long_input.g.dart';
 
 abstract class MalformedLongInput
-    with _i1.HttpInput<MalformedLongInputPayload>
-    implements Built<MalformedLongInput, MalformedLongInputBuilder> {
+    with
+        _i1.HttpInput<MalformedLongInputPayload>,
+        _i2.AWSEquatable<MalformedLongInput>
+    implements
+        Built<MalformedLongInput, MalformedLongInputBuilder>,
+        _i1.HasPayload<MalformedLongInputPayload> {
   factory MalformedLongInput(
           [void Function(MalformedLongInputBuilder) updates]) =
       _$MalformedLongInput;
@@ -25,10 +30,10 @@ abstract class MalformedLongInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedLongInputBuilder b) {}
-  _i2.Int64? get longInBody;
-  _i2.Int64? get longInHeader;
-  _i2.Int64 get longInPath;
-  _i2.Int64? get longInQuery;
+  _i3.Int64? get longInBody;
+  _i3.Int64? get longInHeader;
+  _i3.Int64 get longInPath;
+  _i3.Int64? get longInQuery;
   @override
   String labelFor(String key) {
     switch (key) {
@@ -38,13 +43,18 @@ abstract class MalformedLongInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   MalformedLongInputPayload getPayload() =>
       MalformedLongInputPayload((b) => b..longInBody = longInBody);
+  @override
+  List<Object?> get props =>
+      [longInBody, longInHeader, longInPath, longInQuery];
 }
 
-@_i3.internal
+@_i4.internal
 @BuiltValue(nestedBuilders: false)
 abstract class MalformedLongInputPayload
+    with _i2.AWSEquatable<MalformedLongInputPayload>
     implements
         Built<MalformedLongInputPayload, MalformedLongInputPayloadBuilder> {
   factory MalformedLongInputPayload(
@@ -55,7 +65,9 @@ abstract class MalformedLongInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedLongInputPayloadBuilder b) {}
-  _i2.Int64? get longInBody;
+  _i3.Int64? get longInBody;
+  @override
+  List<Object?> get props => [longInBody];
 }
 
 class _MalformedLongInputRestJson1Serializer
@@ -86,7 +98,7 @@ class _MalformedLongInputRestJson1Serializer
         case 'longInBody':
           if (value != null) {
             result.longInBody = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.Int64)) as _i2.Int64);
+                specifiedType: const FullType(_i3.Int64)) as _i3.Int64);
           }
           break;
       }
@@ -106,7 +118,7 @@ class _MalformedLongInputRestJson1Serializer
       result
         ..add('longInBody')
         ..add(serializers.serialize(payload.longInBody,
-            specifiedType: const FullType.nullable(_i2.Int64)));
+            specifiedType: const FullType.nullable(_i3.Int64)));
     }
     return result;
   }

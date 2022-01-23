@@ -12,7 +12,7 @@ class _$NullAndEmptyHeadersIo extends NullAndEmptyHeadersIo {
   @override
   final String? b;
   @override
-  final _i2.BuiltList<String>? c;
+  final _i3.BuiltList<String>? c;
 
   factory _$NullAndEmptyHeadersIo(
           [void Function(NullAndEmptyHeadersIoBuilder)? updates]) =>
@@ -65,9 +65,9 @@ class NullAndEmptyHeadersIoBuilder
   String? get b => _$this._b;
   set b(String? b) => _$this._b = b;
 
-  _i2.ListBuilder<String>? _c;
-  _i2.ListBuilder<String> get c => _$this._c ??= new _i2.ListBuilder<String>();
-  set c(_i2.ListBuilder<String>? c) => _$this._c = c;
+  _i3.ListBuilder<String>? _c;
+  _i3.ListBuilder<String> get c => _$this._c ??= new _i3.ListBuilder<String>();
+  set c(_i3.ListBuilder<String>? c) => _$this._c = c;
 
   NullAndEmptyHeadersIoBuilder() {
     NullAndEmptyHeadersIo._init(this);

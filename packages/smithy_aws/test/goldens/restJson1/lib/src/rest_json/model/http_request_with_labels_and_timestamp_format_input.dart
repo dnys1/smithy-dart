@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.http_request_with_labels_and_timestamp_format_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'http_request_with_labels_and_timestamp_format_input.g.dart';
 
 abstract class HttpRequestWithLabelsAndTimestampFormatInput
     with
-        _i1.HttpInput<HttpRequestWithLabelsAndTimestampFormatInputPayload>
+        _i1.HttpInput<HttpRequestWithLabelsAndTimestampFormatInputPayload>,
+        _i2.AWSEquatable<HttpRequestWithLabelsAndTimestampFormatInput>
     implements
         Built<HttpRequestWithLabelsAndTimestampFormatInput,
             HttpRequestWithLabelsAndTimestampFormatInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<HttpRequestWithLabelsAndTimestampFormatInputPayload> {
   factory HttpRequestWithLabelsAndTimestampFormatInput(
       [void Function(HttpRequestWithLabelsAndTimestampFormatInputBuilder)
           updates]) = _$HttpRequestWithLabelsAndTimestampFormatInput;
@@ -70,13 +73,26 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
     throw _i1.MissingLabelException(this, key);
   }
 
+  @override
   HttpRequestWithLabelsAndTimestampFormatInputPayload getPayload() =>
       HttpRequestWithLabelsAndTimestampFormatInputPayload();
+  @override
+  List<Object?> get props => [
+        defaultFormat,
+        memberDateTime,
+        memberEpochSeconds,
+        memberHttpDate,
+        targetDateTime,
+        targetEpochSeconds,
+        targetHttpDate
+      ];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithLabelsAndTimestampFormatInputPayload
+    with
+        _i2.AWSEquatable<HttpRequestWithLabelsAndTimestampFormatInputPayload>
     implements
         Built<HttpRequestWithLabelsAndTimestampFormatInputPayload,
             HttpRequestWithLabelsAndTimestampFormatInputPayloadBuilder>,
@@ -90,6 +106,8 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInputPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(
       HttpRequestWithLabelsAndTimestampFormatInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer

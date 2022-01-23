@@ -18,22 +18,26 @@ class HttpResponseCodeOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithNoContentLength(),
+          const _i1.WithNoHeader('Content-Type')
+        ])
   ];
 
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'PUT';
         b.path = '/HttpResponseCode';
-        b.successCode = 200;
       });
+  @override
+  int successCode([_i2.HttpResponseCodeOutput? output]) =>
+      output?.status ?? 200;
   @override
   _i2.HttpResponseCodeOutput buildOutput(
           _i2.HttpResponseCodeOutputPayload payload,
           _i5.AWSStreamedHttpResponse response) =>
-      _i2.HttpResponseCodeOutput((b) {
-        b.status = response.statusCode;
-      });
+      _i2.HttpResponseCodeOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

@@ -2,20 +2,23 @@
 
 library rest_json1.rest_json.model.constant_and_variable_query_string_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'constant_and_variable_query_string_input.g.dart';
 
 abstract class ConstantAndVariableQueryStringInput
     with
-        _i1.HttpInput<ConstantAndVariableQueryStringInputPayload>
+        _i1.HttpInput<ConstantAndVariableQueryStringInputPayload>,
+        _i2.AWSEquatable<ConstantAndVariableQueryStringInput>
     implements
         Built<ConstantAndVariableQueryStringInput,
             ConstantAndVariableQueryStringInputBuilder>,
-        _i1.EmptyPayload {
+        _i1.EmptyPayload,
+        _i1.HasPayload<ConstantAndVariableQueryStringInputPayload> {
   factory ConstantAndVariableQueryStringInput(
           [void Function(ConstantAndVariableQueryStringInputBuilder) updates]) =
       _$ConstantAndVariableQueryStringInput;
@@ -30,13 +33,18 @@ abstract class ConstantAndVariableQueryStringInput
   static void _init(ConstantAndVariableQueryStringInputBuilder b) {}
   String? get baz;
   String? get maybeSet;
+  @override
   ConstantAndVariableQueryStringInputPayload getPayload() =>
       ConstantAndVariableQueryStringInputPayload();
+  @override
+  List<Object?> get props => [baz, maybeSet];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class ConstantAndVariableQueryStringInputPayload
+    with
+        _i2.AWSEquatable<ConstantAndVariableQueryStringInputPayload>
     implements
         Built<ConstantAndVariableQueryStringInputPayload,
             ConstantAndVariableQueryStringInputPayloadBuilder>,
@@ -49,6 +57,8 @@ abstract class ConstantAndVariableQueryStringInputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ConstantAndVariableQueryStringInputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _ConstantAndVariableQueryStringInputRestJson1Serializer extends _i1

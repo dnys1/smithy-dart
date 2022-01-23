@@ -20,6 +20,7 @@ RUN ./gradlew :smithy-aws-iam-traits:jar --stacktrace
 RUN ./gradlew :smithy-aws-traits:jar --stacktrace
 RUN ./gradlew :smithy-mqtt-traits:jar --stacktrace
 RUN ./gradlew :smithy-protocol-test-traits:jar --stacktrace
+RUN ./gradlew :smithy-validation-model:jar --stacktrace
 
 # Build the CLI
 RUN ./gradlew :smithy-cli:runtime --stacktrace
@@ -38,6 +39,7 @@ COPY --from=cli /build/smithy-aws-iam-traits/build/libs/*.jar /smithy/lib/traits
 COPY --from=cli /build/smithy-aws-traits/build/libs/*.jar /smithy/lib/traits/
 COPY --from=cli /build/smithy-mqtt-traits/build/libs/*.jar /smithy/lib/traits/
 COPY --from=cli /build/smithy-protocol-test-traits/build/libs/*.jar /smithy/lib/traits/
+COPY --from=cli /build/smithy-validation-model/build/libs/*.jar /smithy/lib/traits/
 
 # Build application class data sharing archive using smithy validate as the baseline.
 RUN SMITHY_OPTS="-XX:DumpLoadedClassList=/smithy/lib/smithy.lst" \

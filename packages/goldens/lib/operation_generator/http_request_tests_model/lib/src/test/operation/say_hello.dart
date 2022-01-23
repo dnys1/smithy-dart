@@ -2,6 +2,7 @@
 
 library http_request_tests_model.test.operation.say_hello;
 
+import 'package:aws_common/aws_common.dart' as _i5;
 import 'package:http_request_tests_model/src/test/model/say_hello_input.dart'
     as _i2;
 import 'package:http_request_tests_model/src/test/serializers.dart' as _i4;
@@ -17,24 +18,32 @@ class SayHelloOperation extends _i1.HttpOperation<_i2.SayHelloInputPayload,
     _i3.AwsJson1_1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [])
+        interceptors: [
+          const _i1.WithContentLength(),
+          const _i1.WithHeader('X-Amz-Target', 'HelloService.SayHello')
+        ])
   ];
 
   @override
   _i1.HttpRequest buildRequest(_i2.SayHelloInput input) => _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = '/';
-        b.successCode = 200;
         b.hostPrefix = '{hostLabel}.prefix.';
         if (input.greeting != null) {
-          b.headers['X-Greeting'] = input.greeting!;
+          if (input.greeting!.isNotEmpty) {
+            b.headers['X-Greeting'] = input.greeting!;
+          }
         }
         if (input.query != null) {
           b.queryParameters.add('Hi', input.query!);
         }
       });
   @override
-  _i1.Unit buildOutput(_i1.Unit payload, _i1.HttpResponse response) => payload;
+  int successCode([_i1.Unit? output]) => 200;
+  @override
+  _i1.Unit buildOutput(
+          _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>
+      payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
 }

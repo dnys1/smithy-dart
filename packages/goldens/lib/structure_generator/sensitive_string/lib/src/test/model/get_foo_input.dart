@@ -2,14 +2,17 @@
 
 library sensitive_string.test.model.get_foo_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:sensitive_string/src/test/model/foo.dart' as _i2;
+import 'package:sensitive_string/src/test/model/foo.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'get_foo_input.g.dart';
 
-abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
+abstract class GetFooInput
+    with _i1.HttpInput<GetFooInput>, _i2.AWSEquatable<GetFooInput>
+    implements Built<GetFooInput, GetFooInputBuilder> {
   factory GetFooInput([void Function(GetFooInputBuilder) updates]) =
       _$GetFooInput;
 
@@ -21,10 +24,15 @@ abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GetFooInputBuilder b) {}
-  _i2.Foo? get enumMap;
+  _i3.Foo? get enumMap;
+  @override
+  GetFooInput getPayload() => this;
+  @override
+  List<Object?> get props => [enumMap];
 }
 
-class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
+class _GetFooInputSerializer
+    extends _i1.StructuredSmithySerializer<GetFooInput> {
   const _GetFooInputSerializer() : super('GetFooInput');
 
   @override
@@ -39,11 +47,13 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'enumMap':
-          result.enumMap.replace((serializers.deserialize(value,
-              specifiedType: const FullType(_i2.Foo)) as _i2.Foo));
+          if (value != null) {
+            result.enumMap.replace((serializers.deserialize(value,
+                specifiedType: const FullType(_i3.Foo)) as _i3.Foo));
+          }
           break;
       }
     }
@@ -60,7 +70,7 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
       result
         ..add('enumMap')
         ..add(serializers.serialize(payload.enumMap,
-            specifiedType: const FullType(_i2.Foo)));
+            specifiedType: const FullType.nullable(_i3.Foo)));
     }
     return result;
   }

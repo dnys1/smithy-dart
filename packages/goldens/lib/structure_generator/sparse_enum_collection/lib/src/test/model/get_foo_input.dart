@@ -2,15 +2,18 @@
 
 library sparse_enum_collection.test.model.get_foo_input;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:sparse_enum_collection/src/test/model/my_enum.dart' as _i3;
+import 'package:sparse_enum_collection/src/test/model/my_enum.dart' as _i4;
 
 part 'get_foo_input.g.dart';
 
-abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
+abstract class GetFooInput
+    with _i1.HttpInput<GetFooInput>, _i2.AWSEquatable<GetFooInput>
+    implements Built<GetFooInput, GetFooInputBuilder> {
   factory GetFooInput([void Function(GetFooInputBuilder) updates]) =
       _$GetFooInput;
 
@@ -22,10 +25,15 @@ abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GetFooInputBuilder b) {}
-  _i2.BuiltMap<String, _i3.MyEnum?>? get enumMap;
+  _i3.BuiltMap<String, _i4.MyEnum?>? get enumMap;
+  @override
+  GetFooInput getPayload() => this;
+  @override
+  List<Object?> get props => [enumMap];
 }
 
-class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
+class _GetFooInputSerializer
+    extends _i1.StructuredSmithySerializer<GetFooInput> {
   const _GetFooInputSerializer() : super('GetFooInput');
 
   @override
@@ -40,13 +48,16 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'enumMap':
-          result.enumMap.replace((serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      _i2.BuiltMap, [FullType(String), FullType(_i3.MyEnum)]))
-              as _i2.BuiltMap<String, _i3.MyEnum?>));
+          if (value != null) {
+            result.enumMap.replace((serializers.deserialize(value,
+                specifiedType: const FullType(_i3.BuiltMap, [
+                  FullType(String),
+                  FullType.nullable(_i4.MyEnum)
+                ])) as _i3.BuiltMap<String, _i4.MyEnum?>));
+          }
           break;
       }
     }
@@ -63,8 +74,8 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
       result
         ..add('enumMap')
         ..add(serializers.serialize(payload.enumMap,
-            specifiedType: const FullType(
-                _i2.BuiltMap, [FullType(String), FullType(_i3.MyEnum)])));
+            specifiedType: const FullType.nullable(_i3.BuiltMap,
+                [FullType(String), FullType.nullable(_i4.MyEnum)])));
     }
     return result;
   }

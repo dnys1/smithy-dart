@@ -12,7 +12,7 @@ import 'package:http_binding_map_model/src/test/operation/map_input.dart'
 class TestClient {
   TestClient();
 
-  _i1.Future<void> mapInputOperation(_i2.MapInputRequest input) {
+  _i1.Future<void> mapInput(_i2.MapInputRequest input) {
     return _i3.MapInputOperation().run(input);
   }
 }

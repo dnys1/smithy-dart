@@ -2,18 +2,18 @@
 
 library http_response_tests_model.test.model.say_goodbye_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'say_goodbye_input.g.dart';
 
 abstract class SayGoodbyeInput
-    with _i1.HttpInput<SayGoodbyeInputPayload>
+    with _i1.HttpInput<SayGoodbyeInput>, _i2.AWSEquatable<SayGoodbyeInput>
     implements
         Built<SayGoodbyeInput, SayGoodbyeInputBuilder>,
-        _i1.HasPayload<SayGoodbyeInputPayload> {
+        _i1.EmptyPayload {
   factory SayGoodbyeInput([void Function(SayGoodbyeInputBuilder) updates]) =
       _$SayGoodbyeInput;
 
@@ -26,25 +26,13 @@ abstract class SayGoodbyeInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(SayGoodbyeInputBuilder b) {}
   @override
-  SayGoodbyeInputPayload getPayload() => SayGoodbyeInputPayload();
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class SayGoodbyeInputPayload
-    implements Built<SayGoodbyeInputPayload, SayGoodbyeInputPayloadBuilder> {
-  factory SayGoodbyeInputPayload(
-          [void Function(SayGoodbyeInputPayloadBuilder) updates]) =
-      _$SayGoodbyeInputPayload;
-
-  const SayGoodbyeInputPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SayGoodbyeInputPayloadBuilder b) {}
+  SayGoodbyeInput getPayload() => this;
+  @override
+  List<Object?> get props => [];
 }
 
 class _SayGoodbyeInputAwsJson11Serializer
-    extends _i1.SmithySerializer<SayGoodbyeInputPayload> {
+    extends _i1.StructuredSmithySerializer<SayGoodbyeInput> {
   const _SayGoodbyeInputAwsJson11Serializer() : super('SayGoodbyeInput');
 
   @override
@@ -53,10 +41,10 @@ class _SayGoodbyeInputAwsJson11Serializer
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  SayGoodbyeInputPayload deserialize(
+  SayGoodbyeInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return SayGoodbyeInputPayloadBuilder().build();
+    return SayGoodbyeInputBuilder().build();
   }
 
   @override

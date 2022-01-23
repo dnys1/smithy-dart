@@ -14,8 +14,7 @@ import 'package:http_response_tests_model/src/test/operation/say_goodbye.dart'
 class TestClient {
   TestClient();
 
-  _i1.Future<_i2.SayGoodbyeOutput> sayGoodbyeOperation(
-      _i3.SayGoodbyeInput input) {
+  _i1.Future<_i2.SayGoodbyeOutput> sayGoodbye(_i3.SayGoodbyeInput input) {
     return _i4.SayGoodbyeOperation().run(input);
   }
 }

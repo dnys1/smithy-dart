@@ -18,7 +18,7 @@ class _$GetFooInput extends GetFooInput {
   @override
   final String? object;
   @override
-  final _i2.Qux? quux;
+  final _i3.Qux? quux;
 
   factory _$GetFooInput([void Function(GetFooInputBuilder)? updates]) =>
       (new GetFooInputBuilder()..update(updates)).build();
@@ -102,9 +102,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   String? get object => _$this._object;
   set object(String? object) => _$this._object = object;
 
-  _i2.QuxBuilder? _quux;
-  _i2.QuxBuilder get quux => _$this._quux ??= new _i2.QuxBuilder();
-  set quux(_i2.QuxBuilder? quux) => _$this._quux = quux;
+  _i3.QuxBuilder? _quux;
+  _i3.QuxBuilder get quux => _$this._quux ??= new _i3.QuxBuilder();
+  set quux(_i3.QuxBuilder? quux) => _$this._quux = quux;
 
   GetFooInputBuilder() {
     GetFooInput._init(this);

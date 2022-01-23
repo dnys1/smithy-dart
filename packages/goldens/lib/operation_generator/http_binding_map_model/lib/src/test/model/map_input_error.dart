@@ -2,22 +2,24 @@
 
 library http_binding_map_model.test.model.map_input_error;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'map_input_error.g.dart';
 
 abstract class MapInputError
-    with _i1.SmithyHttpException
-    implements
-        Built<MapInputError, MapInputErrorBuilder>,
-        _i1.HasPayload<MapInputErrorPayload> {
+    with _i1.SmithyException, _i2.AWSEquatable<MapInputError>
+    implements Built<MapInputError, MapInputErrorBuilder>, _i1.EmptyPayload {
   factory MapInputError([void Function(MapInputErrorBuilder) updates]) =
       _$MapInputError;
 
   const MapInputError._();
+
+  factory MapInputError.fromResponse(
+          MapInputError payload, _i2.AWSStreamedHttpResponse response) =>
+      payload;
 
   static const List<_i1.SmithySerializer> serializers = [
     _MapInputErrorAwsJson11Serializer()
@@ -26,33 +28,16 @@ abstract class MapInputError
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MapInputErrorBuilder b) {}
   @override
-  MapInputErrorPayload getPayload() => MapInputErrorPayload();
-  @override
-  _i1.ErrorKind get kind => _i1.ErrorKind.client;
-  @override
-  int? get statusCode => 429;
-  @override
   String? get message => null;
   @override
-  bool get isRetryable => true;
-}
-
-@_i2.internal
-@BuiltValue(nestedBuilders: false)
-abstract class MapInputErrorPayload
-    implements Built<MapInputErrorPayload, MapInputErrorPayloadBuilder> {
-  factory MapInputErrorPayload(
-          [void Function(MapInputErrorPayloadBuilder) updates]) =
-      _$MapInputErrorPayload;
-
-  const MapInputErrorPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MapInputErrorPayloadBuilder b) {}
+  _i1.RetryConfig? get retryConfig =>
+      const _i1.RetryConfig(isThrottlingError: false);
+  @override
+  List<Object?> get props => [];
 }
 
 class _MapInputErrorAwsJson11Serializer
-    extends _i1.SmithySerializer<MapInputErrorPayload> {
+    extends _i1.StructuredSmithySerializer<MapInputError> {
   const _MapInputErrorAwsJson11Serializer() : super('MapInputError');
 
   @override
@@ -61,10 +46,10 @@ class _MapInputErrorAwsJson11Serializer
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  MapInputErrorPayload deserialize(
+  MapInputError deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return MapInputErrorPayloadBuilder().build();
+    return MapInputErrorBuilder().build();
   }
 
   @override

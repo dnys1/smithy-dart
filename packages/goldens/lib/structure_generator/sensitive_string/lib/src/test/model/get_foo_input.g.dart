@@ -8,7 +8,7 @@ part of sensitive_string.test.model.get_foo_input;
 
 class _$GetFooInput extends GetFooInput {
   @override
-  final _i2.Foo? enumMap;
+  final _i3.Foo? enumMap;
 
   factory _$GetFooInput([void Function(GetFooInputBuilder)? updates]) =>
       (new GetFooInputBuilder()..update(updates)).build();
@@ -43,9 +43,9 @@ class _$GetFooInput extends GetFooInput {
 class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   _$GetFooInput? _$v;
 
-  _i2.FooBuilder? _enumMap;
-  _i2.FooBuilder get enumMap => _$this._enumMap ??= new _i2.FooBuilder();
-  set enumMap(_i2.FooBuilder? enumMap) => _$this._enumMap = enumMap;
+  _i3.FooBuilder? _enumMap;
+  _i3.FooBuilder get enumMap => _$this._enumMap ??= new _i3.FooBuilder();
+  set enumMap(_i3.FooBuilder? enumMap) => _$this._enumMap = enumMap;
 
   GetFooInputBuilder() {
     GetFooInput._init(this);

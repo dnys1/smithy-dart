@@ -12,7 +12,7 @@ import 'package:http_request_tests_model/src/test/operation/say_hello.dart'
 class TestClient {
   TestClient();
 
-  _i1.Future<void> sayHelloOperation(_i2.SayHelloInput input) {
+  _i1.Future<void> sayHello(_i2.SayHelloInput input) {
     return _i3.SayHelloOperation().run(input);
   }
 }

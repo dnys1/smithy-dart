@@ -16,6 +16,11 @@ class MyEnum extends _i1.SmithyEnum<MyEnum> {
 
   /// All values of [MyEnum].
   static const values = <MyEnum>[MyEnum.variant1, MyEnum.variant2];
+
+  static const List<_i1.SmithySerializer<MyEnum>> serializers = [
+    _i1.SmithyEnumSerializer('MyEnum',
+        values: values, sdkUnknown: MyEnum.sdkUnknown, supportedProtocols: [])
+  ];
 }
 
 extension MyEnumHelpers on List<MyEnum> {

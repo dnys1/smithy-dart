@@ -2,15 +2,16 @@
 
 library http_response_tests_model.test.model.invalid_greeting;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'invalid_greeting.g.dart';
 
 abstract class InvalidGreeting
-    with _i1.SmithyHttpException
+    with _i1.SmithyException, _i2.AWSEquatable<InvalidGreeting>
     implements
         Built<InvalidGreeting, InvalidGreetingBuilder>,
         _i1.HasPayload<InvalidGreetingPayload> {
@@ -18,6 +19,15 @@ abstract class InvalidGreeting
       _$InvalidGreeting;
 
   const InvalidGreeting._();
+
+  factory InvalidGreeting.fromResponse(InvalidGreetingPayload payload,
+          _i2.AWSStreamedHttpResponse response) =>
+      InvalidGreeting((b) {
+        b.message = payload.message;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _InvalidGreetingAwsJson11Serializer()
@@ -32,16 +42,15 @@ abstract class InvalidGreeting
   InvalidGreetingPayload getPayload() =>
       InvalidGreetingPayload((b) => b..message = message);
   @override
-  _i1.ErrorKind get kind => _i1.ErrorKind.client;
+  _i1.RetryConfig? get retryConfig => null;
   @override
-  int? get statusCode => 400;
-  @override
-  bool get isRetryable => false;
+  List<Object?> get props => [foo, message];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class InvalidGreetingPayload
+    with _i2.AWSEquatable<InvalidGreetingPayload>
     implements Built<InvalidGreetingPayload, InvalidGreetingPayloadBuilder> {
   factory InvalidGreetingPayload(
           [void Function(InvalidGreetingPayloadBuilder) updates]) =
@@ -53,10 +62,12 @@ abstract class InvalidGreetingPayload
   static void _init(InvalidGreetingPayloadBuilder b) {}
   @override
   String? get message;
+  @override
+  List<Object?> get props => [message];
 }
 
 class _InvalidGreetingAwsJson11Serializer
-    extends _i1.SmithySerializer<InvalidGreetingPayload> {
+    extends _i1.StructuredSmithySerializer<InvalidGreeting> {
   const _InvalidGreetingAwsJson11Serializer() : super('InvalidGreeting');
 
   @override
@@ -65,19 +76,27 @@ class _InvalidGreetingAwsJson11Serializer
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  InvalidGreetingPayload deserialize(
+  InvalidGreeting deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = InvalidGreetingPayloadBuilder();
+    final result = InvalidGreetingBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
+        case 'foo':
+          if (value != null) {
+            result.foo = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
         case 'message':
-          result.message = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.message = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -88,15 +107,19 @@ class _InvalidGreetingAwsJson11Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final InvalidGreetingPayload payload = object is InvalidGreeting
-        ? object.getPayload()
-        : (object as InvalidGreetingPayload);
+    final payload = (object as InvalidGreeting);
     final result = <Object?>[];
+    if (payload.foo != null) {
+      result
+        ..add('foo')
+        ..add(serializers.serialize(payload.foo,
+            specifiedType: const FullType.nullable(String)));
+    }
     if (payload.message != null) {
       result
         ..add('message')
         ..add(serializers.serialize(payload.message,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

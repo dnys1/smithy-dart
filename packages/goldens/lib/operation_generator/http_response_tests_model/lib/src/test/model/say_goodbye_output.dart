@@ -2,23 +2,34 @@
 
 library http_response_tests_model.test.model.say_goodbye_output;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i2;
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:meta/meta.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'say_goodbye_output.g.dart';
 
 abstract class SayGoodbyeOutput
+    with _i1.AWSEquatable<SayGoodbyeOutput>
     implements
         Built<SayGoodbyeOutput, SayGoodbyeOutputBuilder>,
-        _i1.HasPayload<SayGoodbyeOutputPayload> {
+        _i2.EmptyPayload,
+        _i2.HasPayload<SayGoodbyeOutputPayload> {
   factory SayGoodbyeOutput([void Function(SayGoodbyeOutputBuilder) updates]) =
       _$SayGoodbyeOutput;
 
   const SayGoodbyeOutput._();
 
-  static const List<_i1.SmithySerializer> serializers = [
+  factory SayGoodbyeOutput.fromResponse(SayGoodbyeOutputPayload payload,
+          _i1.AWSStreamedHttpResponse response) =>
+      SayGoodbyeOutput((b) {
+        if (response.headers['X-Farewell'] != null) {
+          b.farewell = response.headers['X-Farewell']!;
+        }
+      });
+
+  static const List<_i2.SmithySerializer> serializers = [
     _SayGoodbyeOutputAwsJson11Serializer()
   ];
 
@@ -27,12 +38,17 @@ abstract class SayGoodbyeOutput
   String? get farewell;
   @override
   SayGoodbyeOutputPayload getPayload() => SayGoodbyeOutputPayload();
+  @override
+  List<Object?> get props => [farewell];
 }
 
-@_i2.internal
+@_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class SayGoodbyeOutputPayload
-    implements Built<SayGoodbyeOutputPayload, SayGoodbyeOutputPayloadBuilder> {
+    with _i1.AWSEquatable<SayGoodbyeOutputPayload>
+    implements
+        Built<SayGoodbyeOutputPayload, SayGoodbyeOutputPayloadBuilder>,
+        _i2.EmptyPayload {
   factory SayGoodbyeOutputPayload(
           [void Function(SayGoodbyeOutputPayloadBuilder) updates]) =
       _$SayGoodbyeOutputPayload;
@@ -41,26 +57,53 @@ abstract class SayGoodbyeOutputPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(SayGoodbyeOutputPayloadBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
 class _SayGoodbyeOutputAwsJson11Serializer
-    extends _i1.SmithySerializer<SayGoodbyeOutputPayload> {
+    extends _i2.StructuredSmithySerializer<SayGoodbyeOutput> {
   const _SayGoodbyeOutputAwsJson11Serializer() : super('SayGoodbyeOutput');
 
   @override
   Iterable<Type> get types => const [SayGoodbyeOutput, _$SayGoodbyeOutput];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  SayGoodbyeOutputPayload deserialize(
+  SayGoodbyeOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return SayGoodbyeOutputPayloadBuilder().build();
+    final result = SayGoodbyeOutputBuilder();
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final value = iterator.current;
+      switch (key) {
+        case 'farewell':
+          if (value != null) {
+            result.farewell = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
+          break;
+      }
+    }
+
+    return result.build();
   }
 
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      const <Object?>[];
+      {FullType specifiedType = FullType.unspecified}) {
+    final payload = (object as SayGoodbyeOutput);
+    final result = <Object?>[];
+    if (payload.farewell != null) {
+      result
+        ..add('farewell')
+        ..add(serializers.serialize(payload.farewell,
+            specifiedType: const FullType.nullable(String)));
+    }
+    return result;
+  }
 }

@@ -8,7 +8,7 @@ part of enum_collection.test.model.get_foo_input;
 
 class _$GetFooInput extends GetFooInput {
   @override
-  final _i2.BuiltMap<String, _i3.MyEnum>? enumMap;
+  final _i3.BuiltMap<String, _i4.MyEnum>? enumMap;
 
   factory _$GetFooInput([void Function(GetFooInputBuilder)? updates]) =>
       (new GetFooInputBuilder()..update(updates)).build();
@@ -43,10 +43,10 @@ class _$GetFooInput extends GetFooInput {
 class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   _$GetFooInput? _$v;
 
-  _i2.MapBuilder<String, _i3.MyEnum>? _enumMap;
-  _i2.MapBuilder<String, _i3.MyEnum> get enumMap =>
-      _$this._enumMap ??= new _i2.MapBuilder<String, _i3.MyEnum>();
-  set enumMap(_i2.MapBuilder<String, _i3.MyEnum>? enumMap) =>
+  _i3.MapBuilder<String, _i4.MyEnum>? _enumMap;
+  _i3.MapBuilder<String, _i4.MyEnum> get enumMap =>
+      _$this._enumMap ??= new _i3.MapBuilder<String, _i4.MyEnum>();
+  set enumMap(_i3.MapBuilder<String, _i4.MyEnum>? enumMap) =>
       _$this._enumMap = enumMap;
 
   GetFooInputBuilder() {

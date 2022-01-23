@@ -124,13 +124,18 @@ class SayHelloInputBuilder
 
 class _$SayHelloInputPayload extends SayHelloInputPayload {
   @override
+  final String hostLabel;
+  @override
   final String? name;
 
   factory _$SayHelloInputPayload(
           [void Function(SayHelloInputPayloadBuilder)? updates]) =>
       (new SayHelloInputPayloadBuilder()..update(updates)).build();
 
-  _$SayHelloInputPayload._({this.name}) : super._();
+  _$SayHelloInputPayload._({required this.hostLabel, this.name}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        hostLabel, 'SayHelloInputPayload', 'hostLabel');
+  }
 
   @override
   SayHelloInputPayload rebuild(
@@ -144,17 +149,20 @@ class _$SayHelloInputPayload extends SayHelloInputPayload {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is SayHelloInputPayload && name == other.name;
+    return other is SayHelloInputPayload &&
+        hostLabel == other.hostLabel &&
+        name == other.name;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, name.hashCode));
+    return $jf($jc($jc(0, hostLabel.hashCode), name.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('SayHelloInputPayload')
+          ..add('hostLabel', hostLabel)
           ..add('name', name))
         .toString();
   }
@@ -163,6 +171,10 @@ class _$SayHelloInputPayload extends SayHelloInputPayload {
 class SayHelloInputPayloadBuilder
     implements Builder<SayHelloInputPayload, SayHelloInputPayloadBuilder> {
   _$SayHelloInputPayload? _$v;
+
+  String? _hostLabel;
+  String? get hostLabel => _$this._hostLabel;
+  set hostLabel(String? hostLabel) => _$this._hostLabel = hostLabel;
 
   String? _name;
   String? get name => _$this._name;
@@ -175,6 +187,7 @@ class SayHelloInputPayloadBuilder
   SayHelloInputPayloadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _hostLabel = $v.hostLabel;
       _name = $v.name;
       _$v = null;
     }
@@ -194,7 +207,11 @@ class SayHelloInputPayloadBuilder
 
   @override
   _$SayHelloInputPayload build() {
-    final _$result = _$v ?? new _$SayHelloInputPayload._(name: name);
+    final _$result = _$v ??
+        new _$SayHelloInputPayload._(
+            hostLabel: BuiltValueNullFieldError.checkNotNull(
+                hostLabel, 'SayHelloInputPayload', 'hostLabel'),
+            name: name);
     replace(_$result);
     return _$result;
   }

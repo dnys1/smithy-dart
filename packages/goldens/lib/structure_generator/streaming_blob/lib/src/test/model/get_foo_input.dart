@@ -2,16 +2,19 @@
 
 library streaming_blob.test.model.get_foo_input;
 
-import 'dart:async' as _i2;
-import 'dart:typed_data' as _i3;
+import 'dart:async' as _i3;
+import 'dart:typed_data' as _i4;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'get_foo_input.g.dart';
 
-abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
+abstract class GetFooInput
+    with _i1.HttpInput<GetFooInput>, _i2.AWSEquatable<GetFooInput>
+    implements Built<GetFooInput, GetFooInputBuilder> {
   factory GetFooInput([void Function(GetFooInputBuilder) updates]) =
       _$GetFooInput;
 
@@ -23,11 +26,16 @@ abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GetFooInputBuilder b) {}
-  _i2.Stream<List<int>>? get bar;
-  _i3.Uint8List? get foo;
+  _i3.Stream<List<int>>? get bar;
+  _i4.Uint8List? get foo;
+  @override
+  GetFooInput getPayload() => this;
+  @override
+  List<Object?> get props => [bar, foo];
 }
 
-class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
+class _GetFooInputSerializer
+    extends _i1.StructuredSmithySerializer<GetFooInput> {
   const _GetFooInputSerializer() : super('GetFooInput');
 
   @override
@@ -42,17 +50,21 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'bar':
-          result.bar = (serializers.deserialize(value,
-              specifiedType: const FullType(_i2.Stream, [
-                FullType(List, [FullType(int)])
-              ])) as _i2.Stream<List<int>>?);
+          if (value != null) {
+            result.bar = (serializers.deserialize(value,
+                specifiedType: const FullType(_i3.Stream, [
+                  FullType(List, [FullType(int)])
+                ])) as _i3.Stream<List<int>>);
+          }
           break;
         case 'foo':
-          result.foo = (serializers.deserialize(value,
-              specifiedType: const FullType(_i3.Uint8List)) as _i3.Uint8List?);
+          if (value != null) {
+            result.foo = (serializers.deserialize(value,
+                specifiedType: const FullType(_i4.Uint8List)) as _i4.Uint8List);
+          }
           break;
       }
     }
@@ -69,7 +81,7 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
       result
         ..add('bar')
         ..add(serializers.serialize(payload.bar,
-            specifiedType: const FullType(_i2.Stream, [
+            specifiedType: const FullType.nullable(_i3.Stream, [
               FullType(List, [FullType(int)])
             ])));
     }
@@ -77,7 +89,7 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
       result
         ..add('foo')
         ..add(serializers.serialize(payload.foo,
-            specifiedType: const FullType(_i3.Uint8List)));
+            specifiedType: const FullType.nullable(_i4.Uint8List)));
     }
     return result;
   }

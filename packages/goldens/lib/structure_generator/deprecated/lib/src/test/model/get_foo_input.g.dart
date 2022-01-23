@@ -10,7 +10,7 @@ class _$GetFooInput extends GetFooInput {
   @override
   final String? bar;
   @override
-  final _i2.Qux? baz;
+  final _i3.Qux? baz;
   @override
   final String? foo;
 
@@ -57,9 +57,9 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   String? get bar => _$this._bar;
   set bar(String? bar) => _$this._bar = bar;
 
-  _i2.QuxBuilder? _baz;
-  _i2.QuxBuilder get baz => _$this._baz ??= new _i2.QuxBuilder();
-  set baz(_i2.QuxBuilder? baz) => _$this._baz = baz;
+  _i3.QuxBuilder? _baz;
+  _i3.QuxBuilder get baz => _$this._baz ??= new _i3.QuxBuilder();
+  set baz(_i3.QuxBuilder? baz) => _$this._baz = baz;
 
   String? _foo;
   String? get foo => _$this._foo;

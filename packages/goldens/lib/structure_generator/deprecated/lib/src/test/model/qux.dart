@@ -2,30 +2,35 @@
 
 library deprecated.test.model.qux;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'qux.g.dart';
 
-abstract class Qux implements Built<Qux, QuxBuilder> {
+abstract class Qux
+    with _i1.AWSEquatable<Qux>
+    implements Built<Qux, QuxBuilder>, _i2.EmptyPayload {
   factory Qux([void Function(QuxBuilder) updates]) = _$Qux;
 
   const Qux._();
 
-  static const List<_i1.SmithySerializer> serializers = [_QuxSerializer()];
+  static const List<_i2.SmithySerializer> serializers = [_QuxSerializer()];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(QuxBuilder b) {}
+  @override
+  List<Object?> get props => [];
 }
 
-class _QuxSerializer extends _i1.SmithySerializer<Qux> {
+class _QuxSerializer extends _i2.StructuredSmithySerializer<Qux> {
   const _QuxSerializer() : super('Qux');
 
   @override
   Iterable<Type> get types => const [Qux, _$Qux];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols => const [];
   @override
   Qux deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

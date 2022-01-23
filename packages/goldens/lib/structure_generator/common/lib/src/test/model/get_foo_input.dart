@@ -2,15 +2,18 @@
 
 library common.test.model.get_foo_input;
 
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:common/src/test/model/qux.dart' as _i2;
+import 'package:common/src/test/model/qux.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'get_foo_input.g.dart';
 
 /// This *is* documentation about the shape.
-abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
+abstract class GetFooInput
+    with _i1.HttpInput<GetFooInput>, _i2.AWSEquatable<GetFooInput>
+    implements Built<GetFooInput, GetFooInputBuilder> {
   factory GetFooInput([void Function(GetFooInputBuilder) updates]) =
       _$GetFooInput;
 
@@ -29,10 +32,15 @@ abstract class GetFooInput implements Built<GetFooInput, GetFooInputBuilder> {
   int get byteValue;
   String? get foo;
   String? get object;
-  _i2.Qux? get quux;
+  _i3.Qux? get quux;
+  @override
+  GetFooInput getPayload() => this;
+  @override
+  List<Object?> get props => [bar, baz, byteValue, foo, object, quux];
 }
 
-class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
+class _GetFooInputSerializer
+    extends _i1.StructuredSmithySerializer<GetFooInput> {
   const _GetFooInputSerializer() : super('GetFooInput');
 
   @override
@@ -47,31 +55,41 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'bar':
-          result.bar = (serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?);
+          if (value != null) {
+            result.bar = (serializers.deserialize(value,
+                specifiedType: const FullType(int)) as int);
+          }
           break;
         case 'baz':
-          result.baz = (serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?);
+          if (value != null) {
+            result.baz = (serializers.deserialize(value,
+                specifiedType: const FullType(int)) as int);
+          }
           break;
         case 'byteValue':
-          result.byteValue = (serializers.deserialize(value,
+          result.byteValue = (serializers.deserialize(value!,
               specifiedType: const FullType(int)) as int);
           break;
         case 'foo':
-          result.foo = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.foo = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
         case 'object':
-          result.object = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.object = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
         case 'Quux':
-          result.quux.replace((serializers.deserialize(value,
-              specifiedType: const FullType(_i2.Qux)) as _i2.Qux));
+          if (value != null) {
+            result.quux.replace((serializers.deserialize(value,
+                specifiedType: const FullType(_i3.Qux)) as _i3.Qux));
+          }
           break;
       }
     }
@@ -92,31 +110,31 @@ class _GetFooInputSerializer extends _i1.SmithySerializer<GetFooInput> {
       result
         ..add('bar')
         ..add(serializers.serialize(payload.bar,
-            specifiedType: const FullType(int)));
+            specifiedType: const FullType.nullable(int)));
     }
     if (payload.baz != null) {
       result
         ..add('baz')
         ..add(serializers.serialize(payload.baz,
-            specifiedType: const FullType(int)));
+            specifiedType: const FullType.nullable(int)));
     }
     if (payload.foo != null) {
       result
         ..add('foo')
         ..add(serializers.serialize(payload.foo,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.object != null) {
       result
         ..add('object')
         ..add(serializers.serialize(payload.object,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.quux != null) {
       result
         ..add('Quux')
         ..add(serializers.serialize(payload.quux,
-            specifiedType: const FullType(_i2.Qux)));
+            specifiedType: const FullType.nullable(_i3.Qux)));
     }
     return result;
   }

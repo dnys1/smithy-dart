@@ -2,18 +2,21 @@
 
 library sensitive_string.test.model.foo;
 
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'foo.g.dart';
 
-abstract class Foo implements Built<Foo, FooBuilder> {
+abstract class Foo
+    with _i1.AWSEquatable<Foo>
+    implements Built<Foo, FooBuilder> {
   factory Foo([void Function(FooBuilder) updates]) = _$Foo;
 
   const Foo._();
 
-  static const List<_i1.SmithySerializer> serializers = [_FooSerializer()];
+  static const List<_i2.SmithySerializer> serializers = [_FooSerializer()];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(FooBuilder b) {}
@@ -22,15 +25,17 @@ abstract class Foo implements Built<Foo, FooBuilder> {
   /// Member documentation
   String? get baz;
   String? get qux;
+  @override
+  List<Object?> get props => [bar, baz, qux];
 }
 
-class _FooSerializer extends _i1.SmithySerializer<Foo> {
+class _FooSerializer extends _i2.StructuredSmithySerializer<Foo> {
   const _FooSerializer() : super('Foo');
 
   @override
   Iterable<Type> get types => const [Foo, _$Foo];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols => const [];
   @override
   Foo deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
@@ -39,19 +44,25 @@ class _FooSerializer extends _i1.SmithySerializer<Foo> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'bar':
-          result.bar = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.bar = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
         case 'baz':
-          result.baz = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.baz = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
         case 'qux':
-          result.qux = (serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?);
+          if (value != null) {
+            result.qux = (serializers.deserialize(value,
+                specifiedType: const FullType(String)) as String);
+          }
           break;
       }
     }
@@ -68,19 +79,19 @@ class _FooSerializer extends _i1.SmithySerializer<Foo> {
       result
         ..add('bar')
         ..add(serializers.serialize(payload.bar,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.baz != null) {
       result
         ..add('baz')
         ..add(serializers.serialize(payload.baz,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     if (payload.qux != null) {
       result
         ..add('qux')
         ..add(serializers.serialize(payload.qux,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType.nullable(String)));
     }
     return result;
   }

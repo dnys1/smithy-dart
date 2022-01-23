@@ -8,9 +8,9 @@ part of streaming_blob.test.model.get_foo_input;
 
 class _$GetFooInput extends GetFooInput {
   @override
-  final _i2.Stream<List<int>>? bar;
+  final _i3.Stream<List<int>>? bar;
   @override
-  final _i3.Uint8List? foo;
+  final _i4.Uint8List? foo;
 
   factory _$GetFooInput([void Function(GetFooInputBuilder)? updates]) =>
       (new GetFooInputBuilder()..update(updates)).build();
@@ -47,13 +47,13 @@ class _$GetFooInput extends GetFooInput {
 class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
   _$GetFooInput? _$v;
 
-  _i2.Stream<List<int>>? _bar;
-  _i2.Stream<List<int>>? get bar => _$this._bar;
-  set bar(_i2.Stream<List<int>>? bar) => _$this._bar = bar;
+  _i3.Stream<List<int>>? _bar;
+  _i3.Stream<List<int>>? get bar => _$this._bar;
+  set bar(_i3.Stream<List<int>>? bar) => _$this._bar = bar;
 
-  _i3.Uint8List? _foo;
-  _i3.Uint8List? get foo => _$this._foo;
-  set foo(_i3.Uint8List? foo) => _$this._foo = foo;
+  _i4.Uint8List? _foo;
+  _i4.Uint8List? get foo => _$this._foo;
+  set foo(_i4.Uint8List? foo) => _$this._foo = foo;
 
   GetFooInputBuilder() {
     GetFooInput._init(this);

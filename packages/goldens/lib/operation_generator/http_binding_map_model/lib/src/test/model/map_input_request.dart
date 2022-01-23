@@ -2,19 +2,17 @@
 
 library http_binding_map_model.test.model.map_input_request;
 
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'map_input_request.g.dart';
 
 abstract class MapInputRequest
-    with _i1.HttpInput<MapInputRequestPayload>
-    implements
-        Built<MapInputRequest, MapInputRequestBuilder>,
-        _i1.HasPayload<MapInputRequestPayload> {
+    with _i1.HttpInput<MapInputRequest>, _i2.AWSEquatable<MapInputRequest>
+    implements Built<MapInputRequest, MapInputRequestBuilder> {
   factory MapInputRequest([void Function(MapInputRequestBuilder) updates]) =
       _$MapInputRequest;
 
@@ -26,29 +24,15 @@ abstract class MapInputRequest
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MapInputRequestBuilder b) {}
-  _i2.BuiltListMultimap<String, int?>? get mapOfLists;
+  _i3.BuiltListMultimap<String, int>? get mapOfLists;
   @override
-  MapInputRequestPayload getPayload() =>
-      MapInputRequestPayload((b) => b..mapOfLists = mapOfLists);
-}
-
-@_i3.internal
-@BuiltValue(nestedBuilders: false)
-abstract class MapInputRequestPayload
-    implements Built<MapInputRequestPayload, MapInputRequestPayloadBuilder> {
-  factory MapInputRequestPayload(
-          [void Function(MapInputRequestPayloadBuilder) updates]) =
-      _$MapInputRequestPayload;
-
-  const MapInputRequestPayload._();
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MapInputRequestPayloadBuilder b) {}
-  _i2.BuiltListMultimap<String, int?>? get mapOfLists;
+  MapInputRequest getPayload() => this;
+  @override
+  List<Object?> get props => [mapOfLists];
 }
 
 class _MapInputRequestAwsJson11Serializer
-    extends _i1.SmithySerializer<MapInputRequestPayload> {
+    extends _i1.StructuredSmithySerializer<MapInputRequest> {
   const _MapInputRequestAwsJson11Serializer() : super('MapInputRequest');
 
   @override
@@ -57,21 +41,24 @@ class _MapInputRequestAwsJson11Serializer
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  MapInputRequestPayload deserialize(
+  MapInputRequest deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = MapInputRequestPayloadBuilder();
+    final result = MapInputRequestBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object? value = iterator.current;
+      final value = iterator.current;
       switch (key) {
         case 'mapOfLists':
-          result.mapOfLists = (serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      _i2.BuiltListMultimap, [FullType(String), FullType(int)]))
-              as _i2.BuiltListMultimap<String, int?>?);
+          if (value != null) {
+            result.mapOfLists.replace((serializers.deserialize(value,
+                specifiedType: const FullType(_i3.BuiltListMultimap, [
+                  FullType(String),
+                  FullType(int)
+                ])) as _i3.BuiltListMultimap<String, int>));
+          }
           break;
       }
     }
@@ -82,16 +69,14 @@ class _MapInputRequestAwsJson11Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final MapInputRequestPayload payload = object is MapInputRequest
-        ? object.getPayload()
-        : (object as MapInputRequestPayload);
+    final payload = (object as MapInputRequest);
     final result = <Object?>[];
     if (payload.mapOfLists != null) {
       result
         ..add('mapOfLists')
         ..add(serializers.serialize(payload.mapOfLists,
-            specifiedType: const FullType(
-                _i2.BuiltListMultimap, [FullType(String), FullType(int)])));
+            specifiedType: const FullType.nullable(
+                _i3.BuiltListMultimap, [FullType(String), FullType(int)])));
     }
     return result;
   }

@@ -12,7 +12,8 @@ class ServiceGenerator extends LibraryGenerator<ServiceShape> {
   @override
   Library generate() {
     builder.directives.addAll([
-      for (final type in context.generatedTypes) Directive.export(type.url!),
+      for (final type in context.generatedTypes.entries)
+        Directive.export(type.key.url!, hide: type.value),
       Directive.export(context.serviceClientLibrary.libraryUrl)
     ]);
 

@@ -24,7 +24,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
 
   @override
   Library generate() {
-    context.generatedTypes.add(symbol);
+    context.generatedTypes[symbol] = [];
 
     builder.body.addAll([
       _classDefinition,

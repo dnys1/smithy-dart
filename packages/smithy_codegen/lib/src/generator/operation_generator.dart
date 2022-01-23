@@ -33,17 +33,29 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             if (shape.docs != null) formatDocs(shape.docs!),
           ])
           ..name = className
-          ..extend = DartTypes.smithy.httpOperation(
-            inputPayload.symbol.unboxed,
-            inputSymbol,
-            outputPayload.symbol.unboxed,
-            outputSymbol,
-          )
+          ..extend = paginatedTraits == null
+              ? DartTypes.smithy.httpOperation(
+                  inputPayload.symbol.unboxed,
+                  inputSymbol,
+                  outputPayload.symbol.unboxed,
+                  outputSymbol,
+                )
+              : DartTypes.smithy.paginatedHttpOperation(
+                  inputPayload.symbol.unboxed,
+                  inputSymbol,
+                  outputPayload.symbol.unboxed,
+                  outputSymbol,
+                  paginatedTraits!.tokenSymbol?.unboxed ?? DartTypes.core.null$,
+                  paginatedTraits!.pageSizeSymbol?.unboxed ??
+                      DartTypes.core.null$,
+                  paginatedTraits!.itemsSymbol?.unboxed ?? DartTypes.core.null$,
+                )
           ..fields.addAll([
             _protocolsGetter,
           ])
           ..methods.addAll([
             ..._httpOverrides,
+            ..._paginatedMethods,
           ]),
       );
 
@@ -165,6 +177,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         case ShapeType.list:
         case ShapeType.set:
           final memberShape = (targetShape as CollectionShape).member;
+          final memberTarget = context.shapeFor(memberShape.target);
           return ref
               .property('map')
               .call([
@@ -173,7 +186,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   ..lambda = true
                   ..body = DartTypes.smithy.sanitizeHeader.call([
                     toString(refer('el'), memberShape),
-                  ]).code).closure,
+                  ], {
+                    if (memberTarget is TimestampShape)
+                      'isTimestampList': literalTrue,
+                  }).code).closure,
               ])
               .property('join')
               .call([literalString(', ')]);
@@ -553,5 +569,96 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           if (mediaType != null) 'mediaType': literalString(mediaType),
         };
     }
+  }
+
+  Iterable<Method> get _paginatedMethods sync* {
+    final paginatedTraits = this.paginatedTraits;
+    if (paginatedTraits == null) {
+      return;
+    }
+
+    // The `getToken` method.
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = paginatedTraits.tokenSymbol?.boxed ?? DartTypes.core.null$
+        ..name = 'getToken'
+        ..requiredParameters.add(Parameter((p) => p
+          ..type = outputSymbol
+          ..name = 'output'))
+        ..lambda = true
+        ..body =
+            (paginatedTraits.outputTokenExpression?.call(refer('output')) ??
+                    literalNull)
+                .code,
+    );
+
+    // The `getItems` method.
+    Expression? defaultValue;
+    if (paginatedTraits.itemsSymbol != null) {
+      final symbol = paginatedTraits.itemsSymbol!.typeRef.rebuild((t) => t
+        ..isNullable = false
+        ..types.clear());
+      defaultValue = symbol.newInstance([]);
+    }
+    Expression? itemsBody =
+        paginatedTraits.itemsExpression?.call(refer('output'));
+    if (defaultValue != null) {
+      itemsBody = itemsBody?.ifNullThen(defaultValue);
+    }
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = paginatedTraits.itemsSymbol?.unboxed ?? DartTypes.core.null$
+        ..name = 'getItems'
+        ..requiredParameters.add(Parameter((p) => p
+          ..type = outputSymbol
+          ..name = 'output'))
+        ..lambda = true
+        ..body = (itemsBody ?? literalNull).code,
+    );
+
+    // The `rebuildInput` method.
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = inputSymbol
+        ..name = 'rebuildInput'
+        ..requiredParameters.addAll([
+          Parameter((p) => p
+            ..type = inputSymbol
+            ..name = 'input'),
+          Parameter((p) => p
+            ..type = paginatedTraits.tokenSymbol
+            ..name = 'token'),
+          Parameter((p) => p
+            ..type =
+                paginatedTraits.pageSizeSymbol?.boxed ?? DartTypes.core.null$
+            ..name = 'pageSize')
+        ])
+        ..lambda = true
+        ..body = refer('input').property('rebuild').call([
+          Method(
+            (m) => m
+              ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+              ..body = Block.of([
+                if (paginatedTraits.inputTokenExpression != null)
+                  paginatedTraits.inputTokenExpression!(refer('b'))
+                      .assign(
+                          paginatedTraits.inputTokenExpression!(refer('input')))
+                      .statement,
+                if (paginatedTraits.pageSizeExpression != null)
+                  paginatedTraits.pageSizeExpression!(refer('b'))
+                      .assign(
+                          paginatedTraits.pageSizeExpression!(refer('input')))
+                      .statement,
+                // .wrapWithBlockIf(
+                //   paginatedTraits.pageSizeExpression!(refer('input'))
+                //       .notEqualTo(literalNull),
+                // ),
+              ]),
+          ).closure
+        ]).code,
+    );
   }
 }

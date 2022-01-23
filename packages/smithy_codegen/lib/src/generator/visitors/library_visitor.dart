@@ -94,12 +94,22 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   }
 
   @override
+  Iterable<GeneratedLibrary> listShape(ListShape shape, [Shape? parent]) {
+    return _foreignMembers([shape.member]);
+  }
+
+  @override
+  Iterable<GeneratedLibrary>? setShape(SetShape shape, [Shape? parent]) {
+    return _foreignMembers([shape.member]);
+  }
+
+  @override
   Iterable<GeneratedLibrary> structureShape(StructureShape shape,
       [Shape? parent]) sync* {
     if (Shape.preludeShapes.keys.contains(shape.shapeId)) {
       return;
     }
-    yield* _foreignMembers(shape);
+    yield* _foreignMembers(shape.members.values);
     yield _buildLibrary(
       shape,
       StructureGenerator(shape, context).generate(),
@@ -109,12 +119,12 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   @override
   Iterable<GeneratedLibrary> unionShape(UnionShape shape,
       [Shape? parent]) sync* {
-    yield* _foreignMembers(shape);
+    yield* _foreignMembers(shape.members.values);
     yield _buildLibrary(shape, UnionGenerator(shape, context).generate());
   }
 
-  Iterable<GeneratedLibrary> _foreignMembers(NamedMembersShape shape) {
-    return shape.members.values
+  Iterable<GeneratedLibrary> _foreignMembers(Iterable<MemberShape> members) {
+    return members
         .map((shape) => context.shapeFor(shape.target))
         .where((target) => !context.shapes.keys.contains(target.shapeId))
         .expand((shape) => shape.accept(this) ?? const Iterable.empty());

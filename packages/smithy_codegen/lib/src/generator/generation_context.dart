@@ -7,6 +7,7 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
+import 'package:tuple/tuple.dart';
 
 mixin NamedMembersGenerationContext<S extends NamedMembersShape, U>
     on ShapeGenerator<S, U> {
@@ -148,12 +149,13 @@ mixin OperationGenerationContext<U> on ShapeGenerator<OperationShape, U> {
     }
     return null;
   }();
-  late final httpInputTraits = inputShape.httpInputTraits(
+  late final HttpInputTraits httpInputTraits = inputShape.httpInputTraits(
     context,
     overrideTrait: true,
   )!;
-  late final httpOutputTraits = outputShape.httpOutputTraits(
+  late final HttpOutputTraits httpOutputTraits = outputShape.httpOutputTraits(
     context,
     overrideTrait: true,
   )!;
+  late final PaginatedTraits? paginatedTraits = shape.paginatedTraits(context);
 }

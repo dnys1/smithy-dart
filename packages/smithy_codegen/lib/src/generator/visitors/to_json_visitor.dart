@@ -30,7 +30,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   @override
   Expression bigIntegerShape(BigIntegerShape shape, [Shape? parent]) {
     final ref = _shapeRef(shape);
-    return ref.nullableProperty(shape.isNullable(), 'toString').call([]);
+    return ref.nullableProperty('toString', shape.isNullable()).call([]);
   }
 
   @override
@@ -91,7 +91,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
         ..body = memberToJson.code,
     ).closure;
     return ref
-        .nullableProperty(shape.isNullable(parent), 'map')
+        .nullableProperty('map', shape.isNullable(parent))
         .call([closure]);
   }
 
@@ -149,7 +149,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   Expression stringShape(StringShape shape, [Shape? parent]) {
     if (shape.isEnum) {
       return _shapeRef(shape)
-          .nullableProperty(shape.isNullable(parent), 'value');
+          .nullableProperty('value', shape.isNullable(parent));
     }
     return _shapeRef(shape);
   }
@@ -157,7 +157,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   @override
   Expression structureShape(StructureShape shape, [Shape? parent]) {
     final ref = _shapeRef(shape);
-    return ref.nullableProperty(shape.isNullable(parent), 'toJson').call([]);
+    return ref.nullableProperty('toJson', shape.isNullable(parent)).call([]);
   }
 
   @override
@@ -170,7 +170,7 @@ class ToJsonVisitor with RenameState implements ShapeVisitor<Expression> {
   @override
   Expression unionShape(UnionShape shape, [Shape? parent]) {
     final ref = _shapeRef(shape);
-    return ref.nullableProperty(shape.isNullable(parent), 'value');
+    return ref.nullableProperty('value', shape.isNullable(parent));
   }
 
   @override

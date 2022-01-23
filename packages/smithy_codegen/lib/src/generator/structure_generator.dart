@@ -30,6 +30,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Library generate() {
     // Add .g.dart part directive
     builder.directives.add(Directive.part('${className.snakeCase}.g.dart'));
+    (context.generatedTypes[symbol] ??= []).addAll([
+      if (hasBuiltPayload) payloadSymbol.symbol!,
+    ]);
 
     final serializerClasses = _serializerClasses;
     builder.body.addAll([
@@ -671,8 +674,14 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         case ShapeType.list:
         case ShapeType.set:
           final memberShape = (targetShape as CollectionShape).member;
+          final memberTarget = context.shapeFor(memberShape.target);
           return DartTypes.smithy.parseHeader
-              .call([headerRef])
+              .call([
+                headerRef
+              ], {
+                if (memberTarget is TimestampShape)
+                  'isTimestampList': literalTrue,
+              })
               .property('map')
               .call([
                 Method((m) => m

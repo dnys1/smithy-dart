@@ -27,7 +27,7 @@ class SerializersGenerator extends Generator<Library> {
           ..type = DartTypes.core.list(DartTypes.smithy.smithySerializer())
           ..name = 'serializers'
           ..assignment = literalConstList([
-            for (final type in context.generatedTypes)
+            for (final type in context.generatedTypes.keys)
               type.property('serializers').spread,
           ]).code,
       );

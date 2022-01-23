@@ -25,35 +25,53 @@ DartEmitter buildEmitter(Library library) => DartEmitter(
 Map<SmithyLibrary, String> generateForAst(
   SmithyAst ast, {
   required String packageName,
-  required String serviceName,
+  String? serviceName,
   Pubspec? pubspec,
 }) {
-  final context = CodegenContext(
-    smithyVersion: ast.version,
-    metadata: ast.metadata.toMap(),
-    shapes: ast.shapes,
-    packageName: packageName,
-    serviceName: serviceName,
-  );
+  var serviceShapes = ast.shapes.values.whereType<ServiceShape>();
+  if (serviceName != null) {
+    serviceShapes = [serviceShapes.single];
+  }
 
-  // Generate libraries for relevant shape types.
-  final List<Shape> shapes = context.shapes.values.toList()
-    ..sort((a, b) {
-      // Build service shapes last, since they aggregate generated types.
-      if (a is ServiceShape) {
-        return 1;
-      } else if (b is ServiceShape) {
-        return -1;
-      }
-      return 0;
+  final List<GeneratedLibrary> libraries = [];
+
+  for (final serviceShape in serviceShapes) {
+    // Builds a service closure with just one service shape. All the other
+    // shape can remain - they will not be generated for services which do
+    // not reference them due to how LibraryVisitor works.
+    final serviceClosure = ShapeMap({
+      for (final entry
+          in ast.shapes.entries.where((el) => el.value is! ServiceShape))
+        entry.key: entry.value,
+      serviceShape.shapeId: serviceShape,
     });
-  final List<GeneratedLibrary> libraries = shapes
-      .expand(
-        (shape) =>
-            shape.accept(LibraryVisitor(context)) ??
-            const Iterable<GeneratedLibrary>.empty(),
-      )
-      .toList();
+
+    final context = CodegenContext(
+      smithyVersion: ast.version,
+      metadata: ast.metadata.toMap(),
+      shapes: serviceClosure,
+      packageName: packageName,
+      serviceShapeId: serviceShape.shapeId,
+      serviceName: serviceName,
+    );
+
+    // Generate libraries for relevant shape types.
+    final List<Shape> shapes = context.shapes.values.toList()
+      ..sort((a, b) {
+        // Build service shapes last, since they aggregate generated types.
+        if (a is ServiceShape) {
+          return 1;
+        } else if (b is ServiceShape) {
+          return -1;
+        }
+        return 0;
+      });
+    libraries.addAll(shapes.expand(
+      (shape) =>
+          shape.accept(LibraryVisitor(context)) ??
+          const Iterable<GeneratedLibrary>.empty(),
+    ));
+  }
 
   // Emit Dart code and format
   return Map.fromEntries(libraries.map((generated) {

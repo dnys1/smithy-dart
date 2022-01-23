@@ -9,6 +9,7 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
+import 'package:tuple/tuple.dart';
 
 extension SimpleShapeUtil on SimpleShape {
   Reference get typeReference {
@@ -138,6 +139,23 @@ extension ShapeUtils on Shape {
       ..libraryType = libraryType
       ..filename = (rename ?? shapeId.shape).snakeCase;
   }
+
+  PaginatedTraits? get _paginatedTraits {
+    if (this is! OperationShape && this is! ServiceShape) {
+      return null;
+    }
+    final trait = getTrait<PaginatedTrait>();
+    if (trait == null) {
+      return null;
+    }
+    return PaginatedTraits(
+      (b) => b
+        ..inputTokenPath = trait.inputToken
+        ..outputTokenPath = trait.outputToken
+        ..itemsPath = trait.items
+        ..pageSizePath = trait.pageSize,
+    );
+  }
 }
 
 extension OperationShapeUtil on OperationShape {
@@ -165,6 +183,102 @@ extension OperationShapeUtil on OperationShape {
   /// The symbol for the operation's output.
   Reference outputSymbol(CodegenContext context) =>
       context.symbolFor(output?.target ?? Shape.unit);
+
+  PaginatedTraits? paginatedTraits(CodegenContext context) {
+    final serviceShape = context.service;
+    PaginatedTraits? traits;
+    if (serviceShape != null) {
+      traits = serviceShape._paginatedTraits;
+    }
+    final operationTraits = _paginatedTraits;
+    return (traits ?? operationTraits)?.rebuild((b) {
+      if (operationTraits?.inputTokenPath != null) {
+        b.inputTokenPath = operationTraits!.inputTokenPath;
+      }
+      if (operationTraits?.outputTokenPath != null) {
+        b.outputTokenPath = operationTraits!.outputTokenPath;
+      }
+      if (operationTraits?.itemsPath != null) {
+        b.itemsPath = operationTraits!.itemsPath;
+      }
+      if (operationTraits?.pageSizePath != null) {
+        b.pageSizePath = operationTraits!.pageSizePath;
+      }
+
+      Tuple3<MemberShape, Expression Function(Expression), Reference>
+          _parsePath(StructureShape s, String p) {
+        final path = p.split('.');
+        final List<Expression Function(Expression)> exps = [];
+        NamedMembersShape shape = s;
+        bool isNullable = false;
+        late MemberShape member;
+        late Reference symbol;
+        while (path.isNotEmpty) {
+          final memberName = path.removeAt(0);
+          member = shape.members[memberName]!;
+          final _isNullable = isNullable; // local copy for capture
+          exps.add(
+            (exp) => exp.nullableProperty(member.dartName, _isNullable),
+          );
+          isNullable = member.isNullable(shape);
+          symbol = context.symbolFor(member.target, shape);
+          final targetShape = context.shapeFor(member.target);
+          if (path.isNotEmpty) {
+            shape = targetShape as NamedMembersShape;
+          }
+        }
+        return Tuple3(
+          member,
+          (exp) => exps.fold(exp, (exp, el) => el(exp)),
+          symbol,
+        );
+      }
+
+      if (b.inputTokenPath != null) {
+        final parsed = _parsePath(
+          inputShape(context),
+          b.inputTokenPath!,
+        );
+        b.inputTokenMember = parsed.item1;
+        b.inputTokenExpression = parsed.item2;
+        b.tokenSymbol = parsed.item3;
+      }
+
+      if (b.outputTokenPath != null) {
+        final parsed = _parsePath(
+          outputShape(context),
+          b.outputTokenPath!,
+        );
+        b.outputTokenMember = parsed.item1;
+        b.outputTokenExpression = parsed.item2;
+        final tokenSymbol = parsed.item3;
+        if (b.inputTokenMember != null) {
+          assert(b.tokenSymbol == tokenSymbol);
+        }
+        b.tokenSymbol = tokenSymbol;
+      }
+
+      if (b.itemsPath != null) {
+        final parsed = _parsePath(
+          outputShape(context),
+          b.itemsPath!,
+        );
+        b.itemsMember = parsed.item1;
+        b.itemsExpression = parsed.item2;
+        b.itemsSymbol = parsed.item3;
+      }
+
+      if (b.pageSizePath != null) {
+        final parsed = _parsePath(
+          inputShape(context),
+          b.pageSizePath!,
+        );
+        b.pageSizeMember = parsed.item1;
+        b.pageSizeExpression = parsed.item2;
+        b.pageSizeSymbol = parsed.item3;
+      }
+    });
+  }
 }
 
 extension StructureShapeUtil on StructureShape {

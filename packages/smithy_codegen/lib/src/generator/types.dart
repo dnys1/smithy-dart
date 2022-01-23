@@ -122,6 +122,9 @@ class _Core {
   /// Creates an [core.MapEntry] reference.
   Reference get mapEntry => const Reference('MapEntry', _url);
 
+  /// Creates a [core.Null] reference.
+  Reference get null$ => const Reference('Null', _url);
+
   /// Creates an [core.Object] reference.
   Reference get object => const Reference('Object', _url);
 
@@ -488,6 +491,41 @@ class _Smithy {
   /// Creates a [smithy.MissingLabelException] reference.
   Reference get missingLabelException =>
       const Reference('MissingLabelException', _url);
+
+  /// Creates a [smithy.PaginatedHttpOperation] reference for an operation with input
+  /// payload type [inputPayload], input type [input], and output type [output].
+  Reference paginatedHttpOperation(
+    Reference inputPayload,
+    Reference input,
+    Reference outputPayload,
+    Reference output,
+    Reference tokenSymbol,
+    Reference pageSizeSymbol,
+    Reference itemsSymbol,
+  ) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'PaginatedHttpOperation'
+          ..url = _url
+          ..types.addAll([
+            inputPayload,
+            input,
+            outputPayload,
+            output,
+            tokenSymbol,
+            pageSizeSymbol,
+            itemsSymbol,
+          ]),
+      );
+
+  /// Creates a [smithy.PaginatedResult] reference.
+  Reference paginatedResult(Reference itemsRef, Reference pageSizeRef) =>
+      TypeReference(
+        (t) => t
+          ..url = _url
+          ..symbol = 'PaginatedResult'
+          ..types.addAll([itemsRef, pageSizeRef]),
+      );
 
   /// Creates a [smithy.parseHeader] reference.
   Reference get parseHeader => const Reference('parseHeader', _url);

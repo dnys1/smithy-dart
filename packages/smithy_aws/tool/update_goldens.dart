@@ -66,8 +66,6 @@ void main(List<String> args) {
     final libraries = generateForAst(
       ast,
       packageName: packageName,
-      serviceName:
-          ast.shapes.values.whereType<ServiceShape>().single.shapeId.shape,
     );
 
     libraries.forEach((library, definition) {

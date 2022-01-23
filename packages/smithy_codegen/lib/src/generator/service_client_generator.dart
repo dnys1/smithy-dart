@@ -5,6 +5,7 @@ import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   ServiceClientGenerator(ServiceShape shape, CodegenContext context)
@@ -45,12 +46,21 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       if (operationOutput == DartTypes.smithy.unit) {
         operationOutput = DartTypes.core.void$;
       }
+      final paginatedTraits = operation.paginatedTraits(context);
+      final isPaginated = paginatedTraits != null;
       yield Method(
         (m) => m
-          ..returns = operation.isStreaming
-              ? DartTypes.async.stream(operationOutput)
+          ..docs.addAll([
+            if (operation.docs != null) formatDocs(operation.docs!),
+          ])
+          ..returns = isPaginated
+              ? DartTypes.async.future(DartTypes.smithy.paginatedResult(
+                  paginatedTraits.itemsSymbol?.unboxed ?? DartTypes.core.null$,
+                  paginatedTraits.pageSizeSymbol?.unboxed ??
+                      DartTypes.core.null$,
+                ))
               : DartTypes.async.future(operationOutput)
-          ..name = operation.dartName.camelCase
+          ..name = operation.shapeId.shape.camelCase
           ..lambda = false
           ..requiredParameters.addAll([
             if (operationInput != DartTypes.smithy.unit)
@@ -61,7 +71,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ..body = context
               .symbolFor(operation.shapeId)
               .newInstance([])
-              .property('run')
+              .property(isPaginated ? 'runPaginated' : 'run')
               .call([
                 if (operationInput == DartTypes.smithy.unit)
                   DartTypes.smithy.unit.constInstance([])

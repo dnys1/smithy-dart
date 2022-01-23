@@ -29,6 +29,7 @@ dependencies:
     path: ../smithy_ast
   smithy_aws:
     path: ../smithy_aws
+  tuple: ^2.0.0
   yaml_edit: ^2.0.1
 
 dev_dependencies:

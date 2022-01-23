@@ -80,7 +80,8 @@ abstract class InputAndOutputWithHeadersIo
         }
         if (response.headers['X-TimestampList'] != null) {
           b.headerTimestampList.addAll(_i1
-              .parseHeader(response.headers['X-TimestampList']!)
+              .parseHeader(response.headers['X-TimestampList']!,
+                  isTimestampList: true)
               .map((el) => _i1.Timestamp.parse(el.trim(),
                       format: _i1.TimestampFormat.httpDate)
                   .asDateTime));

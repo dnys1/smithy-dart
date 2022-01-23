@@ -2,9 +2,9 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 
 extension ExpressionUtil on Expression {
-  /// The property getter, given [isNull].
-  Expression nullableProperty(bool isNull, String name) {
-    if (isNull) {
+  /// The property getter, given [isNullable].
+  Expression nullableProperty(String name, bool isNullable) {
+    if (isNullable) {
       return nullSafeProperty(name);
     } else {
       return property(name);

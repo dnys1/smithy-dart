@@ -27,7 +27,7 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
   @override
   Class generate() {
     // Tracks the generated type.
-    context.generatedTypes.add(symbol);
+    context.generatedTypes[symbol] = [];
 
     return Class(
       (c) => c

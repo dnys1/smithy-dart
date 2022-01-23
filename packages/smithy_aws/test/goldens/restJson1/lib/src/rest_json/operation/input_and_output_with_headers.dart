@@ -98,9 +98,11 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
         if (input.headerTimestampList != null) {
           if (input.headerTimestampList!.isNotEmpty) {
             b.headers['X-TimestampList'] = input.headerTimestampList!
-                .map((el) => _i1.sanitizeHeader(_i1.Timestamp(el)
-                    .format(_i1.TimestampFormat.httpDate)
-                    .toString()))
+                .map((el) => _i1.sanitizeHeader(
+                    _i1.Timestamp(el)
+                        .format(_i1.TimestampFormat.httpDate)
+                        .toString(),
+                    isTimestampList: true))
                 .join(', ');
           }
         }

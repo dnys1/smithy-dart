@@ -121,3 +121,42 @@ abstract class XmlProtocolTraits
   BuiltSet<MemberShape> get flattenedMembers;
   BuiltMap<MemberShape, XmlNamespaceTrait> get memberNamespaces;
 }
+
+@BuiltValue(nestedBuilders: false)
+abstract class PaginatedTraits
+    implements Built<PaginatedTraits, PaginatedTraitsBuilder> {
+  factory PaginatedTraits([void Function(PaginatedTraitsBuilder) updates]) =
+      _$PaginatedTraits;
+  PaginatedTraits._();
+
+  String? get inputTokenPath;
+  String? get outputTokenPath;
+  String? get pageSizePath;
+  String? get itemsPath;
+
+  MemberShape? get inputTokenMember;
+
+  /// The expression to retrieve the input token from a variable.
+  Expression Function(Expression)? get inputTokenExpression;
+
+  Reference? get tokenSymbol;
+
+  MemberShape? get outputTokenMember;
+
+  /// The expression to retrieve the output token from a variable.
+  Expression Function(Expression)? get outputTokenExpression;
+
+  MemberShape? get itemsMember;
+
+  /// The expression to retrieve the items from a variable
+  Expression Function(Expression)? get itemsExpression;
+
+  Reference? get itemsSymbol;
+
+  MemberShape? get pageSizeMember;
+
+  Reference? get pageSizeSymbol;
+
+  /// The expression to retrieve the pageSize from a variable.
+  Expression Function(Expression)? get pageSizeExpression;
+}

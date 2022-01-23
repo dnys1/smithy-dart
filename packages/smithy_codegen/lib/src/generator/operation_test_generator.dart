@@ -22,10 +22,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   static const Map<String, String> _skip = {
     'RestJsonQueryIdempotencyTokenAutoFill':
         'bool.fromEnvironment is not working in tests for some reason',
-    'RestJsonInputAndOutputWithTimestampHeaders':
-        'Deserializing header list is ambiguous without quotes (which other tests require)',
-    'RestJsonInputAndOutputWithQuotedStringHeaders':
-        'Test seems incorrect. There should be spaces between the values.',
+    // 'RestJsonInputAndOutputWithTimestampHeaders':
+    //     'Deserializing header list is ambiguous without quotes (which other tests require)',
     'RestJsonSerializesSparseSetMap':
         'Cannot handle this at the moment (empty vs. null).',
     'RestJsonSerializesDenseSetMap':
@@ -36,6 +34,11 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     'RestJsonStreamingTraitsWithBlob': 'Streaming is not supported yet',
     'RestJsonStreamingTraitsWithMediaTypeWithBlob':
         'Streaming is not supported yet',
+    'RestJsonStreamingTraitsRequireLengthWithBlob':
+        'Streaming is not supported yet',
+    'GlacierChecksums': 'Glacier is not supported yet',
+    'GlacierVersionHeader': 'Glacier is not supported yet',
+    'GlacierMultipartChecksums': 'Glacier is not supported yet',
   };
 
   late final httpRequestTestCases = shape
@@ -200,7 +203,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           'vendorParamsShape':
               testCase.vendorParamsShape?.constructed ?? literalNull,
           'vendorParams': literal(testCase.vendorParams),
-          'headers': literal(testCase.headers),
+          'headers': literal(
+              _escapeParams(testCase, testCase.headers).cast<String, String>()),
           'forbidHeaders': literal(testCase.forbidHeaders),
           'requireHeaders': literal(testCase.requireHeaders),
           'tags': literal(testCase.tags),
@@ -309,7 +313,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         'vendorParamsShape':
             testCase.vendorParamsShape?.constructed ?? literalNull,
         'vendorParams': literal(testCase.vendorParams),
-        'headers': literal(testCase.headers),
+        'headers': literal(
+            _escapeParams(testCase, testCase.headers).cast<String, String>()),
         'forbidHeaders': literal(testCase.forbidHeaders),
         'requireHeaders': literal(testCase.requireHeaders),
         'tags': literal(testCase.tags),

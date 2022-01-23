@@ -1117,4 +1117,287 @@ class XmlProtocolTraitsBuilder
   }
 }
 
+class _$PaginatedTraits extends PaginatedTraits {
+  @override
+  final String? inputTokenPath;
+  @override
+  final String? outputTokenPath;
+  @override
+  final String? pageSizePath;
+  @override
+  final String? itemsPath;
+  @override
+  final MemberShape? inputTokenMember;
+  @override
+  final Expression Function(Expression)? inputTokenExpression;
+  @override
+  final Reference? tokenSymbol;
+  @override
+  final MemberShape? outputTokenMember;
+  @override
+  final Expression Function(Expression)? outputTokenExpression;
+  @override
+  final MemberShape? itemsMember;
+  @override
+  final Expression Function(Expression)? itemsExpression;
+  @override
+  final Reference? itemsSymbol;
+  @override
+  final MemberShape? pageSizeMember;
+  @override
+  final Reference? pageSizeSymbol;
+  @override
+  final Expression Function(Expression)? pageSizeExpression;
+
+  factory _$PaginatedTraits([void Function(PaginatedTraitsBuilder)? updates]) =>
+      (new PaginatedTraitsBuilder()..update(updates)).build();
+
+  _$PaginatedTraits._(
+      {this.inputTokenPath,
+      this.outputTokenPath,
+      this.pageSizePath,
+      this.itemsPath,
+      this.inputTokenMember,
+      this.inputTokenExpression,
+      this.tokenSymbol,
+      this.outputTokenMember,
+      this.outputTokenExpression,
+      this.itemsMember,
+      this.itemsExpression,
+      this.itemsSymbol,
+      this.pageSizeMember,
+      this.pageSizeSymbol,
+      this.pageSizeExpression})
+      : super._();
+
+  @override
+  PaginatedTraits rebuild(void Function(PaginatedTraitsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PaginatedTraitsBuilder toBuilder() =>
+      new PaginatedTraitsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is PaginatedTraits &&
+        inputTokenPath == other.inputTokenPath &&
+        outputTokenPath == other.outputTokenPath &&
+        pageSizePath == other.pageSizePath &&
+        itemsPath == other.itemsPath &&
+        inputTokenMember == other.inputTokenMember &&
+        inputTokenExpression == _$dynamicOther.inputTokenExpression &&
+        tokenSymbol == other.tokenSymbol &&
+        outputTokenMember == other.outputTokenMember &&
+        outputTokenExpression == _$dynamicOther.outputTokenExpression &&
+        itemsMember == other.itemsMember &&
+        itemsExpression == _$dynamicOther.itemsExpression &&
+        itemsSymbol == other.itemsSymbol &&
+        pageSizeMember == other.pageSizeMember &&
+        pageSizeSymbol == other.pageSizeSymbol &&
+        pageSizeExpression == _$dynamicOther.pageSizeExpression;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc(
+                                            $jc(
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(
+                                                                0,
+                                                                inputTokenPath
+                                                                    .hashCode),
+                                                            outputTokenPath
+                                                                .hashCode),
+                                                        pageSizePath.hashCode),
+                                                    itemsPath.hashCode),
+                                                inputTokenMember.hashCode),
+                                            inputTokenExpression.hashCode),
+                                        tokenSymbol.hashCode),
+                                    outputTokenMember.hashCode),
+                                outputTokenExpression.hashCode),
+                            itemsMember.hashCode),
+                        itemsExpression.hashCode),
+                    itemsSymbol.hashCode),
+                pageSizeMember.hashCode),
+            pageSizeSymbol.hashCode),
+        pageSizeExpression.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('PaginatedTraits')
+          ..add('inputTokenPath', inputTokenPath)
+          ..add('outputTokenPath', outputTokenPath)
+          ..add('pageSizePath', pageSizePath)
+          ..add('itemsPath', itemsPath)
+          ..add('inputTokenMember', inputTokenMember)
+          ..add('inputTokenExpression', inputTokenExpression)
+          ..add('tokenSymbol', tokenSymbol)
+          ..add('outputTokenMember', outputTokenMember)
+          ..add('outputTokenExpression', outputTokenExpression)
+          ..add('itemsMember', itemsMember)
+          ..add('itemsExpression', itemsExpression)
+          ..add('itemsSymbol', itemsSymbol)
+          ..add('pageSizeMember', pageSizeMember)
+          ..add('pageSizeSymbol', pageSizeSymbol)
+          ..add('pageSizeExpression', pageSizeExpression))
+        .toString();
+  }
+}
+
+class PaginatedTraitsBuilder
+    implements Builder<PaginatedTraits, PaginatedTraitsBuilder> {
+  _$PaginatedTraits? _$v;
+
+  String? _inputTokenPath;
+  String? get inputTokenPath => _$this._inputTokenPath;
+  set inputTokenPath(String? inputTokenPath) =>
+      _$this._inputTokenPath = inputTokenPath;
+
+  String? _outputTokenPath;
+  String? get outputTokenPath => _$this._outputTokenPath;
+  set outputTokenPath(String? outputTokenPath) =>
+      _$this._outputTokenPath = outputTokenPath;
+
+  String? _pageSizePath;
+  String? get pageSizePath => _$this._pageSizePath;
+  set pageSizePath(String? pageSizePath) => _$this._pageSizePath = pageSizePath;
+
+  String? _itemsPath;
+  String? get itemsPath => _$this._itemsPath;
+  set itemsPath(String? itemsPath) => _$this._itemsPath = itemsPath;
+
+  MemberShape? _inputTokenMember;
+  MemberShape? get inputTokenMember => _$this._inputTokenMember;
+  set inputTokenMember(MemberShape? inputTokenMember) =>
+      _$this._inputTokenMember = inputTokenMember;
+
+  Expression Function(Expression)? _inputTokenExpression;
+  Expression Function(Expression)? get inputTokenExpression =>
+      _$this._inputTokenExpression;
+  set inputTokenExpression(
+          Expression Function(Expression)? inputTokenExpression) =>
+      _$this._inputTokenExpression = inputTokenExpression;
+
+  Reference? _tokenSymbol;
+  Reference? get tokenSymbol => _$this._tokenSymbol;
+  set tokenSymbol(Reference? tokenSymbol) => _$this._tokenSymbol = tokenSymbol;
+
+  MemberShape? _outputTokenMember;
+  MemberShape? get outputTokenMember => _$this._outputTokenMember;
+  set outputTokenMember(MemberShape? outputTokenMember) =>
+      _$this._outputTokenMember = outputTokenMember;
+
+  Expression Function(Expression)? _outputTokenExpression;
+  Expression Function(Expression)? get outputTokenExpression =>
+      _$this._outputTokenExpression;
+  set outputTokenExpression(
+          Expression Function(Expression)? outputTokenExpression) =>
+      _$this._outputTokenExpression = outputTokenExpression;
+
+  MemberShape? _itemsMember;
+  MemberShape? get itemsMember => _$this._itemsMember;
+  set itemsMember(MemberShape? itemsMember) =>
+      _$this._itemsMember = itemsMember;
+
+  Expression Function(Expression)? _itemsExpression;
+  Expression Function(Expression)? get itemsExpression =>
+      _$this._itemsExpression;
+  set itemsExpression(Expression Function(Expression)? itemsExpression) =>
+      _$this._itemsExpression = itemsExpression;
+
+  Reference? _itemsSymbol;
+  Reference? get itemsSymbol => _$this._itemsSymbol;
+  set itemsSymbol(Reference? itemsSymbol) => _$this._itemsSymbol = itemsSymbol;
+
+  MemberShape? _pageSizeMember;
+  MemberShape? get pageSizeMember => _$this._pageSizeMember;
+  set pageSizeMember(MemberShape? pageSizeMember) =>
+      _$this._pageSizeMember = pageSizeMember;
+
+  Reference? _pageSizeSymbol;
+  Reference? get pageSizeSymbol => _$this._pageSizeSymbol;
+  set pageSizeSymbol(Reference? pageSizeSymbol) =>
+      _$this._pageSizeSymbol = pageSizeSymbol;
+
+  Expression Function(Expression)? _pageSizeExpression;
+  Expression Function(Expression)? get pageSizeExpression =>
+      _$this._pageSizeExpression;
+  set pageSizeExpression(Expression Function(Expression)? pageSizeExpression) =>
+      _$this._pageSizeExpression = pageSizeExpression;
+
+  PaginatedTraitsBuilder();
+
+  PaginatedTraitsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _inputTokenPath = $v.inputTokenPath;
+      _outputTokenPath = $v.outputTokenPath;
+      _pageSizePath = $v.pageSizePath;
+      _itemsPath = $v.itemsPath;
+      _inputTokenMember = $v.inputTokenMember;
+      _inputTokenExpression = $v.inputTokenExpression;
+      _tokenSymbol = $v.tokenSymbol;
+      _outputTokenMember = $v.outputTokenMember;
+      _outputTokenExpression = $v.outputTokenExpression;
+      _itemsMember = $v.itemsMember;
+      _itemsExpression = $v.itemsExpression;
+      _itemsSymbol = $v.itemsSymbol;
+      _pageSizeMember = $v.pageSizeMember;
+      _pageSizeSymbol = $v.pageSizeSymbol;
+      _pageSizeExpression = $v.pageSizeExpression;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PaginatedTraits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PaginatedTraits;
+  }
+
+  @override
+  void update(void Function(PaginatedTraitsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$PaginatedTraits build() {
+    final _$result = _$v ??
+        new _$PaginatedTraits._(
+            inputTokenPath: inputTokenPath,
+            outputTokenPath: outputTokenPath,
+            pageSizePath: pageSizePath,
+            itemsPath: itemsPath,
+            inputTokenMember: inputTokenMember,
+            inputTokenExpression: inputTokenExpression,
+            tokenSymbol: tokenSymbol,
+            outputTokenMember: outputTokenMember,
+            outputTokenExpression: outputTokenExpression,
+            itemsMember: itemsMember,
+            itemsExpression: itemsExpression,
+            itemsSymbol: itemsSymbol,
+            pageSizeMember: pageSizeMember,
+            pageSizeSymbol: pageSizeSymbol,
+            pageSizeExpression: pageSizeExpression);
+    replace(_$result);
+    return _$result;
+  }
+}
+
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

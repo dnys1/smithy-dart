@@ -279,6 +279,26 @@ extension OperationShapeUtil on OperationShape {
       }
     });
   }
+
+  HttpTrait? httpTrait(CodegenContext context) {
+    final trait = getTrait<HttpTrait>();
+    if (trait != null) {
+      return trait;
+    }
+    final protocol = context.serviceProtocols;
+
+    // awsJson1_0 and awsJson1_1 are
+    // "an HTTP protocol that sends "POST" requests and responses with JSON documents."
+    //
+    // See:
+    // - https://awslabs.github.io/smithy/1.0/spec/aws/aws-json-1_0-protocol.html
+    // - https://awslabs.github.io/smithy/1.0/spec/aws/aws-json-1_1-protocol.html
+    if ([AwsJson1_0Trait.id, AwsJson1_1Trait.id]
+        .contains(protocol.singleOrNull?.shapeId)) {
+      return HttpTrait(method: 'POST', uri: '/');
+    }
+    return null;
+  }
 }
 
 extension StructureShapeUtil on StructureShape {

@@ -7,8 +7,8 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
-import 'package:tuple/tuple.dart';
 
+/// Useful properties when generating named member shapes (unions + structs).
 mixin NamedMembersGenerationContext<S extends NamedMembersShape, U>
     on ShapeGenerator<S, U> {
   /// All members on [shape] which are generated.
@@ -121,6 +121,7 @@ mixin StructureGenerationContext<U> on ShapeGenerator<StructureShape, U>
   late final bool hasStreamingPayload = shape.hasStreamingPayload(context);
 }
 
+/// Useful properties when generating operation shapes.
 mixin OperationGenerationContext<U> on ShapeGenerator<OperationShape, U> {
   late final inputShape = shape.inputShape(context);
   late final inputSymbol = shape.inputSymbol(context);
@@ -137,18 +138,7 @@ mixin OperationGenerationContext<U> on ShapeGenerator<OperationShape, U> {
     return shape.httpErrorTraits(context)!;
   }).toList();
 
-  late final HttpTrait? httpTrait = () {
-    final trait = shape.getTrait<HttpTrait>();
-    if (trait != null) {
-      return trait;
-    }
-    final protocol = context.serviceProtocols;
-    if ([AwsJson1_0Trait.id, AwsJson1_1Trait.id]
-        .contains(protocol.singleOrNull?.shapeId)) {
-      return HttpTrait(method: 'POST', uri: '/');
-    }
-    return null;
-  }();
+  late final HttpTrait? httpTrait = shape.httpTrait(context);
   late final HttpInputTraits httpInputTraits = inputShape.httpInputTraits(
     context,
     overrideTrait: true,

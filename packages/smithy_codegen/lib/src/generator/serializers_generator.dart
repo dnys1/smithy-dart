@@ -21,6 +21,8 @@ class SerializersGenerator extends Generator<Library> {
       ]));
   }
 
+  /// The `serializers` field which aggregates all serializers across the
+  /// service's generated shapes.
   Field get _serializers => Field(
         (f) => f
           ..modifier = FieldModifier.constant
@@ -32,6 +34,9 @@ class SerializersGenerator extends Generator<Library> {
           ]).code,
       );
 
+  /// The `builderFactories` field which is filled in with all the builder
+  /// factories necessary for built collection types throughout the service's
+  /// closure.
   Field get _builderFactories => Field(
         (f) => f
           ..modifier = FieldModifier.final$

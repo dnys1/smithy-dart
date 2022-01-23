@@ -6,6 +6,7 @@ part 'config.g.dart';
 String get parserUsage =>
     _$populateCodegenConfigParser(ArgParser(usageLineLength: 80)).usage;
 
+/// CLI options for the code generator.
 @CliOptions()
 class CodegenConfig {
   const CodegenConfig({

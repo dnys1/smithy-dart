@@ -37,6 +37,10 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   /// Generate a callable method for each operation.
   Iterable<Method> get _operationMethods sync* {
     for (final operation in _operations) {
+      final httpTrait = operation.httpTrait(context);
+      if (httpTrait == null) {
+        continue;
+      }
       final operationInput = operation.inputSymbol(context);
       var operationOutput = operation.outputSymbol(context);
       // Replace Unit with void for nicer DX

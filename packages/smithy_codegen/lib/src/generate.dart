@@ -1,13 +1,12 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/format/format_stub.dart'
     if (dart.library.io) 'package:smithy_codegen/src/format/format_io.dart';
 import 'package:smithy_codegen/src/generator/allocator.dart';
-import 'package:smithy_codegen/src/generator/context.dart';
 import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
-import 'package:smithy_codegen/src/service/codegen.pb.dart';
 
 /// Header which prefixes all generated files.
 const header = '// Generated code. DO NOT MODIFY.';
@@ -30,7 +29,14 @@ Map<SmithyLibrary, String> generateForAst(
 }) {
   var serviceShapes = ast.shapes.values.whereType<ServiceShape>();
   if (serviceName != null) {
-    serviceShapes = [serviceShapes.single];
+    if (serviceShapes.length != 1) {
+      throw CodegenException(
+        'When specifying a service name, it is assumed that only one service is '
+        'to be generated. However, the provided AST contains '
+        '${serviceShapes.length} service shapes.',
+      );
+    }
+    serviceShapes = [serviceShapes.first];
   }
 
   final List<GeneratedLibrary> libraries = [];
@@ -56,17 +62,10 @@ Map<SmithyLibrary, String> generateForAst(
     );
 
     // Generate libraries for relevant shape types.
-    final List<Shape> shapes = context.shapes.values.toList()
-      ..sort((a, b) {
-        // Build service shapes last, since they aggregate generated types.
-        if (a is ServiceShape) {
-          return 1;
-        } else if (b is ServiceShape) {
-          return -1;
-        }
-        return 0;
-      });
-    libraries.addAll(shapes.expand(
+    //
+    // Build service shapes last, since they aggregate generated types.
+    final shapes = context.shapes.values.where((s) => s is! ServiceShape);
+    libraries.addAll([...shapes, serviceShape].expand(
       (shape) =>
           shape.accept(LibraryVisitor(context)) ??
           const Iterable<GeneratedLibrary>.empty(),

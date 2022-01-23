@@ -22,8 +22,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   static const Map<String, String> _skip = {
     'RestJsonQueryIdempotencyTokenAutoFill':
         'bool.fromEnvironment is not working in tests for some reason',
-    // 'RestJsonInputAndOutputWithTimestampHeaders':
-    //     'Deserializing header list is ambiguous without quotes (which other tests require)',
     'RestJsonSerializesSparseSetMap':
         'Cannot handle this at the moment (empty vs. null).',
     'RestJsonSerializesDenseSetMap':
@@ -41,6 +39,10 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     'GlacierMultipartChecksums': 'Glacier is not supported yet',
     'MachinelearningPredictEndpoint': 'ML Predict is not supported yet',
   };
+
+  /// Tests to skip on Web. To be filled in during codegen since it depends
+  /// on the contents of the test case.
+  final Set<String> _skipOnWeb = {};
 
   late final httpRequestTestCases = shape
           .getTrait<HttpRequestTestsTrait>()
@@ -276,6 +278,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     }
   }
 
+  /// Creates the call to `package:test`.
   Code _buildTest(
     HttpMessageTestCase testCase,
     Expression testCall, {
@@ -330,7 +333,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       body.replaceAll('\\', '\\\\').replaceAll('\$', '\\\$');
 
   /// Recursively checks parameters for:
-  /// 1. Escapes string since the translation from  IDL creates non-Dart-y strings.
+  /// 1. Escapes string since the translation from IDL creates non-Dart-y strings.
   /// 2. Long ints so we know to skip the test on Web. We also call toString
   /// because the file will not even compile for Web otherwise.
   Map<String, Object?> _escapeParams(
@@ -351,7 +354,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
           return value;
         });
 
+  /// JS can handle int values up to 2^53 - 1.
   static const int _maxSafeJsInt = (1 << 53) - 1;
-
-  final Set<String> _skipOnWeb = {};
 }

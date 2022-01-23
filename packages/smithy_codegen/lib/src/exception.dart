@@ -1,3 +1,4 @@
+/// An exception thrown during a codegen operation.
 class CodegenException implements Exception {
   const CodegenException(this.message);
 

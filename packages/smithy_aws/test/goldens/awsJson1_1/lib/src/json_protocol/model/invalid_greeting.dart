@@ -31,7 +31,7 @@ abstract class InvalidGreeting
   @override
   String? get message;
   @override
-  bool get isRetryable => false;
+  _i1.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [message];
 }

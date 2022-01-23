@@ -39,6 +39,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     'GlacierChecksums': 'Glacier is not supported yet',
     'GlacierVersionHeader': 'Glacier is not supported yet',
     'GlacierMultipartChecksums': 'Glacier is not supported yet',
+    'MachinelearningPredictEndpoint': 'ML Predict is not supported yet',
   };
 
   late final httpRequestTestCases = shape

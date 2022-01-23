@@ -40,7 +40,7 @@ abstract class ErrorWithMembers
   /// abc
   String? get stringField;
   @override
-  bool get isRetryable => false;
+  _i1.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [
         code,

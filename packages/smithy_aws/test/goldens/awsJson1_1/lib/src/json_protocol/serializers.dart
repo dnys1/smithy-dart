@@ -22,7 +22,7 @@ import 'package:aws_json1_1/src/json_protocol/model/invalid_greeting.dart'
     as _i10;
 import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart'
     as _i2;
-import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i15;
+import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i14;
 import 'package:aws_json1_1/src/json_protocol/model/my_union.dart' as _i18;
 import 'package:aws_json1_1/src/json_protocol/model/null_operation_input_output.dart'
     as _i19;
@@ -34,11 +34,11 @@ import 'package:aws_json1_1/src/json_protocol/model/put_and_get_inline_documents
     as _i22;
 import 'package:aws_json1_1/src/json_protocol/model/simple_scalar_properties_input_output.dart'
     as _i23;
-import 'package:aws_json1_1/src/json_protocol/model/simple_struct.dart' as _i16;
+import 'package:aws_json1_1/src/json_protocol/model/simple_struct.dart' as _i15;
 import 'package:aws_json1_1/src/json_protocol/model/struct_with_json_name.dart'
-    as _i13;
+    as _i16;
 import 'package:aws_json1_1/src/json_protocol/model/union_input_output.dart'
-    as _i14;
+    as _i13;
 import 'package:built_collection/built_collection.dart' as _i24;
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -55,10 +55,10 @@ const List<_i1.SmithySerializer> serializers = [
   ..._i10.InvalidGreeting.serializers,
   ..._i11.GreetingWithErrorsOutput.serializers,
   ..._i12.FooEnum.serializers,
-  ..._i13.StructWithJsonName.serializers,
-  ..._i14.UnionInputOutput.serializers,
-  ..._i15.KitchenSink.serializers,
-  ..._i16.SimpleStruct.serializers,
+  ..._i13.UnionInputOutput.serializers,
+  ..._i14.KitchenSink.serializers,
+  ..._i15.SimpleStruct.serializers,
+  ..._i16.StructWithJsonName.serializers,
   ..._i17.GreetingStruct.serializers,
   ..._i18.MyUnion.serializers,
   ..._i19.NullOperationInputOutput.serializers,
@@ -84,8 +84,8 @@ final Map<FullType, Function> builderFactories = {
   const FullType(_i24.BuiltList, [
     FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
   ]): _i24.ListBuilder<_i24.BuiltMap<String, String>>.new,
-  const FullType(_i24.BuiltList, [FullType(_i16.SimpleStruct)]):
-      _i24.ListBuilder<_i16.SimpleStruct>.new,
+  const FullType(_i24.BuiltList, [FullType(_i15.SimpleStruct)]):
+      _i24.ListBuilder<_i15.SimpleStruct>.new,
   const FullType(_i24.BuiltListMultimap, [FullType(String), FullType(String)]):
       _i24.ListMultimapBuilder<String, String>.new,
   const FullType(_i24.BuiltMap, [
@@ -93,12 +93,12 @@ final Map<FullType, Function> builderFactories = {
     FullType(_i24.BuiltMap, [FullType(String), FullType(String)])
   ]): _i24.MapBuilder<String, _i24.BuiltMap<String, String>>.new,
   const FullType(
-          _i24.BuiltMap, [FullType(String), FullType(_i16.SimpleStruct)]):
-      _i24.MapBuilder<String, _i16.SimpleStruct>.new,
-  const FullType(_i24.BuiltList, [FullType(_i15.KitchenSink)]):
-      _i24.ListBuilder<_i15.KitchenSink>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i15.KitchenSink)]):
-      _i24.MapBuilder<String, _i15.KitchenSink>.new,
+          _i24.BuiltMap, [FullType(String), FullType(_i15.SimpleStruct)]):
+      _i24.MapBuilder<String, _i15.SimpleStruct>.new,
+  const FullType(_i24.BuiltList, [FullType(_i14.KitchenSink)]):
+      _i24.ListBuilder<_i14.KitchenSink>.new,
+  const FullType(_i24.BuiltMap, [FullType(String), FullType(_i14.KitchenSink)]):
+      _i24.MapBuilder<String, _i14.KitchenSink>.new,
   const FullType(_i24.BuiltList, [FullType.nullable(String)]):
       _i24.ListBuilder<String?>.new,
   const FullType(_i24.BuiltMap, [FullType(String), FullType.nullable(String)]):

@@ -1,33 +1,38 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc10.model.invalid_greeting;
+library aws_json1_1.amazon_ml_20141212.model.predictor_not_mounted_exception;
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
-part 'invalid_greeting.g.dart';
+part 'predictor_not_mounted_exception.g.dart';
 
-/// This error is thrown when an invalid greeting value is provided.
-abstract class InvalidGreeting
-    with _i1.SmithyException, _i2.AWSEquatable<InvalidGreeting>
-    implements Built<InvalidGreeting, InvalidGreetingBuilder> {
-  factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
-      _$InvalidGreeting;
+abstract class PredictorNotMountedException
+    with
+        _i1.SmithyException,
+        _i2.AWSEquatable<PredictorNotMountedException>
+    implements
+        Built<PredictorNotMountedException,
+            PredictorNotMountedExceptionBuilder> {
+  factory PredictorNotMountedException(
+          [void Function(PredictorNotMountedExceptionBuilder) updates]) =
+      _$PredictorNotMountedException;
 
-  const InvalidGreeting._();
+  const PredictorNotMountedException._();
 
-  factory InvalidGreeting.fromResponse(
-          InvalidGreeting payload, _i2.AWSStreamedHttpResponse response) =>
+  factory PredictorNotMountedException.fromResponse(
+          PredictorNotMountedException payload,
+          _i2.AWSStreamedHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [
-    _InvalidGreetingAwsJson10Serializer()
+    _PredictorNotMountedExceptionAwsJson11Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _init(InvalidGreetingBuilder b) {}
+  static void _init(PredictorNotMountedExceptionBuilder b) {}
   @override
   String? get message;
   @override
@@ -36,27 +41,29 @@ abstract class InvalidGreeting
   List<Object?> get props => [message];
 }
 
-class _InvalidGreetingAwsJson10Serializer
-    extends _i1.StructuredSmithySerializer<InvalidGreeting> {
-  const _InvalidGreetingAwsJson10Serializer() : super('InvalidGreeting');
+class _PredictorNotMountedExceptionAwsJson11Serializer
+    extends _i1.StructuredSmithySerializer<PredictorNotMountedException> {
+  const _PredictorNotMountedExceptionAwsJson11Serializer()
+      : super('PredictorNotMountedException');
 
   @override
-  Iterable<Type> get types => const [InvalidGreeting, _$InvalidGreeting];
+  Iterable<Type> get types =>
+      const [PredictorNotMountedException, _$PredictorNotMountedException];
   @override
   Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  InvalidGreeting deserialize(
+  PredictorNotMountedException deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = InvalidGreetingBuilder();
+    final result = PredictorNotMountedExceptionBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
       final value = iterator.current;
       switch (key) {
-        case 'Message':
+        case 'message':
           if (value != null) {
             result.message = (serializers.deserialize(value,
                 specifiedType: const FullType(String)) as String);
@@ -71,11 +78,11 @@ class _InvalidGreetingAwsJson10Serializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = (object as InvalidGreeting);
+    final payload = (object as PredictorNotMountedException);
     final result = <Object?>[];
     if (payload.message != null) {
       result
-        ..add('Message')
+        ..add('message')
         ..add(serializers.serialize(payload.message,
             specifiedType: const FullType.nullable(String)));
     }

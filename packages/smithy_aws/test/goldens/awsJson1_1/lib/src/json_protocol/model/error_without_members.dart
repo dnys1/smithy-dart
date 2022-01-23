@@ -33,7 +33,7 @@ abstract class ErrorWithoutMembers
   @override
   String? get message => null;
   @override
-  bool get isRetryable => false;
+  _i1.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [];
 }

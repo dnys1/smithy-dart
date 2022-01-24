@@ -674,7 +674,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     // The `getItems` method.
     Expression? defaultValue;
     final items = paginatedTraits.items;
-    if (items != null) {
+    if (items != null && items.isNullable) {
       final symbol = items.symbol.typeRef.rebuild((t) => t
         ..isNullable = false
         ..types.clear());

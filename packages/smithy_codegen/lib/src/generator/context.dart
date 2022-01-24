@@ -112,7 +112,7 @@ class CodegenContext {
   late final SmithyLibrary serviceSerializersLibrary = SmithyLibraryX.create(
     packageName: packageName,
     serviceName: serviceName,
-    libraryType: SmithyLibrary_LibraryType.SERIALIZERS,
+    libraryType: SmithyLibrary_LibraryType.COMMON,
     filename: 'serializers.dart',
   );
 

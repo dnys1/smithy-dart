@@ -3,6 +3,7 @@
 library aws_json1_0.json_rpc_10.operation.greeting_with_errors;
 
 import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:aws_json1_0/src/json_rpc_10/common/serializers.dart' as _i5;
 import 'package:aws_json1_0/src/json_rpc_10/model/complex_error.dart' as _i7;
 import 'package:aws_json1_0/src/json_rpc_10/model/foo_error.dart' as _i8;
 import 'package:aws_json1_0/src/json_rpc_10/model/greeting_with_errors_input.dart'
@@ -10,7 +11,6 @@ import 'package:aws_json1_0/src/json_rpc_10/model/greeting_with_errors_input.dar
 import 'package:aws_json1_0/src/json_rpc_10/model/greeting_with_errors_output.dart'
     as _i3;
 import 'package:aws_json1_0/src/json_rpc_10/model/invalid_greeting.dart' as _i9;
-import 'package:aws_json1_0/src/json_rpc_10/serializers.dart' as _i5;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
@@ -35,11 +35,70 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.GreetingWithErrors'),
-          _i4.WithEndpointResolver('JSON RPC 10', region)
+          _i4.WithEndpointResolver(
+              'JSON RPC 10', region, _i4.AWSEndpointResolver(_partitions))
         ])
   ];
 
   final String region;
+
+  static final _partitions = [
+    _i4.Partition(
+        id: 'aws',
+        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i4.EndpointDefinition(
+            hostname: 'jsonrpc10.{region}.amazonaws.com',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i4.CredentialScope()),
+        endpoints: const {}),
+    _i4.Partition(
+        id: 'aws-cn',
+        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i4.EndpointDefinition(
+            hostname: 'jsonrpc10.{region}.amazonaws.com.cn',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i4.CredentialScope()),
+        endpoints: const {}),
+    _i4.Partition(
+        id: 'aws-iso',
+        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i4.EndpointDefinition(
+            hostname: 'jsonrpc10.{region}.c2s.ic.gov',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i4.CredentialScope()),
+        endpoints: const {}),
+    _i4.Partition(
+        id: 'aws-iso-b',
+        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i4.EndpointDefinition(
+            hostname: 'jsonrpc10.{region}.sc2s.sgov.gov',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i4.CredentialScope()),
+        endpoints: const {}),
+    _i4.Partition(
+        id: 'aws-us-gov',
+        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i4.EndpointDefinition(
+            hostname: 'jsonrpc10.{region}.amazonaws.com',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i4.CredentialScope()),
+        endpoints: const {})
+  ];
 
   @override
   _i1.HttpRequest buildRequest(_i2.GreetingWithErrorsInput input) =>

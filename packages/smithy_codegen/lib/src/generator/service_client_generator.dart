@@ -36,7 +36,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
             ...LinkedHashSet<Field>(
               equals: (a, b) => a.name == b.name,
               hashCode: (key) => key.name.hashCode,
-            )..addAll(_operations.expand((op) => op.protocolFields(context))),
+            )..addAll(_operations.expand((op) => op
+                .protocolFields(context)
+                .where((f) => !f.name.startsWith('_')))),
           ]);
       });
 
@@ -91,7 +93,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ..body = context
               .symbolFor(operation.shapeId)
               .newInstance([], {
-                for (final field in operation.protocolFields(context))
+                for (final field in operation
+                    .protocolFields(context)
+                    .where((f) => !f.name.startsWith('_')))
                   field.name: refer(field.name),
               })
               .property(isPaginated ? 'runPaginated' : 'run')

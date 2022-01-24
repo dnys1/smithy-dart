@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.serializers;
+library aws_json1_0.json_rpc_10.common.serializers;
 
 import 'package:aws_json1_0/src/json_rpc_10/model/complex_error.dart' as _i2;
 import 'package:aws_json1_0/src/json_rpc_10/model/complex_nested_error_data.dart'

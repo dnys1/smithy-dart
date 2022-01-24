@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.machine_learning.serializers;
+library aws_json1_1.machine_learning.common.serializers;
 
 import 'package:aws_json1_1/src/machine_learning/model/details_attributes.dart'
     as _i2;

@@ -134,6 +134,9 @@ class _Core {
   /// Creates a [core.override] reference.
   Reference get override => const Reference('override', _url);
 
+  /// Creates a [core.RegExp] reference.
+  Reference get regExp => const Reference('RegExp', _url);
+
   /// Creates a [core.Set] reference.
   Reference set(Reference ref) => TypeReference(
         (t) => t
@@ -647,25 +650,42 @@ class _SmithyAws {
 
   static const _url = 'package:smithy_aws/smithy_aws.dart';
 
-  /// Creates an [smithy_aws.AwsJson1_0Protocol] refererence.
+  /// Creates a [smithy_aws.AWSEndpointResolver] refererence.
+  Reference get awsEndpointResolver =>
+      const Reference('AWSEndpointResolver', _url);
+
+  /// Creates a [smithy_aws.AwsJson1_0Protocol] refererence.
   Reference get awsJson1_0Protocol =>
       const Reference('AwsJson1_0Protocol', _url);
 
-  /// Creates an [smithy_aws.AwsJson1_1Protocol] refererence.
+  /// Creates a [smithy_aws.AwsJson1_1Protocol] refererence.
   Reference get awsJson1_1Protocol =>
       const Reference('AwsJson1_1Protocol', _url);
 
-  /// Creates an [smithy_aws.RestJson1Protocol] refererence.
+  /// Creates a [smithy_aws.CredentialScope] refererence.
+  Reference get credentialScope => const Reference('CredentialScope', _url);
+
+  /// Creates a [smithy_aws.Endpoint] refererence.
+  Reference get endpoint => const Reference('Endpoint', _url);
+
+  /// Creates a [smithy_aws.EndpointDefinition] refererence.
+  Reference get endpointDefinition =>
+      const Reference('EndpointDefinition', _url);
+
+  /// Creates a [smithy_aws.Partition] refererence.
+  Reference get partition => const Reference('Partition', _url);
+
+  /// Creates a [smithy_aws.RestJson1Protocol] refererence.
   Reference get restJson1Protocol => const Reference('RestJson1Protocol', _url);
 
-  /// Creates an [smithy_aws.RestXmlProtocol] refererence.
+  /// Creates a [smithy_aws.RestXmlProtocol] refererence.
   Reference get restXmlProtocol => const Reference('RestXmlProtocol', _url);
 
-  /// Creates an [smithy_aws.WithEndpointResolver] refererence.
+  /// Creates a [smithy_aws.WithEndpointResolver] refererence.
   Reference get withEndpointResolver =>
       const Reference('WithEndpointResolver', _url);
 
-  /// Creates an [smithy_aws.WithSigV4] refererence.
+  /// Creates a [smithy_aws.WithSigV4] refererence.
   Reference get withSigV4 => const Reference('WithSigV4', _url);
 }
 

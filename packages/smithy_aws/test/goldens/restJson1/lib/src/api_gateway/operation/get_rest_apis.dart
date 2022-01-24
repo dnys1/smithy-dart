@@ -5,6 +5,7 @@ library rest_json1.api_gateway.operation.get_rest_apis;
 import 'package:aws_common/aws_common.dart' as _i9;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i6;
 import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:rest_json1/src/api_gateway/common/serializers.dart' as _i8;
 import 'package:rest_json1/src/api_gateway/model/bad_request_exception.dart'
     as _i10;
 import 'package:rest_json1/src/api_gateway/model/get_rest_apis_request.dart'
@@ -15,7 +16,6 @@ import 'package:rest_json1/src/api_gateway/model/too_many_requests_exception.dar
     as _i11;
 import 'package:rest_json1/src/api_gateway/model/unauthorized_exception.dart'
     as _i12;
-import 'package:rest_json1/src/api_gateway/serializers.dart' as _i8;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i7;
 
@@ -47,12 +47,127 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
               region: region,
               serviceName: 'apigateway',
               credentialsProvider: credentialsProvider),
-          _i7.WithEndpointResolver('API Gateway', region),
+          _i7.WithEndpointResolver(
+              'API Gateway', region, _i7.AWSEndpointResolver(_partitions)),
           const _i1.WithHeader('Accept', 'application/json')
         ])
   ];
 
   final String region;
+
+  static final _partitions = [
+    _i7.Partition(
+        id: 'aws',
+        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i7.EndpointDefinition(
+            hostname: 'apigateway.{region}.amazonaws.com',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i7.CredentialScope()),
+        endpoints: const {
+          'af-south-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-east-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-northeast-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-northeast-2':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-northeast-3':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-south-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-southeast-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ap-southeast-2':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'ca-central-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'eu-central-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'eu-north-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'eu-south-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'eu-west-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'eu-west-2':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'eu-west-3':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'me-south-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'sa-east-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'us-east-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'us-east-2':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'us-west-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'us-west-2':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+        }),
+    _i7.Partition(
+        id: 'aws-cn',
+        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i7.EndpointDefinition(
+            hostname: 'apigateway.{region}.amazonaws.com.cn',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i7.CredentialScope()),
+        endpoints: const {
+          'cn-north-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'cn-northwest-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+        }),
+    _i7.Partition(
+        id: 'aws-iso',
+        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i7.EndpointDefinition(
+            hostname: 'apigateway.{region}.c2s.ic.gov',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i7.CredentialScope()),
+        endpoints: const {
+          'us-iso-east-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+        }),
+    _i7.Partition(
+        id: 'aws-iso-b',
+        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i7.EndpointDefinition(
+            hostname: 'apigateway.{region}.sc2s.sgov.gov',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i7.CredentialScope()),
+        endpoints: const {}),
+    _i7.Partition(
+        id: 'aws-us-gov',
+        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i7.EndpointDefinition(
+            hostname: 'apigateway.{region}.amazonaws.com',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i7.CredentialScope()),
+        endpoints: const {
+          'us-gov-east-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
+          'us-gov-west-1':
+              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+        })
+  ];
 
   final _i6.AWSCredentialsProvider credentialsProvider;
 

@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.api_gateway.serializers;
+library rest_json1.api_gateway.common.serializers;
 
 import 'package:built_collection/built_collection.dart' as _i11;
 import 'package:built_value/serializer.dart';

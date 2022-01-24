@@ -587,6 +587,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       yield DartTypes.smithyAws.withEndpointResolver.newInstance([
         literalString(trait.sdkId),
         refer('region'),
+        DartTypes.smithyAws.awsEndpointResolver.newInstance([
+          refer('_partitions'),
+        ]),
       ]);
 
       switch (trait.sdkId) {

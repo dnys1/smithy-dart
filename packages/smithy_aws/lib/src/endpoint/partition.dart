@@ -1,89 +1,27 @@
-import 'package:collection/collection.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy_aws/src/endpoint/aws_endpoint.dart';
 import 'package:smithy_aws/src/endpoint/credential_scope.dart';
 import 'package:smithy_aws/src/endpoint/endpoint.dart';
+
+part 'partition.g.dart';
 
 const _defaultProtocol = 'https';
 const _defaultSigner = 'v4';
 const _protocolPriority = ['https', 'http'];
 const _signerPriority = ['v4'];
 
-final _defaultPartitions = <Partition>[
-  Partition(
-    id: 'aws',
-    regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
-    partitionEndpoint: '',
-    isRegionalized: true,
-    defaults: const EndpointDefinition(
-      hostname: 'example.{region}.amazonaws.com',
-      protocols: ['https'],
-      signatureVersions: ['v4'],
-    ),
-    endpoints: const {},
-  ),
-  Partition(
-    id: 'aws-cn',
-    regionRegex: RegExp(r'^cn\\-\\w+\\-\\d+$'),
-    partitionEndpoint: '',
-    isRegionalized: true,
-    defaults: const EndpointDefinition(
-      hostname: 'example.{region}.amazonaws.com.cn',
-      protocols: ['https'],
-      signatureVersions: ['v4'],
-    ),
-    endpoints: const {},
-  ),
-  Partition(
-    id: 'aws-iso',
-    regionRegex: RegExp(r'^us\\-iso\\-\\w+\\-\\d+$'),
-    partitionEndpoint: '',
-    isRegionalized: true,
-    defaults: const EndpointDefinition(
-      hostname: 'example.{region}.c2s.ic.gov',
-      protocols: ['https'],
-      signatureVersions: ['v4'],
-    ),
-    endpoints: const {},
-  ),
-  Partition(
-    id: 'aws-iso-b',
-    regionRegex: RegExp(r'^us\\-isob\\-\\w+\\-\\d+$'),
-    partitionEndpoint: '',
-    isRegionalized: true,
-    defaults: const EndpointDefinition(
-      hostname: 'example.{region}.sc2s.sgov.gov',
-      protocols: ['https'],
-      signatureVersions: ['v4'],
-    ),
-    endpoints: const {},
-  ),
-  Partition(
-    id: 'aws-us-gov',
-    regionRegex: RegExp(r'^us\\-gov\\-\\w+\\-\\d+$'),
-    partitionEndpoint: '',
-    isRegionalized: true,
-    defaults: const EndpointDefinition(
-      hostname: 'example.{region}.amazonaws.com',
-      protocols: ['https'],
-      signatureVersions: ['v4'],
-    ),
-    endpoints: const {},
-  ),
-];
-
-@internal
-AWSEndpoint resolveEndpoint(String region) {
-  return _defaultPartitions
+AWSEndpoint resolveEndpoint(List<Partition> partitions, String region) {
+  return partitions
       .firstWhere(
         (p) => p.canResolveEndpoint(region),
-        orElse: () => _defaultPartitions.first,
+        orElse: () => partitions.first,
       )
       .resolveEndpoint(region);
 }
 
 /// A description of a single service endpoint.
-@internal
+@JsonSerializable()
 class EndpointDefinition {
   const EndpointDefinition({
     this.hostname,
@@ -91,6 +29,9 @@ class EndpointDefinition {
     this.credentialScope,
     this.signatureVersions = const [],
   });
+
+  factory EndpointDefinition.fromJson(Map<String, Object?> json) =>
+      _$EndpointDefinitionFromJson(json);
 
   /// A URI template used to resolve the hostname of the endpoint. Templates are
   /// of the form {name}. e.g. {service}.{region}.amazonaws.com
@@ -139,6 +80,8 @@ class EndpointDefinition {
     );
   }
 
+  Map<String, Object?> toJson() => _$EndpointDefinitionToJson(this);
+
   static EndpointDefinition merge(
     EndpointDefinition into,
     EndpointDefinition from,
@@ -166,12 +109,11 @@ class EndpointDefinition {
 }
 
 /// A partition describes logical slice(s) of the AWS fabric.
-@internal
-class Partition {
+class Partition implements Comparable<Partition> {
   const Partition({
     required this.id,
     required this.regionRegex,
-    required this.partitionEndpoint,
+    this.partitionEndpoint,
     required this.isRegionalized,
     required this.defaults,
     required this.endpoints,
@@ -185,7 +127,7 @@ class Partition {
   final RegExp regionRegex;
 
   /// Endpoint that works across all regions or if [isRegionalized] is false.
-  final String partitionEndpoint;
+  final String? partitionEndpoint;
 
   /// Flag indicating whether or not the service is regionalized in the
   /// partition. Some services have only a single, partition-global endpoint
@@ -205,12 +147,20 @@ class Partition {
       endpoints.containsKey(region) || regionRegex.hasMatch(region);
 
   AWSEndpoint resolveEndpoint(String region) {
-    final resolvedRegion = region.isEmpty && partitionEndpoint.isNotEmpty
-        ? partitionEndpoint
-        : region;
+    final resolvedRegion = partitionEndpoint ?? region;
     final endpointDefinition = endpoints[resolvedRegion] ??
         (!isRegionalized ? endpoints[partitionEndpoint] : null) ??
         const EndpointDefinition();
     return endpointDefinition.resolve(region, defaults);
+  }
+
+  @override
+  int compareTo(Partition other) {
+    if (id == 'aws') {
+      return -1;
+    } else if (other.id == 'aws') {
+      return 1;
+    }
+    return id.compareTo(other.id);
   }
 }

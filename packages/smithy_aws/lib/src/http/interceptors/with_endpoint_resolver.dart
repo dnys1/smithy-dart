@@ -4,13 +4,13 @@ import 'package:smithy_aws/smithy_aws.dart';
 class WithEndpointResolver extends HttpInterceptor {
   const WithEndpointResolver(
     this.serviceId,
-    this.region, [
-    this.endpointResolver = const EndpointResolver(),
-  ]);
+    this.region,
+    this.endpointResolver,
+  );
 
   final String serviceId;
   final String region;
-  final EndpointResolver endpointResolver;
+  final AWSEndpointResolver endpointResolver;
 
   @override
   AWSStreamedHttpRequest intercept(

@@ -25,6 +25,7 @@ dependencies:
   crypto: ^3.0.1
   http: ^0.13.4
   intl: ^0.17.0
+  json_annotation: ^4.4.0
   meta: ^1.7.0
   path: ^1.8.1
   smithy:
@@ -41,8 +42,10 @@ dependency_overrides:
 
 dev_dependencies:
   amplify_lints: ^1.0.0
+  build_runner: ^2.1.7
   file: ^6.1.2
   glob: ^2.0.2
+  json_serializable: ^6.1.4
   pubspec_parse: ^1.2.0
   smithy_codegen:
     path: ../smithy_codegen

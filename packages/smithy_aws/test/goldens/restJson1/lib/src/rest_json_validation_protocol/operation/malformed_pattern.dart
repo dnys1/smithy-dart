@@ -3,12 +3,12 @@
 library rest_json1.rest_json_validation_protocol.operation.malformed_pattern;
 
 import 'package:aws_common/aws_common.dart' as _i5;
+import 'package:rest_json1/src/rest_json_validation_protocol/common/serializers.dart'
+    as _i4;
 import 'package:rest_json1/src/rest_json_validation_protocol/model/malformed_pattern_input.dart'
     as _i2;
 import 'package:rest_json1/src/rest_json_validation_protocol/model/validation_exception.dart'
     as _i6;
-import 'package:rest_json1/src/rest_json_validation_protocol/serializers.dart'
-    as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
@@ -25,11 +25,70 @@ class MalformedPatternOperation extends _i1.HttpOperation<
         builderFactories: _i4.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          _i3.WithEndpointResolver('Rest Json Validation Protocol', region)
+          _i3.WithEndpointResolver('Rest Json Validation Protocol', region,
+              _i3.AWSEndpointResolver(_partitions))
         ])
   ];
 
   final String region;
+
+  static final _partitions = [
+    _i3.Partition(
+        id: 'aws',
+        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i3.EndpointDefinition(
+            hostname: 'restjsonvalidation.{region}.amazonaws.com',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i3.CredentialScope()),
+        endpoints: const {}),
+    _i3.Partition(
+        id: 'aws-cn',
+        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i3.EndpointDefinition(
+            hostname: 'restjsonvalidation.{region}.amazonaws.com.cn',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i3.CredentialScope()),
+        endpoints: const {}),
+    _i3.Partition(
+        id: 'aws-iso',
+        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i3.EndpointDefinition(
+            hostname: 'restjsonvalidation.{region}.c2s.ic.gov',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i3.CredentialScope()),
+        endpoints: const {}),
+    _i3.Partition(
+        id: 'aws-iso-b',
+        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i3.EndpointDefinition(
+            hostname: 'restjsonvalidation.{region}.sc2s.sgov.gov',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i3.CredentialScope()),
+        endpoints: const {}),
+    _i3.Partition(
+        id: 'aws-us-gov',
+        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
+        partitionEndpoint: null,
+        isRegionalized: true,
+        defaults: const _i3.EndpointDefinition(
+            hostname: 'restjsonvalidation.{region}.amazonaws.com',
+            protocols: ['https'],
+            signatureVersions: ['v4'],
+            credentialScope: _i3.CredentialScope()),
+        endpoints: const {})
+  ];
 
   @override
   _i1.HttpRequest buildRequest(_i2.MalformedPatternInput input) =>

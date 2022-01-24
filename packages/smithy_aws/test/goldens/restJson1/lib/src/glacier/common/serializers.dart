@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.glacier.serializers;
+library rest_json1.glacier.common.serializers;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/glacier/model/archive_creation_output.dart'

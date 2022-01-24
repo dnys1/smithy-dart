@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.serializers;
+library aws_json1_1.json_protocol.common.serializers;
 
 import 'package:aws_json1_1/src/json_protocol/model/complex_error.dart' as _i2;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'

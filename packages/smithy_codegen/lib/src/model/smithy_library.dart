@@ -90,8 +90,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return 'src/$serviceName/operation/$filename.dart';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$filename.dart';
-      case SmithyLibrary_LibraryType.SERIALIZERS:
-        return 'src/$serviceName/serializers.dart';
+      case SmithyLibrary_LibraryType.COMMON:
+        return 'src/$serviceName/common/$filename.dart';
       case SmithyLibrary_LibraryType.TEST:
         break;
     }
@@ -106,7 +106,7 @@ extension SmithyLibraryX on SmithyLibrary {
       case SmithyLibrary_LibraryType.MODEL:
       case SmithyLibrary_LibraryType.OPERATION:
       case SmithyLibrary_LibraryType.SERVICE:
-      case SmithyLibrary_LibraryType.SERIALIZERS:
+      case SmithyLibrary_LibraryType.COMMON:
         return 'lib/$libRelativePath';
       case SmithyLibrary_LibraryType.TEST:
         if (!filename.endsWith('_test')) {
@@ -131,8 +131,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return '$packageName.$serviceName.operation.$filename';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$packageName.$serviceName';
-      case SmithyLibrary_LibraryType.SERIALIZERS:
-        return '$packageName.$serviceName.serializers';
+      case SmithyLibrary_LibraryType.COMMON:
+        return '$packageName.$serviceName.common.$filename';
       case SmithyLibrary_LibraryType.TEST:
         return '$packageName.$serviceName.test.$filename';
     }

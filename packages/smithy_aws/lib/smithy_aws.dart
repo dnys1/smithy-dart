@@ -3,9 +3,10 @@ library smithy_aws;
 
 // Endpoint
 export 'src/endpoint/aws_endpoint.dart';
+export 'src/endpoint/aws_endpoint_resolver.dart';
 export 'src/endpoint/credential_scope.dart';
 export 'src/endpoint/endpoint.dart';
-export 'src/endpoint/endpoint_resolver.dart';
+export 'src/endpoint/partition.dart';
 
 export 'src/http/interceptors/aws_http_checksum_interceptor.dart';
 export 'src/http/interceptors/with_endpoint_resolver.dart';

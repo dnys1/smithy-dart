@@ -1,7 +1,10 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_aws/smithy_aws.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/aws/endpoints.dart';
+import 'package:smithy_codegen/src/aws/partition_node.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
@@ -336,6 +339,41 @@ extension OperationShapeUtil on OperationShape {
     return null;
   }
 
+  Expression _buildEndpointDefinition(EndpointDefinition definition) =>
+      DartTypes.smithyAws.endpointDefinition.constInstance([], {
+        if (definition.hostname != null)
+          'hostname': literal(definition.hostname),
+        'protocols': literalList(definition.protocols.map(literalString)),
+        'signatureVersions':
+            literalList(definition.signatureVersions.map(literalString)),
+        if (definition.credentialScope != null)
+          'credentialScope':
+              DartTypes.smithyAws.credentialScope.constInstance([], {
+            if (definition.credentialScope?.region != null)
+              'region': literal(definition.credentialScope?.region),
+            if (definition.credentialScope?.service != null)
+              'service': literal(definition.credentialScope?.service),
+          }),
+      });
+
+  Expression _buildPartition(Partition partition) {
+    return DartTypes.smithyAws.partition.newInstance([], {
+      'id': literalString(partition.id),
+      'regionRegex': DartTypes.core.regExp.newInstance([
+        literalString(partition.regionRegex.pattern, raw: true),
+      ]),
+      'partitionEndpoint': partition.partitionEndpoint == null
+          ? literalNull
+          : literalString(partition.partitionEndpoint!),
+      'isRegionalized': literalBool(partition.isRegionalized),
+      'defaults': _buildEndpointDefinition(partition.defaults),
+      'endpoints': literalConstMap({
+        for (final entry in partition.endpoints.entries)
+          literalString(entry.key): _buildEndpointDefinition(entry.value),
+      })
+    });
+  }
+
   /// Fields which should be generated for the operation and its service client
   /// based off the traits attached to this shape's service.
   Iterable<Field> protocolFields(CodegenContext context) sync* {
@@ -343,12 +381,27 @@ extension OperationShapeUtil on OperationShape {
     if (serviceShape == null) {
       return;
     }
-    if (serviceShape.hasTrait<ServiceTrait>()) {
+    final serviceTrait = serviceShape.getTrait<ServiceTrait>();
+    if (serviceTrait != null) {
       yield Field(
         (f) => f
           ..type = DartTypes.core.string
           ..name = 'region'
           ..modifier = FieldModifier.final$,
+      );
+
+      final resolvedService = serviceTrait.resolve(serviceShape.shapeId);
+      final sortedPartitions = [...awsPartitions.keys]..sort();
+      yield Field(
+        (f) => f
+          ..static = true
+          ..modifier = FieldModifier.final$
+          ..name = '_partitions'
+          ..assignment = literalList([
+            for (final partitionName in sortedPartitions)
+              _buildPartition(awsPartitions[partitionName]!
+                  .toPartition(resolvedService.endpointPrefix)),
+          ]).code,
       );
     }
     if (serviceShape.hasTrait<SigV4Trait>()) {

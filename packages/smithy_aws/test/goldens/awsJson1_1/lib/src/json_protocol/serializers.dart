@@ -2,7 +2,7 @@
 
 library aws_json1_1.json_protocol.serializers;
 
-import 'package:aws_json1_1/src/json_protocol/model/complex_error.dart' as _i9;
+import 'package:aws_json1_1/src/json_protocol/model/complex_error.dart' as _i2;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'
     as _i3;
 import 'package:aws_json1_1/src/json_protocol/model/empty_struct.dart' as _i4;
@@ -15,13 +15,13 @@ import 'package:aws_json1_1/src/json_protocol/model/foo_error.dart' as _i8;
 import 'package:aws_json1_1/src/json_protocol/model/greeting_struct.dart'
     as _i17;
 import 'package:aws_json1_1/src/json_protocol/model/greeting_with_errors_output.dart'
-    as _i11;
+    as _i10;
 import 'package:aws_json1_1/src/json_protocol/model/host_label_input.dart'
     as _i5;
 import 'package:aws_json1_1/src/json_protocol/model/invalid_greeting.dart'
-    as _i10;
+    as _i9;
 import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart'
-    as _i2;
+    as _i11;
 import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i14;
 import 'package:aws_json1_1/src/json_protocol/model/my_union.dart' as _i18;
 import 'package:aws_json1_1/src/json_protocol/model/null_operation_input_output.dart'
@@ -44,16 +44,16 @@ import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 const List<_i1.SmithySerializer> serializers = [
-  ..._i2.JsonEnumsInputOutput.serializers,
+  ..._i2.ComplexError.serializers,
   ..._i3.ComplexNestedErrorData.serializers,
   ..._i4.EmptyStruct.serializers,
   ..._i5.HostLabelInput.serializers,
   ..._i6.ErrorWithMembers.serializers,
   ..._i7.ErrorWithoutMembers.serializers,
   ..._i8.FooError.serializers,
-  ..._i9.ComplexError.serializers,
-  ..._i10.InvalidGreeting.serializers,
-  ..._i11.GreetingWithErrorsOutput.serializers,
+  ..._i9.InvalidGreeting.serializers,
+  ..._i10.GreetingWithErrorsOutput.serializers,
+  ..._i11.JsonEnumsInputOutput.serializers,
   ..._i12.FooEnum.serializers,
   ..._i13.UnionInputOutput.serializers,
   ..._i14.KitchenSink.serializers,
@@ -68,16 +68,16 @@ const List<_i1.SmithySerializer> serializers = [
   ..._i23.SimpleScalarPropertiesInputOutput.serializers
 ];
 final Map<FullType, Function> builderFactories = {
+  const FullType(_i24.BuiltList, [FullType(String)]):
+      _i24.ListBuilder<String>.new,
+  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
+      _i24.MapBuilder<String, String>.new,
   const FullType(_i24.BuiltList, [FullType(_i12.FooEnum)]):
       _i24.ListBuilder<_i12.FooEnum>.new,
   const FullType(_i24.BuiltMap, [FullType(String), FullType(_i12.FooEnum)]):
       _i24.MapBuilder<String, _i12.FooEnum>.new,
   const FullType(_i24.BuiltSet, [FullType(_i12.FooEnum)]):
       _i24.SetBuilder<_i12.FooEnum>.new,
-  const FullType(_i24.BuiltList, [FullType(String)]):
-      _i24.ListBuilder<String>.new,
-  const FullType(_i24.BuiltMap, [FullType(String), FullType(String)]):
-      _i24.MapBuilder<String, String>.new,
   const FullType(_i24.BuiltList, [
     FullType(_i24.BuiltList, [FullType(String)])
   ]): _i24.ListBuilder<_i24.BuiltList<String>>.new,

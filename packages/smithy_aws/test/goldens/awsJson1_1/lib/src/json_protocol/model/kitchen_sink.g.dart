@@ -12,7 +12,7 @@ class _$KitchenSink extends KitchenSink {
   @override
   final bool? boolean;
   @override
-  final double? double$;
+  final double? double_;
   @override
   final _i4.EmptyStruct? emptyStruct;
   @override
@@ -66,7 +66,7 @@ class _$KitchenSink extends KitchenSink {
   _$KitchenSink._(
       {this.blob,
       this.boolean,
-      this.double$,
+      this.double_,
       this.emptyStruct,
       this.float,
       this.httpdateTimestamp,
@@ -105,7 +105,7 @@ class _$KitchenSink extends KitchenSink {
     return other is KitchenSink &&
         blob == other.blob &&
         boolean == other.boolean &&
-        double$ == other.double$ &&
+        double_ == other.double_ &&
         emptyStruct == other.emptyStruct &&
         float == other.float &&
         httpdateTimestamp == other.httpdateTimestamp &&
@@ -151,7 +151,7 @@ class _$KitchenSink extends KitchenSink {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc(0, blob.hashCode), boolean.hashCode), double$.hashCode), emptyStruct.hashCode), float.hashCode), httpdateTimestamp.hashCode), integer.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc(0, blob.hashCode), boolean.hashCode), double_.hashCode), emptyStruct.hashCode), float.hashCode), httpdateTimestamp.hashCode), integer.hashCode),
                                                                                 iso8601Timestamp.hashCode),
                                                                             jsonValue.hashCode),
                                                                         listOfLists.hashCode),
@@ -178,7 +178,7 @@ class _$KitchenSink extends KitchenSink {
     return (newBuiltValueToStringHelper('KitchenSink')
           ..add('blob', blob)
           ..add('boolean', boolean)
-          ..add('double\$', double$)
+          ..add('double_', double_)
           ..add('emptyStruct', emptyStruct)
           ..add('float', float)
           ..add('httpdateTimestamp', httpdateTimestamp)
@@ -217,9 +217,9 @@ class KitchenSinkBuilder implements Builder<KitchenSink, KitchenSinkBuilder> {
   bool? get boolean => _$this._boolean;
   set boolean(bool? boolean) => _$this._boolean = boolean;
 
-  double? _double$;
-  double? get double$ => _$this._double$;
-  set double$(double? double$) => _$this._double$ = double$;
+  double? _double_;
+  double? get double_ => _$this._double_;
+  set double_(double? double_) => _$this._double_ = double_;
 
   _i4.EmptyStructBuilder? _emptyStruct;
   _i4.EmptyStructBuilder get emptyStruct =>
@@ -359,7 +359,7 @@ class KitchenSinkBuilder implements Builder<KitchenSink, KitchenSinkBuilder> {
     if ($v != null) {
       _blob = $v.blob;
       _boolean = $v.boolean;
-      _double$ = $v.double$;
+      _double_ = $v.double_;
       _emptyStruct = $v.emptyStruct?.toBuilder();
       _float = $v.float;
       _httpdateTimestamp = $v.httpdateTimestamp;
@@ -407,7 +407,7 @@ class KitchenSinkBuilder implements Builder<KitchenSink, KitchenSinkBuilder> {
           new _$KitchenSink._(
               blob: blob,
               boolean: boolean,
-              double$: double$,
+              double_: double_,
               emptyStruct: _emptyStruct?.build(),
               float: float,
               httpdateTimestamp: httpdateTimestamp,

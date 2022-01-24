@@ -4,14 +4,15 @@ library aws_json1_1.json_protocol.operation.greeting_with_errors_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/complex_error.dart' as _i5;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'
-    as _i9;
-import 'package:aws_json1_1/src/json_protocol/model/foo_error.dart' as _i7;
+    as _i10;
+import 'package:aws_json1_1/src/json_protocol/model/foo_error.dart' as _i8;
 import 'package:aws_json1_1/src/json_protocol/model/greeting_with_errors_output.dart'
     as _i4;
 import 'package:aws_json1_1/src/json_protocol/model/invalid_greeting.dart'
-    as _i8;
+    as _i9;
 import 'package:aws_json1_1/src/json_protocol/operation/greeting_with_errors.dart'
     as _i6;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i7;
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i3;
 import 'package:smithy_test/smithy_test.dart' as _i2;
@@ -27,7 +28,11 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i5.ComplexError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11ComplexError',
               documentation: 'Parses a complex error with no message member',
@@ -64,7 +69,11 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i5.ComplexError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11EmptyComplexError',
               documentation: null,
@@ -96,8 +105,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorUsingXAmznErrorType',
               documentation:
@@ -126,8 +139,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorUsingXAmznErrorTypeWithUri',
               documentation:
@@ -159,8 +176,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorUsingXAmznErrorTypeWithUriAndNamespace',
               documentation:
@@ -192,8 +213,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorUsingCode',
               documentation:
@@ -222,8 +247,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorUsingCodeAndNamespace',
               documentation:
@@ -252,8 +281,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorUsingCodeUriAndNamespace',
               documentation:
@@ -282,8 +315,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorWithDunderType',
               documentation: 'Some services serialize errors using __type.',
@@ -312,8 +349,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorWithDunderTypeAndNamespace',
               documentation:
@@ -342,8 +383,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i7.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i8.FooError>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11FooErrorWithDunderTypeUriAndNamespace',
               documentation:
@@ -372,8 +417,12 @@ void main() {
               _i3.Unit,
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
-              _i8.InvalidGreeting>(
-          operation: _i6.GreetingWithErrorsOperation(),
+              _i9.InvalidGreeting>(
+          operation: _i6.GreetingWithErrorsOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i7.AWSCredentialsProvider(
+                  _i7.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson11InvalidGreetingError',
               documentation: 'Parses simple JSON errors',
@@ -460,8 +509,8 @@ class _ComplexErrorAwsJson11Serializer
         case 'Nested':
           if (value != null) {
             result.nested.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i9.ComplexNestedErrorData))
-                as _i9.ComplexNestedErrorData));
+                    specifiedType: const FullType(_i10.ComplexNestedErrorData))
+                as _i10.ComplexNestedErrorData));
           }
           break;
         case 'TopLevel':
@@ -484,20 +533,20 @@ class _ComplexErrorAwsJson11Serializer
 }
 
 class _ComplexNestedErrorDataAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<_i9.ComplexNestedErrorData> {
+    extends _i3.StructuredSmithySerializer<_i10.ComplexNestedErrorData> {
   const _ComplexNestedErrorDataAwsJson11Serializer()
       : super('ComplexNestedErrorData');
 
   @override
-  Iterable<Type> get types => const [_i9.ComplexNestedErrorData];
+  Iterable<Type> get types => const [_i10.ComplexNestedErrorData];
   @override
   Iterable<_i3.ShapeId> get supportedProtocols =>
       const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i9.ComplexNestedErrorData deserialize(
+  _i10.ComplexNestedErrorData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i9.ComplexNestedErrorDataBuilder();
+    final result = _i10.ComplexNestedErrorDataBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -524,19 +573,19 @@ class _ComplexNestedErrorDataAwsJson11Serializer
 }
 
 class _FooErrorAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<_i7.FooError> {
+    extends _i3.StructuredSmithySerializer<_i8.FooError> {
   const _FooErrorAwsJson11Serializer() : super('FooError');
 
   @override
-  Iterable<Type> get types => const [_i7.FooError];
+  Iterable<Type> get types => const [_i8.FooError];
   @override
   Iterable<_i3.ShapeId> get supportedProtocols =>
       const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i7.FooError deserialize(
+  _i8.FooError deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return _i7.FooErrorBuilder().build();
+    return _i8.FooErrorBuilder().build();
   }
 
   @override
@@ -547,19 +596,19 @@ class _FooErrorAwsJson11Serializer
 }
 
 class _InvalidGreetingAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<_i8.InvalidGreeting> {
+    extends _i3.StructuredSmithySerializer<_i9.InvalidGreeting> {
   const _InvalidGreetingAwsJson11Serializer() : super('InvalidGreeting');
 
   @override
-  Iterable<Type> get types => const [_i8.InvalidGreeting];
+  Iterable<Type> get types => const [_i9.InvalidGreeting];
   @override
   Iterable<_i3.ShapeId> get supportedProtocols =>
       const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i8.InvalidGreeting deserialize(
+  _i9.InvalidGreeting deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i8.InvalidGreetingBuilder();
+    final result = _i9.InvalidGreetingBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;

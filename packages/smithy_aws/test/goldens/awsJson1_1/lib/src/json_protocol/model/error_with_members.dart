@@ -2,28 +2,30 @@
 
 library aws_json1_1.json_protocol.model.error_with_members;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:aws_json1_1/src/json_protocol/model/kitchen_sink.dart' as _i3;
 import 'package:built_collection/built_collection.dart' as _i4;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'error_with_members.g.dart';
 
 abstract class ErrorWithMembers
-    with _i1.SmithyException, _i2.AWSEquatable<ErrorWithMembers>
-    implements Built<ErrorWithMembers, ErrorWithMembersBuilder> {
+    with _i1.AWSEquatable<ErrorWithMembers>
+    implements
+        Built<ErrorWithMembers, ErrorWithMembersBuilder>,
+        _i2.SmithyException {
   factory ErrorWithMembers([void Function(ErrorWithMembersBuilder) updates]) =
       _$ErrorWithMembers;
 
   const ErrorWithMembers._();
 
   factory ErrorWithMembers.fromResponse(
-          ErrorWithMembers payload, _i2.AWSStreamedHttpResponse response) =>
+          ErrorWithMembers payload, _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _ErrorWithMembersAwsJson11Serializer()
   ];
 
@@ -40,7 +42,7 @@ abstract class ErrorWithMembers
   /// abc
   String? get stringField;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [
         code,
@@ -54,14 +56,14 @@ abstract class ErrorWithMembers
 }
 
 class _ErrorWithMembersAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<ErrorWithMembers> {
+    extends _i2.StructuredSmithySerializer<ErrorWithMembers> {
   const _ErrorWithMembersAwsJson11Serializer() : super('ErrorWithMembers');
 
   @override
   Iterable<Type> get types => const [ErrorWithMembers, _$ErrorWithMembers];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   ErrorWithMembers deserialize(
       Serializers serializers, Iterable<Object?> serialized,

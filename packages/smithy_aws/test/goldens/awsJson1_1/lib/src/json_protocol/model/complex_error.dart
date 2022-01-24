@@ -2,29 +2,29 @@
 
 library aws_json1_1.json_protocol.model.complex_error;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'
     as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'complex_error.g.dart';
 
 /// This error is thrown when a request is invalid.
 abstract class ComplexError
-    with _i1.SmithyException, _i2.AWSEquatable<ComplexError>
-    implements Built<ComplexError, ComplexErrorBuilder> {
+    with _i1.AWSEquatable<ComplexError>
+    implements Built<ComplexError, ComplexErrorBuilder>, _i2.SmithyException {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
   const ComplexError._();
 
   factory ComplexError.fromResponse(
-          ComplexError payload, _i2.AWSStreamedHttpResponse response) =>
+          ComplexError payload, _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _ComplexErrorAwsJson11Serializer()
   ];
 
@@ -35,20 +35,20 @@ abstract class ComplexError
   @override
   String? get message => null;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [nested, topLevel];
 }
 
 class _ComplexErrorAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<ComplexError> {
+    extends _i2.StructuredSmithySerializer<ComplexError> {
   const _ComplexErrorAwsJson11Serializer() : super('ComplexError');
 
   @override
   Iterable<Type> get types => const [ComplexError, _$ComplexError];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   ComplexError deserialize(
       Serializers serializers, Iterable<Object?> serialized,

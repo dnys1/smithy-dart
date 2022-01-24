@@ -2,12 +2,13 @@
 
 library aws_json1_1.json_protocol.operation.json_enums;
 
-import 'package:aws_common/aws_common.dart' as _i5;
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart'
     as _i2;
-import 'package:aws_json1_1/src/json_protocol/serializers.dart' as _i4;
+import 'package:aws_json1_1/src/json_protocol/serializers.dart' as _i5;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 /// This example serializes enums as top level properties, in lists, sets, and maps.
 class JsonEnumsOperation extends _i1.HttpOperation<
@@ -15,18 +16,32 @@ class JsonEnumsOperation extends _i1.HttpOperation<
     _i2.JsonEnumsInputOutput,
     _i2.JsonEnumsInputOutput,
     _i2.JsonEnumsInputOutput> {
+  JsonEnumsOperation(
+      {required this.region,
+      this.credentialsProvider =
+          const _i3.AWSCredentialsProvider.dartEnvironment()});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.JsonEnumsInputOutput, _i2.JsonEnumsInputOutput,
           _i2.JsonEnumsInputOutput, _i2.JsonEnumsInputOutput>> protocols = [
-    _i3.AwsJson1_1Protocol(
-        serializers: _i4.serializers,
-        builderFactories: _i4.builderFactories,
+    _i4.AwsJson1_1Protocol(
+        serializers: _i5.serializers,
+        builderFactories: _i5.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.JsonEnums')
+          const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.JsonEnums'),
+          _i4.WithSigV4(
+              region: region,
+              serviceName: 'foo',
+              credentialsProvider: credentialsProvider),
+          _i4.WithEndpointResolver('Json Protocol', region)
         ])
   ];
+
+  final String region;
+
+  final _i3.AWSCredentialsProvider credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.JsonEnumsInputOutput input) =>
@@ -38,7 +53,7 @@ class JsonEnumsOperation extends _i1.HttpOperation<
   int successCode([_i2.JsonEnumsInputOutput? output]) => 200;
   @override
   _i2.JsonEnumsInputOutput buildOutput(_i2.JsonEnumsInputOutput payload,
-          _i5.AWSStreamedHttpResponse response) =>
+          _i6.AWSStreamedHttpResponse response) =>
       _i2.JsonEnumsInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];

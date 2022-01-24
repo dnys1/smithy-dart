@@ -2,17 +2,18 @@
 
 library rest_json1.glacier.model.service_unavailable_exception;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'service_unavailable_exception.g.dart';
 
 abstract class ServiceUnavailableException
-    with _i1.SmithyException, _i2.AWSEquatable<ServiceUnavailableException>
+    with _i1.AWSEquatable<ServiceUnavailableException>
     implements
-        Built<ServiceUnavailableException, ServiceUnavailableExceptionBuilder> {
+        Built<ServiceUnavailableException, ServiceUnavailableExceptionBuilder>,
+        _i2.SmithyException {
   factory ServiceUnavailableException(
           [void Function(ServiceUnavailableExceptionBuilder) updates]) =
       _$ServiceUnavailableException;
@@ -21,10 +22,10 @@ abstract class ServiceUnavailableException
 
   factory ServiceUnavailableException.fromResponse(
           ServiceUnavailableException payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _ServiceUnavailableExceptionRestJson1Serializer()
   ];
 
@@ -35,13 +36,13 @@ abstract class ServiceUnavailableException
   String? get message;
   String? get type;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message, type];
 }
 
 class _ServiceUnavailableExceptionRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<ServiceUnavailableException> {
+    extends _i2.StructuredSmithySerializer<ServiceUnavailableException> {
   const _ServiceUnavailableExceptionRestJson1Serializer()
       : super('ServiceUnavailableException');
 
@@ -49,8 +50,8 @@ class _ServiceUnavailableExceptionRestJson1Serializer
   Iterable<Type> get types =>
       const [ServiceUnavailableException, _$ServiceUnavailableException];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   ServiceUnavailableException deserialize(
       Serializers serializers, Iterable<Object?> serialized,

@@ -2,17 +2,18 @@
 
 library rest_json1.glacier.model.resource_not_found_exception;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'resource_not_found_exception.g.dart';
 
 abstract class ResourceNotFoundException
-    with _i1.SmithyException, _i2.AWSEquatable<ResourceNotFoundException>
+    with _i1.AWSEquatable<ResourceNotFoundException>
     implements
-        Built<ResourceNotFoundException, ResourceNotFoundExceptionBuilder> {
+        Built<ResourceNotFoundException, ResourceNotFoundExceptionBuilder>,
+        _i2.SmithyException {
   factory ResourceNotFoundException(
           [void Function(ResourceNotFoundExceptionBuilder) updates]) =
       _$ResourceNotFoundException;
@@ -21,10 +22,10 @@ abstract class ResourceNotFoundException
 
   factory ResourceNotFoundException.fromResponse(
           ResourceNotFoundException payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _ResourceNotFoundExceptionRestJson1Serializer()
   ];
 
@@ -35,13 +36,13 @@ abstract class ResourceNotFoundException
   String? get message;
   String? get type;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message, type];
 }
 
 class _ResourceNotFoundExceptionRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<ResourceNotFoundException> {
+    extends _i2.StructuredSmithySerializer<ResourceNotFoundException> {
   const _ResourceNotFoundExceptionRestJson1Serializer()
       : super('ResourceNotFoundException');
 
@@ -49,8 +50,8 @@ class _ResourceNotFoundExceptionRestJson1Serializer
   Iterable<Type> get types =>
       const [ResourceNotFoundException, _$ResourceNotFoundException];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   ResourceNotFoundException deserialize(
       Serializers serializers, Iterable<Object?> serialized,

@@ -2,20 +2,20 @@
 
 library rest_json1.glacier.model.missing_parameter_value_exception;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'missing_parameter_value_exception.g.dart';
 
 abstract class MissingParameterValueException
     with
-        _i1.SmithyException,
-        _i2.AWSEquatable<MissingParameterValueException>
+        _i1.AWSEquatable<MissingParameterValueException>
     implements
         Built<MissingParameterValueException,
-            MissingParameterValueExceptionBuilder> {
+            MissingParameterValueExceptionBuilder>,
+        _i2.SmithyException {
   factory MissingParameterValueException(
           [void Function(MissingParameterValueExceptionBuilder) updates]) =
       _$MissingParameterValueException;
@@ -24,10 +24,10 @@ abstract class MissingParameterValueException
 
   factory MissingParameterValueException.fromResponse(
           MissingParameterValueException payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _MissingParameterValueExceptionRestJson1Serializer()
   ];
 
@@ -38,13 +38,13 @@ abstract class MissingParameterValueException
   String? get message;
   String? get type;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message, type];
 }
 
 class _MissingParameterValueExceptionRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<MissingParameterValueException> {
+    extends _i2.StructuredSmithySerializer<MissingParameterValueException> {
   const _MissingParameterValueExceptionRestJson1Serializer()
       : super('MissingParameterValueException');
 
@@ -52,8 +52,8 @@ class _MissingParameterValueExceptionRestJson1Serializer
   Iterable<Type> get types =>
       const [MissingParameterValueException, _$MissingParameterValueException];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   MissingParameterValueException deserialize(
       Serializers serializers, Iterable<Object?> serialized,

@@ -38,7 +38,7 @@ abstract class KitchenSink
   static void _init(KitchenSinkBuilder b) {}
   _i3.Uint8List? get blob;
   bool? get boolean;
-  double? get double$;
+  double? get double_;
   _i4.EmptyStruct? get emptyStruct;
   double? get float;
   DateTime? get httpdateTimestamp;
@@ -68,7 +68,7 @@ abstract class KitchenSink
   List<Object?> get props => [
         blob,
         boolean,
-        double$,
+        double_,
         emptyStruct,
         float,
         httpdateTimestamp,
@@ -128,7 +128,7 @@ class _KitchenSinkAwsJson11Serializer
           break;
         case 'Double':
           if (value != null) {
-            result.double$ = (serializers.deserialize(value,
+            result.double_ = (serializers.deserialize(value,
                 specifiedType: const FullType(double)) as double);
           }
           break;
@@ -320,10 +320,10 @@ class _KitchenSinkAwsJson11Serializer
         ..add(serializers.serialize(payload.boolean,
             specifiedType: const FullType.nullable(bool)));
     }
-    if (payload.double$ != null) {
+    if (payload.double_ != null) {
       result
         ..add('Double')
-        ..add(serializers.serialize(payload.double$,
+        ..add(serializers.serialize(payload.double_,
             specifiedType: const FullType.nullable(double)));
     }
     if (payload.emptyStruct != null) {

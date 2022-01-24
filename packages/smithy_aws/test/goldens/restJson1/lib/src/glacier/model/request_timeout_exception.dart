@@ -2,16 +2,18 @@
 
 library rest_json1.glacier.model.request_timeout_exception;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'request_timeout_exception.g.dart';
 
 abstract class RequestTimeoutException
-    with _i1.SmithyException, _i2.AWSEquatable<RequestTimeoutException>
-    implements Built<RequestTimeoutException, RequestTimeoutExceptionBuilder> {
+    with _i1.AWSEquatable<RequestTimeoutException>
+    implements
+        Built<RequestTimeoutException, RequestTimeoutExceptionBuilder>,
+        _i2.SmithyException {
   factory RequestTimeoutException(
           [void Function(RequestTimeoutExceptionBuilder) updates]) =
       _$RequestTimeoutException;
@@ -19,10 +21,10 @@ abstract class RequestTimeoutException
   const RequestTimeoutException._();
 
   factory RequestTimeoutException.fromResponse(RequestTimeoutException payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _RequestTimeoutExceptionRestJson1Serializer()
   ];
 
@@ -33,13 +35,13 @@ abstract class RequestTimeoutException
   String? get message;
   String? get type;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message, type];
 }
 
 class _RequestTimeoutExceptionRestJson1Serializer
-    extends _i1.StructuredSmithySerializer<RequestTimeoutException> {
+    extends _i2.StructuredSmithySerializer<RequestTimeoutException> {
   const _RequestTimeoutExceptionRestJson1Serializer()
       : super('RequestTimeoutException');
 
@@ -47,8 +49,8 @@ class _RequestTimeoutExceptionRestJson1Serializer
   Iterable<Type> get types =>
       const [RequestTimeoutException, _$RequestTimeoutException];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   RequestTimeoutException deserialize(
       Serializers serializers, Iterable<Object?> serialized,

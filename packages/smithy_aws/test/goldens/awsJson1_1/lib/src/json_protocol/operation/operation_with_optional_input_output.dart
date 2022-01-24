@@ -2,20 +2,26 @@
 
 library aws_json1_1.json_protocol.operation.operation_with_optional_input_output;
 
-import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:aws_common/aws_common.dart' as _i7;
 import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_input.dart'
     as _i2;
 import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_output.dart'
     as _i3;
-import 'package:aws_json1_1/src/json_protocol/serializers.dart' as _i5;
+import 'package:aws_json1_1/src/json_protocol/serializers.dart' as _i6;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:smithy_aws/smithy_aws.dart' as _i5;
 
 class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
     _i2.OperationWithOptionalInputOutputInput,
     _i2.OperationWithOptionalInputOutputInput,
     _i3.OperationWithOptionalInputOutputOutput,
     _i3.OperationWithOptionalInputOutputOutput> {
+  OperationWithOptionalInputOutputOperation(
+      {required this.region,
+      this.credentialsProvider =
+          const _i4.AWSCredentialsProvider.dartEnvironment()});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -23,15 +29,24 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
           _i2.OperationWithOptionalInputOutputInput,
           _i3.OperationWithOptionalInputOutputOutput,
           _i3.OperationWithOptionalInputOutputOutput>> protocols = [
-    _i4.AwsJson1_1Protocol(
-        serializers: _i5.serializers,
-        builderFactories: _i5.builderFactories,
+    _i5.AwsJson1_1Protocol(
+        serializers: _i6.serializers,
+        builderFactories: _i6.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonProtocol.OperationWithOptionalInputOutput')
+              'X-Amz-Target', 'JsonProtocol.OperationWithOptionalInputOutput'),
+          _i5.WithSigV4(
+              region: region,
+              serviceName: 'foo',
+              credentialsProvider: credentialsProvider),
+          _i5.WithEndpointResolver('Json Protocol', region)
         ])
   ];
+
+  final String region;
+
+  final _i4.AWSCredentialsProvider credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(
@@ -45,7 +60,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
   @override
   _i3.OperationWithOptionalInputOutputOutput buildOutput(
           _i3.OperationWithOptionalInputOutputOutput payload,
-          _i6.AWSStreamedHttpResponse response) =>
+          _i7.AWSStreamedHttpResponse response) =>
       _i3.OperationWithOptionalInputOutputOutput.fromResponse(
           payload, response);
   @override

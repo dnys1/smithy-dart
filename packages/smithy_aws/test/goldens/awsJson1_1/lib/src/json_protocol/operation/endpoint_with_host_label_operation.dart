@@ -2,28 +2,43 @@
 
 library aws_json1_1.json_protocol.operation.endpoint_with_host_label_operation;
 
-import 'package:aws_common/aws_common.dart' as _i5;
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_1/src/json_protocol/model/host_label_input.dart'
     as _i2;
-import 'package:aws_json1_1/src/json_protocol/serializers.dart' as _i4;
+import 'package:aws_json1_1/src/json_protocol/serializers.dart' as _i5;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class EndpointWithHostLabelOperation extends _i1
     .HttpOperation<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit, _i1.Unit> {
+  EndpointWithHostLabelOperation(
+      {required this.region,
+      this.credentialsProvider =
+          const _i3.AWSCredentialsProvider.dartEnvironment()});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit,
           _i1.Unit>> protocols = [
-    _i3.AwsJson1_1Protocol(
-        serializers: _i4.serializers,
-        builderFactories: _i4.builderFactories,
+    _i4.AwsJson1_1Protocol(
+        serializers: _i5.serializers,
+        builderFactories: _i5.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonProtocol.EndpointWithHostLabelOperation')
+              'X-Amz-Target', 'JsonProtocol.EndpointWithHostLabelOperation'),
+          _i4.WithSigV4(
+              region: region,
+              serviceName: 'foo',
+              credentialsProvider: credentialsProvider),
+          _i4.WithEndpointResolver('Json Protocol', region)
         ])
   ];
+
+  final String region;
+
+  final _i3.AWSCredentialsProvider credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.HostLabelInput input) =>
@@ -36,7 +51,7 @@ class EndpointWithHostLabelOperation extends _i1
   int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
-          _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>
+          _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];

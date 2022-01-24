@@ -3,13 +3,14 @@
 library aws_json1_1.json_protocol.operation.operation_with_optional_input_output_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_input.dart'
-    as _i5;
-import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_output.dart'
     as _i6;
+import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_output.dart'
+    as _i7;
 import 'package:aws_json1_1/src/json_protocol/operation/operation_with_optional_input_output.dart'
     as _i3;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:smithy/smithy.dart' as _i5;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
@@ -18,12 +19,16 @@ void main() {
     'can_call_operation_with_no_input_or_output (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.OperationWithOptionalInputOutputOperation(),
+          operation: _i3.OperationWithOptionalInputOutputOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i4.AWSCredentialsProvider(
+                  _i4.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpRequestTestCase(
               id: 'can_call_operation_with_no_input_or_output',
               documentation: 'Can call operations with no input or output',
               protocol:
-                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+                  _i5.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
               authScheme: null,
               body: '{}',
               bodyMediaType: 'application/json',
@@ -54,12 +59,16 @@ void main() {
     'can_call_operation_with_optional_input (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.OperationWithOptionalInputOutputOperation(),
+          operation: _i3.OperationWithOptionalInputOutputOperation(
+              region: 'us-east-1',
+              credentialsProvider: const _i4.AWSCredentialsProvider(
+                  _i4.AWSCredentials(
+                      'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i2.HttpRequestTestCase(
               id: 'can_call_operation_with_optional_input',
               documentation: 'Can invoke operations with optional input',
               protocol:
-                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
+                  _i5.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1'),
               authScheme: null,
               body: '{"Value":"Hi"}',
               bodyMediaType: 'application/json',
@@ -88,21 +97,21 @@ void main() {
   );
 }
 
-class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i4
-    .StructuredSmithySerializer<_i5.OperationWithOptionalInputOutputInput> {
+class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i5
+    .StructuredSmithySerializer<_i6.OperationWithOptionalInputOutputInput> {
   const _OperationWithOptionalInputOutputInputAwsJson11Serializer()
       : super('OperationWithOptionalInputOutputInput');
 
   @override
-  Iterable<Type> get types => const [_i5.OperationWithOptionalInputOutputInput];
+  Iterable<Type> get types => const [_i6.OperationWithOptionalInputOutputInput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols =>
-      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i5.ShapeId> get supportedProtocols =>
+      const [_i5.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i5.OperationWithOptionalInputOutputInput deserialize(
+  _i6.OperationWithOptionalInputOutputInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i5.OperationWithOptionalInputOutputInputBuilder();
+    final result = _i6.OperationWithOptionalInputOutputInputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
@@ -128,22 +137,22 @@ class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i4
   }
 }
 
-class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i4
-    .StructuredSmithySerializer<_i6.OperationWithOptionalInputOutputOutput> {
+class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i5
+    .StructuredSmithySerializer<_i7.OperationWithOptionalInputOutputOutput> {
   const _OperationWithOptionalInputOutputOutputAwsJson11Serializer()
       : super('OperationWithOptionalInputOutputOutput');
 
   @override
   Iterable<Type> get types =>
-      const [_i6.OperationWithOptionalInputOutputOutput];
+      const [_i7.OperationWithOptionalInputOutputOutput];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols =>
-      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i5.ShapeId> get supportedProtocols =>
+      const [_i5.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
-  _i6.OperationWithOptionalInputOutputOutput deserialize(
+  _i7.OperationWithOptionalInputOutputOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = _i6.OperationWithOptionalInputOutputOutputBuilder();
+    final result = _i7.OperationWithOptionalInputOutputOutputBuilder();
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;

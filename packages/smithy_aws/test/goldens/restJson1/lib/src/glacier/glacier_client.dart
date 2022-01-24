@@ -17,7 +17,7 @@ import 'package:rest_json1/src/glacier/operation/upload_multipart_part.dart'
     as _i8;
 
 class GlacierClient {
-  GlacierClient(
+  const GlacierClient(
       {required this.region,
       this.credentialsProvider =
           const _i1.AWSCredentialsProvider.dartEnvironment()});

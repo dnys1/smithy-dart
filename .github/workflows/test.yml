@@ -1,0 +1,131 @@
+# Created with package:mono_repo v6.0.0
+name: Test
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+defaults:
+  run:
+    shell: bash
+env:
+  PUB_ENVIRONMENT: bot.github
+
+jobs:
+  job_001:
+    name: "unit_test; Dart dev; PKGS: packages/smithy_aws/test/goldens/awsJson1_0, packages/smithy_aws/test/goldens/awsJson1_1, packages/smithy_aws/test/goldens/restJson1; `dart test`, `dart test -p chrome`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2.1.7
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1;commands:test_0-test_1"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v2.4.0
+      - id: packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade
+        name: packages/smithy_aws/test/goldens/awsJson1_0; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        run: dart pub upgrade
+      - name: packages/smithy_aws/test/goldens/awsJson1_0; dart test
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        run: dart test
+      - name: "packages/smithy_aws/test/goldens/awsJson1_0; dart test -p chrome"
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        run: dart test -p chrome
+      - id: packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade
+        name: packages/smithy_aws/test/goldens/awsJson1_1; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        run: dart pub upgrade
+      - name: packages/smithy_aws/test/goldens/awsJson1_1; dart test
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        run: dart test
+      - name: "packages/smithy_aws/test/goldens/awsJson1_1; dart test -p chrome"
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        run: dart test -p chrome
+      - id: packages_smithy_aws_test_goldens_restJson1_pub_upgrade
+        name: packages/smithy_aws/test/goldens/restJson1; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/restJson1
+        run: dart pub upgrade
+      - name: packages/smithy_aws/test/goldens/restJson1; dart test
+        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/restJson1
+        run: dart test
+      - name: "packages/smithy_aws/test/goldens/restJson1; dart test -p chrome"
+        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/restJson1
+        run: dart test -p chrome
+  job_002:
+    name: "unit_test; Dart stable; PKGS: packages/smithy_aws/test/goldens/awsJson1_0, packages/smithy_aws/test/goldens/awsJson1_1, packages/smithy_aws/test/goldens/restJson1; `dart test`, `dart test -p chrome`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2.1.7
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1;commands:test_0-test_1"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v2.4.0
+      - id: packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade
+        name: packages/smithy_aws/test/goldens/awsJson1_0; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        run: dart pub upgrade
+      - name: packages/smithy_aws/test/goldens/awsJson1_0; dart test
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        run: dart test
+      - name: "packages/smithy_aws/test/goldens/awsJson1_0; dart test -p chrome"
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        run: dart test -p chrome
+      - id: packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade
+        name: packages/smithy_aws/test/goldens/awsJson1_1; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        run: dart pub upgrade
+      - name: packages/smithy_aws/test/goldens/awsJson1_1; dart test
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        run: dart test
+      - name: "packages/smithy_aws/test/goldens/awsJson1_1; dart test -p chrome"
+        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        run: dart test -p chrome
+      - id: packages_smithy_aws_test_goldens_restJson1_pub_upgrade
+        name: packages/smithy_aws/test/goldens/restJson1; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/restJson1
+        run: dart pub upgrade
+      - name: packages/smithy_aws/test/goldens/restJson1; dart test
+        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/restJson1
+        run: dart test
+      - name: "packages/smithy_aws/test/goldens/restJson1; dart test -p chrome"
+        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws/test/goldens/restJson1
+        run: dart test -p chrome

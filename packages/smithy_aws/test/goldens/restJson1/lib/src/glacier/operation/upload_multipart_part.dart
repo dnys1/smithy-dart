@@ -30,9 +30,11 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
     _i4.UploadMultipartPartOutputPayload,
     _i4.UploadMultipartPartOutput> {
   UploadMultipartPartOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i5.AWSCredentialsProvider.dartEnvironment()});
+          const _i5.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -48,13 +50,13 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
           _i6.WithSigV4(
               region: region,
               serviceName: 'glacier',
-              credentialsProvider: credentialsProvider),
-          _i6.WithEndpointResolver(
-              'Glacier', region, _i6.AWSEndpointResolver(_partitions))
+              credentialsProvider: credentialsProvider)
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i6.Partition(
@@ -68,73 +70,42 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
             signatureVersions: ['v4'],
             credentialScope: _i6.CredentialScope()),
         endpoints: const {
-          'af-south-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-east-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-northeast-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-northeast-2':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-northeast-3':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-south-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-southeast-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-southeast-2':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ca-central-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-central-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-north-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-south-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-west-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-west-2':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-west-3':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
+          'af-south-1': _i6.EndpointDefinition(),
+          'ap-east-1': _i6.EndpointDefinition(),
+          'ap-northeast-1': _i6.EndpointDefinition(),
+          'ap-northeast-2': _i6.EndpointDefinition(),
+          'ap-northeast-3': _i6.EndpointDefinition(),
+          'ap-south-1': _i6.EndpointDefinition(),
+          'ap-southeast-1': _i6.EndpointDefinition(),
+          'ap-southeast-2': _i6.EndpointDefinition(),
+          'ca-central-1': _i6.EndpointDefinition(),
+          'eu-central-1': _i6.EndpointDefinition(),
+          'eu-north-1': _i6.EndpointDefinition(),
+          'eu-south-1': _i6.EndpointDefinition(),
+          'eu-west-1': _i6.EndpointDefinition(),
+          'eu-west-2': _i6.EndpointDefinition(),
+          'eu-west-3': _i6.EndpointDefinition(),
           'fips-ca-central-1': _i6.EndpointDefinition(
               hostname: 'glacier-fips.ca-central-1.amazonaws.com',
-              protocols: [],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'ca-central-1')),
           'fips-us-east-1': _i6.EndpointDefinition(
               hostname: 'glacier-fips.us-east-1.amazonaws.com',
-              protocols: [],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'us-east-1')),
           'fips-us-east-2': _i6.EndpointDefinition(
               hostname: 'glacier-fips.us-east-2.amazonaws.com',
-              protocols: [],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'us-east-2')),
           'fips-us-west-1': _i6.EndpointDefinition(
               hostname: 'glacier-fips.us-west-1.amazonaws.com',
-              protocols: [],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'us-west-1')),
           'fips-us-west-2': _i6.EndpointDefinition(
               hostname: 'glacier-fips.us-west-2.amazonaws.com',
-              protocols: [],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'us-west-2')),
-          'me-south-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'sa-east-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-east-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-east-2':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-west-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-west-2':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: [])
+          'me-south-1': _i6.EndpointDefinition(),
+          'sa-east-1': _i6.EndpointDefinition(),
+          'us-east-1': _i6.EndpointDefinition(),
+          'us-east-2': _i6.EndpointDefinition(),
+          'us-west-1': _i6.EndpointDefinition(),
+          'us-west-2': _i6.EndpointDefinition()
         }),
     _i6.Partition(
         id: 'aws-cn',
@@ -147,10 +118,8 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
             signatureVersions: ['v4'],
             credentialScope: _i6.CredentialScope()),
         endpoints: const {
-          'cn-north-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: []),
-          'cn-northwest-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: [])
+          'cn-north-1': _i6.EndpointDefinition(),
+          'cn-northwest-1': _i6.EndpointDefinition()
         }),
     _i6.Partition(
         id: 'aws-iso',
@@ -163,8 +132,7 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
             signatureVersions: ['v4'],
             credentialScope: _i6.CredentialScope()),
         endpoints: const {
-          'us-iso-east-1': _i6.EndpointDefinition(
-              protocols: ['http', 'https'], signatureVersions: [])
+          'us-iso-east-1': _i6.EndpointDefinition(protocols: ['http', 'https'])
         }),
     _i6.Partition(
         id: 'aws-iso-b',
@@ -176,10 +144,7 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
             protocols: ['https'],
             signatureVersions: ['v4'],
             credentialScope: _i6.CredentialScope()),
-        endpoints: const {
-          'us-isob-east-1':
-              _i6.EndpointDefinition(protocols: [], signatureVersions: [])
-        }),
+        endpoints: const {'us-isob-east-1': _i6.EndpointDefinition()}),
     _i6.Partition(
         id: 'aws-us-gov',
         regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
@@ -193,16 +158,18 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
         endpoints: const {
           'us-gov-east-1': _i6.EndpointDefinition(
               hostname: 'glacier.us-gov-east-1.amazonaws.com',
-              protocols: [],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'us-gov-east-1')),
           'us-gov-west-1': _i6.EndpointDefinition(
               hostname: 'glacier.us-gov-west-1.amazonaws.com',
               protocols: ['http', 'https'],
-              signatureVersions: [],
               credentialScope: _i6.CredentialScope(region: 'us-gov-west-1'))
         })
   ];
+
+  late final _i6.AWSEndpointResolver _endpointResolver =
+      _i6.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Glacier';
 
   final _i5.AWSCredentialsProvider credentialsProvider;
 
@@ -272,4 +239,9 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
             statusCode: 500,
             builder: _i13.ServiceUnavailableException.fromResponse)
       ];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

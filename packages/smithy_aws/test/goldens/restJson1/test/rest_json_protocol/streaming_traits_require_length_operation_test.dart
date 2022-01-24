@@ -16,8 +16,8 @@ import 'package:test/test.dart' as _i1;
 void main() {
   _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (request)', () async {
     await _i2.httpRequestTest(
-        operation:
-            _i3.StreamingTraitsRequireLengthOperation(region: 'us-east-1'),
+        operation: _i3.StreamingTraitsRequireLengthOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonStreamingTraitsRequireLengthWithBlob',
             documentation:
@@ -53,8 +53,8 @@ void main() {
     'RestJsonStreamingTraitsRequireLengthWithNoBlobBody (request)',
     () async {
       await _i2.httpRequestTest(
-          operation:
-              _i3.StreamingTraitsRequireLengthOperation(region: 'us-east-1'),
+          operation: _i3.StreamingTraitsRequireLengthOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonStreamingTraitsRequireLengthWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',
@@ -85,8 +85,8 @@ void main() {
   );
   _i1.test('RestJsonStreamingTraitsRequireLengthWithBlob (response)', () async {
     await _i2.httpResponseTest(
-        operation:
-            _i3.StreamingTraitsRequireLengthOperation(region: 'us-east-1'),
+        operation: _i3.StreamingTraitsRequireLengthOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonStreamingTraitsRequireLengthWithBlob',
             documentation:
@@ -116,8 +116,8 @@ void main() {
     'RestJsonStreamingTraitsRequireLengthWithNoBlobBody (response)',
     () async {
       await _i2.httpResponseTest(
-          operation:
-              _i3.StreamingTraitsRequireLengthOperation(region: 'us-east-1'),
+          operation: _i3.StreamingTraitsRequireLengthOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonStreamingTraitsRequireLengthWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',

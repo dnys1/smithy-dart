@@ -20,7 +20,8 @@ void main() {
     'RestJsonRecursiveShapes (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.RecursiveShapesOperation(region: 'us-east-1'),
+          operation: _i3.RecursiveShapesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonRecursiveShapes',
               documentation: 'Serializes recursive structures',
@@ -66,7 +67,8 @@ void main() {
     'RestJsonRecursiveShapes (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.RecursiveShapesOperation(region: 'us-east-1'),
+          operation: _i3.RecursiveShapesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonRecursiveShapes',
               documentation: 'Serializes recursive structures',

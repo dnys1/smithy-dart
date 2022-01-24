@@ -16,7 +16,8 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     _i2.SimpleScalarPropertiesInput,
     _i3.SimpleScalarPropertiesOutput,
     _i3.SimpleScalarPropertiesOutput> {
-  SimpleScalarPropertiesOperation({required this.region});
+  SimpleScalarPropertiesOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -31,13 +32,13 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonRpc10.SimpleScalarProperties'),
-          _i4.WithEndpointResolver(
-              'JSON RPC 10', region, _i4.AWSEndpointResolver(_partitions))
+              'X-Amz-Target', 'JsonRpc10.SimpleScalarProperties')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -97,6 +98,11 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'JSON RPC 10';
+
   @override
   _i1.HttpRequest buildRequest(_i2.SimpleScalarPropertiesInput input) =>
       _i1.HttpRequest((b) {
@@ -112,4 +118,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       _i3.SimpleScalarPropertiesOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

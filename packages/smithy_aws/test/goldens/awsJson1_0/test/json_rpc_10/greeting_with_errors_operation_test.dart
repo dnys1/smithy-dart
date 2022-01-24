@@ -28,7 +28,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i5.ComplexError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10ComplexError',
               documentation: 'Parses a complex error with no message member',
@@ -65,7 +66,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i5.ComplexError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10EmptyComplexError',
               documentation: 'Parses a complex error with an empty body',
@@ -99,7 +101,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorUsingXAmznErrorType',
               documentation:
@@ -129,7 +132,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorUsingXAmznErrorTypeWithUri',
               documentation:
@@ -162,7 +166,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorUsingXAmznErrorTypeWithUriAndNamespace',
               documentation:
@@ -195,7 +200,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorUsingCode',
               documentation:
@@ -225,7 +231,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorUsingCodeAndNamespace',
               documentation:
@@ -255,7 +262,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorUsingCodeUriAndNamespace',
               documentation:
@@ -285,7 +293,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorWithDunderType',
               documentation: 'Some services serialize errors using __type.',
@@ -315,7 +324,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorWithDunderTypeAndNamespace',
               documentation:
@@ -345,7 +355,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10FooErrorWithDunderTypeUriAndNamespace',
               documentation:
@@ -375,7 +386,8 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i4.GreetingWithErrorsOutput,
               _i9.InvalidGreeting>(
-          operation: _i6.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10InvalidGreetingError',
               documentation: 'Parses simple JSON errors',

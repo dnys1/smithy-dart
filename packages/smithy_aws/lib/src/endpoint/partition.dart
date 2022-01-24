@@ -1,8 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_aws/src/endpoint/aws_endpoint.dart';
 import 'package:smithy_aws/src/endpoint/credential_scope.dart';
-import 'package:smithy_aws/src/endpoint/endpoint.dart';
 
 part 'partition.g.dart';
 

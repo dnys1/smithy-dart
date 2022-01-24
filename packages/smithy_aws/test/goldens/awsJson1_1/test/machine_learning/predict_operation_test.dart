@@ -31,6 +31,7 @@ void main() {
   _i1.test('MachinelearningPredictEndpoint (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.PredictOperation(
+            baseUri: Uri.parse('https://example.com'),
             region: 'us-east-1',
             credentialsProvider: const _i4.AWSCredentialsProvider(
                 _i4.AWSCredentials(

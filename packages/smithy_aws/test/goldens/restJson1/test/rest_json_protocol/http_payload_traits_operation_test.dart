@@ -18,7 +18,8 @@ void main() {
     'RestJsonHttpPayloadTraitsWithBlob (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpPayloadTraitsOperation(region: 'us-east-1'),
+          operation: _i3.HttpPayloadTraitsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPayloadTraitsWithBlob',
               documentation: 'Serializes a blob in the HTTP payload',
@@ -54,7 +55,8 @@ void main() {
     'RestJsonHttpPayloadTraitsWithNoBlobBody (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpPayloadTraitsOperation(region: 'us-east-1'),
+          operation: _i3.HttpPayloadTraitsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPayloadTraitsWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',
@@ -87,7 +89,8 @@ void main() {
     'RestJsonHttpPayloadTraitsWithBlob (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpPayloadTraitsOperation(region: 'us-east-1'),
+          operation: _i3.HttpPayloadTraitsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpPayloadTraitsWithBlob',
               documentation: 'Serializes a blob in the HTTP payload',
@@ -114,7 +117,8 @@ void main() {
     'RestJsonHttpPayloadTraitsWithNoBlobBody (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpPayloadTraitsOperation(region: 'us-east-1'),
+          operation: _i3.HttpPayloadTraitsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpPayloadTraitsWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',

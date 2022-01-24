@@ -18,7 +18,8 @@ void main() {
     'AwsJson10SupportsNaNFloatInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
+          operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10SupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -54,7 +55,8 @@ void main() {
     'AwsJson10SupportsInfinityFloatInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
+          operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10SupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -91,7 +93,8 @@ void main() {
     'AwsJson10SupportsNegativeInfinityFloatInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
+          operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',
@@ -128,7 +131,8 @@ void main() {
     'AwsJson10SupportsNaNFloatInputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
+          operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10SupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -155,7 +159,8 @@ void main() {
     'AwsJson10SupportsInfinityFloatInputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
+          operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10SupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -183,7 +188,8 @@ void main() {
     'AwsJson10SupportsNegativeInfinityFloatInputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
+          operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',

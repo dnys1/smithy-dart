@@ -16,7 +16,8 @@ void main() {
     'RestJsonHttpResponseCode (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpResponseCodeOperation(region: 'us-east-1'),
+          operation: _i3.HttpResponseCodeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpResponseCode',
               documentation:
@@ -43,7 +44,8 @@ void main() {
     'RestJsonHttpResponseCodeWithNoPayload (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpResponseCodeOperation(region: 'us-east-1'),
+          operation: _i3.HttpResponseCodeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpResponseCodeWithNoPayload',
               documentation:

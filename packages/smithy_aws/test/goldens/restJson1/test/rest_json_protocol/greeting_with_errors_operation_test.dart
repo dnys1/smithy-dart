@@ -23,7 +23,8 @@ void main() {
     'RestJsonGreetingWithErrors (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonGreetingWithErrors',
               documentation:
@@ -50,7 +51,8 @@ void main() {
     'RestJsonGreetingWithErrorsNoPayload (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonGreetingWithErrorsNoPayload',
               documentation:
@@ -82,7 +84,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i6.ComplexError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonComplexErrorWithNoMessage',
               documentation:
@@ -125,7 +128,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i6.ComplexError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonEmptyComplexErrorWithNoMessage',
               documentation: null,
@@ -161,7 +165,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorUsingXAmznErrorType',
               documentation:
@@ -191,7 +196,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUri',
               documentation:
@@ -224,7 +230,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorUsingXAmznErrorTypeWithUriAndNamespace',
               documentation:
@@ -257,7 +264,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorUsingCode',
               documentation:
@@ -287,7 +295,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorUsingCodeAndNamespace',
               documentation:
@@ -317,7 +326,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorUsingCodeUriAndNamespace',
               documentation:
@@ -347,7 +357,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorWithDunderType',
               documentation: 'Some services serialize errors using __type.',
@@ -377,7 +388,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorWithDunderTypeAndNamespace',
               documentation:
@@ -407,7 +419,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i7.FooError>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonFooErrorWithDunderTypeUriAndNamespace',
               documentation:
@@ -437,7 +450,8 @@ void main() {
               _i5.GreetingWithErrorsOutputPayload,
               _i5.GreetingWithErrorsOutput,
               _i8.InvalidGreeting>(
-          operation: _i3.GreetingWithErrorsOperation(region: 'us-east-1'),
+          operation: _i3.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInvalidGreetingError',
               documentation: 'Parses simple JSON errors',

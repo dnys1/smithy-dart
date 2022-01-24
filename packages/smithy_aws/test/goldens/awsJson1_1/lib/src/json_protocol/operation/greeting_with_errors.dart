@@ -18,9 +18,11 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i2.GreetingWithErrorsOutput, _i2.GreetingWithErrorsOutput> {
   GreetingWithErrorsOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i3.AWSCredentialsProvider.dartEnvironment()});
+          const _i3.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -36,13 +38,13 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
           _i4.WithSigV4(
               region: region,
               serviceName: 'foo',
-              credentialsProvider: credentialsProvider),
-          _i4.WithEndpointResolver(
-              'Json Protocol', region, _i4.AWSEndpointResolver(_partitions))
+              credentialsProvider: credentialsProvider)
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -102,6 +104,11 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Json Protocol';
+
   final _i3.AWSCredentialsProvider credentialsProvider;
 
   @override
@@ -135,4 +142,9 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
             _i9.InvalidGreeting,
             builder: _i9.InvalidGreeting.fromResponse)
       ];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

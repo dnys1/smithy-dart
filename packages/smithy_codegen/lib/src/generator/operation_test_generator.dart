@@ -42,7 +42,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   };
 
   /// Test values for required operation inputs.
-  static final Map<String, Expression> _testValues = {
+  late final Map<String, Expression> _testValues = {
     'region': literalString('us-east-1'),
     'credentialsProvider':
         DartTypes.awsSigV4.awsCredentialsProvider.constInstance([
@@ -51,12 +51,21 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         literalString('DUMMY-SECRET-ACCESS-KEY'),
       ]),
     ]),
+    'baseUri': DartTypes.core.uri.newInstanceNamed('parse', [
+      literalString('https://example.com'),
+    ]),
   };
 
   /// A constructed instance of the operation.
-  Expression get _operationInstance => symbol.newInstance([], {
+  Expression _operationInstance(HttpMessageTestCase testCase) =>
+      symbol.newInstance([], {
         for (final param in shape.constructorParameters(context))
-          param.name: _testValues[param.name]!,
+          if (testCase is HttpRequestTestCase && param.name == 'baseUri')
+            param.name: DartTypes.core.uri.newInstanceNamed('parse', [
+              literalString('https://${testCase.host ?? 'example.com'}'),
+            ])
+          else if (_testValues.containsKey(param.name))
+            param.name: _testValues[param.name]!
       });
 
   /// Tests to skip on Web. To be filled in during codegen since it depends
@@ -214,7 +223,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     for (var testCase in httpRequestTestCases) {
       final serializers = inputSerializers[testCase.protocol] ?? const [];
       final testCall = DartTypes.smithyTest.httpRequestTest.call([], {
-        'operation': _operationInstance,
+        'operation': _operationInstance(testCase),
         'testCase': DartTypes.smithyTest.httpRequestTestCase.constInstance([], {
           'id': literal(testCase.id),
           'documentation': literal(testCase.documentation),
@@ -261,7 +270,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     for (var testCase in httpResponseTestCases) {
       final serializers = outputSerializers[testCase.protocol] ?? const [];
       final testCall = DartTypes.smithyTest.httpResponseTest.call([], {
-        'operation': _operationInstance,
+        'operation': _operationInstance(testCase),
         'testCase': _buildResponseTestCase(testCase),
         'outputSerializers': literalConstList([
           for (final serializer in _uniqueSerializers(serializers))
@@ -282,7 +291,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         final serializers =
             errorSerializers[errorShape]![testCase.protocol] ?? const [];
         final testCall = DartTypes.smithyTest.httpErrorResponseTest.call([], {
-          'operation': _operationInstance,
+          'operation': _operationInstance(testCase),
           'testCase': _buildResponseTestCase(testCase),
           'errorSerializers': literalConstList([
             for (final serializer in _uniqueSerializers(serializers))

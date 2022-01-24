@@ -14,7 +14,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
     _i3.EnumPayloadInput, _i2.StringEnum, _i3.EnumPayloadInput> {
-  HttpEnumPayloadOperation({required this.region});
+  HttpEnumPayloadOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -23,14 +24,12 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [
-          const _i1.WithContentLength(),
-          _i4.WithEndpointResolver('Rest Json Protocol', region,
-              _i4.AWSEndpointResolver(_partitions))
-        ])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -90,6 +89,11 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i3.EnumPayloadInput input) =>
       _i1.HttpRequest((b) {
@@ -104,4 +108,9 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
       _i3.EnumPayloadInput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

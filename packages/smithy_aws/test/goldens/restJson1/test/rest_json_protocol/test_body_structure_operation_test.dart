@@ -18,7 +18,8 @@ void main() {
     'RestJsonTestBodyStructure (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestBodyStructureOperation(region: 'us-east-1'),
+          operation: _i3.TestBodyStructureOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTestBodyStructure',
               documentation: 'Serializes a structure',
@@ -54,7 +55,8 @@ void main() {
     'RestJsonHttpWithEmptyBody (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestBodyStructureOperation(region: 'us-east-1'),
+          operation: _i3.TestBodyStructureOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithEmptyBody',
               documentation: 'Serializes an empty structure in the body',

@@ -16,6 +16,8 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   late final List<OperationShape> _operations =
       context.shapes.values.whereType<OperationShape>().toList();
 
+  bool get isAwsService => shape.hasTrait<ServiceTrait>();
+
   @override
   String get className => context.serviceClientName;
 
@@ -36,9 +38,10 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
             ...LinkedHashSet<Field>(
               equals: (a, b) => a.name == b.name,
               hashCode: (key) => key.name.hashCode,
-            )..addAll(_operations.expand((op) => op
-                .protocolFields(context)
-                .where((f) => !f.name.startsWith('_')))),
+            )..addAll(
+                _operations.expand(
+                    (op) => op.protocolFields(context, forShape: shape)),
+              ),
           ]);
       });
 
@@ -52,7 +55,12 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
             )..addAll(
                 _operations.expand((op) => op.constructorParameters(context)),
               ),
-          ]),
+          ])
+          ..initializers.addAll({
+            ..._operations.expand((op) => op.constructorInitializers(context))
+          }.map(
+            (params) => refer(params.item1).assign(refer(params.item2)).code,
+          )),
       );
 
   /// Generate a callable method for each operation.
@@ -70,6 +78,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       }
       final paginatedTraits = operation.paginatedTraits(context);
       final isPaginated = paginatedTraits != null;
+      String _public(String s) => s.startsWith('_') ? s.substring(1) : s;
       yield Method(
         (m) => m
           ..docs.addAll([
@@ -93,10 +102,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ..body = context
               .symbolFor(operation.shapeId)
               .newInstance([], {
-                for (final field in operation
-                    .protocolFields(context)
-                    .where((f) => !f.name.startsWith('_')))
-                  field.name: refer(field.name),
+                for (final field
+                    in operation.protocolFields(context, forShape: shape))
+                  _public(field.name): refer(field.name),
               })
               .property(isPaginated ? 'runPaginated' : 'run')
               .call([

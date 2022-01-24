@@ -13,7 +13,8 @@ void main() {
     'AwsJson10EndpointTrait (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.EndpointOperation(region: 'us-east-1'),
+          operation: _i3.EndpointOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10EndpointTrait',
               documentation:

@@ -14,7 +14,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class MalformedPatternOperation extends _i1.HttpOperation<
     _i2.MalformedPatternInput, _i2.MalformedPatternInput, _i1.Unit, _i1.Unit> {
-  MalformedPatternOperation({required this.region});
+  MalformedPatternOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -23,14 +24,12 @@ class MalformedPatternOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [
-          const _i1.WithContentLength(),
-          _i3.WithEndpointResolver('Rest Json Validation Protocol', region,
-              _i3.AWSEndpointResolver(_partitions))
-        ])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -90,6 +89,11 @@ class MalformedPatternOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Validation Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i2.MalformedPatternInput input) =>
       _i1.HttpRequest((b) {
@@ -111,4 +115,9 @@ class MalformedPatternOperation extends _i1.HttpOperation<
             _i6.ValidationException,
             builder: _i6.ValidationException.fromResponse)
       ];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

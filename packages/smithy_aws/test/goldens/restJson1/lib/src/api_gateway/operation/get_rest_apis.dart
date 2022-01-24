@@ -28,9 +28,11 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
     int,
     _i4.BuiltList<_i5.RestApi>> {
   GetRestApisOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i6.AWSCredentialsProvider.dartEnvironment()});
+          const _i6.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -47,13 +49,13 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
               region: region,
               serviceName: 'apigateway',
               credentialsProvider: credentialsProvider),
-          _i7.WithEndpointResolver(
-              'API Gateway', region, _i7.AWSEndpointResolver(_partitions)),
           const _i1.WithHeader('Accept', 'application/json')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i7.Partition(
@@ -67,48 +69,27 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
             signatureVersions: ['v4'],
             credentialScope: _i7.CredentialScope()),
         endpoints: const {
-          'af-south-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-east-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-northeast-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-northeast-2':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-northeast-3':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-south-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-southeast-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ap-southeast-2':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'ca-central-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-central-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-north-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-south-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-west-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-west-2':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'eu-west-3':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'me-south-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'sa-east-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-east-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-east-2':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-west-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-west-2':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+          'af-south-1': _i7.EndpointDefinition(),
+          'ap-east-1': _i7.EndpointDefinition(),
+          'ap-northeast-1': _i7.EndpointDefinition(),
+          'ap-northeast-2': _i7.EndpointDefinition(),
+          'ap-northeast-3': _i7.EndpointDefinition(),
+          'ap-south-1': _i7.EndpointDefinition(),
+          'ap-southeast-1': _i7.EndpointDefinition(),
+          'ap-southeast-2': _i7.EndpointDefinition(),
+          'ca-central-1': _i7.EndpointDefinition(),
+          'eu-central-1': _i7.EndpointDefinition(),
+          'eu-north-1': _i7.EndpointDefinition(),
+          'eu-south-1': _i7.EndpointDefinition(),
+          'eu-west-1': _i7.EndpointDefinition(),
+          'eu-west-2': _i7.EndpointDefinition(),
+          'eu-west-3': _i7.EndpointDefinition(),
+          'me-south-1': _i7.EndpointDefinition(),
+          'sa-east-1': _i7.EndpointDefinition(),
+          'us-east-1': _i7.EndpointDefinition(),
+          'us-east-2': _i7.EndpointDefinition(),
+          'us-west-1': _i7.EndpointDefinition(),
+          'us-west-2': _i7.EndpointDefinition()
         }),
     _i7.Partition(
         id: 'aws-cn',
@@ -121,10 +102,8 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
             signatureVersions: ['v4'],
             credentialScope: _i7.CredentialScope()),
         endpoints: const {
-          'cn-north-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'cn-northwest-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+          'cn-north-1': _i7.EndpointDefinition(),
+          'cn-northwest-1': _i7.EndpointDefinition()
         }),
     _i7.Partition(
         id: 'aws-iso',
@@ -136,10 +115,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
             protocols: ['https'],
             signatureVersions: ['v4'],
             credentialScope: _i7.CredentialScope()),
-        endpoints: const {
-          'us-iso-east-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
-        }),
+        endpoints: const {'us-iso-east-1': _i7.EndpointDefinition()}),
     _i7.Partition(
         id: 'aws-iso-b',
         regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
@@ -162,12 +138,15 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
             signatureVersions: ['v4'],
             credentialScope: _i7.CredentialScope()),
         endpoints: const {
-          'us-gov-east-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-gov-west-1':
-              _i7.EndpointDefinition(protocols: [], signatureVersions: [])
+          'us-gov-east-1': _i7.EndpointDefinition(),
+          'us-gov-west-1': _i7.EndpointDefinition()
         })
   ];
+
+  late final _i7.AWSEndpointResolver _endpointResolver =
+      _i7.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'API Gateway';
 
   final _i6.AWSCredentialsProvider credentialsProvider;
 
@@ -216,6 +195,11 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
             statusCode: 401,
             builder: _i12.UnauthorizedException.fromResponse)
       ];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
   @override
   String? getToken(_i3.RestApis output) => output.position;
   @override

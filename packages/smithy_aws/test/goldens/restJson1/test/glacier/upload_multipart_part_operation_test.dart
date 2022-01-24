@@ -30,6 +30,7 @@ void main() {
   _i1.test('GlacierMultipartChecksums (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.UploadMultipartPartOperation(
+            baseUri: Uri.parse('https://example.com'),
             region: 'us-east-1',
             credentialsProvider: const _i4.AWSCredentialsProvider(
                 _i4.AWSCredentials(

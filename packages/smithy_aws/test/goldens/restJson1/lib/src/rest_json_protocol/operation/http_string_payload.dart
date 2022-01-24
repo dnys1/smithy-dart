@@ -12,7 +12,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class HttpStringPayloadOperation extends _i1.HttpOperation<String,
     _i2.StringPayloadInput, String, _i2.StringPayloadInput> {
-  HttpStringPayloadOperation({required this.region});
+  HttpStringPayloadOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -21,14 +22,12 @@ class HttpStringPayloadOperation extends _i1.HttpOperation<String,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [
-          const _i1.WithContentLength(),
-          _i3.WithEndpointResolver('Rest Json Protocol', region,
-              _i3.AWSEndpointResolver(_partitions))
-        ])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -88,6 +87,11 @@ class HttpStringPayloadOperation extends _i1.HttpOperation<String,
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i2.StringPayloadInput input) =>
       _i1.HttpRequest((b) {
@@ -102,4 +106,9 @@ class HttpStringPayloadOperation extends _i1.HttpOperation<String,
       _i2.StringPayloadInput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

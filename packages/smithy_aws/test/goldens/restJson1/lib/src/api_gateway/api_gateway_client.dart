@@ -14,18 +14,24 @@ import 'package:smithy/smithy.dart' as _i3;
 
 class ApiGatewayClient {
   const ApiGatewayClient(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i1.AWSCredentialsProvider.dartEnvironment()});
+          const _i1.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   final String region;
+
+  final Uri? _baseUri;
 
   final _i1.AWSCredentialsProvider credentialsProvider;
 
   _i2.Future<_i3.PaginatedResult<_i4.BuiltList<_i5.RestApi>, int>> getRestApis(
       _i6.GetRestApisRequest input) {
     return _i7.GetRestApisOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .runPaginated(input);
   }
 }

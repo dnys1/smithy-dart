@@ -52,42 +52,56 @@ import 'package:smithy/smithy.dart' as _i4;
 
 class JsonProtocolClient {
   const JsonProtocolClient(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i1.AWSCredentialsProvider.dartEnvironment()});
+          const _i1.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   final String region;
+
+  final Uri? _baseUri;
 
   final _i1.AWSCredentialsProvider credentialsProvider;
 
   _i2.Future<void> emptyOperation() {
     return _i3.EmptyOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(const _i4.Unit());
   }
 
   _i2.Future<void> endpointOperation() {
     return _i5.EndpointOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(const _i4.Unit());
   }
 
   _i2.Future<void> endpointWithHostLabelOperation(_i6.HostLabelInput input) {
     return _i7.EndpointWithHostLabelOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
   /// This operation has three possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A ComplexError error. Implementations must be able to successfully take a response and properly deserialize successful and error responses.
   _i2.Future<_i8.GreetingWithErrorsOutput> greetingWithErrors() {
     return _i9.GreetingWithErrorsOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(const _i4.Unit());
   }
 
   _i2.Future<void> hostWithPathOperation() {
     return _i10.HostWithPathOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(const _i4.Unit());
   }
 
@@ -95,27 +109,35 @@ class JsonProtocolClient {
   _i2.Future<_i11.JsonEnumsInputOutput> jsonEnums(
       _i11.JsonEnumsInputOutput input) {
     return _i12.JsonEnumsOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
   /// This operation uses unions for inputs and outputs.
   _i2.Future<_i13.UnionInputOutput> jsonUnions(_i13.UnionInputOutput input) {
     return _i14.JsonUnionsOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
   _i2.Future<_i15.KitchenSink> kitchenSinkOperation(_i15.KitchenSink input) {
     return _i16.KitchenSinkOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
   _i2.Future<_i17.NullOperationInputOutput> nullOperation(
       _i17.NullOperationInputOutput input) {
     return _i18.NullOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
@@ -123,7 +145,9 @@ class JsonProtocolClient {
       operationWithOptionalInputOutput(
           _i20.OperationWithOptionalInputOutputInput input) {
     return _i21.OperationWithOptionalInputOutputOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
@@ -131,14 +155,18 @@ class JsonProtocolClient {
   _i2.Future<_i22.PutAndGetInlineDocumentsInputOutput> putAndGetInlineDocuments(
       _i22.PutAndGetInlineDocumentsInputOutput input) {
     return _i23.PutAndGetInlineDocumentsOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 
   _i2.Future<_i24.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
       _i24.SimpleScalarPropertiesInputOutput input) {
     return _i25.SimpleScalarPropertiesOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 }

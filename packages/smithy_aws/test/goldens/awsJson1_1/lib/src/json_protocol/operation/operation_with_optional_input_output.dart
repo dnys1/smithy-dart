@@ -18,9 +18,11 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
     _i3.OperationWithOptionalInputOutputOutput,
     _i3.OperationWithOptionalInputOutputOutput> {
   OperationWithOptionalInputOutputOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i4.AWSCredentialsProvider.dartEnvironment()});
+          const _i4.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -39,13 +41,13 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
           _i5.WithSigV4(
               region: region,
               serviceName: 'foo',
-              credentialsProvider: credentialsProvider),
-          _i5.WithEndpointResolver(
-              'Json Protocol', region, _i5.AWSEndpointResolver(_partitions))
+              credentialsProvider: credentialsProvider)
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i5.Partition(
@@ -105,6 +107,11 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i5.AWSEndpointResolver _endpointResolver =
+      _i5.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Json Protocol';
+
   final _i4.AWSCredentialsProvider credentialsProvider;
 
   @override
@@ -124,4 +131,9 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
           payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

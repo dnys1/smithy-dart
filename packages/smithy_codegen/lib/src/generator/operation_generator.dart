@@ -55,7 +55,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..constructors.add(_constructor)
           ..fields.addAll([
             _protocolsGetter,
-            ...shape.protocolFields(context),
+            ...shape.protocolFields(context, forShape: shape),
           ])
           ..methods.addAll([
             ..._httpOverrides,
@@ -65,7 +65,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
   Constructor get _constructor => Constructor(
         (ctor) => ctor
-          ..optionalParameters.addAll(shape.constructorParameters(context)),
+          ..optionalParameters.addAll(shape.constructorParameters(context))
+          ..initializers.addAll(shape.constructorInitializers(context).map(
+                (tuple) => refer(tuple.item1).assign(refer(tuple.item2)).code,
+              )),
       );
 
   /// The statements of the HTTP request builder.
@@ -467,6 +470,36 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             })
         ]).code,
     );
+
+    if (context.service?.hasTrait<ServiceTrait>() ?? false) {
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.core.uri
+          ..name = 'baseUri'
+          ..type = MethodType.getter
+          ..body = refer('_baseUri')
+              .ifNullThen(refer('endpoint').property('uri'))
+              .code,
+      );
+
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.smithy.endpoint
+          ..name = 'endpoint'
+          ..type = MethodType.getter
+          ..body = refer('_endpointResolver')
+              .property('resolveWithContext')
+              .call([
+                refer('_sdkId'),
+                refer('region'),
+                refer('context'),
+              ])
+              .property('endpoint')
+              .code,
+      );
+    }
   }
 
   /// The `protocols` override getter.
@@ -582,16 +615,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final aws = context.service?.getTrait<ServiceTrait>();
     if (aws != null && serviceId != null) {
       final trait = aws.resolve(serviceId);
-
-      // The default endpoint resolver.
-      yield DartTypes.smithyAws.withEndpointResolver.newInstance([
-        literalString(trait.sdkId),
-        refer('region'),
-        DartTypes.smithyAws.awsEndpointResolver.newInstance([
-          refer('_partitions'),
-        ]),
-      ]);
-
       switch (trait.sdkId) {
         // A client for Amazon API Gateway MUST set the Accept header to the
         // string literal value of "application/json" for all requests.

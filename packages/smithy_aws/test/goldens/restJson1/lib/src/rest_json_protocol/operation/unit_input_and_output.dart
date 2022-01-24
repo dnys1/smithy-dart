@@ -11,7 +11,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i2;
 /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
 class UnitInputAndOutputOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
-  UnitInputAndOutputOperation({required this.region});
+  UnitInputAndOutputOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<_i1.HttpProtocol<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit>>
@@ -22,13 +23,13 @@ class UnitInputAndOutputOperation
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithNoHeader('Content-Length'),
-          const _i1.WithNoHeader('Content-Type'),
-          _i2.WithEndpointResolver('Rest Json Protocol', region,
-              _i2.AWSEndpointResolver(_partitions))
+          const _i1.WithNoHeader('Content-Type')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i2.Partition(
@@ -88,6 +89,11 @@ class UnitInputAndOutputOperation
         endpoints: const {})
   ];
 
+  late final _i2.AWSEndpointResolver _endpointResolver =
+      _i2.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
@@ -101,4 +107,9 @@ class UnitInputAndOutputOperation
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

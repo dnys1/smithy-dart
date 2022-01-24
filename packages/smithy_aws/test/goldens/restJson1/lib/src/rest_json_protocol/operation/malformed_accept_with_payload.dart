@@ -14,7 +14,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class MalformedAcceptWithPayloadOperation extends _i1.HttpOperation<_i1.Unit,
     _i1.Unit, _i2.Uint8List, _i3.MalformedAcceptWithPayloadOutput> {
-  MalformedAcceptWithPayloadOperation({required this.region});
+  MalformedAcceptWithPayloadOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -26,13 +27,13 @@ class MalformedAcceptWithPayloadOperation extends _i1.HttpOperation<_i1.Unit,
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithNoHeader('Content-Length'),
-          const _i1.WithNoHeader('Content-Type'),
-          _i4.WithEndpointResolver('Rest Json Protocol', region,
-              _i4.AWSEndpointResolver(_partitions))
+          const _i1.WithNoHeader('Content-Type')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -92,6 +93,11 @@ class MalformedAcceptWithPayloadOperation extends _i1.HttpOperation<_i1.Unit,
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
@@ -105,4 +111,9 @@ class MalformedAcceptWithPayloadOperation extends _i1.HttpOperation<_i1.Unit,
       _i3.MalformedAcceptWithPayloadOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

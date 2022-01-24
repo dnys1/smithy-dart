@@ -15,7 +15,8 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     _i2.SimpleScalarPropertiesInputOutput,
     _i2.SimpleScalarPropertiesInputOutputPayload,
     _i2.SimpleScalarPropertiesInputOutput> {
-  SimpleScalarPropertiesOperation({required this.region});
+  SimpleScalarPropertiesOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -27,14 +28,12 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [
-          const _i1.WithContentLength(),
-          _i3.WithEndpointResolver('Rest Json Protocol', region,
-              _i3.AWSEndpointResolver(_partitions))
-        ])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -94,6 +93,11 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i2.SimpleScalarPropertiesInputOutput input) =>
       _i1.HttpRequest((b) {
@@ -114,4 +118,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       _i2.SimpleScalarPropertiesInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

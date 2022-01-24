@@ -26,9 +26,11 @@ import 'package:smithy_aws/smithy_aws.dart' as _i5;
 class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
     _i2.PredictInput, _i3.PredictOutput, _i3.PredictOutput> {
   PredictOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i4.AWSCredentialsProvider.dartEnvironment()});
+          const _i4.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -43,13 +45,13 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
           _i5.WithSigV4(
               region: region,
               serviceName: 'machinelearning',
-              credentialsProvider: credentialsProvider),
-          _i5.WithEndpointResolver(
-              'Machine Learning', region, _i5.AWSEndpointResolver(_partitions))
+              credentialsProvider: credentialsProvider)
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i5.Partition(
@@ -63,10 +65,8 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
             signatureVersions: ['v4'],
             credentialScope: _i5.CredentialScope()),
         endpoints: const {
-          'eu-west-1':
-              _i5.EndpointDefinition(protocols: [], signatureVersions: []),
-          'us-east-1':
-              _i5.EndpointDefinition(protocols: [], signatureVersions: [])
+          'eu-west-1': _i5.EndpointDefinition(),
+          'us-east-1': _i5.EndpointDefinition()
         }),
     _i5.Partition(
         id: 'aws-cn',
@@ -113,6 +113,11 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
             credentialScope: _i5.CredentialScope()),
         endpoints: const {})
   ];
+
+  late final _i5.AWSEndpointResolver _endpointResolver =
+      _i5.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Machine Learning';
 
   final _i4.AWSCredentialsProvider credentialsProvider;
 
@@ -170,4 +175,9 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
             statusCode: 404,
             builder: _i12.ResourceNotFoundException.fromResponse)
       ];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

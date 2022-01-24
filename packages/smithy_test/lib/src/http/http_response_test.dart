@@ -45,7 +45,7 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
     );
   });
   final output = await operation.innerSend(
-    client: HttpClient.v1(Uri(), baseClient: client),
+    client: HttpClient.v1(baseClient: client),
     httpRequest: _dummyHttpRequest,
     protocol: protocol,
   );
@@ -108,7 +108,7 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
   });
   try {
     await operation.innerSend(
-      client: HttpClient.v1(Uri(), baseClient: client),
+      client: HttpClient.v1(baseClient: client),
       httpRequest: _dummyHttpRequest,
       protocol: protocol,
     );

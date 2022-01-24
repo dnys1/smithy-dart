@@ -12,7 +12,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class EndpointWithHostLabelOperation extends _i1
     .HttpOperation<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit, _i1.Unit> {
-  EndpointWithHostLabelOperation({required this.region});
+  EndpointWithHostLabelOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -21,14 +22,12 @@ class EndpointWithHostLabelOperation extends _i1
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [
-          const _i1.WithContentLength(),
-          _i3.WithEndpointResolver('Rest Json Protocol', region,
-              _i3.AWSEndpointResolver(_partitions))
-        ])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -88,6 +87,11 @@ class EndpointWithHostLabelOperation extends _i1
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i2.HostLabelInput input) =>
       _i1.HttpRequest((b) {
@@ -103,4 +107,9 @@ class EndpointWithHostLabelOperation extends _i1
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

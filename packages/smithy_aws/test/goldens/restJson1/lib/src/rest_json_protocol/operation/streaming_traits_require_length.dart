@@ -18,7 +18,8 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
     _i3.StreamingTraitsRequireLengthInputOutput,
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsRequireLengthInputOutput> {
-  StreamingTraitsRequireLengthOperation({required this.region});
+  StreamingTraitsRequireLengthOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -30,14 +31,12 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [
-          const _i1.WithContentLength(),
-          _i4.WithEndpointResolver('Rest Json Protocol', region,
-              _i4.AWSEndpointResolver(_partitions))
-        ])
+        interceptors: [const _i1.WithContentLength()])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -97,6 +96,11 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(
           _i3.StreamingTraitsRequireLengthInputOutput input) =>
@@ -119,4 +123,9 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
           payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

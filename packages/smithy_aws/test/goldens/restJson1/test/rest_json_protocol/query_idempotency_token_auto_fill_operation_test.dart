@@ -14,8 +14,8 @@ import 'package:test/test.dart' as _i1;
 void main() {
   _i1.test('RestJsonQueryIdempotencyTokenAutoFill (request)', () async {
     await _i2.httpRequestTest(
-        operation:
-            _i3.QueryIdempotencyTokenAutoFillOperation(region: 'us-east-1'),
+        operation: _i3.QueryIdempotencyTokenAutoFillOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonQueryIdempotencyTokenAutoFill',
             documentation: 'Automatically adds idempotency token when not set',
@@ -47,8 +47,8 @@ void main() {
     'RestJsonQueryIdempotencyTokenAutoFillIsSet (request)',
     () async {
       await _i2.httpRequestTest(
-          operation:
-              _i3.QueryIdempotencyTokenAutoFillOperation(region: 'us-east-1'),
+          operation: _i3.QueryIdempotencyTokenAutoFillOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonQueryIdempotencyTokenAutoFillIsSet',
               documentation: 'Uses the given idempotency token as-is',

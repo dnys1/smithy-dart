@@ -11,9 +11,11 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 class HostWithPathOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
   HostWithPathOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i2.AWSCredentialsProvider.dartEnvironment()});
+          const _i2.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<_i1.HttpProtocol<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit>>
@@ -28,13 +30,13 @@ class HostWithPathOperation
           _i3.WithSigV4(
               region: region,
               serviceName: 'foo',
-              credentialsProvider: credentialsProvider),
-          _i3.WithEndpointResolver(
-              'Json Protocol', region, _i3.AWSEndpointResolver(_partitions))
+              credentialsProvider: credentialsProvider)
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -94,6 +96,11 @@ class HostWithPathOperation
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Json Protocol';
+
   final _i2.AWSCredentialsProvider credentialsProvider;
 
   @override
@@ -109,4 +116,9 @@ class HostWithPathOperation
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

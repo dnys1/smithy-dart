@@ -18,7 +18,8 @@ void main() {
     'AwsJson10EmptyInputAndEmptyOutput (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.EmptyInputAndEmptyOutputOperation(region: 'us-east-1'),
+          operation: _i3.EmptyInputAndEmptyOutputOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10EmptyInputAndEmptyOutput',
               documentation:
@@ -54,7 +55,8 @@ void main() {
     'AwsJson10EmptyInputAndEmptyOutputSendJsonObject (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.EmptyInputAndEmptyOutputOperation(region: 'us-east-1'),
+          operation: _i3.EmptyInputAndEmptyOutputOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10EmptyInputAndEmptyOutputSendJsonObject',
               documentation:

@@ -1,6 +1,5 @@
+import 'package:smithy/smithy.dart';
 import 'package:smithy_aws/src/endpoint/credential_scope.dart';
-
-import 'endpoint.dart';
 
 /// {@template smithy_aws.aws_endpoint}
 /// Represents the endpoint a service client should make API operation calls to.

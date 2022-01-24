@@ -17,9 +17,11 @@ class JsonEnumsOperation extends _i1.HttpOperation<
     _i2.JsonEnumsInputOutput,
     _i2.JsonEnumsInputOutput> {
   JsonEnumsOperation(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i3.AWSCredentialsProvider.dartEnvironment()});
+          const _i3.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -34,13 +36,13 @@ class JsonEnumsOperation extends _i1.HttpOperation<
           _i4.WithSigV4(
               region: region,
               serviceName: 'foo',
-              credentialsProvider: credentialsProvider),
-          _i4.WithEndpointResolver(
-              'Json Protocol', region, _i4.AWSEndpointResolver(_partitions))
+              credentialsProvider: credentialsProvider)
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -100,6 +102,11 @@ class JsonEnumsOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Json Protocol';
+
   final _i3.AWSCredentialsProvider credentialsProvider;
 
   @override
@@ -116,4 +123,9 @@ class JsonEnumsOperation extends _i1.HttpOperation<
       _i2.JsonEnumsInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

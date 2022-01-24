@@ -17,7 +17,8 @@ void main() {
     'DocumentTypeInputWithObject (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentTypeInputWithObject',
               documentation:
@@ -53,7 +54,8 @@ void main() {
     'DocumentInputWithString (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentInputWithString',
               documentation: 'Serializes document types using a string.',
@@ -87,7 +89,8 @@ void main() {
     'DocumentInputWithNumber (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentInputWithNumber',
               documentation: 'Serializes document types using a number.',
@@ -121,7 +124,8 @@ void main() {
     'DocumentInputWithBoolean (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentInputWithBoolean',
               documentation: 'Serializes document types using a boolean.',
@@ -155,7 +159,8 @@ void main() {
     'DocumentInputWithList (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentInputWithList',
               documentation: 'Serializes document types using a list.',
@@ -201,7 +206,8 @@ void main() {
     'DocumentOutput (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentOutput',
               documentation:
@@ -231,7 +237,8 @@ void main() {
     'DocumentOutputString (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentOutputString',
               documentation: 'Document types can be JSON scalars too.',
@@ -259,7 +266,8 @@ void main() {
     'DocumentOutputNumber (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentOutputNumber',
               documentation: 'Document types can be JSON scalars too.',
@@ -287,7 +295,8 @@ void main() {
     'DocumentOutputBoolean (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentOutputBoolean',
               documentation: 'Document types can be JSON scalars too.',
@@ -315,7 +324,8 @@ void main() {
     'DocumentOutputArray (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentOutputArray',
               documentation: 'Document types can be JSON arrays.',

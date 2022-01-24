@@ -16,7 +16,8 @@ import 'package:test/test.dart' as _i1;
 void main() {
   _i1.test('RestJsonStreamingTraitsWithBlob (request)', () async {
     await _i2.httpRequestTest(
-        operation: _i3.StreamingTraitsOperation(region: 'us-east-1'),
+        operation: _i3.StreamingTraitsOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonStreamingTraitsWithBlob',
             documentation: 'Serializes a blob in the HTTP payload',
@@ -51,7 +52,8 @@ void main() {
     'RestJsonStreamingTraitsWithNoBlobBody (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.StreamingTraitsOperation(region: 'us-east-1'),
+          operation: _i3.StreamingTraitsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonStreamingTraitsWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',
@@ -82,7 +84,8 @@ void main() {
   );
   _i1.test('RestJsonStreamingTraitsWithBlob (response)', () async {
     await _i2.httpResponseTest(
-        operation: _i3.StreamingTraitsOperation(region: 'us-east-1'),
+        operation: _i3.StreamingTraitsOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonStreamingTraitsWithBlob',
             documentation: 'Serializes a blob in the HTTP payload',
@@ -111,7 +114,8 @@ void main() {
     'RestJsonStreamingTraitsWithNoBlobBody (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.StreamingTraitsOperation(region: 'us-east-1'),
+          operation: _i3.StreamingTraitsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonStreamingTraitsWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',

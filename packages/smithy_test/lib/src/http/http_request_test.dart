@@ -17,7 +17,6 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   required HttpRequestTestCase testCase,
   List<SmithySerializer>? inputSerializers,
 }) async {
-  final baseUri = Uri.parse('https://${testCase.host}');
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
   );
@@ -33,7 +32,6 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   ) as Input;
   final request = await operation.createRequest(
     operation.buildRequest(input),
-    baseUri,
     protocol,
     input,
   );

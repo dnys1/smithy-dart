@@ -29,6 +29,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i5.ComplexError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -70,6 +71,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i5.ComplexError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -107,6 +109,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -141,6 +144,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -178,6 +182,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -215,6 +220,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -249,6 +255,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -283,6 +290,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -317,6 +325,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -351,6 +360,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -385,6 +395,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i8.FooError>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(
@@ -419,6 +430,7 @@ void main() {
               _i4.GreetingWithErrorsOutput,
               _i9.InvalidGreeting>(
           operation: _i6.GreetingWithErrorsOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i7.AWSCredentialsProvider(
                   _i7.AWSCredentials(

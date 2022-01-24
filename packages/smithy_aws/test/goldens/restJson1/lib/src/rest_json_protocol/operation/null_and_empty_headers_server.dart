@@ -16,7 +16,8 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
     _i2.NullAndEmptyHeadersIo,
     _i2.NullAndEmptyHeadersIoPayload,
     _i2.NullAndEmptyHeadersIo> {
-  NullAndEmptyHeadersServerOperation({required this.region});
+  NullAndEmptyHeadersServerOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -31,13 +32,13 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithNoHeader('Content-Length'),
-          const _i1.WithNoHeader('Content-Type'),
-          _i3.WithEndpointResolver('Rest Json Protocol', region,
-              _i3.AWSEndpointResolver(_partitions))
+          const _i1.WithNoHeader('Content-Type')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -97,6 +98,11 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'Rest Json Protocol';
+
   @override
   _i1.HttpRequest buildRequest(_i2.NullAndEmptyHeadersIo input) =>
       _i1.HttpRequest((b) {
@@ -128,4 +134,9 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
       _i2.NullAndEmptyHeadersIo.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

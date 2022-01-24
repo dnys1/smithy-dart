@@ -452,6 +452,9 @@ class _Smithy {
   Reference get encodedJsonObjectSerializer =>
       const Reference('EncodedJsonObjectSerializer', _url);
 
+  /// Creates a [smithy.Endpoint] refererence.
+  Reference get endpoint => const Reference('Endpoint', _url);
+
   /// Creates a [smithy.HasPayload] reference for [ref], the payload type.
   Reference hasPayload(Reference ref) => TypeReference(
         (t) => t
@@ -664,9 +667,6 @@ class _SmithyAws {
 
   /// Creates a [smithy_aws.CredentialScope] refererence.
   Reference get credentialScope => const Reference('CredentialScope', _url);
-
-  /// Creates a [smithy_aws.Endpoint] refererence.
-  Reference get endpoint => const Reference('Endpoint', _url);
 
   /// Creates a [smithy_aws.EndpointDefinition] refererence.
   Reference get endpointDefinition =>

@@ -16,7 +16,8 @@ void main() {
     'RestJsonHttpChecksumRequired (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpChecksumRequiredOperation(region: 'us-east-1'),
+          operation: _i3.HttpChecksumRequiredOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpChecksumRequired',
               documentation: 'Adds Content-MD5 header',

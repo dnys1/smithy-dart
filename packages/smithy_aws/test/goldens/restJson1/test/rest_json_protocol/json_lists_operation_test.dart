@@ -20,7 +20,8 @@ void main() {
     'RestJsonLists (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonListsOperation(region: 'us-east-1'),
+          operation: _i3.JsonListsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonLists',
               documentation: 'Serializes JSON lists',
@@ -70,7 +71,8 @@ void main() {
     'RestJsonListsEmpty (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonListsOperation(region: 'us-east-1'),
+          operation: _i3.JsonListsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonListsEmpty',
               documentation: 'Serializes empty JSON lists',
@@ -104,7 +106,8 @@ void main() {
     'RestJsonListsSerializeNull (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonListsOperation(region: 'us-east-1'),
+          operation: _i3.JsonListsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonListsSerializeNull',
               documentation: 'Serializes null values in lists',
@@ -141,7 +144,8 @@ void main() {
     'RestJsonLists (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonListsOperation(region: 'us-east-1'),
+          operation: _i3.JsonListsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonLists',
               documentation: 'Serializes JSON lists',
@@ -185,7 +189,8 @@ void main() {
     'RestJsonListsEmpty (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonListsOperation(region: 'us-east-1'),
+          operation: _i3.JsonListsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonListsEmpty',
               documentation: 'Serializes empty JSON lists',
@@ -213,7 +218,8 @@ void main() {
     'RestJsonListsSerializeNull (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonListsOperation(region: 'us-east-1'),
+          operation: _i3.JsonListsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonListsSerializeNull',
               documentation: 'Serializes null values in sparse lists',

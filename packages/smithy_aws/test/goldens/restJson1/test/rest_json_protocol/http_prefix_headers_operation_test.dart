@@ -19,7 +19,8 @@ void main() {
     'RestJsonHttpPrefixHeadersArePresent (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpPrefixHeadersOperation(region: 'us-east-1'),
+          operation: _i3.HttpPrefixHeadersOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPrefixHeadersArePresent',
               documentation: 'Adds headers by prefix',
@@ -59,7 +60,8 @@ void main() {
     'RestJsonHttpPrefixHeadersAreNotPresent (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpPrefixHeadersOperation(region: 'us-east-1'),
+          operation: _i3.HttpPrefixHeadersOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPrefixHeadersAreNotPresent',
               documentation:
@@ -93,7 +95,8 @@ void main() {
     'RestJsonHttpPrefixHeadersArePresent (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpPrefixHeadersOperation(region: 'us-east-1'),
+          operation: _i3.HttpPrefixHeadersOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpPrefixHeadersArePresent',
               documentation: 'Adds headers by prefix',

@@ -19,7 +19,8 @@ void main() {
     'RestJsonJsonMaps (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonMaps',
               documentation: 'Serializes JSON maps',
@@ -63,7 +64,8 @@ void main() {
     'RestJsonSerializesNullMapValues (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializesNullMapValues',
               documentation: 'Serializes JSON map values in sparse maps',
@@ -103,7 +105,8 @@ void main() {
     'RestJsonSerializesZeroValuesInMaps (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializesZeroValuesInMaps',
               documentation:
@@ -140,7 +143,8 @@ void main() {
   );
   _i1.test('RestJsonSerializesSparseSetMap (request)', () async {
     await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+        operation: _i3.JsonMapsOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonSerializesSparseSetMap',
             documentation: 'A request that contains a sparse map of sets',
@@ -177,7 +181,8 @@ void main() {
   }, skip: 'Cannot handle this at the moment (empty vs. null).');
   _i1.test('RestJsonSerializesDenseSetMap (request)', () async {
     await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+        operation: _i3.JsonMapsOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonSerializesDenseSetMap',
             documentation: 'A request that contains a dense map of sets.',
@@ -214,7 +219,8 @@ void main() {
   }, skip: 'Cannot handle this at the moment (empty vs. null).');
   _i1.test('RestJsonSerializesSparseSetMapAndRetainsNull (request)', () async {
     await _i2.httpRequestTest(
-        operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+        operation: _i3.JsonMapsOperation(
+            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonSerializesSparseSetMapAndRetainsNull',
             documentation: 'A request that contains a sparse map of sets.',
@@ -254,7 +260,8 @@ void main() {
     'RestJsonJsonMaps (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonMaps',
               documentation: 'Deserializes JSON maps',
@@ -292,7 +299,8 @@ void main() {
     'RestJsonDeserializesNullMapValues (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializesNullMapValues',
               documentation: 'Deserializes null JSON map values',
@@ -326,7 +334,8 @@ void main() {
     'RestJsonDeserializesZeroValuesInMaps (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializesZeroValuesInMaps',
               documentation:
@@ -359,7 +368,8 @@ void main() {
     'RestJsonDeserializesSparseSetMap (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializesSparseSetMap',
               documentation: 'A response that contains a sparse map of sets',
@@ -393,7 +403,8 @@ void main() {
     'RestJsonDeserializesDenseSetMap (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializesDenseSetMap',
               documentation: 'A response that contains a dense map of sets.',
@@ -427,7 +438,8 @@ void main() {
     'RestJsonDeserializesSparseSetMapAndRetainsNull (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializesSparseSetMapAndRetainsNull',
               documentation: 'A response that contains a sparse map of sets.',
@@ -462,7 +474,8 @@ void main() {
     'RestJsonDeserializesDenseSetMapAndSkipsNull (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonMapsOperation(region: 'us-east-1'),
+          operation: _i3.JsonMapsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializesDenseSetMapAndSkipsNull',
               documentation:

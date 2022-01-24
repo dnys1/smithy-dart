@@ -14,7 +14,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 /// This operation uses unions for inputs and outputs.
 class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
     _i2.JsonUnionsInput, _i3.JsonUnionsOutput, _i3.JsonUnionsOutput> {
-  JsonUnionsOperation({required this.region});
+  JsonUnionsOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -25,13 +26,13 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
         builderFactories: _i5.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.JsonUnions'),
-          _i4.WithEndpointResolver(
-              'JSON RPC 10', region, _i4.AWSEndpointResolver(_partitions))
+          const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.JsonUnions')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -91,6 +92,11 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'JSON RPC 10';
+
   @override
   _i1.HttpRequest buildRequest(_i2.JsonUnionsInput input) =>
       _i1.HttpRequest((b) {
@@ -105,4 +111,9 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
       _i3.JsonUnionsOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

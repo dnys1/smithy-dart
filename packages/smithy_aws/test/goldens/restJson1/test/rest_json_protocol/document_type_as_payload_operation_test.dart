@@ -17,7 +17,8 @@ void main() {
     'DocumentTypeAsPayloadInput (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeAsPayloadOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeAsPayloadOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentTypeAsPayloadInput',
               documentation:
@@ -52,7 +53,8 @@ void main() {
     'DocumentTypeAsPayloadInputString (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.DocumentTypeAsPayloadOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeAsPayloadOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'DocumentTypeAsPayloadInputString',
               documentation:
@@ -85,7 +87,8 @@ void main() {
     'DocumentTypeAsPayloadOutput (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeAsPayloadOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeAsPayloadOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentTypeAsPayloadOutput',
               documentation:
@@ -114,7 +117,8 @@ void main() {
     'DocumentTypeAsPayloadOutputString (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.DocumentTypeAsPayloadOperation(region: 'us-east-1'),
+          operation: _i3.DocumentTypeAsPayloadOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'DocumentTypeAsPayloadOutputString',
               documentation: 'Serializes a document as a payload string.',

@@ -19,7 +19,8 @@ void main() {
     'RestJsonAllQueryStringTypes (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.AllQueryStringTypesOperation(region: 'us-east-1'),
+          operation: _i3.AllQueryStringTypesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonAllQueryStringTypes',
               documentation:
@@ -107,7 +108,8 @@ void main() {
     'RestJsonQueryStringMap (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.AllQueryStringTypesOperation(region: 'us-east-1'),
+          operation: _i3.AllQueryStringTypesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonQueryStringMap',
               documentation: 'Handles query string maps',
@@ -148,7 +150,8 @@ void main() {
     'RestJsonQueryStringEscaping (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.AllQueryStringTypesOperation(region: 'us-east-1'),
+          operation: _i3.AllQueryStringTypesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonQueryStringEscaping',
               documentation:
@@ -181,7 +184,8 @@ void main() {
     'RestJsonSupportsNaNFloatQueryValues (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.AllQueryStringTypesOperation(region: 'us-east-1'),
+          operation: _i3.AllQueryStringTypesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNaNFloatQueryValues',
               documentation: 'Supports handling NaN float query values.',
@@ -214,7 +218,8 @@ void main() {
     'RestJsonSupportsInfinityFloatQueryValues (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.AllQueryStringTypesOperation(region: 'us-east-1'),
+          operation: _i3.AllQueryStringTypesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsInfinityFloatQueryValues',
               documentation: 'Supports handling Infinity float query values.',
@@ -247,7 +252,8 @@ void main() {
     'RestJsonSupportsNegativeInfinityFloatQueryValues (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.AllQueryStringTypesOperation(region: 'us-east-1'),
+          operation: _i3.AllQueryStringTypesOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatQueryValues',
               documentation: 'Supports handling -Infinity float query values.',

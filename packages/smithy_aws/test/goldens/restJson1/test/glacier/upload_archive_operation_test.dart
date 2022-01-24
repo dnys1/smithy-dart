@@ -28,6 +28,7 @@ void main() {
   _i1.test('GlacierVersionHeader (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.UploadArchiveOperation(
+            baseUri: Uri.parse('https://example.com'),
             region: 'us-east-1',
             credentialsProvider: const _i4.AWSCredentialsProvider(
                 _i4.AWSCredentials(
@@ -60,6 +61,7 @@ void main() {
   _i1.test('GlacierChecksums (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.UploadArchiveOperation(
+            baseUri: Uri.parse('https://example.com'),
             region: 'us-east-1',
             credentialsProvider: const _i4.AWSCredentialsProvider(
                 _i4.AWSCredentials(
@@ -98,6 +100,7 @@ void main() {
   _i1.test('GlacierAccountId (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.UploadArchiveOperation(
+            baseUri: Uri.parse('https://example.com'),
             region: 'us-east-1',
             credentialsProvider: const _i4.AWSCredentialsProvider(
                 _i4.AWSCredentials(

@@ -13,7 +13,9 @@ void main() {
     'AwsJson10HostWithPath (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HostWithPathOperation(region: 'us-east-1'),
+          operation: _i3.HostWithPathOperation(
+              baseUri: Uri.parse('https://example.com/custom'),
+              region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10HostWithPath',
               documentation:

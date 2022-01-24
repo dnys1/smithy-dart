@@ -17,7 +17,8 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
     _i2.EmptyInputAndEmptyOutputInput,
     _i3.EmptyInputAndEmptyOutputOutput,
     _i3.EmptyInputAndEmptyOutputOutput> {
-  EmptyInputAndEmptyOutputOperation({required this.region});
+  EmptyInputAndEmptyOutputOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -32,13 +33,13 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonRpc10.EmptyInputAndEmptyOutput'),
-          _i4.WithEndpointResolver(
-              'JSON RPC 10', region, _i4.AWSEndpointResolver(_partitions))
+              'X-Amz-Target', 'JsonRpc10.EmptyInputAndEmptyOutput')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -98,6 +99,11 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'JSON RPC 10';
+
   @override
   _i1.HttpRequest buildRequest(_i2.EmptyInputAndEmptyOutputInput input) =>
       _i1.HttpRequest((b) {
@@ -113,4 +119,9 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
       _i3.EmptyInputAndEmptyOutputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

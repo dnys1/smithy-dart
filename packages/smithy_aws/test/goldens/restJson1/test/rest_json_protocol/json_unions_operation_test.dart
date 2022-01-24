@@ -17,7 +17,8 @@ void main() {
     'RestJsonSerializeStringUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeStringUnionValue',
               documentation: 'Serializes a string union value',
@@ -51,7 +52,8 @@ void main() {
     'RestJsonSerializeBooleanUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeBooleanUnionValue',
               documentation: 'Serializes a boolean union value',
@@ -85,7 +87,8 @@ void main() {
     'RestJsonSerializeNumberUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeNumberUnionValue',
               documentation: 'Serializes a number union value',
@@ -118,7 +121,8 @@ void main() {
     'RestJsonSerializeBlobUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeBlobUnionValue',
               documentation: 'Serializes a blob union value',
@@ -152,7 +156,8 @@ void main() {
     'RestJsonSerializeTimestampUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeTimestampUnionValue',
               documentation: 'Serializes a timestamp union value',
@@ -186,7 +191,8 @@ void main() {
     'RestJsonSerializeEnumUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeEnumUnionValue',
               documentation: 'Serializes an enum union value',
@@ -220,7 +226,8 @@ void main() {
     'RestJsonSerializeListUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeListUnionValue',
               documentation: 'Serializes a list union value',
@@ -256,7 +263,8 @@ void main() {
     'RestJsonSerializeMapUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeMapUnionValue',
               documentation: 'Serializes a map union value',
@@ -292,7 +300,8 @@ void main() {
     'RestJsonSerializeStructureUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeStructureUnionValue',
               documentation: 'Serializes a structure union value',
@@ -328,7 +337,8 @@ void main() {
     'RestJsonSerializeRenamedStructureUnionValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializeRenamedStructureUnionValue',
               documentation: 'Serializes a renamed structure union value',
@@ -364,7 +374,8 @@ void main() {
     'RestJsonDeserializeStringUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeStringUnionValue',
               documentation: 'Deserializes a string union value',
@@ -392,7 +403,8 @@ void main() {
     'RestJsonDeserializeBooleanUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeBooleanUnionValue',
               documentation: 'Deserializes a boolean union value',
@@ -420,7 +432,8 @@ void main() {
     'RestJsonDeserializeNumberUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeNumberUnionValue',
               documentation: 'Deserializes a number union value',
@@ -447,7 +460,8 @@ void main() {
     'RestJsonDeserializeBlobUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeBlobUnionValue',
               documentation: 'Deserializes a blob union value',
@@ -475,7 +489,8 @@ void main() {
     'RestJsonDeserializeTimestampUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeTimestampUnionValue',
               documentation: 'Deserializes a timestamp union value',
@@ -503,7 +518,8 @@ void main() {
     'RestJsonDeserializeEnumUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeEnumUnionValue',
               documentation: 'Deserializes an enum union value',
@@ -531,7 +547,8 @@ void main() {
     'RestJsonDeserializeListUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeListUnionValue',
               documentation: 'Deserializes a list union value',
@@ -561,7 +578,8 @@ void main() {
     'RestJsonDeserializeMapUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeMapUnionValue',
               documentation: 'Deserializes a map union value',
@@ -591,7 +609,8 @@ void main() {
     'RestJsonDeserializeStructureUnionValue (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonUnionsOperation(region: 'us-east-1'),
+          operation: _i3.JsonUnionsOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDeserializeStructureUnionValue',
               documentation: 'Deserializes a structure union value',

@@ -16,7 +16,8 @@ void main() {
     'RestJsonTimestampFormatHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TimestampFormatHeadersOperation(region: 'us-east-1'),
+          operation: _i3.TimestampFormatHeadersOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTimestampFormatHeaders',
               documentation:
@@ -66,7 +67,8 @@ void main() {
     'RestJsonTimestampFormatHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.TimestampFormatHeadersOperation(region: 'us-east-1'),
+          operation: _i3.TimestampFormatHeadersOperation(
+              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonTimestampFormatHeaders',
               documentation:

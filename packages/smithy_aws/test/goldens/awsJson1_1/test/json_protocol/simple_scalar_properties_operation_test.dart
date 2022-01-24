@@ -18,6 +18,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
@@ -58,6 +59,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
@@ -99,6 +101,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
@@ -140,6 +143,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
@@ -171,6 +175,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
@@ -203,6 +208,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
+              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(

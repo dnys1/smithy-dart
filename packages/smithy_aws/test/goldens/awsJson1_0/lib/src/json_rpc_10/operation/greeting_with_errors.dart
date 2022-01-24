@@ -20,7 +20,8 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
     _i2.GreetingWithErrorsInput,
     _i3.GreetingWithErrorsOutput,
     _i3.GreetingWithErrorsOutput> {
-  GreetingWithErrorsOperation({required this.region});
+  GreetingWithErrorsOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -34,13 +35,13 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
         builderFactories: _i5.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.GreetingWithErrors'),
-          _i4.WithEndpointResolver(
-              'JSON RPC 10', region, _i4.AWSEndpointResolver(_partitions))
+          const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.GreetingWithErrors')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i4.Partition(
@@ -100,6 +101,11 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i4.AWSEndpointResolver _endpointResolver =
+      _i4.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'JSON RPC 10';
+
   @override
   _i1.HttpRequest buildRequest(_i2.GreetingWithErrorsInput input) =>
       _i1.HttpRequest((b) {
@@ -134,4 +140,9 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
             _i9.InvalidGreeting,
             builder: _i9.InvalidGreeting.fromResponse)
       ];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

@@ -13,17 +13,23 @@ import 'package:aws_signature_v4/aws_signature_v4.dart' as _i1;
 
 class MachineLearningClient {
   const MachineLearningClient(
-      {required this.region,
+      {Uri? baseUri,
+      required this.region,
       this.credentialsProvider =
-          const _i1.AWSCredentialsProvider.dartEnvironment()});
+          const _i1.AWSCredentialsProvider.dartEnvironment()})
+      : _baseUri = baseUri;
 
   final String region;
+
+  final Uri? _baseUri;
 
   final _i1.AWSCredentialsProvider credentialsProvider;
 
   _i2.Future<_i3.PredictOutput> predict(_i4.PredictInput input) {
     return _i5.PredictOperation(
-            region: region, credentialsProvider: credentialsProvider)
+            region: region,
+            baseUri: _baseUri,
+            credentialsProvider: credentialsProvider)
         .run(input);
   }
 }

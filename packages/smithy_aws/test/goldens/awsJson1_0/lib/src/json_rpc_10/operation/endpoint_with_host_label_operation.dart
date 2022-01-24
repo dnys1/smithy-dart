@@ -14,7 +14,8 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
     _i2.EndpointWithHostLabelOperationInput,
     _i1.Unit,
     _i1.Unit> {
-  EndpointWithHostLabelOperation({required this.region});
+  EndpointWithHostLabelOperation({Uri? baseUri, required this.region})
+      : _baseUri = baseUri;
 
   @override
   late final List<
@@ -29,13 +30,13 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
         interceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonRpc10.EndpointWithHostLabelOperation'),
-          _i3.WithEndpointResolver(
-              'JSON RPC 10', region, _i3.AWSEndpointResolver(_partitions))
+              'X-Amz-Target', 'JsonRpc10.EndpointWithHostLabelOperation')
         ])
   ];
 
   final String region;
+
+  final Uri? _baseUri;
 
   static final _partitions = [
     _i3.Partition(
@@ -95,6 +96,11 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
         endpoints: const {})
   ];
 
+  late final _i3.AWSEndpointResolver _endpointResolver =
+      _i3.AWSEndpointResolver(_partitions);
+
+  static const String _sdkId = 'JSON RPC 10';
+
   @override
   _i1.HttpRequest buildRequest(_i2.EndpointWithHostLabelOperationInput input) =>
       _i1.HttpRequest((b) {
@@ -110,4 +116,9 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
+  @override
+  Uri get baseUri => _baseUri ?? endpoint.uri;
+  @override
+  _i1.Endpoint get endpoint =>
+      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
 }

@@ -15,6 +15,8 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
     _i2.QueryIdempotencyTokenAutoFillInput,
     _i1.Unit,
     _i1.Unit> {
+  QueryIdempotencyTokenAutoFillOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -27,10 +29,13 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
         builderFactories: _i4.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithNoContentLength(),
-          const _i1.WithNoHeader('Content-Type')
+          const _i1.WithNoHeader('Content-Length'),
+          const _i1.WithNoHeader('Content-Type'),
+          _i3.WithEndpointResolver('Rest Json Protocol', region)
         ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.QueryIdempotencyTokenAutoFillInput input) =>

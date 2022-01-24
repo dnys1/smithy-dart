@@ -331,11 +331,13 @@ import 'package:rest_json1/src/rest_json/operation/unit_input_and_output.dart'
 import 'package:smithy/smithy.dart' as _i16;
 
 class RestJsonClient {
-  RestJsonClient();
+  RestJsonClient({required this.region});
+
+  final String region;
 
   /// This example uses all query string types.
   _i1.Future<void> allQueryStringTypes(_i2.AllQueryStringTypesInput input) {
-    return _i3.AllQueryStringTypesOperation().run(input);
+    return _i3.AllQueryStringTypesOperation(region: region).run(input);
   }
 
   /// This example uses fixed query string params and variable query string params.
@@ -343,7 +345,8 @@ class RestJsonClient {
   /// serialized (implementations may need to merge them together).
   _i1.Future<void> constantAndVariableQueryString(
       _i4.ConstantAndVariableQueryStringInput input) {
-    return _i5.ConstantAndVariableQueryStringOperation().run(input);
+    return _i5.ConstantAndVariableQueryStringOperation(region: region)
+        .run(input);
   }
 
   /// This example uses a constant query string parameters and a label.
@@ -351,19 +354,19 @@ class RestJsonClient {
   /// compatible. The fixed query string parameter named "hello" should
   /// in no way conflict with the label, `{hello}`.
   _i1.Future<void> constantQueryString(_i6.ConstantQueryStringInput input) {
-    return _i7.ConstantQueryStringOperation().run(input);
+    return _i7.ConstantQueryStringOperation(region: region).run(input);
   }
 
   /// This example serializes a document as part of the payload.
   _i1.Future<_i8.DocumentTypeInputOutput> documentType(
       _i8.DocumentTypeInputOutput input) {
-    return _i9.DocumentTypeOperation().run(input);
+    return _i9.DocumentTypeOperation(region: region).run(input);
   }
 
   /// This example serializes a document as the entire HTTP payload.
   _i1.Future<_i10.DocumentTypeAsPayloadInputOutput> documentTypeAsPayload(
       _i10.DocumentTypeAsPayloadInputOutput input) {
-    return _i11.DocumentTypeAsPayloadOperation().run(input);
+    return _i11.DocumentTypeAsPayloadOperation(region: region).run(input);
   }
 
   /// The example tests how requests and responses are serialized when there's
@@ -372,15 +375,15 @@ class RestJsonClient {
   /// be rare, code generators must support this.
   _i1.Future<_i12.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
       _i13.EmptyInputAndEmptyOutputInput input) {
-    return _i14.EmptyInputAndEmptyOutputOperation().run(input);
+    return _i14.EmptyInputAndEmptyOutputOperation(region: region).run(input);
   }
 
   _i1.Future<void> endpointOperation() {
-    return _i15.EndpointOperation().run(const _i16.Unit());
+    return _i15.EndpointOperation(region: region).run(const _i16.Unit());
   }
 
   _i1.Future<void> endpointWithHostLabelOperation(_i17.HostLabelInput input) {
-    return _i18.EndpointWithHostLabelOperation().run(input);
+    return _i18.EndpointWithHostLabelOperation(region: region).run(input);
   }
 
   /// This operation has four possible return values:
@@ -394,22 +397,23 @@ class RestJsonClient {
   /// properly (de)serialize successful and error responses based on the
   /// the presence of the
   _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrors() {
-    return _i20.GreetingWithErrorsOperation().run(const _i16.Unit());
+    return _i20.GreetingWithErrorsOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   _i1.Future<void> hostWithPathOperation() {
-    return _i21.HostWithPathOperation().run(const _i16.Unit());
+    return _i21.HostWithPathOperation(region: region).run(const _i16.Unit());
   }
 
   /// This example tests httpChecksumRequired trait
   _i1.Future<_i22.HttpChecksumRequiredInputOutput> httpChecksumRequired(
       _i22.HttpChecksumRequiredInputOutput input) {
-    return _i23.HttpChecksumRequiredOperation().run(input);
+    return _i23.HttpChecksumRequiredOperation(region: region).run(input);
   }
 
   _i1.Future<_i24.EnumPayloadInput> httpEnumPayload(
       _i24.EnumPayloadInput input) {
-    return _i25.HttpEnumPayloadOperation().run(input);
+    return _i25.HttpEnumPayloadOperation(region: region).run(input);
   }
 
   /// This examples serializes a blob shape in the payload.
@@ -418,7 +422,7 @@ class RestJsonClient {
   /// not a structure or a union type.
   _i1.Future<_i26.HttpPayloadTraitsInputOutput> httpPayloadTraits(
       _i26.HttpPayloadTraitsInputOutput input) {
-    return _i27.HttpPayloadTraitsOperation().run(input);
+    return _i27.HttpPayloadTraitsOperation(region: region).run(input);
   }
 
   /// This examples uses a `@mediaType` trait on the payload to force a custom
@@ -426,7 +430,8 @@ class RestJsonClient {
   _i1.Future<_i28.HttpPayloadTraitsWithMediaTypeInputOutput>
       httpPayloadTraitsWithMediaType(
           _i28.HttpPayloadTraitsWithMediaTypeInputOutput input) {
-    return _i29.HttpPayloadTraitsWithMediaTypeOperation().run(input);
+    return _i29.HttpPayloadTraitsWithMediaTypeOperation(region: region)
+        .run(input);
   }
 
   /// This examples serializes a structure in the payload.
@@ -435,57 +440,60 @@ class RestJsonClient {
   /// to match the targeted structure.
   _i1.Future<_i30.HttpPayloadWithStructureInputOutput> httpPayloadWithStructure(
       _i30.HttpPayloadWithStructureInputOutput input) {
-    return _i31.HttpPayloadWithStructureOperation().run(input);
+    return _i31.HttpPayloadWithStructureOperation(region: region).run(input);
   }
 
   /// This examples adds headers to the input of a request and response by prefix.
   _i1.Future<_i32.HttpPrefixHeadersOutput> httpPrefixHeaders(
       _i33.HttpPrefixHeadersInput input) {
-    return _i34.HttpPrefixHeadersOperation().run(input);
+    return _i34.HttpPrefixHeadersOperation(region: region).run(input);
   }
 
   /// Clients that perform this test extract all headers from the response.
   _i1.Future<_i35.HttpPrefixHeadersInResponseOutput>
       httpPrefixHeadersInResponse(_i36.HttpPrefixHeadersInResponseInput input) {
-    return _i37.HttpPrefixHeadersInResponseOperation().run(input);
+    return _i37.HttpPrefixHeadersInResponseOperation(region: region).run(input);
   }
 
   _i1.Future<void> httpRequestWithFloatLabels(
       _i38.HttpRequestWithFloatLabelsInput input) {
-    return _i39.HttpRequestWithFloatLabelsOperation().run(input);
+    return _i39.HttpRequestWithFloatLabelsOperation(region: region).run(input);
   }
 
   _i1.Future<void> httpRequestWithGreedyLabelInPath(
       _i40.HttpRequestWithGreedyLabelInPathInput input) {
-    return _i41.HttpRequestWithGreedyLabelInPathOperation().run(input);
+    return _i41.HttpRequestWithGreedyLabelInPathOperation(region: region)
+        .run(input);
   }
 
   /// The example tests how requests are serialized when there's no input
   /// payload but there are HTTP labels.
   _i1.Future<void> httpRequestWithLabels(
       _i42.HttpRequestWithLabelsInput input) {
-    return _i43.HttpRequestWithLabelsOperation().run(input);
+    return _i43.HttpRequestWithLabelsOperation(region: region).run(input);
   }
 
   /// The example tests how requests serialize different timestamp formats in the
   /// URI path.
   _i1.Future<void> httpRequestWithLabelsAndTimestampFormat(
       _i44.HttpRequestWithLabelsAndTimestampFormatInput input) {
-    return _i45.HttpRequestWithLabelsAndTimestampFormatOperation().run(input);
+    return _i45.HttpRequestWithLabelsAndTimestampFormatOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> httpRequestWithRegexLiteral(
       _i46.HttpRequestWithRegexLiteralInput input) {
-    return _i47.HttpRequestWithRegexLiteralOperation().run(input);
+    return _i47.HttpRequestWithRegexLiteralOperation(region: region).run(input);
   }
 
   _i1.Future<_i48.HttpResponseCodeOutput> httpResponseCode() {
-    return _i49.HttpResponseCodeOperation().run(const _i16.Unit());
+    return _i49.HttpResponseCodeOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   _i1.Future<_i50.StringPayloadInput> httpStringPayload(
       _i50.StringPayloadInput input) {
-    return _i51.HttpStringPayloadOperation().run(input);
+    return _i51.HttpStringPayloadOperation(region: region).run(input);
   }
 
   /// This example ensures that query string bound request parameters are
@@ -493,26 +501,27 @@ class RestJsonClient {
   /// the request and response.
   _i1.Future<_i52.IgnoreQueryParamsInResponseOutput>
       ignoreQueryParamsInResponse() {
-    return _i53.IgnoreQueryParamsInResponseOperation().run(const _i16.Unit());
+    return _i53.IgnoreQueryParamsInResponseOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   /// The example tests how requests and responses are serialized when there is
   /// no input or output payload but there are HTTP header bindings.
   _i1.Future<_i54.InputAndOutputWithHeadersIo> inputAndOutputWithHeaders(
       _i54.InputAndOutputWithHeadersIo input) {
-    return _i55.InputAndOutputWithHeadersOperation().run(input);
+    return _i55.InputAndOutputWithHeadersOperation(region: region).run(input);
   }
 
   /// Blobs are base64 encoded
   _i1.Future<_i56.JsonBlobsInputOutput> jsonBlobs(
       _i56.JsonBlobsInputOutput input) {
-    return _i57.JsonBlobsOperation().run(input);
+    return _i57.JsonBlobsOperation(region: region).run(input);
   }
 
   /// This example serializes enums as top level properties, in lists, sets, and maps.
   _i1.Future<_i58.JsonEnumsInputOutput> jsonEnums(
       _i58.JsonEnumsInputOutput input) {
-    return _i59.JsonEnumsOperation().run(input);
+    return _i59.JsonEnumsOperation(region: region).run(input);
   }
 
   /// This test case serializes JSON lists for the following cases for both
@@ -524,13 +533,13 @@ class RestJsonClient {
   /// 4. Lists of structures.
   _i1.Future<_i60.JsonListsInputOutput> jsonLists(
       _i60.JsonListsInputOutput input) {
-    return _i61.JsonListsOperation().run(input);
+    return _i61.JsonListsOperation(region: region).run(input);
   }
 
   /// The example tests basic map serialization.
   _i1.Future<_i62.JsonMapsInputOutput> jsonMaps(
       _i62.JsonMapsInputOutput input) {
-    return _i63.JsonMapsOperation().run(input);
+    return _i63.JsonMapsOperation(region: region).run(input);
   }
 
   /// This tests how timestamps are serialized, including using the
@@ -538,174 +547,193 @@ class RestJsonClient {
   /// values.
   _i1.Future<_i64.JsonTimestampsInputOutput> jsonTimestamps(
       _i64.JsonTimestampsInputOutput input) {
-    return _i65.JsonTimestampsOperation().run(input);
+    return _i65.JsonTimestampsOperation(region: region).run(input);
   }
 
   /// This operation uses unions for inputs and outputs.
   _i1.Future<_i66.UnionInputOutput> jsonUnions(_i66.UnionInputOutput input) {
-    return _i67.JsonUnionsOperation().run(input);
+    return _i67.JsonUnionsOperation(region: region).run(input);
   }
 
   _i1.Future<_i68.GreetingStruct> malformedAcceptWithBody() {
-    return _i69.MalformedAcceptWithBodyOperation().run(const _i16.Unit());
+    return _i69.MalformedAcceptWithBodyOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   _i1.Future<void> malformedAcceptWithGenericString(
       _i70.MalformedAcceptWithGenericStringInput input) {
-    return _i71.MalformedAcceptWithGenericStringOperation().run(input);
+    return _i71.MalformedAcceptWithGenericStringOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<_i72.MalformedAcceptWithPayloadOutput>
       malformedAcceptWithPayload() {
-    return _i73.MalformedAcceptWithPayloadOperation().run(const _i16.Unit());
+    return _i73.MalformedAcceptWithPayloadOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   _i1.Future<void> malformedBlob(_i74.MalformedBlobInput input) {
-    return _i75.MalformedBlobOperation().run(input);
+    return _i75.MalformedBlobOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedBoolean(_i76.MalformedBooleanInput input) {
-    return _i77.MalformedBooleanOperation().run(input);
+    return _i77.MalformedBooleanOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedByte(_i78.MalformedByteInput input) {
-    return _i79.MalformedByteOperation().run(input);
+    return _i79.MalformedByteOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedContentTypeWithBody(_i68.GreetingStruct input) {
-    return _i80.MalformedContentTypeWithBodyOperation().run(input);
+    return _i80.MalformedContentTypeWithBodyOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedContentTypeWithGenericString(
       _i81.MalformedContentTypeWithGenericStringInput input) {
-    return _i82.MalformedContentTypeWithGenericStringOperation().run(input);
+    return _i82.MalformedContentTypeWithGenericStringOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedContentTypeWithPayload(
       _i83.MalformedContentTypeWithPayloadInput input) {
-    return _i84.MalformedContentTypeWithPayloadOperation().run(input);
+    return _i84.MalformedContentTypeWithPayloadOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedContentTypeWithoutBody() {
-    return _i85.MalformedContentTypeWithoutBodyOperation()
+    return _i85.MalformedContentTypeWithoutBodyOperation(region: region)
         .run(const _i16.Unit());
   }
 
   _i1.Future<void> malformedDouble(_i86.MalformedDoubleInput input) {
-    return _i87.MalformedDoubleOperation().run(input);
+    return _i87.MalformedDoubleOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedFloat(_i88.MalformedFloatInput input) {
-    return _i89.MalformedFloatOperation().run(input);
+    return _i89.MalformedFloatOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedInteger(_i90.MalformedIntegerInput input) {
-    return _i91.MalformedIntegerOperation().run(input);
+    return _i91.MalformedIntegerOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedList(_i92.MalformedListInput input) {
-    return _i93.MalformedListOperation().run(input);
+    return _i93.MalformedListOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedLong(_i94.MalformedLongInput input) {
-    return _i95.MalformedLongOperation().run(input);
+    return _i95.MalformedLongOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedMap(_i96.MalformedMapInput input) {
-    return _i97.MalformedMapOperation().run(input);
+    return _i97.MalformedMapOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedRequestBody(_i98.MalformedRequestBodyInput input) {
-    return _i99.MalformedRequestBodyOperation().run(input);
+    return _i99.MalformedRequestBodyOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedSet(_i100.MalformedSetInput input) {
-    return _i101.MalformedSetOperation().run(input);
+    return _i101.MalformedSetOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedShort(_i102.MalformedShortInput input) {
-    return _i103.MalformedShortOperation().run(input);
+    return _i103.MalformedShortOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedString(_i104.MalformedStringInput input) {
-    return _i105.MalformedStringOperation().run(input);
+    return _i105.MalformedStringOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedTimestampBodyDateTime(
       _i106.MalformedTimestampBodyDateTimeInput input) {
-    return _i107.MalformedTimestampBodyDateTimeOperation().run(input);
+    return _i107.MalformedTimestampBodyDateTimeOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampBodyDefault(
       _i108.MalformedTimestampBodyDefaultInput input) {
-    return _i109.MalformedTimestampBodyDefaultOperation().run(input);
+    return _i109.MalformedTimestampBodyDefaultOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampBodyHttpDate(
       _i110.MalformedTimestampBodyHttpDateInput input) {
-    return _i111.MalformedTimestampBodyHttpDateOperation().run(input);
+    return _i111.MalformedTimestampBodyHttpDateOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampHeaderDateTime(
       _i112.MalformedTimestampHeaderDateTimeInput input) {
-    return _i113.MalformedTimestampHeaderDateTimeOperation().run(input);
+    return _i113.MalformedTimestampHeaderDateTimeOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampHeaderDefault(
       _i114.MalformedTimestampHeaderDefaultInput input) {
-    return _i115.MalformedTimestampHeaderDefaultOperation().run(input);
+    return _i115.MalformedTimestampHeaderDefaultOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampHeaderEpoch(
       _i116.MalformedTimestampHeaderEpochInput input) {
-    return _i117.MalformedTimestampHeaderEpochOperation().run(input);
+    return _i117.MalformedTimestampHeaderEpochOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampPathDefault(
       _i118.MalformedTimestampPathDefaultInput input) {
-    return _i119.MalformedTimestampPathDefaultOperation().run(input);
+    return _i119.MalformedTimestampPathDefaultOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampPathEpoch(
       _i120.MalformedTimestampPathEpochInput input) {
-    return _i121.MalformedTimestampPathEpochOperation().run(input);
+    return _i121.MalformedTimestampPathEpochOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampPathHttpDate(
       _i122.MalformedTimestampPathHttpDateInput input) {
-    return _i123.MalformedTimestampPathHttpDateOperation().run(input);
+    return _i123.MalformedTimestampPathHttpDateOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampQueryDefault(
       _i124.MalformedTimestampQueryDefaultInput input) {
-    return _i125.MalformedTimestampQueryDefaultOperation().run(input);
+    return _i125.MalformedTimestampQueryDefaultOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampQueryEpoch(
       _i126.MalformedTimestampQueryEpochInput input) {
-    return _i127.MalformedTimestampQueryEpochOperation().run(input);
+    return _i127.MalformedTimestampQueryEpochOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedTimestampQueryHttpDate(
       _i128.MalformedTimestampQueryHttpDateInput input) {
-    return _i129.MalformedTimestampQueryHttpDateOperation().run(input);
+    return _i129.MalformedTimestampQueryHttpDateOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> malformedUnion(_i130.MalformedUnionInput input) {
-    return _i131.MalformedUnionOperation().run(input);
+    return _i131.MalformedUnionOperation(region: region).run(input);
   }
 
   /// This example ensures that mediaType strings are base64 encoded in headers.
   _i1.Future<_i132.MediaTypeHeaderOutput> mediaTypeHeader(
       _i133.MediaTypeHeaderInput input) {
-    return _i134.MediaTypeHeaderOperation().run(input);
+    return _i134.MediaTypeHeaderOperation(region: region).run(input);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has no input or output.
   /// While this should be rare, code generators must support this.
   _i1.Future<void> noInputAndNoOutput() {
-    return _i135.NoInputAndNoOutputOperation().run(const _i16.Unit());
+    return _i135.NoInputAndNoOutputOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   /// The example tests how requests and responses are serialized when there's
@@ -713,57 +741,60 @@ class RestJsonClient {
   /// output is empty. While this should be rare, code generators must support
   /// this.
   _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutput() {
-    return _i137.NoInputAndOutputOperation().run(const _i16.Unit());
+    return _i137.NoInputAndOutputOperation(region: region)
+        .run(const _i16.Unit());
   }
 
   /// Null and empty headers are not sent over the wire.
   _i1.Future<_i138.NullAndEmptyHeadersIo> nullAndEmptyHeadersClient(
       _i138.NullAndEmptyHeadersIo input) {
-    return _i139.NullAndEmptyHeadersClientOperation().run(input);
+    return _i139.NullAndEmptyHeadersClientOperation(region: region).run(input);
   }
 
   /// Null and empty headers are not sent over the wire.
   _i1.Future<_i138.NullAndEmptyHeadersIo> nullAndEmptyHeadersServer(
       _i138.NullAndEmptyHeadersIo input) {
-    return _i140.NullAndEmptyHeadersServerOperation().run(input);
+    return _i140.NullAndEmptyHeadersServerOperation(region: region).run(input);
   }
 
   /// Omits null, but serializes empty string value.
   _i1.Future<void> omitsNullSerializesEmptyString(
       _i141.OmitsNullSerializesEmptyStringInput input) {
-    return _i142.OmitsNullSerializesEmptyStringOperation().run(input);
+    return _i142.OmitsNullSerializesEmptyStringOperation(region: region)
+        .run(input);
   }
 
   /// This operation defines a union with a Unit member.
   _i1.Future<_i143.PostPlayerActionOutput> postPlayerAction(
       _i144.PostPlayerActionInput input) {
-    return _i145.PostPlayerActionOperation().run(input);
+    return _i145.PostPlayerActionOperation(region: region).run(input);
   }
 
   /// Automatically adds idempotency tokens.
   _i1.Future<void> queryIdempotencyTokenAutoFill(
       _i146.QueryIdempotencyTokenAutoFillInput input) {
-    return _i147.QueryIdempotencyTokenAutoFillOperation().run(input);
+    return _i147.QueryIdempotencyTokenAutoFillOperation(region: region)
+        .run(input);
   }
 
   _i1.Future<void> queryParamsAsStringListMap(
       _i148.QueryParamsAsStringListMapInput input) {
-    return _i149.QueryParamsAsStringListMapOperation().run(input);
+    return _i149.QueryParamsAsStringListMapOperation(region: region).run(input);
   }
 
   _i1.Future<void> queryPrecedence(_i150.QueryPrecedenceInput input) {
-    return _i151.QueryPrecedenceOperation().run(input);
+    return _i151.QueryPrecedenceOperation(region: region).run(input);
   }
 
   /// Recursive shapes
   _i1.Future<_i152.RecursiveShapesInputOutput> recursiveShapes(
       _i152.RecursiveShapesInputOutput input) {
-    return _i153.RecursiveShapesOperation().run(input);
+    return _i153.RecursiveShapesOperation(region: region).run(input);
   }
 
   _i1.Future<_i154.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
       _i154.SimpleScalarPropertiesInputOutput input) {
-    return _i155.SimpleScalarPropertiesOperation().run(input);
+    return _i155.SimpleScalarPropertiesOperation(region: region).run(input);
   }
 
   /// This examples serializes a streaming blob shape in the request body.
@@ -772,7 +803,7 @@ class RestJsonClient {
   /// not a structure or a union type.
   _i1.Future<_i156.StreamingTraitsInputOutput> streamingTraits(
       _i156.StreamingTraitsInputOutput input) {
-    return _i157.StreamingTraitsOperation().run(input);
+    return _i157.StreamingTraitsOperation(region: region).run(input);
   }
 
   /// This examples serializes a streaming blob shape with a required content
@@ -783,7 +814,8 @@ class RestJsonClient {
   _i1.Future<_i158.StreamingTraitsRequireLengthInputOutput>
       streamingTraitsRequireLength(
           _i158.StreamingTraitsRequireLengthInputOutput input) {
-    return _i159.StreamingTraitsRequireLengthOperation().run(input);
+    return _i159.StreamingTraitsRequireLengthOperation(region: region)
+        .run(input);
   }
 
   /// This examples serializes a streaming media-typed blob shape in the request body.
@@ -793,7 +825,8 @@ class RestJsonClient {
   _i1.Future<_i160.StreamingTraitsWithMediaTypeInputOutput>
       streamingTraitsWithMediaType(
           _i160.StreamingTraitsWithMediaTypeInputOutput input) {
-    return _i161.StreamingTraitsWithMediaTypeOperation().run(input);
+    return _i161.StreamingTraitsWithMediaTypeOperation(region: region)
+        .run(input);
   }
 
   /// This example operation serializes a structure in the HTTP body.
@@ -804,7 +837,7 @@ class RestJsonClient {
   ///
   _i1.Future<_i162.TestBodyStructureInputOutput> testBodyStructure(
       _i162.TestBodyStructureInputOutput input) {
-    return _i163.TestBodyStructureOperation().run(input);
+    return _i163.TestBodyStructureOperation(region: region).run(input);
   }
 
   /// This example operation serializes a request without an HTTP body.
@@ -815,7 +848,7 @@ class RestJsonClient {
   ///
   _i1.Future<_i164.TestNoPayloadInputOutput> testNoPayload(
       _i164.TestNoPayloadInputOutput input) {
-    return _i165.TestNoPayloadOperation().run(input);
+    return _i165.TestNoPayloadOperation(region: region).run(input);
   }
 
   /// This example operation serializes a payload targeting a blob.
@@ -828,7 +861,7 @@ class RestJsonClient {
   ///
   _i1.Future<_i166.TestPayloadBlobInputOutput> testPayloadBlob(
       _i166.TestPayloadBlobInputOutput input) {
-    return _i167.TestPayloadBlobOperation().run(input);
+    return _i167.TestPayloadBlobOperation(region: region).run(input);
   }
 
   /// This example operation serializes a payload targeting a structure.
@@ -838,17 +871,18 @@ class RestJsonClient {
   ///
   _i1.Future<_i168.TestPayloadStructureInputOutput> testPayloadStructure(
       _i168.TestPayloadStructureInputOutput input) {
-    return _i169.TestPayloadStructureOperation().run(input);
+    return _i169.TestPayloadStructureOperation(region: region).run(input);
   }
 
   /// This example tests how timestamp request and response headers are serialized.
   _i1.Future<_i170.TimestampFormatHeadersIo> timestampFormatHeaders(
       _i170.TimestampFormatHeadersIo input) {
-    return _i171.TimestampFormatHeadersOperation().run(input);
+    return _i171.TimestampFormatHeadersOperation(region: region).run(input);
   }
 
   /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
   _i1.Future<void> unitInputAndOutput() {
-    return _i172.UnitInputAndOutputOperation().run(const _i16.Unit());
+    return _i172.UnitInputAndOutputOperation(region: region)
+        .run(const _i16.Unit());
   }
 }

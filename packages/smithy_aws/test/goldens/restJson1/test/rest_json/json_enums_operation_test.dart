@@ -17,7 +17,7 @@ void main() {
     'RestJsonJsonEnums (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonEnumsOperation(),
+          operation: _i3.JsonEnumsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonEnums',
               documentation: 'Serializes simple scalar properties',
@@ -56,7 +56,7 @@ void main() {
     'RestJsonJsonEnums (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonEnumsOperation(),
+          operation: _i3.JsonEnumsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonEnums',
               documentation: 'Serializes simple scalar properties',

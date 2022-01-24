@@ -12,9 +12,9 @@ part 'service_trait.g.dart';
 @JsonSerializable()
 class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   const ServiceTrait({
+    required this.sdkId,
     this.cloudFormationName,
     this.arnNamespace,
-    this.sdkId,
     this.cloudTrailEventSource,
     this.endpointPrefix,
   });
@@ -42,7 +42,7 @@ class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   /// The SDK service ID.
   ///
   /// This value is used to generate SDK class names.
-  final String? sdkId;
+  final String sdkId;
 
   /// The CloudTrail event source name of the service.
   final String? cloudTrailEventSource;
@@ -55,9 +55,16 @@ class ServiceTrait with AWSSerializable implements Trait<ServiceTrait> {
   /// sdkId property should be used for those purposes.
   final String? endpointPrefix;
 
-  /// Resolves the service trait definition for the given [target] shape.
+  /// Resolves the service trait definition for the given [target] service shape.
   ResolvedServiceTrait resolve(ShapeId target) {
-    throw UnimplementedError();
+    final arnNamespace = this.arnNamespace ?? target.shape.toLowerCase();
+    return ResolvedServiceTrait(
+        sdkId: sdkId,
+        cloudFormationName: cloudFormationName ?? target.shape,
+        arnNamespace: arnNamespace,
+        cloudTrailEventSource:
+            cloudTrailEventSource ?? '$arnNamespace.amazonaws.com',
+        endpointPrefix: arnNamespace);
   }
 
   @override
@@ -88,10 +95,10 @@ class ResolvedServiceTrait extends ServiceTrait {
   const ResolvedServiceTrait({
     required this.cloudFormationName,
     required this.arnNamespace,
-    required this.sdkId,
+    required String sdkId,
     required this.cloudTrailEventSource,
     required this.endpointPrefix,
-  });
+  }) : super(sdkId: sdkId);
 
   factory ResolvedServiceTrait.fromJson(Object? json) =>
       _$ResolvedServiceTraitFromJson((json as Map).cast());
@@ -101,9 +108,6 @@ class ResolvedServiceTrait extends ServiceTrait {
 
   @override
   final String arnNamespace;
-
-  @override
-  final String sdkId;
 
   @override
   final String cloudTrailEventSource;

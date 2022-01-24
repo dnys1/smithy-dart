@@ -20,6 +20,8 @@ class StreamingTraitsOperation extends _i1.HttpOperation<
     _i3.StreamingTraitsInputOutput,
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsInputOutput> {
+  StreamingTraitsOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.Stream<List<int>>, _i3.StreamingTraitsInputOutput,
@@ -27,8 +29,10 @@ class StreamingTraitsOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [])
+        interceptors: [_i4.WithEndpointResolver('Rest Json Protocol', region)])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i3.StreamingTraitsInputOutput input) =>

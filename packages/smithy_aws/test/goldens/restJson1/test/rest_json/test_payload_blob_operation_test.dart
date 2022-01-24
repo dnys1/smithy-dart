@@ -18,7 +18,7 @@ void main() {
     'RestJsonHttpWithEmptyBlobPayload (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestPayloadBlobOperation(),
+          operation: _i3.TestPayloadBlobOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithEmptyBlobPayload',
               documentation: 'Serializes a payload targeting an empty blob',
@@ -51,7 +51,7 @@ void main() {
     'RestJsonTestPayloadBlob (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestPayloadBlobOperation(),
+          operation: _i3.TestPayloadBlobOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTestPayloadBlob',
               documentation: 'Serializes a payload targeting a blob',

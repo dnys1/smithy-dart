@@ -23,7 +23,7 @@ void main() {
     'RestJsonRecursiveStructuresValidate (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.RecursiveStructuresOperation(),
+          operation: _i3.RecursiveStructuresOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonRecursiveStructuresValidate',
               documentation:

@@ -19,6 +19,8 @@ class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
     _i3.HttpPayloadWithStructureInputOutput,
     _i2.NestedPayload,
     _i3.HttpPayloadWithStructureInputOutput> {
+  HttpPayloadWithStructureOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -29,8 +31,13 @@ class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i4.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i3.HttpPayloadWithStructureInputOutput input) =>

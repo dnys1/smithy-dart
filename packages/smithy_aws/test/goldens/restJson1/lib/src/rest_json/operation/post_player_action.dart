@@ -17,6 +17,8 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
     _i2.PostPlayerActionInput,
     _i3.PostPlayerActionOutput,
     _i3.PostPlayerActionOutput> {
+  PostPlayerActionOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.PostPlayerActionInput, _i2.PostPlayerActionInput,
@@ -24,8 +26,13 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i4.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.PostPlayerActionInput input) =>

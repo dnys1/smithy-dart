@@ -17,7 +17,7 @@ void main() {
     'RestJsonHttpPayloadWithStructure (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpPayloadWithStructureOperation(),
+          operation: _i3.HttpPayloadWithStructureOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPayloadWithStructure',
               documentation: 'Serializes a structure in the payload',
@@ -53,7 +53,7 @@ void main() {
     'RestJsonHttpPayloadWithStructure (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpPayloadWithStructureOperation(),
+          operation: _i3.HttpPayloadWithStructureOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpPayloadWithStructure',
               documentation: 'Serializes a structure in the payload',

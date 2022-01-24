@@ -7,8 +7,8 @@ part of 'segment.dart';
 // **************************************************************************
 
 Segment _$SegmentFromJson(Map<String, dynamic> json) => Segment(
-      content: json['content'] as String,
-      type: $enumDecode(_$SegmentTypeEnumMap, json['segmentType']),
+      json['content'] as String,
+      $enumDecode(_$SegmentTypeEnumMap, json['segmentType']),
     );
 
 Map<String, dynamic> _$SegmentToJson(Segment instance) => <String, dynamic>{

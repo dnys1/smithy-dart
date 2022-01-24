@@ -17,6 +17,8 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
     _i2.HttpPrefixHeadersInResponseInput,
     _i3.HttpPrefixHeadersInResponseOutputPayload,
     _i3.HttpPrefixHeadersInResponseOutput> {
+  HttpPrefixHeadersInResponseOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -29,10 +31,13 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
         builderFactories: _i5.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithNoContentLength(),
-          const _i1.WithNoHeader('Content-Type')
+          const _i1.WithNoHeader('Content-Length'),
+          const _i1.WithNoHeader('Content-Type'),
+          _i4.WithEndpointResolver('Rest Json Protocol', region)
         ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.HttpPrefixHeadersInResponseInput input) =>

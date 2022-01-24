@@ -13,7 +13,7 @@ void main() {
     'RestJsonNoInputAndNoOutput (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.NoInputAndNoOutputOperation(),
+          operation: _i3.NoInputAndNoOutputOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonNoInputAndNoOutput',
               documentation:
@@ -45,7 +45,7 @@ void main() {
     'RestJsonNoInputAndNoOutput (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.NoInputAndNoOutputOperation(),
+          operation: _i3.NoInputAndNoOutputOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonNoInputAndNoOutput',
               documentation:

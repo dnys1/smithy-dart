@@ -12,6 +12,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 /// The example tests basic map serialization.
 class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
     _i2.JsonMapsInputOutput, _i2.JsonMapsInputOutput, _i2.JsonMapsInputOutput> {
+  JsonMapsOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.JsonMapsInputOutput, _i2.JsonMapsInputOutput,
@@ -19,8 +21,13 @@ class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.JsonMapsInputOutput input) =>

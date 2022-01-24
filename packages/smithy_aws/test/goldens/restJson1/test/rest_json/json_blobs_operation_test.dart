@@ -17,7 +17,7 @@ void main() {
     'RestJsonJsonBlobs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonBlobsOperation(),
+          operation: _i3.JsonBlobsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonBlobs',
               documentation: 'Blobs are base64 encoded',
@@ -48,7 +48,7 @@ void main() {
     'RestJsonJsonBlobs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonBlobsOperation(),
+          operation: _i3.JsonBlobsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonBlobs',
               documentation: 'Blobs are base64 encoded',

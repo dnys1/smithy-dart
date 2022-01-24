@@ -11,6 +11,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class HttpStringPayloadOperation extends _i1.HttpOperation<String,
     _i2.StringPayloadInput, String, _i2.StringPayloadInput> {
+  HttpStringPayloadOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<String, _i2.StringPayloadInput, String,
@@ -18,8 +20,13 @@ class HttpStringPayloadOperation extends _i1.HttpOperation<String,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.StringPayloadInput input) =>

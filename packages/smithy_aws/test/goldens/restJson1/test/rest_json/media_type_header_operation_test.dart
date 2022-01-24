@@ -18,7 +18,7 @@ void main() {
     'MediaTypeHeaderInputBase64 (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.MediaTypeHeaderOperation(),
+          operation: _i3.MediaTypeHeaderOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'MediaTypeHeaderInputBase64',
               documentation:
@@ -49,7 +49,7 @@ void main() {
     'MediaTypeHeaderOutputBase64 (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.MediaTypeHeaderOperation(),
+          operation: _i3.MediaTypeHeaderOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'MediaTypeHeaderOutputBase64',
               documentation:

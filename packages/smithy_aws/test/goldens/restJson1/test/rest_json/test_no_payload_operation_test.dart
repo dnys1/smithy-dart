@@ -15,7 +15,7 @@ void main() {
     'RestJsonHttpWithNoModeledBody (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestNoPayloadOperation(),
+          operation: _i3.TestNoPayloadOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithNoModeledBody',
               documentation: 'Serializes a GET request with no modeled body',
@@ -48,7 +48,7 @@ void main() {
     'RestJsonHttpWithHeaderMemberNoModeledBody (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestNoPayloadOperation(),
+          operation: _i3.TestNoPayloadOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithHeaderMemberNoModeledBody',
               documentation:

@@ -4,7 +4,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
-import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
@@ -298,6 +297,59 @@ extension OperationShapeUtil on OperationShape {
       return HttpTrait(method: 'POST', uri: '/');
     }
     return null;
+  }
+
+  /// Fields which should be generated for the operation and its service client
+  /// based off the traits attached to this shape's service.
+  Iterable<Field> protocolFields(CodegenContext context) sync* {
+    final serviceShape = context.service;
+    if (serviceShape == null) {
+      return;
+    }
+    if (serviceShape.hasTrait<ServiceTrait>()) {
+      yield Field(
+        (f) => f
+          ..type = DartTypes.core.string
+          ..name = 'region'
+          ..modifier = FieldModifier.final$,
+      );
+    }
+    if (serviceShape.hasTrait<SigV4Trait>()) {
+      yield Field(
+        (f) => f
+          ..type = DartTypes.awsSigV4.awsCredentialsProvider
+          ..name = 'credentialsProvider'
+          ..modifier = FieldModifier.final$,
+      );
+    }
+  }
+
+  /// Constructor parameters which should be generated for the operation and its
+  /// service client based off the traits attached to this shape's service.
+  Iterable<Parameter> constructorParameters(CodegenContext context) sync* {
+    final serviceShape = context.service;
+    if (serviceShape == null) {
+      return;
+    }
+    if (serviceShape.hasTrait<ServiceTrait>()) {
+      yield Parameter(
+        (p) => p
+          ..toThis = true
+          ..required = true
+          ..name = 'region'
+          ..named = true,
+      );
+    }
+    if (serviceShape.hasTrait<SigV4Trait>()) {
+      yield Parameter(
+        (p) => p
+          ..toThis = true
+          ..defaultTo = DartTypes.awsSigV4.awsCredentialsProvider
+              .constInstanceNamed('dartEnvironment', []).code
+          ..name = 'credentialsProvider'
+          ..named = true,
+      );
+    }
   }
 }
 

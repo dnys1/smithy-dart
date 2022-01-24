@@ -13,7 +13,7 @@ void main() {
     'RestJsonEndpointTrait (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.EndpointOperation(),
+          operation: _i3.EndpointOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonEndpointTrait',
               documentation:

@@ -19,7 +19,10 @@ class AWSHttpChecksumInterceptor extends HttpInterceptor {
   final ChecksumAlgorithm alg;
 
   @override
-  Future<void> intercept(AWSStreamedHttpRequest request) async {
+  Future<AWSStreamedHttpRequest> intercept(
+    AWSStreamedHttpRequest request,
+    HttpRequestContextBuilder context,
+  ) async {
     final body = await ByteStream(request.split()).toBytes();
     final String checksum;
     switch (alg) {
@@ -42,5 +45,6 @@ class AWSHttpChecksumInterceptor extends HttpInterceptor {
         break;
     }
     request.headers[headerKey] = checksum;
+    return request;
   }
 }

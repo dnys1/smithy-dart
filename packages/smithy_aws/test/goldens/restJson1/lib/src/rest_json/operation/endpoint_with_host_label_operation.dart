@@ -10,6 +10,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class EndpointWithHostLabelOperation extends _i1
     .HttpOperation<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit, _i1.Unit> {
+  EndpointWithHostLabelOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit,
@@ -17,8 +19,13 @@ class EndpointWithHostLabelOperation extends _i1
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.HostLabelInput input) =>

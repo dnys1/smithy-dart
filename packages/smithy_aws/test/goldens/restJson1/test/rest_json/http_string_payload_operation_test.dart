@@ -16,7 +16,7 @@ void main() {
     'StringPayloadRequest (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpStringPayloadOperation(),
+          operation: _i3.HttpStringPayloadOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'StringPayloadRequest',
               documentation: null,
@@ -47,7 +47,7 @@ void main() {
     'StringPayloadResponse (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpStringPayloadOperation(),
+          operation: _i3.HttpStringPayloadOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'StringPayloadResponse',
               documentation: null,

@@ -11,6 +11,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
     _i3.EnumPayloadInput, _i2.StringEnum, _i3.EnumPayloadInput> {
+  HttpEnumPayloadOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.StringEnum, _i3.EnumPayloadInput, _i2.StringEnum,
@@ -18,8 +20,13 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i4.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i3.EnumPayloadInput input) =>

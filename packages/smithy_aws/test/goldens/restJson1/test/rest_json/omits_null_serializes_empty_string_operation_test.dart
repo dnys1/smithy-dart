@@ -16,7 +16,8 @@ void main() {
     'RestJsonOmitsNullQuery (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.OmitsNullSerializesEmptyStringOperation(),
+          operation:
+              _i3.OmitsNullSerializesEmptyStringOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonOmitsNullQuery',
               documentation: 'Omits null query values',
@@ -49,7 +50,8 @@ void main() {
     'RestJsonSerializesEmptyQueryValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.OmitsNullSerializesEmptyStringOperation(),
+          operation:
+              _i3.OmitsNullSerializesEmptyStringOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSerializesEmptyQueryValue',
               documentation: 'Serializes empty query strings',

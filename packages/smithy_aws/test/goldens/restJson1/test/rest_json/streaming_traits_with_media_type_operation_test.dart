@@ -16,7 +16,8 @@ import 'package:test/test.dart' as _i1;
 void main() {
   _i1.test('RestJsonStreamingTraitsWithMediaTypeWithBlob (request)', () async {
     await _i2.httpRequestTest(
-        operation: _i3.StreamingTraitsWithMediaTypeOperation(),
+        operation:
+            _i3.StreamingTraitsWithMediaTypeOperation(region: 'us-east-1'),
         testCase: const _i2.HttpRequestTestCase(
             id: 'RestJsonStreamingTraitsWithMediaTypeWithBlob',
             documentation:
@@ -47,7 +48,8 @@ void main() {
   }, skip: 'Streaming is not supported yet');
   _i1.test('RestJsonStreamingTraitsWithMediaTypeWithBlob (response)', () async {
     await _i2.httpResponseTest(
-        operation: _i3.StreamingTraitsWithMediaTypeOperation(),
+        operation:
+            _i3.StreamingTraitsWithMediaTypeOperation(region: 'us-east-1'),
         testCase: const _i2.HttpResponseTestCase(
             id: 'RestJsonStreamingTraitsWithMediaTypeWithBlob',
             documentation:

@@ -17,7 +17,8 @@ void main() {
     'RestJsonQueryParamsStringListMap (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.QueryParamsAsStringListMapOperation(),
+          operation:
+              _i3.QueryParamsAsStringListMapOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonQueryParamsStringListMap',
               documentation: 'Serialize query params from map of list strings',

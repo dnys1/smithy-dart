@@ -20,6 +20,8 @@ class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
     _i3.StreamingTraitsWithMediaTypeInputOutput,
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsWithMediaTypeInputOutput> {
+  StreamingTraitsWithMediaTypeOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -30,9 +32,11 @@ class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [],
+        interceptors: [_i4.WithEndpointResolver('Rest Json Protocol', region)],
         mediaType: 'text/plain')
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(

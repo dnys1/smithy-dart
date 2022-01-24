@@ -13,7 +13,7 @@ void main() {
     'RestJsonUnitInputAndOutput (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.UnitInputAndOutputOperation(),
+          operation: _i3.UnitInputAndOutputOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonUnitInputAndOutput',
               documentation:
@@ -45,7 +45,7 @@ void main() {
     'RestJsonUnitInputAndOutputNoOutput (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.UnitInputAndOutputOperation(),
+          operation: _i3.UnitInputAndOutputOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonUnitInputAndOutputNoOutput',
               documentation:

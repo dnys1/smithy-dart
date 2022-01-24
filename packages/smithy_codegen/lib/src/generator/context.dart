@@ -20,7 +20,7 @@ class CodegenContext {
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
             shapes.entries.singleWhereOrNull((entry) {
-              return entry.value.getType() == ShapeType.service;
+              return entry.value is ServiceShape;
             })?.key {
     if (serviceShapeId == null && serviceName == null) {
       throw ArgumentError(
@@ -124,6 +124,11 @@ class CodegenContext {
   );
 
   late final String serviceClientName =
+      // For backwards compatibility reasons, some services will include
+      // "service" or "API" as a suffix. New SDK major versions SHOULD strip
+      // service and api suffixes from sdkId when generating a client name.
+      //
+      // https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#using-sdk-service-id-for-client-naming
       serviceName.replaceAll(RegExp(r'(API|Client|Service)$'), '').pascalCase +
           'Client';
 

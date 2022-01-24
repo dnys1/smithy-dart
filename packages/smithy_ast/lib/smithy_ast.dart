@@ -1,6 +1,11 @@
 /// Smithy AST representation.
 library smithy_ast;
 
+export 'src/pattern/invalid_pattern_exception.dart';
+export 'src/pattern/segment.dart';
+export 'src/pattern/smithy_pattern.dart';
+export 'src/pattern/uri_pattern.dart';
+
 export 'src/smithy_ast.dart';
 
 // Shapes

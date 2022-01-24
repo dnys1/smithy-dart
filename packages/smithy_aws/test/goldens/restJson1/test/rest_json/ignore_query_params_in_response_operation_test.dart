@@ -16,7 +16,8 @@ void main() {
     'RestJsonIgnoreQueryParamsInResponse (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.IgnoreQueryParamsInResponseOperation(),
+          operation:
+              _i3.IgnoreQueryParamsInResponseOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonIgnoreQueryParamsInResponse',
               documentation:
@@ -43,7 +44,8 @@ void main() {
     'RestJsonIgnoreQueryParamsInResponseNoPayload (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.IgnoreQueryParamsInResponseOperation(),
+          operation:
+              _i3.IgnoreQueryParamsInResponseOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonIgnoreQueryParamsInResponseNoPayload',
               documentation:

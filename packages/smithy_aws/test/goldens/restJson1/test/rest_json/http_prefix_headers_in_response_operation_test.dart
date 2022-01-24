@@ -19,7 +19,8 @@ void main() {
     'HttpPrefixHeadersResponse (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpPrefixHeadersInResponseOperation(),
+          operation:
+              _i3.HttpPrefixHeadersInResponseOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'HttpPrefixHeadersResponse',
               documentation: '(de)serializes all response headers',

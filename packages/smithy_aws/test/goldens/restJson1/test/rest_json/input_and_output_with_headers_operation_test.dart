@@ -19,7 +19,8 @@ void main() {
     'RestJsonInputAndOutputWithStringHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithStringHeaders',
               documentation: 'Tests requests with string header bindings',
@@ -60,7 +61,8 @@ void main() {
     'RestJsonInputAndOutputWithQuotedStringHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
               documentation:
@@ -95,7 +97,8 @@ void main() {
     'RestJsonInputAndOutputWithNumericHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithNumericHeaders',
               documentation: 'Tests requests with numeric header bindings',
@@ -144,7 +147,8 @@ void main() {
     'RestJsonInputAndOutputWithBooleanHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithBooleanHeaders',
               documentation: 'Tests requests with boolean header bindings',
@@ -185,7 +189,8 @@ void main() {
     'RestJsonInputAndOutputWithTimestampHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithTimestampHeaders',
               documentation: 'Tests requests with timestamp header bindings',
@@ -223,7 +228,8 @@ void main() {
     'RestJsonInputAndOutputWithEnumHeaders (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithEnumHeaders',
               documentation: 'Tests requests with enum header bindings',
@@ -259,7 +265,8 @@ void main() {
     'RestJsonSupportsNaNFloatHeaderInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNaNFloatHeaderInputs',
               documentation: 'Supports handling NaN float header values.',
@@ -292,7 +299,8 @@ void main() {
     'RestJsonSupportsInfinityFloatHeaderInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsInfinityFloatHeaderInputs',
               documentation: 'Supports handling Infinity float header values.',
@@ -325,7 +333,8 @@ void main() {
     'RestJsonSupportsNegativeInfinityFloatHeaderInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatHeaderInputs',
               documentation: 'Supports handling -Infinity float header values.',
@@ -358,7 +367,8 @@ void main() {
     'RestJsonInputAndOutputWithStringHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithStringHeaders',
               documentation: 'Tests responses with string header bindings',
@@ -393,7 +403,8 @@ void main() {
     'RestJsonInputAndOutputWithQuotedStringHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
               documentation:
@@ -422,7 +433,8 @@ void main() {
     'RestJsonInputAndOutputWithNumericHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithNumericHeaders',
               documentation: 'Tests responses with numeric header bindings',
@@ -465,7 +477,8 @@ void main() {
     'RestJsonInputAndOutputWithBooleanHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithBooleanHeaders',
               documentation: 'Tests responses with boolean header bindings',
@@ -500,7 +513,8 @@ void main() {
     'RestJsonInputAndOutputWithTimestampHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithTimestampHeaders',
               documentation: 'Tests responses with timestamp header bindings',
@@ -532,7 +546,8 @@ void main() {
     'RestJsonInputAndOutputWithEnumHeaders (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithEnumHeaders',
               documentation: 'Tests responses with enum header bindings',
@@ -562,7 +577,8 @@ void main() {
     'RestJsonSupportsNaNFloatHeaderOutputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNaNFloatHeaderOutputs',
               documentation: 'Supports handling NaN float header values.',
@@ -589,7 +605,8 @@ void main() {
     'RestJsonSupportsInfinityFloatHeaderOutputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsInfinityFloatHeaderOutputs',
               documentation: 'Supports handling Infinity float header values.',
@@ -616,7 +633,8 @@ void main() {
     'RestJsonSupportsNegativeInfinityFloatHeaderOutputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.InputAndOutputWithHeadersOperation(),
+          operation:
+              _i3.InputAndOutputWithHeadersOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatHeaderOutputs',
               documentation: 'Supports handling -Infinity float header values.',

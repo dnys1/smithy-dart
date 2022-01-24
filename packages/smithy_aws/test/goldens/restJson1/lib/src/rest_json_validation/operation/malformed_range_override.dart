@@ -16,6 +16,8 @@ class MalformedRangeOverrideOperation extends _i1.HttpOperation<
     _i2.MalformedRangeOverrideInput,
     _i1.Unit,
     _i1.Unit> {
+  MalformedRangeOverrideOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.MalformedRangeOverrideInput,
@@ -23,8 +25,13 @@ class MalformedRangeOverrideOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Validation Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.MalformedRangeOverrideInput input) =>

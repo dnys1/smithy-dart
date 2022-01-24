@@ -14,6 +14,8 @@ class MalformedFloatOperation extends _i1.HttpOperation<
     _i2.MalformedFloatInput,
     _i1.Unit,
     _i1.Unit> {
+  MalformedFloatOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.MalformedFloatInputPayload, _i2.MalformedFloatInput,
@@ -21,8 +23,13 @@ class MalformedFloatOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.MalformedFloatInput input) =>

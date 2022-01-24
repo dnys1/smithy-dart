@@ -15,7 +15,7 @@ void main() {
     'RestJsonEndpointTraitWithHostLabel (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.EndpointWithHostLabelOperation(),
+          operation: _i3.EndpointWithHostLabelOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonEndpointTraitWithHostLabel',
               documentation:

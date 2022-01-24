@@ -17,7 +17,7 @@ void main() {
     'RestJsonQueryPrecedence (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.QueryPrecedenceOperation(),
+          operation: _i3.QueryPrecedenceOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonQueryPrecedence',
               documentation: 'Prefer named query parameters when serializing',

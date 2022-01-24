@@ -13,6 +13,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class MalformedRangeOperation extends _i1.HttpOperation<_i2.MalformedRangeInput,
     _i2.MalformedRangeInput, _i1.Unit, _i1.Unit> {
+  MalformedRangeOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.MalformedRangeInput, _i2.MalformedRangeInput,
@@ -20,8 +22,13 @@ class MalformedRangeOperation extends _i1.HttpOperation<_i2.MalformedRangeInput,
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Validation Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.MalformedRangeInput input) =>

@@ -12,6 +12,8 @@ import 'package:smithy_aws/smithy_aws.dart' as _i2;
 /// While this should be rare, code generators must support this.
 class NoInputAndNoOutputOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
+  NoInputAndNoOutputOperation({required this.region});
+
   @override
   late final List<_i1.HttpProtocol<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit>>
       protocols = [
@@ -20,10 +22,13 @@ class NoInputAndNoOutputOperation
         builderFactories: _i3.builderFactories,
         interceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithNoContentLength(),
-          const _i1.WithNoHeader('Content-Type')
+          const _i1.WithNoHeader('Content-Length'),
+          const _i1.WithNoHeader('Content-Type'),
+          _i2.WithEndpointResolver('Rest Json Protocol', region)
         ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {

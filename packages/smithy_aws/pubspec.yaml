@@ -12,17 +12,31 @@ dependencies:
       url: https://github.com/dnys1/aws-sdk-dart.git
       ref: smithy
       path: packages/aws_common
+  aws_signature_v4:
+    git:
+      url: https://github.com/dnys1/aws-sdk-dart.git
+      ref: smithy
+      path: packages/aws_signature_v4
   built_collection: ^5.0.0
   built_value: ^8.0.0
+  collection: ^1.15.0
   convert: ^3.0.1
   crclib: ^3.0.0
   crypto: ^3.0.1
   http: ^0.13.4
   intl: ^0.17.0
+  meta: ^1.7.0
   smithy:
     path: ../smithy
   smithy_ast:
     path: ../smithy_ast
+
+dependency_overrides:
+  aws_common:
+    git:
+      url: https://github.com/dnys1/aws-sdk-dart.git
+      ref: smithy
+      path: packages/aws_common
 
 dev_dependencies:
   amplify_lints: ^1.0.0

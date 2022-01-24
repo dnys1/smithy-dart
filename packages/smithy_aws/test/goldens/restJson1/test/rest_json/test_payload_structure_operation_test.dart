@@ -17,7 +17,7 @@ void main() {
     'RestJsonHttpWithEmptyStructurePayload (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestPayloadStructureOperation(),
+          operation: _i3.TestPayloadStructureOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithEmptyStructurePayload',
               documentation:
@@ -52,7 +52,7 @@ void main() {
     'RestJsonTestPayloadStructure (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestPayloadStructureOperation(),
+          operation: _i3.TestPayloadStructureOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTestPayloadStructure',
               documentation: 'Serializes a payload targeting a structure',
@@ -88,7 +88,7 @@ void main() {
     'RestJsonHttpWithHeadersButNoPayload (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.TestPayloadStructureOperation(),
+          operation: _i3.TestPayloadStructureOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithHeadersButNoPayload',
               documentation:

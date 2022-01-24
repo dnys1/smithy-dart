@@ -21,6 +21,13 @@ dependencies:
     ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy_aws')}' : ''}
   uuid: ^3.0.0
 
+dependency_overrides:
+  aws_common:
+    git:
+      url: https://github.com/dnys1/aws-sdk-dart.git
+      ref: smithy
+      path: packages/aws_common
+
 dev_dependencies:
   build_runner: ^2.0.0
   built_value_generator: ^8.0.0

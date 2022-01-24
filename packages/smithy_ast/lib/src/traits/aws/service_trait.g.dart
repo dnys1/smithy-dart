@@ -7,9 +7,9 @@ part of 'service_trait.dart';
 // **************************************************************************
 
 ServiceTrait _$ServiceTraitFromJson(Map<String, dynamic> json) => ServiceTrait(
+      sdkId: json['sdkId'] as String,
       cloudFormationName: json['cloudFormationName'] as String?,
       arnNamespace: json['arnNamespace'] as String?,
-      sdkId: json['sdkId'] as String?,
       cloudTrailEventSource: json['cloudTrailEventSource'] as String?,
       endpointPrefix: json['endpointPrefix'] as String?,
     );
@@ -36,9 +36,9 @@ ResolvedServiceTrait _$ResolvedServiceTraitFromJson(
 Map<String, dynamic> _$ResolvedServiceTraitToJson(
         ResolvedServiceTrait instance) =>
     <String, dynamic>{
+      'sdkId': instance.sdkId,
       'cloudFormationName': instance.cloudFormationName,
       'arnNamespace': instance.arnNamespace,
-      'sdkId': instance.sdkId,
       'cloudTrailEventSource': instance.cloudTrailEventSource,
       'endpointPrefix': instance.endpointPrefix,
     };

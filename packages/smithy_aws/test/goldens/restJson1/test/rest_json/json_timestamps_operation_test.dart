@@ -15,7 +15,7 @@ void main() {
     'RestJsonJsonTimestamps (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestamps',
               documentation: 'Tests how normal timestamps are serialized',
@@ -48,7 +48,7 @@ void main() {
     'RestJsonJsonTimestampsWithDateTimeFormat (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestampsWithDateTimeFormat',
               documentation:
@@ -81,7 +81,7 @@ void main() {
     'RestJsonJsonTimestampsWithEpochSecondsFormat (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestampsWithEpochSecondsFormat',
               documentation:
@@ -115,7 +115,7 @@ void main() {
     'RestJsonJsonTimestampsWithHttpDateFormat (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestampsWithHttpDateFormat',
               documentation:
@@ -149,7 +149,7 @@ void main() {
     'RestJsonJsonTimestamps (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestamps',
               documentation: 'Tests how normal timestamps are serialized',
@@ -176,7 +176,7 @@ void main() {
     'RestJsonJsonTimestampsWithDateTimeFormat (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestampsWithDateTimeFormat',
               documentation:
@@ -203,7 +203,7 @@ void main() {
     'RestJsonJsonTimestampsWithEpochSecondsFormat (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestampsWithEpochSecondsFormat',
               documentation:
@@ -231,7 +231,7 @@ void main() {
     'RestJsonJsonTimestampsWithHttpDateFormat (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.JsonTimestampsOperation(),
+          operation: _i3.JsonTimestampsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestampsWithHttpDateFormat',
               documentation:

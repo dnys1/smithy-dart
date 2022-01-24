@@ -50,53 +50,55 @@ import 'package:rest_json1/src/rest_json_validation/operation/sensitive_validati
     as _i23;
 
 class RestJsonValidationClient {
-  RestJsonValidationClient();
+  RestJsonValidationClient({required this.region});
+
+  final String region;
 
   _i1.Future<void> malformedEnum(_i2.MalformedEnumInput input) {
-    return _i3.MalformedEnumOperation().run(input);
+    return _i3.MalformedEnumOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedLength(_i4.MalformedLengthInput input) {
-    return _i5.MalformedLengthOperation().run(input);
+    return _i5.MalformedLengthOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedLengthOverride(
       _i6.MalformedLengthOverrideInput input) {
-    return _i7.MalformedLengthOverrideOperation().run(input);
+    return _i7.MalformedLengthOverrideOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedLengthQueryString(
       _i8.MalformedLengthQueryStringInput input) {
-    return _i9.MalformedLengthQueryStringOperation().run(input);
+    return _i9.MalformedLengthQueryStringOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedPattern(_i10.MalformedPatternInput input) {
-    return _i11.MalformedPatternOperation().run(input);
+    return _i11.MalformedPatternOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedPatternOverride(
       _i12.MalformedPatternOverrideInput input) {
-    return _i13.MalformedPatternOverrideOperation().run(input);
+    return _i13.MalformedPatternOverrideOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedRange(_i14.MalformedRangeInput input) {
-    return _i15.MalformedRangeOperation().run(input);
+    return _i15.MalformedRangeOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedRangeOverride(
       _i16.MalformedRangeOverrideInput input) {
-    return _i17.MalformedRangeOverrideOperation().run(input);
+    return _i17.MalformedRangeOverrideOperation(region: region).run(input);
   }
 
   _i1.Future<void> malformedRequired(_i18.MalformedRequiredInput input) {
-    return _i19.MalformedRequiredOperation().run(input);
+    return _i19.MalformedRequiredOperation(region: region).run(input);
   }
 
   _i1.Future<void> recursiveStructures(_i20.RecursiveStructuresInput input) {
-    return _i21.RecursiveStructuresOperation().run(input);
+    return _i21.RecursiveStructuresOperation(region: region).run(input);
   }
 
   _i1.Future<void> sensitiveValidation(_i22.SensitiveValidationInput input) {
-    return _i23.SensitiveValidationOperation().run(input);
+    return _i23.SensitiveValidationOperation(region: region).run(input);
   }
 }

@@ -17,7 +17,7 @@ void main() {
     'RestJsonSimpleScalarProperties (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSimpleScalarProperties',
               documentation: 'Serializes simple scalar properties',
@@ -62,7 +62,7 @@ void main() {
     'RestJsonDoesntSerializeNullStructureValues (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonDoesntSerializeNullStructureValues',
               documentation:
@@ -96,7 +96,7 @@ void main() {
     'RestJsonSupportsNaNFloatInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -130,7 +130,7 @@ void main() {
     'RestJsonSupportsInfinityFloatInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -164,7 +164,7 @@ void main() {
     'RestJsonSupportsNegativeInfinityFloatInputs (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',
@@ -198,7 +198,7 @@ void main() {
     'RestJsonSimpleScalarProperties (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSimpleScalarProperties',
               documentation: 'Serializes simple scalar properties',
@@ -237,7 +237,7 @@ void main() {
     'RestJsonDoesntDeserializeNullStructureValues (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDoesntDeserializeNullStructureValues',
               documentation:
@@ -265,7 +265,7 @@ void main() {
     'RestJsonSupportsNaNFloatInputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -293,7 +293,7 @@ void main() {
     'RestJsonSupportsInfinityFloatInputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -321,7 +321,7 @@ void main() {
     'RestJsonSupportsNegativeInfinityFloatInputs (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SimpleScalarPropertiesOperation(),
+          operation: _i3.SimpleScalarPropertiesOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',

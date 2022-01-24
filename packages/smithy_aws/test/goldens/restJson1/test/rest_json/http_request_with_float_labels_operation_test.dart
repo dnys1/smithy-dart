@@ -16,7 +16,8 @@ void main() {
     'RestJsonSupportsNaNFloatLabels (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpRequestWithFloatLabelsOperation(),
+          operation:
+              _i3.HttpRequestWithFloatLabelsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNaNFloatLabels',
               documentation: 'Supports handling NaN float label values.',
@@ -49,7 +50,8 @@ void main() {
     'RestJsonSupportsInfinityFloatLabels (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpRequestWithFloatLabelsOperation(),
+          operation:
+              _i3.HttpRequestWithFloatLabelsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsInfinityFloatLabels',
               documentation: 'Supports handling Infinity float label values.',
@@ -82,7 +84,8 @@ void main() {
     'RestJsonSupportsNegativeInfinityFloatLabels (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpRequestWithFloatLabelsOperation(),
+          operation:
+              _i3.HttpRequestWithFloatLabelsOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatLabels',
               documentation: 'Supports handling -Infinity float label values.',

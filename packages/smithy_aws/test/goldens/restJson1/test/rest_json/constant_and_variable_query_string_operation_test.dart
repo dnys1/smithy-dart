@@ -16,7 +16,8 @@ void main() {
     'RestJsonConstantAndVariableQueryStringMissingOneValue (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.ConstantAndVariableQueryStringOperation(),
+          operation:
+              _i3.ConstantAndVariableQueryStringOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonConstantAndVariableQueryStringMissingOneValue',
               documentation:
@@ -50,7 +51,8 @@ void main() {
     'RestJsonConstantAndVariableQueryStringAllValues (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.ConstantAndVariableQueryStringOperation(),
+          operation:
+              _i3.ConstantAndVariableQueryStringOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonConstantAndVariableQueryStringAllValues',
               documentation:

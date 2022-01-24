@@ -16,7 +16,8 @@ void main() {
     'RestJsonHttpRequestWithGreedyLabelInPath (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpRequestWithGreedyLabelInPathOperation(),
+          operation: _i3.HttpRequestWithGreedyLabelInPathOperation(
+              region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpRequestWithGreedyLabelInPath',
               documentation: 'Serializes greedy labels and normal labels',

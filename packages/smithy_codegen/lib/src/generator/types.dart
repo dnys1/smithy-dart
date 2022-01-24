@@ -29,6 +29,9 @@ abstract class DartTypes {
   /// `package:aws_common` types.
   static const awsCommon = _AwsCommon();
 
+  /// `package:aws_signature_v4` types.
+  static const awsSigV4 = _AwsSigV4();
+
   /// `package:built_value` types.
   static const builtValue = BuiltValue._();
 
@@ -200,6 +203,20 @@ class _AwsCommon {
   /// Creates an [aws_common.AWSStreamedHttpResponse] reference.
   Reference get awsStreamedHttpResponse =>
       const Reference('AWSStreamedHttpResponse', _url);
+}
+
+/// `package:aws_signature_v4` types.
+class _AwsSigV4 {
+  const _AwsSigV4();
+
+  static const _url = 'package:aws_signature_v4/aws_signature_v4.dart';
+
+  /// Creates an [aws_sig_v4.AWSCredentials] reference.
+  Reference get awsCredentials => const Reference('AWSCredentials', _url);
+
+  /// Creates an [aws_sig_v4.AWSCredentialsProvider] reference.
+  Reference get awsCredentialsProvider =>
+      const Reference('AWSCredentialsProvider', _url);
 }
 
 /// `package:built_value` types
@@ -617,10 +634,6 @@ class _Smithy {
   /// Creates a [smithy.WithContentLength] reference.
   Reference get withContentLength => const Reference('WithContentLength', _url);
 
-  /// Creates a [smithy.WithNoContentLength] reference.
-  Reference get withNoContentLength =>
-      const Reference('WithNoContentLength', _url);
-
   /// Creates a [smithy.WithHeader] reference.
   Reference get withHeader => const Reference('WithHeader', _url);
 
@@ -647,6 +660,13 @@ class _SmithyAws {
 
   /// Creates an [smithy_aws.RestXmlProtocol] refererence.
   Reference get restXmlProtocol => const Reference('RestXmlProtocol', _url);
+
+  /// Creates an [smithy_aws.WithEndpointResolver] refererence.
+  Reference get withEndpointResolver =>
+      const Reference('WithEndpointResolver', _url);
+
+  /// Creates an [smithy_aws.WithSigV4] refererence.
+  Reference get withSigV4 => const Reference('WithSigV4', _url);
 }
 
 /// `package:smithy_test` types

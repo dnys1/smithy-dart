@@ -16,7 +16,7 @@ void main() {
     'RestJsonConstantQueryString (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.ConstantQueryStringOperation(),
+          operation: _i3.ConstantQueryStringOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonConstantQueryString',
               documentation: 'Includes constant query string parameters',

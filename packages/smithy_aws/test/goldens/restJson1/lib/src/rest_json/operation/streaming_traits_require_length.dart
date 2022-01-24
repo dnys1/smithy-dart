@@ -21,6 +21,8 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
     _i3.StreamingTraitsRequireLengthInputOutput,
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsRequireLengthInputOutput> {
+  StreamingTraitsRequireLengthOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -31,8 +33,13 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i4.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(

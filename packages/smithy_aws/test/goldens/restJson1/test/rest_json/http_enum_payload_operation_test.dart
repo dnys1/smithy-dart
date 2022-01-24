@@ -16,7 +16,7 @@ void main() {
     'EnumPayloadRequest (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HttpEnumPayloadOperation(),
+          operation: _i3.HttpEnumPayloadOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'EnumPayloadRequest',
               documentation: null,
@@ -47,7 +47,7 @@ void main() {
     'EnumPayloadResponse (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.HttpEnumPayloadOperation(),
+          operation: _i3.HttpEnumPayloadOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'EnumPayloadResponse',
               documentation: null,

@@ -16,6 +16,8 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
     _i3.DocumentTypeAsPayloadInputOutput,
     _i2.JsonObject,
     _i3.DocumentTypeAsPayloadInputOutput> {
+  DocumentTypeAsPayloadOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.JsonObject, _i3.DocumentTypeAsPayloadInputOutput,
@@ -23,8 +25,13 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithContentLength(),
+          _i4.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i3.DocumentTypeAsPayloadInputOutput input) =>

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
@@ -29,10 +31,25 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
         c
           ..name = className
           ..constructors.add(_clientConstructor)
-          ..methods.addAll(_operationMethods);
+          ..methods.addAll(_operationMethods)
+          ..fields.addAll([
+            ...LinkedHashSet<Field>(
+              equals: (a, b) => a.name == b.name,
+              hashCode: (key) => key.name.hashCode,
+            )..addAll(_operations.expand((op) => op.protocolFields(context))),
+          ]);
       });
 
-  Constructor get _clientConstructor => Constructor();
+  Constructor get _clientConstructor => Constructor(
+        (ctor) => ctor.optionalParameters.addAll([
+          ...LinkedHashSet<Parameter>(
+            equals: (a, b) => a.name == b.name,
+            hashCode: (key) => key.name.hashCode,
+          )..addAll(
+              _operations.expand((op) => op.constructorParameters(context)),
+            ),
+        ]),
+      );
 
   /// Generate a callable method for each operation.
   Iterable<Method> get _operationMethods sync* {
@@ -71,7 +88,10 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ])
           ..body = context
               .symbolFor(operation.shapeId)
-              .newInstance([])
+              .newInstance([], {
+                for (final field in operation.protocolFields(context))
+                  field.name: refer(field.name),
+              })
               .property(isPaginated ? 'runPaginated' : 'run')
               .call([
                 if (operationInput == DartTypes.smithy.unit)

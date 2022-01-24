@@ -50,13 +50,20 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                       DartTypes.core.null$,
                   paginatedTraits!.itemsSymbol?.unboxed ?? DartTypes.core.null$,
                 )
+          ..constructors.add(_constructor)
           ..fields.addAll([
             _protocolsGetter,
+            ...shape.protocolFields(context),
           ])
           ..methods.addAll([
             ..._httpOverrides,
             ..._paginatedMethods,
           ]),
+      );
+
+  Constructor get _constructor => Constructor(
+        (ctor) => ctor
+          ..optionalParameters.addAll(shape.constructorParameters(context)),
       );
 
   /// The statements of the HTTP request builder.
@@ -541,7 +548,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         // headers.
         if (inputShape.payloadMembers(context).isEmpty) {
           yield* [
-            DartTypes.smithy.withNoContentLength.constInstance([]),
+            DartTypes.smithy.withNoHeader.constInstance([
+              literalString('Content-Length'),
+            ]),
             DartTypes.smithy.withNoHeader.constInstance([
               literalString('Content-Type'),
             ]),
@@ -551,10 +560,46 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       case RestXmlTrait:
       default:
     }
+
+    // SigV4
+    final sigV4 = context.service?.getTrait<SigV4Trait>()?.name;
+    if (sigV4 != null) {
+      yield DartTypes.smithyAws.withSigV4.newInstance([], {
+        'region': refer('region'),
+        'serviceName': literalString(sigV4),
+        'credentialsProvider': refer('credentialsProvider'),
+      });
+    }
+
+    // AWS-specific properties
+    final serviceId = context.serviceShapeId;
+    final aws = context.service?.getTrait<ServiceTrait>();
+    if (aws != null && serviceId != null) {
+      final trait = aws.resolve(serviceId);
+
+      // The default endpoint resolver.
+      yield DartTypes.smithyAws.withEndpointResolver.newInstance([
+        literalString(trait.sdkId),
+        refer('region'),
+      ]);
+
+      switch (trait.sdkId) {
+        // A client for Amazon API Gateway MUST set the Accept header to the
+        // string literal value of "application/json" for all requests.
+        //
+        // https://awslabs.github.io/smithy/1.0/spec/aws/customizations/apigateway-customizations.html
+        case 'API Gateway':
+          yield DartTypes.smithy.withHeader.constInstance([
+            literalString('Accept'),
+            literalString('application/json'),
+          ]);
+      }
+    }
   }
 
   Map<String, Expression>? _protocolParameters(
-      ProtocolDefinitionTrait protocol) {
+    ProtocolDefinitionTrait protocol,
+  ) {
     switch (protocol.runtimeType) {
       case RestJson1Trait:
         String? mediaType;

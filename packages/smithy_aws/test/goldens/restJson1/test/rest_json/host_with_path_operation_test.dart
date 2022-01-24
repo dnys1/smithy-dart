@@ -13,7 +13,7 @@ void main() {
     'RestJsonHostWithPath (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.HostWithPathOperation(),
+          operation: _i3.HostWithPathOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHostWithPath',
               documentation:

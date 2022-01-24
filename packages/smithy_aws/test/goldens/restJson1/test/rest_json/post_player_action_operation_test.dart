@@ -19,7 +19,7 @@ void main() {
     'RestJsonInputUnionWithUnitMember (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.PostPlayerActionOperation(),
+          operation: _i3.PostPlayerActionOperation(region: 'us-east-1'),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputUnionWithUnitMember',
               documentation:
@@ -54,7 +54,7 @@ void main() {
     'RestJsonOutputUnionWithUnitMember (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.PostPlayerActionOperation(),
+          operation: _i3.PostPlayerActionOperation(region: 'us-east-1'),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonOutputUnionWithUnitMember',
               documentation:

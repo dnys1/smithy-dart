@@ -15,6 +15,8 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
     _i2.HttpChecksumRequiredInputOutput,
     _i2.HttpChecksumRequiredInputOutput,
     _i2.HttpChecksumRequiredInputOutput> {
+  HttpChecksumRequiredOperation({required this.region});
+
   @override
   late final List<
       _i1.HttpProtocol<
@@ -25,8 +27,14 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithChecksum(), const _i1.WithContentLength()])
+        interceptors: [
+          const _i1.WithChecksum(),
+          const _i1.WithContentLength(),
+          _i3.WithEndpointResolver('Rest Json Protocol', region)
+        ])
   ];
+
+  final String region;
 
   @override
   _i1.HttpRequest buildRequest(_i2.HttpChecksumRequiredInputOutput input) =>

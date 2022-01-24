@@ -1117,57 +1117,177 @@ class XmlProtocolTraitsBuilder
   }
 }
 
+class _$PaginationItem extends PaginationItem {
+  @override
+  final MemberShape member;
+  @override
+  final bool isNullable;
+  @override
+  final Expression Function(Expression) buildExpression;
+  @override
+  final Reference symbol;
+
+  factory _$PaginationItem([void Function(PaginationItemBuilder)? updates]) =>
+      (new PaginationItemBuilder()..update(updates)).build();
+
+  _$PaginationItem._(
+      {required this.member,
+      required this.isNullable,
+      required this.buildExpression,
+      required this.symbol})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(member, 'PaginationItem', 'member');
+    BuiltValueNullFieldError.checkNotNull(
+        isNullable, 'PaginationItem', 'isNullable');
+    BuiltValueNullFieldError.checkNotNull(
+        buildExpression, 'PaginationItem', 'buildExpression');
+    BuiltValueNullFieldError.checkNotNull(symbol, 'PaginationItem', 'symbol');
+  }
+
+  @override
+  PaginationItem rebuild(void Function(PaginationItemBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PaginationItemBuilder toBuilder() =>
+      new PaginationItemBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is PaginationItem &&
+        member == other.member &&
+        isNullable == other.isNullable &&
+        buildExpression == _$dynamicOther.buildExpression &&
+        symbol == other.symbol;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, member.hashCode), isNullable.hashCode),
+            buildExpression.hashCode),
+        symbol.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('PaginationItem')
+          ..add('member', member)
+          ..add('isNullable', isNullable)
+          ..add('buildExpression', buildExpression)
+          ..add('symbol', symbol))
+        .toString();
+  }
+}
+
+class PaginationItemBuilder
+    implements Builder<PaginationItem, PaginationItemBuilder> {
+  _$PaginationItem? _$v;
+
+  MemberShapeBuilder? _member;
+  MemberShapeBuilder get member => _$this._member ??= new MemberShapeBuilder();
+  set member(MemberShapeBuilder? member) => _$this._member = member;
+
+  bool? _isNullable;
+  bool? get isNullable => _$this._isNullable;
+  set isNullable(bool? isNullable) => _$this._isNullable = isNullable;
+
+  Expression Function(Expression)? _buildExpression;
+  Expression Function(Expression)? get buildExpression =>
+      _$this._buildExpression;
+  set buildExpression(Expression Function(Expression)? buildExpression) =>
+      _$this._buildExpression = buildExpression;
+
+  Reference? _symbol;
+  Reference? get symbol => _$this._symbol;
+  set symbol(Reference? symbol) => _$this._symbol = symbol;
+
+  PaginationItemBuilder();
+
+  PaginationItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _member = $v.member.toBuilder();
+      _isNullable = $v.isNullable;
+      _buildExpression = $v.buildExpression;
+      _symbol = $v.symbol;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PaginationItem other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PaginationItem;
+  }
+
+  @override
+  void update(void Function(PaginationItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$PaginationItem build() {
+    _$PaginationItem _$result;
+    try {
+      _$result = _$v ??
+          new _$PaginationItem._(
+              member: member.build(),
+              isNullable: BuiltValueNullFieldError.checkNotNull(
+                  isNullable, 'PaginationItem', 'isNullable'),
+              buildExpression: BuiltValueNullFieldError.checkNotNull(
+                  buildExpression, 'PaginationItem', 'buildExpression'),
+              symbol: BuiltValueNullFieldError.checkNotNull(
+                  symbol, 'PaginationItem', 'symbol'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'member';
+        member.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'PaginationItem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$PaginatedTraits extends PaginatedTraits {
   @override
   final String? inputTokenPath;
   @override
+  final PaginationItem? inputToken;
+  @override
   final String? outputTokenPath;
+  @override
+  final PaginationItem? outputToken;
   @override
   final String? pageSizePath;
   @override
+  final PaginationItem? pageSize;
+  @override
   final String? itemsPath;
   @override
-  final MemberShape? inputTokenMember;
-  @override
-  final Expression Function(Expression)? inputTokenExpression;
-  @override
-  final Reference? tokenSymbol;
-  @override
-  final MemberShape? outputTokenMember;
-  @override
-  final Expression Function(Expression)? outputTokenExpression;
-  @override
-  final MemberShape? itemsMember;
-  @override
-  final Expression Function(Expression)? itemsExpression;
-  @override
-  final Reference? itemsSymbol;
-  @override
-  final MemberShape? pageSizeMember;
-  @override
-  final Reference? pageSizeSymbol;
-  @override
-  final Expression Function(Expression)? pageSizeExpression;
+  final PaginationItem? items;
 
   factory _$PaginatedTraits([void Function(PaginatedTraitsBuilder)? updates]) =>
       (new PaginatedTraitsBuilder()..update(updates)).build();
 
   _$PaginatedTraits._(
       {this.inputTokenPath,
+      this.inputToken,
       this.outputTokenPath,
+      this.outputToken,
       this.pageSizePath,
+      this.pageSize,
       this.itemsPath,
-      this.inputTokenMember,
-      this.inputTokenExpression,
-      this.tokenSymbol,
-      this.outputTokenMember,
-      this.outputTokenExpression,
-      this.itemsMember,
-      this.itemsExpression,
-      this.itemsSymbol,
-      this.pageSizeMember,
-      this.pageSizeSymbol,
-      this.pageSizeExpression})
+      this.items})
       : super._();
 
   @override
@@ -1181,23 +1301,15 @@ class _$PaginatedTraits extends PaginatedTraits {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    final dynamic _$dynamicOther = other;
     return other is PaginatedTraits &&
         inputTokenPath == other.inputTokenPath &&
+        inputToken == other.inputToken &&
         outputTokenPath == other.outputTokenPath &&
+        outputToken == other.outputToken &&
         pageSizePath == other.pageSizePath &&
+        pageSize == other.pageSize &&
         itemsPath == other.itemsPath &&
-        inputTokenMember == other.inputTokenMember &&
-        inputTokenExpression == _$dynamicOther.inputTokenExpression &&
-        tokenSymbol == other.tokenSymbol &&
-        outputTokenMember == other.outputTokenMember &&
-        outputTokenExpression == _$dynamicOther.outputTokenExpression &&
-        itemsMember == other.itemsMember &&
-        itemsExpression == _$dynamicOther.itemsExpression &&
-        itemsSymbol == other.itemsSymbol &&
-        pageSizeMember == other.pageSizeMember &&
-        pageSizeSymbol == other.pageSizeSymbol &&
-        pageSizeExpression == _$dynamicOther.pageSizeExpression;
+        items == other.items;
   }
 
   @override
@@ -1208,53 +1320,27 @@ class _$PaginatedTraits extends PaginatedTraits {
                 $jc(
                     $jc(
                         $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                0,
-                                                                inputTokenPath
-                                                                    .hashCode),
-                                                            outputTokenPath
-                                                                .hashCode),
-                                                        pageSizePath.hashCode),
-                                                    itemsPath.hashCode),
-                                                inputTokenMember.hashCode),
-                                            inputTokenExpression.hashCode),
-                                        tokenSymbol.hashCode),
-                                    outputTokenMember.hashCode),
-                                outputTokenExpression.hashCode),
-                            itemsMember.hashCode),
-                        itemsExpression.hashCode),
-                    itemsSymbol.hashCode),
-                pageSizeMember.hashCode),
-            pageSizeSymbol.hashCode),
-        pageSizeExpression.hashCode));
+                            $jc($jc(0, inputTokenPath.hashCode),
+                                inputToken.hashCode),
+                            outputTokenPath.hashCode),
+                        outputToken.hashCode),
+                    pageSizePath.hashCode),
+                pageSize.hashCode),
+            itemsPath.hashCode),
+        items.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('PaginatedTraits')
           ..add('inputTokenPath', inputTokenPath)
+          ..add('inputToken', inputToken)
           ..add('outputTokenPath', outputTokenPath)
+          ..add('outputToken', outputToken)
           ..add('pageSizePath', pageSizePath)
+          ..add('pageSize', pageSize)
           ..add('itemsPath', itemsPath)
-          ..add('inputTokenMember', inputTokenMember)
-          ..add('inputTokenExpression', inputTokenExpression)
-          ..add('tokenSymbol', tokenSymbol)
-          ..add('outputTokenMember', outputTokenMember)
-          ..add('outputTokenExpression', outputTokenExpression)
-          ..add('itemsMember', itemsMember)
-          ..add('itemsExpression', itemsExpression)
-          ..add('itemsSymbol', itemsSymbol)
-          ..add('pageSizeMember', pageSizeMember)
-          ..add('pageSizeSymbol', pageSizeSymbol)
-          ..add('pageSizeExpression', pageSizeExpression))
+          ..add('items', items))
         .toString();
   }
 }
@@ -1268,77 +1354,40 @@ class PaginatedTraitsBuilder
   set inputTokenPath(String? inputTokenPath) =>
       _$this._inputTokenPath = inputTokenPath;
 
+  PaginationItemBuilder? _inputToken;
+  PaginationItemBuilder get inputToken =>
+      _$this._inputToken ??= new PaginationItemBuilder();
+  set inputToken(PaginationItemBuilder? inputToken) =>
+      _$this._inputToken = inputToken;
+
   String? _outputTokenPath;
   String? get outputTokenPath => _$this._outputTokenPath;
   set outputTokenPath(String? outputTokenPath) =>
       _$this._outputTokenPath = outputTokenPath;
 
+  PaginationItemBuilder? _outputToken;
+  PaginationItemBuilder get outputToken =>
+      _$this._outputToken ??= new PaginationItemBuilder();
+  set outputToken(PaginationItemBuilder? outputToken) =>
+      _$this._outputToken = outputToken;
+
   String? _pageSizePath;
   String? get pageSizePath => _$this._pageSizePath;
   set pageSizePath(String? pageSizePath) => _$this._pageSizePath = pageSizePath;
+
+  PaginationItemBuilder? _pageSize;
+  PaginationItemBuilder get pageSize =>
+      _$this._pageSize ??= new PaginationItemBuilder();
+  set pageSize(PaginationItemBuilder? pageSize) => _$this._pageSize = pageSize;
 
   String? _itemsPath;
   String? get itemsPath => _$this._itemsPath;
   set itemsPath(String? itemsPath) => _$this._itemsPath = itemsPath;
 
-  MemberShape? _inputTokenMember;
-  MemberShape? get inputTokenMember => _$this._inputTokenMember;
-  set inputTokenMember(MemberShape? inputTokenMember) =>
-      _$this._inputTokenMember = inputTokenMember;
-
-  Expression Function(Expression)? _inputTokenExpression;
-  Expression Function(Expression)? get inputTokenExpression =>
-      _$this._inputTokenExpression;
-  set inputTokenExpression(
-          Expression Function(Expression)? inputTokenExpression) =>
-      _$this._inputTokenExpression = inputTokenExpression;
-
-  Reference? _tokenSymbol;
-  Reference? get tokenSymbol => _$this._tokenSymbol;
-  set tokenSymbol(Reference? tokenSymbol) => _$this._tokenSymbol = tokenSymbol;
-
-  MemberShape? _outputTokenMember;
-  MemberShape? get outputTokenMember => _$this._outputTokenMember;
-  set outputTokenMember(MemberShape? outputTokenMember) =>
-      _$this._outputTokenMember = outputTokenMember;
-
-  Expression Function(Expression)? _outputTokenExpression;
-  Expression Function(Expression)? get outputTokenExpression =>
-      _$this._outputTokenExpression;
-  set outputTokenExpression(
-          Expression Function(Expression)? outputTokenExpression) =>
-      _$this._outputTokenExpression = outputTokenExpression;
-
-  MemberShape? _itemsMember;
-  MemberShape? get itemsMember => _$this._itemsMember;
-  set itemsMember(MemberShape? itemsMember) =>
-      _$this._itemsMember = itemsMember;
-
-  Expression Function(Expression)? _itemsExpression;
-  Expression Function(Expression)? get itemsExpression =>
-      _$this._itemsExpression;
-  set itemsExpression(Expression Function(Expression)? itemsExpression) =>
-      _$this._itemsExpression = itemsExpression;
-
-  Reference? _itemsSymbol;
-  Reference? get itemsSymbol => _$this._itemsSymbol;
-  set itemsSymbol(Reference? itemsSymbol) => _$this._itemsSymbol = itemsSymbol;
-
-  MemberShape? _pageSizeMember;
-  MemberShape? get pageSizeMember => _$this._pageSizeMember;
-  set pageSizeMember(MemberShape? pageSizeMember) =>
-      _$this._pageSizeMember = pageSizeMember;
-
-  Reference? _pageSizeSymbol;
-  Reference? get pageSizeSymbol => _$this._pageSizeSymbol;
-  set pageSizeSymbol(Reference? pageSizeSymbol) =>
-      _$this._pageSizeSymbol = pageSizeSymbol;
-
-  Expression Function(Expression)? _pageSizeExpression;
-  Expression Function(Expression)? get pageSizeExpression =>
-      _$this._pageSizeExpression;
-  set pageSizeExpression(Expression Function(Expression)? pageSizeExpression) =>
-      _$this._pageSizeExpression = pageSizeExpression;
+  PaginationItemBuilder? _items;
+  PaginationItemBuilder get items =>
+      _$this._items ??= new PaginationItemBuilder();
+  set items(PaginationItemBuilder? items) => _$this._items = items;
 
   PaginatedTraitsBuilder();
 
@@ -1346,20 +1395,13 @@ class PaginatedTraitsBuilder
     final $v = _$v;
     if ($v != null) {
       _inputTokenPath = $v.inputTokenPath;
+      _inputToken = $v.inputToken?.toBuilder();
       _outputTokenPath = $v.outputTokenPath;
+      _outputToken = $v.outputToken?.toBuilder();
       _pageSizePath = $v.pageSizePath;
+      _pageSize = $v.pageSize?.toBuilder();
       _itemsPath = $v.itemsPath;
-      _inputTokenMember = $v.inputTokenMember;
-      _inputTokenExpression = $v.inputTokenExpression;
-      _tokenSymbol = $v.tokenSymbol;
-      _outputTokenMember = $v.outputTokenMember;
-      _outputTokenExpression = $v.outputTokenExpression;
-      _itemsMember = $v.itemsMember;
-      _itemsExpression = $v.itemsExpression;
-      _itemsSymbol = $v.itemsSymbol;
-      _pageSizeMember = $v.pageSizeMember;
-      _pageSizeSymbol = $v.pageSizeSymbol;
-      _pageSizeExpression = $v.pageSizeExpression;
+      _items = $v.items?.toBuilder();
       _$v = null;
     }
     return this;
@@ -1378,23 +1420,38 @@ class PaginatedTraitsBuilder
 
   @override
   _$PaginatedTraits build() {
-    final _$result = _$v ??
-        new _$PaginatedTraits._(
-            inputTokenPath: inputTokenPath,
-            outputTokenPath: outputTokenPath,
-            pageSizePath: pageSizePath,
-            itemsPath: itemsPath,
-            inputTokenMember: inputTokenMember,
-            inputTokenExpression: inputTokenExpression,
-            tokenSymbol: tokenSymbol,
-            outputTokenMember: outputTokenMember,
-            outputTokenExpression: outputTokenExpression,
-            itemsMember: itemsMember,
-            itemsExpression: itemsExpression,
-            itemsSymbol: itemsSymbol,
-            pageSizeMember: pageSizeMember,
-            pageSizeSymbol: pageSizeSymbol,
-            pageSizeExpression: pageSizeExpression);
+    _$PaginatedTraits _$result;
+    try {
+      _$result = _$v ??
+          new _$PaginatedTraits._(
+              inputTokenPath: inputTokenPath,
+              inputToken: _inputToken?.build(),
+              outputTokenPath: outputTokenPath,
+              outputToken: _outputToken?.build(),
+              pageSizePath: pageSizePath,
+              pageSize: _pageSize?.build(),
+              itemsPath: itemsPath,
+              items: _items?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'inputToken';
+        _inputToken?.build();
+
+        _$failedField = 'outputToken';
+        _outputToken?.build();
+
+        _$failedField = 'pageSize';
+        _pageSize?.build();
+
+        _$failedField = 'items';
+        _items?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'PaginatedTraits', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

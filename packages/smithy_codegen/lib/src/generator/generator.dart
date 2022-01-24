@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:html2md/html2md.dart' as html2md;
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
@@ -21,11 +22,14 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
 
   /// The re-cased name for the generated class.
   String get className {
-    return (shape.rename(context) ?? shape.shapeId.shape).pascalCase;
+    return (shape.rename(context) ?? shape.shapeId.shape)
+        .nameEscaped()
+        .pascalCase;
   }
 
   /// Formats documentation to follow Dart standards.
-  String formatDocs(String docs) => docs
+  String formatDocs(String docs) => html2md
+      .convert(docs)
       .split('\n')
       .map((doc) => '/// ${doc.replaceFirst(RegExp(r'^/*'), '')}')
       .join('\n');

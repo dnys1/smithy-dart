@@ -144,7 +144,9 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   Reference createSymbol(Shape shape) {
     return TypeReference(
       (t) => t
-        ..symbol = (shape.rename(context) ?? shape.shapeId.shape).pascalCase
+        ..symbol = (shape.rename(context) ?? shape.shapeId.shape)
+            .nameEscaped('\$')
+            .pascalCase
         ..url = shape.libraryUrl(context),
     );
   }

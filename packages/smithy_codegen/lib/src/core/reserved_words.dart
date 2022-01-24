@@ -80,4 +80,14 @@ const hardReservedWords = {
   'double',
   'int',
   'bool',
+
+  // Reserved due to `built_value`
+  'update',
+
+  ..._reservedTypeNames,
 };
+
+const _reservedTypeNames = [
+  // Conflicts with usages of core.Type in serializer classes.
+  'Type',
+];

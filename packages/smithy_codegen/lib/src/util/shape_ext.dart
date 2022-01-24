@@ -49,15 +49,19 @@ extension SimpleShapeUtil on SimpleShape {
   }
 }
 
-extension MemberShapeUtils on MemberShape {
-  /// The name of this shape in a Dart struct.
-  String get dartName {
-    var name = memberName.camelCase;
+extension DartName on String {
+  String nameEscaped([String escapeChar = '_']) {
+    var name = camelCase;
     if (hardReservedWords.contains(name)) {
-      name = '$name\$';
+      name = '${name}_';
     }
     return name;
   }
+}
+
+extension MemberShapeUtils on MemberShape {
+  /// The name of this shape in a Dart struct.
+  String get dartName => memberName.nameEscaped();
 }
 
 extension ShapeUtils on Shape {
@@ -204,8 +208,7 @@ extension OperationShapeUtil on OperationShape {
         b.pageSizePath = operationTraits!.pageSizePath;
       }
 
-      Tuple3<MemberShape, Expression Function(Expression), Reference>
-          _parsePath(StructureShape s, String p) {
+      PaginationItem _parsePath(StructureShape s, String p) {
         final path = p.split('.');
         final List<Expression Function(Expression)> exps = [];
         NamedMembersShape shape = s;
@@ -226,55 +229,43 @@ extension OperationShapeUtil on OperationShape {
             shape = targetShape as NamedMembersShape;
           }
         }
-        return Tuple3(
-          member,
-          (exp) => exps.fold(exp, (exp, el) => el(exp)),
-          symbol,
+        Expression buildExpression(Expression exp) =>
+            exps.fold(exp, (exp, el) => el(exp));
+        return PaginationItem(
+          (b) => b
+            ..member.replace(member)
+            ..buildExpression = buildExpression
+            ..symbol = symbol
+            ..isNullable = isNullable,
         );
       }
 
       if (b.inputTokenPath != null) {
-        final parsed = _parsePath(
+        b.inputToken.replace(_parsePath(
           inputShape(context),
           b.inputTokenPath!,
-        );
-        b.inputTokenMember = parsed.item1;
-        b.inputTokenExpression = parsed.item2;
-        b.tokenSymbol = parsed.item3;
+        ));
       }
 
       if (b.outputTokenPath != null) {
-        final parsed = _parsePath(
+        b.outputToken.replace(_parsePath(
           outputShape(context),
           b.outputTokenPath!,
-        );
-        b.outputTokenMember = parsed.item1;
-        b.outputTokenExpression = parsed.item2;
-        final tokenSymbol = parsed.item3;
-        if (b.inputTokenMember != null) {
-          assert(b.tokenSymbol == tokenSymbol);
-        }
-        b.tokenSymbol = tokenSymbol;
+        ));
       }
 
       if (b.itemsPath != null) {
-        final parsed = _parsePath(
+        b.items.replace(_parsePath(
           outputShape(context),
           b.itemsPath!,
-        );
-        b.itemsMember = parsed.item1;
-        b.itemsExpression = parsed.item2;
-        b.itemsSymbol = parsed.item3;
+        ));
       }
 
       if (b.pageSizePath != null) {
-        final parsed = _parsePath(
+        b.pageSize.replace(_parsePath(
           inputShape(context),
           b.pageSizePath!,
-        );
-        b.pageSizeMember = parsed.item1;
-        b.pageSizeExpression = parsed.item2;
-        b.pageSizeSymbol = parsed.item3;
+        ));
       }
     });
   }

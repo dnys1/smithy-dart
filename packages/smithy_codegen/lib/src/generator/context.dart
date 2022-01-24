@@ -61,7 +61,16 @@ class CodegenContext {
   final ShapeId? serviceShapeId;
 
   /// The name of the service being generated.
-  String get serviceName => (_serviceName ?? serviceShapeId?.shape)!;
+  String get serviceName {
+    if (_serviceName != null) {
+      return _serviceName!;
+    }
+    final sdkId = service?.getTrait<ServiceTrait>()?.sdkId;
+    if (sdkId != null) {
+      return sdkId;
+    }
+    return serviceShapeId!.shape;
+  }
 
   /// A manual rename of the service.
   final String? _serviceName;

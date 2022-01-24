@@ -32,4 +32,15 @@ abstract class SmithyAst implements Built<SmithyAst, SmithyAstBuilder> {
   }
 
   static Serializer<SmithyAst> get serializer => _$smithyAstSerializer;
+
+  SmithyAst merge(SmithyAst other) {
+    return SmithyAst(
+      (b) => b
+        ..version = version
+        ..metadata.addAll(metadata.toMap())
+        ..metadata.addAll(other.metadata.toMap())
+        ..shapes = ShapeMap(shapes)
+        ..shapes!.addAll(other.shapes),
+    );
+  }
 }

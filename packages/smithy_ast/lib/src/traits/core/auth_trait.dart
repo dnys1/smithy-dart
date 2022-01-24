@@ -10,7 +10,7 @@ class AuthTrait with AWSSerializable implements Trait<AuthTrait> {
   const AuthTrait(this.values);
 
   factory AuthTrait.fromJson(Object? json) =>
-      _$AuthTraitFromJson((json as Map).cast());
+      _$AuthTraitFromJson({'values': json});
 
   static final id = ShapeId.parse('smithy.api#auth');
 

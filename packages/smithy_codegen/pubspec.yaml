@@ -16,6 +16,7 @@ dependencies:
   dart_style: ^2.2.1
   fixnum: ^1.0.0
   grpc: ^3.0.2
+  html2md: ^1.2.5
   http: ^0.13.4
   json_annotation: ">=4.4.0 <4.5.0"
   meta: ^1.7.0
@@ -31,6 +32,13 @@ dependencies:
     path: ../smithy_aws
   tuple: ^2.0.0
   yaml_edit: ^2.0.1
+
+dependency_overrides:
+  aws_common:
+    git:
+      url: https://github.com/dnys1/aws-sdk-dart.git
+      ref: smithy
+      path: packages/aws_common
 
 dev_dependencies:
   amplify_lints: ^1.0.0

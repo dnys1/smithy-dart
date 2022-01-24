@@ -302,7 +302,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       // If the payload shape is empty or has only nullable instance members,
       // and this shape's instance member is null, return a built payload.
       final targetShape = context.shapeFor(payloadShape!.target);
-      if (targetShape is StructureShape &&
+      if (payloadShape!.isNullable(shape) &&
+          targetShape is StructureShape &&
           targetShape.members.values.map((member) {
             return member.isNullable(targetShape);
           }).every((isNullable) => isNullable)) {
@@ -496,7 +497,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ShapeType.structure
       ].contains(targetShapeType);
       if (isNestedBuilder) {
-        final isNullable = shape.isNullable(shape);
+        final isNullable = member.isNullable(shape);
         return builder
             .property(member.dartName)
             .property('replace')

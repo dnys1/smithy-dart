@@ -122,7 +122,18 @@ abstract class XmlProtocolTraits
   BuiltMap<MemberShape, XmlNamespaceTrait> get memberNamespaces;
 }
 
-@BuiltValue(nestedBuilders: false)
+abstract class PaginationItem
+    implements Built<PaginationItem, PaginationItemBuilder> {
+  factory PaginationItem([void Function(PaginationItemBuilder) updates]) =
+      _$PaginationItem;
+  PaginationItem._();
+
+  MemberShape get member;
+  bool get isNullable;
+  Expression Function(Expression) get buildExpression;
+  Reference get symbol;
+}
+
 abstract class PaginatedTraits
     implements Built<PaginatedTraits, PaginatedTraitsBuilder> {
   factory PaginatedTraits([void Function(PaginatedTraitsBuilder) updates]) =
@@ -130,33 +141,14 @@ abstract class PaginatedTraits
   PaginatedTraits._();
 
   String? get inputTokenPath;
+  PaginationItem? get inputToken;
+
   String? get outputTokenPath;
+  PaginationItem? get outputToken;
+
   String? get pageSizePath;
+  PaginationItem? get pageSize;
+
   String? get itemsPath;
-
-  MemberShape? get inputTokenMember;
-
-  /// The expression to retrieve the input token from a variable.
-  Expression Function(Expression)? get inputTokenExpression;
-
-  Reference? get tokenSymbol;
-
-  MemberShape? get outputTokenMember;
-
-  /// The expression to retrieve the output token from a variable.
-  Expression Function(Expression)? get outputTokenExpression;
-
-  MemberShape? get itemsMember;
-
-  /// The expression to retrieve the items from a variable
-  Expression Function(Expression)? get itemsExpression;
-
-  Reference? get itemsSymbol;
-
-  MemberShape? get pageSizeMember;
-
-  Reference? get pageSizeSymbol;
-
-  /// The expression to retrieve the pageSize from a variable.
-  Expression Function(Expression)? get pageSizeExpression;
+  PaginationItem? get items;
 }

@@ -12,7 +12,7 @@ class ExamplesTrait with AWSSerializable implements Trait<ExamplesTrait> {
   });
 
   factory ExamplesTrait.fromJson(Object? json) =>
-      _$ExamplesTraitFromJson((json as Map).cast());
+      _$ExamplesTraitFromJson({'examples': json});
 
   static const id = ShapeId.core('examples');
 

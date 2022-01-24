@@ -45,10 +45,12 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   inputSymbol,
                   outputPayload.symbol.unboxed,
                   outputSymbol,
-                  paginatedTraits!.tokenSymbol?.unboxed ?? DartTypes.core.null$,
-                  paginatedTraits!.pageSizeSymbol?.unboxed ??
+                  paginatedTraits!.inputToken?.symbol.unboxed ??
                       DartTypes.core.null$,
-                  paginatedTraits!.itemsSymbol?.unboxed ?? DartTypes.core.null$,
+                  paginatedTraits!.pageSize?.symbol.unboxed ??
+                      DartTypes.core.null$,
+                  paginatedTraits!.items?.symbol.unboxed ??
+                      DartTypes.core.null$,
                 )
           ..constructors.add(_constructor)
           ..fields.addAll([
@@ -623,38 +625,38 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
 
     // The `getToken` method.
+    final outputToken = paginatedTraits.outputToken;
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = paginatedTraits.tokenSymbol?.boxed ?? DartTypes.core.null$
+        ..returns = outputToken?.symbol.boxed ?? DartTypes.core.null$
         ..name = 'getToken'
         ..requiredParameters.add(Parameter((p) => p
           ..type = outputSymbol
           ..name = 'output'))
         ..lambda = true
         ..body =
-            (paginatedTraits.outputTokenExpression?.call(refer('output')) ??
-                    literalNull)
+            (outputToken?.buildExpression.call(refer('output')) ?? literalNull)
                 .code,
     );
 
     // The `getItems` method.
     Expression? defaultValue;
-    if (paginatedTraits.itemsSymbol != null) {
-      final symbol = paginatedTraits.itemsSymbol!.typeRef.rebuild((t) => t
+    final items = paginatedTraits.items;
+    if (items != null) {
+      final symbol = items.symbol.typeRef.rebuild((t) => t
         ..isNullable = false
         ..types.clear());
       defaultValue = symbol.newInstance([]);
     }
-    Expression? itemsBody =
-        paginatedTraits.itemsExpression?.call(refer('output'));
+    Expression? itemsBody = items?.buildExpression.call(refer('output'));
     if (defaultValue != null) {
       itemsBody = itemsBody?.ifNullThen(defaultValue);
     }
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = paginatedTraits.itemsSymbol?.unboxed ?? DartTypes.core.null$
+        ..returns = items?.symbol.unboxed ?? DartTypes.core.null$
         ..name = 'getItems'
         ..requiredParameters.add(Parameter((p) => p
           ..type = outputSymbol
@@ -664,6 +666,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     );
 
     // The `rebuildInput` method.
+    final inputToken = paginatedTraits.inputToken;
+    final pageSize = paginatedTraits.pageSize;
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
@@ -674,11 +678,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             ..type = inputSymbol
             ..name = 'input'),
           Parameter((p) => p
-            ..type = paginatedTraits.tokenSymbol
+            ..type = inputToken?.symbol
             ..name = 'token'),
           Parameter((p) => p
-            ..type =
-                paginatedTraits.pageSizeSymbol?.boxed ?? DartTypes.core.null$
+            ..type = pageSize?.symbol.boxed ?? DartTypes.core.null$
             ..name = 'pageSize')
         ])
         ..lambda = true
@@ -687,20 +690,26 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             (m) => m
               ..requiredParameters.add(Parameter((p) => p..name = 'b'))
               ..body = Block.of([
-                if (paginatedTraits.inputTokenExpression != null)
-                  paginatedTraits.inputTokenExpression!(refer('b'))
-                      .assign(
-                          paginatedTraits.inputTokenExpression!(refer('input')))
-                      .statement,
-                if (paginatedTraits.pageSizeExpression != null)
-                  paginatedTraits.pageSizeExpression!(refer('b'))
-                      .assign(
-                          paginatedTraits.pageSizeExpression!(refer('input')))
-                      .statement,
-                // .wrapWithBlockIf(
-                //   paginatedTraits.pageSizeExpression!(refer('input'))
-                //       .notEqualTo(literalNull),
-                // ),
+                if (inputToken != null)
+                  inputToken
+                      .buildExpression(refer('b'))
+                      .assign(inputToken.buildExpression(refer('input')))
+                      .wrapWithBlockNullCheck(
+                        inputToken
+                            .buildExpression(refer('input'))
+                            .notEqualTo(literalNull),
+                        inputToken.isNullable,
+                      ),
+                if (pageSize != null)
+                  pageSize
+                      .buildExpression(refer('b'))
+                      .assign(pageSize.buildExpression(refer('input')))
+                      .wrapWithBlockNullCheck(
+                        pageSize
+                            .buildExpression(refer('input'))
+                            .notEqualTo(literalNull),
+                        pageSize.isNullable,
+                      ),
               ]),
           ).closure
         ]).code,

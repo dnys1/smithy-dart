@@ -44,10 +44,10 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       libraryType: SmithyLibrary_LibraryType.TEST,
       filename: shape.dartName,
     );
-    yield GeneratedLibrary(
-      testLibrary,
-      OperationTestGenerator(shape, context).generate(),
-    );
+    final generated = OperationTestGenerator(shape, context).generate();
+    if (generated != null) {
+      yield GeneratedLibrary(testLibrary, generated);
+    }
 
     // Build the input, output and error shapes
     final shapes = [

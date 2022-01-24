@@ -13,7 +13,7 @@ abstract class DoubleShape
   @BuiltValueHook(initializeBuilder: true)
   static void _init(DoubleShapeBuilder b) {
     b.shapeId = id;
-    b.traits = TraitMap.empty();
+    b.traits = TraitMap.fromTraits(const [BoxTrait()]);
   }
 
   static const id = ShapeId.core('Double');

@@ -83,6 +83,10 @@ const hardReservedWords = {
 
   // Reserved due to `built_value`
   'update',
+  'serializer',
+
+  // Conflicts with `dart:core`
+  'override',
 
   ..._reservedTypeNames,
 };

@@ -132,7 +132,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   }) {
     final targetShape = context.shapeFor(member.target);
     final type = targetShape.getType();
-    final isNullable = member.isNullable(shape);
+    final isNullable = member.isNullable(context, shape);
     memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.

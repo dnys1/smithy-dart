@@ -41,14 +41,16 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       });
 
   Constructor get _clientConstructor => Constructor(
-        (ctor) => ctor.optionalParameters.addAll([
-          ...LinkedHashSet<Parameter>(
-            equals: (a, b) => a.name == b.name,
-            hashCode: (key) => key.name.hashCode,
-          )..addAll(
-              _operations.expand((op) => op.constructorParameters(context)),
-            ),
-        ]),
+        (ctor) => ctor
+          ..constant = true
+          ..optionalParameters.addAll([
+            ...LinkedHashSet<Parameter>(
+              equals: (a, b) => a.name == b.name,
+              hashCode: (key) => key.name.hashCode,
+            )..addAll(
+                _operations.expand((op) => op.constructorParameters(context)),
+              ),
+          ]),
       );
 
   /// Generate a callable method for each operation.
@@ -73,9 +75,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ])
           ..returns = isPaginated
               ? DartTypes.async.future(DartTypes.smithy.paginatedResult(
-                  paginatedTraits.items?.symbol.unboxed ?? DartTypes.core.null$,
+                  paginatedTraits.items?.symbol.unboxed ?? DartTypes.core.void$,
                   paginatedTraits.pageSize?.symbol.unboxed ??
-                      DartTypes.core.null$,
+                      DartTypes.core.void$,
                 ))
               : DartTypes.async.future(operationOutput)
           ..name = operation.shapeId.shape.camelCase

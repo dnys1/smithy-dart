@@ -1,54 +1,22 @@
 import 'package:smithy_ast/smithy_ast.dart';
 
 extension ShapeExt on Shape {
-  /// Whether this shape is nullable/"boxed".
-  bool isNullable([Shape? parent]) {
-    final isMemberShape = parent != null;
-    if (!isMemberShape) {
-      // If a shape is not part of an aggregate shape, its nullability is
-      // strictly equal to whether it has the box trait.
-      return isBoxed;
-    }
-
-    final parentType = parent.getType();
-    switch (parentType) {
-      // Lists have nullable members only when they are sparse.
-      case ShapeType.list:
-        return parent.isSparse;
-
-      // Sets never have null members.
-      case ShapeType.set:
-        return false;
-
-      // Maps always have non-null keys. Values are null iff the map is sparse.
-      // The box trait is not used to determine nullability.
-      case ShapeType.map:
-        final isValue = (parent as MapShape).value.target == shapeId;
-        return isValue && parent.isSparse;
-
-      // Shapes which are part of a structure are always considered boxed
-      // unless they are marked with the `@required` trait.
-      case ShapeType.structure:
-        // These shapes have default values and are only considered boxed when
-        // explicitly marked with the boxed trait.
-        final hasDefaultValue = const {
-          ShapeType.byte,
-          ShapeType.short,
-          ShapeType.integer,
-          ShapeType.long,
-          ShapeType.float,
-          ShapeType.double,
-          ShapeType.boolean,
-        }.contains(getType());
-        return isNotRequired && (hasDefaultValue ? isBoxed : true);
-
-      // All but one value in a union is non-null. We represent all values
-      // with nullable getters, though.
-      case ShapeType.union:
+  /// Whether the same has a default value.
+  /// 
+  /// Shapes which have default values are only considered boxed when
+  /// explicitly marked with the boxed trait.
+  bool get hasDefaultValue {
+    switch (getType()) {
+      case ShapeType.boolean:
+      case ShapeType.byte:
+      case ShapeType.short:
+      case ShapeType.integer:
+      case ShapeType.long:
+      case ShapeType.float:
+      case ShapeType.double:
         return true;
-
       default:
-        throw StateError('Unknown aggregate type: $parentType');
+        return false;
     }
   }
 

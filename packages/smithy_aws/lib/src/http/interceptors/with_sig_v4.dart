@@ -10,6 +10,7 @@ class WithSigV4 extends HttpInterceptor {
     required this.credentialsProvider,
     this.serviceConfiguration = const BaseServiceConfiguration(),
     this.algorithm = AWSAlgorithm.hmacSha256,
+    this.isOptional = false,
   });
 
   /// Do close to last, since it depends on all added headers and resolved
@@ -17,6 +18,7 @@ class WithSigV4 extends HttpInterceptor {
   @override
   int get order => 100;
 
+  final bool isOptional;
   final String region;
   final String serviceName;
   final AWSAlgorithm algorithm;
@@ -28,6 +30,16 @@ class WithSigV4 extends HttpInterceptor {
     AWSStreamedHttpRequest request,
     HttpRequestContextBuilder context,
   ) async {
+    // Try to retrieve credentials. If it fails, continue without authentication
+    // for optional auth requests only.
+    try {
+      await credentialsProvider.retrieve();
+    } on Exception {
+      if (isOptional) {
+        return request;
+      }
+      rethrow;
+    }
     final AWSSigV4Signer signer = AWSSigV4Signer(
       credentialsProvider: credentialsProvider,
       algorithm: algorithm,

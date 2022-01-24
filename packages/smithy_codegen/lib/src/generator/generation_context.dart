@@ -27,7 +27,7 @@ mixin NamedMembersGenerationContext<S extends NamedMembersShape, U>
     for (var member in sortedMembers)
       member: context
           .symbolFor(member.target, shape)
-          .withBoxed(member.isNullable(shape)),
+          .withBoxed(member.isNullable(context, shape)),
   };
 }
 

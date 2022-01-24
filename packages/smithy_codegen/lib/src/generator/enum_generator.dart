@@ -220,5 +220,5 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
 
 extension on EnumDefinition {
   /// The name of the enum variant.
-  String get variantName => (name ?? value).nameEscaped();
+  String get variantName => (name ?? value).camelCase.nameEscaped();
 }

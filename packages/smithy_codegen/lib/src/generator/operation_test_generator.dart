@@ -179,12 +179,26 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   }
 
   @override
-  Library generate() {
+  Library? generate() {
     builder.name = builder.name! + '_test';
+
+    final allTests = [
+      ..._httpRequestTests,
+      ..._httpResponseTests,
+      ..._httpErrorResponseTests,
+    ];
+
+    if (allTests.isEmpty) {
+      return null;
+    }
 
     // Generic JSON serializer for deserializing the input params
     builder.body.addAll([
-      _mainMethod,
+      Method.returnsVoid(
+        (b) => b
+          ..name = 'main'
+          ..body = Block.of(allTests),
+      ),
       ..._uniqueSerializers([
         ...inputSerializers.values.expand((el) => el),
         ...outputSerializers.values.expand((el) => el),
@@ -194,17 +208,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
 
     return builder.build();
   }
-
-  /// The `main` test method.
-  Method get _mainMethod => Method.returnsVoid(
-        (b) => b
-          ..name = 'main'
-          ..body = Block.of([
-            ..._httpRequestTests,
-            ..._httpResponseTests,
-            ..._httpErrorResponseTests,
-          ]),
-      );
 
   /// HTTP request tests.
   Iterable<Code> get _httpRequestTests sync* {

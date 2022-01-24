@@ -214,7 +214,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     for (var member in serializedMembers) {
       final wireName = _wireName(member);
       final memberSymbol = memberSymbols[member]!;
-      final isNullable = member.isNullable(shape);
+      final isNullable = member.isNullable(context, shape);
       final targetShape = context.shapeFor(member.target);
       final hasNestedBuilder = [
             ShapeType.map,
@@ -307,7 +307,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     // Create a result object with all the non-null members.
     final result = <Expression>[];
     final nonNullMembers =
-        serializedMembers.where((member) => !member.isNullable(shape));
+        serializedMembers.where((member) => !member.isNullable(context, shape));
     for (var member in nonNullMembers) {
       final memberRef = payload.property(member.dartName);
       result.addAll([
@@ -321,7 +321,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
 
     // Add remaining objects only if they're non-null.
     final nullableMembers =
-        serializedMembers.where((member) => member.isNullable(shape));
+        serializedMembers.where((member) => member.isNullable(context, shape));
     for (var member in nullableMembers) {
       final memberRef = payload.property(member.dartName);
       builder.statements.addAll([

@@ -8,7 +8,6 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
-import 'package:tuple/tuple.dart';
 
 extension SimpleShapeUtil on SimpleShape {
   Reference get typeReference {
@@ -51,9 +50,13 @@ extension SimpleShapeUtil on SimpleShape {
 
 extension DartName on String {
   String nameEscaped([String escapeChar = '_']) {
-    var name = camelCase;
+    var name = this;
     if (hardReservedWords.contains(name)) {
-      name = '${name}_';
+      if (escapeChar == '\$') {
+        name = '\$$name';
+      } else {
+        name = '$name$escapeChar';
+      }
     }
     return name;
   }
@@ -61,10 +64,53 @@ extension DartName on String {
 
 extension MemberShapeUtils on MemberShape {
   /// The name of this shape in a Dart struct.
-  String get dartName => memberName.nameEscaped();
+  String get dartName => memberName.camelCase.nameEscaped();
 }
 
 extension ShapeUtils on Shape {
+  bool isNullable(CodegenContext context, [Shape? parent]) {
+    final isMemberShape = parent != null;
+    if (!isMemberShape) {
+      // If a shape is not part of an aggregate shape, its nullability is
+      // strictly equal to whether it has the box trait.
+      return isBoxed;
+    }
+
+    final parentType = parent.getType();
+    switch (parentType) {
+      // Lists have nullable members only when they are sparse.
+      case ShapeType.list:
+        return parent.isSparse;
+
+      // Sets never have null members.
+      case ShapeType.set:
+        return false;
+
+      // Maps always have non-null keys. Values are null iff the map is sparse.
+      // The box trait is not used to determine nullability.
+      case ShapeType.map:
+        final isValue = (parent as MapShape).value.target == shapeId;
+        return isValue && parent.isSparse;
+
+      // Shapes which are part of a structure are always considered boxed
+      // unless they are marked with the `@required` trait.
+      case ShapeType.structure:
+        final targetShape = this is MemberShape
+            ? context.shapeFor((this as MemberShape).target)
+            : this;
+        final isBoxed = targetShape.isBoxed;
+        return isNotRequired && (targetShape.hasDefaultValue ? isBoxed : true);
+
+      // All but one value in a union is non-null. We represent all values
+      // with nullable getters, though.
+      case ShapeType.union:
+        return true;
+
+      default:
+        throw StateError('Unknown aggregate type: $parentType');
+    }
+  }
+
   /// The rename for the shape in the service closure.
   String? rename(CodegenContext context) =>
       context.service?.rename[shapeId.toString()];
@@ -140,7 +186,7 @@ extension ShapeUtils on Shape {
       ..packageName = context.packageName
       ..serviceName = context.serviceName
       ..libraryType = libraryType
-      ..filename = (rename ?? shapeId.shape).snakeCase;
+      ..filename = (rename ?? shapeId.shape).pascalCase.snakeCase;
   }
 
   PaginatedTraits? get _paginatedTraits {
@@ -222,7 +268,7 @@ extension OperationShapeUtil on OperationShape {
           exps.add(
             (exp) => exp.nullableProperty(member.dartName, _isNullable),
           );
-          isNullable = member.isNullable(shape);
+          isNullable = member.isNullable(context, shape);
           symbol = context.symbolFor(member.target, shape);
           final targetShape = context.shapeFor(member.target);
           if (path.isNotEmpty) {
@@ -467,7 +513,7 @@ extension StructureShapeUtil on StructureShape {
         for (var member in sortedMembers)
           member: context
               .symbolFor(member.target, this)
-              .withBoxed(member.isNullable(this)),
+              .withBoxed(member.isNullable(context, this)),
       };
 
   /// Members sorted by their re-cased Dart name.

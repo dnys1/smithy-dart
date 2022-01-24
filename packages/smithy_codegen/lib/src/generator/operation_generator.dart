@@ -46,11 +46,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   outputPayload.symbol.unboxed,
                   outputSymbol,
                   paginatedTraits!.inputToken?.symbol.unboxed ??
-                      DartTypes.core.null$,
+                      DartTypes.core.void$,
                   paginatedTraits!.pageSize?.symbol.unboxed ??
-                      DartTypes.core.null$,
+                      DartTypes.core.void$,
                   paginatedTraits!.items?.symbol.unboxed ??
-                      DartTypes.core.null$,
+                      DartTypes.core.void$,
                 )
           ..constructors.add(_constructor)
           ..fields.addAll([
@@ -95,7 +95,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         literalString(entry.key),
         entry.value,
         input.property(entry.value.dartName),
-        isNullable: entry.value.isNullable(inputShape),
+        isNullable: entry.value.isNullable(context, inputShape),
       );
     }
 
@@ -108,7 +108,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         literalString(entry.key),
         entry.value,
         input.property(entry.value.dartName),
-        isNullable: entry.value.isNullable(inputShape),
+        isNullable: entry.value.isNullable(context, inputShape),
       );
     }
 
@@ -235,7 +235,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   Code _httpPrefixedHeaders(HttpPrefixHeaders headers) {
     final mapShape = context.shapeFor(headers.member.target) as MapShape;
     final mapRef = refer('input').property(headers.member.dartName);
-    final isNullableMap = headers.member.isNullable(inputShape);
+    final isNullableMap = headers.member.isNullable(context, inputShape);
     final valueTarget = context.shapeFor(mapShape.value.target);
     return Block.of([
       const Code('for (var entry in '),
@@ -250,7 +250,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             .operatorAdd(refer('entry').property('key')),
         valueTarget,
         refer('entry').property('value'),
-        isNullable: valueTarget.isNullable(mapShape),
+        isNullable: valueTarget.isNullable(context, mapShape),
       ),
       const Code('}'),
     ]).wrapWithBlockIf(mapRef.notEqualTo(literalNull), isNullableMap);
@@ -268,7 +268,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final targetShape =
         value is MemberShape ? context.shapeFor(value.target) : value;
     if (targetShape is CollectionShape) {
-      final isNullableMember = targetShape.member.isNullable(targetShape);
+      final isNullableMember =
+          targetShape.member.isNullable(context, targetShape);
       Expression memberRef = refer('value');
       if (isNullableMember) {
         memberRef = memberRef.nullChecked;
@@ -353,17 +354,14 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   Code _httpQueryParameters(MemberShape queryParameters) {
     final targetShape = context.shapeFor(queryParameters.target) as MapShape;
     final valueShape = context.shapeFor(targetShape.value.target);
-    final isNullable = queryParameters.isNullable(inputShape);
+    final isNullable = queryParameters.isNullable(context, inputShape);
     final mapRef = refer('input').property(queryParameters.dartName);
     var entriesRef = mapRef;
     if (isNullable) {
       entriesRef = entriesRef.nullChecked;
     }
     entriesRef = entriesRef.property('toMap').call([]).property('entries');
-    var valueRef = refer('entry').property('value');
-    if (valueShape.isNullable(targetShape)) {
-      valueRef = valueRef.nullChecked;
-    }
+    final valueRef = refer('entry').property('value');
     return Block.of([
       const Code('for (var entry in '),
       entriesRef.code,
@@ -372,7 +370,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         refer('entry').property('key'),
         valueShape,
         valueRef,
-        isNullable: valueShape.isNullable(targetShape),
+        isNullable: valueShape.isNullable(context, targetShape),
       ),
       Code('}'),
     ]).wrapWithBlockIf(mapRef.notEqualTo(literalNull), isNullable);
@@ -563,6 +561,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       default:
     }
 
+    // https://awslabs.github.io/smithy/1.0/spec/core/auth-traits.html#optionalauth-trait
+    final authTrait = shape.getTrait<AuthTrait>();
+    final bool isOptionalAuth = shape.hasTrait<OptionalAuthTrait>() ||
+        (authTrait != null && authTrait.values.isEmpty);
+
     // SigV4
     final sigV4 = context.service?.getTrait<SigV4Trait>()?.name;
     if (sigV4 != null) {
@@ -570,6 +573,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         'region': refer('region'),
         'serviceName': literalString(sigV4),
         'credentialsProvider': refer('credentialsProvider'),
+        if (isOptionalAuth) 'isOptional': literalTrue,
       });
     }
 
@@ -624,20 +628,21 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       return;
     }
 
+    const emptyBody = Code('');
+
     // The `getToken` method.
     final outputToken = paginatedTraits.outputToken;
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = outputToken?.symbol.boxed ?? DartTypes.core.null$
+        ..returns = outputToken?.symbol.boxed ?? DartTypes.core.void$
         ..name = 'getToken'
         ..requiredParameters.add(Parameter((p) => p
           ..type = outputSymbol
           ..name = 'output'))
-        ..lambda = true
-        ..body =
-            (outputToken?.buildExpression.call(refer('output')) ?? literalNull)
-                .code,
+        ..lambda = outputToken != null
+        ..body = outputToken?.buildExpression.call(refer('output')).code ??
+            emptyBody,
     );
 
     // The `getItems` method.
@@ -656,18 +661,38 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = items?.symbol.unboxed ?? DartTypes.core.null$
+        ..returns = items?.symbol.unboxed ?? DartTypes.core.void$
         ..name = 'getItems'
         ..requiredParameters.add(Parameter((p) => p
           ..type = outputSymbol
           ..name = 'output'))
-        ..lambda = true
-        ..body = (itemsBody ?? literalNull).code,
+        ..lambda = itemsBody != null
+        ..body = itemsBody?.code ?? emptyBody,
     );
 
     // The `rebuildInput` method.
     final inputToken = paginatedTraits.inputToken;
     final pageSize = paginatedTraits.pageSize;
+    var inputTokenBuilder = inputToken?.buildExpression(refer('b'));
+    if (inputTokenBuilder != null) {
+      final inputTokenTarget = context.shapeFor(inputToken!.member.target);
+      final builderTypes = const [
+        ShapeType.set,
+        ShapeType.list,
+        ShapeType.map,
+        ShapeType.structure,
+      ];
+      final needsBuilder = builderTypes.contains(inputTokenTarget.getType());
+      var input = inputToken.buildExpression(refer('input'));
+      if (inputToken.isNullable) {
+        input = input.nullChecked;
+      }
+      if (needsBuilder) {
+        inputTokenBuilder = inputTokenBuilder.property('replace').call([input]);
+      } else {
+        inputTokenBuilder = inputTokenBuilder.assign(input);
+      }
+    }
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
@@ -678,10 +703,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             ..type = inputSymbol
             ..name = 'input'),
           Parameter((p) => p
-            ..type = inputToken?.symbol
+            ..type = inputToken?.symbol ?? DartTypes.core.void$
             ..name = 'token'),
           Parameter((p) => p
-            ..type = pageSize?.symbol.boxed ?? DartTypes.core.null$
+            ..type = pageSize?.symbol.boxed ?? DartTypes.core.void$
             ..name = 'pageSize')
         ])
         ..lambda = true
@@ -691,15 +716,12 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
               ..requiredParameters.add(Parameter((p) => p..name = 'b'))
               ..body = Block.of([
                 if (inputToken != null)
-                  inputToken
-                      .buildExpression(refer('b'))
-                      .assign(inputToken.buildExpression(refer('input')))
-                      .wrapWithBlockNullCheck(
-                        inputToken
-                            .buildExpression(refer('input'))
-                            .notEqualTo(literalNull),
-                        inputToken.isNullable,
-                      ),
+                  inputTokenBuilder!.statement.wrapWithBlockIf(
+                    inputToken
+                        .buildExpression(refer('input'))
+                        .notEqualTo(literalNull),
+                    inputToken.isNullable,
+                  ),
                 if (pageSize != null)
                   pageSize
                       .buildExpression(refer('b'))

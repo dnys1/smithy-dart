@@ -60,10 +60,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             if (payloadShape == null && payloadMembers.isEmpty)
               DartTypes.smithy.emptyPayload,
 
-            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol.unboxed)
+            if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol.unboxed),
+            if (shape.isError) DartTypes.smithy.smithyException,
           ])
           ..mixins.addAll([
-            if (shape.isError) DartTypes.smithy.smithyException,
             if (shape.isInputShape)
               DartTypes.smithy.httpInput(payloadSymbol.unboxed),
             DartTypes.awsCommon.awsEquatable(symbol),
@@ -81,7 +81,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               members: sortedMembers,
               builderSymbol: builderSymbol,
             ),
-            ..._fieldGetters(sortedMembers),
+            ..._fieldGetters(sortedMembers, isPayload: false),
             ..._httpInputOverrides,
             if (shape.isInputShape || hasPayload) _getPayload,
             ..._errorFields,
@@ -130,7 +130,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               members: payloadMembers,
               builderSymbol: payloadBuilderSymbol!,
             ),
-            ..._fieldGetters(payloadMembers),
+            ..._fieldGetters(payloadMembers, isPayload: true),
             _props(payloadMembers),
           ]),
       );
@@ -255,7 +255,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   }
 
   /// Fields for this type.
-  Iterable<Method> _fieldGetters(List<MemberShape> members) sync* {
+  Iterable<Method> _fieldGetters(
+    List<MemberShape> members, {
+    required bool isPayload,
+  }) sync* {
     for (var member in members) {
       yield Method(
         (f) => f
@@ -268,7 +271,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             // treated specially.
             //
             // https://awslabs.github.io/smithy/1.0/spec/core/type-refinement-traits.html#error-trait
-            if (shape.isError && member.dartName == 'message')
+            if (shape.isError && member.dartName == 'message' && !isPayload)
               DartTypes.core.override,
           ])
           ..docs.addAll([
@@ -302,10 +305,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       // If the payload shape is empty or has only nullable instance members,
       // and this shape's instance member is null, return a built payload.
       final targetShape = context.shapeFor(payloadShape!.target);
-      if (payloadShape!.isNullable(shape) &&
+      if (payloadShape!.isNullable(context, shape) &&
           targetShape is StructureShape &&
           targetShape.members.values.map((member) {
-            return member.isNullable(targetShape);
+            return member.isNullable(context, targetShape);
           }).every((isNullable) => isNullable)) {
         payload = payload.ifNullThen(payloadSymbol.unboxed.newInstance([]));
       }
@@ -497,7 +500,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ShapeType.structure
       ].contains(targetShapeType);
       if (isNestedBuilder) {
-        final isNullable = member.isNullable(shape);
+        final isNullable = member.isNullable(context, shape);
         return builder
             .property(member.dartName)
             .property('replace')
@@ -533,7 +536,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         headersRef.index(literalString(entry.key)),
         entry.value,
         builder.property(entry.value.dartName),
-        isNullable: entry.value.isNullable(shape),
+        isNullable: true,
       );
     }
 

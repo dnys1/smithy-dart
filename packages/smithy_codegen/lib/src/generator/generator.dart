@@ -23,8 +23,8 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
   /// The re-cased name for the generated class.
   String get className {
     return (shape.rename(context) ?? shape.shapeId.shape)
-        .nameEscaped()
-        .pascalCase;
+        .pascalCase
+        .nameEscaped('\$');
   }
 
   /// Formats documentation to follow Dart standards.
@@ -37,7 +37,7 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
 
 /// A generator for [Library] definitions.
 abstract class LibraryGenerator<T extends Shape>
-    extends ShapeGenerator<T, Library> {
+    extends ShapeGenerator<T, Library?> {
   LibraryGenerator(
     T shape, {
     required CodegenContext context,

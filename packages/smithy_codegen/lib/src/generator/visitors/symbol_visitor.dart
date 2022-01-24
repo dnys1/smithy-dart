@@ -19,7 +19,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
     final valueType = shape.member.accept(this, shape);
     final type = DartTypes.builtValue
         .builtList(valueType)
-        .withBoxed(shape.isNullable(parent));
+        .withBoxed(shape.isNullable(context, parent));
     final builder = DartTypes.builtValue.listBuilder(valueType);
     context.builderFactories[type.unboxed] = builder.property('new');
     return type;
@@ -44,7 +44,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
             (valueShape as ListShape).member.target, valueShape);
         final type = DartTypes.builtValue
             .builtListMultimap(keySymbol, valueSymbol)
-            .withBoxed(shape.isNullable(parent));
+            .withBoxed(shape.isNullable(context, parent));
         final builder =
             DartTypes.builtValue.listMultimapBuilder(keySymbol, valueSymbol);
         context.builderFactories[type.unboxed] = builder.property('new');
@@ -54,7 +54,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
             (valueShape as SetShape).member.target, valueShape);
         final type = DartTypes.builtValue
             .builtSetMultimap(keySymbol, valueSymbol)
-            .withBoxed(shape.isNullable(parent));
+            .withBoxed(shape.isNullable(context, parent));
         final builder =
             DartTypes.builtValue.setMultimapBuilder(keySymbol, valueSymbol);
         context.builderFactories[type.unboxed] = builder.property('new');
@@ -63,11 +63,12 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
         break;
     }
 
-    final valueSymbol =
-        valueShape.accept(this, shape).withBoxed(valueShape.isNullable(shape));
+    final valueSymbol = valueShape
+        .accept(this, shape)
+        .withBoxed(valueShape.isNullable(context, shape));
     final type = DartTypes.builtValue
         .builtMap(keySymbol, valueSymbol)
-        .withBoxed(shape.isNullable(parent));
+        .withBoxed(shape.isNullable(context, parent));
     final builder = DartTypes.builtValue.mapBuilder(keySymbol, valueSymbol);
     context.builderFactories[type.unboxed] = builder.property('new');
     return type;
@@ -77,7 +78,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   Reference memberShape(MemberShape shape, [Shape? parent]) {
     return context
         .symbolFor(shape.target, parent)
-        .withBoxed(shape.isNullable(parent));
+        .withBoxed(shape.isNullable(context, parent));
   }
 
   @override
@@ -105,7 +106,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
     final valueType = shape.member.accept(this, shape);
     final type = DartTypes.builtValue
         .builtSet(valueType)
-        .withBoxed(shape.isNullable(parent));
+        .withBoxed(shape.isNullable(context, parent));
     final builder = DartTypes.builtValue.setBuilder(valueType);
     context.builderFactories[type.unboxed] = builder.property('new');
     return type;
@@ -114,14 +115,14 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
   @override
   Reference stringShape(StringShape shape, [Shape? parent]) {
     if (shape.isEnum) {
-      return createSymbol(shape).withBoxed(shape.isNullable(parent));
+      return createSymbol(shape).withBoxed(shape.isNullable(context, parent));
     }
     final mediaType = shape.getTrait<MediaTypeTrait>()?.value;
     if (mediaType != null) {
       switch (mediaType) {
         case 'application/json':
           return DartTypes.builtValue.jsonObject
-              .withBoxed(shape.isNullable(parent));
+              .withBoxed(shape.isNullable(context, parent));
       }
     }
     return super.stringShape(shape);
@@ -145,14 +146,14 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
     return TypeReference(
       (t) => t
         ..symbol = (shape.rename(context) ?? shape.shapeId.shape)
-            .nameEscaped('\$')
             .pascalCase
+            .nameEscaped('\$')
         ..url = shape.libraryUrl(context),
     );
   }
 
   @override
   Reference simpleShape(SimpleShape shape, [Shape? parent]) {
-    return shape.typeReference.withBoxed(shape.isNullable(parent));
+    return shape.typeReference.withBoxed(shape.isNullable(context, parent));
   }
 }

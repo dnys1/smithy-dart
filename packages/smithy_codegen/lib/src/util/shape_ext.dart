@@ -353,56 +353,14 @@ extension OperationShapeUtil on OperationShape {
     return null;
   }
 
-  Expression _buildEndpointDefinition(EndpointDefinition definition) =>
-      DartTypes.smithyAws.endpointDefinition.constInstance([], {
-        if (definition.hostname != null)
-          'hostname': literal(definition.hostname),
-        if (definition.protocols.isNotEmpty)
-          'protocols': literalList(definition.protocols.map(literalString)),
-        if (definition.signatureVersions.isNotEmpty)
-          'signatureVersions':
-              literalList(definition.signatureVersions.map(literalString)),
-        if (definition.credentialScope != null)
-          'credentialScope':
-              DartTypes.smithyAws.credentialScope.constInstance([], {
-            if (definition.credentialScope?.region != null)
-              'region': literal(definition.credentialScope?.region),
-            if (definition.credentialScope?.service != null)
-              'service': literal(definition.credentialScope?.service),
-          }),
-      });
-
-  Expression _buildPartition(Partition partition) {
-    return DartTypes.smithyAws.partition.newInstance([], {
-      'id': literalString(partition.id),
-      'regionRegex': DartTypes.core.regExp.newInstance([
-        literalString(partition.regionRegex.pattern, raw: true),
-      ]),
-      'partitionEndpoint': partition.partitionEndpoint == null
-          ? literalNull
-          : literalString(partition.partitionEndpoint!),
-      'isRegionalized': literalBool(partition.isRegionalized),
-      'defaults': _buildEndpointDefinition(partition.defaults),
-      'endpoints': literalConstMap({
-        for (final entry in partition.endpoints.entries)
-          literalString(entry.key): _buildEndpointDefinition(entry.value),
-      })
-    });
-  }
-
   /// Fields which should be generated for the operation and its service client
   /// based off the traits attached to this shape's service.
-  Iterable<Field> protocolFields(
-    CodegenContext context, {
-    required Shape forShape,
-  }) sync* {
+  Iterable<Field> protocolFields(CodegenContext context) sync* {
     final serviceShape = context.service;
     if (serviceShape == null) {
       return;
     }
-    final isOperation = forShape is OperationShape;
-    final serviceTrait = serviceShape.getTrait<ServiceTrait>();
-    if (serviceTrait != null) {
+    if (serviceShape.isAwsService) {
       yield Field(
         (f) => f
           ..type = DartTypes.core.string
@@ -417,44 +375,6 @@ extension OperationShapeUtil on OperationShape {
           ..type = DartTypes.core.uri.boxed
           ..name = '_baseUri',
       );
-
-      final resolvedService = serviceTrait.resolve(serviceShape.shapeId);
-      final sortedPartitions = [...awsPartitions.keys]..sort();
-      if (isOperation) {
-        yield Field(
-          (f) => f
-            ..static = true
-            ..modifier = FieldModifier.final$
-            ..name = '_partitions'
-            ..assignment = literalList([
-              for (final partitionName in sortedPartitions)
-                _buildPartition(awsPartitions[partitionName]!
-                    .toPartition(resolvedService.endpointPrefix)),
-            ]).code,
-        );
-
-        // The endpoint resolver
-        final endpointResolver = DartTypes.smithyAws.awsEndpointResolver
-            .newInstance([refer('_partitions')]);
-        yield Field(
-          (f) => f
-            ..late = true
-            ..modifier = FieldModifier.final$
-            ..type = DartTypes.smithyAws.awsEndpointResolver
-            ..name = '_endpointResolver'
-            ..assignment = endpointResolver.code,
-        );
-
-        // The sdkId
-        yield Field(
-          (f) => f
-            ..static = true
-            ..modifier = FieldModifier.constant
-            ..type = DartTypes.core.string
-            ..name = '_sdkId'
-            ..assignment = literalString(resolvedService.sdkId).code,
-        );
-      }
     } else {
       // The baseUri field
       yield Field(
@@ -482,7 +402,7 @@ extension OperationShapeUtil on OperationShape {
     if (serviceShape == null) {
       return;
     }
-    final isAwsService = serviceShape.hasTrait<ServiceTrait>();
+    final isAwsService = serviceShape.isAwsService;
     yield Parameter(
       (p) => p
         ..toThis = !isAwsService
@@ -515,13 +435,13 @@ extension OperationShapeUtil on OperationShape {
   /// Constructor initializers which should be generated for the operation and its
   /// service client based off the traits attached to this shape's service.
   Iterable<Tuple2<String, String>> constructorInitializers(
-      CodegenContext context) sync* {
+    CodegenContext context,
+  ) sync* {
     final serviceShape = context.service;
     if (serviceShape == null) {
       return;
     }
-    final isAwsService = serviceShape.hasTrait<ServiceTrait>();
-    if (isAwsService) {
+    if (serviceShape.isAwsService) {
       yield Tuple2('_baseUri', 'baseUri');
     }
   }
@@ -719,4 +639,18 @@ extension ShapeIdUtil on ShapeId {
         'shape': literalString(shape),
         if (member != null) 'member': literalString(member!),
       });
+}
+
+extension ServiceShapeUtil on ServiceShape {
+  /// Whether this is an AWS service.
+  bool get isAwsService => resolvedService != null;
+
+  /// The resolved service trait for AWS services.
+  ResolvedServiceTrait? get resolvedService {
+    final serviceTrait = getTrait<ServiceTrait>();
+    if (serviceTrait == null) {
+      return null;
+    }
+    return serviceTrait.resolve(shapeId);
+  }
 }

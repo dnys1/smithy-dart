@@ -8,6 +8,7 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
+import 'package:smithy_codegen/src/model/smithy_library.dart';
 
 class OperationGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
@@ -55,7 +56,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..constructors.add(_constructor)
           ..fields.addAll([
             _protocolsGetter,
-            ...shape.protocolFields(context, forShape: shape),
+            ...shape.protocolFields(context),
           ])
           ..methods.addAll([
             ..._httpOverrides,
@@ -473,7 +474,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ]).code,
     );
 
-    if (context.service?.hasTrait<ServiceTrait>() ?? false) {
+    if (context.service?.isAwsService ?? false) {
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
@@ -485,16 +486,19 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
               .code,
       );
 
+      final endpointResolverLib = context.endpointResolverLibrary.libraryUrl;
+      final endpointResolver = refer('endpointResolver', endpointResolverLib);
+      final sdkId = refer('sdkId', endpointResolverLib);
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
           ..returns = DartTypes.smithy.endpoint
           ..name = 'endpoint'
           ..type = MethodType.getter
-          ..body = refer('_endpointResolver')
+          ..body = endpointResolver
               .property('resolveWithContext')
               .call([
-                refer('_sdkId'),
+                sdkId,
                 refer('region'),
                 refer('context'),
               ])

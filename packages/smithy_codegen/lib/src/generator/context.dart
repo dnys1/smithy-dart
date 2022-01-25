@@ -116,6 +116,14 @@ class CodegenContext {
     filename: 'serializers.dart',
   );
 
+  /// The service's endpoint resolvers library.
+  late final SmithyLibrary endpointResolverLibrary = SmithyLibraryX.create(
+    packageName: packageName,
+    serviceName: serviceName,
+    libraryType: SmithyLibrary_LibraryType.COMMON,
+    filename: 'endpoint_resolver.dart',
+  );
+
   /// The service's serializers reference.
   late final Reference serializersRef =
       Reference('serializers', serviceSerializersLibrary.libraryUrl);

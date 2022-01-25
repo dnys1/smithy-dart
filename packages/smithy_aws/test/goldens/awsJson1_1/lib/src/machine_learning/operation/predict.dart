@@ -3,6 +3,8 @@
 library aws_json1_1.machine_learning.operation.predict;
 
 import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:aws_json1_1/src/machine_learning/common/endpoint_resolver.dart'
+    as _i13;
 import 'package:aws_json1_1/src/machine_learning/common/serializers.dart'
     as _i6;
 import 'package:aws_json1_1/src/machine_learning/model/internal_server_exception.dart'
@@ -52,72 +54,6 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
   final String region;
 
   final Uri? _baseUri;
-
-  static final _partitions = [
-    _i5.Partition(
-        id: 'aws',
-        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'machinelearning.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {
-          'eu-west-1': _i5.EndpointDefinition(),
-          'us-east-1': _i5.EndpointDefinition()
-        }),
-    _i5.Partition(
-        id: 'aws-cn',
-        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'machinelearning.{region}.amazonaws.com.cn',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-iso',
-        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'machinelearning.{region}.c2s.ic.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-iso-b',
-        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'machinelearning.{region}.sc2s.sgov.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-us-gov',
-        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'machinelearning.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {})
-  ];
-
-  late final _i5.AWSEndpointResolver _endpointResolver =
-      _i5.AWSEndpointResolver(_partitions);
-
-  static const String _sdkId = 'Machine Learning';
 
   final _i4.AWSCredentialsProvider credentialsProvider;
 
@@ -178,6 +114,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
-  _i1.Endpoint get endpoint =>
-      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
+  _i1.Endpoint get endpoint => _i13.endpointResolver
+      .resolveWithContext(_i13.sdkId, region, context)
+      .endpoint;
 }

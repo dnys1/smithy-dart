@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/generator/endpoint_resolver_generator.dart';
 import 'package:smithy_codegen/src/generator/enum_generator.dart';
 import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/operation_generator.dart';
@@ -77,6 +78,16 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       context.serviceSerializersLibrary,
       SerializersGenerator(context).generate(),
     );
+
+    // Build the endpoint resolver library
+    final endpointResolver =
+        EndpointResolverGenerator(shape, context).generate();
+    if (endpointResolver != null) {
+      yield GeneratedLibrary(
+        context.endpointResolverLibrary,
+        endpointResolver,
+      );
+    }
 
     // Build top-level service library (should be last thing built)
     yield GeneratedLibrary(

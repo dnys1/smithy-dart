@@ -3,6 +3,8 @@
 library aws_json1_1.json_protocol.operation.operation_with_optional_input_output;
 
 import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:aws_json1_1/src/json_protocol/common/endpoint_resolver.dart'
+    as _i8;
 import 'package:aws_json1_1/src/json_protocol/common/serializers.dart' as _i6;
 import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_input.dart'
     as _i2;
@@ -49,69 +51,6 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
 
   final Uri? _baseUri;
 
-  static final _partitions = [
-    _i5.Partition(
-        id: 'aws',
-        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'jsonprotocol.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-cn',
-        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'jsonprotocol.{region}.amazonaws.com.cn',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-iso',
-        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'jsonprotocol.{region}.c2s.ic.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-iso-b',
-        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'jsonprotocol.{region}.sc2s.sgov.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {}),
-    _i5.Partition(
-        id: 'aws-us-gov',
-        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i5.EndpointDefinition(
-            hostname: 'jsonprotocol.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i5.CredentialScope()),
-        endpoints: const {})
-  ];
-
-  late final _i5.AWSEndpointResolver _endpointResolver =
-      _i5.AWSEndpointResolver(_partitions);
-
-  static const String _sdkId = 'Json Protocol';
-
   final _i4.AWSCredentialsProvider credentialsProvider;
 
   @override
@@ -134,6 +73,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
-  _i1.Endpoint get endpoint =>
-      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
+  _i1.Endpoint get endpoint => _i8.endpointResolver
+      .resolveWithContext(_i8.sdkId, region, context)
+      .endpoint;
 }

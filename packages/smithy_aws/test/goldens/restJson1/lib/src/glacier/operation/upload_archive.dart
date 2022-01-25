@@ -6,6 +6,7 @@ import 'dart:async' as _i2;
 
 import 'package:aws_common/aws_common.dart' as _i8;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i5;
+import 'package:rest_json1/src/glacier/common/endpoint_resolver.dart' as _i14;
 import 'package:rest_json1/src/glacier/common/serializers.dart' as _i7;
 import 'package:rest_json1/src/glacier/model/archive_creation_output.dart'
     as _i4;
@@ -56,119 +57,6 @@ class UploadArchiveOperation extends _i1.HttpOperation<
   final String region;
 
   final Uri? _baseUri;
-
-  static final _partitions = [
-    _i6.Partition(
-        id: 'aws',
-        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i6.EndpointDefinition(
-            hostname: 'glacier.{region}.amazonaws.com',
-            protocols: ['https', 'http'],
-            signatureVersions: ['v4'],
-            credentialScope: _i6.CredentialScope()),
-        endpoints: const {
-          'af-south-1': _i6.EndpointDefinition(),
-          'ap-east-1': _i6.EndpointDefinition(),
-          'ap-northeast-1': _i6.EndpointDefinition(),
-          'ap-northeast-2': _i6.EndpointDefinition(),
-          'ap-northeast-3': _i6.EndpointDefinition(),
-          'ap-south-1': _i6.EndpointDefinition(),
-          'ap-southeast-1': _i6.EndpointDefinition(),
-          'ap-southeast-2': _i6.EndpointDefinition(),
-          'ca-central-1': _i6.EndpointDefinition(),
-          'eu-central-1': _i6.EndpointDefinition(),
-          'eu-north-1': _i6.EndpointDefinition(),
-          'eu-south-1': _i6.EndpointDefinition(),
-          'eu-west-1': _i6.EndpointDefinition(),
-          'eu-west-2': _i6.EndpointDefinition(),
-          'eu-west-3': _i6.EndpointDefinition(),
-          'fips-ca-central-1': _i6.EndpointDefinition(
-              hostname: 'glacier-fips.ca-central-1.amazonaws.com',
-              credentialScope: _i6.CredentialScope(region: 'ca-central-1')),
-          'fips-us-east-1': _i6.EndpointDefinition(
-              hostname: 'glacier-fips.us-east-1.amazonaws.com',
-              credentialScope: _i6.CredentialScope(region: 'us-east-1')),
-          'fips-us-east-2': _i6.EndpointDefinition(
-              hostname: 'glacier-fips.us-east-2.amazonaws.com',
-              credentialScope: _i6.CredentialScope(region: 'us-east-2')),
-          'fips-us-west-1': _i6.EndpointDefinition(
-              hostname: 'glacier-fips.us-west-1.amazonaws.com',
-              credentialScope: _i6.CredentialScope(region: 'us-west-1')),
-          'fips-us-west-2': _i6.EndpointDefinition(
-              hostname: 'glacier-fips.us-west-2.amazonaws.com',
-              credentialScope: _i6.CredentialScope(region: 'us-west-2')),
-          'me-south-1': _i6.EndpointDefinition(),
-          'sa-east-1': _i6.EndpointDefinition(),
-          'us-east-1': _i6.EndpointDefinition(),
-          'us-east-2': _i6.EndpointDefinition(),
-          'us-west-1': _i6.EndpointDefinition(),
-          'us-west-2': _i6.EndpointDefinition()
-        }),
-    _i6.Partition(
-        id: 'aws-cn',
-        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i6.EndpointDefinition(
-            hostname: 'glacier.{region}.amazonaws.com.cn',
-            protocols: ['https', 'http'],
-            signatureVersions: ['v4'],
-            credentialScope: _i6.CredentialScope()),
-        endpoints: const {
-          'cn-north-1': _i6.EndpointDefinition(),
-          'cn-northwest-1': _i6.EndpointDefinition()
-        }),
-    _i6.Partition(
-        id: 'aws-iso',
-        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i6.EndpointDefinition(
-            hostname: 'glacier.{region}.c2s.ic.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i6.CredentialScope()),
-        endpoints: const {
-          'us-iso-east-1': _i6.EndpointDefinition(protocols: ['http', 'https'])
-        }),
-    _i6.Partition(
-        id: 'aws-iso-b',
-        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i6.EndpointDefinition(
-            hostname: 'glacier.{region}.sc2s.sgov.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i6.CredentialScope()),
-        endpoints: const {'us-isob-east-1': _i6.EndpointDefinition()}),
-    _i6.Partition(
-        id: 'aws-us-gov',
-        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i6.EndpointDefinition(
-            hostname: 'glacier.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i6.CredentialScope()),
-        endpoints: const {
-          'us-gov-east-1': _i6.EndpointDefinition(
-              hostname: 'glacier.us-gov-east-1.amazonaws.com',
-              credentialScope: _i6.CredentialScope(region: 'us-gov-east-1')),
-          'us-gov-west-1': _i6.EndpointDefinition(
-              hostname: 'glacier.us-gov-west-1.amazonaws.com',
-              protocols: ['http', 'https'],
-              credentialScope: _i6.CredentialScope(region: 'us-gov-west-1'))
-        })
-  ];
-
-  late final _i6.AWSEndpointResolver _endpointResolver =
-      _i6.AWSEndpointResolver(_partitions);
-
-  static const String _sdkId = 'Glacier';
 
   final _i5.AWSCredentialsProvider credentialsProvider;
 
@@ -241,6 +129,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
-  _i1.Endpoint get endpoint =>
-      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
+  _i1.Endpoint get endpoint => _i14.endpointResolver
+      .resolveWithContext(_i14.sdkId, region, context)
+      .endpoint;
 }

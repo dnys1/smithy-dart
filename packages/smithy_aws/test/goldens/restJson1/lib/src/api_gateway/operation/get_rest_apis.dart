@@ -5,6 +5,8 @@ library rest_json1.api_gateway.operation.get_rest_apis;
 import 'package:aws_common/aws_common.dart' as _i9;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i6;
 import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:rest_json1/src/api_gateway/common/endpoint_resolver.dart'
+    as _i13;
 import 'package:rest_json1/src/api_gateway/common/serializers.dart' as _i8;
 import 'package:rest_json1/src/api_gateway/model/bad_request_exception.dart'
     as _i10;
@@ -57,97 +59,6 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
 
   final Uri? _baseUri;
 
-  static final _partitions = [
-    _i7.Partition(
-        id: 'aws',
-        regionRegex: RegExp(r'^(us|eu|ap|sa|ca|me|af)\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i7.EndpointDefinition(
-            hostname: 'apigateway.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i7.CredentialScope()),
-        endpoints: const {
-          'af-south-1': _i7.EndpointDefinition(),
-          'ap-east-1': _i7.EndpointDefinition(),
-          'ap-northeast-1': _i7.EndpointDefinition(),
-          'ap-northeast-2': _i7.EndpointDefinition(),
-          'ap-northeast-3': _i7.EndpointDefinition(),
-          'ap-south-1': _i7.EndpointDefinition(),
-          'ap-southeast-1': _i7.EndpointDefinition(),
-          'ap-southeast-2': _i7.EndpointDefinition(),
-          'ca-central-1': _i7.EndpointDefinition(),
-          'eu-central-1': _i7.EndpointDefinition(),
-          'eu-north-1': _i7.EndpointDefinition(),
-          'eu-south-1': _i7.EndpointDefinition(),
-          'eu-west-1': _i7.EndpointDefinition(),
-          'eu-west-2': _i7.EndpointDefinition(),
-          'eu-west-3': _i7.EndpointDefinition(),
-          'me-south-1': _i7.EndpointDefinition(),
-          'sa-east-1': _i7.EndpointDefinition(),
-          'us-east-1': _i7.EndpointDefinition(),
-          'us-east-2': _i7.EndpointDefinition(),
-          'us-west-1': _i7.EndpointDefinition(),
-          'us-west-2': _i7.EndpointDefinition()
-        }),
-    _i7.Partition(
-        id: 'aws-cn',
-        regionRegex: RegExp(r'^cn\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i7.EndpointDefinition(
-            hostname: 'apigateway.{region}.amazonaws.com.cn',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i7.CredentialScope()),
-        endpoints: const {
-          'cn-north-1': _i7.EndpointDefinition(),
-          'cn-northwest-1': _i7.EndpointDefinition()
-        }),
-    _i7.Partition(
-        id: 'aws-iso',
-        regionRegex: RegExp(r'^us\-iso\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i7.EndpointDefinition(
-            hostname: 'apigateway.{region}.c2s.ic.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i7.CredentialScope()),
-        endpoints: const {'us-iso-east-1': _i7.EndpointDefinition()}),
-    _i7.Partition(
-        id: 'aws-iso-b',
-        regionRegex: RegExp(r'^us\-isob\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i7.EndpointDefinition(
-            hostname: 'apigateway.{region}.sc2s.sgov.gov',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i7.CredentialScope()),
-        endpoints: const {}),
-    _i7.Partition(
-        id: 'aws-us-gov',
-        regionRegex: RegExp(r'^us\-gov\-\w+\-\d+$'),
-        partitionEndpoint: null,
-        isRegionalized: true,
-        defaults: const _i7.EndpointDefinition(
-            hostname: 'apigateway.{region}.amazonaws.com',
-            protocols: ['https'],
-            signatureVersions: ['v4'],
-            credentialScope: _i7.CredentialScope()),
-        endpoints: const {
-          'us-gov-east-1': _i7.EndpointDefinition(),
-          'us-gov-west-1': _i7.EndpointDefinition()
-        })
-  ];
-
-  late final _i7.AWSEndpointResolver _endpointResolver =
-      _i7.AWSEndpointResolver(_partitions);
-
-  static const String _sdkId = 'API Gateway';
-
   final _i6.AWSCredentialsProvider credentialsProvider;
 
   @override
@@ -198,8 +109,9 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
   @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
-  _i1.Endpoint get endpoint =>
-      _endpointResolver.resolveWithContext(_sdkId, region, context).endpoint;
+  _i1.Endpoint get endpoint => _i13.endpointResolver
+      .resolveWithContext(_i13.sdkId, region, context)
+      .endpoint;
   @override
   String? getToken(_i3.RestApis output) => output.position;
   @override

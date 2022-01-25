@@ -1,5 +1,5 @@
 name: goldens
-description: Golden files for smithy-dart-codegen
+description: Golden files for smithy-dart
 version: 1.0.0
 publish_to: none
 

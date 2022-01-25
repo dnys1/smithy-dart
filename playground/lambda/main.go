@@ -73,7 +73,21 @@ func HandleRequest(ctx context.Context, event *events.APIGatewayProxyRequest) (*
 		return badRequest("%v: %s", ErrInvalidIDL, ast)
 	}
 	if err := strings.TrimSpace(stderr.String()); err != "" {
-		return badRequest("%v: %s", ErrInvalidIDL, err)
+		// Trim off "Picked up JAVA_TOOL_OPTIONS" line which gets printed to stderr for
+		// some reason.
+		if strings.HasPrefix(err, "Picked up") {
+			split := strings.SplitAfterN(err, "\n", 2)
+			if len(split) > 1 {
+				err = split[1]
+			} else {
+				err = ""
+			}
+			err = strings.TrimSpace(err)
+		}
+
+		if err != "" {
+			return badRequest("%v: %s", ErrInvalidIDL, err)
+		}
 	}
 	log.Printf("Successfully generated AST: %s\n", ast)
 

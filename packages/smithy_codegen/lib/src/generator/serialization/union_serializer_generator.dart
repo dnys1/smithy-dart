@@ -123,7 +123,7 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
           // we have no information about it and it could fail.
           // We could try/catch the serialization, but that would
           // be inconsistent with the deserialize code.
-          unknownMember.dartName(ShapeType.union): Method(
+          sdkUnknown: Method(
             (m) => m
               ..requiredParameters.addAll([
                 Parameter((p) => p
@@ -131,10 +131,10 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
                   ..name = '_'),
                 Parameter((p) => p
                   ..type = unknownMemberSymbol
-                  ..name = unknownMember.dartName(ShapeType.union)),
+                  ..name = sdkUnknown),
               ])
               ..lambda = true
-              ..body = refer(unknownMember.dartName(ShapeType.union)).code,
+              ..body = refer(sdkUnknown).code,
           ).closure,
         }, [
           DartTypes.core.object.boxed

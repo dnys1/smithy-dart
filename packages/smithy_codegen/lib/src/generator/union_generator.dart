@@ -123,7 +123,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
       (c) => c
         ..constant = true
         ..factory = true
-        ..name = variantName(unknownMember)
+        ..name = sdkUnknown
         ..requiredParameters.addAll([
           Parameter(
             (p) => p
@@ -165,7 +165,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
         Parameter(
           (p) => p
             ..named = true
-            ..name = variantName(unknownMember)
+            ..name = sdkUnknown
             ..type = FunctionType(
               (t) => t
                 ..isNullable = true
@@ -194,7 +194,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
               .statement,
           const Code('}'),
         ],
-        refer(variantName(unknownMember))
+        refer('sdkUnknown')
             .nullSafeProperty('call')
             .call([refer('name'), refer('value')])
             .returned

@@ -7,6 +7,8 @@ import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
+const sdkUnknown = 'sdkUnknown';
+
 /// Useful properties when generating named member shapes (unions + structs).
 mixin NamedMembersGenerationContext<S extends NamedMembersShape, U>
     on ShapeGenerator<S, U> {
@@ -33,8 +35,6 @@ mixin NamedMembersGenerationContext<S extends NamedMembersShape, U>
 /// Useful properties when generating union shapes.
 mixin UnionGenerationContext<U> on ShapeGenerator<UnionShape, U>
     implements NamedMembersGenerationContext<UnionShape, U> {
-  static const sdkUnknown = 'sdkUnknown';
-
   late final MemberShape unknownMember = MemberShape(
     (s) => s
       ..memberName = sdkUnknown
@@ -46,8 +46,7 @@ mixin UnionGenerationContext<U> on ShapeGenerator<UnionShape, U>
   late final List<MemberShape> allMembers = [...sortedMembers, unknownMember];
 
   /// Whether this represents the unknown value type.
-  bool isUnknownMember(MemberShape member) =>
-      member.memberName == UnionGenerationContext.sdkUnknown;
+  bool isUnknownMember(MemberShape member) => member.memberName == sdkUnknown;
 
   /// The name of this member as a union variant.
   String variantName(MemberShape member) => member.dartName(shape.getType());

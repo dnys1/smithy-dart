@@ -14,7 +14,7 @@ abstract class EnumUnion extends _i1.SmithyUnion<EnumUnion> {
 
   const factory EnumUnion.second(_i2.EnumString second) = _EnumUnionSecond;
 
-  const factory EnumUnion.sdkUnknown_(String name, Object value) =
+  const factory EnumUnion.sdkUnknown(String name, Object value) =
       _EnumUnionSdkUnknown;
 
   static const List<_i1.SmithySerializer<EnumUnion>> serializers = [
@@ -29,14 +29,14 @@ abstract class EnumUnion extends _i1.SmithyUnion<EnumUnion> {
   T? when<T>(
       {T Function(_i2.EnumString)? first,
       T Function(_i2.EnumString)? second,
-      T Function(String, Object)? sdkUnknown_}) {
+      T Function(String, Object)? sdkUnknown}) {
     if (this is _EnumUnionFirst) {
       return first?.call((this as _EnumUnionFirst).first);
     }
     if (this is _EnumUnionSecond) {
       return second?.call((this as _EnumUnionSecond).second);
     }
-    return sdkUnknown_?.call(name, value);
+    return sdkUnknown?.call(name, value);
   }
 }
 
@@ -109,7 +109,7 @@ class _EnumUnionRestJson1Serializer
               specifiedType: const FullType(_i2.EnumString)),
           second: (_i2.EnumString second) => serializers.serialize(second,
               specifiedType: const FullType(_i2.EnumString)),
-          sdkUnknown_: (String _, Object sdkUnknown_) => sdkUnknown_)!
+          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
     ];
   }
 }

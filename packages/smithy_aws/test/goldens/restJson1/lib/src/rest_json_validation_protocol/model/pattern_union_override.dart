@@ -15,7 +15,7 @@ abstract class PatternUnionOverride
   const factory PatternUnionOverride.second(String second) =
       _PatternUnionOverrideSecond;
 
-  const factory PatternUnionOverride.sdkUnknown_(String name, Object value) =
+  const factory PatternUnionOverride.sdkUnknown(String name, Object value) =
       _PatternUnionOverrideSdkUnknown;
 
   static const List<_i1.SmithySerializer<PatternUnionOverride>> serializers = [
@@ -30,14 +30,14 @@ abstract class PatternUnionOverride
   T? when<T>(
       {T Function(String)? first,
       T Function(String)? second,
-      T Function(String, Object)? sdkUnknown_}) {
+      T Function(String, Object)? sdkUnknown}) {
     if (this is _PatternUnionOverrideFirst) {
       return first?.call((this as _PatternUnionOverrideFirst).first);
     }
     if (this is _PatternUnionOverrideSecond) {
       return second?.call((this as _PatternUnionOverrideSecond).second);
     }
-    return sdkUnknown_?.call(name, value);
+    return sdkUnknown?.call(name, value);
   }
 }
 
@@ -112,7 +112,7 @@ class _PatternUnionOverrideRestJson1Serializer
               specifiedType: const FullType(String)),
           second: (String second) => serializers.serialize(second,
               specifiedType: const FullType(String)),
-          sdkUnknown_: (String _, Object sdkUnknown_) => sdkUnknown_)!
+          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
     ];
   }
 }

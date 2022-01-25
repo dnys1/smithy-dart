@@ -10,7 +10,7 @@ abstract class PlayerAction extends _i1.SmithyUnion<PlayerAction> {
 
   const factory PlayerAction.quit(_i1.Unit quit) = _PlayerActionQuit;
 
-  const factory PlayerAction.sdkUnknown_(String name, Object value) =
+  const factory PlayerAction.sdkUnknown(String name, Object value) =
       _PlayerActionSdkUnknown;
 
   static const List<_i1.SmithySerializer<PlayerAction>> serializers = [
@@ -22,11 +22,11 @@ abstract class PlayerAction extends _i1.SmithyUnion<PlayerAction> {
   Object get value => (quit)!;
   @override
   T? when<T>(
-      {T Function(_i1.Unit)? quit, T Function(String, Object)? sdkUnknown_}) {
+      {T Function(_i1.Unit)? quit, T Function(String, Object)? sdkUnknown}) {
     if (this is _PlayerActionQuit) {
       return quit?.call((this as _PlayerActionQuit).quit);
     }
-    return sdkUnknown_?.call(name, value);
+    return sdkUnknown?.call(name, value);
   }
 }
 
@@ -85,7 +85,7 @@ class _PlayerActionRestJson1Serializer
       object.when<Object?>(
           quit: (_i1.Unit quit) => serializers.serialize(quit,
               specifiedType: const FullType(_i1.Unit)),
-          sdkUnknown_: (String _, Object sdkUnknown_) => sdkUnknown_)!
+          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
     ];
   }
 }

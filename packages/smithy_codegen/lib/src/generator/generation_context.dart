@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
@@ -19,7 +18,7 @@ mixin NamedMembersGenerationContext<S extends NamedMembersShape, U>
   /// Members sorted by their re-cased Dart name.
   late final List<MemberShape> sortedMembers = members.toList()
     ..sort((a, b) {
-      return a.dartName.compareTo(b.dartName);
+      return a.dartName(shape.getType()).compareTo(b.dartName(shape.getType()));
     });
 
   /// Member shapes and their [Reference] types.
@@ -51,7 +50,7 @@ mixin UnionGenerationContext<U> on ShapeGenerator<UnionShape, U>
       member.memberName == UnionGenerationContext.sdkUnknown;
 
   /// The name of this member as a union variant.
-  String variantName(MemberShape member) => member.dartName;
+  String variantName(MemberShape member) => member.dartName(shape.getType());
 
   /// The name of the union variant's private class name.
   String variantClassName(MemberShape member) =>

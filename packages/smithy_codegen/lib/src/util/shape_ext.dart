@@ -4,7 +4,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/smithy_aws.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/aws/endpoints.dart';
-import 'package:smithy_codegen/src/aws/partition_node.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
@@ -53,10 +52,20 @@ extension SimpleShapeUtil on SimpleShape {
 }
 
 extension DartName on String {
-  String nameEscaped([String escapeChar = '_']) {
+  String nameEscaped({
+    String escapeChar = '_',
+    ShapeType? parentType,
+  }) {
     var name = this;
-    if (hardReservedWords.contains(name)) {
-      if (escapeChar == '\$') {
+    final reservedWords = [
+      ...hardReservedWords,
+      if (parentType == ShapeType.string) ...enumReservedWords,
+      if (parentType == ShapeType.union) ...unionReservedWords,
+      if (parentType == ShapeType.structure) ...structReservedWords,
+    ];
+    final isMemberShape = parentType != null;
+    if (reservedWords.contains(name)) {
+      if (escapeChar == '\$' && isMemberShape) {
         name = '\$$name';
       } else {
         name = '$name$escapeChar';
@@ -68,7 +77,8 @@ extension DartName on String {
 
 extension MemberShapeUtils on MemberShape {
   /// The name of this shape in a Dart struct.
-  String get dartName => memberName.camelCase.nameEscaped();
+  String dartName(ShapeType type) =>
+      memberName.camelCase.nameEscaped(parentType: type);
 }
 
 extension ShapeUtils on Shape {
@@ -270,7 +280,10 @@ extension OperationShapeUtil on OperationShape {
           member = shape.members[memberName]!;
           final _isNullable = isNullable; // local copy for capture
           exps.add(
-            (exp) => exp.nullableProperty(member.dartName, _isNullable),
+            (exp) => exp.nullableProperty(
+              member.dartName(shape.getType()),
+              _isNullable,
+            ),
           );
           isNullable = member.isNullable(context, shape);
           symbol = context.symbolFor(member.target, shape);
@@ -643,7 +656,7 @@ extension StructureShapeUtil on StructureShape {
   /// Members sorted by their re-cased Dart name.
   List<MemberShape> get sortedMembers => members.values.toList()
     ..sort((a, b) {
-      return a.dartName.compareTo(b.dartName);
+      return a.dartName(getType()).compareTo(b.dartName(getType()));
     });
 
   /// The member shape to serialize when [HttpPayloadTrait] is used.
@@ -669,7 +682,8 @@ extension StructureShapeUtil on StructureShape {
       ...?httpErrorTraits?.httpHeaders.values,
       httpErrorTraits?.httpPrefixHeaders?.member,
     }.whereType<MemberShape>().toList()
-      ..sorted((a, b) => a.dartName.compareTo(b.dartName));
+      ..sorted(
+          (a, b) => a.dartName(getType()).compareTo(b.dartName(getType())));
   }
 
   /// The list of all members which should always be included in the body of

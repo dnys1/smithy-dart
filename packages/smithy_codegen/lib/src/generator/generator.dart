@@ -24,7 +24,7 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
   String get className {
     return (shape.rename(context) ?? shape.shapeId.shape)
         .pascalCase
-        .nameEscaped('\$');
+        .nameEscaped(escapeChar: '\$');
   }
 
   /// Formats documentation to follow Dart standards.

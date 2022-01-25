@@ -73,20 +73,27 @@ Future<void> main(List<String> args) async {
       packageName: packageName,
     );
 
-    libraries.forEach((library, definition) {
-      final outPath = path.join(outputPath, library.projectRelativePath);
+    final Set<String> dependencies = {};
+    for (var library in libraries) {
+      final smithyLibrary = library.smithyLibrary;
+      final outPath = path.join(outputPath, smithyLibrary.projectRelativePath);
+      final output = library.emit();
+      dependencies.addAll(library.dependencies);
       File(outPath)
         ..createSync(recursive: true)
-        ..writeAsStringSync(definition);
-    });
+        ..writeAsStringSync(output);
+    }
 
     // Create dummy pubspec
     final pubspecPath = path.join(outputPath, 'pubspec.yaml');
     final pubspec = Pubspec(packageName);
     final localSmithyPath = Directory.current.uri.resolve('..').path;
-    File(pubspecPath).writeAsStringSync(
-      pubspec.toYaml(path.relative(localSmithyPath, from: outputPath)),
-    );
+    final pubspecYaml = PubspecGenerator(
+      pubspec,
+      dependencies,
+      smithyPath: path.relative(localSmithyPath, from: outputPath),
+    ).generate();
+    File(pubspecPath).writeAsStringSync(pubspecYaml);
 
     // Create analysis options
     final analysisOptionsPath = path.join(outputPath, 'analysis_options.yaml');

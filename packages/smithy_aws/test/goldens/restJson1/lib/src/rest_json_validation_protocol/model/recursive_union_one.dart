@@ -18,7 +18,7 @@ abstract class RecursiveUnionOne extends _i1.SmithyUnion<RecursiveUnionOne> {
   const factory RecursiveUnionOne.union(_i3.RecursiveUnionTwo union) =
       _RecursiveUnionOneUnion;
 
-  const factory RecursiveUnionOne.sdkUnknown(String name, Object value) =
+  const factory RecursiveUnionOne.sdkUnknown_(String name, Object value) =
       _RecursiveUnionOneSdkUnknown;
 
   static const List<_i1.SmithySerializer<RecursiveUnionOne>> serializers = [
@@ -33,14 +33,14 @@ abstract class RecursiveUnionOne extends _i1.SmithyUnion<RecursiveUnionOne> {
   T? when<T>(
       {T Function(_i2.RecursiveEnumString)? string,
       T Function(_i3.RecursiveUnionTwo)? union,
-      T Function(String, Object)? sdkUnknown}) {
+      T Function(String, Object)? sdkUnknown_}) {
     if (this is _RecursiveUnionOneString) {
       return string?.call((this as _RecursiveUnionOneString).string);
     }
     if (this is _RecursiveUnionOneUnion) {
       return union?.call((this as _RecursiveUnionOneUnion).union);
     }
-    return sdkUnknown?.call(name, value);
+    return sdkUnknown_?.call(name, value);
   }
 }
 
@@ -117,7 +117,7 @@ class _RecursiveUnionOneRestJson1Serializer
               specifiedType: const FullType(_i2.RecursiveEnumString)),
           union: (_i3.RecursiveUnionTwo union) => serializers.serialize(union,
               specifiedType: const FullType(_i3.RecursiveUnionTwo)),
-          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
+          sdkUnknown_: (String _, Object sdkUnknown_) => sdkUnknown_)!
     ];
   }
 }

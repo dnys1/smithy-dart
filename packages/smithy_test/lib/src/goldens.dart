@@ -51,13 +51,13 @@ void testGolden(
     () => test(testName, () {
       final goldens = loadGoldens(groupName, testName);
       final ast = createAst(shapes);
-      final libraries = generateForAst(
+      final libraries = Map.fromEntries(generateForAst(
         ast,
         packageName: testName.snakeCase,
         serviceName: 'test',
-      ).map((library, definition) {
-        return MapEntry(library.libraryName, definition);
-      });
+      ).map((library) {
+        return MapEntry(library.smithyLibrary.libraryName, library.emit());
+      }));
       expect(libraries, equals(goldens));
     }),
   );

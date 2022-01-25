@@ -106,15 +106,15 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
         object.property('name'),
         object.property('when').call([], {
           for (final member in sortedMembers)
-            member.dartName: Method(
+            member.dartName(ShapeType.union): Method(
               (m) => m
                 ..requiredParameters.add(Parameter((p) => p
                   ..type = memberSymbols[member]!.unboxed
-                  ..name = member.dartName))
+                  ..name = member.dartName(ShapeType.union)))
                 ..lambda = true
                 ..body = serializerFor(
                   member,
-                  refer(member.dartName),
+                  refer(member.dartName(ShapeType.union)),
                   memberSymbol: memberSymbols[member]!.unboxed,
                 ).code,
             ).closure,
@@ -123,7 +123,7 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
           // we have no information about it and it could fail.
           // We could try/catch the serialization, but that would
           // be inconsistent with the deserialize code.
-          unknownMember.dartName: Method(
+          unknownMember.dartName(ShapeType.union): Method(
             (m) => m
               ..requiredParameters.addAll([
                 Parameter((p) => p
@@ -131,10 +131,10 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
                   ..name = '_'),
                 Parameter((p) => p
                   ..type = unknownMemberSymbol
-                  ..name = unknownMember.dartName),
+                  ..name = unknownMember.dartName(ShapeType.union)),
               ])
               ..lambda = true
-              ..body = refer(unknownMember.dartName).code,
+              ..body = refer(unknownMember.dartName(ShapeType.union)).code,
           ).closure,
         }, [
           DartTypes.core.object.boxed

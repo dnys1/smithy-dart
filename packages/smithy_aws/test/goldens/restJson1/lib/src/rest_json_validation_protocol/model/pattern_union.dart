@@ -12,7 +12,7 @@ abstract class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
 
   const factory PatternUnion.second(String second) = _PatternUnionSecond;
 
-  const factory PatternUnion.sdkUnknown(String name, Object value) =
+  const factory PatternUnion.sdkUnknown_(String name, Object value) =
       _PatternUnionSdkUnknown;
 
   static const List<_i1.SmithySerializer<PatternUnion>> serializers = [
@@ -27,14 +27,14 @@ abstract class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
   T? when<T>(
       {T Function(String)? first,
       T Function(String)? second,
-      T Function(String, Object)? sdkUnknown}) {
+      T Function(String, Object)? sdkUnknown_}) {
     if (this is _PatternUnionFirst) {
       return first?.call((this as _PatternUnionFirst).first);
     }
     if (this is _PatternUnionSecond) {
       return second?.call((this as _PatternUnionSecond).second);
     }
-    return sdkUnknown?.call(name, value);
+    return sdkUnknown_?.call(name, value);
   }
 }
 
@@ -108,7 +108,7 @@ class _PatternUnionRestJson1Serializer
               specifiedType: const FullType(String)),
           second: (String second) => serializers.serialize(second,
               specifiedType: const FullType(String)),
-          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
+          sdkUnknown_: (String _, Object sdkUnknown_) => sdkUnknown_)!
     ];
   }
 }

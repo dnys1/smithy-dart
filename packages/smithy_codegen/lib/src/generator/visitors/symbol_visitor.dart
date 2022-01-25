@@ -147,7 +147,7 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
       (t) => t
         ..symbol = (shape.rename(context) ?? shape.shapeId.shape)
             .pascalCase
-            .nameEscaped('\$')
+            .nameEscaped(escapeChar: '\$')
         ..url = shape.libraryUrl(context),
     );
   }

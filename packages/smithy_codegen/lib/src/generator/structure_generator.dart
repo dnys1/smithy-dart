@@ -201,7 +201,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = 'props'
           ..lambda = true
           ..body = literalList([
-            for (final member in members) refer(member.dartName),
+            for (final member in members)
+              refer(member.dartName(ShapeType.structure)),
           ]).code,
       );
 
@@ -225,7 +226,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
   Code? _defaultValue(MemberShape member) {
-    final property = refer('b').property(member.dartName);
+    final property = refer('b').property(member.dartName(ShapeType.structure));
     // In tests, client implementations that automatically provide values for
     // members marked with the idempotencyToken trait MUST use a constant value
     // of `00000000-0000-4000-8000-000000000000`.
@@ -271,7 +272,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             // treated specially.
             //
             // https://awslabs.github.io/smithy/1.0/spec/core/type-refinement-traits.html#error-trait
-            if (shape.isError && member.dartName == 'message' && !isPayload)
+            if (shape.isError &&
+                member.dartName(ShapeType.structure) == 'message' &&
+                !isPayload)
               DartTypes.core.override,
           ])
           ..docs.addAll([
@@ -279,7 +282,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..returns = memberSymbols[member]!
           ..type = MethodType.getter
-          ..name = member.dartName,
+          ..name = member.dartName(ShapeType.structure),
       );
     }
   }
@@ -301,7 +304,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
     // If an instance member, return it.
     if (payloadShape != null) {
-      Expression payload = refer(payloadShape!.dartName);
+      Expression payload = refer(payloadShape!.dartName(ShapeType.structure));
       // If the payload shape is empty or has only nullable instance members,
       // and this shape's instance member is null, return a built payload.
       final targetShape = context.shapeFor(payloadShape!.target);
@@ -318,7 +321,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     // Build the payload using the payload builder class.
     Expression builder = refer('b');
     for (final member in payloadMembers) {
-      builder = builder.cascade(member.dartName).assign(refer(member.dartName));
+      builder = builder
+          .cascade(member.dartName(ShapeType.structure))
+          .assign(refer(member.dartName(ShapeType.structure)));
     }
     return payloadSymbol.newInstance([
       if (payloadMembers.isNotEmpty)
@@ -407,7 +412,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             const Code('switch (key) {'),
             for (var label in labels) ...[
               Code("case '${label.memberName}':"),
-              _labelToString(label, refer(label.dartName)).returned.statement,
+              _labelToString(label, refer(label.dartName(ShapeType.structure)))
+                  .returned
+                  .statement,
             ],
             const Code('}'),
             DartTypes.smithy.missingLabelException
@@ -453,7 +460,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // `message` getter
-    if (!shape.members.values.map((m) => m.dartName).contains('message')) {
+    if (!shape.members.values
+        .map((m) => m.dartName(ShapeType.structure))
+        .contains('message')) {
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
@@ -502,7 +511,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       if (isNestedBuilder) {
         final isNullable = member.isNullable(context, shape);
         return builder
-            .property(member.dartName)
+            .property(member.dartName(ShapeType.structure))
             .property('replace')
             .call([
               isNullable && member != payloadShape
@@ -512,7 +521,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             .statement
             .wrapWithBlockIf(payloadProp.notEqualTo(literalNull), isNullable);
       } else {
-        return builder.property(member.dartName).assign(payloadProp).statement;
+        return builder
+            .property(member.dartName(ShapeType.structure))
+            .assign(payloadProp)
+            .statement;
       }
     }
 
@@ -521,7 +533,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       yield _putShape(payloadShape, payload);
     } else if (hasBuiltPayload) {
       for (final member in payloadMembers) {
-        final payloadProp = payload.property(member.dartName);
+        final payloadProp =
+            payload.property(member.dartName(ShapeType.structure));
         yield _putShape(member, payloadProp);
       }
     }
@@ -535,7 +548,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       yield _outputHttpHeader(
         headersRef.index(literalString(entry.key)),
         entry.value,
-        builder.property(entry.value.dartName),
+        builder.property(entry.value.dartName(ShapeType.structure)),
         isNullable: true,
       );
     }
@@ -544,7 +557,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final prefixHeaders = responseTraits.httpPrefixHeaders;
     if (prefixHeaders != null) {
       yield builder
-          .property(prefixHeaders.member.dartName)
+          .property(prefixHeaders.member.dartName(ShapeType.structure))
           .property('addEntries')
           .call([
         prefixHeaders.trait.value == ''
@@ -589,7 +602,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       final statusCode = responseTraits.httpResponseCode;
       if (statusCode != null) {
         yield builder
-            .property(statusCode.dartName)
+            .property(statusCode.dartName(ShapeType.structure))
             .assign(response.property('statusCode'))
             .statement;
       }

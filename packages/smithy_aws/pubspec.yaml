@@ -1,18 +1,18 @@
 name: smithy_aws
 description: Smithy runtime for AWS clients
 version: 0.1.1
-homepage: https://github.com/awslabs/smithy-dart
-publish_to: https://unpub.dillonnys.com
+homepage: https://github.com/dnys1/smithy-dart
+publish_to: https://pub.dillonnys.com
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   aws_common:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   aws_signature_v4:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   built_collection: ^5.0.0
   built_value: ^8.0.0
@@ -26,10 +26,10 @@ dependencies:
   meta: ^1.7.0
   path: ^1.8.0
   smithy:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   smithy_ast:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
 
 dev_dependencies:

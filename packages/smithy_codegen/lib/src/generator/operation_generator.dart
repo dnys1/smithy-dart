@@ -97,7 +97,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       yield _inputHttpHeader(
         literalString(entry.key),
         entry.value,
-        input.property(entry.value.dartName),
+        input.property(entry.value.dartName(ShapeType.structure)),
         isNullable: entry.value.isNullable(context, inputShape),
       );
     }
@@ -110,7 +110,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       yield _httpQuery(
         literalString(entry.key),
         entry.value,
-        input.property(entry.value.dartName),
+        input.property(entry.value.dartName(ShapeType.structure)),
         isNullable: entry.value.isNullable(context, inputShape),
       );
     }
@@ -237,7 +237,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   /// Adds the prefixed headers to the request's headers map.
   Code _httpPrefixedHeaders(HttpPrefixHeaders headers) {
     final mapShape = context.shapeFor(headers.member.target) as MapShape;
-    final mapRef = refer('input').property(headers.member.dartName);
+    final mapRef =
+        refer('input').property(headers.member.dartName(ShapeType.structure));
     final isNullableMap = headers.member.isNullable(context, inputShape);
     final valueTarget = context.shapeFor(mapShape.value.target);
     return Block.of([
@@ -358,7 +359,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final targetShape = context.shapeFor(queryParameters.target) as MapShape;
     final valueShape = context.shapeFor(targetShape.value.target);
     final isNullable = queryParameters.isNullable(context, inputShape);
-    final mapRef = refer('input').property(queryParameters.dartName);
+    final mapRef =
+        refer('input').property(queryParameters.dartName(ShapeType.structure));
     var entriesRef = mapRef;
     if (isNullable) {
       entriesRef = entriesRef.nullChecked;
@@ -406,7 +408,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final responseCodeMember = httpOutputTraits.httpResponseCode;
     if (responseCodeMember != null) {
       successCode = refer('output')
-          .nullSafeProperty(responseCodeMember.dartName)
+          .nullSafeProperty(responseCodeMember.dartName(ShapeType.structure))
           .ifNullThen(successCode);
     }
     yield Method(

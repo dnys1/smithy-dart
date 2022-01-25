@@ -12,7 +12,7 @@ abstract class SimpleUnion extends _i1.SmithyUnion<SimpleUnion> {
 
   const factory SimpleUnion.string(String string) = _SimpleUnionString;
 
-  const factory SimpleUnion.sdkUnknown(String name, Object value) =
+  const factory SimpleUnion.sdkUnknown_(String name, Object value) =
       _SimpleUnionSdkUnknown;
 
   static const List<_i1.SmithySerializer<SimpleUnion>> serializers = [
@@ -27,14 +27,14 @@ abstract class SimpleUnion extends _i1.SmithyUnion<SimpleUnion> {
   T? when<T>(
       {T Function(int)? int_,
       T Function(String)? string,
-      T Function(String, Object)? sdkUnknown}) {
+      T Function(String, Object)? sdkUnknown_}) {
     if (this is _SimpleUnionInt) {
       return int_?.call((this as _SimpleUnionInt).int_);
     }
     if (this is _SimpleUnionString) {
       return string?.call((this as _SimpleUnionString).string);
     }
-    return sdkUnknown?.call(name, value);
+    return sdkUnknown_?.call(name, value);
   }
 }
 
@@ -107,7 +107,7 @@ class _SimpleUnionRestJson1Serializer
               serializers.serialize(int_, specifiedType: const FullType(int)),
           string: (String string) => serializers.serialize(string,
               specifiedType: const FullType(String)),
-          sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!
+          sdkUnknown_: (String _, Object sdkUnknown_) => sdkUnknown_)!
     ];
   }
 }

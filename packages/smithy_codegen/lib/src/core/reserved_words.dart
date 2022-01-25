@@ -81,15 +81,34 @@ const hardReservedWords = {
   'int',
   'bool',
 
-  // Reserved due to `built_value`
-  'update',
-  'serializer',
-
   // Conflicts with `dart:core`
   'override',
 
+  // aws equatable
+  'props',
+
   ..._reservedTypeNames,
 };
+
+const enumReservedWords = [
+  'name',
+  'value',
+  'index',
+];
+
+const unionReservedWords = [
+  'value',
+  'sdkUnknown',
+  'unknown',
+];
+
+// Reserved due to `built_value`
+const structReservedWords = [
+  'update',
+  'build',
+  'rebuild',
+  'serializer',
+];
 
 const _reservedTypeNames = [
   // Conflicts with usages of core.Type in serializer classes.

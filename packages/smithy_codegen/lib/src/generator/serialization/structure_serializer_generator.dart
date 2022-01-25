@@ -192,7 +192,9 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
       final targetShape = context.shapeFor(payloadShape!.target);
       if (targetShape.getType() == ShapeType.blob) {
         builder.addExpression(
-          refer('result').property(payloadShape!.dartName).assignNullAware(
+          refer('result')
+              .property(payloadShape!.dartName(ShapeType.structure))
+              .assignNullAware(
                 targetShape.isStreaming
                     ? DartTypes.async.stream().constInstanceNamed('empty', [])
                     : DartTypes.typedData.uint8List
@@ -233,7 +235,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
         const Code(':'),
         if (hasNestedBuilder)
           refer('result')
-              .property(member.dartName)
+              .property(member.dartName(ShapeType.structure))
               .property('replace')
               .call([
                 deserializerFor(member, memberSymbol: memberSymbol.unboxed),
@@ -245,7 +247,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
               )
         else
           refer('result')
-              .property(member.dartName)
+              .property(member.dartName(ShapeType.structure))
               .assign(deserializerFor(
                 member,
                 value: isNullable ? value : value.nullChecked,
@@ -309,7 +311,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     final nonNullMembers =
         serializedMembers.where((member) => !member.isNullable(context, shape));
     for (var member in nonNullMembers) {
-      final memberRef = payload.property(member.dartName);
+      final memberRef = payload.property(member.dartName(ShapeType.structure));
       result.addAll([
         literalString(_wireName(member)),
         serializerFor(member, memberRef),
@@ -323,7 +325,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
     final nullableMembers =
         serializedMembers.where((member) => member.isNullable(context, shape));
     for (var member in nullableMembers) {
-      final memberRef = payload.property(member.dartName);
+      final memberRef = payload.property(member.dartName(ShapeType.structure));
       builder.statements.addAll([
         refer('result')
             .cascade('add')

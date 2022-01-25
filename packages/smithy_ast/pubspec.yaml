@@ -1,15 +1,15 @@
 name: smithy_ast
 description: Smithy AST model with serialization to and from JSON
 version: 0.1.1
-homepage: https://github.com/awslabs/smithy-dart
-publish_to: https://unpub.dillonnys.com
+homepage: https://github.com/dnys1/smithy-dart
+publish_to: https://pub.dillonnys.com
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   aws_common:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   built_collection: ^5.1.1
   built_value: ^8.1.3

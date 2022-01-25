@@ -1,8 +1,8 @@
 name: smithy_test
 description: Test utilities for Smithy packages.
-version: 0.1.0
-homepage: https://github.com/awslabs/smithy-dart
-publish_to: https://unpub.dillonnys.com
+version: 0.1.1
+homepage: https://github.com/dnys1/smithy-dart
+publish_to: https://pub.dillonnys.com
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -14,13 +14,13 @@ dependencies:
   http: ^0.13.4
   path: ^1.8.0
   smithy:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   smithy_ast:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   smithy_codegen:
-    hosted: https://unpub.dillonnys.com
+    hosted: https://pub.dillonnys.com
     version: ^0.1.0
   test: ^1.16.0
 

@@ -87,13 +87,15 @@ const hardReservedWords = {
   // aws equatable
   'props',
 
-  ..._reservedTypeNames,
+  // All generated types
+  'serializers',
 };
 
 const enumReservedWords = [
   'name',
   'value',
   'index',
+  'values',
 ];
 
 const unionReservedWords = [
@@ -108,9 +110,12 @@ const structReservedWords = [
   'build',
   'rebuild',
   'serializer',
+  'replace',
+  'toBuilder',
 ];
 
-const _reservedTypeNames = [
+const reservedTypeNames = [
   // Conflicts with usages of core.Type in serializer classes.
   'Type',
+  'Function',
 ];

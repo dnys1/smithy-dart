@@ -51,11 +51,50 @@ extension SimpleShapeUtil on SimpleShape {
   }
 }
 
+extension on Shape {
+  /// The unescaped, unmodified class name for the shape.
+  ///
+  /// Should use [className] instead.
+  String? dartClassName(CodegenContext context) {
+    final type = getType();
+    switch (type) {
+      case ShapeType.string:
+        if (!isEnum) return null;
+        break;
+      case ShapeType.structure:
+      case ShapeType.operation:
+      case ShapeType.union:
+      case ShapeType.resource:
+        break;
+      default:
+        return null;
+    }
+    return (rename(context) ?? shapeId.shape).pascalCase;
+  }
+}
+
+extension ShapeClassName on Shape {
+  String? className(CodegenContext context) {
+    final name = dartClassName(context);
+    if (name == null) {
+      return null;
+    }
+    final needsRename = reservedTypeNames.contains(name) ||
+        context.shapes.values.any((shape) {
+          return shape.dartClassName(context) == '${name}Builder';
+        });
+    if (needsRename) {
+      return '${name}X';
+    }
+    return name;
+  }
+}
+
 extension DartName on String {
-  String nameEscaped({
-    String escapeChar = '_',
-    ShapeType? parentType,
-  }) {
+  String nameEscaped(ShapeType parentType) {
+    assert(parentType == ShapeType.string ||
+        parentType == ShapeType.union ||
+        parentType == ShapeType.structure);
     var name = this;
     final reservedWords = [
       ...hardReservedWords,
@@ -63,13 +102,12 @@ extension DartName on String {
       if (parentType == ShapeType.union) ...unionReservedWords,
       if (parentType == ShapeType.structure) ...structReservedWords,
     ];
-    final isMemberShape = parentType != null;
+    final escapeChar =
+        (parentType == ShapeType.string || parentType == ShapeType.union)
+            ? '\$'
+            : '_';
     if (reservedWords.contains(name)) {
-      if (escapeChar == '\$' && isMemberShape) {
-        name = '\$$name';
-      } else {
-        name = '$name$escapeChar';
-      }
+      name = '$name$escapeChar';
     }
     return name;
   }
@@ -77,8 +115,7 @@ extension DartName on String {
 
 extension MemberShapeUtils on MemberShape {
   /// The name of this shape in a Dart struct.
-  String dartName(ShapeType type) =>
-      memberName.camelCase.nameEscaped(parentType: type);
+  String dartName(ShapeType type) => memberName.camelCase.nameEscaped(type);
 }
 
 extension ShapeUtils on Shape {

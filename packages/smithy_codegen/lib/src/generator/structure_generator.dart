@@ -30,6 +30,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Library generate() {
     // Add .g.dart part directive
     builder.directives.add(Directive.part('${className.snakeCase}.g.dart'));
+
+    // Hide the payload symbol if there is one
     (context.generatedTypes[symbol] ??= []).addAll([
       if (hasBuiltPayload) payloadSymbol.symbol!,
     ]);
@@ -642,7 +644,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         case ShapeType.long:
           return DartTypes.fixNum.int64.property('parseInt').call([headerRef]);
 
-        // string values with a mediaType trait are always base64 encoded.
         case ShapeType.string:
           if (targetShape.isEnum) {
             final targetSymbol = context.symbolFor(targetShape.shapeId).unboxed;
@@ -655,17 +656,17 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           // From the restJson1 test suite:
           // "Headers that target strings with a mediaType are base64 encoded"
           final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          if (mediaType != null) {
-            headerRef = DartTypes.convert.utf8.property('decode').call([
-              DartTypes.convert.base64Decode.call([headerRef]),
-            ]);
-            switch (mediaType) {
-              case 'application/json':
-                return DartTypes.builtValue.jsonObject.newInstance([
-                  DartTypes.convert.jsonDecode.call([headerRef]),
-                ]);
-            }
+          if (mediaType == null) {
             return headerRef;
+          }
+          headerRef = DartTypes.convert.utf8.property('decode').call([
+            DartTypes.convert.base64Decode.call([headerRef]),
+          ]);
+          switch (mediaType) {
+            case 'application/json':
+              headerRef = DartTypes.builtValue.jsonObject.newInstance([
+                DartTypes.convert.jsonDecode.call([headerRef]),
+              ]);
           }
           return headerRef;
 

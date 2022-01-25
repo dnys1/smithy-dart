@@ -218,10 +218,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
     ]));
 }
 
-extension on EnumDefinition {
+extension EnumVariantName on EnumDefinition {
   /// The name of the enum variant.
-  String get variantName => (name ?? value).camelCase.nameEscaped(
-        escapeChar: '\$',
-        parentType: ShapeType.string,
-      );
+  String get variantName =>
+      (name ?? value).camelCase.nameEscaped(ShapeType.string);
 }

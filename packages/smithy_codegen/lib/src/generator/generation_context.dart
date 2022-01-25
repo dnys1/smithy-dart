@@ -49,7 +49,8 @@ mixin UnionGenerationContext<U> on ShapeGenerator<UnionShape, U>
   bool isUnknownMember(MemberShape member) => member.memberName == sdkUnknown;
 
   /// The name of this member as a union variant.
-  String variantName(MemberShape member) => member.dartName(shape.getType());
+  String variantName(MemberShape member) =>
+      member.memberName.camelCase.nameEscaped(ShapeType.union);
 
   /// The name of the union variant's private class name.
   String variantClassName(MemberShape member) =>

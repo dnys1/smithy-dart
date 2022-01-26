@@ -83,7 +83,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         .statement;
     yield builder
         .property('path')
-        .assign(literalString(httpTrait!.uri))
+
+        // `raw` because some AWS paths use the '$' char.
+        .assign(literalString(httpTrait!.uri, raw: true))
         .statement;
 
     final hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;

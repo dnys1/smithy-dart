@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_codegen/src/generator/context.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
@@ -8,12 +8,14 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
-import 'package:smithy_codegen/src/model/smithy_library.dart';
 
 class OperationGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
-  OperationGenerator(OperationShape shape, CodegenContext context)
-      : super(shape, context: context);
+  OperationGenerator(
+    OperationShape shape,
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(shape, context: context, smithyLibrary: smithyLibrary);
 
   @override
   String get className => shape.dartName;
@@ -31,7 +33,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   Class get _operationClass => Class(
         (c) => c
           ..docs.addAll([
-            if (shape.docs != null) formatDocs(shape.docs!),
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
           ])
           ..name = className
           ..extend = paginatedTraits == null
@@ -66,6 +68,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
 
   Constructor get _constructor => Constructor(
         (ctor) => ctor
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..optionalParameters.addAll(shape.constructorParameters(context))
           ..initializers.addAll(shape.constructorInitializers(context).map(
                 (tuple) => refer(tuple.item1).assign(refer(tuple.item2)).code,

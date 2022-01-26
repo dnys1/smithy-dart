@@ -40,6 +40,15 @@ dependencies:
   tuple: ^2.0.0
   yaml_edit: ^2.0.1
 
+# REMOVE FOR PUBLISHING
+dependency_overrides:
+  smithy:
+    path: ../smithy
+  smithy_ast:
+    path: ../smithy_ast
+  smithy_aws:
+    path: ../smithy_aws
+
 dev_dependencies:
   amplify_lints: ^1.0.0
   build_cli: ^2.1.4

@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:html2md/html2md.dart' as html2md;
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
@@ -23,13 +22,6 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
   String get className {
     return shape.className(context)!;
   }
-
-  /// Formats documentation to follow Dart standards.
-  String formatDocs(String docs) => html2md
-      .convert(docs)
-      .split('\n')
-      .map((doc) => '/// ${doc.replaceFirst(RegExp(r'^/*'), '')}')
-      .join('\n');
 }
 
 /// A generator for [Library] definitions.
@@ -38,7 +30,9 @@ abstract class LibraryGenerator<T extends Shape>
   LibraryGenerator(
     T shape, {
     required CodegenContext context,
-  })  : builder = LibraryBuilder()..name = shape.libraryName(context),
+    SmithyLibrary? smithyLibrary,
+  })  : builder = LibraryBuilder()
+          ..name = smithyLibrary?.libraryName ?? shape.libraryName(context),
         super(shape, context);
 
   final LibraryBuilder builder;

@@ -45,7 +45,11 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       libraryType: SmithyLibrary_LibraryType.TEST,
       filename: shape.dartName,
     );
-    final generated = OperationTestGenerator(shape, context).generate();
+    final generated = OperationTestGenerator(
+      shape,
+      context,
+      smithyLibrary: testLibrary,
+    ).generate();
     if (generated != null) {
       yield GeneratedLibrary(testLibrary, generated);
     }
@@ -70,7 +74,11 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     // Build service client
     yield GeneratedLibrary(
       context.serviceClientLibrary,
-      ServiceClientGenerator(shape, context).generate(),
+      ServiceClientGenerator(
+        shape,
+        context,
+        smithyLibrary: context.serviceClientLibrary,
+      ).generate(),
     );
 
     // Build serializers library
@@ -90,9 +98,23 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     }
 
     // Build top-level service library (should be last thing built)
+    final docs = StringBuffer();
+    final title = shape.getTrait<TitleTrait>()?.value;
+    if (title != null) {
+      docs.writeln('/// $title');
+    }
+    if (shape.hasDocs(context)) {
+      if (docs.isNotEmpty) docs.writeln('///');
+      docs.writeln(shape.formattedDocs(context));
+    }
     yield GeneratedLibrary(
       context.serviceLibrary,
-      ServiceGenerator(shape, context).generate(),
+      ServiceGenerator(
+        shape,
+        context,
+        smithyLibrary: context.serviceLibrary,
+      ).generate(),
+      libraryDocs: docs.toString(),
     );
   }
 

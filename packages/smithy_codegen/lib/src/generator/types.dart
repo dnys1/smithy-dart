@@ -430,6 +430,9 @@ class _Meta {
 
   static const _url = 'package:meta/meta.dart';
 
+  /// Creates a [meta.experimental] reference.
+  Reference get experimental => const Reference('experimental', _url);
+
   /// Creates a [meta.internal] reference.
   Reference get internal => const Reference('internal', _url);
 
@@ -458,6 +461,12 @@ class _Smithy {
 
   /// Creates a [smithy.Endpoint] refererence.
   Reference get endpoint => const Reference('Endpoint', _url);
+
+  /// Creates a `GenericJsonProtocol` refererence.
+  Reference get genericJsonProtocol => const Reference(
+        'GenericJsonProtocol',
+        'package:smithy/src/protocol/generic_json_protocol.dart',
+      );
 
   /// Creates a [smithy.HasPayload] reference for [ref], the payload type.
   Reference hasPayload(Reference ref) => TypeReference(

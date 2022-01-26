@@ -508,23 +508,23 @@ packages:
   smithy:
     dependency: "direct main"
     description:
-      name: smithy
-      url: "https://pub.dillonnys.com"
-    source: hosted
+      path: "../smithy"
+      relative: true
+    source: path
     version: "0.1.1"
   smithy_ast:
     dependency: "direct main"
     description:
-      name: smithy_ast
-      url: "https://pub.dillonnys.com"
-    source: hosted
+      path: "../smithy_ast"
+      relative: true
+    source: path
     version: "0.1.1"
   smithy_aws:
     dependency: "direct main"
     description:
-      name: smithy_aws
-      url: "https://pub.dillonnys.com"
-    source: hosted
+      path: "../smithy_aws"
+      relative: true
+    source: path
     version: "0.1.1"
   smithy_test:
     dependency: "direct dev"

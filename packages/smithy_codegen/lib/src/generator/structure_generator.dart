@@ -15,8 +15,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     with StructureGenerationContext, NamedMembersGenerationContext {
   StructureGenerator(
     StructureShape shape,
-    CodegenContext context,
-  ) : super(shape, context: context);
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          shape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   /// The members marked with the `hostLabel` or `httpLabel` traits.
   late final List<MemberShape> labels = shape.isInputShape
@@ -52,7 +57,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = className
           ..abstract = true
           ..docs.addAll([
-            if (shape.docs != null) formatDocs(shape.docs!),
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
+          ..annotations.addAll([
+            if (shape.isUnstable) DartTypes.meta.experimental,
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
@@ -280,9 +288,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
                 member.dartName(ShapeType.structure) == 'message' &&
                 !isPayload)
               DartTypes.core.override,
+
+            if (member.isUnstable || context.shapeFor(member.target).isUnstable)
+              DartTypes.meta.experimental,
           ])
           ..docs.addAll([
-            if (member.docs != null) formatDocs(member.docs!),
+            if (member.hasDocs(context)) member.formattedDocs(context),
           ])
           ..returns = memberSymbols[member]!
           ..type = MethodType.getter

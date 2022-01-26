@@ -2,7 +2,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 extension ShapeExt on Shape {
   /// Whether the same has a default value.
-  /// 
+  ///
   /// Shapes which have default values are only considered boxed when
   /// explicitly marked with the boxed trait.
   bool get hasDefaultValue {
@@ -55,6 +55,9 @@ extension ShapeExt on Shape {
 
   /// Whether `this` has the `@httpError` trait.
   bool get isHttpError => hasTrait<HttpErrorTrait>();
+
+  /// Whether `this` has the `@unstable` trait.
+  bool get isUnstable => hasTrait<UnstableTrait>();
 }
 
 extension StructureShapeExt on StructureShape {

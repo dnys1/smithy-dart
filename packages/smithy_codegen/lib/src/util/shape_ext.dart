@@ -6,6 +6,7 @@ import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
+import 'package:smithy_codegen/src/util/docs.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 import 'package:tuple/tuple.dart';
@@ -164,8 +165,66 @@ extension ShapeUtils on Shape {
   String? rename(CodegenContext context) =>
       context.service?.rename[shapeId.toString()];
 
-  /// Documentation for the shape.
-  String? get docs => getTrait<DocumentationTrait>()?.value;
+  /// Whether the shape has documentation which needs processing.
+  bool hasDocs(CodegenContext context) =>
+      hasTrait<DocumentationTrait>() ||
+      (this is MemberShape &&
+          context.shapeFor((this as MemberShape).target).hasDocs(context)) ||
+      hasTrait<ExternalDocumentationTrait>() ||
+      hasTrait<ExamplesTrait>();
+
+  /// The formatted documentation for the shape.
+  String formattedDocs(CodegenContext context) {
+    if (!hasDocs(context)) return '';
+
+    final buf = StringBuffer();
+    var docs = getTrait<DocumentationTrait>()?.value;
+
+    // The effective documentation trait of a shape is resolved using the following process:
+    //
+    // 1. Use the documentation trait of the shape, if present.
+    // 2. If the shape is a Member, then use the documentation trait of the shape targeted by the member, if present.
+    //
+    // See: https://awslabs.github.io/smithy/1.0/spec/core/documentation-traits.html?highlight=sensitive#documentation-trait
+    if (this is MemberShape) {
+      docs ??= context
+          .shapeFor((this as MemberShape).target)
+          .getTrait<DocumentationTrait>()
+          ?.value;
+    }
+    if (docs != null) {
+      buf.write(formatDocs(docs));
+    }
+
+    // Add external documentation
+    final externalDocs = getTrait<ExternalDocumentationTrait>()?.urls;
+    if (externalDocs != null) {
+      if (buf.isNotEmpty) buf.writeln('///');
+      buf.writeln('/// See also:');
+      externalDocs.forEach((key, value) {
+        buf.writeln('/// - [$key]($value)');
+      });
+    }
+
+    // TODO: Once service client interface is finalized.
+    // Add examples (only valid for operation shapes)
+    // final examples = getTrait<ExamplesTrait>()?.examples;
+    // if (examples != null && examples.isNotEmpty) {
+    //   final operation = this as OperationShape;
+    //   if (buf.isNotEmpty) buf.writeln('///');
+    //   for (final example in examples) {
+    //     buf.writeln('### Example: ${example.title}');
+    //     final docs = example.documentation;
+    //     if (docs != null) {
+    //       buf.writeln();
+    //       buf.writeln(docs);
+    //     }
+    //     final input = example.input;
+    //   }
+    // }
+
+    return buf.toString();
+  }
 
   Expression? get deprecatedAnnotation {
     const defaultMessage =

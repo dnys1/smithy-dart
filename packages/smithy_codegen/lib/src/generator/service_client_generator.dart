@@ -10,8 +10,15 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
-  ServiceClientGenerator(ServiceShape shape, CodegenContext context)
-      : super(shape, context: context);
+  ServiceClientGenerator(
+    ServiceShape shape,
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          shape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   late final List<OperationShape> _operations =
       context.shapes.values.whereType<OperationShape>().toList();
@@ -32,6 +39,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   Class get _clientClass => Class((c) {
         c
           ..name = className
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..constructors.add(_clientConstructor)
           ..methods.addAll(_operationMethods)
           ..fields.addAll([
@@ -46,6 +56,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
 
   Constructor get _clientConstructor => Constructor(
         (ctor) => ctor
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..constant = true
           ..optionalParameters.addAll([
             ...LinkedHashSet<Parameter>(
@@ -81,7 +94,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       yield Method(
         (m) => m
           ..docs.addAll([
-            if (operation.docs != null) formatDocs(operation.docs!),
+            if (operation.hasDocs(context)) operation.formattedDocs(context),
           ])
           ..returns = isPaginated
               ? DartTypes.async.future(DartTypes.smithy.paginatedResult(

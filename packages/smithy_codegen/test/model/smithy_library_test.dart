@@ -26,6 +26,12 @@ void main() {
       final fromLibraryName =
           SmithyLibraryX.fromLibraryName('$packageName.$serviceName');
       expect(fromLibraryName, equals(expected));
+
+      expect(expected.filename, equals('foo'));
+      expect(expected.libraryName, equals('example.foo'));
+      expect(expected.libraryUrl, equals('package:example/foo.dart'));
+      expect(expected.libRelativePath, equals('foo.dart'));
+      expect(expected.projectRelativePath, equals('lib/foo.dart'));
     });
 
     test('valid client', () {
@@ -49,6 +55,18 @@ void main() {
         '$packageName.$serviceName.$clientName',
       );
       expect(fromLibraryName, equals(expected));
+
+      expect(expected.filename, equals('foo_client'));
+      expect(expected.libraryName, equals('example.foo.foo_client'));
+      expect(
+        expected.libraryUrl,
+        equals('package:example/src/foo/foo_client.dart'),
+      );
+      expect(expected.libRelativePath, equals('src/foo/foo_client.dart'));
+      expect(
+        expected.projectRelativePath,
+        equals('lib/src/foo/foo_client.dart'),
+      );
     });
 
     test('valid model', () {
@@ -78,6 +96,19 @@ void main() {
         '$packageName.$serviceName.model.$modelName',
       );
       expect(fromLibraryName, equals(expected));
+
+      expect(expected.filename, equals('get_foo_input'));
+      expect(expected.libraryName, equals('example.foo.model.get_foo_input'));
+      expect(
+        expected.libraryUrl,
+        equals('package:example/src/foo/model/get_foo_input.dart'),
+      );
+      expect(
+          expected.libRelativePath, equals('src/foo/model/get_foo_input.dart'));
+      expect(
+        expected.projectRelativePath,
+        equals('lib/src/foo/model/get_foo_input.dart'),
+      );
     });
 
     test('invalid path', () {

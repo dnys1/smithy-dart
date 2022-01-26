@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_codegen/smithy_codegen.dart';
+// ignore: implementation_imports
+import 'package:smithy/src/protocol/generic_json_protocol.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 
@@ -8,6 +9,8 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
   /// The protocol class which can be instantiated.
   Reference get instantiableProtocolSymbol {
     switch (runtimeType) {
+      case GenericJsonProtocolDefinitionTrait:
+        return DartTypes.smithy.genericJsonProtocol;
       case AwsJson1_0Trait:
         return DartTypes.smithyAws.awsJson1_0Protocol;
       case AwsJson1_1Trait:
@@ -18,13 +21,14 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         return DartTypes.smithyAws.restXmlProtocol;
       default:
         throw UnsupportedError(
-            'No protocol found for $runtimeType ($shapeId).');
+          'No protocol found for $runtimeType ($shapeId).',
+        );
     }
   }
 
   SerializerConfig get serializerConfig {
     switch (runtimeType) {
-      case GenericProtocolDefinitionTrait:
+      case GenericJsonProtocolDefinitionTrait:
         return const SerializerConfig.genericJson();
       case AwsJson1_0Trait:
       case AwsJson1_1Trait:

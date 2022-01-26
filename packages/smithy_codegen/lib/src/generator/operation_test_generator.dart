@@ -15,8 +15,15 @@ enum TestType { request, response, error }
 /// Generates test classes for shapes with HTTP tests.
 class OperationTestGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
-  OperationTestGenerator(OperationShape shape, CodegenContext context)
-      : super(shape, context: context);
+  OperationTestGenerator(
+    OperationShape shape,
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          shape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   /// Test cases which should be skipped right now and the reasons why.
   static const Map<String, String> _skip = {

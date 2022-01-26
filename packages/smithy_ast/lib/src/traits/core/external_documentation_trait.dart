@@ -12,7 +12,7 @@ class ExternalDocumentationTrait
   const ExternalDocumentationTrait([this.urls = const {}]);
 
   factory ExternalDocumentationTrait.fromJson(Object? json) =>
-      _$ExternalDocumentationTraitFromJson((json as Map).cast());
+      _$ExternalDocumentationTraitFromJson({'urls': json});
 
   static const id = ShapeId.core('externalDocumentation');
 

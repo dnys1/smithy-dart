@@ -31,8 +31,11 @@ class SmithyAllocator implements Allocator {
   final Library library;
 
   /// The URL for the [library] being generated.
-  String get libraryUrl {
+  String? get libraryUrl {
     final smithyLibrary = SmithyLibraryX.fromLibraryName(library.name!);
+    if (smithyLibrary.libraryType == SmithyLibrary_LibraryType.TEST) {
+      return null;
+    }
     return 'package:${smithyLibrary.packageName}/${smithyLibrary.libRelativePath}';
   }
 
@@ -50,11 +53,13 @@ class SmithyAllocator implements Allocator {
     }
 
     // Track dependencies via the URLs we import
-    final thisPackage = packageName(libraryUrl);
-    if (!url.startsWith('dart:')) {
-      final package = packageName(url);
-      if (package != thisPackage) {
-        dependencies.add(package);
+    if (thisLibrary != null) {
+      final thisPackage = packageName(thisLibrary);
+      if (!url.startsWith('dart:')) {
+        final package = packageName(url);
+        if (package != thisPackage) {
+          dependencies.add(package);
+        }
       }
     }
 

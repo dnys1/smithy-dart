@@ -305,23 +305,18 @@ extension OperationShapeUtil on OperationShape {
         b.pageSizePath = operationTraits!.pageSizePath;
       }
 
-      PaginationItem _parsePath(StructureShape s, String p) {
+      PaginationItem _parsePath(NamedMembersShape shape, String p) {
         final path = p.split('.');
         final List<Expression Function(Expression)> exps = [];
-        NamedMembersShape shape = s;
         bool isNullable = false;
         late MemberShape member;
         late Reference symbol;
         while (path.isNotEmpty) {
           final memberName = path.removeAt(0);
           member = shape.members[memberName]!;
+          final dartName = member.dartName(shape.getType());
           final _isNullable = isNullable; // local copy for capture
-          exps.add(
-            (exp) => exp.nullableProperty(
-              member.dartName(shape.getType()),
-              _isNullable,
-            ),
-          );
+          exps.add((exp) => exp.nullableProperty(dartName, _isNullable));
           isNullable = member.isNullable(context, shape);
           symbol = context.symbolFor(member.target, shape);
           final targetShape = context.shapeFor(member.target);

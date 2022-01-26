@@ -39,6 +39,14 @@ abstract class QueryParamsAsStringListMapInput
       QueryParamsAsStringListMapInputPayload();
   @override
   List<Object?> get props => [foo, qux];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'QueryParamsAsStringListMapInput');
+    helper.add(r'foo', foo);
+    helper.add(r'qux', qux);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -60,6 +68,12 @@ abstract class QueryParamsAsStringListMapInputPayload
   static void _init(QueryParamsAsStringListMapInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'QueryParamsAsStringListMapInput');
+    return helper.toString();
+  }
 }
 
 class _QueryParamsAsStringListMapInputRestJson1Serializer extends _i1

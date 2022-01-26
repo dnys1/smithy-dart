@@ -56,16 +56,6 @@ class _$MalformedBooleanInput extends MalformedBooleanInput {
             booleanInPath.hashCode),
         booleanInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedBooleanInput')
-          ..add('booleanInBody', booleanInBody)
-          ..add('booleanInHeader', booleanInHeader)
-          ..add('booleanInPath', booleanInPath)
-          ..add('booleanInQuery', booleanInQuery))
-        .toString();
-  }
 }
 
 class MalformedBooleanInputBuilder
@@ -162,13 +152,6 @@ class _$MalformedBooleanInputPayload extends MalformedBooleanInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, booleanInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedBooleanInputPayload')
-          ..add('booleanInBody', booleanInBody))
-        .toString();
   }
 }
 

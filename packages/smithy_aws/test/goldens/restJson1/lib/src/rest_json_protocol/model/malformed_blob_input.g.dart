@@ -35,13 +35,6 @@ class _$MalformedBlobInput extends MalformedBlobInput {
   int get hashCode {
     return $jf($jc(0, blob.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedBlobInput')
-          ..add('blob', blob))
-        .toString();
-  }
 }
 
 class MalformedBlobInputBuilder

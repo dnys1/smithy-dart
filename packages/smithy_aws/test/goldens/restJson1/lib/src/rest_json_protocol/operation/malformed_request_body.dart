@@ -38,7 +38,7 @@ class MalformedRequestBodyOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedRequestBodyInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedRequestBody';
+        b.path = r'/MalformedRequestBody';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

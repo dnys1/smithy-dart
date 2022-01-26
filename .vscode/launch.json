@@ -11,7 +11,7 @@
             "type": "dart",
             "program": "tool/update_goldens.dart",
             "args": [
-                "structure**"
+                // "structure**"
             ]
         },
         {

@@ -44,15 +44,6 @@ class _$StreamingTraitsRequireLengthInputOutput
   int get hashCode {
     return $jf($jc($jc(0, blob.hashCode), foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'StreamingTraitsRequireLengthInputOutput')
-          ..add('blob', blob)
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class StreamingTraitsRequireLengthInputOutputBuilder

@@ -39,6 +39,14 @@ abstract class SimpleScalarPropertiesInputOutput
   SimpleScalarPropertiesInputOutput getPayload() => this;
   @override
   List<Object?> get props => [doubleValue, floatValue];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'SimpleScalarPropertiesInputOutput');
+    helper.add(r'doubleValue', doubleValue);
+    helper.add(r'floatValue', floatValue);
+    return helper.toString();
+  }
 }
 
 class _SimpleScalarPropertiesInputOutputAwsJson11Serializer

@@ -36,6 +36,13 @@ abstract class SimpleScalarPropertiesOutput
   double? get floatValue;
   @override
   List<Object?> get props => [doubleValue, floatValue];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SimpleScalarPropertiesOutput');
+    helper.add(r'doubleValue', doubleValue);
+    helper.add(r'floatValue', floatValue);
+    return helper.toString();
+  }
 }
 
 class _SimpleScalarPropertiesOutputAwsJson10Serializer

@@ -33,13 +33,6 @@ class _$RenamedGreeting extends RenamedGreeting {
   int get hashCode {
     return $jf($jc(0, salutation.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RenamedGreeting')
-          ..add('salutation', salutation))
-        .toString();
-  }
 }
 
 class RenamedGreetingBuilder

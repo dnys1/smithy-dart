@@ -35,13 +35,6 @@ class _$TestNoPayloadInputOutput extends TestNoPayloadInputOutput {
   int get hashCode {
     return $jf($jc(0, testId.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TestNoPayloadInputOutput')
-          ..add('testId', testId))
-        .toString();
-  }
 }
 
 class TestNoPayloadInputOutputBuilder
@@ -111,12 +104,6 @@ class _$TestNoPayloadInputOutputPayload
   @override
   int get hashCode {
     return 22767573;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('TestNoPayloadInputOutputPayload')
-        .toString();
   }
 }
 

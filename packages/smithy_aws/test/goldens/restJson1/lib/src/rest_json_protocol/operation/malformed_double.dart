@@ -38,7 +38,7 @@ class MalformedDoubleOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedDoubleInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedDouble/{doubleInPath}';
+        b.path = r'/MalformedDouble/{doubleInPath}';
         if (input.doubleInHeader != null) {
           b.headers['doubleInHeader'] = input.doubleInHeader!.toString();
         }

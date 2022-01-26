@@ -40,7 +40,7 @@ class MalformedPatternOverrideOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedPatternOverrideInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedPatternOverride';
+        b.path = r'/MalformedPatternOverride';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

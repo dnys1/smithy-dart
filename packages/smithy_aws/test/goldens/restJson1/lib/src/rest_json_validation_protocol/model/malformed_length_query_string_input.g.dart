@@ -36,13 +36,6 @@ class _$MalformedLengthQueryStringInput
   int get hashCode {
     return $jf($jc(0, string.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedLengthQueryStringInput')
-          ..add('string', string))
-        .toString();
-  }
 }
 
 class MalformedLengthQueryStringInputBuilder
@@ -117,12 +110,6 @@ class _$MalformedLengthQueryStringInputPayload
   @override
   int get hashCode {
     return 1004402986;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('MalformedLengthQueryStringInputPayload')
-        .toString();
   }
 }
 

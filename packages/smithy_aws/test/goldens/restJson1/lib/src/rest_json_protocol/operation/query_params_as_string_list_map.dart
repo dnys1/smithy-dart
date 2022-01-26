@@ -45,7 +45,7 @@ class QueryParamsAsStringListMapOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.QueryParamsAsStringListMapInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/StringListMap';
+        b.path = r'/StringListMap';
         if (input.qux != null) {
           b.queryParameters.add('corge', input.qux!);
         }

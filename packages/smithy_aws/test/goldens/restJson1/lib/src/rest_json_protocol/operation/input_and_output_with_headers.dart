@@ -46,7 +46,7 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.InputAndOutputWithHeadersIo input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/InputAndOutputWithHeaders';
+        b.path = r'/InputAndOutputWithHeaders';
         if (input.headerString != null) {
           if (input.headerString!.isNotEmpty) {
             b.headers['X-String'] = input.headerString!;

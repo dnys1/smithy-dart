@@ -73,19 +73,6 @@ class _$TimestampFormatHeadersIo extends TimestampFormatHeadersIo {
             targetEpochSeconds.hashCode),
         targetHttpDate.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TimestampFormatHeadersIo')
-          ..add('defaultFormat', defaultFormat)
-          ..add('memberDateTime', memberDateTime)
-          ..add('memberEpochSeconds', memberEpochSeconds)
-          ..add('memberHttpDate', memberHttpDate)
-          ..add('targetDateTime', targetDateTime)
-          ..add('targetEpochSeconds', targetEpochSeconds)
-          ..add('targetHttpDate', targetHttpDate))
-        .toString();
-  }
 }
 
 class TimestampFormatHeadersIoBuilder
@@ -200,12 +187,6 @@ class _$TimestampFormatHeadersIoPayload
   @override
   int get hashCode {
     return 506926449;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('TimestampFormatHeadersIoPayload')
-        .toString();
   }
 }
 

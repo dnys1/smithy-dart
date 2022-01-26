@@ -39,13 +39,6 @@ class _$HttpRequestWithRegexLiteralInput
   int get hashCode {
     return $jf($jc(0, str.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpRequestWithRegexLiteralInput')
-          ..add('str', str))
-        .toString();
-  }
 }
 
 class HttpRequestWithRegexLiteralInputBuilder
@@ -122,13 +115,6 @@ class _$HttpRequestWithRegexLiteralInputPayload
   @override
   int get hashCode {
     return 208578194;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'HttpRequestWithRegexLiteralInputPayload')
-        .toString();
   }
 }
 

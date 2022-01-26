@@ -44,15 +44,6 @@ class _$InvalidParameterValueException extends InvalidParameterValueException {
     return $jf(
         $jc($jc($jc(0, code.hashCode), message.hashCode), type.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('InvalidParameterValueException')
-          ..add('code', code)
-          ..add('message', message)
-          ..add('type', type))
-        .toString();
-  }
 }
 
 class InvalidParameterValueExceptionBuilder

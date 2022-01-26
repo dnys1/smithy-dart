@@ -33,13 +33,6 @@ class _$InvalidGreeting extends InvalidGreeting {
   int get hashCode {
     return $jf($jc(0, message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('InvalidGreeting')
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class InvalidGreetingBuilder

@@ -43,14 +43,6 @@ class _$OmitsNullSerializesEmptyStringInput
   int get hashCode {
     return $jf($jc($jc(0, emptyString.hashCode), nullValue.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('OmitsNullSerializesEmptyStringInput')
-          ..add('emptyString', emptyString)
-          ..add('nullValue', nullValue))
-        .toString();
-  }
 }
 
 class OmitsNullSerializesEmptyStringInputBuilder
@@ -132,13 +124,6 @@ class _$OmitsNullSerializesEmptyStringInputPayload
   @override
   int get hashCode {
     return 237196111;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'OmitsNullSerializesEmptyStringInputPayload')
-        .toString();
   }
 }
 

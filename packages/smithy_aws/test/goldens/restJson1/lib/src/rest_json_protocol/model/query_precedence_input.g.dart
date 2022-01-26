@@ -39,14 +39,6 @@ class _$QueryPrecedenceInput extends QueryPrecedenceInput {
   int get hashCode {
     return $jf($jc($jc(0, baz.hashCode), foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('QueryPrecedenceInput')
-          ..add('baz', baz)
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class QueryPrecedenceInputBuilder
@@ -134,12 +126,6 @@ class _$QueryPrecedenceInputPayload extends QueryPrecedenceInputPayload {
   @override
   int get hashCode {
     return 332690933;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('QueryPrecedenceInputPayload')
-        .toString();
   }
 }
 

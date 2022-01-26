@@ -35,6 +35,12 @@ abstract class EmptyInputAndEmptyOutputOutput
   static void _init(EmptyInputAndEmptyOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'EmptyInputAndEmptyOutputOutput');
+    return helper.toString();
+  }
 }
 
 class _EmptyInputAndEmptyOutputOutputAwsJson10Serializer

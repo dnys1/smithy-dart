@@ -45,7 +45,7 @@ class IgnoreQueryParamsInResponseOperation extends _i1.HttpOperation<
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/IgnoreQueryParamsInResponse';
+        b.path = r'/IgnoreQueryParamsInResponse';
       });
   @override
   int successCode([_i2.IgnoreQueryParamsInResponseOutput? output]) => 200;

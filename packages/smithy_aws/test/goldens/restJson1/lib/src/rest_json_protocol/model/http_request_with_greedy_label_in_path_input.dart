@@ -49,6 +49,14 @@ abstract class HttpRequestWithGreedyLabelInPathInput
       HttpRequestWithGreedyLabelInPathInputPayload();
   @override
   List<Object?> get props => [baz, foo];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpRequestWithGreedyLabelInPathInput');
+    helper.add(r'baz', baz);
+    helper.add(r'foo', foo);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -70,6 +78,12 @@ abstract class HttpRequestWithGreedyLabelInPathInputPayload
   static void _init(HttpRequestWithGreedyLabelInPathInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpRequestWithGreedyLabelInPathInput');
+    return helper.toString();
+  }
 }
 
 class _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer extends _i1

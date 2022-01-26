@@ -32,6 +32,12 @@ abstract class SensitiveValidationInput
   SensitiveValidationInput getPayload() => this;
   @override
   List<Object?> get props => [string];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SensitiveValidationInput');
+    helper.add(r'string', '***SENSITIVE***');
+    return helper.toString();
+  }
 }
 
 class _SensitiveValidationInputRestJson1Serializer

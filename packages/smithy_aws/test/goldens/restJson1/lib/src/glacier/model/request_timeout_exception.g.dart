@@ -43,15 +43,6 @@ class _$RequestTimeoutException extends RequestTimeoutException {
     return $jf(
         $jc($jc($jc(0, code.hashCode), message.hashCode), type.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RequestTimeoutException')
-          ..add('code', code)
-          ..add('message', message)
-          ..add('type', type))
-        .toString();
-  }
 }
 
 class RequestTimeoutExceptionBuilder

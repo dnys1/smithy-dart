@@ -85,21 +85,6 @@ class _$JsonListsInputOutput extends JsonListsInputOutput {
             structureList.hashCode),
         timestampList.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonListsInputOutput')
-          ..add('booleanList', booleanList)
-          ..add('enumList', enumList)
-          ..add('integerList', integerList)
-          ..add('nestedStringList', nestedStringList)
-          ..add('sparseStringList', sparseStringList)
-          ..add('stringList', stringList)
-          ..add('stringSet', stringSet)
-          ..add('structureList', structureList)
-          ..add('timestampList', timestampList))
-        .toString();
-  }
 }
 
 class JsonListsInputOutputBuilder

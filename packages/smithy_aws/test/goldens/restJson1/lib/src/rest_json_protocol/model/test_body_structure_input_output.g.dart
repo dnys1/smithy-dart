@@ -39,14 +39,6 @@ class _$TestBodyStructureInputOutput extends TestBodyStructureInputOutput {
   int get hashCode {
     return $jf($jc($jc(0, testConfig.hashCode), testId.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TestBodyStructureInputOutput')
-          ..add('testConfig', testConfig)
-          ..add('testId', testId))
-        .toString();
-  }
 }
 
 class TestBodyStructureInputOutputBuilder
@@ -145,13 +137,6 @@ class _$TestBodyStructureInputOutputPayload
   @override
   int get hashCode {
     return $jf($jc(0, testConfig.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TestBodyStructureInputOutputPayload')
-          ..add('testConfig', testConfig))
-        .toString();
   }
 }
 

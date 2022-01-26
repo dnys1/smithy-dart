@@ -40,7 +40,7 @@ class RecursiveStructuresOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.RecursiveStructuresInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/RecursiveStructures';
+        b.path = r'/RecursiveStructures';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

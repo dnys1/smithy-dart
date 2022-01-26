@@ -2,13 +2,14 @@
 
 library rest_json1.rest_json_protocol.model.simple_union;
 
+import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
 abstract class SimpleUnion extends _i1.SmithyUnion<SimpleUnion> {
   const SimpleUnion._();
 
-  const factory SimpleUnion.int_(int int_) = _SimpleUnionInt;
+  const factory SimpleUnion.int$(int int$) = _SimpleUnionInt;
 
   const factory SimpleUnion.string(String string) = _SimpleUnionString;
 
@@ -19,30 +20,42 @@ abstract class SimpleUnion extends _i1.SmithyUnion<SimpleUnion> {
     _SimpleUnionRestJson1Serializer()
   ];
 
-  int? get int_ => null;
+  int? get int$ => null;
   String? get string => null;
   @override
-  Object get value => (int_ ?? string)!;
+  Object get value => (int$ ?? string)!;
   @override
   T? when<T>(
-      {T Function(int)? int_,
+      {T Function(int)? int$,
       T Function(String)? string,
       T Function(String, Object)? sdkUnknown}) {
     if (this is _SimpleUnionInt) {
-      return int_?.call((this as _SimpleUnionInt).int_);
+      return int$?.call((this as _SimpleUnionInt).int$);
     }
     if (this is _SimpleUnionString) {
       return string?.call((this as _SimpleUnionString).string);
     }
     return sdkUnknown?.call(name, value);
   }
+
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SimpleUnion');
+    if (int$ != null) {
+      helper.add(r'int$', int$)!;
+    }
+    if (string != null) {
+      helper.add(r'string', string)!;
+    }
+    return helper.toString();
+  }
 }
 
 class _SimpleUnionInt extends SimpleUnion {
-  const _SimpleUnionInt(this.int_) : super._();
+  const _SimpleUnionInt(this.int$) : super._();
 
   @override
-  final int int_;
+  final int int$;
 
   @override
   String get name => 'int';
@@ -103,8 +116,8 @@ class _SimpleUnionRestJson1Serializer
     return [
       object.name,
       object.when<Object?>(
-          int_: (int int_) =>
-              serializers.serialize(int_, specifiedType: const FullType(int)),
+          int$: (int int$) =>
+              serializers.serialize(int$, specifiedType: const FullType(int)),
           string: (String string) => serializers.serialize(string,
               specifiedType: const FullType(String)),
           sdkUnknown: (String _, Object sdkUnknown) => sdkUnknown)!

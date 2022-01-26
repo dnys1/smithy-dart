@@ -46,6 +46,13 @@ abstract class HttpRequestWithRegexLiteralInput
       HttpRequestWithRegexLiteralInputPayload();
   @override
   List<Object?> get props => [str];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpRequestWithRegexLiteralInput');
+    helper.add(r'str', str);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -67,6 +74,12 @@ abstract class HttpRequestWithRegexLiteralInputPayload
   static void _init(HttpRequestWithRegexLiteralInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpRequestWithRegexLiteralInput');
+    return helper.toString();
+  }
 }
 
 class _HttpRequestWithRegexLiteralInputRestJson1Serializer extends _i1

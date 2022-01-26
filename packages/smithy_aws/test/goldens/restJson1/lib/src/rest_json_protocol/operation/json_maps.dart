@@ -35,7 +35,7 @@ class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
   _i1.HttpRequest buildRequest(_i2.JsonMapsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/JsonMaps';
+        b.path = r'/JsonMaps';
       });
   @override
   int successCode([_i2.JsonMapsInputOutput? output]) => 200;

@@ -2,26 +2,27 @@
 
 library http_response_tests_model.test.model.invalid_greeting;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:meta/meta.dart' as _i3;
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'invalid_greeting.g.dart';
 
 abstract class InvalidGreeting
-    with _i1.SmithyException, _i2.AWSEquatable<InvalidGreeting>
+    with _i1.AWSEquatable<InvalidGreeting>
     implements
         Built<InvalidGreeting, InvalidGreetingBuilder>,
-        _i1.HasPayload<InvalidGreetingPayload> {
+        _i2.HasPayload<InvalidGreetingPayload>,
+        _i2.SmithyException {
   factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
       _$InvalidGreeting;
 
   const InvalidGreeting._();
 
   factory InvalidGreeting.fromResponse(InvalidGreetingPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i1.AWSStreamedHttpResponse response) =>
       InvalidGreeting((b) {
         b.message = payload.message;
         if (response.headers['X-Foo'] != null) {
@@ -29,7 +30,7 @@ abstract class InvalidGreeting
         }
       });
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _InvalidGreetingAwsJson11Serializer()
   ];
 
@@ -42,15 +43,22 @@ abstract class InvalidGreeting
   InvalidGreetingPayload getPayload() =>
       InvalidGreetingPayload((b) => b..message = message);
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [foo, message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'InvalidGreeting');
+    helper.add(r'foo', foo);
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
 @BuiltValue(nestedBuilders: false)
 abstract class InvalidGreetingPayload
-    with _i2.AWSEquatable<InvalidGreetingPayload>
+    with _i1.AWSEquatable<InvalidGreetingPayload>
     implements Built<InvalidGreetingPayload, InvalidGreetingPayloadBuilder> {
   factory InvalidGreetingPayload(
           [void Function(InvalidGreetingPayloadBuilder) updates]) =
@@ -60,21 +68,26 @@ abstract class InvalidGreetingPayload
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(InvalidGreetingPayloadBuilder b) {}
-  @override
   String? get message;
   @override
   List<Object?> get props => [message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'InvalidGreeting');
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _InvalidGreetingAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<InvalidGreeting> {
+    extends _i2.StructuredSmithySerializer<InvalidGreeting> {
   const _InvalidGreetingAwsJson11Serializer() : super('InvalidGreeting');
 
   @override
   Iterable<Type> get types => const [InvalidGreeting, _$InvalidGreeting];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   InvalidGreeting deserialize(
       Serializers serializers, Iterable<Object?> serialized,

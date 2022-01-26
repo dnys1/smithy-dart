@@ -43,6 +43,17 @@ abstract class JsonEnumsInputOutput
   @override
   List<Object?> get props =>
       [fooEnum1, fooEnum2, fooEnum3, fooEnumList, fooEnumMap, fooEnumSet];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonEnumsInputOutput');
+    helper.add(r'fooEnum1', fooEnum1);
+    helper.add(r'fooEnum2', fooEnum2);
+    helper.add(r'fooEnum3', fooEnum3);
+    helper.add(r'fooEnumList', fooEnumList);
+    helper.add(r'fooEnumMap', fooEnumMap);
+    helper.add(r'fooEnumSet', fooEnumSet);
+    return helper.toString();
+  }
 }
 
 class _JsonEnumsInputOutputAwsJson11Serializer

@@ -46,7 +46,7 @@ class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
           _i3.HttpPayloadTraitsWithMediaTypeInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/HttpPayloadTraitsWithMediaType';
+        b.path = r'/HttpPayloadTraitsWithMediaType';
         if (input.foo != null) {
           if (input.foo!.isNotEmpty) {
             b.headers['X-Foo'] = input.foo!;

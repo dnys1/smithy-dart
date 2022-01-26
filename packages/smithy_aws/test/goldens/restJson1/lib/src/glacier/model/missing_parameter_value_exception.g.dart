@@ -44,15 +44,6 @@ class _$MissingParameterValueException extends MissingParameterValueException {
     return $jf(
         $jc($jc($jc(0, code.hashCode), message.hashCode), type.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MissingParameterValueException')
-          ..add('code', code)
-          ..add('message', message)
-          ..add('type', type))
-        .toString();
-  }
 }
 
 class MissingParameterValueExceptionBuilder

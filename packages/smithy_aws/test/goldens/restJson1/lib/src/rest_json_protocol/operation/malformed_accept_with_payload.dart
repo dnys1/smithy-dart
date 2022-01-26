@@ -40,7 +40,7 @@ class MalformedAcceptWithPayloadOperation extends _i1.HttpOperation<_i1.Unit,
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedAcceptWithPayload';
+        b.path = r'/MalformedAcceptWithPayload';
       });
   @override
   int successCode([_i3.MalformedAcceptWithPayloadOutput? output]) => 200;

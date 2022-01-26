@@ -35,13 +35,6 @@ class _$BadRequestException extends BadRequestException {
   int get hashCode {
     return $jf($jc(0, message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('BadRequestException')
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class BadRequestExceptionBuilder

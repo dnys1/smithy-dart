@@ -3,14 +3,17 @@
 library http_request_tests_model.test.operation.say_hello;
 
 import 'package:aws_common/aws_common.dart' as _i5;
+import 'package:http_request_tests_model/src/test/common/serializers.dart'
+    as _i4;
 import 'package:http_request_tests_model/src/test/model/say_hello_input.dart'
     as _i2;
-import 'package:http_request_tests_model/src/test/serializers.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class SayHelloOperation extends _i1.HttpOperation<_i2.SayHelloInputPayload,
     _i2.SayHelloInput, _i1.Unit, _i1.Unit> {
+  SayHelloOperation({required this.baseUri});
+
   @override
   late final List<
       _i1.HttpProtocol<_i2.SayHelloInputPayload, _i2.SayHelloInput, _i1.Unit,
@@ -25,9 +28,12 @@ class SayHelloOperation extends _i1.HttpOperation<_i2.SayHelloInputPayload,
   ];
 
   @override
+  final Uri baseUri;
+
+  @override
   _i1.HttpRequest buildRequest(_i2.SayHelloInput input) => _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
         b.hostPrefix = '{hostLabel}.prefix.';
         if (input.greeting != null) {
           if (input.greeting!.isNotEmpty) {

@@ -33,6 +33,14 @@ abstract class RecursiveShapesInputOutputNested1
   _i3.RecursiveShapesInputOutputNested2? get nested;
   @override
   List<Object?> get props => [foo, nested];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'RecursiveShapesInputOutputNested1');
+    helper.add(r'foo', foo);
+    helper.add(r'nested', nested);
+    return helper.toString();
+  }
 }
 
 class _RecursiveShapesInputOutputNested1RestJson1Serializer

@@ -50,6 +50,14 @@ abstract class ArchiveCreationOutput
   ArchiveCreationOutputPayload getPayload() => ArchiveCreationOutputPayload();
   @override
   List<Object?> get props => [archiveId, checksum, location];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ArchiveCreationOutput');
+    helper.add(r'archiveId', archiveId);
+    helper.add(r'checksum', checksum);
+    helper.add(r'location', location);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -71,6 +79,11 @@ abstract class ArchiveCreationOutputPayload
   static void _init(ArchiveCreationOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ArchiveCreationOutput');
+    return helper.toString();
+  }
 }
 
 class _ArchiveCreationOutputRestJson1Serializer

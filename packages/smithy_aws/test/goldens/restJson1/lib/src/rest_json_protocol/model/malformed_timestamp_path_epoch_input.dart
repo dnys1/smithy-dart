@@ -48,6 +48,13 @@ abstract class MalformedTimestampPathEpochInput
       MalformedTimestampPathEpochInputPayload();
   @override
   List<Object?> get props => [timestamp];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedTimestampPathEpochInput');
+    helper.add(r'timestamp', timestamp);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -69,6 +76,12 @@ abstract class MalformedTimestampPathEpochInputPayload
   static void _init(MalformedTimestampPathEpochInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedTimestampPathEpochInput');
+    return helper.toString();
+  }
 }
 
 class _MalformedTimestampPathEpochInputRestJson1Serializer extends _i1

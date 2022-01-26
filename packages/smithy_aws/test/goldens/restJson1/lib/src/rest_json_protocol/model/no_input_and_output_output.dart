@@ -32,6 +32,11 @@ abstract class NoInputAndOutputOutput
   static void _init(NoInputAndOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'NoInputAndOutputOutput');
+    return helper.toString();
+  }
 }
 
 class _NoInputAndOutputOutputRestJson1Serializer

@@ -36,13 +36,6 @@ class _$IgnoreQueryParamsInResponseOutput
   int get hashCode {
     return $jf($jc(0, baz.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('IgnoreQueryParamsInResponseOutput')
-          ..add('baz', baz))
-        .toString();
-  }
 }
 
 class IgnoreQueryParamsInResponseOutputBuilder

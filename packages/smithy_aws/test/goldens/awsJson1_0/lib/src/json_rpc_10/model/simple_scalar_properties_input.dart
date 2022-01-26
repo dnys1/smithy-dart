@@ -33,6 +33,13 @@ abstract class SimpleScalarPropertiesInput
   SimpleScalarPropertiesInput getPayload() => this;
   @override
   List<Object?> get props => [doubleValue, floatValue];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SimpleScalarPropertiesInput');
+    helper.add(r'doubleValue', doubleValue);
+    helper.add(r'floatValue', floatValue);
+    return helper.toString();
+  }
 }
 
 class _SimpleScalarPropertiesInputAwsJson10Serializer

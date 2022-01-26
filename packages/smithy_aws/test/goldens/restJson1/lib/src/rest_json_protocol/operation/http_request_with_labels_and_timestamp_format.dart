@@ -50,7 +50,7 @@ class HttpRequestWithLabelsAndTimestampFormatOperation
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path =
-            '/HttpRequestWithLabelsAndTimestampFormat/{memberEpochSeconds}/{memberHttpDate}/{memberDateTime}/{defaultFormat}/{targetEpochSeconds}/{targetHttpDate}/{targetDateTime}';
+            r'/HttpRequestWithLabelsAndTimestampFormat/{memberEpochSeconds}/{memberHttpDate}/{memberDateTime}/{defaultFormat}/{targetEpochSeconds}/{targetHttpDate}/{targetDateTime}';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

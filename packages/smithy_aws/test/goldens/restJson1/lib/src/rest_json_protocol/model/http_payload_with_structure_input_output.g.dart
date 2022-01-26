@@ -39,13 +39,6 @@ class _$HttpPayloadWithStructureInputOutput
   int get hashCode {
     return $jf($jc(0, nested.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpPayloadWithStructureInputOutput')
-          ..add('nested', nested))
-        .toString();
-  }
 }
 
 class HttpPayloadWithStructureInputOutputBuilder

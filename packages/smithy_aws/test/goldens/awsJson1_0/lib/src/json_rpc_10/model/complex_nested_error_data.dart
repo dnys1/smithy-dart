@@ -27,6 +27,12 @@ abstract class ComplexNestedErrorData
   String? get foo;
   @override
   List<Object?> get props => [foo];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ComplexNestedErrorData');
+    helper.add(r'foo', foo);
+    return helper.toString();
+  }
 }
 
 class _ComplexNestedErrorDataAwsJson10Serializer

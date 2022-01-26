@@ -30,6 +30,13 @@ abstract class EndpointConfiguration
   _i3.BuiltList<String>? get vpcEndpointIds;
   @override
   List<Object?> get props => [types, vpcEndpointIds];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'EndpointConfiguration');
+    helper.add(r'types', types);
+    helper.add(r'vpcEndpointIds', vpcEndpointIds);
+    return helper.toString();
+  }
 }
 
 class _EndpointConfigurationRestJson1Serializer

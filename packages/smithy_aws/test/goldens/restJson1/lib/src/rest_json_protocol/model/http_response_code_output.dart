@@ -40,6 +40,12 @@ abstract class HttpResponseCodeOutput
   HttpResponseCodeOutputPayload getPayload() => HttpResponseCodeOutputPayload();
   @override
   List<Object?> get props => [status];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'HttpResponseCodeOutput');
+    helper.add(r'status', status);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -61,6 +67,11 @@ abstract class HttpResponseCodeOutputPayload
   static void _init(HttpResponseCodeOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'HttpResponseCodeOutput');
+    return helper.toString();
+  }
 }
 
 class _HttpResponseCodeOutputRestJson1Serializer

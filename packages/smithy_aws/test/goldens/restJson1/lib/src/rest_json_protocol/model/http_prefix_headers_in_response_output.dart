@@ -44,6 +44,13 @@ abstract class HttpPrefixHeadersInResponseOutput
       HttpPrefixHeadersInResponseOutputPayload();
   @override
   List<Object?> get props => [prefixHeaders];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpPrefixHeadersInResponseOutput');
+    helper.add(r'prefixHeaders', prefixHeaders);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -65,6 +72,12 @@ abstract class HttpPrefixHeadersInResponseOutputPayload
   static void _init(HttpPrefixHeadersInResponseOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpPrefixHeadersInResponseOutput');
+    return helper.toString();
+  }
 }
 
 class _HttpPrefixHeadersInResponseOutputRestJson1Serializer extends _i2

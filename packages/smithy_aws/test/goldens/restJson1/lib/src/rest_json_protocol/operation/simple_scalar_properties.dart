@@ -41,7 +41,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.SimpleScalarPropertiesInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/SimpleScalarProperties';
+        b.path = r'/SimpleScalarProperties';
         if (input.foo != null) {
           if (input.foo!.isNotEmpty) {
             b.headers['X-Foo'] = input.foo!;

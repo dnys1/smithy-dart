@@ -36,14 +36,6 @@ class _$NestedPayload extends NestedPayload {
   int get hashCode {
     return $jf($jc($jc(0, greeting.hashCode), name.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('NestedPayload')
-          ..add('greeting', greeting)
-          ..add('name', name))
-        .toString();
-  }
 }
 
 class NestedPayloadBuilder

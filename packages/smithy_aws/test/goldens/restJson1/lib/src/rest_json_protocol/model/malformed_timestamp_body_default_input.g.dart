@@ -43,13 +43,6 @@ class _$MalformedTimestampBodyDefaultInput
   int get hashCode {
     return $jf($jc(0, timestamp.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedTimestampBodyDefaultInput')
-          ..add('timestamp', timestamp))
-        .toString();
-  }
 }
 
 class MalformedTimestampBodyDefaultInputBuilder

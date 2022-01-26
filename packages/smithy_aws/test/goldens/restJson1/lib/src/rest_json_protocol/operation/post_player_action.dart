@@ -41,7 +41,7 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.PostPlayerActionInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/PostPlayerAction';
+        b.path = r'/PostPlayerAction';
       });
   @override
   int successCode([_i3.PostPlayerActionOutput? output]) => 200;

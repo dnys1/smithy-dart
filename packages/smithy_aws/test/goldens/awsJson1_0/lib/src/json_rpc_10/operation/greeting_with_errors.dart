@@ -49,7 +49,7 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.GreetingWithErrorsInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
       });
   @override
   int successCode([_i3.GreetingWithErrorsOutput? output]) => 200;

@@ -65,7 +65,8 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.UploadMultipartPartInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}';
+        b.path =
+            r'/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}';
         if (input.checksum != null) {
           if (input.checksum!.isNotEmpty) {
             b.headers['x-amz-sha256-tree-hash'] = input.checksum!;

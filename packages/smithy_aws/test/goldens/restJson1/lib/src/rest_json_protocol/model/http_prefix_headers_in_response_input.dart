@@ -33,6 +33,12 @@ abstract class HttpPrefixHeadersInResponseInput
   HttpPrefixHeadersInResponseInput getPayload() => this;
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpPrefixHeadersInResponseInput');
+    return helper.toString();
+  }
 }
 
 class _HttpPrefixHeadersInResponseInputRestJson1Serializer

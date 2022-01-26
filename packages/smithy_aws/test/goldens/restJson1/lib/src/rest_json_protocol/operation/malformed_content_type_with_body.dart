@@ -35,7 +35,7 @@ class MalformedContentTypeWithBodyOperation extends _i1
   _i1.HttpRequest buildRequest(_i2.GreetingStruct input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedContentTypeWithBody';
+        b.path = r'/MalformedContentTypeWithBody';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

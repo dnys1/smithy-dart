@@ -36,7 +36,7 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
   _i1.HttpRequest buildRequest(_i2.UnionInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/JsonUnions';
+        b.path = r'/JsonUnions';
       });
   @override
   int successCode([_i2.UnionInputOutput? output]) => 200;

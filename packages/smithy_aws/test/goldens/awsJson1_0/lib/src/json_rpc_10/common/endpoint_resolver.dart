@@ -2,6 +2,7 @@
 
 library aws_json1_0.json_rpc_10.common.endpoint_resolver;
 
+import 'package:meta/meta.dart' as _i2;
 import 'package:smithy_aws/smithy_aws.dart' as _i1;
 
 final _partitions = [
@@ -61,6 +62,8 @@ final _partitions = [
           credentialScope: _i1.CredentialScope()),
       endpoints: const {})
 ];
+@_i2.internal
 final _i1.AWSEndpointResolver endpointResolver =
     _i1.AWSEndpointResolver(_partitions);
+@_i2.internal
 const String sdkId = 'JSON RPC 10';

@@ -41,14 +41,6 @@ class _$TestPayloadStructureInputOutput
   int get hashCode {
     return $jf($jc($jc(0, payloadConfig.hashCode), testId.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TestPayloadStructureInputOutput')
-          ..add('payloadConfig', payloadConfig)
-          ..add('testId', testId))
-        .toString();
-  }
 }
 
 class TestPayloadStructureInputOutputBuilder

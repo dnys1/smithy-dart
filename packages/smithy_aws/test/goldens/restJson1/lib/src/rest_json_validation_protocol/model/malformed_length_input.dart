@@ -39,6 +39,17 @@ abstract class MalformedLengthInput
   MalformedLengthInput getPayload() => this;
   @override
   List<Object?> get props => [blob, list, map, maxString, minString, string];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedLengthInput');
+    helper.add(r'blob', blob);
+    helper.add(r'list', list);
+    helper.add(r'map', map);
+    helper.add(r'maxString', maxString);
+    helper.add(r'minString', minString);
+    helper.add(r'string', string);
+    return helper.toString();
+  }
 }
 
 class _MalformedLengthInputRestJson1Serializer

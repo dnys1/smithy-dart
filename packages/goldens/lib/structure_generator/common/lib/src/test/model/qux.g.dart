@@ -29,11 +29,6 @@ class _$Qux extends Qux {
   int get hashCode {
     return 872758689;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('Qux').toString();
-  }
 }
 
 class QuxBuilder implements Builder<Qux, QuxBuilder> {

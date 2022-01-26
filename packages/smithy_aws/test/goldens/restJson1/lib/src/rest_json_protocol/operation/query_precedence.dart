@@ -42,7 +42,7 @@ class QueryPrecedenceOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.QueryPrecedenceInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/Precedence';
+        b.path = r'/Precedence';
         if (input.foo != null) {
           b.queryParameters.add('bar', input.foo!);
         }

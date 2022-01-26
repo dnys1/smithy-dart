@@ -35,13 +35,6 @@ class _$JsonBlobsInputOutput extends JsonBlobsInputOutput {
   int get hashCode {
     return $jf($jc(0, data.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonBlobsInputOutput')
-          ..add('data', data))
-        .toString();
-  }
 }
 
 class JsonBlobsInputOutputBuilder

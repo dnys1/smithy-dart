@@ -40,13 +40,6 @@ class _$MalformedAcceptWithGenericStringInput
   int get hashCode {
     return $jf($jc(0, payload.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedAcceptWithGenericStringInput')
-          ..add('payload', payload))
-        .toString();
-  }
 }
 
 class MalformedAcceptWithGenericStringInputBuilder

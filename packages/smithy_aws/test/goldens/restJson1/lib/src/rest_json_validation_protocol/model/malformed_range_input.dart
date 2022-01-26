@@ -37,6 +37,17 @@ abstract class MalformedRangeInput
   @override
   List<Object?> get props =>
       [byte, float, maxByte, maxFloat, minByte, minFloat];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedRangeInput');
+    helper.add(r'byte', byte);
+    helper.add(r'float', float);
+    helper.add(r'maxByte', maxByte);
+    helper.add(r'maxFloat', maxFloat);
+    helper.add(r'minByte', minByte);
+    helper.add(r'minFloat', minFloat);
+    return helper.toString();
+  }
 }
 
 class _MalformedRangeInputRestJson1Serializer

@@ -56,16 +56,6 @@ class _$MalformedLongInput extends MalformedLongInput {
             longInPath.hashCode),
         longInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedLongInput')
-          ..add('longInBody', longInBody)
-          ..add('longInHeader', longInHeader)
-          ..add('longInPath', longInPath)
-          ..add('longInQuery', longInQuery))
-        .toString();
-  }
 }
 
 class MalformedLongInputBuilder
@@ -158,13 +148,6 @@ class _$MalformedLongInputPayload extends MalformedLongInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, longInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedLongInputPayload')
-          ..add('longInBody', longInBody))
-        .toString();
   }
 }
 

@@ -36,14 +36,6 @@ class _$RestApis extends RestApis {
   int get hashCode {
     return $jf($jc($jc(0, items.hashCode), position.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RestApis')
-          ..add('items', items)
-          ..add('position', position))
-        .toString();
-  }
 }
 
 class RestApisBuilder implements Builder<RestApis, RestApisBuilder> {

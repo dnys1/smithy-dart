@@ -44,7 +44,7 @@ class MalformedStringOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedString';
+        b.path = r'/MalformedString';
         if (input.blob != null) {
           b.headers['amz-media-typed-header'] = _i5
               .base64Encode(_i5.utf8.encode(_i5.jsonEncode(input.blob!.value)));

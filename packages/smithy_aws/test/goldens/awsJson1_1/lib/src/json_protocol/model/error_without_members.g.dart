@@ -32,11 +32,6 @@ class _$ErrorWithoutMembers extends ErrorWithoutMembers {
   int get hashCode {
     return 496951678;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('ErrorWithoutMembers').toString();
-  }
 }
 
 class ErrorWithoutMembersBuilder

@@ -39,14 +39,6 @@ class _$HttpPayloadTraitsInputOutput extends HttpPayloadTraitsInputOutput {
   int get hashCode {
     return $jf($jc($jc(0, blob.hashCode), foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpPayloadTraitsInputOutput')
-          ..add('blob', blob)
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class HttpPayloadTraitsInputOutputBuilder

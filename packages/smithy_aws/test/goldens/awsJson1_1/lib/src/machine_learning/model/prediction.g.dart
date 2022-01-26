@@ -50,16 +50,6 @@ class _$Prediction extends Prediction {
             predictedScores.hashCode),
         predictedValue.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('Prediction')
-          ..add('details', details)
-          ..add('predictedLabel', predictedLabel)
-          ..add('predictedScores', predictedScores)
-          ..add('predictedValue', predictedValue))
-        .toString();
-  }
 }
 
 class PredictionBuilder implements Builder<Prediction, PredictionBuilder> {

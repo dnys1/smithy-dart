@@ -57,6 +57,20 @@ abstract class JsonListsInputOutput
         structureList,
         timestampList
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonListsInputOutput');
+    helper.add(r'booleanList', booleanList);
+    helper.add(r'enumList', enumList);
+    helper.add(r'integerList', integerList);
+    helper.add(r'nestedStringList', nestedStringList);
+    helper.add(r'sparseStringList', sparseStringList);
+    helper.add(r'stringList', stringList);
+    helper.add(r'stringSet', stringSet);
+    helper.add(r'structureList', structureList);
+    helper.add(r'timestampList', timestampList);
+    return helper.toString();
+  }
 }
 
 class _JsonListsInputOutputRestJson1Serializer

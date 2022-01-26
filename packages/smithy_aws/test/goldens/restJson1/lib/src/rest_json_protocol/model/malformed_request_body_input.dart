@@ -33,6 +33,13 @@ abstract class MalformedRequestBodyInput
   MalformedRequestBodyInput getPayload() => this;
   @override
   List<Object?> get props => [float, int_];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedRequestBodyInput');
+    helper.add(r'float', float);
+    helper.add(r'int_', int_);
+    return helper.toString();
+  }
 }
 
 class _MalformedRequestBodyInputRestJson1Serializer

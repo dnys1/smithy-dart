@@ -74,6 +74,19 @@ abstract class HttpRequestWithLabelsInput
   @override
   List<Object?> get props =>
       [boolean, double_, float, integer, long, short, string, timestamp];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'HttpRequestWithLabelsInput');
+    helper.add(r'boolean', boolean);
+    helper.add(r'double_', double_);
+    helper.add(r'float', float);
+    helper.add(r'integer', integer);
+    helper.add(r'long', long);
+    helper.add(r'short', short);
+    helper.add(r'string', string);
+    helper.add(r'timestamp', timestamp);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -95,6 +108,11 @@ abstract class HttpRequestWithLabelsInputPayload
   static void _init(HttpRequestWithLabelsInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'HttpRequestWithLabelsInput');
+    return helper.toString();
+  }
 }
 
 class _HttpRequestWithLabelsInputRestJson1Serializer

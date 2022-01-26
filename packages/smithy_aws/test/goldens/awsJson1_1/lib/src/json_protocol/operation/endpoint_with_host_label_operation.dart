@@ -49,7 +49,7 @@ class EndpointWithHostLabelOperation extends _i1
   _i1.HttpRequest buildRequest(_i2.HostLabelInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
         b.hostPrefix = 'foo.{label}.';
       });
   @override

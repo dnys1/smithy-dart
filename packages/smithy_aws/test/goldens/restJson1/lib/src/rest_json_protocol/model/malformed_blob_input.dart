@@ -31,6 +31,12 @@ abstract class MalformedBlobInput
   MalformedBlobInput getPayload() => this;
   @override
   List<Object?> get props => [blob];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedBlobInput');
+    helper.add(r'blob', blob);
+    return helper.toString();
+  }
 }
 
 class _MalformedBlobInputRestJson1Serializer

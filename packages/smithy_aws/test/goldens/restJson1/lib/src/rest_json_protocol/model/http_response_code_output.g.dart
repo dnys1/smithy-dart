@@ -35,13 +35,6 @@ class _$HttpResponseCodeOutput extends HttpResponseCodeOutput {
   int get hashCode {
     return $jf($jc(0, status.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpResponseCodeOutput')
-          ..add('status', status))
-        .toString();
-  }
 }
 
 class HttpResponseCodeOutputBuilder
@@ -109,12 +102,6 @@ class _$HttpResponseCodeOutputPayload extends HttpResponseCodeOutputPayload {
   @override
   int get hashCode {
     return 333822464;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('HttpResponseCodeOutputPayload')
-        .toString();
   }
 }
 

@@ -40,14 +40,6 @@ class _$DocumentTypeInputOutput extends DocumentTypeInputOutput {
   int get hashCode {
     return $jf($jc($jc(0, documentValue.hashCode), stringValue.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('DocumentTypeInputOutput')
-          ..add('documentValue', documentValue)
-          ..add('stringValue', stringValue))
-        .toString();
-  }
 }
 
 class DocumentTypeInputOutputBuilder

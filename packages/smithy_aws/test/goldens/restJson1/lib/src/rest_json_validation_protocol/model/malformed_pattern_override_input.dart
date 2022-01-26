@@ -39,6 +39,16 @@ abstract class MalformedPatternOverrideInput
   MalformedPatternOverrideInput getPayload() => this;
   @override
   List<Object?> get props => [list, map, string, union];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedPatternOverrideInput');
+    helper.add(r'list', list);
+    helper.add(r'map', map);
+    helper.add(r'string', string);
+    helper.add(r'union', union);
+    return helper.toString();
+  }
 }
 
 class _MalformedPatternOverrideInputRestJson1Serializer

@@ -46,7 +46,7 @@ class NullAndEmptyHeadersClientOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.NullAndEmptyHeadersIo input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/NullAndEmptyHeadersClient';
+        b.path = r'/NullAndEmptyHeadersClient';
         if (input.a != null) {
           if (input.a!.isNotEmpty) {
             b.headers['X-A'] = input.a!;

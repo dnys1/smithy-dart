@@ -29,6 +29,12 @@ abstract class MalformedSetInput
   MalformedSetInput getPayload() => this;
   @override
   List<Object?> get props => [set];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedSetInput');
+    helper.add(r'set', set);
+    return helper.toString();
+  }
 }
 
 class _MalformedSetInputRestJson1Serializer

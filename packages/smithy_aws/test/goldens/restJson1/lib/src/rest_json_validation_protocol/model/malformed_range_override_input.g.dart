@@ -78,18 +78,6 @@ class _$MalformedRangeOverrideInput extends MalformedRangeOverrideInput {
             minByte.hashCode),
         minFloat.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedRangeOverrideInput')
-          ..add('byte', byte)
-          ..add('float', float)
-          ..add('maxByte', maxByte)
-          ..add('maxFloat', maxFloat)
-          ..add('minByte', minByte)
-          ..add('minFloat', minFloat))
-        .toString();
-  }
 }
 
 class MalformedRangeOverrideInputBuilder

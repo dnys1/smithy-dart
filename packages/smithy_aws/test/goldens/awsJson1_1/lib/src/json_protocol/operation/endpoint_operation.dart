@@ -45,7 +45,7 @@ class EndpointOperation
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
         b.hostPrefix = 'foo.';
       });
   @override

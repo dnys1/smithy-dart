@@ -22,6 +22,11 @@ abstract class Qux
   static void _init(QuxBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'Qux');
+    return helper.toString();
+  }
 }
 
 class _QuxSerializer extends _i2.StructuredSmithySerializer<Qux> {

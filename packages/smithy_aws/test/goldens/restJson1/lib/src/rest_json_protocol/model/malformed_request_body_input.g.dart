@@ -39,14 +39,6 @@ class _$MalformedRequestBodyInput extends MalformedRequestBodyInput {
   int get hashCode {
     return $jf($jc($jc(0, float.hashCode), int_.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedRequestBodyInput')
-          ..add('float', float)
-          ..add('int_', int_))
-        .toString();
-  }
 }
 
 class MalformedRequestBodyInputBuilder

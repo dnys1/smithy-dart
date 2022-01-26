@@ -43,6 +43,12 @@ abstract class UploadMultipartPartOutput
       UploadMultipartPartOutputPayload();
   @override
   List<Object?> get props => [checksum];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'UploadMultipartPartOutput');
+    helper.add(r'checksum', checksum);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -64,6 +70,11 @@ abstract class UploadMultipartPartOutputPayload
   static void _init(UploadMultipartPartOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'UploadMultipartPartOutput');
+    return helper.toString();
+  }
 }
 
 class _UploadMultipartPartOutputRestJson1Serializer

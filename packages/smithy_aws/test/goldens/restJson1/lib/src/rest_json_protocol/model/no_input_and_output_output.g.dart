@@ -32,11 +32,6 @@ class _$NoInputAndOutputOutput extends NoInputAndOutputOutput {
   int get hashCode {
     return 29623751;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('NoInputAndOutputOutput').toString();
-  }
 }
 
 class NoInputAndOutputOutputBuilder

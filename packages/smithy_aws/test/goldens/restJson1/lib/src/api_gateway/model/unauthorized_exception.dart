@@ -36,6 +36,12 @@ abstract class UnauthorizedException
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'UnauthorizedException');
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _UnauthorizedExceptionRestJson1Serializer

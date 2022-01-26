@@ -38,7 +38,7 @@ class JsonEnumsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.JsonEnumsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/JsonEnums';
+        b.path = r'/JsonEnums';
       });
   @override
   int successCode([_i2.JsonEnumsInputOutput? output]) => 200;

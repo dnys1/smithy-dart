@@ -46,7 +46,7 @@ class ConstantAndVariableQueryStringOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.ConstantAndVariableQueryStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/ConstantAndVariableQueryString?foo=bar';
+        b.path = r'/ConstantAndVariableQueryString?foo=bar';
         if (input.baz != null) {
           b.queryParameters.add('baz', input.baz!);
         }

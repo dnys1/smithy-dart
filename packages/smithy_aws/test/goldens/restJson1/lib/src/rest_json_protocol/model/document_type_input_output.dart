@@ -37,6 +37,13 @@ abstract class DocumentTypeInputOutput
   DocumentTypeInputOutput getPayload() => this;
   @override
   List<Object?> get props => [documentValue, stringValue];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'DocumentTypeInputOutput');
+    helper.add(r'documentValue', documentValue);
+    helper.add(r'stringValue', stringValue);
+    return helper.toString();
+  }
 }
 
 class _DocumentTypeInputOutputRestJson1Serializer

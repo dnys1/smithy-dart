@@ -50,16 +50,6 @@ class _$JsonTimestampsInputOutput extends JsonTimestampsInputOutput {
             httpDate.hashCode),
         normal.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonTimestampsInputOutput')
-          ..add('dateTime', dateTime)
-          ..add('epochSeconds', epochSeconds)
-          ..add('httpDate', httpDate)
-          ..add('normal', normal))
-        .toString();
-  }
 }
 
 class JsonTimestampsInputOutputBuilder

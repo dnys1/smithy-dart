@@ -56,16 +56,6 @@ class _$MalformedByteInput extends MalformedByteInput {
             byteInPath.hashCode),
         byteInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedByteInput')
-          ..add('byteInBody', byteInBody)
-          ..add('byteInHeader', byteInHeader)
-          ..add('byteInPath', byteInPath)
-          ..add('byteInQuery', byteInQuery))
-        .toString();
-  }
 }
 
 class MalformedByteInputBuilder
@@ -157,13 +147,6 @@ class _$MalformedByteInputPayload extends MalformedByteInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, byteInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedByteInputPayload')
-          ..add('byteInBody', byteInBody))
-        .toString();
   }
 }
 

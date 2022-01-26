@@ -26,6 +26,12 @@ abstract class PayloadConfig
   int? get data;
   @override
   List<Object?> get props => [data];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PayloadConfig');
+    helper.add(r'data', data);
+    return helper.toString();
+  }
 }
 
 class _PayloadConfigRestJson1Serializer

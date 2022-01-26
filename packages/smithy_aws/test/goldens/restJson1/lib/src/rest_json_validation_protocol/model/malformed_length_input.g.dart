@@ -63,18 +63,6 @@ class _$MalformedLengthInput extends MalformedLengthInput {
             minString.hashCode),
         string.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedLengthInput')
-          ..add('blob', blob)
-          ..add('list', list)
-          ..add('map', map)
-          ..add('maxString', maxString)
-          ..add('minString', minString)
-          ..add('string', string))
-        .toString();
-  }
 }
 
 class MalformedLengthInputBuilder

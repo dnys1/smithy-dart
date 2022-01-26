@@ -34,6 +34,13 @@ abstract class ValidationExceptionField
   String get path;
   @override
   List<Object?> get props => [message, path];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ValidationExceptionField');
+    helper.add(r'message', message);
+    helper.add(r'path', path);
+    return helper.toString();
+  }
 }
 
 class _ValidationExceptionFieldRestJson1Serializer

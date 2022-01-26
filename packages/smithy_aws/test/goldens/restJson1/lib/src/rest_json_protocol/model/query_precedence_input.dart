@@ -37,6 +37,13 @@ abstract class QueryPrecedenceInput
   QueryPrecedenceInputPayload getPayload() => QueryPrecedenceInputPayload();
   @override
   List<Object?> get props => [baz, foo];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'QueryPrecedenceInput');
+    helper.add(r'baz', baz);
+    helper.add(r'foo', foo);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -56,6 +63,11 @@ abstract class QueryPrecedenceInputPayload
   static void _init(QueryPrecedenceInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'QueryPrecedenceInput');
+    return helper.toString();
+  }
 }
 
 class _QueryPrecedenceInputRestJson1Serializer

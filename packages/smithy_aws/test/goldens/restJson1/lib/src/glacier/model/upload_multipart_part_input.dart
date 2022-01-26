@@ -54,6 +54,17 @@ abstract class UploadMultipartPartInput
   @override
   List<Object?> get props =>
       [accountId, body, checksum, range, uploadId, vaultName];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'UploadMultipartPartInput');
+    helper.add(r'accountId', accountId);
+    helper.add(r'body', body);
+    helper.add(r'checksum', checksum);
+    helper.add(r'range', range);
+    helper.add(r'uploadId', uploadId);
+    helper.add(r'vaultName', vaultName);
+    return helper.toString();
+  }
 }
 
 class _UploadMultipartPartInputRestJson1Serializer

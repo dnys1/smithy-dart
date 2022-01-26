@@ -35,7 +35,7 @@ class HostWithPathOperation
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/HostWithPathOperation';
+        b.path = r'/HostWithPathOperation';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

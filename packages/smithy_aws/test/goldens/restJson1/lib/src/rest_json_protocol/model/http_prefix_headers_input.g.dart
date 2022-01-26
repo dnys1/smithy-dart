@@ -39,14 +39,6 @@ class _$HttpPrefixHeadersInput extends HttpPrefixHeadersInput {
   int get hashCode {
     return $jf($jc($jc(0, foo.hashCode), fooMap.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpPrefixHeadersInput')
-          ..add('foo', foo)
-          ..add('fooMap', fooMap))
-        .toString();
-  }
 }
 
 class HttpPrefixHeadersInputBuilder
@@ -134,12 +126,6 @@ class _$HttpPrefixHeadersInputPayload extends HttpPrefixHeadersInputPayload {
   @override
   int get hashCode {
     return 822369829;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('HttpPrefixHeadersInputPayload')
-        .toString();
   }
 }
 

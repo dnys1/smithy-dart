@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library streaming_blob.test.serializers;
+library streaming_blob.test.common.serializers;
 
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;

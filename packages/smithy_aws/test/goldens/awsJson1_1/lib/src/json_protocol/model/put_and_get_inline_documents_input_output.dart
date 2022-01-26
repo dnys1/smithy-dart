@@ -39,6 +39,13 @@ abstract class PutAndGetInlineDocumentsInputOutput
   PutAndGetInlineDocumentsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [inlineDocument];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'PutAndGetInlineDocumentsInputOutput');
+    helper.add(r'inlineDocument', inlineDocument);
+    return helper.toString();
+  }
 }
 
 class _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer extends _i1

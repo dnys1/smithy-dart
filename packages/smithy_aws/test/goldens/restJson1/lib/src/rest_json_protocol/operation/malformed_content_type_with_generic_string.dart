@@ -40,7 +40,7 @@ class MalformedContentTypeWithGenericStringOperation extends _i1.HttpOperation<
           _i2.MalformedContentTypeWithGenericStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedContentTypeWithGenericString';
+        b.path = r'/MalformedContentTypeWithGenericString';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

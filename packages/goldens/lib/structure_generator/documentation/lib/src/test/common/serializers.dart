@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library documentation.test.serializers;
+library documentation.test.common.serializers;
 
 import 'package:built_value/serializer.dart';
 import 'package:documentation/src/test/model/get_foo_input.dart' as _i2;

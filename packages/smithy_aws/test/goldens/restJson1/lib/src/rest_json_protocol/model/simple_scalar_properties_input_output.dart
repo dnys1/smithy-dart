@@ -84,6 +84,22 @@ abstract class SimpleScalarPropertiesInputOutput
         stringValue,
         trueBooleanValue
       ];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'SimpleScalarPropertiesInputOutput');
+    helper.add(r'byteValue', byteValue);
+    helper.add(r'doubleValue', doubleValue);
+    helper.add(r'falseBooleanValue', falseBooleanValue);
+    helper.add(r'floatValue', floatValue);
+    helper.add(r'foo', foo);
+    helper.add(r'integerValue', integerValue);
+    helper.add(r'longValue', longValue);
+    helper.add(r'shortValue', shortValue);
+    helper.add(r'stringValue', stringValue);
+    helper.add(r'trueBooleanValue', trueBooleanValue);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -123,6 +139,21 @@ abstract class SimpleScalarPropertiesInputOutputPayload
         stringValue,
         trueBooleanValue
       ];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'SimpleScalarPropertiesInputOutput');
+    helper.add(r'byteValue', byteValue);
+    helper.add(r'doubleValue', doubleValue);
+    helper.add(r'falseBooleanValue', falseBooleanValue);
+    helper.add(r'floatValue', floatValue);
+    helper.add(r'integerValue', integerValue);
+    helper.add(r'longValue', longValue);
+    helper.add(r'shortValue', shortValue);
+    helper.add(r'stringValue', stringValue);
+    helper.add(r'trueBooleanValue', trueBooleanValue);
+    return helper.toString();
+  }
 }
 
 class _SimpleScalarPropertiesInputOutputRestJson1Serializer extends _i1

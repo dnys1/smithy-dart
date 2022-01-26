@@ -37,6 +37,12 @@ abstract class StringPayloadInput
   String? getPayload() => payload;
   @override
   List<Object?> get props => [payload];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'StringPayloadInput');
+    helper.add(r'payload', payload);
+    return helper.toString();
+  }
 }
 
 class _StringPayloadInputRestJson1Serializer

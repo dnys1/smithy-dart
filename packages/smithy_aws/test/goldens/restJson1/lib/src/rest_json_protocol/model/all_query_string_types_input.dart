@@ -77,6 +77,30 @@ abstract class AllQueryStringTypesInput
         queryTimestamp,
         queryTimestampList
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'AllQueryStringTypesInput');
+    helper.add(r'queryBoolean', queryBoolean);
+    helper.add(r'queryBooleanList', queryBooleanList);
+    helper.add(r'queryByte', queryByte);
+    helper.add(r'queryDouble', queryDouble);
+    helper.add(r'queryDoubleList', queryDoubleList);
+    helper.add(r'queryEnum', queryEnum);
+    helper.add(r'queryEnumList', queryEnumList);
+    helper.add(r'queryFloat', queryFloat);
+    helper.add(r'queryInteger', queryInteger);
+    helper.add(r'queryIntegerList', queryIntegerList);
+    helper.add(r'queryIntegerSet', queryIntegerSet);
+    helper.add(r'queryLong', queryLong);
+    helper.add(r'queryParamsMapOfStringList', queryParamsMapOfStringList);
+    helper.add(r'queryShort', queryShort);
+    helper.add(r'queryString', queryString);
+    helper.add(r'queryStringList', queryStringList);
+    helper.add(r'queryStringSet', queryStringSet);
+    helper.add(r'queryTimestamp', queryTimestamp);
+    helper.add(r'queryTimestampList', queryTimestampList);
+    return helper.toString();
+  }
 }
 
 @_i6.internal
@@ -98,6 +122,11 @@ abstract class AllQueryStringTypesInputPayload
   static void _init(AllQueryStringTypesInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'AllQueryStringTypesInput');
+    return helper.toString();
+  }
 }
 
 class _AllQueryStringTypesInputRestJson1Serializer

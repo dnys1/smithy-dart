@@ -47,14 +47,6 @@ class _$HttpRequestWithFloatLabelsInput
   int get hashCode {
     return $jf($jc($jc(0, double_.hashCode), float.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpRequestWithFloatLabelsInput')
-          ..add('double_', double_)
-          ..add('float', float))
-        .toString();
-  }
 }
 
 class HttpRequestWithFloatLabelsInputBuilder
@@ -138,12 +130,6 @@ class _$HttpRequestWithFloatLabelsInputPayload
   @override
   int get hashCode {
     return 113596152;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('HttpRequestWithFloatLabelsInputPayload')
-        .toString();
   }
 }
 

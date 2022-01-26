@@ -172,38 +172,6 @@ class _$KitchenSink extends KitchenSink {
             timestamp.hashCode),
         unixTimestamp.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('KitchenSink')
-          ..add('blob', blob)
-          ..add('boolean', boolean)
-          ..add('double_', double_)
-          ..add('emptyStruct', emptyStruct)
-          ..add('float', float)
-          ..add('httpdateTimestamp', httpdateTimestamp)
-          ..add('integer', integer)
-          ..add('iso8601Timestamp', iso8601Timestamp)
-          ..add('jsonValue', jsonValue)
-          ..add('listOfLists', listOfLists)
-          ..add('listOfMapsOfStrings', listOfMapsOfStrings)
-          ..add('listOfStrings', listOfStrings)
-          ..add('listOfStructs', listOfStructs)
-          ..add('long', long)
-          ..add('mapOfListsOfStrings', mapOfListsOfStrings)
-          ..add('mapOfMaps', mapOfMaps)
-          ..add('mapOfStrings', mapOfStrings)
-          ..add('mapOfStructs', mapOfStructs)
-          ..add('recursiveList', recursiveList)
-          ..add('recursiveMap', recursiveMap)
-          ..add('recursiveStruct', recursiveStruct)
-          ..add('simpleStruct', simpleStruct)
-          ..add('string', string)
-          ..add('structWithJsonName', structWithJsonName)
-          ..add('timestamp', timestamp)
-          ..add('unixTimestamp', unixTimestamp))
-        .toString();
-  }
 }
 
 class KitchenSinkBuilder implements Builder<KitchenSink, KitchenSinkBuilder> {

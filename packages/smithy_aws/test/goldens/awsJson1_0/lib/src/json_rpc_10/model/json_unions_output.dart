@@ -31,6 +31,12 @@ abstract class JsonUnionsOutput
   _i3.MyUnion? get contents;
   @override
   List<Object?> get props => [contents];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonUnionsOutput');
+    helper.add(r'contents', contents);
+    return helper.toString();
+  }
 }
 
 class _JsonUnionsOutputAwsJson10Serializer

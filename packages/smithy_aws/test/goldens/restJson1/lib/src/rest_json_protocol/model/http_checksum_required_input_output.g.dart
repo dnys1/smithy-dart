@@ -36,13 +36,6 @@ class _$HttpChecksumRequiredInputOutput
   int get hashCode {
     return $jf($jc(0, foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpChecksumRequiredInputOutput')
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class HttpChecksumRequiredInputOutputBuilder

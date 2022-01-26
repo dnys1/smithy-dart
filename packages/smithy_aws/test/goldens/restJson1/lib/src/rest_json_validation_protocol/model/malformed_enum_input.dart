@@ -37,6 +37,15 @@ abstract class MalformedEnumInput
   MalformedEnumInput getPayload() => this;
   @override
   List<Object?> get props => [list, map, string, union];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedEnumInput');
+    helper.add(r'list', list);
+    helper.add(r'map', map);
+    helper.add(r'string', string);
+    helper.add(r'union', union);
+    return helper.toString();
+  }
 }
 
 class _MalformedEnumInputRestJson1Serializer

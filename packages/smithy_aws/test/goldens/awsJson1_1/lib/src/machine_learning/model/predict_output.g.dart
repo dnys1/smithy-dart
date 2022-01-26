@@ -32,13 +32,6 @@ class _$PredictOutput extends PredictOutput {
   int get hashCode {
     return $jf($jc(0, prediction.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('PredictOutput')
-          ..add('prediction', prediction))
-        .toString();
-  }
 }
 
 class PredictOutputBuilder

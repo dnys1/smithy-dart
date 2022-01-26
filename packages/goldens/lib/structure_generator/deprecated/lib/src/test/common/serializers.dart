@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library deprecated.test.serializers;
+library deprecated.test.common.serializers;
 
 import 'package:built_value/serializer.dart';
 import 'package:deprecated/src/test/model/get_foo_input.dart' as _i2;

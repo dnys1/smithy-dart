@@ -28,6 +28,13 @@ abstract class StructureListMember
   String? get b;
   @override
   List<Object?> get props => [a, b];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'StructureListMember');
+    helper.add(r'a', a);
+    helper.add(r'b', b);
+    return helper.toString();
+  }
 }
 
 class _StructureListMemberRestJson1Serializer

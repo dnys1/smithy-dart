@@ -41,14 +41,6 @@ class _$RecursiveShapesInputOutputNested2
   int get hashCode {
     return $jf($jc($jc(0, bar.hashCode), recursiveMember.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RecursiveShapesInputOutputNested2')
-          ..add('bar', bar)
-          ..add('recursiveMember', recursiveMember))
-        .toString();
-  }
 }
 
 class RecursiveShapesInputOutputNested2Builder

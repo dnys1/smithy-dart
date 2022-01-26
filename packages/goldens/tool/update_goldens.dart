@@ -11,7 +11,7 @@ import 'package:smithy_codegen/src/util/pubspec.dart';
 
 const modelsDir = 'models';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
   final modelsPath = path.join(Directory.current.path, modelsDir);
   final glob = Glob(args.length == 1 ? args[0] : '**');
   final entites = glob.listFileSystemSync(LocalFileSystem(), root: modelsPath);
@@ -70,20 +70,27 @@ void main(List<String> args) {
       serviceName: 'Test',
     );
 
-    libraries.forEach((library, definition) {
-      final outPath = path.join(outputPath, library.projectRelativePath);
+    final Set<String> dependencies = {};
+    for (var library in libraries) {
+      final smithyLibrary = library.smithyLibrary;
+      final outPath = path.join(outputPath, smithyLibrary.projectRelativePath);
+      final output = library.emit();
+      dependencies.addAll(library.dependencies);
       File(outPath)
         ..createSync(recursive: true)
-        ..writeAsStringSync(definition);
-    });
+        ..writeAsStringSync(output);
+    }
 
     // Create dummy pubspec
     final pubspecPath = path.join(outputPath, 'pubspec.yaml');
     final pubspec = Pubspec(packageName);
     final localSmithyPath = Directory.current.uri.resolve('..').path;
-    File(pubspecPath).writeAsStringSync(
-      pubspec.toYaml(path.relative(localSmithyPath, from: outputPath)),
-    );
+    final pubspecYaml = PubspecGenerator(
+      pubspec,
+      dependencies,
+      smithyPath: path.relative(localSmithyPath, from: outputPath),
+    ).generate();
+    File(pubspecPath).writeAsStringSync(pubspecYaml);
 
     // Create analysis options
     final analysisOptionsPath = path.join(outputPath, 'analysis_options.yaml');
@@ -109,7 +116,7 @@ void main(List<String> args) {
     }
 
     // Run built_value generator
-    final buildRunnerRes = Process.runSync(
+    final buildRunnerCmd = await Process.start(
       'dart',
       [
         'run',
@@ -118,14 +125,21 @@ void main(List<String> args) {
         '--delete-conflicting-outputs',
       ],
       workingDirectory: outputPath,
-      stdoutEncoding: utf8,
-      stderrEncoding: utf8,
     );
-    if (buildRunnerRes.exitCode != 0) {
-      stderr.write('`dart run build_runner build` failed for $outputPath: ');
-      stderr.writeln(buildRunnerRes.stdout);
-      stderr.writeln(buildRunnerRes.stderr);
-      exit(buildRunnerRes.exitCode);
+    buildRunnerCmd.stdout
+        .transform(utf8.decoder)
+        .transform(const LineSplitter())
+        .listen(stdout.writeln);
+    buildRunnerCmd.stderr
+        .transform(utf8.decoder)
+        .transform(const LineSplitter())
+        .listen(stderr.writeln);
+    final exitCode = await buildRunnerCmd.exitCode;
+    if (exitCode != 0) {
+      stderr.write(
+        '`dart run build_runner build` failed for $outputPath: $exitCode.',
+      );
+      exit(exitCode);
     }
   }
 }

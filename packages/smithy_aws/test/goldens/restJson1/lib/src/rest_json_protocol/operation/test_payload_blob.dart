@@ -41,7 +41,7 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.TestPayloadBlobInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/blob_payload';
+        b.path = r'/blob_payload';
         if (input.contentType != null) {
           if (input.contentType!.isNotEmpty) {
             b.headers['Content-Type'] = input.contentType!;

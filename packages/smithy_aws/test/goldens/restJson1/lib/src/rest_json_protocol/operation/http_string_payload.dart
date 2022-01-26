@@ -35,7 +35,7 @@ class HttpStringPayloadOperation extends _i1.HttpOperation<String,
   _i1.HttpRequest buildRequest(_i2.StringPayloadInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/StringPayload';
+        b.path = r'/StringPayload';
       });
   @override
   int successCode([_i2.StringPayloadInput? output]) => 200;

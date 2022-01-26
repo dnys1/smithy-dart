@@ -53,17 +53,6 @@ class _$MalformedPatternInput extends MalformedPatternInput {
             string.hashCode),
         union.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedPatternInput')
-          ..add('evilString', evilString)
-          ..add('list', list)
-          ..add('map', map)
-          ..add('string', string)
-          ..add('union', union))
-        .toString();
-  }
 }
 
 class MalformedPatternInputBuilder

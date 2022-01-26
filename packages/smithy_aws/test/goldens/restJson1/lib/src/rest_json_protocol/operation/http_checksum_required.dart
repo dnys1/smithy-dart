@@ -42,7 +42,7 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.HttpChecksumRequiredInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/HttpChecksumRequired';
+        b.path = r'/HttpChecksumRequired';
       });
   @override
   int successCode([_i2.HttpChecksumRequiredInputOutput? output]) => 200;

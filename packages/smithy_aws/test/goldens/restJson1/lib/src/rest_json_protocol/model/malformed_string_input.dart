@@ -36,6 +36,12 @@ abstract class MalformedStringInput
   MalformedStringInputPayload getPayload() => MalformedStringInputPayload();
   @override
   List<Object?> get props => [blob];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedStringInput');
+    helper.add(r'blob', blob);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -55,6 +61,11 @@ abstract class MalformedStringInputPayload
   static void _init(MalformedStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedStringInput');
+    return helper.toString();
+  }
 }
 
 class _MalformedStringInputRestJson1Serializer

@@ -49,16 +49,6 @@ class _$MalformedPatternOverrideInput extends MalformedPatternOverrideInput {
         $jc($jc($jc(0, list.hashCode), map.hashCode), string.hashCode),
         union.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedPatternOverrideInput')
-          ..add('list', list)
-          ..add('map', map)
-          ..add('string', string)
-          ..add('union', union))
-        .toString();
-  }
 }
 
 class MalformedPatternOverrideInputBuilder

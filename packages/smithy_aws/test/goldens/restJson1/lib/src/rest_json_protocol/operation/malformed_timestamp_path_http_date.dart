@@ -45,7 +45,7 @@ class MalformedTimestampPathHttpDateOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedTimestampPathHttpDateInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampPathHttpDate/{timestamp}';
+        b.path = r'/MalformedTimestampPathHttpDate/{timestamp}';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

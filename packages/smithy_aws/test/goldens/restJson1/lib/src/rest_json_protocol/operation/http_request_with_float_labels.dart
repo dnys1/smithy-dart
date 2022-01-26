@@ -45,7 +45,7 @@ class HttpRequestWithFloatLabelsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.HttpRequestWithFloatLabelsInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/FloatHttpLabels/{float}/{double}';
+        b.path = r'/FloatHttpLabels/{float}/{double}';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

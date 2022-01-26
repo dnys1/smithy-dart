@@ -33,6 +33,12 @@ abstract class EmptyInputAndEmptyOutputInput
   EmptyInputAndEmptyOutputInput getPayload() => this;
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'EmptyInputAndEmptyOutputInput');
+    return helper.toString();
+  }
 }
 
 class _EmptyInputAndEmptyOutputInputAwsJson10Serializer

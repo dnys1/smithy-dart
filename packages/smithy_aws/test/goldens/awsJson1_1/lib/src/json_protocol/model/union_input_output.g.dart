@@ -34,13 +34,6 @@ class _$UnionInputOutput extends UnionInputOutput {
   int get hashCode {
     return $jf($jc(0, contents.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('UnionInputOutput')
-          ..add('contents', contents))
-        .toString();
-  }
 }
 
 class UnionInputOutputBuilder

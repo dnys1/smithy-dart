@@ -40,7 +40,7 @@ class MalformedLengthOverrideOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedLengthOverrideInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedLengthOverride';
+        b.path = r'/MalformedLengthOverride';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

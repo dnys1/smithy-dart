@@ -16,6 +16,7 @@ dependencies:
   smithy_aws:
     path: ../../../../smithy_aws
   built_collection: ^5.0.0
+  meta: ^1.7.0
 
 dependency_overrides:
   smithy:

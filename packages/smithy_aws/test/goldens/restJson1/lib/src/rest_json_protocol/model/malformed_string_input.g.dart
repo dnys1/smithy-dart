@@ -35,13 +35,6 @@ class _$MalformedStringInput extends MalformedStringInput {
   int get hashCode {
     return $jf($jc(0, blob.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedStringInput')
-          ..add('blob', blob))
-        .toString();
-  }
 }
 
 class MalformedStringInputBuilder
@@ -109,12 +102,6 @@ class _$MalformedStringInputPayload extends MalformedStringInputPayload {
   @override
   int get hashCode {
     return 986643134;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('MalformedStringInputPayload')
-        .toString();
   }
 }
 

@@ -56,16 +56,6 @@ class _$MalformedFloatInput extends MalformedFloatInput {
             floatInPath.hashCode),
         floatInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedFloatInput')
-          ..add('floatInBody', floatInBody)
-          ..add('floatInHeader', floatInHeader)
-          ..add('floatInPath', floatInPath)
-          ..add('floatInQuery', floatInQuery))
-        .toString();
-  }
 }
 
 class MalformedFloatInputBuilder
@@ -159,13 +149,6 @@ class _$MalformedFloatInputPayload extends MalformedFloatInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, floatInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedFloatInputPayload')
-          ..add('floatInBody', floatInBody))
-        .toString();
   }
 }
 

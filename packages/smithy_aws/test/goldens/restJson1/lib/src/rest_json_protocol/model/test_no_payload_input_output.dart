@@ -45,6 +45,12 @@ abstract class TestNoPayloadInputOutput
       TestNoPayloadInputOutputPayload();
   @override
   List<Object?> get props => [testId];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TestNoPayloadInputOutput');
+    helper.add(r'testId', testId);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -66,6 +72,11 @@ abstract class TestNoPayloadInputOutputPayload
   static void _init(TestNoPayloadInputOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TestNoPayloadInputOutput');
+    return helper.toString();
+  }
 }
 
 class _TestNoPayloadInputOutputRestJson1Serializer

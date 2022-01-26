@@ -38,7 +38,7 @@ class HttpResponseCodeOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/HttpResponseCode';
+        b.path = r'/HttpResponseCode';
       });
   @override
   int successCode([_i2.HttpResponseCodeOutput? output]) =>

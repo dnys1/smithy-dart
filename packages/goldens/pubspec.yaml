@@ -10,6 +10,16 @@ dependencies:
   smithy:
     path: ../smithy
 
+dependency_overrides:
+  smithy_ast:
+    path: ../smithy_ast
+  smithy:
+    path: ../smithy
+  smithy_aws:
+    path: ../smithy_aws
+  smithy_codegen:
+    path: ../smithy_codegen
+
 dev_dependencies:
   file: ^6.1.2
   glob: ^2.0.2

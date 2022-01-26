@@ -2,26 +2,26 @@
 
 library http_binding_map_model.test.model.server_error;
 
-import 'package:aws_common/aws_common.dart' as _i2;
+import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i1;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'server_error.g.dart';
 
 abstract class ServerError
-    with _i1.SmithyException, _i2.AWSEquatable<ServerError>
-    implements Built<ServerError, ServerErrorBuilder> {
+    with _i1.AWSEquatable<ServerError>
+    implements Built<ServerError, ServerErrorBuilder>, _i2.SmithyException {
   factory ServerError([void Function(ServerErrorBuilder) updates]) =
       _$ServerError;
 
   const ServerError._();
 
   factory ServerError.fromResponse(
-          ServerError payload, _i2.AWSStreamedHttpResponse response) =>
+          ServerError payload, _i1.AWSStreamedHttpResponse response) =>
       payload;
 
-  static const List<_i1.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _ServerErrorAwsJson11Serializer()
   ];
 
@@ -30,20 +30,26 @@ abstract class ServerError
   @override
   String get message;
   @override
-  _i1.RetryConfig? get retryConfig => null;
+  _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ServerError');
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _ServerErrorAwsJson11Serializer
-    extends _i1.StructuredSmithySerializer<ServerError> {
+    extends _i2.StructuredSmithySerializer<ServerError> {
   const _ServerErrorAwsJson11Serializer() : super('ServerError');
 
   @override
   Iterable<Type> get types => const [ServerError, _$ServerError];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols =>
-      const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   ServerError deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

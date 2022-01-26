@@ -40,14 +40,6 @@ class _$TooManyRequestsException extends TooManyRequestsException {
   int get hashCode {
     return $jf($jc($jc(0, message.hashCode), retryAfterSeconds.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TooManyRequestsException')
-          ..add('message', message)
-          ..add('retryAfterSeconds', retryAfterSeconds))
-        .toString();
-  }
 }
 
 class TooManyRequestsExceptionBuilder
@@ -128,13 +120,6 @@ class _$TooManyRequestsExceptionPayload
   @override
   int get hashCode {
     return $jf($jc(0, message.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TooManyRequestsExceptionPayload')
-          ..add('message', message))
-        .toString();
   }
 }
 

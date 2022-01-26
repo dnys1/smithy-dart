@@ -55,6 +55,14 @@ abstract class ComplexError
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [header, nested, topLevel];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ComplexError');
+    helper.add(r'header', header);
+    helper.add(r'nested', nested);
+    helper.add(r'topLevel', topLevel);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -74,6 +82,13 @@ abstract class ComplexErrorPayload
   String? get topLevel;
   @override
   List<Object?> get props => [nested, topLevel];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ComplexError');
+    helper.add(r'nested', nested);
+    helper.add(r'topLevel', topLevel);
+    return helper.toString();
+  }
 }
 
 class _ComplexErrorRestJson1Serializer

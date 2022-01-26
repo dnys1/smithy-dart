@@ -34,13 +34,6 @@ class _$JsonUnionsOutput extends JsonUnionsOutput {
   int get hashCode {
     return $jf($jc(0, contents.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonUnionsOutput')
-          ..add('contents', contents))
-        .toString();
-  }
 }
 
 class JsonUnionsOutputBuilder

@@ -30,11 +30,6 @@ class _$SayGoodbyeInput extends SayGoodbyeInput {
   int get hashCode {
     return 963250681;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('SayGoodbyeInput').toString();
-  }
 }
 
 class SayGoodbyeInputBuilder

@@ -47,6 +47,14 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
   _i2.Stream<List<int>>? getPayload() => blob;
   @override
   List<Object?> get props => [blob, foo];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'StreamingTraitsWithMediaTypeInputOutput');
+    helper.add(r'blob', blob);
+    helper.add(r'foo', foo);
+    return helper.toString();
+  }
 }
 
 class _StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer

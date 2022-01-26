@@ -40,6 +40,15 @@ abstract class JsonTimestampsInputOutput
   JsonTimestampsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [dateTime, epochSeconds, httpDate, normal];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonTimestampsInputOutput');
+    helper.add(r'dateTime', dateTime);
+    helper.add(r'epochSeconds', epochSeconds);
+    helper.add(r'httpDate', httpDate);
+    helper.add(r'normal', normal);
+    return helper.toString();
+  }
 }
 
 class _JsonTimestampsInputOutputRestJson1Serializer

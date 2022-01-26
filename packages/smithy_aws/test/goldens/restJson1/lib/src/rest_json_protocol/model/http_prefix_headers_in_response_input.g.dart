@@ -33,12 +33,6 @@ class _$HttpPrefixHeadersInResponseInput
   int get hashCode {
     return 890165507;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('HttpPrefixHeadersInResponseInput')
-        .toString();
-  }
 }
 
 class HttpPrefixHeadersInResponseInputBuilder

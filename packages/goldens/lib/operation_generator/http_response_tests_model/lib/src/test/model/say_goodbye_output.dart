@@ -40,6 +40,12 @@ abstract class SayGoodbyeOutput
   SayGoodbyeOutputPayload getPayload() => SayGoodbyeOutputPayload();
   @override
   List<Object?> get props => [farewell];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SayGoodbyeOutput');
+    helper.add(r'farewell', farewell);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -59,6 +65,11 @@ abstract class SayGoodbyeOutputPayload
   static void _init(SayGoodbyeOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SayGoodbyeOutput');
+    return helper.toString();
+  }
 }
 
 class _SayGoodbyeOutputAwsJson11Serializer

@@ -38,7 +38,7 @@ class MalformedBooleanOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedBooleanInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedBoolean/{booleanInPath}';
+        b.path = r'/MalformedBoolean/{booleanInPath}';
         if (input.booleanInHeader != null) {
           b.headers['booleanInHeader'] = input.booleanInHeader!.toString();
         }

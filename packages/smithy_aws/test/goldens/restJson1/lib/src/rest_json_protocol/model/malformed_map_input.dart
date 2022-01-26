@@ -29,6 +29,12 @@ abstract class MalformedMapInput
   MalformedMapInput getPayload() => this;
   @override
   List<Object?> get props => [bodyMap];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedMapInput');
+    helper.add(r'bodyMap', bodyMap);
+    return helper.toString();
+  }
 }
 
 class _MalformedMapInputRestJson1Serializer

@@ -37,7 +37,7 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
   _i1.HttpRequest buildRequest(_i3.EnumPayloadInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/EnumPayload';
+        b.path = r'/EnumPayload';
       });
   @override
   int successCode([_i3.EnumPayloadInput? output]) => 200;

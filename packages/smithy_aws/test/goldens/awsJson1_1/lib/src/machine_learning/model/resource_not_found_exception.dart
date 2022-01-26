@@ -38,6 +38,13 @@ abstract class ResourceNotFoundException
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ResourceNotFoundException');
+    helper.add(r'code', code);
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _ResourceNotFoundExceptionAwsJson11Serializer

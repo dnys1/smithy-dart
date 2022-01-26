@@ -40,14 +40,6 @@ class _$RecursiveShapesInputOutputNested1
   int get hashCode {
     return $jf($jc($jc(0, foo.hashCode), nested.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RecursiveShapesInputOutputNested1')
-          ..add('foo', foo)
-          ..add('nested', nested))
-        .toString();
-  }
 }
 
 class RecursiveShapesInputOutputNested1Builder

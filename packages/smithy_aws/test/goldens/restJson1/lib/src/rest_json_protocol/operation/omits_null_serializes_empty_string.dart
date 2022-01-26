@@ -46,7 +46,7 @@ class OmitsNullSerializesEmptyStringOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.OmitsNullSerializesEmptyStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/OmitsNullSerializesEmptyString';
+        b.path = r'/OmitsNullSerializesEmptyString';
         if (input.nullValue != null) {
           b.queryParameters.add('Null', input.nullValue!);
         }

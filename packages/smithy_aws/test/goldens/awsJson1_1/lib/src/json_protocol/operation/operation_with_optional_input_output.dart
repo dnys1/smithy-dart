@@ -58,7 +58,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
           _i2.OperationWithOptionalInputOutputInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
       });
   @override
   int successCode([_i3.OperationWithOptionalInputOutputOutput? output]) => 200;

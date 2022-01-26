@@ -32,6 +32,12 @@ abstract class GreetingStruct
   GreetingStruct getPayload() => this;
   @override
   List<Object?> get props => [hi];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GreetingStruct');
+    helper.add(r'hi', hi);
+    return helper.toString();
+  }
 }
 
 class _GreetingStructRestJson1Serializer

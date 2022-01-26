@@ -47,7 +47,7 @@ class MalformedLengthQueryStringOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedLengthQueryStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedLengthQueryString';
+        b.path = r'/MalformedLengthQueryString';
         if (input.string != null) {
           b.queryParameters.add('string', input.string!);
         }

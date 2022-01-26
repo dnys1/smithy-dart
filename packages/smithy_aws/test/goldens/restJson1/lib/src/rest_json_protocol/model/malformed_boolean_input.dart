@@ -48,6 +48,15 @@ abstract class MalformedBooleanInput
   @override
   List<Object?> get props =>
       [booleanInBody, booleanInHeader, booleanInPath, booleanInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedBooleanInput');
+    helper.add(r'booleanInBody', booleanInBody);
+    helper.add(r'booleanInHeader', booleanInHeader);
+    helper.add(r'booleanInPath', booleanInPath);
+    helper.add(r'booleanInQuery', booleanInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -69,6 +78,12 @@ abstract class MalformedBooleanInputPayload
   bool? get booleanInBody;
   @override
   List<Object?> get props => [booleanInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedBooleanInput');
+    helper.add(r'booleanInBody', booleanInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedBooleanInputRestJson1Serializer

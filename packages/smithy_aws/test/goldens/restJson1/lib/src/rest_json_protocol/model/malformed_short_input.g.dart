@@ -56,16 +56,6 @@ class _$MalformedShortInput extends MalformedShortInput {
             shortInPath.hashCode),
         shortInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedShortInput')
-          ..add('shortInBody', shortInBody)
-          ..add('shortInHeader', shortInHeader)
-          ..add('shortInPath', shortInPath)
-          ..add('shortInQuery', shortInQuery))
-        .toString();
-  }
 }
 
 class MalformedShortInputBuilder
@@ -159,13 +149,6 @@ class _$MalformedShortInputPayload extends MalformedShortInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, shortInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedShortInputPayload')
-          ..add('shortInBody', shortInBody))
-        .toString();
   }
 }
 

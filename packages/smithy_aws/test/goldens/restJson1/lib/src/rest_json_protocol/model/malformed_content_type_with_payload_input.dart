@@ -36,6 +36,13 @@ abstract class MalformedContentTypeWithPayloadInput
   _i2.Uint8List? getPayload() => payload;
   @override
   List<Object?> get props => [payload];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedContentTypeWithPayloadInput');
+    helper.add(r'payload', payload);
+    return helper.toString();
+  }
 }
 
 class _MalformedContentTypeWithPayloadInputRestJson1Serializer

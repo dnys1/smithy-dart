@@ -49,16 +49,6 @@ class _$SayHelloInput extends SayHelloInput {
         $jc($jc($jc(0, greeting.hashCode), hostLabel.hashCode), name.hashCode),
         query.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SayHelloInput')
-          ..add('greeting', greeting)
-          ..add('hostLabel', hostLabel)
-          ..add('name', name)
-          ..add('query', query))
-        .toString();
-  }
 }
 
 class SayHelloInputBuilder
@@ -157,14 +147,6 @@ class _$SayHelloInputPayload extends SayHelloInputPayload {
   @override
   int get hashCode {
     return $jf($jc($jc(0, hostLabel.hashCode), name.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SayHelloInputPayload')
-          ..add('hostLabel', hostLabel)
-          ..add('name', name))
-        .toString();
   }
 }
 

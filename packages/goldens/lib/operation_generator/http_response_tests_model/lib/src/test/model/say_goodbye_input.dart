@@ -29,6 +29,11 @@ abstract class SayGoodbyeInput
   SayGoodbyeInput getPayload() => this;
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SayGoodbyeInput');
+    return helper.toString();
+  }
 }
 
 class _SayGoodbyeInputAwsJson11Serializer

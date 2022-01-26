@@ -35,13 +35,6 @@ class _$GreetingWithErrorsInput extends GreetingWithErrorsInput {
   int get hashCode {
     return $jf($jc(0, greeting.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GreetingWithErrorsInput')
-          ..add('greeting', greeting))
-        .toString();
-  }
 }
 
 class GreetingWithErrorsInputBuilder

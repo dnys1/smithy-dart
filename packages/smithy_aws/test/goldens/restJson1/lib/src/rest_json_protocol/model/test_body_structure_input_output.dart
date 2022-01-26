@@ -51,6 +51,13 @@ abstract class TestBodyStructureInputOutput
       TestBodyStructureInputOutputPayload((b) => b..testConfig = testConfig);
   @override
   List<Object?> get props => [testConfig, testId];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TestBodyStructureInputOutput');
+    helper.add(r'testConfig', testConfig);
+    helper.add(r'testId', testId);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -72,6 +79,12 @@ abstract class TestBodyStructureInputOutputPayload
   _i3.TestConfig? get testConfig;
   @override
   List<Object?> get props => [testConfig];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TestBodyStructureInputOutput');
+    helper.add(r'testConfig', testConfig);
+    return helper.toString();
+  }
 }
 
 class _TestBodyStructureInputOutputRestJson1Serializer extends _i1

@@ -34,6 +34,12 @@ abstract class UnionInputOutput
   UnionInputOutput getPayload() => this;
   @override
   List<Object?> get props => [contents];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'UnionInputOutput');
+    helper.add(r'contents', contents);
+    return helper.toString();
+  }
 }
 
 class _UnionInputOutputAwsJson11Serializer

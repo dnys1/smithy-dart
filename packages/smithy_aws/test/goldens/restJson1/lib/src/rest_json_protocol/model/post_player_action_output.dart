@@ -33,6 +33,12 @@ abstract class PostPlayerActionOutput
   _i3.PlayerAction get action;
   @override
   List<Object?> get props => [action];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PostPlayerActionOutput');
+    helper.add(r'action', action);
+    return helper.toString();
+  }
 }
 
 class _PostPlayerActionOutputRestJson1Serializer

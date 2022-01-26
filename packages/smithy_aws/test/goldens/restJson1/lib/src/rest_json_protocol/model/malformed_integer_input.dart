@@ -48,6 +48,15 @@ abstract class MalformedIntegerInput
   @override
   List<Object?> get props =>
       [integerInBody, integerInHeader, integerInPath, integerInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedIntegerInput');
+    helper.add(r'integerInBody', integerInBody);
+    helper.add(r'integerInHeader', integerInHeader);
+    helper.add(r'integerInPath', integerInPath);
+    helper.add(r'integerInQuery', integerInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -69,6 +78,12 @@ abstract class MalformedIntegerInputPayload
   int? get integerInBody;
   @override
   List<Object?> get props => [integerInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedIntegerInput');
+    helper.add(r'integerInBody', integerInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedIntegerInputRestJson1Serializer

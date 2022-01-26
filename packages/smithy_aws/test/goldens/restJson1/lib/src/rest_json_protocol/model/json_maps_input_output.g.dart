@@ -91,22 +91,6 @@ class _$JsonMapsInputOutput extends JsonMapsInputOutput {
             sparseStringMap.hashCode),
         sparseStructMap.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonMapsInputOutput')
-          ..add('denseBooleanMap', denseBooleanMap)
-          ..add('denseNumberMap', denseNumberMap)
-          ..add('denseSetMap', denseSetMap)
-          ..add('denseStringMap', denseStringMap)
-          ..add('denseStructMap', denseStructMap)
-          ..add('sparseBooleanMap', sparseBooleanMap)
-          ..add('sparseNumberMap', sparseNumberMap)
-          ..add('sparseSetMap', sparseSetMap)
-          ..add('sparseStringMap', sparseStringMap)
-          ..add('sparseStructMap', sparseStructMap))
-        .toString();
-  }
 }
 
 class JsonMapsInputOutputBuilder

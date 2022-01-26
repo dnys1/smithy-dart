@@ -51,6 +51,16 @@ abstract class UploadArchiveInput
   @override
   List<Object?> get props =>
       [accountId, archiveDescription, body, checksum, vaultName];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'UploadArchiveInput');
+    helper.add(r'accountId', accountId);
+    helper.add(r'archiveDescription', archiveDescription);
+    helper.add(r'body', body);
+    helper.add(r'checksum', checksum);
+    helper.add(r'vaultName', vaultName);
+    return helper.toString();
+  }
 }
 
 class _UploadArchiveInputRestJson1Serializer

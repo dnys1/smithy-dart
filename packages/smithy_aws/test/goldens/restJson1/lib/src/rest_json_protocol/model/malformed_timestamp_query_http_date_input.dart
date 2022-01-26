@@ -37,6 +37,13 @@ abstract class MalformedTimestampQueryHttpDateInput
       MalformedTimestampQueryHttpDateInputPayload();
   @override
   List<Object?> get props => [timestamp];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedTimestampQueryHttpDateInput');
+    helper.add(r'timestamp', timestamp);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -58,6 +65,12 @@ abstract class MalformedTimestampQueryHttpDateInputPayload
   static void _init(MalformedTimestampQueryHttpDateInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedTimestampQueryHttpDateInput');
+    return helper.toString();
+  }
 }
 
 class _MalformedTimestampQueryHttpDateInputRestJson1Serializer extends _i1

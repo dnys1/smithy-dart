@@ -36,7 +36,7 @@ class NoInputAndNoOutputOperation
   @override
   _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/NoInputAndNoOutput';
+        b.path = r'/NoInputAndNoOutput';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

@@ -38,7 +38,7 @@ class MalformedShortOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedShortInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedShort/{shortInPath}';
+        b.path = r'/MalformedShort/{shortInPath}';
         if (input.shortInHeader != null) {
           b.headers['shortInHeader'] = input.shortInHeader!.toString();
         }

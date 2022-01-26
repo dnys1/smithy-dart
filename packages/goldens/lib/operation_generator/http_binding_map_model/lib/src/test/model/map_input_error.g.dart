@@ -29,11 +29,6 @@ class _$MapInputError extends MapInputError {
   int get hashCode {
     return 516218726;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('MapInputError').toString();
-  }
 }
 
 class MapInputErrorBuilder

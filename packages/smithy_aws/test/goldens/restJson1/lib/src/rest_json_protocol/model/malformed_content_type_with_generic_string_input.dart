@@ -34,6 +34,13 @@ abstract class MalformedContentTypeWithGenericStringInput
   String? getPayload() => payload;
   @override
   List<Object?> get props => [payload];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(
+        r'MalformedContentTypeWithGenericStringInput');
+    helper.add(r'payload', payload);
+    return helper.toString();
+  }
 }
 
 class _MalformedContentTypeWithGenericStringInputRestJson1Serializer

@@ -35,7 +35,7 @@ class MalformedLongOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedLongInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedLong/{longInPath}';
+        b.path = r'/MalformedLong/{longInPath}';
         if (input.longInHeader != null) {
           b.headers['longInHeader'] = input.longInHeader!.toString();
         }

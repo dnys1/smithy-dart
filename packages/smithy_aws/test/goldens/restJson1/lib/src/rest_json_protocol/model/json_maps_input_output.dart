@@ -58,6 +58,21 @@ abstract class JsonMapsInputOutput
         sparseStringMap,
         sparseStructMap
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonMapsInputOutput');
+    helper.add(r'denseBooleanMap', denseBooleanMap);
+    helper.add(r'denseNumberMap', denseNumberMap);
+    helper.add(r'denseSetMap', denseSetMap);
+    helper.add(r'denseStringMap', denseStringMap);
+    helper.add(r'denseStructMap', denseStructMap);
+    helper.add(r'sparseBooleanMap', sparseBooleanMap);
+    helper.add(r'sparseNumberMap', sparseNumberMap);
+    helper.add(r'sparseSetMap', sparseSetMap);
+    helper.add(r'sparseStringMap', sparseStringMap);
+    helper.add(r'sparseStructMap', sparseStructMap);
+    return helper.toString();
+  }
 }
 
 class _JsonMapsInputOutputRestJson1Serializer

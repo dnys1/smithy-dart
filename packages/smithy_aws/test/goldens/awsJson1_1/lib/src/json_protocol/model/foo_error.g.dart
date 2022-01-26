@@ -29,11 +29,6 @@ class _$FooError extends FooError {
   int get hashCode {
     return 445467195;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('FooError').toString();
-  }
 }
 
 class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {

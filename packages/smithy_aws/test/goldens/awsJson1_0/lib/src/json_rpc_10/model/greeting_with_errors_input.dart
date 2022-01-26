@@ -31,6 +31,12 @@ abstract class GreetingWithErrorsInput
   GreetingWithErrorsInput getPayload() => this;
   @override
   List<Object?> get props => [greeting];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GreetingWithErrorsInput');
+    helper.add(r'greeting', greeting);
+    return helper.toString();
+  }
 }
 
 class _GreetingWithErrorsInputAwsJson10Serializer

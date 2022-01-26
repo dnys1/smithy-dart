@@ -46,6 +46,13 @@ abstract class HttpPayloadTraitsInputOutput
   _i2.Uint8List? getPayload() => blob;
   @override
   List<Object?> get props => [blob, foo];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'HttpPayloadTraitsInputOutput');
+    helper.add(r'blob', blob);
+    helper.add(r'foo', foo);
+    return helper.toString();
+  }
 }
 
 class _HttpPayloadTraitsInputOutputRestJson1Serializer

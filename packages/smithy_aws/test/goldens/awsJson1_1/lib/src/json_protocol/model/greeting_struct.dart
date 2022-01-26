@@ -26,6 +26,12 @@ abstract class GreetingStruct
   String? get hi;
   @override
   List<Object?> get props => [hi];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GreetingStruct');
+    helper.add(r'hi', hi);
+    return helper.toString();
+  }
 }
 
 class _GreetingStructAwsJson11Serializer

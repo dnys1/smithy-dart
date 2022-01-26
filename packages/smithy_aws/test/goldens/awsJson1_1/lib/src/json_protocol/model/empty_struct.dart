@@ -25,6 +25,11 @@ abstract class EmptyStruct
   static void _init(EmptyStructBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'EmptyStruct');
+    return helper.toString();
+  }
 }
 
 class _EmptyStructAwsJson11Serializer

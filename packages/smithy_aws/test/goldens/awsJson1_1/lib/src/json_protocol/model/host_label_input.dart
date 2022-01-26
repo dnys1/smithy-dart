@@ -37,6 +37,12 @@ abstract class HostLabelInput
   HostLabelInput getPayload() => this;
   @override
   List<Object?> get props => [label];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'HostLabelInput');
+    helper.add(r'label', label);
+    return helper.toString();
+  }
 }
 
 class _HostLabelInputAwsJson11Serializer

@@ -10,9 +10,12 @@ import 'package:http_binding_map_model/src/test/operation/map_input.dart'
     as _i3;
 
 class TestClient {
-  TestClient();
+  const TestClient({required this.baseUri});
+
+  @override
+  final Uri baseUri;
 
   _i1.Future<void> mapInput(_i2.MapInputRequest input) {
-    return _i3.MapInputOperation().run(input);
+    return _i3.MapInputOperation(baseUri: baseUri).run(input);
   }
 }

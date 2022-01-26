@@ -46,6 +46,12 @@ abstract class MediaTypeHeaderOutput
   MediaTypeHeaderOutputPayload getPayload() => MediaTypeHeaderOutputPayload();
   @override
   List<Object?> get props => [json];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MediaTypeHeaderOutput');
+    helper.add(r'json', json);
+    return helper.toString();
+  }
 }
 
 @_i5.internal
@@ -67,6 +73,11 @@ abstract class MediaTypeHeaderOutputPayload
   static void _init(MediaTypeHeaderOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MediaTypeHeaderOutput');
+    return helper.toString();
+  }
 }
 
 class _MediaTypeHeaderOutputRestJson1Serializer

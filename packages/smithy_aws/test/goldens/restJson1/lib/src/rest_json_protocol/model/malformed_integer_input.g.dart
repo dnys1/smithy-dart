@@ -56,16 +56,6 @@ class _$MalformedIntegerInput extends MalformedIntegerInput {
             integerInPath.hashCode),
         integerInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedIntegerInput')
-          ..add('integerInBody', integerInBody)
-          ..add('integerInHeader', integerInHeader)
-          ..add('integerInPath', integerInPath)
-          ..add('integerInQuery', integerInQuery))
-        .toString();
-  }
 }
 
 class MalformedIntegerInputBuilder
@@ -162,13 +152,6 @@ class _$MalformedIntegerInputPayload extends MalformedIntegerInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, integerInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedIntegerInputPayload')
-          ..add('integerInBody', integerInBody))
-        .toString();
   }
 }
 

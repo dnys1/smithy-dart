@@ -41,6 +41,15 @@ abstract class InvalidParameterValueException
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message, type];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'InvalidParameterValueException');
+    helper.add(r'code', code);
+    helper.add(r'message', message);
+    helper.add(r'type', type);
+    return helper.toString();
+  }
 }
 
 class _InvalidParameterValueExceptionRestJson1Serializer

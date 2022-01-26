@@ -1,22 +1,38 @@
 name: http_response_tests_model
-description: Http_response_tests_model client SDK
-version: 1.0.0
+description: Http Response Tests Model client SDK
+version: 0.1.0
 publish_to: none
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  smithy: 
+  aws_common:
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
+  built_value: ^8.0.0
+  smithy:
     path: ../../../../smithy
-  smithy_aws: 
+  meta: ^1.7.0
+  smithy_aws:
     path: ../../../../smithy_aws
-  uuid: ^3.0.0
+
+dependency_overrides:
+  smithy:
+    path: ../../../../smithy
+  smithy_ast:
+    path: ../../../../smithy_ast
+  smithy_aws:
+    path: ../../../../smithy_aws
+  smithy_codegen:
+    path: ../../../../smithy_codegen
+  smithy_test:
+    path: ../../../../smithy_test
 
 dev_dependencies:
+  smithy_test:
+    path: ../../../../smithy_test
   build_runner: ^2.0.0
   built_value_generator: ^8.0.0
   lints: ^1.0.0
-  smithy_test: 
-    path: ../../../../smithy_test
   test: ^1.16.0

@@ -26,6 +26,12 @@ abstract class RenamedGreeting
   String? get salutation;
   @override
   List<Object?> get props => [salutation];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'RenamedGreeting');
+    helper.add(r'salutation', salutation);
+    return helper.toString();
+  }
 }
 
 class _GreetingStructRestJson1Serializer

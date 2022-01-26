@@ -37,14 +37,6 @@ class _$StructureListMember extends StructureListMember {
   int get hashCode {
     return $jf($jc($jc(0, a.hashCode), b.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('StructureListMember')
-          ..add('a', a)
-          ..add('b', b))
-        .toString();
-  }
 }
 
 class StructureListMemberBuilder

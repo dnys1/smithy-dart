@@ -37,7 +37,7 @@ class MalformedEnumOperation extends _i1.HttpOperation<_i2.MalformedEnumInput,
   _i1.HttpRequest buildRequest(_i2.MalformedEnumInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedEnum';
+        b.path = r'/MalformedEnum';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

@@ -34,6 +34,12 @@ abstract class RecursiveStructuresInput
   RecursiveStructuresInput getPayload() => this;
   @override
   List<Object?> get props => [union];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'RecursiveStructuresInput');
+    helper.add(r'union', union);
+    return helper.toString();
+  }
 }
 
 class _RecursiveStructuresInputRestJson1Serializer

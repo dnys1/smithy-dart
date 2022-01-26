@@ -25,6 +25,12 @@ abstract class TestConfig
   int? get timeout;
   @override
   List<Object?> get props => [timeout];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TestConfig');
+    helper.add(r'timeout', timeout);
+    return helper.toString();
+  }
 }
 
 class _TestConfigRestJson1Serializer

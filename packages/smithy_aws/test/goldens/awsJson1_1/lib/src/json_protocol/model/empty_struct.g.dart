@@ -29,11 +29,6 @@ class _$EmptyStruct extends EmptyStruct {
   int get hashCode {
     return 166523092;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('EmptyStruct').toString();
-  }
 }
 
 class EmptyStructBuilder implements Builder<EmptyStruct, EmptyStructBuilder> {

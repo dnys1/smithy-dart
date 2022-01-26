@@ -49,6 +49,15 @@ abstract class MalformedLongInput
   @override
   List<Object?> get props =>
       [longInBody, longInHeader, longInPath, longInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedLongInput');
+    helper.add(r'longInBody', longInBody);
+    helper.add(r'longInHeader', longInHeader);
+    helper.add(r'longInPath', longInPath);
+    helper.add(r'longInQuery', longInQuery);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -68,6 +77,12 @@ abstract class MalformedLongInputPayload
   _i3.Int64? get longInBody;
   @override
   List<Object?> get props => [longInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedLongInput');
+    helper.add(r'longInBody', longInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedLongInputRestJson1Serializer

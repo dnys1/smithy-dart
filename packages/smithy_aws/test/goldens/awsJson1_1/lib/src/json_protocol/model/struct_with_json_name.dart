@@ -27,6 +27,12 @@ abstract class StructWithJsonName
   String? get value;
   @override
   List<Object?> get props => [value];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'StructWithJsonName');
+    helper.add(r'value', value);
+    return helper.toString();
+  }
 }
 
 class _StructWithJsonNameAwsJson11Serializer

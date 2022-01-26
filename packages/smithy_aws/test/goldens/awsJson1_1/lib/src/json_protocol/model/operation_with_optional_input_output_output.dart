@@ -35,6 +35,13 @@ abstract class OperationWithOptionalInputOutputOutput
   String? get value;
   @override
   List<Object?> get props => [value];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'OperationWithOptionalInputOutputOutput');
+    helper.add(r'value', value);
+    return helper.toString();
+  }
 }
 
 class _OperationWithOptionalInputOutputOutputAwsJson11Serializer extends _i2

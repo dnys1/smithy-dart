@@ -37,13 +37,6 @@ class _$MalformedAcceptWithPayloadOutput
   int get hashCode {
     return $jf($jc(0, payload.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedAcceptWithPayloadOutput')
-          ..add('payload', payload))
-        .toString();
-  }
 }
 
 class MalformedAcceptWithPayloadOutputBuilder

@@ -39,14 +39,6 @@ class _$TestPayloadBlobInputOutput extends TestPayloadBlobInputOutput {
   int get hashCode {
     return $jf($jc($jc(0, contentType.hashCode), data.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TestPayloadBlobInputOutput')
-          ..add('contentType', contentType)
-          ..add('data', data))
-        .toString();
-  }
 }
 
 class TestPayloadBlobInputOutputBuilder

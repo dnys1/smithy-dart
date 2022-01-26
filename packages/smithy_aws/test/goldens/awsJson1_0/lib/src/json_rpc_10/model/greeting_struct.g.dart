@@ -33,12 +33,6 @@ class _$GreetingStruct extends GreetingStruct {
   int get hashCode {
     return $jf($jc(0, hi.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GreetingStruct')..add('hi', hi))
-        .toString();
-  }
 }
 
 class GreetingStructBuilder

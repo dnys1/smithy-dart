@@ -42,7 +42,7 @@ class MalformedContentTypeWithPayloadOperation extends _i1.HttpOperation<
           _i3.MalformedContentTypeWithPayloadInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedContentTypeWithPayload';
+        b.path = r'/MalformedContentTypeWithPayload';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

@@ -35,7 +35,7 @@ class MalformedListOperation extends _i1.HttpOperation<_i2.MalformedListInput,
   _i1.HttpRequest buildRequest(_i2.MalformedListInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedList';
+        b.path = r'/MalformedList';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

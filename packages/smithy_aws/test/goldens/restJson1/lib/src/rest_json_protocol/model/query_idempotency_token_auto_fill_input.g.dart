@@ -38,13 +38,6 @@ class _$QueryIdempotencyTokenAutoFillInput
   int get hashCode {
     return $jf($jc(0, token.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('QueryIdempotencyTokenAutoFillInput')
-          ..add('token', token))
-        .toString();
-  }
 }
 
 class QueryIdempotencyTokenAutoFillInputBuilder
@@ -120,13 +113,6 @@ class _$QueryIdempotencyTokenAutoFillInputPayload
   @override
   int get hashCode {
     return 658734140;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'QueryIdempotencyTokenAutoFillInputPayload')
-        .toString();
   }
 }
 

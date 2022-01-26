@@ -43,13 +43,6 @@ class _$MalformedTimestampHeaderEpochInput
   int get hashCode {
     return $jf($jc(0, timestamp.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedTimestampHeaderEpochInput')
-          ..add('timestamp', timestamp))
-        .toString();
-  }
 }
 
 class MalformedTimestampHeaderEpochInputBuilder
@@ -127,13 +120,6 @@ class _$MalformedTimestampHeaderEpochInputPayload
   @override
   int get hashCode {
     return 588221401;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'MalformedTimestampHeaderEpochInputPayload')
-        .toString();
   }
 }
 

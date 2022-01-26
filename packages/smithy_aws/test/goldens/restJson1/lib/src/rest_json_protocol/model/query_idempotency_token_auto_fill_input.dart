@@ -45,6 +45,13 @@ abstract class QueryIdempotencyTokenAutoFillInput
       QueryIdempotencyTokenAutoFillInputPayload();
   @override
   List<Object?> get props => [token];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'QueryIdempotencyTokenAutoFillInput');
+    helper.add(r'token', token);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -66,6 +73,12 @@ abstract class QueryIdempotencyTokenAutoFillInputPayload
   static void _init(QueryIdempotencyTokenAutoFillInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'QueryIdempotencyTokenAutoFillInput');
+    return helper.toString();
+  }
 }
 
 class _QueryIdempotencyTokenAutoFillInputRestJson1Serializer extends _i1

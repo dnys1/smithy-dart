@@ -36,6 +36,11 @@ abstract class FooError
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'FooError');
+    return helper.toString();
+  }
 }
 
 class _FooErrorAwsJson11Serializer

@@ -133,28 +133,6 @@ class _$InputAndOutputWithHeadersIo extends InputAndOutputWithHeadersIo {
             headerTimestampList.hashCode),
         headerTrueBool.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('InputAndOutputWithHeadersIo')
-          ..add('headerBooleanList', headerBooleanList)
-          ..add('headerByte', headerByte)
-          ..add('headerDouble', headerDouble)
-          ..add('headerEnum', headerEnum)
-          ..add('headerEnumList', headerEnumList)
-          ..add('headerFalseBool', headerFalseBool)
-          ..add('headerFloat', headerFloat)
-          ..add('headerInteger', headerInteger)
-          ..add('headerIntegerList', headerIntegerList)
-          ..add('headerLong', headerLong)
-          ..add('headerShort', headerShort)
-          ..add('headerString', headerString)
-          ..add('headerStringList', headerStringList)
-          ..add('headerStringSet', headerStringSet)
-          ..add('headerTimestampList', headerTimestampList)
-          ..add('headerTrueBool', headerTrueBool))
-        .toString();
-  }
 }
 
 class InputAndOutputWithHeadersIoBuilder
@@ -360,12 +338,6 @@ class _$InputAndOutputWithHeadersIoPayload
   @override
   int get hashCode {
     return 80642089;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('InputAndOutputWithHeadersIoPayload')
-        .toString();
   }
 }
 

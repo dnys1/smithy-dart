@@ -35,7 +35,7 @@ class MalformedMapOperation extends _i1.HttpOperation<_i2.MalformedMapInput,
   _i1.HttpRequest buildRequest(_i2.MalformedMapInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedMap';
+        b.path = r'/MalformedMap';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

@@ -8,7 +8,7 @@ part of common.test.model.get_foo_input;
 
 class _$GetFooInput extends GetFooInput {
   @override
-  final int? bar;
+  final int bar;
   @override
   final int? baz;
   @override
@@ -24,13 +24,14 @@ class _$GetFooInput extends GetFooInput {
       (new GetFooInputBuilder()..update(updates)).build();
 
   _$GetFooInput._(
-      {this.bar,
+      {required this.bar,
       this.baz,
       required this.byteValue,
       this.foo,
       this.object,
       this.quux})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(bar, 'GetFooInput', 'bar');
     BuiltValueNullFieldError.checkNotNull(
         byteValue, 'GetFooInput', 'byteValue');
   }
@@ -64,18 +65,6 @@ class _$GetFooInput extends GetFooInput {
                 foo.hashCode),
             object.hashCode),
         quux.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GetFooInput')
-          ..add('bar', bar)
-          ..add('baz', baz)
-          ..add('byteValue', byteValue)
-          ..add('foo', foo)
-          ..add('object', object)
-          ..add('quux', quux))
-        .toString();
   }
 }
 
@@ -141,7 +130,8 @@ class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {
     try {
       _$result = _$v ??
           new _$GetFooInput._(
-              bar: bar,
+              bar: BuiltValueNullFieldError.checkNotNull(
+                  bar, 'GetFooInput', 'bar'),
               baz: baz,
               byteValue: BuiltValueNullFieldError.checkNotNull(
                   byteValue, 'GetFooInput', 'byteValue'),

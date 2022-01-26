@@ -46,15 +46,6 @@ class _$NullOperationInputOutput extends NullOperationInputOutput {
         $jc($jc(0, sparseStringList.hashCode), sparseStringMap.hashCode),
         string.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('NullOperationInputOutput')
-          ..add('sparseStringList', sparseStringList)
-          ..add('sparseStringMap', sparseStringMap)
-          ..add('string', string))
-        .toString();
-  }
 }
 
 class NullOperationInputOutputBuilder

@@ -38,7 +38,7 @@ class MalformedIntegerOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedIntegerInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedInteger/{integerInPath}';
+        b.path = r'/MalformedInteger/{integerInPath}';
         if (input.integerInHeader != null) {
           b.headers['integerInHeader'] = input.integerInHeader!.toString();
         }

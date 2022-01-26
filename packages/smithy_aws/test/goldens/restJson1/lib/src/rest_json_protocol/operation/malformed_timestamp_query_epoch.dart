@@ -45,7 +45,7 @@ class MalformedTimestampQueryEpochOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedTimestampQueryEpochInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampQueryEpoch';
+        b.path = r'/MalformedTimestampQueryEpoch';
         b.queryParameters.add(
             'timestamp',
             _i1.Timestamp(input.timestamp)

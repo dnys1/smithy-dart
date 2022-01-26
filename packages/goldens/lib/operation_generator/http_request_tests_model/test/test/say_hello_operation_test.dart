@@ -16,7 +16,8 @@ void main() {
     'say_hello (request)',
     () async {
       await _i2.httpRequestTest(
-          operation: _i3.SayHelloOperation(),
+          operation:
+              _i3.SayHelloOperation(baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'say_hello',
               documentation: null,

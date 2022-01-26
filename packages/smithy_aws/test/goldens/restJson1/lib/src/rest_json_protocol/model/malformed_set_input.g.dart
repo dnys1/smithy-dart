@@ -34,12 +34,6 @@ class _$MalformedSetInput extends MalformedSetInput {
   int get hashCode {
     return $jf($jc(0, set.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedSetInput')..add('set', set))
-        .toString();
-  }
 }
 
 class MalformedSetInputBuilder

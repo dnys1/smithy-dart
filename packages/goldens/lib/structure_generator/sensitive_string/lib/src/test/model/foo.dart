@@ -27,6 +27,14 @@ abstract class Foo
   String? get qux;
   @override
   List<Object?> get props => [bar, baz, qux];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'Foo');
+    helper.add(r'bar', '***SENSITIVE***');
+    helper.add(r'baz', '***SENSITIVE***');
+    helper.add(r'qux', qux);
+    return helper.toString();
+  }
 }
 
 class _FooSerializer extends _i2.StructuredSmithySerializer<Foo> {

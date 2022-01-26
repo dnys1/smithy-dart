@@ -42,7 +42,7 @@ class MalformedAcceptWithGenericStringOperation extends _i1.HttpOperation<
           _i3.MalformedAcceptWithGenericStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedAcceptWithGenericString';
+        b.path = r'/MalformedAcceptWithGenericString';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

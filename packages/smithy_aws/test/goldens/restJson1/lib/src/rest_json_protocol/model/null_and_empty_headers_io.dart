@@ -54,6 +54,14 @@ abstract class NullAndEmptyHeadersIo
   NullAndEmptyHeadersIoPayload getPayload() => NullAndEmptyHeadersIoPayload();
   @override
   List<Object?> get props => [a, b, c];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'NullAndEmptyHeadersIo');
+    helper.add(r'a', a);
+    helper.add(r'b', b);
+    helper.add(r'c', c);
+    return helper.toString();
+  }
 }
 
 @_i4.internal
@@ -75,6 +83,11 @@ abstract class NullAndEmptyHeadersIoPayload
   static void _init(NullAndEmptyHeadersIoPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'NullAndEmptyHeadersIo');
+    return helper.toString();
+  }
 }
 
 class _NullAndEmptyHeadersIoRestJson1Serializer

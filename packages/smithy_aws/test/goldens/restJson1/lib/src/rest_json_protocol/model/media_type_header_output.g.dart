@@ -35,13 +35,6 @@ class _$MediaTypeHeaderOutput extends MediaTypeHeaderOutput {
   int get hashCode {
     return $jf($jc(0, json.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MediaTypeHeaderOutput')
-          ..add('json', json))
-        .toString();
-  }
 }
 
 class MediaTypeHeaderOutputBuilder
@@ -109,12 +102,6 @@ class _$MediaTypeHeaderOutputPayload extends MediaTypeHeaderOutputPayload {
   @override
   int get hashCode {
     return 1046285147;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('MediaTypeHeaderOutputPayload')
-        .toString();
   }
 }
 

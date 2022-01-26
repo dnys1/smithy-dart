@@ -108,25 +108,6 @@ class _$RestApi extends RestApi {
             version.hashCode),
         warnings.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RestApi')
-          ..add('apiKeySource', apiKeySource)
-          ..add('binaryMediaTypes', binaryMediaTypes)
-          ..add('createdDate', createdDate)
-          ..add('description', description)
-          ..add('disableExecuteApiEndpoint', disableExecuteApiEndpoint)
-          ..add('endpointConfiguration', endpointConfiguration)
-          ..add('id', id)
-          ..add('minimumCompressionSize', minimumCompressionSize)
-          ..add('name', name)
-          ..add('policy', policy)
-          ..add('tags', tags)
-          ..add('version', version)
-          ..add('warnings', warnings))
-        .toString();
-  }
 }
 
 class RestApiBuilder implements Builder<RestApi, RestApiBuilder> {

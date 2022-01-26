@@ -36,6 +36,12 @@ abstract class InvalidGreeting
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'InvalidGreeting');
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _InvalidGreetingAwsJson11Serializer

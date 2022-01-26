@@ -98,6 +98,18 @@ abstract class TimestampFormatHeadersIo
         targetEpochSeconds,
         targetHttpDate
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TimestampFormatHeadersIo');
+    helper.add(r'defaultFormat', defaultFormat);
+    helper.add(r'memberDateTime', memberDateTime);
+    helper.add(r'memberEpochSeconds', memberEpochSeconds);
+    helper.add(r'memberHttpDate', memberHttpDate);
+    helper.add(r'targetDateTime', targetDateTime);
+    helper.add(r'targetEpochSeconds', targetEpochSeconds);
+    helper.add(r'targetHttpDate', targetHttpDate);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -119,6 +131,11 @@ abstract class TimestampFormatHeadersIoPayload
   static void _init(TimestampFormatHeadersIoPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TimestampFormatHeadersIo');
+    return helper.toString();
+  }
 }
 
 class _TimestampFormatHeadersIoRestJson1Serializer

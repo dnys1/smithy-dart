@@ -12,9 +12,12 @@ import 'package:http_response_tests_model/src/test/operation/say_goodbye.dart'
     as _i4;
 
 class TestClient {
-  TestClient();
+  const TestClient({required this.baseUri});
+
+  @override
+  final Uri baseUri;
 
   _i1.Future<_i2.SayGoodbyeOutput> sayGoodbye(_i3.SayGoodbyeInput input) {
-    return _i4.SayGoodbyeOperation().run(input);
+    return _i4.SayGoodbyeOperation(baseUri: baseUri).run(input);
   }
 }

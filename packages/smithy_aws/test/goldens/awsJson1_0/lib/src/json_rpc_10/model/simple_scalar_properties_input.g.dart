@@ -40,14 +40,6 @@ class _$SimpleScalarPropertiesInput extends SimpleScalarPropertiesInput {
   int get hashCode {
     return $jf($jc($jc(0, doubleValue.hashCode), floatValue.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SimpleScalarPropertiesInput')
-          ..add('doubleValue', doubleValue)
-          ..add('floatValue', floatValue))
-        .toString();
-  }
 }
 
 class SimpleScalarPropertiesInputBuilder

@@ -39,15 +39,6 @@ class _$Foo extends Foo {
   int get hashCode {
     return $jf($jc($jc($jc(0, bar.hashCode), baz.hashCode), qux.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('Foo')
-          ..add('bar', bar)
-          ..add('baz', baz)
-          ..add('qux', qux))
-        .toString();
-  }
 }
 
 class FooBuilder implements Builder<Foo, FooBuilder> {

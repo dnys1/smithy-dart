@@ -3,5 +3,8 @@
 library streaming_blob.test.test_client;
 
 class TestClient {
-  TestClient();
+  const TestClient({required this.baseUri});
+
+  @override
+  final Uri baseUri;
 }

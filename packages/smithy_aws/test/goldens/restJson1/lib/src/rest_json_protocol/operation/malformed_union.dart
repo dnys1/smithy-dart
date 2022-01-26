@@ -35,7 +35,7 @@ class MalformedUnionOperation extends _i1.HttpOperation<_i2.MalformedUnionInput,
   _i1.HttpRequest buildRequest(_i2.MalformedUnionInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedUnion';
+        b.path = r'/MalformedUnion';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

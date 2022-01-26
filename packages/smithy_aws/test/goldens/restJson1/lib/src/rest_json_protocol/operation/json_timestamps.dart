@@ -42,7 +42,7 @@ class JsonTimestampsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.JsonTimestampsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/JsonTimestamps';
+        b.path = r'/JsonTimestamps';
       });
   @override
   int successCode([_i2.JsonTimestampsInputOutput? output]) => 200;

@@ -37,7 +37,7 @@ class MalformedLengthOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedLengthInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedLength';
+        b.path = r'/MalformedLength';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

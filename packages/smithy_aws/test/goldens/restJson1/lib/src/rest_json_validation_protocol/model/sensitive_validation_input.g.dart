@@ -35,13 +35,6 @@ class _$SensitiveValidationInput extends SensitiveValidationInput {
   int get hashCode {
     return $jf($jc(0, string.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SensitiveValidationInput')
-          ..add('string', string))
-        .toString();
-  }
 }
 
 class SensitiveValidationInputBuilder

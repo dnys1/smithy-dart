@@ -51,7 +51,7 @@ class KitchenSinkOperation extends _i1.HttpOperation<_i2.KitchenSink,
   @override
   _i1.HttpRequest buildRequest(_i2.KitchenSink input) => _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
       });
   @override
   int successCode([_i2.KitchenSink? output]) => 200;

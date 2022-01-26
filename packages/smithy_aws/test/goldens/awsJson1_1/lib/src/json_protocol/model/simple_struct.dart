@@ -26,6 +26,12 @@ abstract class SimpleStruct
   String? get value;
   @override
   List<Object?> get props => [value];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SimpleStruct');
+    helper.add(r'value', value);
+    return helper.toString();
+  }
 }
 
 class _SimpleStructAwsJson11Serializer

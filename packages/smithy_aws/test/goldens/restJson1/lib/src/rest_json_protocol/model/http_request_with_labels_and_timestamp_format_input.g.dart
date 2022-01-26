@@ -93,20 +93,6 @@ class _$HttpRequestWithLabelsAndTimestampFormatInput
             targetEpochSeconds.hashCode),
         targetHttpDate.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'HttpRequestWithLabelsAndTimestampFormatInput')
-          ..add('defaultFormat', defaultFormat)
-          ..add('memberDateTime', memberDateTime)
-          ..add('memberEpochSeconds', memberEpochSeconds)
-          ..add('memberHttpDate', memberHttpDate)
-          ..add('targetDateTime', targetDateTime)
-          ..add('targetEpochSeconds', targetEpochSeconds)
-          ..add('targetHttpDate', targetHttpDate))
-        .toString();
-  }
 }
 
 class HttpRequestWithLabelsAndTimestampFormatInputBuilder
@@ -239,13 +225,6 @@ class _$HttpRequestWithLabelsAndTimestampFormatInputPayload
   @override
   int get hashCode {
     return 200349434;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'HttpRequestWithLabelsAndTimestampFormatInputPayload')
-        .toString();
   }
 }
 

@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json_protocol.model.player_action;
 
+import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
@@ -27,6 +28,15 @@ abstract class PlayerAction extends _i1.SmithyUnion<PlayerAction> {
       return quit?.call((this as _PlayerActionQuit).quit);
     }
     return sdkUnknown?.call(name, value);
+  }
+
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PlayerAction');
+    if (quit != null) {
+      helper.add(r'quit', quit)!;
+    }
+    return helper.toString();
   }
 }
 

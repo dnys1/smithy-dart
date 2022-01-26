@@ -40,7 +40,7 @@ class MalformedRequiredOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedRequiredInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedRequired';
+        b.path = r'/MalformedRequired';
         if (input.stringInHeader.isNotEmpty) {
           b.headers['string-in-headers'] = input.stringInHeader;
         }

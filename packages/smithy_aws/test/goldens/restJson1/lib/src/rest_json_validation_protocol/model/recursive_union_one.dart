@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json_validation_protocol.model.recursive_union_one;
 
+import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_validation_protocol/model/recursive_enum_string.dart'
     as _i2;
@@ -41,6 +42,18 @@ abstract class RecursiveUnionOne extends _i1.SmithyUnion<RecursiveUnionOne> {
       return union?.call((this as _RecursiveUnionOneUnion).union);
     }
     return sdkUnknown?.call(name, value);
+  }
+
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'RecursiveUnionOne');
+    if (string != null) {
+      helper.add(r'string', string)!;
+    }
+    if (union != null) {
+      helper.add(r'union', union)!;
+    }
+    return helper.toString();
   }
 }
 

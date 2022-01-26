@@ -38,7 +38,7 @@ class MalformedFloatOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedFloatInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedFloat/{floatInPath}';
+        b.path = r'/MalformedFloat/{floatInPath}';
         if (input.floatInHeader != null) {
           b.headers['floatInHeader'] = input.floatInHeader!.toString();
         }

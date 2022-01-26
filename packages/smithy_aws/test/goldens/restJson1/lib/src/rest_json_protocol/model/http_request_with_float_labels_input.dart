@@ -49,6 +49,14 @@ abstract class HttpRequestWithFloatLabelsInput
       HttpRequestWithFloatLabelsInputPayload();
   @override
   List<Object?> get props => [double_, float];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpRequestWithFloatLabelsInput');
+    helper.add(r'double_', double_);
+    helper.add(r'float', float);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -70,6 +78,12 @@ abstract class HttpRequestWithFloatLabelsInputPayload
   static void _init(HttpRequestWithFloatLabelsInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpRequestWithFloatLabelsInput');
+    return helper.toString();
+  }
 }
 
 class _HttpRequestWithFloatLabelsInputRestJson1Serializer extends _i1

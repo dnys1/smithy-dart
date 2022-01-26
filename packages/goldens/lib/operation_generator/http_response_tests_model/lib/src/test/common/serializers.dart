@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library http_response_tests_model.test.serializers;
+library http_response_tests_model.test.common.serializers;
 
 import 'package:built_value/serializer.dart';
 import 'package:http_response_tests_model/src/test/model/invalid_greeting.dart'

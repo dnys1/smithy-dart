@@ -44,15 +44,6 @@ class _$ArchiveCreationOutput extends ArchiveCreationOutput {
     return $jf($jc(
         $jc($jc(0, archiveId.hashCode), checksum.hashCode), location.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ArchiveCreationOutput')
-          ..add('archiveId', archiveId)
-          ..add('checksum', checksum)
-          ..add('location', location))
-        .toString();
-  }
 }
 
 class ArchiveCreationOutputBuilder
@@ -132,12 +123,6 @@ class _$ArchiveCreationOutputPayload extends ArchiveCreationOutputPayload {
   @override
   int get hashCode {
     return 565407043;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('ArchiveCreationOutputPayload')
-        .toString();
   }
 }
 

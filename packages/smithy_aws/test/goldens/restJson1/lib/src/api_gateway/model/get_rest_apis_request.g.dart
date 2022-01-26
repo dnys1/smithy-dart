@@ -39,14 +39,6 @@ class _$GetRestApisRequest extends GetRestApisRequest {
   int get hashCode {
     return $jf($jc($jc(0, limit.hashCode), position.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GetRestApisRequest')
-          ..add('limit', limit)
-          ..add('position', position))
-        .toString();
-  }
 }
 
 class GetRestApisRequestBuilder
@@ -120,11 +112,6 @@ class _$GetRestApisRequestPayload extends GetRestApisRequestPayload {
   @override
   int get hashCode {
     return 936572399;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('GetRestApisRequestPayload').toString();
   }
 }
 

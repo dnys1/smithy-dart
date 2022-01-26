@@ -37,6 +37,14 @@ abstract class MalformedRequiredInput
       MalformedRequiredInputPayload((b) => b..string = string);
   @override
   List<Object?> get props => [string, stringInHeader, stringInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedRequiredInput');
+    helper.add(r'string', string);
+    helper.add(r'stringInHeader', stringInHeader);
+    helper.add(r'stringInQuery', stringInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -58,6 +66,12 @@ abstract class MalformedRequiredInputPayload
   String get string;
   @override
   List<Object?> get props => [string];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedRequiredInput');
+    helper.add(r'string', string);
+    return helper.toString();
+  }
 }
 
 class _MalformedRequiredInputRestJson1Serializer

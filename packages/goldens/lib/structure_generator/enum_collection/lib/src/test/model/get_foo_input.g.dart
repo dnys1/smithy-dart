@@ -32,12 +32,6 @@ class _$GetFooInput extends GetFooInput {
   int get hashCode {
     return $jf($jc(0, enumMap.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GetFooInput')..add('enumMap', enumMap))
-        .toString();
-  }
 }
 
 class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {

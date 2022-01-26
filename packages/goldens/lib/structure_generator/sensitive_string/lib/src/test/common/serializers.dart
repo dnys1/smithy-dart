@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library sensitive_string.test.serializers;
+library sensitive_string.test.common.serializers;
 
 import 'package:built_value/serializer.dart';
 import 'package:sensitive_string/src/test/model/foo.dart' as _i2;

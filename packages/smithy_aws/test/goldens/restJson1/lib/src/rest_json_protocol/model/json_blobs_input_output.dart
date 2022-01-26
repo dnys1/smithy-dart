@@ -37,6 +37,12 @@ abstract class JsonBlobsInputOutput
   JsonBlobsInputOutput getPayload() => this;
   @override
   List<Object?> get props => [data];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonBlobsInputOutput');
+    helper.add(r'data', data);
+    return helper.toString();
+  }
 }
 
 class _JsonBlobsInputOutputRestJson1Serializer

@@ -39,14 +39,6 @@ class _$LimitExceededException extends LimitExceededException {
   int get hashCode {
     return $jf($jc($jc(0, code.hashCode), message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('LimitExceededException')
-          ..add('code', code)
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class LimitExceededExceptionBuilder

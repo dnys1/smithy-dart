@@ -45,7 +45,7 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
           _i3.StreamingTraitsRequireLengthInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/StreamingTraitsRequireLength';
+        b.path = r'/StreamingTraitsRequireLength';
         if (input.foo != null) {
           if (input.foo!.isNotEmpty) {
             b.headers['X-Foo'] = input.foo!;

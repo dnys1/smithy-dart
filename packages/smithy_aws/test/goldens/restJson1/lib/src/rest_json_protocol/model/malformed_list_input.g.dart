@@ -35,13 +35,6 @@ class _$MalformedListInput extends MalformedListInput {
   int get hashCode {
     return $jf($jc(0, bodyList.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedListInput')
-          ..add('bodyList', bodyList))
-        .toString();
-  }
 }
 
 class MalformedListInputBuilder

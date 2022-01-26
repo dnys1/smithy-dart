@@ -46,7 +46,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.SimpleScalarPropertiesInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/';
+        b.path = r'/';
       });
   @override
   int successCode([_i3.SimpleScalarPropertiesOutput? output]) => 200;

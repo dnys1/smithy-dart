@@ -39,14 +39,6 @@ class _$ResourceNotFoundException extends ResourceNotFoundException {
   int get hashCode {
     return $jf($jc($jc(0, code.hashCode), message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ResourceNotFoundException')
-          ..add('code', code)
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class ResourceNotFoundExceptionBuilder

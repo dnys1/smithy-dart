@@ -86,6 +86,19 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
         targetEpochSeconds,
         targetHttpDate
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(
+        r'HttpRequestWithLabelsAndTimestampFormatInput');
+    helper.add(r'defaultFormat', defaultFormat);
+    helper.add(r'memberDateTime', memberDateTime);
+    helper.add(r'memberEpochSeconds', memberEpochSeconds);
+    helper.add(r'memberHttpDate', memberHttpDate);
+    helper.add(r'targetDateTime', targetDateTime);
+    helper.add(r'targetEpochSeconds', targetEpochSeconds);
+    helper.add(r'targetHttpDate', targetHttpDate);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -108,6 +121,12 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInputPayload
       HttpRequestWithLabelsAndTimestampFormatInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(
+        r'HttpRequestWithLabelsAndTimestampFormatInput');
+    return helper.toString();
+  }
 }
 
 class _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer

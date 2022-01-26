@@ -37,13 +37,6 @@ class _$HttpPrefixHeadersInResponseOutput
   int get hashCode {
     return $jf($jc(0, prefixHeaders.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpPrefixHeadersInResponseOutput')
-          ..add('prefixHeaders', prefixHeaders))
-        .toString();
-  }
 }
 
 class HttpPrefixHeadersInResponseOutputBuilder
@@ -135,13 +128,6 @@ class _$HttpPrefixHeadersInResponseOutputPayload
   @override
   int get hashCode {
     return 1070444313;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'HttpPrefixHeadersInResponseOutputPayload')
-        .toString();
   }
 }
 

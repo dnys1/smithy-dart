@@ -48,6 +48,15 @@ abstract class MalformedShortInput
   @override
   List<Object?> get props =>
       [shortInBody, shortInHeader, shortInPath, shortInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedShortInput');
+    helper.add(r'shortInBody', shortInBody);
+    helper.add(r'shortInHeader', shortInHeader);
+    helper.add(r'shortInPath', shortInPath);
+    helper.add(r'shortInQuery', shortInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -67,6 +76,12 @@ abstract class MalformedShortInputPayload
   int? get shortInBody;
   @override
   List<Object?> get props => [shortInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedShortInput');
+    helper.add(r'shortInBody', shortInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedShortInputRestJson1Serializer

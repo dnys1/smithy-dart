@@ -48,7 +48,7 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.EmptyInputAndEmptyOutputInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/EmptyInputAndEmptyOutput';
+        b.path = r'/EmptyInputAndEmptyOutput';
       });
   @override
   int successCode([_i3.EmptyInputAndEmptyOutputOutput? output]) => 200;

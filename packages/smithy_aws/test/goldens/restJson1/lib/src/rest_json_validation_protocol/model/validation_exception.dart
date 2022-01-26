@@ -45,6 +45,13 @@ abstract class ValidationException
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [fieldList, message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ValidationException');
+    helper.add(r'fieldList', fieldList);
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _ValidationExceptionRestJson1Serializer

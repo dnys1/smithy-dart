@@ -34,12 +34,6 @@ class _$ServerError extends ServerError {
   int get hashCode {
     return $jf($jc(0, message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ServerError')..add('message', message))
-        .toString();
-  }
 }
 
 class ServerErrorBuilder implements Builder<ServerError, ServerErrorBuilder> {

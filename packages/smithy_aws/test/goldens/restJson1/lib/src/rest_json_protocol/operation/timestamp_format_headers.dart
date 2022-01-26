@@ -46,7 +46,7 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.TimestampFormatHeadersIo input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/TimestampFormatHeaders';
+        b.path = r'/TimestampFormatHeaders';
         if (input.memberEpochSeconds != null) {
           b.headers['X-memberEpochSeconds'] =
               _i1.Timestamp(input.memberEpochSeconds!)

@@ -30,6 +30,12 @@ abstract class MalformedListInput
   MalformedListInput getPayload() => this;
   @override
   List<Object?> get props => [bodyList];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedListInput');
+    helper.add(r'bodyList', bodyList);
+    return helper.toString();
+  }
 }
 
 class _MalformedListInputRestJson1Serializer

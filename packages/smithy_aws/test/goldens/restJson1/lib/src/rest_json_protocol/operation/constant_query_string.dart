@@ -43,7 +43,7 @@ class ConstantQueryStringOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.ConstantQueryStringInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/ConstantQueryString/{hello}?foo=bar&hello';
+        b.path = r'/ConstantQueryString/{hello}?foo=bar&hello';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

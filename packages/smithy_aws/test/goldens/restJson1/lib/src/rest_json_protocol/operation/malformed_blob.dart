@@ -35,7 +35,7 @@ class MalformedBlobOperation extends _i1.HttpOperation<_i2.MalformedBlobInput,
   _i1.HttpRequest buildRequest(_i2.MalformedBlobInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedBlob';
+        b.path = r'/MalformedBlob';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

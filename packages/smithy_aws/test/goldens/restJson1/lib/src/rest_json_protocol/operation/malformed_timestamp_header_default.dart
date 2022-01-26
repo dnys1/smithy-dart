@@ -46,7 +46,7 @@ class MalformedTimestampHeaderDefaultOperation extends _i1.HttpOperation<
           _i2.MalformedTimestampHeaderDefaultInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampHeaderDefault';
+        b.path = r'/MalformedTimestampHeaderDefault';
         b.headers['timestamp'] = _i1.Timestamp(input.timestamp)
             .format(_i1.TimestampFormat.httpDate)
             .toString();

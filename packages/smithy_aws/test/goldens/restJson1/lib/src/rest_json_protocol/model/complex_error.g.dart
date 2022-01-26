@@ -40,15 +40,6 @@ class _$ComplexError extends ComplexError {
     return $jf(
         $jc($jc($jc(0, header.hashCode), nested.hashCode), topLevel.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ComplexError')
-          ..add('header', header)
-          ..add('nested', nested)
-          ..add('topLevel', topLevel))
-        .toString();
-  }
 }
 
 class ComplexErrorBuilder
@@ -150,14 +141,6 @@ class _$ComplexErrorPayload extends ComplexErrorPayload {
   @override
   int get hashCode {
     return $jf($jc($jc(0, nested.hashCode), topLevel.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ComplexErrorPayload')
-          ..add('nested', nested)
-          ..add('topLevel', topLevel))
-        .toString();
   }
 }
 

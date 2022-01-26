@@ -36,6 +36,13 @@ abstract class GetRestApisRequest
   GetRestApisRequestPayload getPayload() => GetRestApisRequestPayload();
   @override
   List<Object?> get props => [limit, position];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GetRestApisRequest');
+    helper.add(r'limit', limit);
+    helper.add(r'position', position);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -55,6 +62,11 @@ abstract class GetRestApisRequestPayload
   static void _init(GetRestApisRequestPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GetRestApisRequest');
+    return helper.toString();
+  }
 }
 
 class _GetRestApisRequestRestJson1Serializer

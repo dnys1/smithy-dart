@@ -42,15 +42,6 @@ class _$NullAndEmptyHeadersIo extends NullAndEmptyHeadersIo {
   int get hashCode {
     return $jf($jc($jc($jc(0, a.hashCode), b.hashCode), c.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('NullAndEmptyHeadersIo')
-          ..add('a', a)
-          ..add('b', b)
-          ..add('c', c))
-        .toString();
-  }
 }
 
 class NullAndEmptyHeadersIoBuilder
@@ -142,12 +133,6 @@ class _$NullAndEmptyHeadersIoPayload extends NullAndEmptyHeadersIoPayload {
   @override
   int get hashCode {
     return 470783522;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('NullAndEmptyHeadersIoPayload')
-        .toString();
   }
 }
 

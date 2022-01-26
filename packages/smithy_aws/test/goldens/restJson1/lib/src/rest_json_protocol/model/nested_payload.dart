@@ -27,6 +27,13 @@ abstract class NestedPayload
   String? get name;
   @override
   List<Object?> get props => [greeting, name];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'NestedPayload');
+    helper.add(r'greeting', greeting);
+    helper.add(r'name', name);
+    return helper.toString();
+  }
 }
 
 class _NestedPayloadRestJson1Serializer

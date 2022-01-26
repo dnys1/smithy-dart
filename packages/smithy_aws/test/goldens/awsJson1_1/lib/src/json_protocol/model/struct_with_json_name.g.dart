@@ -35,13 +35,6 @@ class _$StructWithJsonName extends StructWithJsonName {
   int get hashCode {
     return $jf($jc(0, value.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('StructWithJsonName')
-          ..add('value', value))
-        .toString();
-  }
 }
 
 class StructWithJsonNameBuilder

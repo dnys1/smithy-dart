@@ -38,13 +38,6 @@ class _$PostPlayerActionOutput extends PostPlayerActionOutput {
   int get hashCode {
     return $jf($jc(0, action.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('PostPlayerActionOutput')
-          ..add('action', action))
-        .toString();
-  }
 }
 
 class PostPlayerActionOutputBuilder

@@ -34,14 +34,6 @@ class _$GetFooInput extends GetFooInput {
   int get hashCode {
     return $jf($jc($jc(0, bar.hashCode), foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GetFooInput')
-          ..add('bar', bar)
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class GetFooInputBuilder implements Builder<GetFooInput, GetFooInputBuilder> {

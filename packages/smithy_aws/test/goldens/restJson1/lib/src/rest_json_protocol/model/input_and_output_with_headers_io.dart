@@ -141,6 +141,27 @@ abstract class InputAndOutputWithHeadersIo
         headerTimestampList,
         headerTrueBool
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'InputAndOutputWithHeadersIo');
+    helper.add(r'headerBooleanList', headerBooleanList);
+    helper.add(r'headerByte', headerByte);
+    helper.add(r'headerDouble', headerDouble);
+    helper.add(r'headerEnum', headerEnum);
+    helper.add(r'headerEnumList', headerEnumList);
+    helper.add(r'headerFalseBool', headerFalseBool);
+    helper.add(r'headerFloat', headerFloat);
+    helper.add(r'headerInteger', headerInteger);
+    helper.add(r'headerIntegerList', headerIntegerList);
+    helper.add(r'headerLong', headerLong);
+    helper.add(r'headerShort', headerShort);
+    helper.add(r'headerString', headerString);
+    helper.add(r'headerStringList', headerStringList);
+    helper.add(r'headerStringSet', headerStringSet);
+    helper.add(r'headerTimestampList', headerTimestampList);
+    helper.add(r'headerTrueBool', headerTrueBool);
+    return helper.toString();
+  }
 }
 
 @_i6.internal
@@ -162,6 +183,11 @@ abstract class InputAndOutputWithHeadersIoPayload
   static void _init(InputAndOutputWithHeadersIoPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'InputAndOutputWithHeadersIo');
+    return helper.toString();
+  }
 }
 
 class _InputAndOutputWithHeadersIoRestJson1Serializer

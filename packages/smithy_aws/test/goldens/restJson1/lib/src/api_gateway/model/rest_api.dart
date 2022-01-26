@@ -56,6 +56,24 @@ abstract class RestApi
         version,
         warnings
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'RestApi');
+    helper.add(r'apiKeySource', apiKeySource);
+    helper.add(r'binaryMediaTypes', binaryMediaTypes);
+    helper.add(r'createdDate', createdDate);
+    helper.add(r'description', description);
+    helper.add(r'disableExecuteApiEndpoint', disableExecuteApiEndpoint);
+    helper.add(r'endpointConfiguration', endpointConfiguration);
+    helper.add(r'id', id);
+    helper.add(r'minimumCompressionSize', minimumCompressionSize);
+    helper.add(r'name', name);
+    helper.add(r'policy', policy);
+    helper.add(r'tags', tags);
+    helper.add(r'version', version);
+    helper.add(r'warnings', warnings);
+    return helper.toString();
+  }
 }
 
 class _RestApiRestJson1Serializer

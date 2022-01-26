@@ -48,6 +48,15 @@ abstract class MalformedFloatInput
   @override
   List<Object?> get props =>
       [floatInBody, floatInHeader, floatInPath, floatInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedFloatInput');
+    helper.add(r'floatInBody', floatInBody);
+    helper.add(r'floatInHeader', floatInHeader);
+    helper.add(r'floatInPath', floatInPath);
+    helper.add(r'floatInQuery', floatInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -67,6 +76,12 @@ abstract class MalformedFloatInputPayload
   double? get floatInBody;
   @override
   List<Object?> get props => [floatInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedFloatInput');
+    helper.add(r'floatInBody', floatInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedFloatInputRestJson1Serializer

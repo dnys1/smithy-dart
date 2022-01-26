@@ -32,12 +32,6 @@ class _$SimpleStruct extends SimpleStruct {
   int get hashCode {
     return $jf($jc(0, value.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SimpleStruct')..add('value', value))
-        .toString();
-  }
 }
 
 class SimpleStructBuilder

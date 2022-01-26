@@ -46,7 +46,7 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.QueryIdempotencyTokenAutoFillInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/QueryIdempotencyTokenAutoFill';
+        b.path = r'/QueryIdempotencyTokenAutoFill';
         if (input.token != null) {
           b.queryParameters.add('token', input.token!);
         }

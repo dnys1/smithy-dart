@@ -64,17 +64,6 @@ class _$UploadArchiveInput extends UploadArchiveInput {
             checksum.hashCode),
         vaultName.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('UploadArchiveInput')
-          ..add('accountId', accountId)
-          ..add('archiveDescription', archiveDescription)
-          ..add('body', body)
-          ..add('checksum', checksum)
-          ..add('vaultName', vaultName))
-        .toString();
-  }
 }
 
 class UploadArchiveInputBuilder

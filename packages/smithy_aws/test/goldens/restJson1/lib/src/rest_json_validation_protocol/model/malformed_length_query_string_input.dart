@@ -37,6 +37,13 @@ abstract class MalformedLengthQueryStringInput
       MalformedLengthQueryStringInputPayload();
   @override
   List<Object?> get props => [string];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedLengthQueryStringInput');
+    helper.add(r'string', string);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -58,6 +65,12 @@ abstract class MalformedLengthQueryStringInputPayload
   static void _init(MalformedLengthQueryStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedLengthQueryStringInput');
+    return helper.toString();
+  }
 }
 
 class _MalformedLengthQueryStringInputRestJson1Serializer extends _i1

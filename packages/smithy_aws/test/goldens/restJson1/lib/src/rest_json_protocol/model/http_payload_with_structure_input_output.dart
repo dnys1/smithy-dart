@@ -44,6 +44,13 @@ abstract class HttpPayloadWithStructureInputOutput
   _i2.NestedPayload? getPayload() => nested ?? _i2.NestedPayload();
   @override
   List<Object?> get props => [nested];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpPayloadWithStructureInputOutput');
+    helper.add(r'nested', nested);
+    return helper.toString();
+  }
 }
 
 class _HttpPayloadWithStructureInputOutputRestJson1Serializer

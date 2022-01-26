@@ -32,6 +32,14 @@ abstract class GetFooInput
   GetFooInput getPayload() => this;
   @override
   List<Object?> get props => [bar, baz, qux];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GetFooInput');
+    helper.add(r'bar', bar);
+    helper.add(r'baz', baz);
+    helper.add(r'qux', qux);
+    return helper.toString();
+  }
 }
 
 class _GetFooInputSerializer

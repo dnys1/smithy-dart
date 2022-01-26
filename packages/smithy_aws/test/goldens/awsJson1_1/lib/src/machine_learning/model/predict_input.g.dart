@@ -50,15 +50,6 @@ class _$PredictInput extends PredictInput {
     return $jf($jc($jc($jc(0, mlModelId.hashCode), predictEndpoint.hashCode),
         record.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('PredictInput')
-          ..add('mlModelId', mlModelId)
-          ..add('predictEndpoint', predictEndpoint)
-          ..add('record', record))
-        .toString();
-  }
 }
 
 class PredictInputBuilder

@@ -43,14 +43,6 @@ class _$ConstantAndVariableQueryStringInput
   int get hashCode {
     return $jf($jc($jc(0, baz.hashCode), maybeSet.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ConstantAndVariableQueryStringInput')
-          ..add('baz', baz)
-          ..add('maybeSet', maybeSet))
-        .toString();
-  }
 }
 
 class ConstantAndVariableQueryStringInputBuilder
@@ -132,13 +124,6 @@ class _$ConstantAndVariableQueryStringInputPayload
   @override
   int get hashCode {
     return 167754841;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'ConstantAndVariableQueryStringInputPayload')
-        .toString();
   }
 }
 

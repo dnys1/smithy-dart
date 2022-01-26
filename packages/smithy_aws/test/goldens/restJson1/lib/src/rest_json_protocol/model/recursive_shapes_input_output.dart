@@ -39,6 +39,12 @@ abstract class RecursiveShapesInputOutput
   RecursiveShapesInputOutput getPayload() => this;
   @override
   List<Object?> get props => [nested];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'RecursiveShapesInputOutput');
+    helper.add(r'nested', nested);
+    return helper.toString();
+  }
 }
 
 class _RecursiveShapesInputOutputRestJson1Serializer

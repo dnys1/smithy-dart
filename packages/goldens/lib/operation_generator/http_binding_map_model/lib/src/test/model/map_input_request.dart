@@ -29,6 +29,12 @@ abstract class MapInputRequest
   MapInputRequest getPayload() => this;
   @override
   List<Object?> get props => [mapOfLists];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MapInputRequest');
+    helper.add(r'mapOfLists', mapOfLists);
+    return helper.toString();
+  }
 }
 
 class _MapInputRequestAwsJson11Serializer

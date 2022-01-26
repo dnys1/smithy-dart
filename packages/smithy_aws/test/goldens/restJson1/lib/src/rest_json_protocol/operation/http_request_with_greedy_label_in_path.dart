@@ -47,7 +47,7 @@ class HttpRequestWithGreedyLabelInPathOperation extends _i1.HttpOperation<
           _i2.HttpRequestWithGreedyLabelInPathInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/HttpRequestWithGreedyLabelInPath/foo/{foo}/baz/{baz+}';
+        b.path = r'/HttpRequestWithGreedyLabelInPath/foo/{foo}/baz/{baz+}';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

@@ -48,6 +48,15 @@ abstract class MalformedByteInput
   @override
   List<Object?> get props =>
       [byteInBody, byteInHeader, byteInPath, byteInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedByteInput');
+    helper.add(r'byteInBody', byteInBody);
+    helper.add(r'byteInHeader', byteInHeader);
+    helper.add(r'byteInPath', byteInPath);
+    helper.add(r'byteInQuery', byteInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -67,6 +76,12 @@ abstract class MalformedByteInputPayload
   int? get byteInBody;
   @override
   List<Object?> get props => [byteInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedByteInput');
+    helper.add(r'byteInBody', byteInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedByteInputRestJson1Serializer

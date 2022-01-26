@@ -48,7 +48,7 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.HttpPrefixHeadersInResponseInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/HttpPrefixHeadersResponse';
+        b.path = r'/HttpPrefixHeadersResponse';
       });
   @override
   int successCode([_i3.HttpPrefixHeadersInResponseOutput? output]) => 200;

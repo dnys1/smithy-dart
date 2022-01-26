@@ -29,6 +29,12 @@ abstract class JsonUnionsInput
   JsonUnionsInput getPayload() => this;
   @override
   List<Object?> get props => [contents];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'JsonUnionsInput');
+    helper.add(r'contents', contents);
+    return helper.toString();
+  }
 }
 
 class _JsonUnionsInputAwsJson10Serializer

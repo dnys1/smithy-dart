@@ -38,13 +38,6 @@ class _$ConstantQueryStringInput extends ConstantQueryStringInput {
   int get hashCode {
     return $jf($jc(0, hello.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ConstantQueryStringInput')
-          ..add('hello', hello))
-        .toString();
-  }
 }
 
 class ConstantQueryStringInputBuilder
@@ -117,12 +110,6 @@ class _$ConstantQueryStringInputPayload
   @override
   int get hashCode {
     return 646295052;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('ConstantQueryStringInputPayload')
-        .toString();
   }
 }
 

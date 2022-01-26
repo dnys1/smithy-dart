@@ -33,6 +33,12 @@ abstract class PostPlayerActionInput
   PostPlayerActionInput getPayload() => this;
   @override
   List<Object?> get props => [action];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PostPlayerActionInput');
+    helper.add(r'action', action);
+    return helper.toString();
+  }
 }
 
 class _PostPlayerActionInputRestJson1Serializer

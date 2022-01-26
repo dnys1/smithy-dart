@@ -41,7 +41,7 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.TestPayloadStructureInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/payload';
+        b.path = r'/payload';
         if (input.testId != null) {
           if (input.testId!.isNotEmpty) {
             b.headers['x-amz-test-id'] = input.testId!;

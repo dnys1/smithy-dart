@@ -35,13 +35,6 @@ class _$UnauthorizedException extends UnauthorizedException {
   int get hashCode {
     return $jf($jc(0, message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('UnauthorizedException')
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class UnauthorizedExceptionBuilder

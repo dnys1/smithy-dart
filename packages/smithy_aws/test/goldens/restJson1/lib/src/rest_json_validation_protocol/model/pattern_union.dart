@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json_validation_protocol.model.pattern_union;
 
+import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
@@ -35,6 +36,18 @@ abstract class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
       return second?.call((this as _PatternUnionSecond).second);
     }
     return sdkUnknown?.call(name, value);
+  }
+
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PatternUnion');
+    if (first != null) {
+      helper.add(r'first', first)!;
+    }
+    if (second != null) {
+      helper.add(r'second', second)!;
+    }
+    return helper.toString();
   }
 }
 

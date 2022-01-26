@@ -38,6 +38,16 @@ abstract class MalformedPatternInput
   MalformedPatternInput getPayload() => this;
   @override
   List<Object?> get props => [evilString, list, map, string, union];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedPatternInput');
+    helper.add(r'evilString', evilString);
+    helper.add(r'list', list);
+    helper.add(r'map', map);
+    helper.add(r'string', string);
+    helper.add(r'union', union);
+    return helper.toString();
+  }
 }
 
 class _MalformedPatternInputRestJson1Serializer

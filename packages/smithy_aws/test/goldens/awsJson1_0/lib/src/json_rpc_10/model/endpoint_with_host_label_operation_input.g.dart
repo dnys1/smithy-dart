@@ -41,13 +41,6 @@ class _$EndpointWithHostLabelOperationInput
   int get hashCode {
     return $jf($jc(0, label.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('EndpointWithHostLabelOperationInput')
-          ..add('label', label))
-        .toString();
-  }
 }
 
 class EndpointWithHostLabelOperationInputBuilder

@@ -10,7 +10,7 @@ import 'package:smithy/smithy.dart' as _i1;
 
 part 'get_foo_input.g.dart';
 
-/// This *is* documentation about the shape.
+/// This \*is\* documentation about the shape.
 abstract class GetFooInput
     with _i1.HttpInput<GetFooInput>, _i2.AWSEquatable<GetFooInput>
     implements Built<GetFooInput, GetFooInputBuilder> {
@@ -26,8 +26,8 @@ abstract class GetFooInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GetFooInputBuilder b) {}
 
-  /// This *is* documentation about the member.
-  int? get bar;
+  /// This \*is\* documentation about the member.
+  int get bar;
   int? get baz;
   int get byteValue;
   String? get foo;
@@ -37,6 +37,17 @@ abstract class GetFooInput
   GetFooInput getPayload() => this;
   @override
   List<Object?> get props => [bar, baz, byteValue, foo, object, quux];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GetFooInput');
+    helper.add(r'bar', bar);
+    helper.add(r'baz', baz);
+    helper.add(r'byteValue', byteValue);
+    helper.add(r'foo', foo);
+    helper.add(r'object', object);
+    helper.add(r'quux', quux);
+    return helper.toString();
+  }
 }
 
 class _GetFooInputSerializer
@@ -58,10 +69,8 @@ class _GetFooInputSerializer
       final value = iterator.current;
       switch (key) {
         case 'bar':
-          if (value != null) {
-            result.bar = (serializers.deserialize(value,
-                specifiedType: const FullType(int)) as int);
-          }
+          result.bar = (serializers.deserialize(value!,
+              specifiedType: const FullType(int)) as int);
           break;
         case 'baz':
           if (value != null) {
@@ -102,16 +111,12 @@ class _GetFooInputSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as GetFooInput);
     final result = <Object?>[
+      'bar',
+      serializers.serialize(payload.bar, specifiedType: const FullType(int)),
       'byteValue',
       serializers.serialize(payload.byteValue,
           specifiedType: const FullType(int))
     ];
-    if (payload.bar != null) {
-      result
-        ..add('bar')
-        ..add(serializers.serialize(payload.bar,
-            specifiedType: const FullType.nullable(int)));
-    }
     if (payload.baz != null) {
       result
         ..add('baz')

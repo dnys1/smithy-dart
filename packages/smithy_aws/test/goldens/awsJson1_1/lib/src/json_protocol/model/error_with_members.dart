@@ -53,6 +53,18 @@ abstract class ErrorWithMembers
         message,
         stringField
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ErrorWithMembers');
+    helper.add(r'code', code);
+    helper.add(r'complexData', complexData);
+    helper.add(r'integerField', integerField);
+    helper.add(r'listField', listField);
+    helper.add(r'mapField', mapField);
+    helper.add(r'message', message);
+    helper.add(r'stringField', stringField);
+    return helper.toString();
+  }
 }
 
 class _ErrorWithMembersAwsJson11Serializer

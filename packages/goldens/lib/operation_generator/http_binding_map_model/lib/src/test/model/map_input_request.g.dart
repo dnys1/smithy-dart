@@ -33,13 +33,6 @@ class _$MapInputRequest extends MapInputRequest {
   int get hashCode {
     return $jf($jc(0, mapOfLists.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MapInputRequest')
-          ..add('mapOfLists', mapOfLists))
-        .toString();
-  }
 }
 
 class MapInputRequestBuilder

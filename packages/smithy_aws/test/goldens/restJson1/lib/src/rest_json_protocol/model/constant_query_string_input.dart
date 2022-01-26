@@ -45,6 +45,12 @@ abstract class ConstantQueryStringInput
       ConstantQueryStringInputPayload();
   @override
   List<Object?> get props => [hello];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ConstantQueryStringInput');
+    helper.add(r'hello', hello);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -66,6 +72,11 @@ abstract class ConstantQueryStringInputPayload
   static void _init(ConstantQueryStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ConstantQueryStringInput');
+    return helper.toString();
+  }
 }
 
 class _ConstantQueryStringInputRestJson1Serializer

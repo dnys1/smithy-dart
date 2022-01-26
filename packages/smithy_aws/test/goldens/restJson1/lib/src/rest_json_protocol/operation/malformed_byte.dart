@@ -35,7 +35,7 @@ class MalformedByteOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedByteInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedByte/{byteInPath}';
+        b.path = r'/MalformedByte/{byteInPath}';
         if (input.byteInHeader != null) {
           b.headers['byteInHeader'] = input.byteInHeader!.toString();
         }

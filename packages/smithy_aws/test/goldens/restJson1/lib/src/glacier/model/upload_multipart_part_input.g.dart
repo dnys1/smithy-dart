@@ -72,18 +72,6 @@ class _$UploadMultipartPartInput extends UploadMultipartPartInput {
             uploadId.hashCode),
         vaultName.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('UploadMultipartPartInput')
-          ..add('accountId', accountId)
-          ..add('body', body)
-          ..add('checksum', checksum)
-          ..add('range', range)
-          ..add('uploadId', uploadId)
-          ..add('vaultName', vaultName))
-        .toString();
-  }
 }
 
 class UploadMultipartPartInputBuilder

@@ -8,6 +8,7 @@ import 'package:aws_json1_1/src/json_protocol/model/foo_enum.dart' as _i3;
 import 'package:aws_json1_1/src/json_protocol/model/greeting_struct.dart'
     as _i5;
 import 'package:built_collection/built_collection.dart' as _i4;
+import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
@@ -105,6 +106,39 @@ abstract class MyUnion extends _i1.SmithyUnion<MyUnion> {
           ?.call((this as _MyUnionTimestampValue).timestampValue);
     }
     return sdkUnknown?.call(name, value);
+  }
+
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MyUnion');
+    if (blobValue != null) {
+      helper.add(r'blobValue', blobValue)!;
+    }
+    if (booleanValue != null) {
+      helper.add(r'booleanValue', booleanValue)!;
+    }
+    if (enumValue != null) {
+      helper.add(r'enumValue', enumValue)!;
+    }
+    if (listValue != null) {
+      helper.add(r'listValue', listValue)!;
+    }
+    if (mapValue != null) {
+      helper.add(r'mapValue', mapValue)!;
+    }
+    if (numberValue != null) {
+      helper.add(r'numberValue', numberValue)!;
+    }
+    if (stringValue != null) {
+      helper.add(r'stringValue', stringValue)!;
+    }
+    if (structureValue != null) {
+      helper.add(r'structureValue', structureValue)!;
+    }
+    if (timestampValue != null) {
+      helper.add(r'timestampValue', timestampValue)!;
+    }
+    return helper.toString();
   }
 }
 

@@ -46,7 +46,7 @@ class TestNoPayloadOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.TestNoPayloadInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/no_payload';
+        b.path = r'/no_payload';
         if (input.testId != null) {
           if (input.testId!.isNotEmpty) {
             b.headers['X-Amz-Test-Id'] = input.testId!;

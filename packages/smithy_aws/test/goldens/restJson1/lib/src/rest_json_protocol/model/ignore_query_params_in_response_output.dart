@@ -35,6 +35,13 @@ abstract class IgnoreQueryParamsInResponseOutput
   String? get baz;
   @override
   List<Object?> get props => [baz];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'IgnoreQueryParamsInResponseOutput');
+    helper.add(r'baz', baz);
+    return helper.toString();
+  }
 }
 
 class _IgnoreQueryParamsInResponseOutputRestJson1Serializer

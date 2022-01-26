@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library http_binding_map_model.test.serializers;
+library http_binding_map_model.test.common.serializers;
 
 import 'package:built_collection/built_collection.dart' as _i5;
 import 'package:built_value/serializer.dart';

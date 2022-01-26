@@ -20,7 +20,8 @@ void main() {
     'say_goodbye (response)',
     () async {
       await _i2.httpResponseTest(
-          operation: _i3.SayGoodbyeOperation(),
+          operation: _i3.SayGoodbyeOperation(
+              baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'say_goodbye',
               documentation: null,
@@ -50,7 +51,8 @@ void main() {
               _i6.SayGoodbyeOutputPayload,
               _i6.SayGoodbyeOutput,
               _i7.InvalidGreeting>(
-          operation: _i3.SayGoodbyeOperation(),
+          operation: _i3.SayGoodbyeOperation(
+              baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'invalid_greeting',
               documentation: null,

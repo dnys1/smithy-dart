@@ -44,7 +44,7 @@ class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.HttpPayloadWithStructureInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/HttpPayloadWithStructure';
+        b.path = r'/HttpPayloadWithStructure';
       });
   @override
   int successCode([_i3.HttpPayloadWithStructureInputOutput? output]) => 200;

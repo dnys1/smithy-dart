@@ -2,6 +2,7 @@
 
 library rest_json1.api_gateway.common.endpoint_resolver;
 
+import 'package:meta/meta.dart' as _i2;
 import 'package:smithy_aws/smithy_aws.dart' as _i1;
 
 final _partitions = [
@@ -89,6 +90,8 @@ final _partitions = [
         'us-gov-west-1': _i1.EndpointDefinition()
       })
 ];
+@_i2.internal
 final _i1.AWSEndpointResolver endpointResolver =
     _i1.AWSEndpointResolver(_partitions);
+@_i2.internal
 const String sdkId = 'API Gateway';

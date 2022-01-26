@@ -45,7 +45,7 @@ class MalformedTimestampQueryDefaultOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedTimestampQueryDefaultInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampQueryDefault';
+        b.path = r'/MalformedTimestampQueryDefault';
         b.queryParameters.add(
             'timestamp',
             _i1.Timestamp(input.timestamp)

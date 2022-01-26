@@ -32,6 +32,15 @@ abstract class Prediction
   @override
   List<Object?> get props =>
       [details, predictedLabel, predictedScores, predictedValue];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'Prediction');
+    helper.add(r'details', details);
+    helper.add(r'predictedLabel', predictedLabel);
+    helper.add(r'predictedScores', predictedScores);
+    helper.add(r'predictedValue', predictedValue);
+    return helper.toString();
+  }
 }
 
 class _PredictionAwsJson11Serializer

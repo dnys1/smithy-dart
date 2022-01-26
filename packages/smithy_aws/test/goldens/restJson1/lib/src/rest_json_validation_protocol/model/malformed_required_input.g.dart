@@ -54,15 +54,6 @@ class _$MalformedRequiredInput extends MalformedRequiredInput {
     return $jf($jc($jc($jc(0, string.hashCode), stringInHeader.hashCode),
         stringInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedRequiredInput')
-          ..add('string', string)
-          ..add('stringInHeader', stringInHeader)
-          ..add('stringInQuery', stringInQuery))
-        .toString();
-  }
 }
 
 class MalformedRequiredInputBuilder
@@ -155,13 +146,6 @@ class _$MalformedRequiredInputPayload extends MalformedRequiredInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, string.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedRequiredInputPayload')
-          ..add('string', string))
-        .toString();
   }
 }
 

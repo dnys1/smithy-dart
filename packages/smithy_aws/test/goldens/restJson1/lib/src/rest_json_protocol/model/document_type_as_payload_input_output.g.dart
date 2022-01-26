@@ -37,13 +37,6 @@ class _$DocumentTypeAsPayloadInputOutput
   int get hashCode {
     return $jf($jc(0, documentValue.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('DocumentTypeAsPayloadInputOutput')
-          ..add('documentValue', documentValue))
-        .toString();
-  }
 }
 
 class DocumentTypeAsPayloadInputOutputBuilder

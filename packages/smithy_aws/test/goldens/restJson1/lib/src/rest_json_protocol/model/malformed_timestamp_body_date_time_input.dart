@@ -33,6 +33,13 @@ abstract class MalformedTimestampBodyDateTimeInput
   MalformedTimestampBodyDateTimeInput getPayload() => this;
   @override
   List<Object?> get props => [timestamp];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedTimestampBodyDateTimeInput');
+    helper.add(r'timestamp', timestamp);
+    return helper.toString();
+  }
 }
 
 class _MalformedTimestampBodyDateTimeInputRestJson1Serializer extends _i1

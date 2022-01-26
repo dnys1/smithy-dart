@@ -40,14 +40,6 @@ class _$QueryParamsAsStringListMapInput
   int get hashCode {
     return $jf($jc($jc(0, foo.hashCode), qux.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('QueryParamsAsStringListMapInput')
-          ..add('foo', foo)
-          ..add('qux', qux))
-        .toString();
-  }
 }
 
 class QueryParamsAsStringListMapInputBuilder
@@ -141,12 +133,6 @@ class _$QueryParamsAsStringListMapInputPayload
   @override
   int get hashCode {
     return 723798479;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('QueryParamsAsStringListMapInputPayload')
-        .toString();
   }
 }
 

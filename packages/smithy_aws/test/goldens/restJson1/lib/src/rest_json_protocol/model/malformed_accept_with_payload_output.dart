@@ -41,6 +41,13 @@ abstract class MalformedAcceptWithPayloadOutput
   _i3.Uint8List? getPayload() => payload;
   @override
   List<Object?> get props => [payload];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'MalformedAcceptWithPayloadOutput');
+    helper.add(r'payload', payload);
+    return helper.toString();
+  }
 }
 
 class _MalformedAcceptWithPayloadOutputRestJson1Serializer

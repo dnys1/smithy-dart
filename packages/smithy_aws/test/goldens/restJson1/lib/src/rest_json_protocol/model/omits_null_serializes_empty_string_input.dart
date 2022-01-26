@@ -38,6 +38,14 @@ abstract class OmitsNullSerializesEmptyStringInput
       OmitsNullSerializesEmptyStringInputPayload();
   @override
   List<Object?> get props => [emptyString, nullValue];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'OmitsNullSerializesEmptyStringInput');
+    helper.add(r'emptyString', emptyString);
+    helper.add(r'nullValue', nullValue);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -59,6 +67,12 @@ abstract class OmitsNullSerializesEmptyStringInputPayload
   static void _init(OmitsNullSerializesEmptyStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'OmitsNullSerializesEmptyStringInput');
+    return helper.toString();
+  }
 }
 
 class _OmitsNullSerializesEmptyStringInputRestJson1Serializer extends _i1

@@ -44,15 +44,6 @@ class _$StreamingTraitsWithMediaTypeInputOutput
   int get hashCode {
     return $jf($jc($jc(0, blob.hashCode), foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'StreamingTraitsWithMediaTypeInputOutput')
-          ..add('blob', blob)
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class StreamingTraitsWithMediaTypeInputOutputBuilder

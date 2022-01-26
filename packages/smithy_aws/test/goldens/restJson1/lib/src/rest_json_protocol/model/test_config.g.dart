@@ -32,12 +32,6 @@ class _$TestConfig extends TestConfig {
   int get hashCode {
     return $jf($jc(0, timeout.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TestConfig')..add('timeout', timeout))
-        .toString();
-  }
 }
 
 class TestConfigBuilder implements Builder<TestConfig, TestConfigBuilder> {

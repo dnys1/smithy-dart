@@ -31,6 +31,14 @@ abstract class PredictInput
   PredictInput getPayload() => this;
   @override
   List<Object?> get props => [mlModelId, predictEndpoint, record];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PredictInput');
+    helper.add(r'mlModelId', mlModelId);
+    helper.add(r'predictEndpoint', predictEndpoint);
+    helper.add(r'record', record);
+    return helper.toString();
+  }
 }
 
 class _PredictInputAwsJson11Serializer

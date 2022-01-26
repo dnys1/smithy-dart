@@ -32,12 +32,6 @@ class _$EmptyInputAndEmptyOutputOutput extends EmptyInputAndEmptyOutputOutput {
   int get hashCode {
     return 114033299;
   }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('EmptyInputAndEmptyOutputOutput')
-        .toString();
-  }
 }
 
 class EmptyInputAndEmptyOutputOutputBuilder

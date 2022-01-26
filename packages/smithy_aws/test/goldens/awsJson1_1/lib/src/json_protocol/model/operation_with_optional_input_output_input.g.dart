@@ -40,13 +40,6 @@ class _$OperationWithOptionalInputOutputInput
   int get hashCode {
     return $jf($jc(0, value.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('OperationWithOptionalInputOutputInput')
-          ..add('value', value))
-        .toString();
-  }
 }
 
 class OperationWithOptionalInputOutputInputBuilder

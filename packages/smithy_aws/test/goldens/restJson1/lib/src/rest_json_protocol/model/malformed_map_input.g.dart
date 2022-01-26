@@ -34,13 +34,6 @@ class _$MalformedMapInput extends MalformedMapInput {
   int get hashCode {
     return $jf($jc(0, bodyMap.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedMapInput')
-          ..add('bodyMap', bodyMap))
-        .toString();
-  }
 }
 
 class MalformedMapInputBuilder

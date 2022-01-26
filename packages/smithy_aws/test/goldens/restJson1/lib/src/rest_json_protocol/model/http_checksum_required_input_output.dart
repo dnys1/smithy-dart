@@ -38,6 +38,13 @@ abstract class HttpChecksumRequiredInputOutput
   HttpChecksumRequiredInputOutput getPayload() => this;
   @override
   List<Object?> get props => [foo];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'HttpChecksumRequiredInputOutput');
+    helper.add(r'foo', foo);
+    return helper.toString();
+  }
 }
 
 class _HttpChecksumRequiredInputOutputRestJson1Serializer

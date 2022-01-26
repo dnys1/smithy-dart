@@ -43,7 +43,7 @@ class AllQueryStringTypesOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.AllQueryStringTypesInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/AllQueryStringTypesInput';
+        b.path = r'/AllQueryStringTypesInput';
         if (input.queryString != null) {
           b.queryParameters.add('String', input.queryString!);
         }

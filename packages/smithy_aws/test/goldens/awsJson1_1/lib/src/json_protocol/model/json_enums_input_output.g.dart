@@ -65,18 +65,6 @@ class _$JsonEnumsInputOutput extends JsonEnumsInputOutput {
             fooEnumMap.hashCode),
         fooEnumSet.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonEnumsInputOutput')
-          ..add('fooEnum1', fooEnum1)
-          ..add('fooEnum2', fooEnum2)
-          ..add('fooEnum3', fooEnum3)
-          ..add('fooEnumList', fooEnumList)
-          ..add('fooEnumMap', fooEnumMap)
-          ..add('fooEnumSet', fooEnumSet))
-        .toString();
-  }
 }
 
 class JsonEnumsInputOutputBuilder

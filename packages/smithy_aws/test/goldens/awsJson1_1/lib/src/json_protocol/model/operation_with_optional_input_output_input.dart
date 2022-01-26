@@ -33,6 +33,13 @@ abstract class OperationWithOptionalInputOutputInput
   OperationWithOptionalInputOutputInput getPayload() => this;
   @override
   List<Object?> get props => [value];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'OperationWithOptionalInputOutputInput');
+    helper.add(r'value', value);
+    return helper.toString();
+  }
 }
 
 class _OperationWithOptionalInputOutputInputAwsJson11Serializer extends _i1

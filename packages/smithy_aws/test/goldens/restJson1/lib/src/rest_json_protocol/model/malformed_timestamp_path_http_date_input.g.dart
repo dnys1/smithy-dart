@@ -43,13 +43,6 @@ class _$MalformedTimestampPathHttpDateInput
   int get hashCode {
     return $jf($jc(0, timestamp.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedTimestampPathHttpDateInput')
-          ..add('timestamp', timestamp))
-        .toString();
-  }
 }
 
 class MalformedTimestampPathHttpDateInputBuilder
@@ -127,13 +120,6 @@ class _$MalformedTimestampPathHttpDateInputPayload
   @override
   int get hashCode {
     return 1054688279;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'MalformedTimestampPathHttpDateInputPayload')
-        .toString();
   }
 }
 

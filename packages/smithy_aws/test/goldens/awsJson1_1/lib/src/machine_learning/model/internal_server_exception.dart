@@ -37,6 +37,13 @@ abstract class InternalServerException
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'InternalServerException');
+    helper.add(r'code', code);
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _InternalServerExceptionAwsJson11Serializer

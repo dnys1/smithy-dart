@@ -45,7 +45,7 @@ class MalformedTimestampPathEpochOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedTimestampPathEpochInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampPathEpoch/{timestamp}';
+        b.path = r'/MalformedTimestampPathEpoch/{timestamp}';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

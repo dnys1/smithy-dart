@@ -38,6 +38,14 @@ abstract class ConstantAndVariableQueryStringInput
       ConstantAndVariableQueryStringInputPayload();
   @override
   List<Object?> get props => [baz, maybeSet];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'ConstantAndVariableQueryStringInput');
+    helper.add(r'baz', baz);
+    helper.add(r'maybeSet', maybeSet);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -59,6 +67,12 @@ abstract class ConstantAndVariableQueryStringInputPayload
   static void _init(ConstantAndVariableQueryStringInputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'ConstantAndVariableQueryStringInput');
+    return helper.toString();
+  }
 }
 
 class _ConstantAndVariableQueryStringInputRestJson1Serializer extends _i1

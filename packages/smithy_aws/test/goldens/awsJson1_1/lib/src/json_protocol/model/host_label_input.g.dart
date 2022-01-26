@@ -35,12 +35,6 @@ class _$HostLabelInput extends HostLabelInput {
   int get hashCode {
     return $jf($jc(0, label.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HostLabelInput')..add('label', label))
-        .toString();
-  }
 }
 
 class HostLabelInputBuilder

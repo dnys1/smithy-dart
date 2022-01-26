@@ -32,6 +32,13 @@ abstract class RestApis
   String? get position;
   @override
   List<Object?> get props => [items, position];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'RestApis');
+    helper.add(r'items', items);
+    helper.add(r'position', position);
+    return helper.toString();
+  }
 }
 
 class _RestApisRestJson1Serializer

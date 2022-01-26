@@ -48,6 +48,14 @@ abstract class TestPayloadStructureInputOutput
   _i2.PayloadConfig? getPayload() => payloadConfig ?? _i2.PayloadConfig();
   @override
   List<Object?> get props => [payloadConfig, testId];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'TestPayloadStructureInputOutput');
+    helper.add(r'payloadConfig', payloadConfig);
+    helper.add(r'testId', testId);
+    return helper.toString();
+  }
 }
 
 class _TestPayloadStructureInputOutputRestJson1Serializer

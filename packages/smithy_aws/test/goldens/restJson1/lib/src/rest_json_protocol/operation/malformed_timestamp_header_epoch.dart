@@ -45,7 +45,7 @@ class MalformedTimestampHeaderEpochOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.MalformedTimestampHeaderEpochInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampHeaderEpoch';
+        b.path = r'/MalformedTimestampHeaderEpoch';
         b.headers['timestamp'] = _i1.Timestamp(input.timestamp)
             .format(_i1.TimestampFormat.epochSeconds)
             .toString();

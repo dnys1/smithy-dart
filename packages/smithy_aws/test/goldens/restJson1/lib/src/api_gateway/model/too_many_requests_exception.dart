@@ -48,6 +48,13 @@ abstract class TooManyRequestsException
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [message, retryAfterSeconds];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TooManyRequestsException');
+    helper.add(r'message', message);
+    helper.add(r'retryAfterSeconds', retryAfterSeconds);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -69,6 +76,12 @@ abstract class TooManyRequestsExceptionPayload
   String? get message;
   @override
   List<Object?> get props => [message];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TooManyRequestsException');
+    helper.add(r'message', message);
+    return helper.toString();
+  }
 }
 
 class _TooManyRequestsExceptionRestJson1Serializer

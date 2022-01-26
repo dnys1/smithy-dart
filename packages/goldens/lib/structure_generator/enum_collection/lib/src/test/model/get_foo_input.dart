@@ -30,6 +30,12 @@ abstract class GetFooInput
   GetFooInput getPayload() => this;
   @override
   List<Object?> get props => [enumMap];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GetFooInput');
+    helper.add(r'enumMap', enumMap);
+    return helper.toString();
+  }
 }
 
 class _GetFooInputSerializer

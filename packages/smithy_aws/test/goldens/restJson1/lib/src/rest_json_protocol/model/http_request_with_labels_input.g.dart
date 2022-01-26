@@ -94,20 +94,6 @@ class _$HttpRequestWithLabelsInput extends HttpRequestWithLabelsInput {
             string.hashCode),
         timestamp.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpRequestWithLabelsInput')
-          ..add('boolean', boolean)
-          ..add('double_', double_)
-          ..add('float', float)
-          ..add('integer', integer)
-          ..add('long', long)
-          ..add('short', short)
-          ..add('string', string)
-          ..add('timestamp', timestamp))
-        .toString();
-  }
 }
 
 class HttpRequestWithLabelsInputBuilder
@@ -229,12 +215,6 @@ class _$HttpRequestWithLabelsInputPayload
   @override
   int get hashCode {
     return 251815434;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('HttpRequestWithLabelsInputPayload')
-        .toString();
   }
 }
 

@@ -45,6 +45,13 @@ abstract class TestPayloadBlobInputOutput
   _i2.Uint8List? getPayload() => data;
   @override
   List<Object?> get props => [contentType, data];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'TestPayloadBlobInputOutput');
+    helper.add(r'contentType', contentType);
+    helper.add(r'data', data);
+    return helper.toString();
+  }
 }
 
 class _TestPayloadBlobInputOutputRestJson1Serializer

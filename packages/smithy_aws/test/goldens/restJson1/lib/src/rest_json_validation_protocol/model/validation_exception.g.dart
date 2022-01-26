@@ -42,14 +42,6 @@ class _$ValidationException extends ValidationException {
   int get hashCode {
     return $jf($jc($jc(0, fieldList.hashCode), message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ValidationException')
-          ..add('fieldList', fieldList)
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class ValidationExceptionBuilder

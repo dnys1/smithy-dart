@@ -46,7 +46,7 @@ class MalformedTimestampQueryHttpDateOperation extends _i1.HttpOperation<
           _i2.MalformedTimestampQueryHttpDateInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedTimestampQueryHttpDate';
+        b.path = r'/MalformedTimestampQueryHttpDate';
         b.queryParameters.add(
             'timestamp',
             _i1.Timestamp(input.timestamp)

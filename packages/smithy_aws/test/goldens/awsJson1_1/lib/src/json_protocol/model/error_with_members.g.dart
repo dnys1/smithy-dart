@@ -70,19 +70,6 @@ class _$ErrorWithMembers extends ErrorWithMembers {
             message.hashCode),
         stringField.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ErrorWithMembers')
-          ..add('code', code)
-          ..add('complexData', complexData)
-          ..add('integerField', integerField)
-          ..add('listField', listField)
-          ..add('mapField', mapField)
-          ..add('message', message)
-          ..add('stringField', stringField))
-        .toString();
-  }
 }
 
 class ErrorWithMembersBuilder

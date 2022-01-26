@@ -39,13 +39,6 @@ class _$PutAndGetInlineDocumentsInputOutput
   int get hashCode {
     return $jf($jc(0, inlineDocument.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('PutAndGetInlineDocumentsInputOutput')
-          ..add('inlineDocument', inlineDocument))
-        .toString();
-  }
 }
 
 class PutAndGetInlineDocumentsInputOutputBuilder

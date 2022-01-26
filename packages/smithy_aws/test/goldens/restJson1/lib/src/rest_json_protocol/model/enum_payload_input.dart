@@ -38,6 +38,12 @@ abstract class EnumPayloadInput
   _i2.StringEnum? getPayload() => payload;
   @override
   List<Object?> get props => [payload];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'EnumPayloadInput');
+    helper.add(r'payload', payload);
+    return helper.toString();
+  }
 }
 
 class _EnumPayloadInputRestJson1Serializer

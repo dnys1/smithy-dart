@@ -35,13 +35,6 @@ class _$MediaTypeHeaderInput extends MediaTypeHeaderInput {
   int get hashCode {
     return $jf($jc(0, json.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MediaTypeHeaderInput')
-          ..add('json', json))
-        .toString();
-  }
 }
 
 class MediaTypeHeaderInputBuilder
@@ -109,12 +102,6 @@ class _$MediaTypeHeaderInputPayload extends MediaTypeHeaderInputPayload {
   @override
   int get hashCode {
     return 800959639;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('MediaTypeHeaderInputPayload')
-        .toString();
   }
 }
 

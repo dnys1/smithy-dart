@@ -45,6 +45,15 @@ abstract class SayHelloInput
     ..name = name);
   @override
   List<Object?> get props => [greeting, hostLabel, name, query];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SayHelloInput');
+    helper.add(r'greeting', greeting);
+    helper.add(r'hostLabel', hostLabel);
+    helper.add(r'name', name);
+    helper.add(r'query', query);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -64,6 +73,13 @@ abstract class SayHelloInputPayload
   String? get name;
   @override
   List<Object?> get props => [hostLabel, name];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'SayHelloInput');
+    helper.add(r'hostLabel', hostLabel);
+    helper.add(r'name', name);
+    return helper.toString();
+  }
 }
 
 class _SayHelloInputAwsJson11Serializer

@@ -41,6 +41,13 @@ abstract class DocumentTypeAsPayloadInputOutput
   _i2.JsonObject? getPayload() => documentValue;
   @override
   List<Object?> get props => [documentValue];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'DocumentTypeAsPayloadInputOutput');
+    helper.add(r'documentValue', documentValue);
+    return helper.toString();
+  }
 }
 
 class _DocumentTypeAsPayloadInputOutputRestJson1Serializer

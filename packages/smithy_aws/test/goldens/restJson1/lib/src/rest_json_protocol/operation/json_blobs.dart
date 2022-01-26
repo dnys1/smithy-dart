@@ -38,7 +38,7 @@ class JsonBlobsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.JsonBlobsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/JsonBlobs';
+        b.path = r'/JsonBlobs';
       });
   @override
   int successCode([_i2.JsonBlobsInputOutput? output]) => 200;

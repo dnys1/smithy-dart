@@ -40,14 +40,6 @@ class _$MalformedContentTypeWithGenericStringInput
   int get hashCode {
     return $jf($jc(0, payload.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'MalformedContentTypeWithGenericStringInput')
-          ..add('payload', payload))
-        .toString();
-  }
 }
 
 class MalformedContentTypeWithGenericStringInputBuilder

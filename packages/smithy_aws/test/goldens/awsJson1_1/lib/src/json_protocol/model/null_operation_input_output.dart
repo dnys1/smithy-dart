@@ -40,6 +40,14 @@ abstract class NullOperationInputOutput
   NullOperationInputOutput getPayload() => this;
   @override
   List<Object?> get props => [sparseStringList, sparseStringMap, string];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'NullOperationInputOutput');
+    helper.add(r'sparseStringList', sparseStringList);
+    helper.add(r'sparseStringMap', sparseStringMap);
+    helper.add(r'string', string);
+    return helper.toString();
+  }
 }
 
 class _NullOperationInputOutputAwsJson11Serializer

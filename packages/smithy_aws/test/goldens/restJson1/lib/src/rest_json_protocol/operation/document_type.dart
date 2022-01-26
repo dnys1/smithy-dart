@@ -42,7 +42,7 @@ class DocumentTypeOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.DocumentTypeInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/DocumentType';
+        b.path = r'/DocumentType';
       });
   @override
   int successCode([_i2.DocumentTypeInputOutput? output]) => 200;

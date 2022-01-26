@@ -40,7 +40,7 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.DocumentTypeAsPayloadInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/DocumentTypeAsPayload';
+        b.path = r'/DocumentTypeAsPayload';
       });
   @override
   int successCode([_i3.DocumentTypeAsPayloadInputOutput? output]) => 200;

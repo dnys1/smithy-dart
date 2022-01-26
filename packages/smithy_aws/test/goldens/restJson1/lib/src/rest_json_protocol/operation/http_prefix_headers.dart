@@ -48,7 +48,7 @@ class HttpPrefixHeadersOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.HttpPrefixHeadersInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/HttpPrefixHeaders';
+        b.path = r'/HttpPrefixHeaders';
         if (input.foo != null) {
           if (input.foo!.isNotEmpty) {
             b.headers['X-Foo'] = input.foo!;

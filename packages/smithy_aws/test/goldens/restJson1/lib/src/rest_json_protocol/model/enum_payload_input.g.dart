@@ -34,13 +34,6 @@ class _$EnumPayloadInput extends EnumPayloadInput {
   int get hashCode {
     return $jf($jc(0, payload.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('EnumPayloadInput')
-          ..add('payload', payload))
-        .toString();
-  }
 }
 
 class EnumPayloadInputBuilder

@@ -31,6 +31,12 @@ abstract class PredictOutput
   _i3.Prediction? get prediction;
   @override
   List<Object?> get props => [prediction];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'PredictOutput');
+    helper.add(r'prediction', prediction);
+    return helper.toString();
+  }
 }
 
 class _PredictOutputAwsJson11Serializer

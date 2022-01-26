@@ -42,6 +42,13 @@ abstract class EndpointWithHostLabelOperationInput
   EndpointWithHostLabelOperationInput getPayload() => this;
   @override
   List<Object?> get props => [label];
+  @override
+  String toString() {
+    final helper =
+        newBuiltValueToStringHelper(r'EndpointWithHostLabelOperationInput');
+    helper.add(r'label', label);
+    return helper.toString();
+  }
 }
 
 class _EndpointWithHostLabelOperationInputAwsJson10Serializer extends _i1

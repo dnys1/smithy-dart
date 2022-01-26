@@ -77,18 +77,6 @@ class _$MalformedRangeInput extends MalformedRangeInput {
             minByte.hashCode),
         minFloat.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedRangeInput')
-          ..add('byte', byte)
-          ..add('float', float)
-          ..add('maxByte', maxByte)
-          ..add('maxFloat', maxFloat)
-          ..add('minByte', minByte)
-          ..add('minFloat', minFloat))
-        .toString();
-  }
 }
 
 class MalformedRangeInputBuilder

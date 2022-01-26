@@ -41,7 +41,7 @@ class HttpPayloadTraitsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.HttpPayloadTraitsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/HttpPayloadTraits';
+        b.path = r'/HttpPayloadTraits';
         if (input.foo != null) {
           if (input.foo!.isNotEmpty) {
             b.headers['X-Foo'] = input.foo!;

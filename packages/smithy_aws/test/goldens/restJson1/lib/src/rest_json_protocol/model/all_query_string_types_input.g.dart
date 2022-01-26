@@ -153,31 +153,6 @@ class _$AllQueryStringTypesInput extends AllQueryStringTypesInput {
             queryTimestamp.hashCode),
         queryTimestampList.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('AllQueryStringTypesInput')
-          ..add('queryBoolean', queryBoolean)
-          ..add('queryBooleanList', queryBooleanList)
-          ..add('queryByte', queryByte)
-          ..add('queryDouble', queryDouble)
-          ..add('queryDoubleList', queryDoubleList)
-          ..add('queryEnum', queryEnum)
-          ..add('queryEnumList', queryEnumList)
-          ..add('queryFloat', queryFloat)
-          ..add('queryInteger', queryInteger)
-          ..add('queryIntegerList', queryIntegerList)
-          ..add('queryIntegerSet', queryIntegerSet)
-          ..add('queryLong', queryLong)
-          ..add('queryParamsMapOfStringList', queryParamsMapOfStringList)
-          ..add('queryShort', queryShort)
-          ..add('queryString', queryString)
-          ..add('queryStringList', queryStringList)
-          ..add('queryStringSet', queryStringSet)
-          ..add('queryTimestamp', queryTimestamp)
-          ..add('queryTimestampList', queryTimestampList))
-        .toString();
-  }
 }
 
 class AllQueryStringTypesInputBuilder
@@ -414,12 +389,6 @@ class _$AllQueryStringTypesInputPayload
   @override
   int get hashCode {
     return 807638607;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('AllQueryStringTypesInputPayload')
-        .toString();
   }
 }
 

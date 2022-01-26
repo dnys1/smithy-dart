@@ -42,7 +42,7 @@ class RecursiveShapesOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.RecursiveShapesInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/RecursiveShapes';
+        b.path = r'/RecursiveShapes';
       });
   @override
   int successCode([_i2.RecursiveShapesInputOutput? output]) => 200;

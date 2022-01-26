@@ -2,6 +2,7 @@
 
 library rest_json1.rest_json_validation_protocol.model.enum_union;
 
+import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_validation_protocol/model/enum_string.dart'
     as _i2;
@@ -37,6 +38,18 @@ abstract class EnumUnion extends _i1.SmithyUnion<EnumUnion> {
       return second?.call((this as _EnumUnionSecond).second);
     }
     return sdkUnknown?.call(name, value);
+  }
+
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'EnumUnion');
+    if (first != null) {
+      helper.add(r'first', first)!;
+    }
+    if (second != null) {
+      helper.add(r'second', second)!;
+    }
+    return helper.toString();
   }
 }
 

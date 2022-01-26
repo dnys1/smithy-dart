@@ -93,6 +93,37 @@ abstract class KitchenSink
         timestamp,
         unixTimestamp
       ];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'KitchenSink');
+    helper.add(r'blob', blob);
+    helper.add(r'boolean', boolean);
+    helper.add(r'double_', double_);
+    helper.add(r'emptyStruct', emptyStruct);
+    helper.add(r'float', float);
+    helper.add(r'httpdateTimestamp', httpdateTimestamp);
+    helper.add(r'integer', integer);
+    helper.add(r'iso8601Timestamp', iso8601Timestamp);
+    helper.add(r'jsonValue', jsonValue);
+    helper.add(r'listOfLists', listOfLists);
+    helper.add(r'listOfMapsOfStrings', listOfMapsOfStrings);
+    helper.add(r'listOfStrings', listOfStrings);
+    helper.add(r'listOfStructs', listOfStructs);
+    helper.add(r'long', long);
+    helper.add(r'mapOfListsOfStrings', mapOfListsOfStrings);
+    helper.add(r'mapOfMaps', mapOfMaps);
+    helper.add(r'mapOfStrings', mapOfStrings);
+    helper.add(r'mapOfStructs', mapOfStructs);
+    helper.add(r'recursiveList', recursiveList);
+    helper.add(r'recursiveMap', recursiveMap);
+    helper.add(r'recursiveStruct', recursiveStruct);
+    helper.add(r'simpleStruct', simpleStruct);
+    helper.add(r'string', string);
+    helper.add(r'structWithJsonName', structWithJsonName);
+    helper.add(r'timestamp', timestamp);
+    helper.add(r'unixTimestamp', unixTimestamp);
+    return helper.toString();
+  }
 }
 
 class _KitchenSinkAwsJson11Serializer

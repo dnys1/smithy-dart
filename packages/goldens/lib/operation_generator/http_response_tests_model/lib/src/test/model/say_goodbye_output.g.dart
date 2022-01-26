@@ -34,13 +34,6 @@ class _$SayGoodbyeOutput extends SayGoodbyeOutput {
   int get hashCode {
     return $jf($jc(0, farewell.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SayGoodbyeOutput')
-          ..add('farewell', farewell))
-        .toString();
-  }
 }
 
 class SayGoodbyeOutputBuilder
@@ -108,11 +101,6 @@ class _$SayGoodbyeOutputPayload extends SayGoodbyeOutputPayload {
   @override
   int get hashCode {
     return 106194397;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('SayGoodbyeOutputPayload').toString();
   }
 }
 

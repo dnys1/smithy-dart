@@ -39,14 +39,6 @@ class _$InternalServerException extends InternalServerException {
   int get hashCode {
     return $jf($jc($jc(0, code.hashCode), message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('InternalServerException')
-          ..add('code', code)
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class InternalServerExceptionBuilder

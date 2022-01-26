@@ -35,13 +35,6 @@ class _$MalformedUnionInput extends MalformedUnionInput {
   int get hashCode {
     return $jf($jc(0, union.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedUnionInput')
-          ..add('union', union))
-        .toString();
-  }
 }
 
 class MalformedUnionInputBuilder

@@ -44,7 +44,7 @@ class HttpRequestWithLabelsOperation extends _i1.HttpOperation<
       _i1.HttpRequest((b) {
         b.method = 'GET';
         b.path =
-            '/HttpRequestWithLabels/{string}/{short}/{integer}/{long}/{float}/{double}/{boolean}/{timestamp}';
+            r'/HttpRequestWithLabels/{string}/{short}/{integer}/{long}/{float}/{double}/{boolean}/{timestamp}';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

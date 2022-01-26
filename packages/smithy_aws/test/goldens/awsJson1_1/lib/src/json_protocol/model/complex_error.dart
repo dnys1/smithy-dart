@@ -38,6 +38,13 @@ abstract class ComplexError
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [nested, topLevel];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ComplexError');
+    helper.add(r'nested', nested);
+    helper.add(r'topLevel', topLevel);
+    return helper.toString();
+  }
 }
 
 class _ComplexErrorAwsJson11Serializer

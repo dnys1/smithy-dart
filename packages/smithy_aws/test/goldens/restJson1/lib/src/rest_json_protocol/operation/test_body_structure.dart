@@ -42,7 +42,7 @@ class TestBodyStructureOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.TestBodyStructureInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/body';
+        b.path = r'/body';
         if (input.testId != null) {
           if (input.testId!.isNotEmpty) {
             b.headers['x-amz-test-id'] = input.testId!;

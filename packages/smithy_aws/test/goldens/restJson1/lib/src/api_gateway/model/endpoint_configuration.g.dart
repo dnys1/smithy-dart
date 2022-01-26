@@ -39,14 +39,6 @@ class _$EndpointConfiguration extends EndpointConfiguration {
   int get hashCode {
     return $jf($jc($jc(0, types.hashCode), vpcEndpointIds.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('EndpointConfiguration')
-          ..add('types', types)
-          ..add('vpcEndpointIds', vpcEndpointIds))
-        .toString();
-  }
 }
 
 class EndpointConfigurationBuilder

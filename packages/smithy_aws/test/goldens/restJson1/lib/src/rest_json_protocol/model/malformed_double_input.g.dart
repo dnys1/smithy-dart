@@ -56,16 +56,6 @@ class _$MalformedDoubleInput extends MalformedDoubleInput {
             doubleInPath.hashCode),
         doubleInQuery.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedDoubleInput')
-          ..add('doubleInBody', doubleInBody)
-          ..add('doubleInHeader', doubleInHeader)
-          ..add('doubleInPath', doubleInPath)
-          ..add('doubleInQuery', doubleInQuery))
-        .toString();
-  }
 }
 
 class MalformedDoubleInputBuilder
@@ -160,13 +150,6 @@ class _$MalformedDoubleInputPayload extends MalformedDoubleInputPayload {
   @override
   int get hashCode {
     return $jf($jc(0, doubleInBody.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('MalformedDoubleInputPayload')
-          ..add('doubleInBody', doubleInBody))
-        .toString();
   }
 }
 

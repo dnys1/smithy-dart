@@ -32,12 +32,6 @@ class _$PayloadConfig extends PayloadConfig {
   int get hashCode {
     return $jf($jc(0, data.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('PayloadConfig')..add('data', data))
-        .toString();
-  }
 }
 
 class PayloadConfigBuilder

@@ -35,13 +35,6 @@ class _$GreetingWithErrorsOutput extends GreetingWithErrorsOutput {
   int get hashCode {
     return $jf($jc(0, greeting.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GreetingWithErrorsOutput')
-          ..add('greeting', greeting))
-        .toString();
-  }
 }
 
 class GreetingWithErrorsOutputBuilder
@@ -112,12 +105,6 @@ class _$GreetingWithErrorsOutputPayload
   @override
   int get hashCode {
     return 622540788;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper('GreetingWithErrorsOutputPayload')
-        .toString();
   }
 }
 

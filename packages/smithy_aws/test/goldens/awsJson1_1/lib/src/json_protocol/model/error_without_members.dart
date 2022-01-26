@@ -37,6 +37,11 @@ abstract class ErrorWithoutMembers
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'ErrorWithoutMembers');
+    return helper.toString();
+  }
 }
 
 class _ErrorWithoutMembersAwsJson11Serializer

@@ -92,22 +92,6 @@ class _$SimpleScalarPropertiesInputOutput
             stringValue.hashCode),
         trueBooleanValue.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('SimpleScalarPropertiesInputOutput')
-          ..add('byteValue', byteValue)
-          ..add('doubleValue', doubleValue)
-          ..add('falseBooleanValue', falseBooleanValue)
-          ..add('floatValue', floatValue)
-          ..add('foo', foo)
-          ..add('integerValue', integerValue)
-          ..add('longValue', longValue)
-          ..add('shortValue', shortValue)
-          ..add('stringValue', stringValue)
-          ..add('trueBooleanValue', trueBooleanValue))
-        .toString();
-  }
 }
 
 class SimpleScalarPropertiesInputOutputBuilder
@@ -293,22 +277,6 @@ class _$SimpleScalarPropertiesInputOutputPayload
                 shortValue.hashCode),
             stringValue.hashCode),
         trueBooleanValue.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'SimpleScalarPropertiesInputOutputPayload')
-          ..add('byteValue', byteValue)
-          ..add('doubleValue', doubleValue)
-          ..add('falseBooleanValue', falseBooleanValue)
-          ..add('floatValue', floatValue)
-          ..add('integerValue', integerValue)
-          ..add('longValue', longValue)
-          ..add('shortValue', shortValue)
-          ..add('stringValue', stringValue)
-          ..add('trueBooleanValue', trueBooleanValue))
-        .toString();
   }
 }
 

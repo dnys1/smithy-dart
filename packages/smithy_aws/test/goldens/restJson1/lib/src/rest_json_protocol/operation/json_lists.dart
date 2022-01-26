@@ -38,7 +38,7 @@ class JsonListsOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i2.JsonListsInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'PUT';
-        b.path = '/JsonLists';
+        b.path = r'/JsonLists';
       });
   @override
   int successCode([_i2.JsonListsInputOutput? output]) => 200;

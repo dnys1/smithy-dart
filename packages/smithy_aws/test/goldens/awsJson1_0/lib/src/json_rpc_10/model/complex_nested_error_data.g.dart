@@ -35,13 +35,6 @@ class _$ComplexNestedErrorData extends ComplexNestedErrorData {
   int get hashCode {
     return $jf($jc(0, foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('ComplexNestedErrorData')
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class ComplexNestedErrorDataBuilder

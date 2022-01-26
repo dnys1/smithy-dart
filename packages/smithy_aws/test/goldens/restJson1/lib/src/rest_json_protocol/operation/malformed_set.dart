@@ -35,7 +35,7 @@ class MalformedSetOperation extends _i1.HttpOperation<_i2.MalformedSetInput,
   _i1.HttpRequest buildRequest(_i2.MalformedSetInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedSet';
+        b.path = r'/MalformedSet';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

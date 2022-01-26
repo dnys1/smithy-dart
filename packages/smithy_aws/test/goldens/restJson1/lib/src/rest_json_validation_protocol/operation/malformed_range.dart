@@ -37,7 +37,7 @@ class MalformedRangeOperation extends _i1.HttpOperation<_i2.MalformedRangeInput,
   _i1.HttpRequest buildRequest(_i2.MalformedRangeInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/MalformedRange';
+        b.path = r'/MalformedRange';
       });
   @override
   int successCode([_i1.Unit? output]) => 200;

@@ -43,6 +43,12 @@ abstract class GreetingWithErrorsOutput
       GreetingWithErrorsOutputPayload();
   @override
   List<Object?> get props => [greeting];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GreetingWithErrorsOutput');
+    helper.add(r'greeting', greeting);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -64,6 +70,11 @@ abstract class GreetingWithErrorsOutputPayload
   static void _init(GreetingWithErrorsOutputPayloadBuilder b) {}
   @override
   List<Object?> get props => [];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'GreetingWithErrorsOutput');
+    return helper.toString();
+  }
 }
 
 class _GreetingWithErrorsOutputRestJson1Serializer

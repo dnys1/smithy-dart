@@ -64,7 +64,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
   _i1.HttpRequest buildRequest(_i3.UploadArchiveInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/{accountId}/vaults/{vaultName}/archives';
+        b.path = r'/{accountId}/vaults/{vaultName}/archives';
         if (input.archiveDescription != null) {
           if (input.archiveDescription!.isNotEmpty) {
             b.headers['x-amz-archive-description'] = input.archiveDescription!;

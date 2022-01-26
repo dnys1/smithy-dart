@@ -46,7 +46,7 @@ class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
           _i3.StreamingTraitsWithMediaTypeInputOutput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
-        b.path = '/StreamingTraitsWithMediaType';
+        b.path = r'/StreamingTraitsWithMediaType';
         if (input.foo != null) {
           if (input.foo!.isNotEmpty) {
             b.headers['X-Foo'] = input.foo!;

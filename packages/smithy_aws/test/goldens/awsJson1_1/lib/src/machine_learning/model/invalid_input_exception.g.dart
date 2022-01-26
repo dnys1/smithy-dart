@@ -39,14 +39,6 @@ class _$InvalidInputException extends InvalidInputException {
   int get hashCode {
     return $jf($jc($jc(0, code.hashCode), message.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('InvalidInputException')
-          ..add('code', code)
-          ..add('message', message))
-        .toString();
-  }
 }
 
 class InvalidInputExceptionBuilder

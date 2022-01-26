@@ -50,14 +50,6 @@ class _$HttpRequestWithGreedyLabelInPathInput
   int get hashCode {
     return $jf($jc($jc(0, baz.hashCode), foo.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('HttpRequestWithGreedyLabelInPathInput')
-          ..add('baz', baz)
-          ..add('foo', foo))
-        .toString();
-  }
 }
 
 class HttpRequestWithGreedyLabelInPathInputBuilder
@@ -143,13 +135,6 @@ class _$HttpRequestWithGreedyLabelInPathInputPayload
   @override
   int get hashCode {
     return 447279967;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(
-            'HttpRequestWithGreedyLabelInPathInputPayload')
-        .toString();
   }
 }
 

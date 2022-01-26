@@ -65,7 +65,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
   _i1.HttpRequest buildRequest(_i2.GetRestApisRequest input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = '/restapis';
+        b.path = r'/restapis';
         if (input.position != null) {
           b.queryParameters.add('position', input.position!);
         }

@@ -33,6 +33,12 @@ abstract class MalformedUnionInput
   MalformedUnionInput getPayload() => this;
   @override
   List<Object?> get props => [union];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedUnionInput');
+    helper.add(r'union', union);
+    return helper.toString();
+  }
 }
 
 class _MalformedUnionInputRestJson1Serializer

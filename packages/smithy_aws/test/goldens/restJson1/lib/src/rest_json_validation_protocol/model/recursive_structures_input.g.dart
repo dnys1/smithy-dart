@@ -35,13 +35,6 @@ class _$RecursiveStructuresInput extends RecursiveStructuresInput {
   int get hashCode {
     return $jf($jc(0, union.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RecursiveStructuresInput')
-          ..add('union', union))
-        .toString();
-  }
 }
 
 class RecursiveStructuresInputBuilder

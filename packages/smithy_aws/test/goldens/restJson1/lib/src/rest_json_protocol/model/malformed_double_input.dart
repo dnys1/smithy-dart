@@ -48,6 +48,15 @@ abstract class MalformedDoubleInput
   @override
   List<Object?> get props =>
       [doubleInBody, doubleInHeader, doubleInPath, doubleInQuery];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedDoubleInput');
+    helper.add(r'doubleInBody', doubleInBody);
+    helper.add(r'doubleInHeader', doubleInHeader);
+    helper.add(r'doubleInPath', doubleInPath);
+    helper.add(r'doubleInQuery', doubleInQuery);
+    return helper.toString();
+  }
 }
 
 @_i3.internal
@@ -67,6 +76,12 @@ abstract class MalformedDoubleInputPayload
   double? get doubleInBody;
   @override
   List<Object?> get props => [doubleInBody];
+  @override
+  String toString() {
+    final helper = newBuiltValueToStringHelper(r'MalformedDoubleInput');
+    helper.add(r'doubleInBody', doubleInBody);
+    return helper.toString();
+  }
 }
 
 class _MalformedDoubleInputRestJson1Serializer

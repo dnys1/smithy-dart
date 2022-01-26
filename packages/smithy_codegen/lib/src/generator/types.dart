@@ -330,6 +330,10 @@ class BuiltValue {
           ..types.addAll([key, value]),
       );
 
+  /// Creates a [built_value.newBuiltValueToStringHelper] reference.
+  Reference get newBuiltValueToStringHelper =>
+      const Reference('newBuiltValueToStringHelper', mainUrl);
+
   /// Creates a [built_value_serializer.PrimitiveSerializer] reference for
   /// generic type [ref].
   Reference primitiveSerializer(Reference ref) => TypeReference(

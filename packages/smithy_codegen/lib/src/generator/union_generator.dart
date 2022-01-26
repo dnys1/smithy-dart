@@ -45,6 +45,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
             ..._variantGetters,
             _valueGetter,
             _whenMethod,
+            _toString,
           ])
           ..fields.addAll([
             _serializersField,
@@ -287,5 +288,37 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
           ..type = DartTypes.core.string),
         value,
       ]));
+  }
+
+  Method get _toString {
+    final builder = BlockBuilder();
+    final helper = refer('helper');
+    builder.addExpression(
+      DartTypes.builtValue.newBuiltValueToStringHelper
+          .call([literalString(className, raw: true)]).assignFinal('helper'),
+    );
+    for (final member in sortedMembers) {
+      final dartName = member.dartName(ShapeType.union);
+      final isSensitive = shape.hasTrait<SensitiveTrait>() ||
+          member.hasTrait<SensitiveTrait>() ||
+          context.shapeFor(member.target).hasTrait<SensitiveTrait>();
+      final stringValue =
+          isSensitive ? literalString('***SENSITIVE***') : refer(dartName);
+      builder.statements.add(
+        helper.property('add').call([
+          literalString(dartName, raw: true),
+          stringValue,
+        ]).wrapWithBlockNullCheck(
+            refer(dartName).notEqualTo(literalNull), true),
+      );
+    }
+    builder.addExpression(helper.property('toString').call([]).returned);
+    return Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.string
+        ..name = 'toString'
+        ..body = builder.build(),
+    );
   }
 }

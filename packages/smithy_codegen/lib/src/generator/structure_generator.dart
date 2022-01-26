@@ -83,11 +83,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               members: sortedMembers,
               builderSymbol: builderSymbol,
             ),
-            ..._fieldGetters(sortedMembers, isPayload: false),
+            ..._fieldGetters(isPayload: false),
             ..._httpInputOverrides,
             if (shape.isInputShape || hasPayload) _getPayload,
             ..._errorFields,
             _props(sortedMembers),
+            _toString(isPayload: false),
           ])
           ..fields.addAll([
             _serializersField(serializerClasses),
@@ -97,7 +98,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   /// The struct's built payload class.
   Class get _payloadClass => Class(
         (c) => c
-          ..name = '${className}Payload'
+          ..name = payloadClassName
           ..abstract = true
           ..annotations.addAll([
             // Developers only ever interact with the main struct.
@@ -132,8 +133,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               members: payloadMembers,
               builderSymbol: payloadBuilderSymbol!,
             ),
-            ..._fieldGetters(payloadMembers, isPayload: true),
+            ..._fieldGetters(isPayload: true),
             _props(payloadMembers),
+            _toString(isPayload: true),
           ]),
       );
 
@@ -258,10 +260,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   }
 
   /// Fields for this type.
-  Iterable<Method> _fieldGetters(
-    List<MemberShape> members, {
+  Iterable<Method> _fieldGetters({
     required bool isPayload,
   }) sync* {
+    final members = isPayload ? payloadMembers : sortedMembers;
     for (var member in members) {
       yield Method(
         (f) => f
@@ -729,6 +731,38 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     return addHeader.wrapWithBlockIf(
       headerRef.notEqualTo(literalNull),
       isNullable,
+    );
+  }
+
+  /// Custom `toString` impl which mirrors the built_value impl but allows for
+  /// handling sensitive types defined by the `@sensitive` trait.
+  Method _toString({required bool isPayload}) {
+    final builder = BlockBuilder();
+    final helper = refer('helper');
+    builder.addExpression(
+      DartTypes.builtValue.newBuiltValueToStringHelper
+          .call([literalString(className, raw: true)]).assignFinal('helper'),
+    );
+    final members = isPayload ? payloadMembers : sortedMembers;
+    for (final member in members) {
+      final dartName = member.dartName(ShapeType.structure);
+      final isSensitive = shape.hasTrait<SensitiveTrait>() ||
+          member.hasTrait<SensitiveTrait>() ||
+          context.shapeFor(member.target).hasTrait<SensitiveTrait>();
+      final stringValue =
+          isSensitive ? literalString('***SENSITIVE***') : refer(dartName);
+      builder.addExpression(helper.property('add').call([
+        literalString(dartName, raw: true),
+        stringValue,
+      ]));
+    }
+    builder.addExpression(helper.property('toString').call([]).returned);
+    return Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.string
+        ..name = 'toString'
+        ..body = builder.build(),
     );
   }
 }

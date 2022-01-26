@@ -18,6 +18,7 @@ class AllQueryStringTypesOperation extends _i1.HttpOperation<
     _i2.AllQueryStringTypesInput,
     _i1.Unit,
     _i1.Unit> {
+  /// This example uses all query string types.
   AllQueryStringTypesOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

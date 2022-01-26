@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.document_type_as_payload_test;
+library rest_json1.rest_json_protocol.test.document_type_as_payload_operation_test;
 
 import 'package:built_value/json_object.dart' as _i6;
 import 'package:built_value/serializer.dart';

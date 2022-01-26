@@ -18,6 +18,7 @@ abstract class PlayerAction extends _i1.SmithyUnion<PlayerAction> {
     _PlayerActionRestJson1Serializer()
   ];
 
+  /// Quit the game.
   _i1.Unit? get quit => null;
   @override
   Object get value => (quit)!;
@@ -34,7 +35,7 @@ abstract class PlayerAction extends _i1.SmithyUnion<PlayerAction> {
   String toString() {
     final helper = newBuiltValueToStringHelper(r'PlayerAction');
     if (quit != null) {
-      helper.add(r'quit', quit)!;
+      helper.add(r'quit', quit);
     }
     return helper.toString();
   }

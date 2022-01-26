@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library http_response_tests_model.test.operation.say_goodbye_test;
+library http_response_tests_model.test.test.say_goodbye_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:http_response_tests_model/src/test/model/invalid_greeting.dart'

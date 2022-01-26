@@ -18,6 +18,7 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
     _i2.TimestampFormatHeadersIo,
     _i2.TimestampFormatHeadersIoPayload,
     _i2.TimestampFormatHeadersIo> {
+  /// This example tests how timestamp request and response headers are serialized.
   TimestampFormatHeadersOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

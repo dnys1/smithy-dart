@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.input_and_output_with_headers_test;
+library rest_json1.rest_json_protocol.test.input_and_output_with_headers_operation_test;
 
 import 'package:built_collection/built_collection.dart' as _i6;
 import 'package:built_value/serializer.dart';

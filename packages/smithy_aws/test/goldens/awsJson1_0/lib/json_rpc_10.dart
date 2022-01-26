@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.json_rpc10;
+library aws_json1_0.json_rpc_10;
 
 export 'package:aws_json1_0/src/json_rpc_10/json_rpc10_client.dart';
 export 'package:aws_json1_0/src/json_rpc_10/model/complex_error.dart';

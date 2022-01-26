@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.json_unions_test;
+library aws_json1_1.json_protocol.test.json_unions_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/my_union.dart' as _i7;
 import 'package:aws_json1_1/src/json_protocol/model/union_input_output.dart'

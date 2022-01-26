@@ -14,12 +14,19 @@ import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_input_o
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This examples serializes a streaming blob shape in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+/// This examples serializes a streaming blob shape in the request body.
+///
+/// In this example, no JSON document is synthesized because the payload is
+/// not a structure or a union type.
 class StreamingTraitsOperation extends _i1.HttpOperation<
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsInputOutput,
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsInputOutput> {
+  /// This examples serializes a streaming blob shape in the request body.
+  ///
+  /// In this example, no JSON document is synthesized because the payload is
+  /// not a structure or a union type.
   StreamingTraitsOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

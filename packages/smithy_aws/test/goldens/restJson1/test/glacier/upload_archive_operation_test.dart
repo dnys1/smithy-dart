@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.glacier.operation.upload_archive_test;
+library rest_json1.glacier.test.upload_archive_operation_test;
 
 import 'dart:async' as _i7;
 

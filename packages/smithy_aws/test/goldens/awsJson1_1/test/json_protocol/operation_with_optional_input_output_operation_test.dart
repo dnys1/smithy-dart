@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.operation_with_optional_input_output_test;
+library aws_json1_1.json_protocol.test.operation_with_optional_input_output_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_input.dart'
     as _i6;

@@ -1,6 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_validation_protocol.rest_json_validation;
+/// A REST JSON service that sends JSON requests and responses with validation applied
+library rest_json1.rest_json_validation_protocol;
 
 export 'package:rest_json1/src/rest_json_validation_protocol/model/enum_string.dart';
 export 'package:rest_json1/src/rest_json_validation_protocol/model/enum_union.dart';

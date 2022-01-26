@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.streaming_traits_require_length_test;
+library rest_json1.rest_json_protocol.test.streaming_traits_require_length_operation_test;
 
 import 'dart:async' as _i6;
 

@@ -13,6 +13,7 @@ import 'package:smithy_aws/smithy_aws.dart' as _i2;
 /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
 class UnitInputAndOutputOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
+  /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
   UnitInputAndOutputOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

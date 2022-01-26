@@ -1,6 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.api_gateway.backplane_control_service;
+/// Amazon API Gateway
+library rest_json1.api_gateway;
 
 export 'package:rest_json1/src/api_gateway/api_gateway_client.dart';
 export 'package:rest_json1/src/api_gateway/model/api_key_source_type.dart';

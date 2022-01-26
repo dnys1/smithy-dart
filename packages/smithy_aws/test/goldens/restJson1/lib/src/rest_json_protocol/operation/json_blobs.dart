@@ -18,6 +18,7 @@ class JsonBlobsOperation extends _i1.HttpOperation<
     _i2.JsonBlobsInputOutput,
     _i2.JsonBlobsInputOutput,
     _i2.JsonBlobsInputOutput> {
+  /// Blobs are base64 encoded
   JsonBlobsOperation({Uri? baseUri, required this.region}) : _baseUri = baseUri;
 
   @override

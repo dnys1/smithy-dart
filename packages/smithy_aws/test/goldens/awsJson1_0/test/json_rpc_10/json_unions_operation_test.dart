@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.operation.json_unions_test;
+library aws_json1_0.json_rpc_10.test.json_unions_operation_test;
 
 import 'package:aws_json1_0/src/json_rpc_10/model/json_unions_input.dart'
     as _i5;

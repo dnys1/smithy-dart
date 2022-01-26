@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.omits_null_serializes_empty_string_test;
+library rest_json1.rest_json_protocol.test.omits_null_serializes_empty_string_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/omits_null_serializes_empty_string_input.dart'

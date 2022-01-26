@@ -9,7 +9,8 @@ import 'package:smithy/smithy.dart' as _i2;
 
 part 'foo_error.g.dart';
 
-/// This error has test cases that test some of the dark corners of Amazon service framework history. It should only be implemented by clients.
+/// This error has test cases that test some of the dark corners of Amazon service
+/// framework history. It should only be implemented by clients.
 abstract class FooError
     with _i1.AWSEquatable<FooError>
     implements

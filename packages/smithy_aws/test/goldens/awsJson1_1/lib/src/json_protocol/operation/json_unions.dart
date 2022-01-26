@@ -15,6 +15,7 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 /// This operation uses unions for inputs and outputs.
 class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
     _i2.UnionInputOutput, _i2.UnionInputOutput, _i2.UnionInputOutput> {
+  /// This operation uses unions for inputs and outputs.
   JsonUnionsOperation(
       {Uri? baseUri,
       required this.region,

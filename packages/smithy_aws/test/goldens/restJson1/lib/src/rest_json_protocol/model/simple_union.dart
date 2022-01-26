@@ -42,10 +42,10 @@ abstract class SimpleUnion extends _i1.SmithyUnion<SimpleUnion> {
   String toString() {
     final helper = newBuiltValueToStringHelper(r'SimpleUnion');
     if (int$ != null) {
-      helper.add(r'int$', int$)!;
+      helper.add(r'int$', int$);
     }
     if (string != null) {
-      helper.add(r'string', string)!;
+      helper.add(r'string', string);
     }
     return helper.toString();
   }

@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.operation.endpoint_operation_test;
+library aws_json1_0.json_rpc_10.test.endpoint_operation_test;
 
 import 'package:aws_json1_0/src/json_rpc_10/operation/endpoint_operation.dart'
     as _i3;

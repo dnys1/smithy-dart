@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.operation.empty_input_and_empty_output_test;
+library aws_json1_0.json_rpc_10.test.empty_input_and_empty_output_operation_test;
 
 import 'package:aws_json1_0/src/json_rpc_10/model/empty_input_and_empty_output_input.dart'
     as _i5;

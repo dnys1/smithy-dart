@@ -18,6 +18,7 @@ class DocumentTypeOperation extends _i1.HttpOperation<
     _i2.DocumentTypeInputOutput,
     _i2.DocumentTypeInputOutput,
     _i2.DocumentTypeInputOutput> {
+  /// This example serializes a document as part of the payload.
   DocumentTypeOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

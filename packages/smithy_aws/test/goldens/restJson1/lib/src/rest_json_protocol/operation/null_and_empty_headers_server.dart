@@ -18,6 +18,7 @@ class NullAndEmptyHeadersServerOperation extends _i1.HttpOperation<
     _i2.NullAndEmptyHeadersIo,
     _i2.NullAndEmptyHeadersIoPayload,
     _i2.NullAndEmptyHeadersIo> {
+  /// Null and empty headers are not sent over the wire.
   NullAndEmptyHeadersServerOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

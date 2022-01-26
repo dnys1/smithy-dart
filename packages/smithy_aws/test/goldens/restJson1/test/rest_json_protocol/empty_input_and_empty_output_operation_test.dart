@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.empty_input_and_empty_output_test;
+library rest_json1.rest_json_protocol.test.empty_input_and_empty_output_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/empty_input_and_empty_output_input.dart'

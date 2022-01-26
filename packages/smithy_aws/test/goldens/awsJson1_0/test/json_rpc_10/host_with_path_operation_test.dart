@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.operation.host_with_path_operation_test;
+library aws_json1_0.json_rpc_10.test.host_with_path_operation_test;
 
 import 'package:aws_json1_0/src/json_rpc_10/operation/host_with_path_operation.dart'
     as _i3;

@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.kitchen_sink_operation_test;
+library aws_json1_1.json_protocol.test.kitchen_sink_operation_test;
 
 import 'dart:typed_data' as _i7;
 

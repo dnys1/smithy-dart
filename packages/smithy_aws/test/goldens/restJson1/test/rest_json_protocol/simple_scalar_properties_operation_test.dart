@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.simple_scalar_properties_test;
+library rest_json1.rest_json_protocol.test.simple_scalar_properties_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:fixnum/fixnum.dart' as _i6;

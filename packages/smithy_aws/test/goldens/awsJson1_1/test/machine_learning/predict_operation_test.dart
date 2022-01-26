@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.machine_learning.operation.predict_test;
+library aws_json1_1.machine_learning.test.predict_operation_test;
 
 import 'package:aws_json1_1/src/machine_learning/model/details_attributes.dart'
     as _i10;

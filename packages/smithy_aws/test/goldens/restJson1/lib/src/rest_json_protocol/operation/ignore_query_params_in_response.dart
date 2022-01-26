@@ -12,12 +12,17 @@ import 'package:rest_json1/src/rest_json_protocol/model/ignore_query_params_in_r
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-/// This example ensures that query string bound request parameters are serialized in the body of responses if the structure is used in both the request and response.
+/// This example ensures that query string bound request parameters are
+/// serialized in the body of responses if the structure is used in both
+/// the request and response.
 class IgnoreQueryParamsInResponseOperation extends _i1.HttpOperation<
     _i1.Unit,
     _i1.Unit,
     _i2.IgnoreQueryParamsInResponseOutput,
     _i2.IgnoreQueryParamsInResponseOutput> {
+  /// This example ensures that query string bound request parameters are
+  /// serialized in the body of responses if the structure is used in both
+  /// the request and response.
   IgnoreQueryParamsInResponseOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

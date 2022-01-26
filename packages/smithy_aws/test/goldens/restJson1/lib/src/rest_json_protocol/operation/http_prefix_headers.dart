@@ -14,12 +14,19 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_prefix_headers_outp
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This examples adds headers to the input of a request and response by prefix.
+/// This examples adds headers to the input of a request and response by prefix.///
+/// See also:
+/// - [httpPrefixHeaders Trait](https://awslabs.github.io/smithy/1.0/spec/http.html#httpprefixheaders-trait)
+
 class HttpPrefixHeadersOperation extends _i1.HttpOperation<
     _i2.HttpPrefixHeadersInputPayload,
     _i2.HttpPrefixHeadersInput,
     _i3.HttpPrefixHeadersOutputPayload,
     _i3.HttpPrefixHeadersOutput> {
+  /// This examples adds headers to the input of a request and response by prefix.///
+  /// See also:
+  /// - [httpPrefixHeaders Trait](https://awslabs.github.io/smithy/1.0/spec/http.html#httpprefixheaders-trait)
+
   HttpPrefixHeadersOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

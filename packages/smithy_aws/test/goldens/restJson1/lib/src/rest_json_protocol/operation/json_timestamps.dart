@@ -12,12 +12,17 @@ import 'package:rest_json1/src/rest_json_protocol/model/json_timestamps_input_ou
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-/// This tests how timestamps are serialized, including using the default format of date-time and various @timestampFormat trait values.
+/// This tests how timestamps are serialized, including using the
+/// default format of date-time and various @timestampFormat trait
+/// values.
 class JsonTimestampsOperation extends _i1.HttpOperation<
     _i2.JsonTimestampsInputOutput,
     _i2.JsonTimestampsInputOutput,
     _i2.JsonTimestampsInputOutput,
     _i2.JsonTimestampsInputOutput> {
+  /// This tests how timestamps are serialized, including using the
+  /// default format of date-time and various @timestampFormat trait
+  /// values.
   JsonTimestampsOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

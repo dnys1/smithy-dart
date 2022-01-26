@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.endpoint_operation_test;
+library rest_json1.rest_json_protocol.test.endpoint_operation_test;
 
 import 'package:rest_json1/src/rest_json_protocol/operation/endpoint_operation.dart'
     as _i3;

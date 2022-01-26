@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.greeting_with_errors_test;
+library aws_json1_1.json_protocol.test.greeting_with_errors_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/complex_error.dart' as _i5;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'

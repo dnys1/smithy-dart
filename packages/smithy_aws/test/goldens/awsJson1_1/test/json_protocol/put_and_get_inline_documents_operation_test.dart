@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.put_and_get_inline_documents_test;
+library aws_json1_1.json_protocol.test.put_and_get_inline_documents_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/put_and_get_inline_documents_input_output.dart'
     as _i6;

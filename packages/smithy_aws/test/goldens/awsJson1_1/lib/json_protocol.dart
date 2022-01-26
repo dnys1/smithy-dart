@@ -1,6 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.json_protocol;
+/// Sample Json 1.1 Protocol Service
+library aws_json1_1.json_protocol;
 
 export 'package:aws_json1_1/src/json_protocol/json_protocol_client.dart';
 export 'package:aws_json1_1/src/json_protocol/model/complex_error.dart';

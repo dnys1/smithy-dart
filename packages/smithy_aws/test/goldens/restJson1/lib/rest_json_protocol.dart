@@ -1,6 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.rest_json;
+/// A REST JSON service that sends JSON requests and responses.
+library rest_json1.rest_json_protocol;
 
 export 'package:rest_json1/src/rest_json_protocol/model/all_query_string_types_input.dart'
     hide AllQueryStringTypesInputPayload;

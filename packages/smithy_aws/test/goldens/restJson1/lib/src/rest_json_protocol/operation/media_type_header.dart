@@ -22,6 +22,7 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
     _i2.MediaTypeHeaderInput,
     _i3.MediaTypeHeaderOutputPayload,
     _i3.MediaTypeHeaderOutput> {
+  /// This example ensures that mediaType strings are base64 encoded in headers.
   MediaTypeHeaderOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

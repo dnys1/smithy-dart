@@ -14,12 +14,19 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_payload_traits_inpu
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This examples serializes a blob shape in the payload. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+/// This examples serializes a blob shape in the payload.
+///
+/// In this example, no JSON document is synthesized because the payload is
+/// not a structure or a union type.
 class HttpPayloadTraitsOperation extends _i1.HttpOperation<
     _i2.Uint8List,
     _i3.HttpPayloadTraitsInputOutput,
     _i2.Uint8List,
     _i3.HttpPayloadTraitsInputOutput> {
+  /// This examples serializes a blob shape in the payload.
+  ///
+  /// In this example, no JSON document is synthesized because the payload is
+  /// not a structure or a union type.
   HttpPayloadTraitsOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

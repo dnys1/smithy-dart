@@ -12,13 +12,16 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_request_with_labels
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-/// The example tests how requests serialize different timestamp formats in the URI path.
+/// The example tests how requests serialize different timestamp formats in the
+/// URI path.
 class HttpRequestWithLabelsAndTimestampFormatOperation
     extends _i1.HttpOperation<
         _i2.HttpRequestWithLabelsAndTimestampFormatInputPayload,
         _i2.HttpRequestWithLabelsAndTimestampFormatInput,
         _i1.Unit,
         _i1.Unit> {
+  /// The example tests how requests serialize different timestamp formats in the
+  /// URI path.
   HttpRequestWithLabelsAndTimestampFormatOperation(
       {Uri? baseUri, required this.region})
       : _baseUri = baseUri;

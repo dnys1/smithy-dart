@@ -14,12 +14,19 @@ import 'package:rest_json1/src/rest_json_protocol/model/nested_payload.dart'
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This examples serializes a structure in the payload. Note that serializing a structure changes the wrapper element name to match the targeted structure.
+/// This examples serializes a structure in the payload.
+///
+/// Note that serializing a structure changes the wrapper element name
+/// to match the targeted structure.
 class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
     _i2.NestedPayload,
     _i3.HttpPayloadWithStructureInputOutput,
     _i2.NestedPayload,
     _i3.HttpPayloadWithStructureInputOutput> {
+  /// This examples serializes a structure in the payload.
+  ///
+  /// Note that serializing a structure changes the wrapper element name
+  /// to match the targeted structure.
   HttpPayloadWithStructureOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

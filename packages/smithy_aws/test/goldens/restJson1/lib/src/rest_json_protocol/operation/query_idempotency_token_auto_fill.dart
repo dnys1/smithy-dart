@@ -18,6 +18,7 @@ class QueryIdempotencyTokenAutoFillOperation extends _i1.HttpOperation<
     _i2.QueryIdempotencyTokenAutoFillInput,
     _i1.Unit,
     _i1.Unit> {
+  /// Automatically adds idempotency tokens.
   QueryIdempotencyTokenAutoFillOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

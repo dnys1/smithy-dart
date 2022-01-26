@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.api_gateway.operation.get_rest_apis_test;
+library rest_json1.api_gateway.test.get_rest_apis_operation_test;
 
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:built_collection/built_collection.dart' as _i8;

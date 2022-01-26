@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.http_prefix_headers_in_response_test;
+library rest_json1.rest_json_protocol.test.http_prefix_headers_in_response_operation_test;
 
 import 'package:built_collection/built_collection.dart' as _i7;
 import 'package:built_value/serializer.dart';

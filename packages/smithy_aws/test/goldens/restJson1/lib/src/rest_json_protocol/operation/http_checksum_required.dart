@@ -18,6 +18,7 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
     _i2.HttpChecksumRequiredInputOutput,
     _i2.HttpChecksumRequiredInputOutput,
     _i2.HttpChecksumRequiredInputOutput> {
+  /// This example tests httpChecksumRequired trait
   HttpChecksumRequiredOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

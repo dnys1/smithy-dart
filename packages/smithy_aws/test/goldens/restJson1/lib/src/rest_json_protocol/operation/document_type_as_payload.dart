@@ -19,6 +19,7 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
     _i3.DocumentTypeAsPayloadInputOutput,
     _i2.JsonObject,
     _i3.DocumentTypeAsPayloadInputOutput> {
+  /// This example serializes a document as the entire HTTP payload.
   DocumentTypeAsPayloadOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

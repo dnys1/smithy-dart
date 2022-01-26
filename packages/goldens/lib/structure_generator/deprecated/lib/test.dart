@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library deprecated.test.test;
+library deprecated.test;
 
 export 'package:deprecated/src/test/model/get_foo_input.dart';
 export 'package:deprecated/src/test/model/qux.dart';

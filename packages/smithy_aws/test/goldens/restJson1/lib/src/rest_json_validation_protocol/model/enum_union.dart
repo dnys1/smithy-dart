@@ -44,10 +44,10 @@ abstract class EnumUnion extends _i1.SmithyUnion<EnumUnion> {
   String toString() {
     final helper = newBuiltValueToStringHelper(r'EnumUnion');
     if (first != null) {
-      helper.add(r'first', first)!;
+      helper.add(r'first', first);
     }
     if (second != null) {
-      helper.add(r'second', second)!;
+      helper.add(r'second', second);
     }
     return helper.toString();
   }

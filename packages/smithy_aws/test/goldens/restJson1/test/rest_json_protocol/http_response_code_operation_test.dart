@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.http_response_code_test;
+library rest_json1.rest_json_protocol.test.http_response_code_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/http_response_code_output.dart'

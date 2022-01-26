@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.json_blobs_test;
+library rest_json1.rest_json_protocol.test.json_blobs_operation_test;
 
 import 'dart:typed_data' as _i6;
 

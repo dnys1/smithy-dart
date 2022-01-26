@@ -49,7 +49,9 @@ import 'package:rest_json1/src/rest_json_validation_protocol/operation/recursive
 import 'package:rest_json1/src/rest_json_validation_protocol/operation/sensitive_validation.dart'
     as _i23;
 
+/// A REST JSON service that sends JSON requests and responses with validation applied
 class RestJsonValidationProtocolClient {
+  /// A REST JSON service that sends JSON requests and responses with validation applied
   const RestJsonValidationProtocolClient({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

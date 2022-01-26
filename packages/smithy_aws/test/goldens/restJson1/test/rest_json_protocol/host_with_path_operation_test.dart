@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.host_with_path_operation_test;
+library rest_json1.rest_json_protocol.test.host_with_path_operation_test;
 
 import 'package:rest_json1/src/rest_json_protocol/operation/host_with_path_operation.dart'
     as _i3;

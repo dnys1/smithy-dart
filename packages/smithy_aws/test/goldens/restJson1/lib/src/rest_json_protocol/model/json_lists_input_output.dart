@@ -37,6 +37,8 @@ abstract class JsonListsInputOutput
   _i3.BuiltList<bool>? get booleanList;
   _i3.BuiltList<_i4.FooEnum>? get enumList;
   _i3.BuiltList<int>? get integerList;
+
+  /// A list of lists of strings.
   _i3.BuiltList<_i3.BuiltList<String>>? get nestedStringList;
   _i3.BuiltList<String?>? get sparseStringList;
   _i3.BuiltList<String>? get stringList;

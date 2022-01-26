@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.endpoint_operation_test;
+library aws_json1_1.json_protocol.test.endpoint_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/operation/endpoint_operation.dart'
     as _i3;

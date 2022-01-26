@@ -18,6 +18,7 @@ class JsonEnumsOperation extends _i1.HttpOperation<
     _i2.JsonEnumsInputOutput,
     _i2.JsonEnumsInputOutput,
     _i2.JsonEnumsInputOutput> {
+  /// This example serializes enums as top level properties, in lists, sets, and maps.
   JsonEnumsOperation({Uri? baseUri, required this.region}) : _baseUri = baseUri;
 
   @override

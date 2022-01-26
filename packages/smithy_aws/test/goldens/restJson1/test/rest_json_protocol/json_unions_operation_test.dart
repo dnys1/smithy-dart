@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.json_unions_test;
+library rest_json1.rest_json_protocol.test.json_unions_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/my_union.dart' as _i6;

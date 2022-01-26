@@ -18,6 +18,7 @@ class RecursiveShapesOperation extends _i1.HttpOperation<
     _i2.RecursiveShapesInputOutput,
     _i2.RecursiveShapesInputOutput,
     _i2.RecursiveShapesInputOutput> {
+  /// Recursive shapes
   RecursiveShapesOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

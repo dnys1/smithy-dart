@@ -15,6 +15,7 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 /// The example tests basic map serialization.
 class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
     _i2.JsonMapsInputOutput, _i2.JsonMapsInputOutput, _i2.JsonMapsInputOutput> {
+  /// The example tests basic map serialization.
   JsonMapsOperation({Uri? baseUri, required this.region}) : _baseUri = baseUri;
 
   @override

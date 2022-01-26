@@ -18,6 +18,7 @@ class PutAndGetInlineDocumentsOperation extends _i1.HttpOperation<
     _i2.PutAndGetInlineDocumentsInputOutput,
     _i2.PutAndGetInlineDocumentsInputOutput,
     _i2.PutAndGetInlineDocumentsInputOutput> {
+  /// This example serializes an inline document as part of the payload.
   PutAndGetInlineDocumentsOperation(
       {Uri? baseUri,
       required this.region,

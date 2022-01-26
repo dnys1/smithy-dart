@@ -48,10 +48,10 @@ abstract class RecursiveUnionOne extends _i1.SmithyUnion<RecursiveUnionOne> {
   String toString() {
     final helper = newBuiltValueToStringHelper(r'RecursiveUnionOne');
     if (string != null) {
-      helper.add(r'string', string)!;
+      helper.add(r'string', string);
     }
     if (union != null) {
-      helper.add(r'union', union)!;
+      helper.add(r'union', union);
     }
     return helper.toString();
   }

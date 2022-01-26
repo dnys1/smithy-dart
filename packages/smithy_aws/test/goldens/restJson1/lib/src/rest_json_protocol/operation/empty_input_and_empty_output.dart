@@ -14,12 +14,19 @@ import 'package:rest_json1/src/rest_json_protocol/model/empty_input_and_empty_ou
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// The example tests how requests and responses are serialized when there's no request or response payload because the operation has an empty input and empty output structure that reuses the same shape. While this should be rare, code generators must support this.
+/// The example tests how requests and responses are serialized when there's
+/// no request or response payload because the operation has an empty input
+/// and empty output structure that reuses the same shape. While this should
+/// be rare, code generators must support this.
 class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
     _i2.EmptyInputAndEmptyOutputInput,
     _i2.EmptyInputAndEmptyOutputInput,
     _i3.EmptyInputAndEmptyOutputOutput,
     _i3.EmptyInputAndEmptyOutputOutput> {
+  /// The example tests how requests and responses are serialized when there's
+  /// no request or response payload because the operation has an empty input
+  /// and empty output structure that reuses the same shape. While this should
+  /// be rare, code generators must support this.
   EmptyInputAndEmptyOutputOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

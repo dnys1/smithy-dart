@@ -14,12 +14,21 @@ import 'package:rest_json1/src/rest_json_protocol/model/test_payload_structure_i
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This example operation serializes a payload targeting a structure. This enforces the same requirements as TestBodyStructure but with the body specified by the @httpPayload trait.
+/// This example operation serializes a payload targeting a structure.
+///
+/// This enforces the same requirements as TestBodyStructure
+/// but with the body specified by the @httpPayload trait.
+///
 class TestPayloadStructureOperation extends _i1.HttpOperation<
     _i2.PayloadConfig,
     _i3.TestPayloadStructureInputOutput,
     _i2.PayloadConfig,
     _i3.TestPayloadStructureInputOutput> {
+  /// This example operation serializes a payload targeting a structure.
+  ///
+  /// This enforces the same requirements as TestBodyStructure
+  /// but with the body specified by the @httpPayload trait.
+  ///
   TestPayloadStructureOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

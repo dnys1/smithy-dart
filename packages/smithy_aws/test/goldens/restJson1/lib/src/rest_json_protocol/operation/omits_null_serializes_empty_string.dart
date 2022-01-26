@@ -18,6 +18,7 @@ class OmitsNullSerializesEmptyStringOperation extends _i1.HttpOperation<
     _i2.OmitsNullSerializesEmptyStringInput,
     _i1.Unit,
     _i1.Unit> {
+  /// Omits null, but serializes empty string value.
   OmitsNullSerializesEmptyStringOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

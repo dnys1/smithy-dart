@@ -12,12 +12,25 @@ import 'package:rest_json1/src/rest_json_protocol/model/json_lists_input_output.
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-/// This test case serializes JSON lists for the following cases for both input and output: 1. Normal JSON lists. 2. Normal JSON sets. 3. JSON lists of lists. 4. Lists of structures.
+/// This test case serializes JSON lists for the following cases for both
+/// input and output:
+///
+/// 1. Normal JSON lists.
+/// 2. Normal JSON sets.
+/// 3. JSON lists of lists.
+/// 4. Lists of structures.
 class JsonListsOperation extends _i1.HttpOperation<
     _i2.JsonListsInputOutput,
     _i2.JsonListsInputOutput,
     _i2.JsonListsInputOutput,
     _i2.JsonListsInputOutput> {
+  /// This test case serializes JSON lists for the following cases for both
+  /// input and output:
+  ///
+  /// 1. Normal JSON lists.
+  /// 2. Normal JSON sets.
+  /// 3. JSON lists of lists.
+  /// 4. Lists of structures.
   JsonListsOperation({Uri? baseUri, required this.region}) : _baseUri = baseUri;
 
   @override

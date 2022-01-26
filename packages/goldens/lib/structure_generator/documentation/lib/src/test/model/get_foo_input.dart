@@ -23,6 +23,8 @@ abstract class GetFooInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GetFooInputBuilder b) {}
+
+  /// Shape documentation
   String? get bar;
 
   /// Member documentation

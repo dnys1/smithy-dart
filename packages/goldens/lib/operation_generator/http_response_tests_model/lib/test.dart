@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library http_response_tests_model.test.goodbye_service;
+library http_response_tests_model.test;
 
 export 'package:http_response_tests_model/src/test/model/invalid_greeting.dart'
     hide InvalidGreetingPayload;

@@ -12,12 +12,15 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_request_with_labels
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-/// The example tests how requests are serialized when there's no input payload but there are HTTP labels.
+/// The example tests how requests are serialized when there's no input
+/// payload but there are HTTP labels.
 class HttpRequestWithLabelsOperation extends _i1.HttpOperation<
     _i2.HttpRequestWithLabelsInputPayload,
     _i2.HttpRequestWithLabelsInput,
     _i1.Unit,
     _i1.Unit> {
+  /// The example tests how requests are serialized when there's no input
+  /// payload but there are HTTP labels.
   HttpRequestWithLabelsOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

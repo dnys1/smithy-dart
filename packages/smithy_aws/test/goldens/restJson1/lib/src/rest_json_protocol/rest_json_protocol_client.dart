@@ -346,7 +346,9 @@ import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_outpu
     as _i172;
 import 'package:smithy/smithy.dart' as _i16;
 
+/// A REST JSON service that sends JSON requests and responses.
 class RestJsonProtocolClient {
+  /// A REST JSON service that sends JSON requests and responses.
   const RestJsonProtocolClient({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 
@@ -360,7 +362,9 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This example uses fixed query string params and variable query string params. The fixed query string parameters and variable parameters must both be serialized (implementations may need to merge them together).
+  /// This example uses fixed query string params and variable query string params.
+  /// The fixed query string parameters and variable parameters must both be
+  /// serialized (implementations may need to merge them together).
   _i1.Future<void> constantAndVariableQueryString(
       _i4.ConstantAndVariableQueryStringInput input) {
     return _i5.ConstantAndVariableQueryStringOperation(
@@ -368,7 +372,10 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This example uses a constant query string parameters and a label. This simply tests that labels and query string parameters are compatible. The fixed query string parameter named "hello" should in no way conflict with the label, `{hello}`.
+  /// This example uses a constant query string parameters and a label.
+  /// This simply tests that labels and query string parameters are
+  /// compatible. The fixed query string parameter named "hello" should
+  /// in no way conflict with the label, `{hello}`.
   _i1.Future<void> constantQueryString(_i6.ConstantQueryStringInput input) {
     return _i7.ConstantQueryStringOperation(region: region, baseUri: _baseUri)
         .run(input);
@@ -389,7 +396,10 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has an empty input and empty output structure that reuses the same shape. While this should be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's
+  /// no request or response payload because the operation has an empty input
+  /// and empty output structure that reuses the same shape. While this should
+  /// be rare, code generators must support this.
   _i1.Future<_i12.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
       _i13.EmptyInputAndEmptyOutputInput input) {
     return _i14.EmptyInputAndEmptyOutputOperation(
@@ -408,7 +418,16 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This operation has four possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A BadRequest error. 4. A FooError. Implementations must be able to successfully take a response and properly (de)serialize successful and error responses based on the the presence of the
+  /// This operation has four possible return values:
+  ///
+  /// 1. A successful response in the form of GreetingWithErrorsOutput
+  /// 2. An InvalidGreeting error.
+  /// 3. A BadRequest error.
+  /// 4. A FooError.
+  ///
+  /// Implementations must be able to successfully take a response and
+  /// properly (de)serialize successful and error responses based on the
+  /// the presence of the
   _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrors() {
     return _i20.GreetingWithErrorsOperation(region: region, baseUri: _baseUri)
         .run(const _i16.Unit());
@@ -432,14 +451,18 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This examples serializes a blob shape in the payload. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+  /// This examples serializes a blob shape in the payload.
+  ///
+  /// In this example, no JSON document is synthesized because the payload is
+  /// not a structure or a union type.
   _i1.Future<_i26.HttpPayloadTraitsInputOutput> httpPayloadTraits(
       _i26.HttpPayloadTraitsInputOutput input) {
     return _i27.HttpPayloadTraitsOperation(region: region, baseUri: _baseUri)
         .run(input);
   }
 
-  /// This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
+  /// This examples uses a `@mediaType` trait on the payload to force a custom
+  /// content-type to be serialized.
   _i1.Future<_i28.HttpPayloadTraitsWithMediaTypeInputOutput>
       httpPayloadTraitsWithMediaType(
           _i28.HttpPayloadTraitsWithMediaTypeInputOutput input) {
@@ -448,7 +471,10 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This examples serializes a structure in the payload. Note that serializing a structure changes the wrapper element name to match the targeted structure.
+  /// This examples serializes a structure in the payload.
+  ///
+  /// Note that serializing a structure changes the wrapper element name
+  /// to match the targeted structure.
   _i1.Future<_i30.HttpPayloadWithStructureInputOutput> httpPayloadWithStructure(
       _i30.HttpPayloadWithStructureInputOutput input) {
     return _i31.HttpPayloadWithStructureOperation(
@@ -456,7 +482,10 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This examples adds headers to the input of a request and response by prefix.
+  /// This examples adds headers to the input of a request and response by prefix.///
+  /// See also:
+  /// - [httpPrefixHeaders Trait](https://awslabs.github.io/smithy/1.0/spec/http.html#httpprefixheaders-trait)
+
   _i1.Future<_i32.HttpPrefixHeadersOutput> httpPrefixHeaders(
       _i33.HttpPrefixHeadersInput input) {
     return _i34.HttpPrefixHeadersOperation(region: region, baseUri: _baseUri)
@@ -485,7 +514,8 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// The example tests how requests are serialized when there's no input payload but there are HTTP labels.
+  /// The example tests how requests are serialized when there's no input
+  /// payload but there are HTTP labels.
   _i1.Future<void> httpRequestWithLabels(
       _i42.HttpRequestWithLabelsInput input) {
     return _i43.HttpRequestWithLabelsOperation(
@@ -493,7 +523,8 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// The example tests how requests serialize different timestamp formats in the URI path.
+  /// The example tests how requests serialize different timestamp formats in the
+  /// URI path.
   _i1.Future<void> httpRequestWithLabelsAndTimestampFormat(
       _i44.HttpRequestWithLabelsAndTimestampFormatInput input) {
     return _i45.HttpRequestWithLabelsAndTimestampFormatOperation(
@@ -519,7 +550,9 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This example ensures that query string bound request parameters are serialized in the body of responses if the structure is used in both the request and response.
+  /// This example ensures that query string bound request parameters are
+  /// serialized in the body of responses if the structure is used in both
+  /// the request and response.
   _i1.Future<_i52.IgnoreQueryParamsInResponseOutput>
       ignoreQueryParamsInResponse() {
     return _i53.IgnoreQueryParamsInResponseOperation(
@@ -527,7 +560,8 @@ class RestJsonProtocolClient {
         .run(const _i16.Unit());
   }
 
-  /// The example tests how requests and responses are serialized when there is no input or output payload but there are HTTP header bindings.
+  /// The example tests how requests and responses are serialized when there is
+  /// no input or output payload but there are HTTP header bindings.
   _i1.Future<_i54.InputAndOutputWithHeadersIo> inputAndOutputWithHeaders(
       _i54.InputAndOutputWithHeadersIo input) {
     return _i55.InputAndOutputWithHeadersOperation(
@@ -549,7 +583,13 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This test case serializes JSON lists for the following cases for both input and output: 1. Normal JSON lists. 2. Normal JSON sets. 3. JSON lists of lists. 4. Lists of structures.
+  /// This test case serializes JSON lists for the following cases for both
+  /// input and output:
+  ///
+  /// 1. Normal JSON lists.
+  /// 2. Normal JSON sets.
+  /// 3. JSON lists of lists.
+  /// 4. Lists of structures.
   _i1.Future<_i60.JsonListsInputOutput> jsonLists(
       _i60.JsonListsInputOutput input) {
     return _i61.JsonListsOperation(region: region, baseUri: _baseUri)
@@ -562,7 +602,9 @@ class RestJsonProtocolClient {
     return _i63.JsonMapsOperation(region: region, baseUri: _baseUri).run(input);
   }
 
-  /// This tests how timestamps are serialized, including using the default format of date-time and various @timestampFormat trait values.
+  /// This tests how timestamps are serialized, including using the
+  /// default format of date-time and various @timestampFormat trait
+  /// values.
   _i1.Future<_i64.JsonTimestampsInputOutput> jsonTimestamps(
       _i64.JsonTimestampsInputOutput input) {
     return _i65.JsonTimestampsOperation(region: region, baseUri: _baseUri)
@@ -782,13 +824,18 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input or output. While this should be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's
+  /// no request or response payload because the operation has no input or output.
+  /// While this should be rare, code generators must support this.
   _i1.Future<void> noInputAndNoOutput() {
     return _i135.NoInputAndNoOutputOperation(region: region, baseUri: _baseUri)
         .run(const _i16.Unit());
   }
 
-  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input and the output is empty. While this should be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's
+  /// no request or response payload because the operation has no input and the
+  /// output is empty. While this should be rare, code generators must support
+  /// this.
   _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutput() {
     return _i137.NoInputAndOutputOperation(region: region, baseUri: _baseUri)
         .run(const _i16.Unit());
@@ -859,14 +906,21 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This examples serializes a streaming blob shape in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+  /// This examples serializes a streaming blob shape in the request body.
+  ///
+  /// In this example, no JSON document is synthesized because the payload is
+  /// not a structure or a union type.
   _i1.Future<_i156.StreamingTraitsInputOutput> streamingTraits(
       _i156.StreamingTraitsInputOutput input) {
     return _i157.StreamingTraitsOperation(region: region, baseUri: _baseUri)
         .run(input);
   }
 
-  /// This examples serializes a streaming blob shape with a required content length in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+  /// This examples serializes a streaming blob shape with a required content
+  /// length in the request body.
+  ///
+  /// In this example, no JSON document is synthesized because the payload is
+  /// not a structure or a union type.
   _i1.Future<_i158.StreamingTraitsRequireLengthInputOutput>
       streamingTraitsRequireLength(
           _i158.StreamingTraitsRequireLengthInputOutput input) {
@@ -875,7 +929,10 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This examples serializes a streaming media-typed blob shape in the request body. This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
+  /// This examples serializes a streaming media-typed blob shape in the request body.
+  ///
+  /// This examples uses a `@mediaType` trait on the payload to force a custom
+  /// content-type to be serialized.
   _i1.Future<_i160.StreamingTraitsWithMediaTypeInputOutput>
       streamingTraitsWithMediaType(
           _i160.StreamingTraitsWithMediaTypeInputOutput input) {
@@ -884,28 +941,49 @@ class RestJsonProtocolClient {
         .run(input);
   }
 
-  /// This example operation serializes a structure in the HTTP body. It should ensure Content-Type: application/json is used in all requests and that an "empty" body is an empty JSON document ({}).
+  /// This example operation serializes a structure in the HTTP body.
+  ///
+  /// It should ensure Content-Type: application/json is
+  /// used in all requests and that an "empty" body is
+  /// an empty JSON document ({}).
+  ///
   _i1.Future<_i162.TestBodyStructureInputOutput> testBodyStructure(
       _i162.TestBodyStructureInputOutput input) {
     return _i163.TestBodyStructureOperation(region: region, baseUri: _baseUri)
         .run(input);
   }
 
-  /// This example operation serializes a request without an HTTP body. These tests are to ensure we do not attach a body or related headers (Content-Length, Content-Type) to operations that semantically cannot produce an HTTP body.
+  /// This example operation serializes a request without an HTTP body.
+  ///
+  /// These tests are to ensure we do not attach a body or related headers
+  /// (Content-Length, Content-Type) to operations that semantically
+  /// cannot produce an HTTP body.
+  ///
   _i1.Future<_i164.TestNoPayloadInputOutput> testNoPayload(
       _i164.TestNoPayloadInputOutput input) {
     return _i165.TestNoPayloadOperation(region: region, baseUri: _baseUri)
         .run(input);
   }
 
-  /// This example operation serializes a payload targeting a blob. The Blob shape is not structured content and we cannot make assumptions about what data will be sent. This test ensures only a generic "Content-Type: application/octet-stream" header is used, and that we are not treating an empty body as an empty JSON document.
+  /// This example operation serializes a payload targeting a blob.
+  ///
+  /// The Blob shape is not structured content and we cannot
+  /// make assumptions about what data will be sent. This test ensures
+  /// only a generic "Content-Type: application/octet-stream" header
+  /// is used, and that we are not treating an empty body as an
+  /// empty JSON document.
+  ///
   _i1.Future<_i166.TestPayloadBlobInputOutput> testPayloadBlob(
       _i166.TestPayloadBlobInputOutput input) {
     return _i167.TestPayloadBlobOperation(region: region, baseUri: _baseUri)
         .run(input);
   }
 
-  /// This example operation serializes a payload targeting a structure. This enforces the same requirements as TestBodyStructure but with the body specified by the @httpPayload trait.
+  /// This example operation serializes a payload targeting a structure.
+  ///
+  /// This enforces the same requirements as TestBodyStructure
+  /// but with the body specified by the @httpPayload trait.
+  ///
   _i1.Future<_i168.TestPayloadStructureInputOutput> testPayloadStructure(
       _i168.TestPayloadStructureInputOutput input) {
     return _i169.TestPayloadStructureOperation(

@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_validation_protocol.operation.recursive_structures_test;
+library rest_json1.rest_json_validation_protocol.test.recursive_structures_operation_test;
 
 import 'package:built_collection/built_collection.dart' as _i8;
 import 'package:built_value/serializer.dart';

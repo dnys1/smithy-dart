@@ -10,7 +10,7 @@ import 'package:smithy/smithy.dart' as _i1;
 
 part 'get_foo_input.g.dart';
 
-/// This \*is\* documentation about the shape.
+/// This *is* documentation about the shape.
 abstract class GetFooInput
     with _i1.HttpInput<GetFooInput>, _i2.AWSEquatable<GetFooInput>
     implements Built<GetFooInput, GetFooInputBuilder> {
@@ -26,7 +26,7 @@ abstract class GetFooInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(GetFooInputBuilder b) {}
 
-  /// This \*is\* documentation about the member.
+  /// This *is* documentation about the member.
   int get bar;
   int? get baz;
   int get byteValue;

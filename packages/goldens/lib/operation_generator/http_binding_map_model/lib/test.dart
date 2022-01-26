@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library http_binding_map_model.test.test;
+library http_binding_map_model.test;
 
 export 'package:http_binding_map_model/src/test/model/map_input_error.dart';
 export 'package:http_binding_map_model/src/test/model/map_input_request.dart';

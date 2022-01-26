@@ -20,6 +20,7 @@ class PostPlayerActionOperation extends _i1.HttpOperation<
     _i2.PostPlayerActionInput,
     _i3.PostPlayerActionOutput,
     _i3.PostPlayerActionOutput> {
+  /// This operation defines a union with a Unit member.
   PostPlayerActionOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

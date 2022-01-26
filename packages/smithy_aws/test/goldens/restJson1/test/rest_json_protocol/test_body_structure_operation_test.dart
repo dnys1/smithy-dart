@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.test_body_structure_test;
+library rest_json1.rest_json_protocol.test.test_body_structure_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/test_body_structure_input_output.dart'

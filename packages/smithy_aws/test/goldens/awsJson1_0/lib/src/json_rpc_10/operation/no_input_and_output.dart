@@ -11,9 +11,16 @@ import 'package:aws_json1_0/src/json_rpc_10/model/no_input_and_output_output.dar
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-/// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input and the output is empty. While this should be rare, code generators must support this.
+/// The example tests how requests and responses are serialized when there's
+/// no request or response payload because the operation has no input and the
+/// output is empty. While this should be rare, code generators must support
+/// this.
 class NoInputAndOutputOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i2.NoInputAndOutputOutput, _i2.NoInputAndOutputOutput> {
+  /// The example tests how requests and responses are serialized when there's
+  /// no request or response payload because the operation has no input and the
+  /// output is empty. While this should be rare, code generators must support
+  /// this.
   NoInputAndOutputOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

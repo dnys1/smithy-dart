@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library http_request_tests_model.test.operation.say_hello_test;
+library http_request_tests_model.test.test.say_hello_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:http_request_tests_model/src/test/model/say_hello_input.dart'

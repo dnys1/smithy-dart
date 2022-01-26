@@ -42,10 +42,10 @@ abstract class PatternUnion extends _i1.SmithyUnion<PatternUnion> {
   String toString() {
     final helper = newBuiltValueToStringHelper(r'PatternUnion');
     if (first != null) {
-      helper.add(r'first', first)!;
+      helper.add(r'first', first);
     }
     if (second != null) {
-      helper.add(r'second', second)!;
+      helper.add(r'second', second);
     }
     return helper.toString();
   }

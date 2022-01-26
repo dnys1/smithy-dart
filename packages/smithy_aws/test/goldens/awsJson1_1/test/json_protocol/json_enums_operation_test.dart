@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.json_enums_test;
+library aws_json1_1.json_protocol.test.json_enums_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/foo_enum.dart' as _i7;
 import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart'

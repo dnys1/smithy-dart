@@ -14,12 +14,15 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_payload_traits_with
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
+/// This examples uses a `@mediaType` trait on the payload to force a custom
+/// content-type to be serialized.
 class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
     _i2.Uint8List,
     _i3.HttpPayloadTraitsWithMediaTypeInputOutput,
     _i2.Uint8List,
     _i3.HttpPayloadTraitsWithMediaTypeInputOutput> {
+  /// This examples uses a `@mediaType` trait on the payload to force a custom
+  /// content-type to be serialized.
   HttpPayloadTraitsWithMediaTypeOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

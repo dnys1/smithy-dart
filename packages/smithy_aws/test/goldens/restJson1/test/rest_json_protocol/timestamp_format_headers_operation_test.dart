@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.timestamp_format_headers_test;
+library rest_json1.rest_json_protocol.test.timestamp_format_headers_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers_io.dart'

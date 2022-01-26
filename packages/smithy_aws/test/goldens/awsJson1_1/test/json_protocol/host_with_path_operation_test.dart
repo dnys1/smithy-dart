@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.host_with_path_operation_test;
+library aws_json1_1.json_protocol.test.host_with_path_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/operation/host_with_path_operation.dart'
     as _i3;

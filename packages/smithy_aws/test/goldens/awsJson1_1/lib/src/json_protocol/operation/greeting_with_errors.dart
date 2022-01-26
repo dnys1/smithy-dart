@@ -16,9 +16,24 @@ import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
-/// This operation has three possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A ComplexError error. Implementations must be able to successfully take a response and properly deserialize successful and error responses.
+/// This operation has three possible return values:
+///
+/// 1. A successful response in the form of GreetingWithErrorsOutput
+/// 2. An InvalidGreeting error.
+/// 3. A ComplexError error.
+///
+/// Implementations must be able to successfully take a response and
+/// properly deserialize successful and error responses.
 class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i2.GreetingWithErrorsOutput, _i2.GreetingWithErrorsOutput> {
+  /// This operation has three possible return values:
+  ///
+  /// 1. A successful response in the form of GreetingWithErrorsOutput
+  /// 2. An InvalidGreeting error.
+  /// 3. A ComplexError error.
+  ///
+  /// Implementations must be able to successfully take a response and
+  /// properly deserialize successful and error responses.
   GreetingWithErrorsOperation(
       {Uri? baseUri,
       required this.region,

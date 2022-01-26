@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.http_payload_traits_with_media_type_test;
+library rest_json1.rest_json_protocol.test.http_payload_traits_with_media_type_operation_test;
 
 import 'dart:typed_data' as _i6;
 

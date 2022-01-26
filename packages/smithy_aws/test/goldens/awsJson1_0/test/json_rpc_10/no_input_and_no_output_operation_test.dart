@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_0.json_rpc_10.operation.no_input_and_no_output_test;
+library aws_json1_0.json_rpc_10.test.no_input_and_no_output_operation_test;
 
 import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_no_output.dart'
     as _i3;

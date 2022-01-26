@@ -20,6 +20,7 @@ class HttpPrefixHeadersInResponseOperation extends _i1.HttpOperation<
     _i2.HttpPrefixHeadersInResponseInput,
     _i3.HttpPrefixHeadersInResponseOutputPayload,
     _i3.HttpPrefixHeadersInResponseOutput> {
+  /// Clients that perform this test extract all headers from the response.
   HttpPrefixHeadersInResponseOperation({Uri? baseUri, required this.region})
       : _baseUri = baseUri;
 

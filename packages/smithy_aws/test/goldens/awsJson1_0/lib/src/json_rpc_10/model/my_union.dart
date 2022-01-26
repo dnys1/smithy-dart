@@ -111,31 +111,31 @@ abstract class MyUnion extends _i1.SmithyUnion<MyUnion> {
   String toString() {
     final helper = newBuiltValueToStringHelper(r'MyUnion');
     if (blobValue != null) {
-      helper.add(r'blobValue', blobValue)!;
+      helper.add(r'blobValue', blobValue);
     }
     if (booleanValue != null) {
-      helper.add(r'booleanValue', booleanValue)!;
+      helper.add(r'booleanValue', booleanValue);
     }
     if (enumValue != null) {
-      helper.add(r'enumValue', enumValue)!;
+      helper.add(r'enumValue', enumValue);
     }
     if (listValue != null) {
-      helper.add(r'listValue', listValue)!;
+      helper.add(r'listValue', listValue);
     }
     if (mapValue != null) {
-      helper.add(r'mapValue', mapValue)!;
+      helper.add(r'mapValue', mapValue);
     }
     if (numberValue != null) {
-      helper.add(r'numberValue', numberValue)!;
+      helper.add(r'numberValue', numberValue);
     }
     if (stringValue != null) {
-      helper.add(r'stringValue', stringValue)!;
+      helper.add(r'stringValue', stringValue);
     }
     if (structureValue != null) {
-      helper.add(r'structureValue', structureValue)!;
+      helper.add(r'structureValue', structureValue);
     }
     if (timestampValue != null) {
-      helper.add(r'timestampValue', timestampValue)!;
+      helper.add(r'timestampValue', timestampValue);
     }
     return helper.toString();
   }

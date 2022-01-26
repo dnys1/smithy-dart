@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library aws_json1_1.json_protocol.operation.simple_scalar_properties_test;
+library aws_json1_1.json_protocol.test.simple_scalar_properties_operation_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/simple_scalar_properties_input_output.dart'
     as _i6;

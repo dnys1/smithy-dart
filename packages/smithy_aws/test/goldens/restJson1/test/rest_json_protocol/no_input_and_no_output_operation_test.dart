@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.no_input_and_no_output_test;
+library rest_json1.rest_json_protocol.test.no_input_and_no_output_operation_test;
 
 import 'package:rest_json1/src/rest_json_protocol/operation/no_input_and_no_output.dart'
     as _i3;

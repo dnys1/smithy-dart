@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.http_request_with_float_labels_test;
+library rest_json1.rest_json_protocol.test.http_request_with_float_labels_operation_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/http_request_with_float_labels_input.dart'

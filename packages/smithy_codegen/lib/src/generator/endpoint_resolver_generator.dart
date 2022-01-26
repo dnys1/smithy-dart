@@ -82,6 +82,7 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
         .newInstance([refer('_partitions')]);
     yield Field(
       (f) => f
+        ..annotations.add(DartTypes.meta.internal)
         ..modifier = FieldModifier.final$
         ..type = DartTypes.smithyAws.awsEndpointResolver
         ..name = 'endpointResolver'
@@ -91,6 +92,7 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
     // The `sdkId` field.
     yield Field(
       (f) => f
+        ..annotations.add(DartTypes.meta.internal)
         ..modifier = FieldModifier.constant
         ..type = DartTypes.core.string
         ..name = 'sdkId'

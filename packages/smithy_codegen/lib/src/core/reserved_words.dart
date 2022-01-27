@@ -118,4 +118,5 @@ const reservedTypeNames = [
   // Conflicts with usages of core.Type in serializer classes.
   'Type',
   'Function',
+  'Object',
 ];

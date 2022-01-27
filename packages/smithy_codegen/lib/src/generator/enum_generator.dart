@@ -30,7 +30,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
 
   @override
   Library generate() {
-    context.generatedTypes[symbol] = [];
+    // Tracks the generated type.
+    context.generatedTypes[symbol] ??= [];
 
     builder.body.addAll([
       _classDefinition,

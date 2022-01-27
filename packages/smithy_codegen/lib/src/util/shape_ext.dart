@@ -82,7 +82,7 @@ extension ShapeClassName on Shape {
           return shape.className(context) == '${name}Builder';
         });
     if (needsRename) {
-      return '$name\$';
+      return '${context.serviceName.pascalCase}$name';
     }
     return name;
   }

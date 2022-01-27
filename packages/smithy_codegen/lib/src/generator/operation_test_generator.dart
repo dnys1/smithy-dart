@@ -367,8 +367,11 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       });
 
   /// Create strings which are safe for printing in Dart code.
-  String _escapeBody(String body) =>
-      body.replaceAll('\\', '\\\\').replaceAll('\$', '\\\$');
+  String _escapeBody(String body) => body
+      .replaceAll('\\', '\\\\')
+      .replaceAll('\$', '\\\$')
+      .replaceAll('\r', '\\r')
+      .replaceAll('\n', '\\n');
 
   /// Recursively checks parameters for:
   /// 1. Escapes string since the translation from IDL creates non-Dart-y strings.

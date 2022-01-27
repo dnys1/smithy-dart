@@ -51,7 +51,11 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       smithyLibrary: testLibrary,
     ).generate();
     if (generated != null) {
-      yield GeneratedLibrary(testLibrary, generated);
+      yield GeneratedLibrary(
+        testLibrary,
+        generated,
+        libraryDocs: '// ignore_for_file: unused_element\n',
+      );
     }
 
     // Build the input, output and error shapes
@@ -62,7 +66,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     ].map(context.shapeFor).cast<StructureShape>();
 
     for (final child in shapes) {
-      if (!context.shapes.values.contains(child)) {
+      if (!context.shapes.keys.contains(child.shapeId)) {
         yield* structureShape(child);
       }
     }
@@ -159,6 +163,14 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   Iterable<GeneratedLibrary> _foreignMembers(Iterable<MemberShape> members) {
     return members
         .map((shape) => context.shapeFor(shape.target))
+        .expand((shape) {
+          if (shape is CollectionShape) {
+            return [context.shapeFor(shape.member.target)];
+          } else if (shape is MapShape) {
+            return [shape.key.target, shape.value.target].map(context.shapeFor);
+          }
+          return [shape];
+        })
         .where((target) => !context.shapes.keys.contains(target.shapeId))
         .expand((shape) => shape.accept(this) ?? const Iterable.empty());
   }

@@ -2,13 +2,38 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 
-const List<Serializer> testSerializers = [
+final testSerializer =
+    (Serializers().toBuilder()..addPlugin(SmithyJsonPlugin())).build();
+
+const testSerializers = <Serializer>[
   _BinaryTestSerializer(),
   _Int64Serializer(),
+  BigIntSerializer.asString,
+  DoubleSerializer(),
+  TimestampSerializer.epochSeconds,
+  UnitSerializer(),
 ];
+
+Serializers buildSerializers(
+  Serializers protocol,
+  List<Serializer>? userSerializers,
+) {
+  final serializersBuilder = testSerializer.toBuilder()
+    ..addAll([
+      ...protocol.serializers,
+      ...testSerializers,
+      ...?userSerializers,
+    ]);
+  for (final builderFactory in protocol.builderFactories.entries) {
+    serializersBuilder.addBuilderFactory(
+      builderFactory.key,
+      builderFactory.value,
+    );
+  }
+  return serializersBuilder.build();
+}
 
 /// Parameter values that contain binary data MUST be defined using values that
 /// can be represented in plain text (for example, use "foo" and not "Zm9vCg==").

@@ -23,6 +23,9 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
 
   @override
   Library generate() {
+    // Tracks the generated type.
+    context.generatedTypes[symbol] ??= [];
+
     builder.body.addAll([
       _unionClass,
       ..._variantClasses,

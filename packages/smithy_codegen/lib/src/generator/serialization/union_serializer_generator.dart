@@ -26,9 +26,6 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
 
   @override
   Class generate() {
-    // Tracks the generated type.
-    context.generatedTypes[symbol] = [];
-
     return Class(
       (c) => c
         ..name = serializerClassName
@@ -69,8 +66,8 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     for (final member in sortedMembers) {
       builder.statements.addAll([
         Code("case '${member.memberName}':"),
-        refer(variantClassName(member))
-            .newInstance([
+        symbol
+            .newInstanceNamed(variantName(member), [
               deserializerFor(
                 member,
                 memberSymbol: memberSymbols[member]!.unboxed,
@@ -86,8 +83,8 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
 
       // Add the unknown option. Do not try to deserialize it since
       // we have no information about it.
-      refer(variantClassName(unknownMember))
-          .newInstance([refer('key'), refer('value')])
+      symbol
+          .newInstanceNamed(sdkUnknown, [refer('key'), refer('value')])
           .returned
           .statement,
     ]);

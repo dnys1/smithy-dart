@@ -30,7 +30,8 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   String get serializerClassName {
     final withProtocolName = protocol.isSynthetic ? '' : protocol.shapeId.shape;
     return '_' +
-        '${shape.shapeId.shape}_${withProtocolName}_Serializer'.pascalCase;
+        '${shape.className(context)!}_${withProtocolName}_Serializer'
+            .pascalCase;
   }
 
   /// The symbol to be serialized.
@@ -46,7 +47,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
             refer('super').call([
               // Use the unprocessed shape name as the wire name, since this is
               // what we can expect to see for protocols which use it like XML.
-              literalString(shape.shapeId.shape),
+              literalString(shape.className(context)!),
             ]).code,
           ),
       );
@@ -136,7 +137,8 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
-    if (type == ShapeType.timestamp) {
+    if (type == ShapeType.timestamp &&
+        protocol.supportsTrait(TimestampFormatTrait.id)) {
       final format = member.timestampFormat ?? targetShape.timestampFormat;
       if (format != null) {
         return DartTypes.smithy.timestampSerializer
@@ -148,7 +150,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
         ]);
       }
     }
-    if (type == ShapeType.string) {
+    if (type == ShapeType.string && protocol.supportsTrait(MediaTypeTrait.id)) {
       final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
       switch (mediaType) {
         case 'application/json':
@@ -182,7 +184,8 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
-    if (type == ShapeType.timestamp) {
+    if (type == ShapeType.timestamp &&
+        protocol.supportsTrait(TimestampFormatTrait.id)) {
       final format = config.isTest
           // Test params are always in epoch seconds.
           // https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#parameter-format
@@ -195,7 +198,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
             .call([refer('serializers'), value]);
       }
     }
-    if (type == ShapeType.string) {
+    if (type == ShapeType.string && protocol.supportsTrait(MediaTypeTrait.id)) {
       final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
       switch (mediaType) {
         case 'application/json':

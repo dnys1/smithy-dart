@@ -43,5 +43,6 @@ class RestJson1Trait extends AWSProtocolTrait {
         HttpQueryParamsTrait.id,
         JsonNameTrait.id,
         TimestampFormatTrait.id,
+        MediaTypeTrait.id,
       ];
 }

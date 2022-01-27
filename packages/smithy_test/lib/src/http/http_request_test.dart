@@ -20,12 +20,10 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
   );
-  final serializers = (protocol.serializers.toBuilder()
-        ..addAll([
-          ...testSerializers,
-          ...?inputSerializers,
-        ]))
-      .build();
+  final serializers = buildSerializers(
+    protocol.serializers,
+    inputSerializers,
+  );
   final input = serializers.deserialize(
     testCase.params,
     specifiedType: FullType(Input),

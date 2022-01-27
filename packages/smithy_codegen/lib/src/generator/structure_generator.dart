@@ -34,7 +34,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   @override
   Library generate() {
     // Add .g.dart part directive
-    builder.directives.add(Directive.part('${className.snakeCase}.g.dart'));
+    builder.directives
+        .add(Directive.part('${shape.className(context)!.snakeCase}.g.dart'));
 
     // Hide the payload symbol if there is one
     (context.generatedTypes[symbol] ??= []).addAll([

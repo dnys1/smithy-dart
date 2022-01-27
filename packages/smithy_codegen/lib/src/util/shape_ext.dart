@@ -50,11 +50,11 @@ extension SimpleShapeUtil on SimpleShape {
   }
 }
 
-extension on Shape {
+extension ShapeClassName on Shape {
   /// The unescaped, unmodified class name for the shape.
   ///
-  /// Should use [className] instead.
-  String? dartClassName(CodegenContext context) {
+  /// Should use [escapedClassName] instead.
+  String? className(CodegenContext context) {
     final type = getType();
     switch (type) {
       case ShapeType.string:
@@ -70,20 +70,19 @@ extension on Shape {
     }
     return (rename(context) ?? shapeId.shape).pascalCase;
   }
-}
 
-extension ShapeClassName on Shape {
-  String? className(CodegenContext context) {
-    final name = dartClassName(context);
+  /// The escaped class name.
+  String? escapedClassName(CodegenContext context) {
+    final name = className(context);
     if (name == null) {
       return null;
     }
     final needsRename = reservedTypeNames.contains(name) ||
         context.shapes.values.any((shape) {
-          return shape.dartClassName(context) == '${name}Builder';
+          return shape.className(context) == '${name}Builder';
         });
     if (needsRename) {
-      return '${name}X';
+      return '$name\$';
     }
     return name;
   }
@@ -94,17 +93,20 @@ extension DartName on String {
     assert(parentType == ShapeType.string ||
         parentType == ShapeType.union ||
         parentType == ShapeType.structure);
-    var name = this;
     final reservedWords = [
       ...hardReservedWords,
       if (parentType == ShapeType.string) ...enumReservedWords,
       if (parentType == ShapeType.union) ...unionReservedWords,
       if (parentType == ShapeType.structure) ...structReservedWords,
     ];
+
+    // `built_value` doesn't escape names in generated strings, so using '$'
+    // causes compilation errors.
     final escapeChar =
         (parentType == ShapeType.string || parentType == ShapeType.union)
             ? '\$'
             : '_';
+    var name = this;
     if (reservedWords.contains(name)) {
       name = '$name$escapeChar';
     }

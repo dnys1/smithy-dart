@@ -20,7 +20,7 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
 
   /// The re-cased name for the generated class.
   String get className {
-    return shape.className(context)!;
+    return shape.escapedClassName(context)!;
   }
 }
 

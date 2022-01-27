@@ -64,7 +64,8 @@ class PubspecGenerator implements Generator<String> {
       return '''
   $name:
     path: ${path.join(smithyPath!, name)}''';
-    } else if (dependency.type == DependencyType.aws) {
+    } else if (dependency.type == DependencyType.smithy ||
+        dependency.type == DependencyType.aws) {
       return '''
   $name:
     hosted: https://pub.dillonnys.com
@@ -90,9 +91,9 @@ class PubspecGenerator implements Generator<String> {
     }
     return '''
 name: ${pubspec.name}
-description: ${pubspec.name.groupIntoWords().map((s) => s.capitalized).join(' ')} client SDK
+description: ${pubspec.description ?? pubspec.name.groupIntoWords().map((s) => s.capitalized).join(' ') + ' client SDK'}
 version: ${pubspec.version?.canonicalizedVersion ?? '0.1.0'}
-${smithyPath == null ? '' : 'publish_to: none'}
+${smithyPath == null ? pubspec.publishTo != null ? 'publish_to: ${pubspec.publishTo}\n' : '' : 'publish_to: none\n'}${pubspec.homepage != null ? 'homepage: ${pubspec.homepage}\n' : ''}
 
 environment:
   sdk: ">=2.15.0 <3.0.0"

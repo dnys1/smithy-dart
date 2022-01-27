@@ -764,7 +764,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       final stringValue =
           isSensitive ? literalString('***SENSITIVE***') : refer(dartName);
       builder.addExpression(helper.property('add').call([
-        literalString(dartName, raw: true),
+        literalString(dartName),
         stringValue,
       ]));
     }

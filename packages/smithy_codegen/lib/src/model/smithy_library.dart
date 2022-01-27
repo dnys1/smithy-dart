@@ -74,8 +74,13 @@ extension SmithyLibraryX on SmithyLibrary {
     ]);
   }
 
-  static String _sanitize(String name) =>
-      name.replaceAll(RegExp(r'.dart$'), '').snakeCase;
+  static String _sanitize(String name) {
+    var sanitized = name.replaceAll(RegExp(r'.dart$'), '').snakeCase;
+    if (name.startsWith('_') && !sanitized.startsWith('_')) {
+      sanitized = '_$sanitized';
+    }
+    return sanitized;
+  }
 
   /// The `lib/`-relative path.
   String get libRelativePath {

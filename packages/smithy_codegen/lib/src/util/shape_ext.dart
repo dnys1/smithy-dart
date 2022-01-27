@@ -103,9 +103,9 @@ extension DartName on String {
     // `built_value` doesn't escape names in generated strings, so using '$'
     // causes compilation errors.
     final escapeChar =
-        (parentType == ShapeType.string || parentType == ShapeType.union)
-            ? '\$'
-            : '_';
+        // (parentType == ShapeType.string || parentType == ShapeType.union)
+        //     ? '\$'
+        /* : */ '_';
     var name = this;
     if (reservedWords.contains(name)) {
       name = '$name$escapeChar';
@@ -200,7 +200,7 @@ extension ShapeUtils on Shape {
 
     // Add external documentation
     final externalDocs = getTrait<ExternalDocumentationTrait>()?.urls;
-    if (externalDocs != null) {
+    if (externalDocs != null && externalDocs.isNotEmpty) {
       if (buf.isNotEmpty) buf.writeln('///');
       buf.writeln('/// See also:');
       externalDocs.forEach((key, value) {

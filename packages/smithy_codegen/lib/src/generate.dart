@@ -55,7 +55,7 @@ List<GeneratedLibrary> generateForAst(
       shapes: serviceClosure,
       packageName: packageName,
       serviceShapeId: serviceShape.shapeId,
-      serviceName: serviceName,
+      serviceName: serviceShapes.length == 1 ? serviceName : null,
     );
 
     // Generate libraries for relevant shape types.

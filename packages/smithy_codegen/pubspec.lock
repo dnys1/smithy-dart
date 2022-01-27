@@ -49,14 +49,14 @@ packages:
       name: aws_common
       url: "https://pub.dillonnys.com"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.2"
   aws_signature_v4:
     dependency: transitive
     description:
       name: aws_signature_v4
       url: "https://pub.dillonnys.com"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -532,7 +532,7 @@ packages:
       path: "../smithy_test"
       relative: true
     source: path
-    version: "0.1.1"
+    version: "0.1.0"
   source_gen:
     dependency: transitive
     description:

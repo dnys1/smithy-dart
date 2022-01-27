@@ -1,7 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
-import 'package:smithy_codegen/src/model/smithy_library.dart';
 
 /// Operates similar to [Allocator.simplePrefixing], prefixing symbols using
 /// a simple incrementor.

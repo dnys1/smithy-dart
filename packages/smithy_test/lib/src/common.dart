@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:test/test.dart';

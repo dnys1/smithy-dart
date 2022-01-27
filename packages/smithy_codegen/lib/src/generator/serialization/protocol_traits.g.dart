@@ -933,7 +933,7 @@ class _$XmlProtocolTraits extends XmlProtocolTraits {
   @override
   final String? wireName;
   @override
-  final XmlNamespaceTrait namespace;
+  final XmlNamespaceTrait? namespace;
   @override
   final BuiltSet<MemberShape> attributeMembers;
   @override
@@ -949,14 +949,12 @@ class _$XmlProtocolTraits extends XmlProtocolTraits {
 
   _$XmlProtocolTraits._(
       {this.wireName,
-      required this.namespace,
+      this.namespace,
       required this.attributeMembers,
       required this.flattenedMembers,
       required this.memberNamespaces,
       required this.memberWireNames})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        namespace, 'XmlProtocolTraits', 'namespace');
     BuiltValueNullFieldError.checkNotNull(
         attributeMembers, 'XmlProtocolTraits', 'attributeMembers');
     BuiltValueNullFieldError.checkNotNull(
@@ -1089,8 +1087,7 @@ class XmlProtocolTraitsBuilder
       _$result = _$v ??
           new _$XmlProtocolTraits._(
               wireName: wireName,
-              namespace: BuiltValueNullFieldError.checkNotNull(
-                  namespace, 'XmlProtocolTraits', 'namespace'),
+              namespace: namespace,
               attributeMembers: attributeMembers.build(),
               flattenedMembers: flattenedMembers.build(),
               memberNamespaces: memberNamespaces.build(),

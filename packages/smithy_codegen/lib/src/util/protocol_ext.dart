@@ -6,6 +6,9 @@ import 'package:smithy_codegen/src/generator/serialization/serializer_config.dar
 import 'package:smithy_codegen/src/generator/types.dart';
 
 extension ProtocolUtils on ProtocolDefinitionTrait {
+  /// Whether this protocol supports [traitId].
+  bool supportsTrait(ShapeId traitId) => traits.contains(traitId);
+
   /// The protocol class which can be instantiated.
   Reference get instantiableProtocolSymbol {
     switch (runtimeType) {

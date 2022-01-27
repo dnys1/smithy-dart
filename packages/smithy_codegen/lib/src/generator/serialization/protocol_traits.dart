@@ -116,7 +116,7 @@ abstract class XmlProtocolTraits
   XmlProtocolTraits._();
 
   String? get wireName;
-  XmlNamespaceTrait get namespace;
+  XmlNamespaceTrait? get namespace;
   BuiltSet<MemberShape> get attributeMembers;
   BuiltSet<MemberShape> get flattenedMembers;
   BuiltMap<MemberShape, XmlNamespaceTrait> get memberNamespaces;

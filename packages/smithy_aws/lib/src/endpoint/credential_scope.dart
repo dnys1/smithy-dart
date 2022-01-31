@@ -14,4 +14,9 @@ class CredentialScope {
 
   final String? region;
   final String? service;
+
+  Map<Object?, Object?> get zoneValues => {
+        #sigV4Region: region,
+        #sigV4Service: service,
+      };
 }

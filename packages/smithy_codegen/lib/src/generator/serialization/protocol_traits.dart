@@ -6,15 +6,18 @@ import 'package:smithy_ast/smithy_ast.dart';
 
 part 'protocol_traits.g.dart';
 
-@BuiltValue(instantiable: false)
-abstract class ProtocolTraits {
-  BuiltMap<MemberShape, String> get memberWireNames;
-}
+abstract class ProtocolTraits
+    implements Built<ProtocolTraits, ProtocolTraitsBuilder> {
+  factory ProtocolTraits([void Function(ProtocolTraitsBuilder) updates]) =
+      _$ProtocolTraits;
+  ProtocolTraits._();
 
-abstract class ProtocolTraitsBuilder {
-  MapBuilder<MemberShape, String> get memberWireNames;
-  set memberWireNames(MapBuilder<MemberShape, String> memberWireNames);
-  ProtocolTraits build();
+  String? get wireName;
+  XmlNamespaceTrait? get namespace;
+  BuiltSet<MemberShape> get attributeMembers;
+  BuiltSet<MemberShape> get flattenedMembers;
+  BuiltMap<MemberShape, XmlNamespaceTrait> get memberNamespaces;
+  BuiltMap<MemberShape, String> get memberWireNames;
 }
 
 abstract class HttpPayload implements Built<HttpPayload, HttpPayloadBuilder> {
@@ -85,41 +88,6 @@ abstract class HttpErrorTraits
   Reference get symbol;
   RetryConfig? get retryConfig;
   int? get statusCode;
-}
-
-abstract class JsonProtocolTraits
-    implements
-        ProtocolTraits,
-        Built<JsonProtocolTraits, JsonProtocolTraitsBuilder> {
-  factory JsonProtocolTraits(
-          [void Function(JsonProtocolTraitsBuilder) updates]) =
-      _$JsonProtocolTraits;
-  JsonProtocolTraits._();
-}
-
-abstract class RestJson1ProtocolTraits
-    implements
-        ProtocolTraits,
-        Built<RestJson1ProtocolTraits, RestJson1ProtocolTraitsBuilder> {
-  factory RestJson1ProtocolTraits(
-          [void Function(RestJson1ProtocolTraitsBuilder) updates]) =
-      _$RestJson1ProtocolTraits;
-  RestJson1ProtocolTraits._();
-}
-
-abstract class XmlProtocolTraits
-    implements
-        ProtocolTraits,
-        Built<XmlProtocolTraits, XmlProtocolTraitsBuilder> {
-  factory XmlProtocolTraits([void Function(XmlProtocolTraitsBuilder) updates]) =
-      _$XmlProtocolTraits;
-  XmlProtocolTraits._();
-
-  String? get wireName;
-  XmlNamespaceTrait? get namespace;
-  BuiltSet<MemberShape> get attributeMembers;
-  BuiltSet<MemberShape> get flattenedMembers;
-  BuiltMap<MemberShape, XmlNamespaceTrait> get memberNamespaces;
 }
 
 abstract class PaginationItem

@@ -25,6 +25,10 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   late final SerializerConfig config;
   final ProtocolDefinitionTrait protocol;
 
+  // Use the unprocessed shape name as the wire name, since this is
+  // what we can expect to see for protocols which use it like XML.
+  late final String wireName = shape.className(context)!;
+
   bool get isStructuredSerializer;
 
   String get serializerClassName {
@@ -44,11 +48,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
         (c) => c
           ..constant = true
           ..initializers.add(
-            refer('super').call([
-              // Use the unprocessed shape name as the wire name, since this is
-              // what we can expect to see for protocols which use it like XML.
-              literalString(shape.className(context)!),
-            ]).code,
+            refer('super').call([literalString(wireName)]).code,
           ),
       );
 
@@ -133,7 +133,6 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   }) {
     final targetShape = context.shapeFor(member.target);
     final type = targetShape.getType();
-    final isNullable = member.isNullable(context, shape);
     memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
@@ -144,10 +143,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
         return DartTypes.smithy.timestampSerializer
             .property(format.name)
             .property('serialize')
-            .call([
-          refer('serializers'),
-          isNullable ? memberRef.nullChecked : memberRef
-        ]);
+            .call([refer('serializers'), memberRef]);
       }
     }
     if (type == ShapeType.string && protocol.supportsTrait(MediaTypeTrait.id)) {
@@ -157,10 +153,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           return DartTypes.smithy.encodedJsonObjectSerializer
               .constInstance([])
               .property('serialize')
-              .call([
-                refer('serializers'),
-                isNullable ? memberRef.nullChecked : memberRef
-              ]);
+              .call([refer('serializers'), memberRef]);
       }
     }
 

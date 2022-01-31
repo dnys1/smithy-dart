@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
+import 'package:xml/xml.dart';
 
 class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
@@ -12,6 +14,7 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     List<HttpInterceptor> interceptors = const [],
     List<SmithySerializer> serializers = const [],
     Map<FullType, Function> builderFactories = const {},
+    this.noErrorWrapping = false,
   }) : super(
           _coreSerializers,
           serializers: serializers,
@@ -20,13 +23,18 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
         );
 
   static final _coreSerializers = (Serializers().toBuilder()
-        ..addPlugin(const XmlPlugin())
-        ..addAll([
+        ..addPlugin(const SmithyXmlPlugin())
+        ..addAll(const [
           BigIntSerializer.asString,
-          const DoubleSerializer(),
-          Int64Serializer.asNum,
+          XmlNumSerializer(),
+          Int64Serializer.asString,
           TimestampSerializer.dateTime,
-          const UnitSerializer(),
+          UnitSerializer(),
+          XmlBoolSerializer(),
+          XmlBuiltListSerializer(),
+          XmlBuiltMapSerializer(),
+          XmlBuiltSetSerializer(),
+          XmlStringSerializer(),
         ]))
       .build();
 
@@ -35,6 +43,9 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
 
   /// The `Content-Type` to use for [InputPayload].
   final String? mediaType;
+
+  /// Disables the wrapping of error properties in an ErrorResponse XML element.
+  final bool noErrorWrapping;
 
   @override
   String get contentType =>
@@ -46,10 +57,24 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
       'application/xml';
 
   @override
-  FullSerializer<List<int>> get wireSerializer => throw UnimplementedError();
+  late final FullSerializer<List<int>> wireSerializer =
+      XmlSerializer(serializers);
 
   @override
-  Future<String?> resolveErrorType(AWSStreamedHttpResponse response) {
-    throw UnimplementedError();
+  Future<String?> resolveErrorType(AWSStreamedHttpResponse response) async {
+    try {
+      final body = await utf8.decodeStream(response.split());
+      final el = XmlDocument.parse(body).rootElement;
+      return el.childElements
+              .firstWhereOrNull((el) => el.name.local == 'Error')
+              ?.childElements
+              .firstWhere((el) => el.name.local == 'Code')
+              .innerText ??
+          el.childElements
+              .firstWhere((el) => el.name.local == 'Code')
+              .innerText;
+    } on Exception {
+      return null;
+    }
   }
 }

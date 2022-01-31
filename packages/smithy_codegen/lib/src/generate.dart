@@ -23,6 +23,7 @@ List<GeneratedLibrary> generateForAst(
   required String packageName,
   String? serviceName,
   Pubspec? pubspec,
+  List<ShapeId> additionalShapes = const [],
 }) {
   var serviceShapes = ast.shapes.values.whereType<ServiceShape>();
   if (serviceName != null) {
@@ -40,7 +41,7 @@ List<GeneratedLibrary> generateForAst(
 
   for (final serviceShape in serviceShapes) {
     // Builds a service closure with just one service shape. All the other
-    // shape can remain - they will not be generated for services which do
+    // shapes can remain - they will not be generated for services which do
     // not reference them due to how LibraryVisitor works.
     final serviceClosure = ShapeMap({
       for (final entry
@@ -56,6 +57,7 @@ List<GeneratedLibrary> generateForAst(
       packageName: packageName,
       serviceShapeId: serviceShape.shapeId,
       serviceName: serviceShapes.length == 1 ? serviceName : null,
+      additionalShapes: additionalShapes,
     );
 
     // Generate libraries for relevant shape types.

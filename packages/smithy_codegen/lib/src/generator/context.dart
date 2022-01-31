@@ -18,12 +18,14 @@ class CodegenContext {
     ShapeId? serviceShapeId,
     String? serviceName,
     this.pubspec,
+    List<ShapeId> additionalShapes = const [],
   })  : _shapes = shapes,
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
             shapes.entries.singleWhereOrNull((entry) {
               return entry.value is ServiceShape;
-            })?.key {
+            })?.key,
+        _additionalShapes = additionalShapes.toSet() {
     if (serviceShapeId == null && serviceName == null) {
       throw ArgumentError(
         'Either serviceShapeId or serviceName must be provided.',
@@ -40,11 +42,15 @@ class CodegenContext {
   /// The service closure's shape map.
   final ShapeMap _shapes;
 
+  /// Additional shapes to generate as part of the service closure.
+  final Set<ShapeId> _additionalShapes;
+
   /// The service closure's shape map.
   late final ShapeMap shapes = ShapeMap(Map.fromEntries(
     _shapes.entries.where((entry) {
       return serviceShapeId == null ||
-          entry.key.namespace == serviceShapeId!.namespace;
+          entry.key.namespace == serviceShapeId!.namespace ||
+          _additionalShapes.contains(entry.key);
     }),
   ));
 

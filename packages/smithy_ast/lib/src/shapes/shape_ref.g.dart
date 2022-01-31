@@ -18,6 +18,9 @@ class _$ShapeRefSerializer implements StructuredSerializer<ShapeRef> {
   Iterable<Object?> serialize(Serializers serializers, ShapeRef object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'traits',
+      serializers.serialize(object.traits,
+          specifiedType: const FullType(TraitMap)),
       'target',
       serializers.serialize(object.target,
           specifiedType: const FullType(ShapeId)),
@@ -37,6 +40,10 @@ class _$ShapeRefSerializer implements StructuredSerializer<ShapeRef> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'traits':
+          result.traits = serializers.deserialize(value,
+              specifiedType: const FullType(TraitMap)) as TraitMap;
+          break;
         case 'target':
           result.target = serializers.deserialize(value,
               specifiedType: const FullType(ShapeId)) as ShapeId;
@@ -50,12 +57,15 @@ class _$ShapeRefSerializer implements StructuredSerializer<ShapeRef> {
 
 class _$ShapeRef extends ShapeRef {
   @override
+  final TraitMap traits;
+  @override
   final ShapeId target;
 
   factory _$ShapeRef([void Function(ShapeRefBuilder)? updates]) =>
       (new ShapeRefBuilder()..update(updates)).build();
 
-  _$ShapeRef._({required this.target}) : super._() {
+  _$ShapeRef._({required this.traits, required this.target}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(traits, 'ShapeRef', 'traits');
     BuiltValueNullFieldError.checkNotNull(target, 'ShapeRef', 'target');
   }
 
@@ -69,17 +79,21 @@ class _$ShapeRef extends ShapeRef {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ShapeRef && target == other.target;
+    return other is ShapeRef &&
+        traits == other.traits &&
+        target == other.target;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, target.hashCode));
+    return $jf($jc($jc(0, traits.hashCode), target.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ShapeRef')..add('target', target))
+    return (newBuiltValueToStringHelper('ShapeRef')
+          ..add('traits', traits)
+          ..add('target', target))
         .toString();
   }
 }
@@ -87,15 +101,22 @@ class _$ShapeRef extends ShapeRef {
 class ShapeRefBuilder implements Builder<ShapeRef, ShapeRefBuilder> {
   _$ShapeRef? _$v;
 
+  TraitMap? _traits;
+  TraitMap? get traits => _$this._traits;
+  set traits(TraitMap? traits) => _$this._traits = traits;
+
   ShapeId? _target;
   ShapeId? get target => _$this._target;
   set target(ShapeId? target) => _$this._target = target;
 
-  ShapeRefBuilder();
+  ShapeRefBuilder() {
+    ShapeRef._init(this);
+  }
 
   ShapeRefBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _traits = $v.traits;
       _target = $v.target;
       _$v = null;
     }
@@ -117,6 +138,8 @@ class ShapeRefBuilder implements Builder<ShapeRef, ShapeRefBuilder> {
   _$ShapeRef build() {
     final _$result = _$v ??
         new _$ShapeRef._(
+            traits: BuiltValueNullFieldError.checkNotNull(
+                traits, 'ShapeRef', 'traits'),
             target: BuiltValueNullFieldError.checkNotNull(
                 target, 'ShapeRef', 'target'));
     replace(_$result);

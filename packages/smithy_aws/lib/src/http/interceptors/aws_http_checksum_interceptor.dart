@@ -21,7 +21,6 @@ class AWSHttpChecksumInterceptor extends HttpInterceptor {
   @override
   Future<AWSStreamedHttpRequest> intercept(
     AWSStreamedHttpRequest request,
-    HttpRequestContextBuilder context,
   ) async {
     final body = await ByteStream(request.split()).toBytes();
     final String checksum;

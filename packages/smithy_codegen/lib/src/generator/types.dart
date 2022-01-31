@@ -64,6 +64,9 @@ abstract class DartTypes {
 
   /// `package:uuid` types.
   static const uuid = _Uuid();
+
+  /// `package:xml` types.
+  static const xml = _Xml();
 }
 
 /// `dart:core` types
@@ -184,6 +187,9 @@ class _Async {
             if (ref != null) ref,
           ]),
       );
+
+  /// Creates a `runZoned` refererence.
+  Reference get runZoned => const Reference('runZoned', _url);
 }
 
 /// `package:aws_common` types.
@@ -476,6 +482,9 @@ class _Smithy {
           ..types.add(ref),
       );
 
+  /// Creates a [smithy.HttpClient] refererence.
+  Reference get httpClient => const Reference('HttpClient', _url);
+
   /// Creates a [smithy.HttpInput] reference for [ref], the input type.
   Reference httpInput(Reference ref) => TypeReference(
         (t) => t
@@ -658,6 +667,24 @@ class _Smithy {
 
   /// Creates a [smithy.WithNoHeader] reference.
   Reference get withNoHeader => const Reference('WithNoHeader', _url);
+
+  /// Creates a [smithy.XmlBuiltListSerializer] reference.
+  Reference get xmlBuiltListSerializer =>
+      const Reference('XmlBuiltListSerializer', _url);
+
+  /// Creates a [smithy.XmlBuiltMapSerializer] reference.
+  Reference get xmlBuiltMapSerializer =>
+      const Reference('XmlBuiltMapSerializer', _url);
+
+  /// Creates a [smithy.XmlBuiltSetSerializer] reference.
+  Reference get xmlBuiltSetSerializer =>
+      const Reference('XmlBuiltSetSerializer', _url);
+
+  /// Creates a [smithy.XmlElementName] reference.
+  Reference get xmlElementName => const Reference('XmlElementName', _url);
+
+  /// Creates a [smithy.XmlNamespace] reference.
+  Reference get xmlNamespace => const Reference('XmlNamespace', _url);
 }
 
 /// `package:smithy_aws` types.
@@ -665,6 +692,9 @@ class _SmithyAws {
   const _SmithyAws();
 
   static const _url = 'package:smithy_aws/smithy_aws.dart';
+
+  /// Creates a [smithy_aws.AWSEndpoint] refererence.
+  Reference get awsEndpoint => const Reference('AWSEndpoint', _url);
 
   /// Creates a [smithy_aws.AWSEndpointResolver] refererence.
   Reference get awsEndpointResolver =>
@@ -694,9 +724,8 @@ class _SmithyAws {
   /// Creates a [smithy_aws.RestXmlProtocol] refererence.
   Reference get restXmlProtocol => const Reference('RestXmlProtocol', _url);
 
-  /// Creates a [smithy_aws.WithEndpointResolver] refererence.
-  Reference get withEndpointResolver =>
-      const Reference('WithEndpointResolver', _url);
+  /// Creates a [smithy_aws.S3ClientConfig] refererence.
+  Reference get s3ClientConfig => const Reference('S3ClientConfig', _url);
 
   /// Creates a [smithy_aws.WithSigV4] refererence.
   Reference get withSigV4 => const Reference('WithSigV4', _url);
@@ -728,6 +757,9 @@ class _SmithyTest {
   /// Creates an `HttpResponseTestCase` reference.
   Reference get httpResponseTestCase =>
       const Reference('HttpResponseTestCase', _url);
+
+  /// Creates an `testSerializers` reference.
+  Reference get testSerializers => const Reference('testSerializers', _url);
 }
 
 /// `package:test` types
@@ -758,4 +790,17 @@ class _Uuid {
 
   /// Creates a `Uuid` reference.
   Reference get uuid => const Reference('Uuid', _url);
+}
+
+/// `package:xml` types
+class _Xml {
+  const _Xml();
+
+  static const _url = 'package:xml/xml.dart';
+
+  /// Creates a `XmlName` reference.
+  Reference get xmlName => const Reference('XmlName', _url);
+
+  /// Creates a `XmlAttribute` reference.
+  Reference get xmlAttribute => const Reference('XmlAttribute', _url);
 }

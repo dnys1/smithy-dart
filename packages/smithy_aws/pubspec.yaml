@@ -31,6 +31,7 @@ dependencies:
   smithy_ast:
     hosted: https://pub.dillonnys.com
     version: ^0.1.0
+  xml: ^5.3.1
 
 # REMOVE FOR PUBLISHING
 dependency_overrides:
@@ -42,6 +43,7 @@ dependency_overrides:
 dev_dependencies:
   amplify_lints: ^1.0.0
   build_runner: ^2.1.7
+  built_value_generator: ^8.0.0
   file: ^6.1.2
   glob: ^2.0.2
   json_serializable: ^6.1.4

@@ -97,24 +97,28 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     final builder = BlockBuilder();
 
     final object = refer('object');
+    final branches = <String, Expression>{};
+    for (final member in sortedMembers) {
+      final memberName = member.dartName(ShapeType.union);
+      branches[memberName] = Method(
+        (m) => m
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = memberSymbols[member]!.unboxed
+            ..name = memberName))
+          ..lambda = true
+          ..body = serializerFor(
+            member,
+            refer(memberName),
+            memberSymbol: memberSymbols[member]!.unboxed,
+          ).code,
+      ).closure;
+    }
     builder.statements.addAll([
       object.asA(symbol).statement,
       literalList([
         object.property('name'),
         object.property('when').call([], {
-          for (final member in sortedMembers)
-            member.dartName(ShapeType.union): Method(
-              (m) => m
-                ..requiredParameters.add(Parameter((p) => p
-                  ..type = memberSymbols[member]!.unboxed
-                  ..name = member.dartName(ShapeType.union)))
-                ..lambda = true
-                ..body = serializerFor(
-                  member,
-                  refer(member.dartName(ShapeType.union)),
-                  memberSymbol: memberSymbols[member]!.unboxed,
-                ).code,
-            ).closure,
+          ...branches,
 
           // Do not try to serialize the unknown type since
           // we have no information about it and it could fail.

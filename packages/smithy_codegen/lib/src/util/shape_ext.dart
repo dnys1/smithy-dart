@@ -476,6 +476,17 @@ extension OperationShapeUtil on OperationShape {
           ..name = 'baseUri',
       );
     }
+
+    final isS3 = serviceShape.resolvedService?.sdkId == 'S3';
+    if (isS3) {
+      yield Field(
+        (f) => f
+          ..type = DartTypes.smithyAws.s3ClientConfig
+          ..name = 's3ClientConfig'
+          ..modifier = FieldModifier.final$,
+      );
+    }
+
     if (serviceShape.hasTrait<SigV4Trait>()) {
       yield Field(
         (f) => f
@@ -511,6 +522,19 @@ extension OperationShapeUtil on OperationShape {
           ..named = true,
       );
     }
+
+    final isS3 = serviceShape.resolvedService?.sdkId == 'S3';
+    if (isS3) {
+      yield Parameter(
+        (p) => p
+          ..toThis = true
+          ..name = 's3ClientConfig'
+          ..named = true
+          ..defaultTo =
+              DartTypes.smithyAws.s3ClientConfig.constInstance([]).code,
+      );
+    }
+
     if (serviceShape.hasTrait<SigV4Trait>()) {
       yield Parameter(
         (p) => p
@@ -539,9 +563,25 @@ extension OperationShapeUtil on OperationShape {
 }
 
 extension StructureShapeUtil on StructureShape {
+  /// The operation this shape belongs to, if any.
+  OperationShape? operationShape(CodegenContext context) =>
+      context.shapes.values.whereType<OperationShape>().firstWhereOrNull(
+            (operation) =>
+                operation.input?.target == shapeId ||
+                operation.output?.target == shapeId ||
+                operation.errors.map((ref) => ref.target).contains(shapeId),
+          );
+
   /// The symbol for the HTTP payload, or `this` if not supported.
   HttpPayload httpPayload(CodegenContext context) {
-    final payloadMember = members.values.firstWhereOrNull((shape) {
+    MemberShape? payloadMember;
+    final operationShape = this.operationShape(context);
+    if (operationShape != null &&
+        operationShape.hasTrait<S3UnwrappedXmlOutputTrait>() &&
+        isOutputShape) {
+      payloadMember = members.values.single;
+    }
+    payloadMember ??= members.values.firstWhereOrNull((shape) {
       return shape.hasTrait<HttpPayloadTrait>();
     });
     if (payloadMember == null) {
@@ -553,7 +593,7 @@ extension StructureShapeUtil on StructureShape {
     }
     return HttpPayload(
       (b) => b
-        ..symbol = payloadMember.accept(SymbolVisitor(context), this)
+        ..symbol = payloadMember!.accept(SymbolVisitor(context), this)
         ..member.replace(payloadMember),
     );
   }
@@ -694,7 +734,8 @@ extension StructureShapeUtil on StructureShape {
       httpErrorTraits?.httpPrefixHeaders?.member,
     }.whereType<MemberShape>().toList()
       ..sorted(
-          (a, b) => a.dartName(getType()).compareTo(b.dartName(getType())));
+        (a, b) => a.dartName(getType()).compareTo(b.dartName(getType())),
+      );
   }
 
   /// The list of all members which should always be included in the body of

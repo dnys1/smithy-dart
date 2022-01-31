@@ -3,9 +3,9 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
-import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
@@ -68,7 +68,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
             // A marker trait for empty payloads, which should be serialized
             // than payloads with all null members.
-            if (payloadShape == null && payloadMembers.isEmpty)
+            if (payloadMember == null && payloadMembers.isEmpty)
               DartTypes.smithy.emptyPayload,
 
             if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol.unboxed),
@@ -319,12 +319,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // If an instance member, return it.
-    if (payloadShape != null) {
-      Expression payload = refer(payloadShape!.dartName(ShapeType.structure));
+    if (payloadMember != null) {
+      Expression payload = refer(payloadMember!.dartName(ShapeType.structure));
       // If the payload shape is empty or has only nullable instance members,
       // and this shape's instance member is null, return a built payload.
-      final targetShape = context.shapeFor(payloadShape!.target);
-      if (payloadShape!.isNullable(context, shape) &&
+      final targetShape = context.shapeFor(payloadMember!.target);
+      if (payloadMember!.isNullable(context, shape) &&
           targetShape is StructureShape &&
           targetShape.members.values.map((member) {
             return member.isNullable(context, targetShape);
@@ -459,10 +459,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Map<String, Class> get _serializerClasses {
     final classes = <String, Class>{};
     for (var protocol in context.serviceProtocols) {
-      final generator = StructureSerializerGenerator(shape, context, protocol);
-      final class$ = generator.generate();
-      if (class$ != null) {
-        classes[generator.serializerClassName] = class$;
+      final generator = protocol.structureGenerator(shape, context);
+      final clazz = generator.generate();
+      if (clazz != null) {
+        classes[generator.serializerClassName] = clazz;
       }
     }
     return classes;
@@ -513,7 +513,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final payload = refer('payload');
     final response = refer('response');
 
-    final payloadShape = this.payloadShape;
+    final payloadShape = this.payloadMember;
 
     // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {

@@ -5,27 +5,26 @@ import 'package:file/local.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
 import 'package:pubspec_parse/pubspec_parse.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/pubspec.dart';
+import 'package:smithy_codegen/src/util/recase.dart';
 
 const modelsDir = 'models';
 final modelsPath = path.join(Directory.current.path, modelsDir);
+const skipProtocols = [
+  'shared',
+];
 
 Future<void> main(List<String> args) async {
-  final glob = Glob(args.length == 1 ? args[0] : '**');
-  final entites = glob.listFileSystemSync(LocalFileSystem(), root: modelsPath);
+  final glob = Glob(args.length == 1 ? args[0] : '*');
+  final entites = glob.listFileSystemSync(
+    const LocalFileSystem(),
+    root: modelsPath,
+  );
   final futures = <Future>[];
   for (var modelEnt in entites) {
-    if (modelEnt.statSync().type == FileSystemEntityType.directory) {
-      final dirPath = path.join(
-        'lib',
-        path.relative(modelEnt.path, from: 'models'),
-      );
-      final dir = Directory(dirPath);
-      if (dir.existsSync()) {
-        dir.deleteSync(recursive: true);
-      }
+    if (modelEnt is! Directory) {
       continue;
     }
     futures.add(_generateFor(modelEnt));
@@ -35,11 +34,15 @@ Future<void> main(List<String> args) async {
 
 Future<void> _generateFor(FileSystemEntity modelEnt) async {
   final modelPath = path.relative(modelEnt.path);
-  final outputPath = path.join(
-    'lib',
-    path.dirname(modelPath).split('/').last,
-    path.basenameWithoutExtension(modelPath),
-  );
+  final protocolName = path.basename(modelPath);
+  if (skipProtocols.contains(protocolName)) {
+    return;
+  }
+  final outputPath = path.join('lib', protocolName);
+  final dir = Directory(outputPath);
+  if (dir.existsSync()) {
+    dir.deleteSync(recursive: true);
+  }
 
   stdout.writeln('Generating AST for $modelPath');
 
@@ -56,6 +59,7 @@ Future<void> _generateFor(FileSystemEntity modelEnt) async {
       'ast',
       '-d',
       '/smithy/lib/traits',
+      '/home/$modelsDir/shared',
       '/home/$modelPath',
     ],
     stdoutEncoding: utf8,
@@ -67,13 +71,17 @@ Future<void> _generateFor(FileSystemEntity modelEnt) async {
     stderr.writeln(result.stderr);
     exit(result.exitCode);
   }
-  final ast = result.stdout as String;
+  final astJson = result.stdout as String;
 
-  final packageName = path.basenameWithoutExtension(modelPath).snakeCase;
+  final packageName = protocolName.snakeCase;
+  final ast = parseAstJson(astJson);
+
   final libraries = generateForAst(
-    parseAstJson(ast),
+    ast,
     packageName: packageName,
-    serviceName: 'Test',
+    additionalShapes: const [
+      ShapeId(namespace: 'aws.protocoltests.config', shape: 'AwsConfig'),
+    ],
   );
 
   final Set<String> dependencies = {};
@@ -105,8 +113,28 @@ include: package:lints/recommended.yaml
 
 analyzer:
   errors:
-    implementation_imports: ignore
+    avoid_unused_constructor_parameters: ignore
 ''');
+
+  // Create mono_pkg for testing
+  if (Directory(path.join(outputPath, 'test')).existsSync()) {
+    final monoPkgPath = path.join(outputPath, 'mono_pkg.yaml');
+    File(monoPkgPath).writeAsStringSync('''
+sdk:
+  - stable
+  - dev
+
+stages:
+  - analyze_and_format:
+    - group:
+      - format
+      - analyze: --fatal-infos .
+  - unit_test:
+    - group:
+      - test:
+      - test: -p chrome
+    ''');
+  }
 
   // Run `dart pub get`
   final pubGetRes = await Process.run(

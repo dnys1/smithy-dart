@@ -49,7 +49,10 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
               equals: (a, b) => a.name == b.name,
               hashCode: (key) => key.name.hashCode,
             )..addAll(
-                _operations.expand((op) => op.protocolFields(context)),
+                _operations.expand((op) => op.protocolFields(context)).map(
+                      // Fields won't be overriding anything on the service client
+                      (field) => field.rebuild((f) => f.annotations.clear()),
+                    ),
               ),
           ]);
       });

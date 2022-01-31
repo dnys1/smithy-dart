@@ -32,6 +32,7 @@ class HttpResponseTestCase extends HttpMessageTestCase<HttpResponseTestCase> {
           bodyMediaType: bodyMediaType,
           params: params,
           vendorParamsShape: vendorParamsShape,
+          vendorParams: vendorParams,
           headers: headers,
           forbidHeaders: forbidHeaders,
           requireHeaders: requireHeaders,

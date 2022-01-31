@@ -13,6 +13,15 @@ class TraitMap extends DelegatingMap<ShapeId, Trait> {
   factory TraitMap.fromTraits(Iterable<Trait> traits) =>
       TraitMap({for (var trait in traits) trait.shapeId: trait});
 
+  /// Returns the trait of type [T], if it exists on the shape.
+  T? getTrait<T extends Trait>() => values.whereType<T>().firstOrNull;
+
+  /// Whether the shape has a trait of type [T].
+  bool hasTrait<T extends Trait>() => values.any((t) => t is T);
+
+  /// Gets the trait of type [T] from the shape or throws if not found.
+  T expectTrait<T extends Trait>() => values.firstWhere((t) => t is T) as T;
+
   @override
   bool operator ==(Object? other) =>
       identical(this, other) ||

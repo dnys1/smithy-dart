@@ -1,29 +1,41 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:built_value/serializer.dart';
+import 'package:built_value/src/bool_serializer.dart';
+import 'package:built_value/src/built_map_serializer.dart';
+import 'package:built_value/src/built_set_serializer.dart';
+import 'package:built_value/src/built_list_serializer.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 
-final testSerializer =
-    (Serializers().toBuilder()..addPlugin(SmithyJsonPlugin())).build();
+final testSerializers = (Serializers().toBuilder()
+      ..addPlugin(SmithyJsonPlugin())
+      ..addAll(_testSerializers))
+    .build();
 
-const testSerializers = <Serializer>[
+final _testSerializers = <Serializer>[
   _BinaryTestSerializer(),
   _Int64Serializer(),
   BigIntSerializer.asString,
   DoubleSerializer(),
   TimestampSerializer.epochSeconds,
   UnitSerializer(),
+  BoolSerializer(),
+  BuiltMapSerializer(),
+  BuiltListSerializer(),
+  BuiltSetSerializer(),
 ];
 
 Serializers buildSerializers(
   Serializers protocol,
   List<Serializer>? userSerializers,
 ) {
-  final serializersBuilder = testSerializer.toBuilder()
+  final serializersBuilder = testSerializers.toBuilder()
     ..addAll([
       ...protocol.serializers,
-      ...testSerializers,
+      ..._testSerializers,
       ...?userSerializers,
     ]);
   for (final builderFactory in protocol.builderFactories.entries) {

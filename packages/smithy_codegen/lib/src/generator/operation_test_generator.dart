@@ -1,6 +1,8 @@
 import 'dart:collection';
 
 import 'package:code_builder/code_builder.dart';
+// ignore: implementation_imports
+import 'package:smithy/src/protocol/generic_json_protocol.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
@@ -9,6 +11,7 @@ import 'package:smithy_codegen/src/generator/serialization/serializer_config.dar
 import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 enum TestType { request, response, error }
 
@@ -28,6 +31,8 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   /// Test cases which should be skipped right now and the reasons why.
   static const Map<String, String> _skip = {
     'RestJsonQueryIdempotencyTokenAutoFill':
+        'bool.fromEnvironment is not working in tests for some reason',
+    'QueryIdempotencyTokenAutoFill':
         'bool.fromEnvironment is not working in tests for some reason',
     'RestJsonSerializesSparseSetMap':
         'Cannot handle this at the moment (empty vs. null).',
@@ -50,7 +55,14 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
 
   /// Test values for required operation inputs.
   late final Map<String, Expression> _testValues = {
-    'region': literalString('us-east-1'),
+    'region':
+        (context.service?.isAwsService ?? false) && vendorSerializers.isNotEmpty
+            ? refer('config')
+                .property('scopedConfig')
+                .nullSafeProperty('client')
+                .nullSafeProperty('region')
+                .ifNullThen(literalString('us-east-1'))
+            : literalString('us-east-1'),
     'credentialsProvider':
         DartTypes.awsSigV4.awsCredentialsProvider.constInstance([
       DartTypes.awsSigV4.awsCredentials.constInstance([
@@ -61,6 +73,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
     'baseUri': DartTypes.core.uri.newInstanceNamed('parse', [
       literalString('https://example.com'),
     ]),
+    's3ClientConfig': refer('s3ClientConfig'),
   };
 
   /// A constructed instance of the operation.
@@ -118,8 +131,10 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   /// lists, maps, sets, or direct children.
   Iterable<Class?> _collectSerializers(
     StructureShape shape,
-    ProtocolDefinitionTrait protocol,
-  ) sync* {
+    ProtocolDefinitionTrait protocol, [
+    Set<ShapeId>? seen,
+  ]) sync* {
+    (seen ??= {}).add(shape.shapeId);
     for (final member in shape.members.values) {
       var targetShape = context.shapeFor(member.target);
       var targetType = targetShape.getType();
@@ -136,13 +151,17 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         }
         targetType = targetShape.getType();
       }
-      if (targetShape is StructureShape) {
+      if (targetShape is StructureShape &&
+          !seen.contains(targetShape.shapeId)) {
         yield StructureSerializerGenerator(
           targetShape,
           context,
           protocol,
           config: const SerializerConfig.test(),
         ).generate();
+        yield* _collectSerializers(targetShape, protocol, seen);
+      } else if (targetShape.isEnum) {
+        _vendorEnums.add(context.symbolFor(targetShape.shapeId));
       }
     }
   }
@@ -187,6 +206,29 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       }
   };
 
+  static const _vendorProtocol = GenericJsonProtocolDefinitionTrait();
+  final Set<Reference> _vendorEnums = LinkedHashSet(
+    equals: (a, b) => a.symbol == b.symbol,
+    hashCode: (key) => key.symbol!.hashCode,
+  );
+  late final vendorSerializers =
+      <HttpMessageTestCase>[...httpRequestTestCases, ...httpResponseTestCases]
+          .map((testCase) => testCase.vendorParamsShape)
+          .whereType<ShapeId>()
+          .map(context.shapeFor)
+          .cast<StructureShape>()
+          .expand((shape) => [
+                StructureSerializerGenerator(
+                  shape,
+                  context,
+                  _vendorProtocol,
+                  config: const SerializerConfig.test(),
+                ).generate(),
+                ..._collectSerializers(shape, _vendorProtocol),
+              ])
+          .whereType<Class>()
+          .toList();
+
   Iterable<Class> _uniqueSerializers(Iterable<Class?> serializers) {
     return LinkedHashSet<Class>(
       equals: (a, b) => a.name == b.name,
@@ -213,12 +255,21 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
       Method.returnsVoid(
         (b) => b
           ..name = 'main'
-          ..body = Block.of(allTests),
+          ..body = Block.of([
+            if (vendorSerializers.isNotEmpty) Code.scope((allocate) => '''
+  final vendorSerializers = (${allocate(DartTypes.smithyTest.testSerializers)}.toBuilder()..addAll(const [
+    ${_uniqueSerializers(vendorSerializers).map((serializer) => '${serializer.name}(),').join()}
+    ${_vendorEnums.map((e) => '...${allocate(e)}.serializers,').join()}
+  ])).build();
+            '''),
+            Block.of(allTests),
+          ]),
       ),
       ..._uniqueSerializers([
         ...inputSerializers.values.expand((el) => el),
         ...outputSerializers.values.expand((el) => el),
         ...errorSerializers.values.expand((el) => el.values).expand((el) => el),
+        ...vendorSerializers,
       ]),
     ]);
 
@@ -324,10 +375,80 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
   }) {
     final skipReason = _skip[testCase.id];
     final skipOnWeb = _skipOnWeb.contains(testCase.id);
+    final initBlock = BlockBuilder();
+    if (testCase.vendorParamsShape != null) {
+      final vendorParamsSymbol = context.symbolFor(testCase.vendorParamsShape!);
+      initBlock.addExpression(
+        refer('vendorSerializers')
+            .property('deserialize')
+            .call([
+              literalMap(testCase.vendorParams)
+            ], {
+              'specifiedType': vendorParamsSymbol.fullType,
+            })
+            .asA(vendorParamsSymbol)
+            .assignFinal('config'),
+      );
+    }
+    if (context.service?.resolvedService?.sdkId == 'S3') {
+      if (testCase.vendorParamsShape != null) {
+        initBlock.addExpression(
+          DartTypes.smithyAws.s3ClientConfig.newInstance([], {
+            'useAcceleration': refer('config')
+                .property('scopedConfig')
+                .nullSafeProperty('operation')
+                .nullSafeProperty('s3')
+                .nullSafeProperty('useAccelerateEndpoint')
+                .ifNullThen(refer('config')
+                    .property('scopedConfig')
+                    .nullSafeProperty('client')
+                    .nullSafeProperty('s3')
+                    .nullSafeProperty('useAccelerateEndpoint'))
+                .ifNullThen(literalFalse),
+            'useDualStack': refer('config')
+                .property('scopedConfig')
+                .nullSafeProperty('operation')
+                .nullSafeProperty('s3')
+                .nullSafeProperty('useDualstackEndpoint')
+                .ifNullThen(refer('config')
+                    .property('scopedConfig')
+                    .nullSafeProperty('client')
+                    .nullSafeProperty('s3')
+                    .nullSafeProperty('useDualstackEndpoint'))
+                .ifNullThen(literalFalse),
+            'usePathStyle': CodeExpression(Block.of([
+              const Code('('),
+              refer('config')
+                  .property('scopedConfig')
+                  .nullSafeProperty('operation')
+                  .nullSafeProperty('s3')
+                  .nullSafeProperty('addressingStyle')
+                  .ifNullThen(refer('config')
+                      .property('scopedConfig')
+                      .nullSafeProperty('client')
+                      .nullSafeProperty('s3')
+                      .nullSafeProperty('addressingStyle'))
+                  .code,
+              const Code(')'),
+            ])).equalTo(context
+                .symbolFor(const ShapeId(
+                    namespace: 'aws.protocoltests.config',
+                    shape: 'S3AddressingStyle'))
+                .property('path')),
+          }).assignFinal('s3ClientConfig'),
+        );
+      } else {
+        initBlock.addExpression(
+          DartTypes.smithyAws.s3ClientConfig
+              .constInstance([]).assignConst('s3ClientConfig'),
+        );
+      }
+    }
     return Block.of([
       Code.scope((allocate) =>
           allocate(DartTypes.test.test) +
           "('${testCase.id} (${type.name})', () async {"),
+      initBlock.build(),
       testCall.awaited.statement,
       const Code('},'),
       if (skipOnWeb) const Code("testOn:'vm',"),

@@ -136,7 +136,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   }
 
   @override
-  Iterable<GeneratedLibrary>? setShape(SetShape shape, [Shape? parent]) {
+  Iterable<GeneratedLibrary> setShape(SetShape shape, [Shape? parent]) {
     return _foreignMembers([shape.member]);
   }
 

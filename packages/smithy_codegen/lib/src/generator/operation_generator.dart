@@ -847,14 +847,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ShapeType.structure,
       ];
       final needsBuilder = builderTypes.contains(inputTokenTarget.getType());
-      var input = inputToken.buildExpression(refer('input'));
-      if (inputToken.isNullable) {
-        input = input.nullChecked;
-      }
+      final token = refer('token');
       if (needsBuilder) {
-        inputTokenBuilder = inputTokenBuilder.property('replace').call([input]);
+        inputTokenBuilder = inputTokenBuilder.property('replace').call([token]);
       } else {
-        inputTokenBuilder = inputTokenBuilder.assign(input);
+        inputTokenBuilder = inputTokenBuilder.assign(token);
       }
     }
     yield Method(
@@ -879,21 +876,15 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             (m) => m
               ..requiredParameters.add(Parameter((p) => p..name = 'b'))
               ..body = Block.of([
-                if (inputToken != null)
-                  inputTokenBuilder!.statement.wrapWithBlockIf(
-                    inputToken
-                        .buildExpression(refer('input'))
-                        .notEqualTo(literalNull),
-                    inputToken.isNullable,
-                  ),
+                if (inputToken != null && outputToken != null)
+                  inputTokenBuilder!.statement,
                 if (pageSize != null)
                   pageSize
                       .buildExpression(refer('b'))
-                      .assign(pageSize.buildExpression(refer('input')))
-                      .wrapWithBlockNullCheck(
-                        pageSize
-                            .buildExpression(refer('input'))
-                            .notEqualTo(literalNull),
+                      .assign(refer('pageSize'))
+                      .statement
+                      .wrapWithBlockIf(
+                        refer('pageSize').notEqualTo(literalNull),
                         pageSize.isNullable,
                       ),
               ]),

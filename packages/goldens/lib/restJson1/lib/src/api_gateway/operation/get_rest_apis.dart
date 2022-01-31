@@ -132,11 +132,9 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
   _i2.GetRestApisRequest rebuildInput(
           _i2.GetRestApisRequest input, String token, int? pageSize) =>
       input.rebuild((b) {
-        if (input.position != null) {
-          b.position = input.position!;
-        }
-        if (input.limit != null) {
-          b.limit = input.limit!;
+        b.position = token;
+        if (pageSize != null) {
+          b.limit = pageSize;
         }
       });
 }

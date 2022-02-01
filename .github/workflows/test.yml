@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - master
+      - pub
   pull_request:
 defaults:
   run:

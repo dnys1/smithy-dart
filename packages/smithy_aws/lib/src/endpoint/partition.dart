@@ -8,7 +8,6 @@ part 'partition.g.dart';
 const _defaultProtocol = 'https';
 const _defaultSigner = 'v4';
 const _protocolPriority = ['https', 'http'];
-const _signerPriority = ['v4'];
 
 AWSEndpoint resolveEndpoint(List<Partition> partitions, String region) {
   return partitions
@@ -90,6 +89,9 @@ class EndpointDefinition {
       ...into.protocols,
       ...from.protocols,
     }.toList();
+    if (protocols.isEmpty) {
+      protocols.add(_defaultProtocol);
+    }
     final region = into.credentialScope?.region ?? from.credentialScope?.region;
     final service =
         into.credentialScope?.service ?? from.credentialScope?.service;
@@ -98,6 +100,9 @@ class EndpointDefinition {
       ...into.signatureVersions,
       ...from.signatureVersions,
     }.toList();
+    if (signatureVersions.isEmpty) {
+      signatureVersions.add(_defaultSigner);
+    }
     return EndpointDefinition(
       hostname: hostname,
       protocols: protocols,

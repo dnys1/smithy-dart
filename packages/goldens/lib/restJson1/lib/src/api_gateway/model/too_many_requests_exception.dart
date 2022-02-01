@@ -43,7 +43,9 @@ abstract class TooManyRequestsException
   String? get retryAfterSeconds;
   @override
   TooManyRequestsExceptionPayload getPayload() =>
-      TooManyRequestsExceptionPayload((b) => b..message = message);
+      TooManyRequestsExceptionPayload((b) {
+        b.message = message;
+      });
   @override
   _i2.RetryConfig? get retryConfig => null;
   @override
@@ -58,7 +60,6 @@ abstract class TooManyRequestsException
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class TooManyRequestsExceptionPayload
     with
         _i1.AWSEquatable<TooManyRequestsExceptionPayload>

@@ -54,7 +54,6 @@ abstract class TestNoPayloadInputOutput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class TestNoPayloadInputOutputPayload
     with
         _i2.AWSEquatable<TestNoPayloadInputOutputPayload>

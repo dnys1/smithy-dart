@@ -61,7 +61,6 @@ abstract class ArchiveCreationOutput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class ArchiveCreationOutputPayload
     with
         _i1.AWSEquatable<ArchiveCreationOutputPayload>

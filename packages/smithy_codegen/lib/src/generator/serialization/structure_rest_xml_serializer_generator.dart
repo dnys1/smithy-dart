@@ -268,7 +268,7 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
     if (targetType == ShapeType.list ||
         targetType == ShapeType.set ||
         targetType == ShapeType.map) {
-      return _builtXmlConstructor(member, targetShape)
+      final deserialized = _builtXmlConstructor(member, targetShape)
           .property('deserialize')
           .call([
         refer('serializers'),
@@ -276,6 +276,10 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
       ], {
         'specifiedType': memberSymbol.fullType,
       });
+      if (targetShape is ListShape || targetShape is SetShape) {
+        return deserialized.asA(memberSymbol);
+      }
+      return deserialized;
     }
 
     return super.deserializerFor(
@@ -318,15 +322,11 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
       final isNullable = member.isNullable(context, shape);
       final targetShape = context.shapeFor(member.target);
       final hasNestedBuilder = [
-            ShapeType.map,
-            ShapeType.list,
-            ShapeType.set,
-            ShapeType.structure,
-          ].contains(targetShape.getType()) &&
-          // Since payload types have `nestedBuilders: false`, the member has
-          // a nested builder only when the shape has a payload & we're using
-          // payloads.
-          (!shape.hasPayload(context) || !config.usePayload);
+        ShapeType.map,
+        ShapeType.list,
+        ShapeType.set,
+        ShapeType.structure,
+      ].contains(targetShape.getType());
       final isFlattened = flattenedMembers.contains(member);
       var targetMember = member;
       var nestedMethod = 'replace';

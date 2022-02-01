@@ -45,7 +45,6 @@ abstract class MalformedStringInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedStringInputPayload
     with _i2.AWSEquatable<MalformedStringInputPayload>
     implements

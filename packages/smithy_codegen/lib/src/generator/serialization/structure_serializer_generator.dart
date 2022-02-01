@@ -111,7 +111,7 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
 
   @override
   Class? generate() {
-    if (shape.shapeId == Shape.unit) {
+    if (shape.shapeId == Shape.unit || payloadShape is UnionShape) {
       return null;
     }
 
@@ -239,15 +239,11 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
       final isNullable = member.isNullable(context, shape);
       final targetShape = context.shapeFor(member.target);
       final hasNestedBuilder = [
-            ShapeType.map,
-            ShapeType.list,
-            ShapeType.set,
-            ShapeType.structure,
-          ].contains(targetShape.getType()) &&
-          // Since payload types have `nestedBuilders: false`, the member has
-          // a nested builder only when the shape has a payload & we're using
-          // payloads.
-          (!shape.hasPayload(context) || !config.usePayload);
+        ShapeType.map,
+        ShapeType.list,
+        ShapeType.set,
+        ShapeType.structure,
+      ].contains(targetShape.getType());
       final value = refer('value');
       yield Block.of([
         const Code('case '),

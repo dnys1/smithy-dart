@@ -47,7 +47,6 @@ abstract class MalformedTimestampHeaderDefaultInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampHeaderDefaultInputPayload
     with
         _i2.AWSEquatable<MalformedTimestampHeaderDefaultInputPayload>

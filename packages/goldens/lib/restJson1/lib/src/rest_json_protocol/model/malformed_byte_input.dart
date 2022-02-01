@@ -43,8 +43,9 @@ abstract class MalformedByteInput
   }
 
   @override
-  MalformedByteInputPayload getPayload() =>
-      MalformedByteInputPayload((b) => b..byteInBody = byteInBody);
+  MalformedByteInputPayload getPayload() => MalformedByteInputPayload((b) {
+        b.byteInBody = byteInBody;
+      });
   @override
   List<Object?> get props =>
       [byteInBody, byteInHeader, byteInPath, byteInQuery];
@@ -60,7 +61,6 @@ abstract class MalformedByteInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedByteInputPayload
     with _i2.AWSEquatable<MalformedByteInputPayload>
     implements

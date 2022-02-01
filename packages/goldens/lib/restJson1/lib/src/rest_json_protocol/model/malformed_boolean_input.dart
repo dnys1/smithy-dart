@@ -44,7 +44,9 @@ abstract class MalformedBooleanInput
 
   @override
   MalformedBooleanInputPayload getPayload() =>
-      MalformedBooleanInputPayload((b) => b..booleanInBody = booleanInBody);
+      MalformedBooleanInputPayload((b) {
+        b.booleanInBody = booleanInBody;
+      });
   @override
   List<Object?> get props =>
       [booleanInBody, booleanInHeader, booleanInPath, booleanInQuery];
@@ -60,7 +62,6 @@ abstract class MalformedBooleanInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedBooleanInputPayload
     with
         _i2.AWSEquatable<MalformedBooleanInputPayload>

@@ -102,7 +102,6 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithLabelsAndTimestampFormatInputPayload
     with
         _i2.AWSEquatable<HttpRequestWithLabelsAndTimestampFormatInputPayload>

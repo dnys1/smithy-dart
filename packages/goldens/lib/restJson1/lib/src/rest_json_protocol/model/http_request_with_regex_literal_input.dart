@@ -56,7 +56,6 @@ abstract class HttpRequestWithRegexLiteralInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithRegexLiteralInputPayload
     with
         _i2.AWSEquatable<HttpRequestWithRegexLiteralInputPayload>

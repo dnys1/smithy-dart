@@ -60,7 +60,6 @@ abstract class HttpRequestWithFloatLabelsInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithFloatLabelsInputPayload
     with
         _i2.AWSEquatable<HttpRequestWithFloatLabelsInputPayload>

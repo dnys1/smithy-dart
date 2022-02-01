@@ -44,7 +44,9 @@ abstract class MalformedIntegerInput
 
   @override
   MalformedIntegerInputPayload getPayload() =>
-      MalformedIntegerInputPayload((b) => b..integerInBody = integerInBody);
+      MalformedIntegerInputPayload((b) {
+        b.integerInBody = integerInBody;
+      });
   @override
   List<Object?> get props =>
       [integerInBody, integerInHeader, integerInPath, integerInQuery];
@@ -60,7 +62,6 @@ abstract class MalformedIntegerInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedIntegerInputPayload
     with
         _i2.AWSEquatable<MalformedIntegerInputPayload>

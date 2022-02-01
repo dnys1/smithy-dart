@@ -43,8 +43,9 @@ abstract class MalformedShortInput
   }
 
   @override
-  MalformedShortInputPayload getPayload() =>
-      MalformedShortInputPayload((b) => b..shortInBody = shortInBody);
+  MalformedShortInputPayload getPayload() => MalformedShortInputPayload((b) {
+        b.shortInBody = shortInBody;
+      });
   @override
   List<Object?> get props =>
       [shortInBody, shortInHeader, shortInPath, shortInQuery];
@@ -60,7 +61,6 @@ abstract class MalformedShortInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedShortInputPayload
     with _i2.AWSEquatable<MalformedShortInputPayload>
     implements

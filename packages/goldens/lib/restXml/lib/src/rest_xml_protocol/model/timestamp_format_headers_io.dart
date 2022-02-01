@@ -113,7 +113,6 @@ abstract class TimestampFormatHeadersIo
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class TimestampFormatHeadersIoPayload
     with
         _i2.AWSEquatable<TimestampFormatHeadersIoPayload>

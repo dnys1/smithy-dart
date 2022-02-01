@@ -148,9 +148,11 @@ class ComplexErrorPayloadBuilder
     implements Builder<ComplexErrorPayload, ComplexErrorPayloadBuilder> {
   _$ComplexErrorPayload? _$v;
 
-  _i3.ComplexNestedErrorData? _nested;
-  _i3.ComplexNestedErrorData? get nested => _$this._nested;
-  set nested(_i3.ComplexNestedErrorData? nested) => _$this._nested = nested;
+  _i3.ComplexNestedErrorDataBuilder? _nested;
+  _i3.ComplexNestedErrorDataBuilder get nested =>
+      _$this._nested ??= new _i3.ComplexNestedErrorDataBuilder();
+  set nested(_i3.ComplexNestedErrorDataBuilder? nested) =>
+      _$this._nested = nested;
 
   String? _topLevel;
   String? get topLevel => _$this._topLevel;
@@ -163,7 +165,7 @@ class ComplexErrorPayloadBuilder
   ComplexErrorPayloadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _nested = $v.nested;
+      _nested = $v.nested?.toBuilder();
       _topLevel = $v.topLevel;
       _$v = null;
     }
@@ -183,8 +185,22 @@ class ComplexErrorPayloadBuilder
 
   @override
   _$ComplexErrorPayload build() {
-    final _$result =
-        _$v ?? new _$ComplexErrorPayload._(nested: nested, topLevel: topLevel);
+    _$ComplexErrorPayload _$result;
+    try {
+      _$result = _$v ??
+          new _$ComplexErrorPayload._(
+              nested: _nested?.build(), topLevel: topLevel);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'nested';
+        _nested?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'ComplexErrorPayload', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

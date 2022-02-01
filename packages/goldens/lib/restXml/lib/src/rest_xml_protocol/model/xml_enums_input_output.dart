@@ -97,10 +97,11 @@ class _XmlEnumsInputOutputRestXmlSerializer
           break;
         case 'fooEnumList':
           if (value != null) {
-            result.fooEnumList.replace(const _i1.XmlBuiltListSerializer()
-                .deserialize(serializers, (value as Iterable<Object?>),
-                    specifiedType: const FullType(
-                        _i4.BuiltList, [FullType(_i3.FooEnum)])));
+            result.fooEnumList.replace((const _i1.XmlBuiltListSerializer()
+                    .deserialize(serializers, (value as Iterable<Object?>),
+                        specifiedType: const FullType(
+                            _i4.BuiltList, [FullType(_i3.FooEnum)]))
+                as _i4.BuiltList<_i3.FooEnum>));
           }
           break;
         case 'fooEnumMap':
@@ -114,11 +115,11 @@ class _XmlEnumsInputOutputRestXmlSerializer
           break;
         case 'fooEnumSet':
           if (value != null) {
-            result.fooEnumSet.replace(const _i1.XmlBuiltSetSerializer()
-                .deserialize(
-                    serializers, (value as Iterable<Object?>),
-                    specifiedType:
-                        const FullType(_i4.BuiltSet, [FullType(_i3.FooEnum)])));
+            result.fooEnumSet.replace((const _i1.XmlBuiltSetSerializer()
+                    .deserialize(serializers, (value as Iterable<Object?>),
+                        specifiedType: const FullType(
+                            _i4.BuiltSet, [FullType(_i3.FooEnum)]))
+                as _i4.BuiltSet<_i3.FooEnum>));
           }
           break;
       }

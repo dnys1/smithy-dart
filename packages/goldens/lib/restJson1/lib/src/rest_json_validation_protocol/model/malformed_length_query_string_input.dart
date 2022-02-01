@@ -47,7 +47,6 @@ abstract class MalformedLengthQueryStringInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedLengthQueryStringInputPayload
     with
         _i2.AWSEquatable<MalformedLengthQueryStringInputPayload>

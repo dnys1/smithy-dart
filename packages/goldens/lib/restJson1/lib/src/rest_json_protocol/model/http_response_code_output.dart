@@ -49,7 +49,6 @@ abstract class HttpResponseCodeOutput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpResponseCodeOutputPayload
     with
         _i1.AWSEquatable<HttpResponseCodeOutputPayload>

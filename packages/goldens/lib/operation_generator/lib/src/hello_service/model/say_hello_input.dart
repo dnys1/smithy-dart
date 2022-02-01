@@ -40,9 +40,10 @@ abstract class SayHelloInput
   }
 
   @override
-  SayHelloInputPayload getPayload() => SayHelloInputPayload((b) => b
-    ..hostLabel = hostLabel
-    ..name = name);
+  SayHelloInputPayload getPayload() => SayHelloInputPayload((b) {
+        b.hostLabel = hostLabel;
+        b.name = name;
+      });
   @override
   List<Object?> get props => [greeting, hostLabel, name, query];
   @override
@@ -57,7 +58,6 @@ abstract class SayHelloInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class SayHelloInputPayload
     with _i2.AWSEquatable<SayHelloInputPayload>
     implements Built<SayHelloInputPayload, SayHelloInputPayloadBuilder> {

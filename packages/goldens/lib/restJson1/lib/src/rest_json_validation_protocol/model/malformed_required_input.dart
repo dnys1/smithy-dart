@@ -34,7 +34,9 @@ abstract class MalformedRequiredInput
   String get stringInQuery;
   @override
   MalformedRequiredInputPayload getPayload() =>
-      MalformedRequiredInputPayload((b) => b..string = string);
+      MalformedRequiredInputPayload((b) {
+        b.string = string;
+      });
   @override
   List<Object?> get props => [string, stringInHeader, stringInQuery];
   @override
@@ -48,7 +50,6 @@ abstract class MalformedRequiredInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedRequiredInputPayload
     with
         _i2.AWSEquatable<MalformedRequiredInputPayload>

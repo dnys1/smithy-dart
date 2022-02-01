@@ -61,16 +61,17 @@ abstract class SimpleScalarPropertiesInputOutput
   bool? get trueBooleanValue;
   @override
   SimpleScalarPropertiesInputOutputPayload getPayload() =>
-      SimpleScalarPropertiesInputOutputPayload((b) => b
-        ..byteValue = byteValue
-        ..doubleValue = doubleValue
-        ..falseBooleanValue = falseBooleanValue
-        ..floatValue = floatValue
-        ..integerValue = integerValue
-        ..longValue = longValue
-        ..shortValue = shortValue
-        ..stringValue = stringValue
-        ..trueBooleanValue = trueBooleanValue);
+      SimpleScalarPropertiesInputOutputPayload((b) {
+        b.byteValue = byteValue;
+        b.doubleValue = doubleValue;
+        b.falseBooleanValue = falseBooleanValue;
+        b.floatValue = floatValue;
+        b.integerValue = integerValue;
+        b.longValue = longValue;
+        b.shortValue = shortValue;
+        b.stringValue = stringValue;
+        b.trueBooleanValue = trueBooleanValue;
+      });
   @override
   List<Object?> get props => [
         byteValue,
@@ -103,7 +104,6 @@ abstract class SimpleScalarPropertiesInputOutput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class SimpleScalarPropertiesInputOutputPayload
     with
         _i2.AWSEquatable<SimpleScalarPropertiesInputOutputPayload>

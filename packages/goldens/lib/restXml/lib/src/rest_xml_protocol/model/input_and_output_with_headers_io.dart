@@ -165,7 +165,6 @@ abstract class InputAndOutputWithHeadersIo
 }
 
 @_i6.internal
-@BuiltValue(nestedBuilders: false)
 abstract class InputAndOutputWithHeadersIoPayload
     with
         _i2.AWSEquatable<InputAndOutputWithHeadersIoPayload>

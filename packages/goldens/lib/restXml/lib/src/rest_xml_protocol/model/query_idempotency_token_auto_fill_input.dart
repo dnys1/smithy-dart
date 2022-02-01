@@ -55,7 +55,6 @@ abstract class QueryIdempotencyTokenAutoFillInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class QueryIdempotencyTokenAutoFillInputPayload
     with
         _i2.AWSEquatable<QueryIdempotencyTokenAutoFillInputPayload>

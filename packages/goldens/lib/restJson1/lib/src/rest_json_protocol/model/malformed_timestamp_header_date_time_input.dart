@@ -47,7 +47,6 @@ abstract class MalformedTimestampHeaderDateTimeInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampHeaderDateTimeInputPayload
     with
         _i2.AWSEquatable<MalformedTimestampHeaderDateTimeInputPayload>

@@ -49,7 +49,6 @@ abstract class OmitsNullSerializesEmptyStringInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class OmitsNullSerializesEmptyStringInputPayload
     with
         _i2.AWSEquatable<OmitsNullSerializesEmptyStringInputPayload>

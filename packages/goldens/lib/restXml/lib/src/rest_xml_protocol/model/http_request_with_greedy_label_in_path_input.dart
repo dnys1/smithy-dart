@@ -60,7 +60,6 @@ abstract class HttpRequestWithGreedyLabelInPathInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithGreedyLabelInPathInputPayload
     with
         _i2.AWSEquatable<HttpRequestWithGreedyLabelInPathInputPayload>

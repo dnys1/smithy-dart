@@ -46,9 +46,12 @@ abstract class ComplexError
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override
-  ComplexErrorPayload getPayload() => ComplexErrorPayload((b) => b
-    ..nested = nested
-    ..topLevel = topLevel);
+  ComplexErrorPayload getPayload() => ComplexErrorPayload((b) {
+        if (nested != null) {
+          b.nested.replace(nested!);
+        }
+        b.topLevel = topLevel;
+      });
   @override
   String? get message => null;
   @override
@@ -66,7 +69,6 @@ abstract class ComplexError
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class ComplexErrorPayload
     with _i1.AWSEquatable<ComplexErrorPayload>
     implements Built<ComplexErrorPayload, ComplexErrorPayloadBuilder> {
@@ -126,9 +128,9 @@ class _ComplexErrorRestXmlSerializer
       switch (key as String) {
         case 'Nested':
           if (value != null) {
-            result.nested = (serializers.deserialize(value,
+            result.nested.replace((serializers.deserialize(value,
                     specifiedType: const FullType(_i3.ComplexNestedErrorData))
-                as _i3.ComplexNestedErrorData);
+                as _i3.ComplexNestedErrorData));
           }
           break;
         case 'TopLevel':

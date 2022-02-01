@@ -84,7 +84,6 @@ abstract class ListObjectsV2Request
 }
 
 @_i5.internal
-@BuiltValue(nestedBuilders: false)
 abstract class ListObjectsV2RequestPayload
     with _i2.AWSEquatable<ListObjectsV2RequestPayload>
     implements

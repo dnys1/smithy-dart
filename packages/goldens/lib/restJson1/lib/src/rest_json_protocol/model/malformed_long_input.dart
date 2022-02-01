@@ -44,8 +44,9 @@ abstract class MalformedLongInput
   }
 
   @override
-  MalformedLongInputPayload getPayload() =>
-      MalformedLongInputPayload((b) => b..longInBody = longInBody);
+  MalformedLongInputPayload getPayload() => MalformedLongInputPayload((b) {
+        b.longInBody = longInBody;
+      });
   @override
   List<Object?> get props =>
       [longInBody, longInHeader, longInPath, longInQuery];
@@ -61,7 +62,6 @@ abstract class MalformedLongInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedLongInputPayload
     with _i2.AWSEquatable<MalformedLongInputPayload>
     implements

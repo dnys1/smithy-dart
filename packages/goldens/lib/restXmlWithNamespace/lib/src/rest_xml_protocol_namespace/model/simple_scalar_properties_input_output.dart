@@ -67,17 +67,20 @@ abstract class SimpleScalarPropertiesInputOutput
   bool? get trueBooleanValue;
   @override
   SimpleScalarPropertiesInputOutputPayload getPayload() =>
-      SimpleScalarPropertiesInputOutputPayload((b) => b
-        ..byteValue = byteValue
-        ..doubleValue = doubleValue
-        ..falseBooleanValue = falseBooleanValue
-        ..floatValue = floatValue
-        ..integerValue = integerValue
-        ..longValue = longValue
-        ..nested = nested
-        ..shortValue = shortValue
-        ..stringValue = stringValue
-        ..trueBooleanValue = trueBooleanValue);
+      SimpleScalarPropertiesInputOutputPayload((b) {
+        b.byteValue = byteValue;
+        b.doubleValue = doubleValue;
+        b.falseBooleanValue = falseBooleanValue;
+        b.floatValue = floatValue;
+        b.integerValue = integerValue;
+        b.longValue = longValue;
+        if (nested != null) {
+          b.nested.replace(nested!);
+        }
+        b.shortValue = shortValue;
+        b.stringValue = stringValue;
+        b.trueBooleanValue = trueBooleanValue;
+      });
   @override
   List<Object?> get props => [
         byteValue,
@@ -112,7 +115,6 @@ abstract class SimpleScalarPropertiesInputOutput
 }
 
 @_i5.internal
-@BuiltValue(nestedBuilders: false)
 abstract class SimpleScalarPropertiesInputOutputPayload
     with
         _i2.AWSEquatable<SimpleScalarPropertiesInputOutputPayload>
@@ -232,9 +234,9 @@ class _SimpleScalarPropertiesInputOutputRestXmlSerializer extends _i1
           break;
         case 'Nested':
           if (value != null) {
-            result.nested = (serializers.deserialize(value,
+            result.nested.replace((serializers.deserialize(value,
                     specifiedType: const FullType(_i4.NestedWithNamespace))
-                as _i4.NestedWithNamespace);
+                as _i4.NestedWithNamespace));
           }
           break;
         case 'shortValue':

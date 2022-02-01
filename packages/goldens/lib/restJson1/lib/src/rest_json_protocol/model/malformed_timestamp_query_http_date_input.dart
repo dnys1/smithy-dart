@@ -47,7 +47,6 @@ abstract class MalformedTimestampQueryHttpDateInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampQueryHttpDateInputPayload
     with
         _i2.AWSEquatable<MalformedTimestampQueryHttpDateInputPayload>

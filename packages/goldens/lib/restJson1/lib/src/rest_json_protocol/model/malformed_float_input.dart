@@ -43,8 +43,9 @@ abstract class MalformedFloatInput
   }
 
   @override
-  MalformedFloatInputPayload getPayload() =>
-      MalformedFloatInputPayload((b) => b..floatInBody = floatInBody);
+  MalformedFloatInputPayload getPayload() => MalformedFloatInputPayload((b) {
+        b.floatInBody = floatInBody;
+      });
   @override
   List<Object?> get props =>
       [floatInBody, floatInHeader, floatInPath, floatInQuery];
@@ -60,7 +61,6 @@ abstract class MalformedFloatInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedFloatInputPayload
     with _i2.AWSEquatable<MalformedFloatInputPayload>
     implements

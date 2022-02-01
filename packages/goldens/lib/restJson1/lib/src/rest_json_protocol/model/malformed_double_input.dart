@@ -43,8 +43,9 @@ abstract class MalformedDoubleInput
   }
 
   @override
-  MalformedDoubleInputPayload getPayload() =>
-      MalformedDoubleInputPayload((b) => b..doubleInBody = doubleInBody);
+  MalformedDoubleInputPayload getPayload() => MalformedDoubleInputPayload((b) {
+        b.doubleInBody = doubleInBody;
+      });
   @override
   List<Object?> get props =>
       [doubleInBody, doubleInHeader, doubleInPath, doubleInQuery];
@@ -60,7 +61,6 @@ abstract class MalformedDoubleInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedDoubleInputPayload
     with _i2.AWSEquatable<MalformedDoubleInputPayload>
     implements

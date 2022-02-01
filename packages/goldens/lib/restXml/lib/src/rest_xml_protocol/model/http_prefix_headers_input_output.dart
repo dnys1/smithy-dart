@@ -62,7 +62,6 @@ abstract class HttpPrefixHeadersInputOutput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpPrefixHeadersInputOutputPayload
     with
         _i2.AWSEquatable<HttpPrefixHeadersInputOutputPayload>

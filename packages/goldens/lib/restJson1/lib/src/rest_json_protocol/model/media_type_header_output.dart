@@ -55,7 +55,6 @@ abstract class MediaTypeHeaderOutput
 }
 
 @_i5.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MediaTypeHeaderOutputPayload
     with
         _i1.AWSEquatable<MediaTypeHeaderOutputPayload>

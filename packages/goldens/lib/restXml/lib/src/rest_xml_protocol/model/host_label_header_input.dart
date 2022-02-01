@@ -53,7 +53,6 @@ abstract class HostLabelHeaderInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HostLabelHeaderInputPayload
     with _i2.AWSEquatable<HostLabelHeaderInputPayload>
     implements

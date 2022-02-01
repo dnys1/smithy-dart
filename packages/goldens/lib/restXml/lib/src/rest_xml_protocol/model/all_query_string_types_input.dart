@@ -104,7 +104,6 @@ abstract class AllQueryStringTypesInput
 }
 
 @_i6.internal
-@BuiltValue(nestedBuilders: false)
 abstract class AllQueryStringTypesInputPayload
     with
         _i2.AWSEquatable<AllQueryStringTypesInputPayload>

@@ -54,7 +54,6 @@ abstract class ConstantQueryStringInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class ConstantQueryStringInputPayload
     with
         _i2.AWSEquatable<ConstantQueryStringInputPayload>

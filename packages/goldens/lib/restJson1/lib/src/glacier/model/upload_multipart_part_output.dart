@@ -52,7 +52,6 @@ abstract class UploadMultipartPartOutput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class UploadMultipartPartOutputPayload
     with
         _i1.AWSEquatable<UploadMultipartPartOutputPayload>

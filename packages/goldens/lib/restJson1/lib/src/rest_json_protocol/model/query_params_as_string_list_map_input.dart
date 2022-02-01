@@ -50,7 +50,6 @@ abstract class QueryParamsAsStringListMapInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class QueryParamsAsStringListMapInputPayload
     with
         _i2.AWSEquatable<QueryParamsAsStringListMapInputPayload>

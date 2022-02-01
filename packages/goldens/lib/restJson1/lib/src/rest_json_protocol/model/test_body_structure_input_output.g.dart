@@ -146,9 +146,11 @@ class TestBodyStructureInputOutputPayloadBuilder
             TestBodyStructureInputOutputPayloadBuilder> {
   _$TestBodyStructureInputOutputPayload? _$v;
 
-  _i3.TestConfig? _testConfig;
-  _i3.TestConfig? get testConfig => _$this._testConfig;
-  set testConfig(_i3.TestConfig? testConfig) => _$this._testConfig = testConfig;
+  _i3.TestConfigBuilder? _testConfig;
+  _i3.TestConfigBuilder get testConfig =>
+      _$this._testConfig ??= new _i3.TestConfigBuilder();
+  set testConfig(_i3.TestConfigBuilder? testConfig) =>
+      _$this._testConfig = testConfig;
 
   TestBodyStructureInputOutputPayloadBuilder() {
     TestBodyStructureInputOutputPayload._init(this);
@@ -157,7 +159,7 @@ class TestBodyStructureInputOutputPayloadBuilder
   TestBodyStructureInputOutputPayloadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _testConfig = $v.testConfig;
+      _testConfig = $v.testConfig?.toBuilder();
       _$v = null;
     }
     return this;
@@ -177,8 +179,22 @@ class TestBodyStructureInputOutputPayloadBuilder
 
   @override
   _$TestBodyStructureInputOutputPayload build() {
-    final _$result = _$v ??
-        new _$TestBodyStructureInputOutputPayload._(testConfig: testConfig);
+    _$TestBodyStructureInputOutputPayload _$result;
+    try {
+      _$result = _$v ??
+          new _$TestBodyStructureInputOutputPayload._(
+              testConfig: _testConfig?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'testConfig';
+        _testConfig?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'TestBodyStructureInputOutputPayload', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

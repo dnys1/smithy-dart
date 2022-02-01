@@ -112,13 +112,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..annotations.addAll([
             // Developers only ever interact with the main struct.
             DartTypes.meta.internal,
-
-            // Payload types do not need nested builders. These are nice for DX
-            // in the main struct, but do not add anything in the payload since
-            // this is an internal class.
-            DartTypes.builtValue.builtValue.newInstance([], {
-              'nestedBuilders': literalFalse,
-            }),
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol!),
@@ -335,17 +328,37 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // Build the payload using the payload builder class.
-    Expression builder = refer('b');
+    final builder = refer('b');
+    final block = BlockBuilder();
     for (final member in payloadMembers) {
-      builder = builder
-          .cascade(member.dartName(ShapeType.structure))
-          .assign(refer(member.dartName(ShapeType.structure)));
+      final memberName = member.dartName(ShapeType.structure);
+      final hasNestedBuilder = [
+        ShapeType.list,
+        ShapeType.set,
+        ShapeType.map,
+        ShapeType.structure,
+      ].contains(context.shapeFor(member.target).getType());
+      final isNullable = member.isNullable(context, payloadShape);
+      if (hasNestedBuilder) {
+        block.statements.add(
+          builder.property(memberName).property('replace').call([
+            isNullable ? refer(memberName).nullChecked : refer(memberName)
+          ]).wrapWithBlockIf(
+            refer(memberName).notEqualTo(literalNull),
+            isNullable,
+          ),
+        );
+      } else {
+        block.statements.add(
+          builder.property(memberName).assign(refer(memberName)).statement,
+        );
+      }
     }
     return payloadSymbol.newInstance([
       if (payloadMembers.isNotEmpty)
         Method((m) => m
           ..requiredParameters.add(Parameter((p) => p..name = 'b'))
-          ..body = builder.code).closure,
+          ..body = block.build()).closure,
     ]).code;
   }
 
@@ -513,7 +526,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final payload = refer('payload');
     final response = refer('response');
 
-    final payloadShape = this.payloadMember;
+    final payloadShape = payloadMember;
 
     // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {

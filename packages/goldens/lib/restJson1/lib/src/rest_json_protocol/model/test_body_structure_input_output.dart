@@ -48,7 +48,11 @@ abstract class TestBodyStructureInputOutput
   String? get testId;
   @override
   TestBodyStructureInputOutputPayload getPayload() =>
-      TestBodyStructureInputOutputPayload((b) => b..testConfig = testConfig);
+      TestBodyStructureInputOutputPayload((b) {
+        if (testConfig != null) {
+          b.testConfig.replace(testConfig!);
+        }
+      });
   @override
   List<Object?> get props => [testConfig, testId];
   @override
@@ -61,7 +65,6 @@ abstract class TestBodyStructureInputOutput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class TestBodyStructureInputOutputPayload
     with
         _i2.AWSEquatable<TestBodyStructureInputOutputPayload>
@@ -116,9 +119,9 @@ class _TestBodyStructureInputOutputRestJson1Serializer extends _i1
       switch (key) {
         case 'testConfig':
           if (value != null) {
-            result.testConfig = (serializers.deserialize(value,
+            result.testConfig.replace((serializers.deserialize(value,
                     specifiedType: const FullType(_i3.TestConfig))
-                as _i3.TestConfig);
+                as _i3.TestConfig));
           }
           break;
       }

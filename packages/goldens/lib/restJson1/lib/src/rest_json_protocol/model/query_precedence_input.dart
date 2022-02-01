@@ -47,7 +47,6 @@ abstract class QueryPrecedenceInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class QueryPrecedenceInputPayload
     with _i2.AWSEquatable<QueryPrecedenceInputPayload>
     implements

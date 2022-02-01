@@ -343,9 +343,10 @@ class SimpleScalarPropertiesInputOutputPayloadBuilder
   _i3.Int64? get longValue => _$this._longValue;
   set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
 
-  _i4.NestedWithNamespace? _nested;
-  _i4.NestedWithNamespace? get nested => _$this._nested;
-  set nested(_i4.NestedWithNamespace? nested) => _$this._nested = nested;
+  _i4.NestedWithNamespaceBuilder? _nested;
+  _i4.NestedWithNamespaceBuilder get nested =>
+      _$this._nested ??= new _i4.NestedWithNamespaceBuilder();
+  set nested(_i4.NestedWithNamespaceBuilder? nested) => _$this._nested = nested;
 
   int? _shortValue;
   int? get shortValue => _$this._shortValue;
@@ -373,7 +374,7 @@ class SimpleScalarPropertiesInputOutputPayloadBuilder
       _floatValue = $v.floatValue;
       _integerValue = $v.integerValue;
       _longValue = $v.longValue;
-      _nested = $v.nested;
+      _nested = $v.nested?.toBuilder();
       _shortValue = $v.shortValue;
       _stringValue = $v.stringValue;
       _trueBooleanValue = $v.trueBooleanValue;
@@ -396,18 +397,33 @@ class SimpleScalarPropertiesInputOutputPayloadBuilder
 
   @override
   _$SimpleScalarPropertiesInputOutputPayload build() {
-    final _$result = _$v ??
-        new _$SimpleScalarPropertiesInputOutputPayload._(
-            byteValue: byteValue,
-            doubleValue: doubleValue,
-            falseBooleanValue: falseBooleanValue,
-            floatValue: floatValue,
-            integerValue: integerValue,
-            longValue: longValue,
-            nested: nested,
-            shortValue: shortValue,
-            stringValue: stringValue,
-            trueBooleanValue: trueBooleanValue);
+    _$SimpleScalarPropertiesInputOutputPayload _$result;
+    try {
+      _$result = _$v ??
+          new _$SimpleScalarPropertiesInputOutputPayload._(
+              byteValue: byteValue,
+              doubleValue: doubleValue,
+              falseBooleanValue: falseBooleanValue,
+              floatValue: floatValue,
+              integerValue: integerValue,
+              longValue: longValue,
+              nested: _nested?.build(),
+              shortValue: shortValue,
+              stringValue: stringValue,
+              trueBooleanValue: trueBooleanValue);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'nested';
+        _nested?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'SimpleScalarPropertiesInputOutputPayload',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

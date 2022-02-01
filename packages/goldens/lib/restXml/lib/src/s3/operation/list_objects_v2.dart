@@ -152,11 +152,9 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
   _i2.ListObjectsV2Request rebuildInput(
           _i2.ListObjectsV2Request input, String token, int? pageSize) =>
       input.rebuild((b) {
-        if (input.continuationToken != null) {
-          b.continuationToken = input.continuationToken!;
-        }
-        if (input.maxKeys != null) {
-          b.maxKeys = input.maxKeys!;
+        b.continuationToken = token;
+        if (pageSize != null) {
+          b.maxKeys = pageSize;
         }
       });
 }

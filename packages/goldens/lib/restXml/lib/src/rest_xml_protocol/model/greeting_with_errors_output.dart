@@ -52,7 +52,6 @@ abstract class GreetingWithErrorsOutput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class GreetingWithErrorsOutputPayload
     with
         _i1.AWSEquatable<GreetingWithErrorsOutputPayload>

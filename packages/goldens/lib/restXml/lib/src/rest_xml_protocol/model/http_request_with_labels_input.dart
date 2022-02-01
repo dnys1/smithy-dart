@@ -90,7 +90,6 @@ abstract class HttpRequestWithLabelsInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class HttpRequestWithLabelsInputPayload
     with
         _i2.AWSEquatable<HttpRequestWithLabelsInputPayload>

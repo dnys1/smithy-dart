@@ -45,7 +45,6 @@ abstract class MediaTypeHeaderInput
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MediaTypeHeaderInputPayload
     with _i2.AWSEquatable<MediaTypeHeaderInputPayload>
     implements

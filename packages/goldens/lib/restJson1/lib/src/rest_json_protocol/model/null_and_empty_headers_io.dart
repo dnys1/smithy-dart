@@ -65,7 +65,6 @@ abstract class NullAndEmptyHeadersIo
 }
 
 @_i4.internal
-@BuiltValue(nestedBuilders: false)
 abstract class NullAndEmptyHeadersIoPayload
     with
         _i2.AWSEquatable<NullAndEmptyHeadersIoPayload>

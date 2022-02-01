@@ -49,7 +49,6 @@ abstract class SayGoodbyeOutput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class SayGoodbyeOutputPayload
     with _i1.AWSEquatable<SayGoodbyeOutputPayload>
     implements

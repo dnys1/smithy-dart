@@ -66,11 +66,12 @@ class _XmlNamespaceNestedRestXmlSerializer
           break;
         case 'values':
           if (value != null) {
-            result.values.replace(const _i2.XmlBuiltListSerializer(
-                    memberNamespace: _i2.XmlNamespace('http://bux.com'))
-                .deserialize(serializers, (value as Iterable<Object?>),
-                    specifiedType:
-                        const FullType(_i3.BuiltList, [FullType(String)])));
+            result.values.replace((const _i2.XmlBuiltListSerializer(
+                        memberNamespace: _i2.XmlNamespace('http://bux.com'))
+                    .deserialize(serializers, (value as Iterable<Object?>),
+                        specifiedType:
+                            const FullType(_i3.BuiltList, [FullType(String)]))
+                as _i3.BuiltList<String>));
           }
           break;
       }

@@ -58,7 +58,6 @@ abstract class MalformedTimestampPathHttpDateInput
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class MalformedTimestampPathHttpDateInputPayload
     with
         _i2.AWSEquatable<MalformedTimestampPathHttpDateInputPayload>

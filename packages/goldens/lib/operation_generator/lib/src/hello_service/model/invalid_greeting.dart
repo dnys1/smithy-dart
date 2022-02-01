@@ -40,8 +40,9 @@ abstract class InvalidGreeting
   @override
   String? get message;
   @override
-  InvalidGreetingPayload getPayload() =>
-      InvalidGreetingPayload((b) => b..message = message);
+  InvalidGreetingPayload getPayload() => InvalidGreetingPayload((b) {
+        b.message = message;
+      });
   @override
   _i2.RetryConfig? get retryConfig => null;
   @override
@@ -56,7 +57,6 @@ abstract class InvalidGreeting
 }
 
 @_i3.internal
-@BuiltValue(nestedBuilders: false)
 abstract class InvalidGreetingPayload
     with _i1.AWSEquatable<InvalidGreetingPayload>
     implements Built<InvalidGreetingPayload, InvalidGreetingPayloadBuilder> {

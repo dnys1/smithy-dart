@@ -100,9 +100,6 @@ class _QueryParamsAsStringListMapInputRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is QueryParamsAsStringListMapInput
-        ? object.getPayload()
-        : (object as QueryParamsAsStringListMapInputPayload);
     final result = <Object?>[
       _i1.XmlElementName('QueryParamsAsStringListMapInput')
     ];

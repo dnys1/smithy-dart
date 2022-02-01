@@ -98,9 +98,6 @@ class _HttpResponseCodeOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is HttpResponseCodeOutput
-        ? object.getPayload()
-        : (object as HttpResponseCodeOutputPayload);
     final result = <Object?>[_i2.XmlElementName('HttpResponseCodeOutput')];
     return result;
   }

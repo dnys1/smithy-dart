@@ -99,9 +99,6 @@ class _ConstantAndVariableQueryStringInputRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is ConstantAndVariableQueryStringInput
-        ? object.getPayload()
-        : (object as ConstantAndVariableQueryStringInputPayload);
     final result = <Object?>[
       _i1.XmlElementName('ConstantAndVariableQueryStringInput')
     ];

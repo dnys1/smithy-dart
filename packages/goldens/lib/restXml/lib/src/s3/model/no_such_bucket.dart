@@ -62,7 +62,6 @@ class _NoSuchBucketRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = (object as NoSuchBucket);
     final result = <Object?>[
       _i2.XmlElementName('NoSuchBucket',
           const _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))

@@ -7,8 +7,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_test/smithy_test.dart';
 
-import 'serializers.dart';
-
 final _dummyHttpRequest = AWSStreamedHttpRequest(
   method: HttpMethod.get,
   host: '',

@@ -110,9 +110,6 @@ class _HttpRequestWithGreedyLabelInPathInputRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is HttpRequestWithGreedyLabelInPathInput
-        ? object.getPayload()
-        : (object as HttpRequestWithGreedyLabelInPathInputPayload);
     final result = <Object?>[
       _i1.XmlElementName('HttpRequestWithGreedyLabelInPathInput')
     ];

@@ -94,9 +94,6 @@ class _QueryPrecedenceInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is QueryPrecedenceInput
-        ? object.getPayload()
-        : (object as QueryPrecedenceInputPayload);
     final result = <Object?>[_i1.XmlElementName('QueryPrecedenceInput')];
     return result;
   }

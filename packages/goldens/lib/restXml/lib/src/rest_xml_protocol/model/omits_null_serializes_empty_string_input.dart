@@ -99,9 +99,6 @@ class _OmitsNullSerializesEmptyStringInputRestXmlSerializer extends _i1
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is OmitsNullSerializesEmptyStringInput
-        ? object.getPayload()
-        : (object as OmitsNullSerializesEmptyStringInputPayload);
     final result = <Object?>[
       _i1.XmlElementName('OmitsNullSerializesEmptyStringInput')
     ];

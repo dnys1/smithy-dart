@@ -60,7 +60,6 @@ class _NoInputAndOutputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = (object as NoInputAndOutputOutput);
     final result = <Object?>[_i2.XmlElementName('NoInputAndOutputOutput')];
     return result;
   }

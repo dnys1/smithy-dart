@@ -34,7 +34,7 @@ final dependencyVersions = {
   'meta': Dependency('^1.7.0'),
   'uuid': Dependency('^3.0.0'),
   'xml': Dependency('^5.3.1'),
-  
+
   // Dev Dependencies
   'smithy_test': Dependency.dev('^0.1.0', DependencyType.smithy),
   'build_runner': Dependency.dev('^2.0.0'),

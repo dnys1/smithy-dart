@@ -20,5 +20,5 @@ String formatDocs(String docs) {
     lines.removeLast();
   }
 
-  return lines.map((doc) => '/// $doc').join('\n');
+  return lines.map((doc) => '/// $doc'.trim()).join('\n');
 }

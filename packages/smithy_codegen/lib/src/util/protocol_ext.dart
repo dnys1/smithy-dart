@@ -4,7 +4,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/src/protocol/generic_json_protocol.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
-import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/serialization/structure_rest_xml_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';

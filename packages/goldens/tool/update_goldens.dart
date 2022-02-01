@@ -126,14 +126,18 @@ sdk:
 
 stages:
   - analyze_and_format:
-    - group:
-      - format
-      - analyze: --fatal-infos .
+      - group:
+          - format
+          - analyze: --fatal-infos .
   - unit_test:
-    - group:
       - test:
-      - test: -p chrome
-    ''');
+        os:
+          - windows
+          - macos
+      - group:
+          - test:
+          - test: -p chrome
+''');
   }
 
   // Run `dart pub get`

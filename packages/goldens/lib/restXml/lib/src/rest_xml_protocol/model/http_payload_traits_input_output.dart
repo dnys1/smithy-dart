@@ -76,15 +76,9 @@ class _HttpPayloadTraitsInputOutputRestXmlSerializer
   @override
   Object serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is HttpPayloadTraitsInputOutput
-        ? object.getPayload()
-        : (object as _i2.Uint8List?);
     final result = <Object?>[
       _i1.XmlElementName('HttpPayloadTraitsInputOutput')
     ];
-    if (payload == null) {
-      return result;
-    }
     return result;
   }
 }

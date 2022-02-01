@@ -1,6 +1,5 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
 part 'shape.g.dart';

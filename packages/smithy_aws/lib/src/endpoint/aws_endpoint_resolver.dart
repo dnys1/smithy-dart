@@ -1,4 +1,3 @@
-import 'package:smithy/smithy.dart';
 import 'package:smithy_aws/smithy_aws.dart';
 
 abstract class AWSEndpointResolver {

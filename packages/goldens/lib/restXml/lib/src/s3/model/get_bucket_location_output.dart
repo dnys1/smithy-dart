@@ -66,14 +66,10 @@ class _GetBucketLocationOutputRestXmlSerializer
   @override
   Object serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = (object as GetBucketLocationOutput);
     final result = <Object?>[
       _i3.XmlElementName('BucketLocationConstraint',
           const _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
     ];
-    if (payload == null) {
-      return result;
-    }
     return result;
   }
 }

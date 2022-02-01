@@ -102,9 +102,6 @@ class _GreetingWithErrorsOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is GreetingWithErrorsOutput
-        ? object.getPayload()
-        : (object as GreetingWithErrorsOutputPayload);
     final result = <Object?>[_i2.XmlElementName('GreetingWithErrorsOutput')];
     return result;
   }

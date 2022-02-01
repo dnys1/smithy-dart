@@ -215,9 +215,6 @@ class _InputAndOutputWithHeadersIoRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is InputAndOutputWithHeadersIo
-        ? object.getPayload()
-        : (object as InputAndOutputWithHeadersIoPayload);
     final result = <Object?>[_i1.XmlElementName('InputAndOutputWithHeadersIo')];
     return result;
   }

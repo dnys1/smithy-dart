@@ -104,9 +104,6 @@ class _GetBucketLocationRequestRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is GetBucketLocationRequest
-        ? object.getPayload()
-        : (object as GetBucketLocationRequestPayload);
     final result = <Object?>[
       _i1.XmlElementName('GetBucketLocationRequest',
           const _i1.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))

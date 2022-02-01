@@ -114,9 +114,6 @@ class _NullAndEmptyHeadersIoRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final payload = object is NullAndEmptyHeadersIo
-        ? object.getPayload()
-        : (object as NullAndEmptyHeadersIoPayload);
     final result = <Object?>[_i1.XmlElementName('NullAndEmptyHeadersIo')];
     return result;
   }

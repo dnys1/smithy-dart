@@ -39,6 +39,9 @@ void main(List<String> args) async {
     stderr.writeln(e.toString());
     usage();
   }
+
+  // TODO: Complete codegen server
+  final _ = ast;
 }
 
 Never usage() {

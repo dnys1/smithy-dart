@@ -1,6 +1,6 @@
 name: smithy_aws
 description: Smithy runtime for AWS clients
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/dnys1/smithy-dart
 publish_to: https://pub.dillonnys.com
 
@@ -34,11 +34,11 @@ dependencies:
   xml: ^5.3.1
 
 # REMOVE FOR PUBLISHING
-dependency_overrides:
-  smithy:
-    path: ../smithy
-  smithy_ast:
-    path: ../smithy_ast
+# dependency_overrides:
+#   smithy:
+#     path: ../smithy
+#   smithy_ast:
+#     path: ../smithy_ast
 
 dev_dependencies:
   amplify_lints: ^1.0.0

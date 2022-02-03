@@ -46,5 +46,6 @@ class RestXmlTrait extends AWSProtocolTrait {
         XmlNameTrait.id,
         XmlNamespaceTrait.id,
         TimestampFormatTrait.id,
+        MediaTypeTrait.id,
       ];
 }

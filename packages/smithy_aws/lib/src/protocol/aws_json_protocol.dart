@@ -31,6 +31,8 @@ mixin AWSJsonProtocol<InputPayload, Input, OutputPayload, Output>
     if (type != null) {
       return _sanitizeError(type);
     }
+
+    return null;
   }
 
   /// Legacy server-side protocol implementations sometimes include different

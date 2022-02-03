@@ -6,6 +6,185 @@ part of 'protocol_traits.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+class _$ProtocolTraits extends ProtocolTraits {
+  @override
+  final String? wireName;
+  @override
+  final XmlNamespaceTrait? namespace;
+  @override
+  final BuiltSet<MemberShape> attributeMembers;
+  @override
+  final BuiltSet<MemberShape> flattenedMembers;
+  @override
+  final BuiltMap<MemberShape, XmlNamespaceTrait> memberNamespaces;
+  @override
+  final BuiltMap<MemberShape, String> memberWireNames;
+
+  factory _$ProtocolTraits([void Function(ProtocolTraitsBuilder)? updates]) =>
+      (new ProtocolTraitsBuilder()..update(updates)).build();
+
+  _$ProtocolTraits._(
+      {this.wireName,
+      this.namespace,
+      required this.attributeMembers,
+      required this.flattenedMembers,
+      required this.memberNamespaces,
+      required this.memberWireNames})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        attributeMembers, 'ProtocolTraits', 'attributeMembers');
+    BuiltValueNullFieldError.checkNotNull(
+        flattenedMembers, 'ProtocolTraits', 'flattenedMembers');
+    BuiltValueNullFieldError.checkNotNull(
+        memberNamespaces, 'ProtocolTraits', 'memberNamespaces');
+    BuiltValueNullFieldError.checkNotNull(
+        memberWireNames, 'ProtocolTraits', 'memberWireNames');
+  }
+
+  @override
+  ProtocolTraits rebuild(void Function(ProtocolTraitsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ProtocolTraitsBuilder toBuilder() =>
+      new ProtocolTraitsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ProtocolTraits &&
+        wireName == other.wireName &&
+        namespace == other.namespace &&
+        attributeMembers == other.attributeMembers &&
+        flattenedMembers == other.flattenedMembers &&
+        memberNamespaces == other.memberNamespaces &&
+        memberWireNames == other.memberWireNames;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc($jc($jc(0, wireName.hashCode), namespace.hashCode),
+                    attributeMembers.hashCode),
+                flattenedMembers.hashCode),
+            memberNamespaces.hashCode),
+        memberWireNames.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('ProtocolTraits')
+          ..add('wireName', wireName)
+          ..add('namespace', namespace)
+          ..add('attributeMembers', attributeMembers)
+          ..add('flattenedMembers', flattenedMembers)
+          ..add('memberNamespaces', memberNamespaces)
+          ..add('memberWireNames', memberWireNames))
+        .toString();
+  }
+}
+
+class ProtocolTraitsBuilder
+    implements Builder<ProtocolTraits, ProtocolTraitsBuilder> {
+  _$ProtocolTraits? _$v;
+
+  String? _wireName;
+  String? get wireName => _$this._wireName;
+  set wireName(String? wireName) => _$this._wireName = wireName;
+
+  XmlNamespaceTrait? _namespace;
+  XmlNamespaceTrait? get namespace => _$this._namespace;
+  set namespace(XmlNamespaceTrait? namespace) => _$this._namespace = namespace;
+
+  SetBuilder<MemberShape>? _attributeMembers;
+  SetBuilder<MemberShape> get attributeMembers =>
+      _$this._attributeMembers ??= new SetBuilder<MemberShape>();
+  set attributeMembers(SetBuilder<MemberShape>? attributeMembers) =>
+      _$this._attributeMembers = attributeMembers;
+
+  SetBuilder<MemberShape>? _flattenedMembers;
+  SetBuilder<MemberShape> get flattenedMembers =>
+      _$this._flattenedMembers ??= new SetBuilder<MemberShape>();
+  set flattenedMembers(SetBuilder<MemberShape>? flattenedMembers) =>
+      _$this._flattenedMembers = flattenedMembers;
+
+  MapBuilder<MemberShape, XmlNamespaceTrait>? _memberNamespaces;
+  MapBuilder<MemberShape, XmlNamespaceTrait> get memberNamespaces =>
+      _$this._memberNamespaces ??=
+          new MapBuilder<MemberShape, XmlNamespaceTrait>();
+  set memberNamespaces(
+          MapBuilder<MemberShape, XmlNamespaceTrait>? memberNamespaces) =>
+      _$this._memberNamespaces = memberNamespaces;
+
+  MapBuilder<MemberShape, String>? _memberWireNames;
+  MapBuilder<MemberShape, String> get memberWireNames =>
+      _$this._memberWireNames ??= new MapBuilder<MemberShape, String>();
+  set memberWireNames(MapBuilder<MemberShape, String>? memberWireNames) =>
+      _$this._memberWireNames = memberWireNames;
+
+  ProtocolTraitsBuilder();
+
+  ProtocolTraitsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _wireName = $v.wireName;
+      _namespace = $v.namespace;
+      _attributeMembers = $v.attributeMembers.toBuilder();
+      _flattenedMembers = $v.flattenedMembers.toBuilder();
+      _memberNamespaces = $v.memberNamespaces.toBuilder();
+      _memberWireNames = $v.memberWireNames.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ProtocolTraits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ProtocolTraits;
+  }
+
+  @override
+  void update(void Function(ProtocolTraitsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$ProtocolTraits build() {
+    _$ProtocolTraits _$result;
+    try {
+      _$result = _$v ??
+          new _$ProtocolTraits._(
+              wireName: wireName,
+              namespace: namespace,
+              attributeMembers: attributeMembers.build(),
+              flattenedMembers: flattenedMembers.build(),
+              memberNamespaces: memberNamespaces.build(),
+              memberWireNames: memberWireNames.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'attributeMembers';
+        attributeMembers.build();
+        _$failedField = 'flattenedMembers';
+        flattenedMembers.build();
+        _$failedField = 'memberNamespaces';
+        memberNamespaces.build();
+        _$failedField = 'memberWireNames';
+        memberWireNames.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'ProtocolTraits', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$HttpPayload extends HttpPayload {
   @override
   final Reference symbol;
@@ -722,393 +901,6 @@ class HttpErrorTraitsBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'HttpErrorTraits', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$JsonProtocolTraits extends JsonProtocolTraits {
-  @override
-  final BuiltMap<MemberShape, String> memberWireNames;
-
-  factory _$JsonProtocolTraits(
-          [void Function(JsonProtocolTraitsBuilder)? updates]) =>
-      (new JsonProtocolTraitsBuilder()..update(updates)).build();
-
-  _$JsonProtocolTraits._({required this.memberWireNames}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        memberWireNames, 'JsonProtocolTraits', 'memberWireNames');
-  }
-
-  @override
-  JsonProtocolTraits rebuild(
-          void Function(JsonProtocolTraitsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  JsonProtocolTraitsBuilder toBuilder() =>
-      new JsonProtocolTraitsBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is JsonProtocolTraits &&
-        memberWireNames == other.memberWireNames;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(0, memberWireNames.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('JsonProtocolTraits')
-          ..add('memberWireNames', memberWireNames))
-        .toString();
-  }
-}
-
-class JsonProtocolTraitsBuilder
-    implements
-        Builder<JsonProtocolTraits, JsonProtocolTraitsBuilder>,
-        ProtocolTraitsBuilder {
-  _$JsonProtocolTraits? _$v;
-
-  MapBuilder<MemberShape, String>? _memberWireNames;
-  MapBuilder<MemberShape, String> get memberWireNames =>
-      _$this._memberWireNames ??= new MapBuilder<MemberShape, String>();
-  set memberWireNames(
-          covariant MapBuilder<MemberShape, String>? memberWireNames) =>
-      _$this._memberWireNames = memberWireNames;
-
-  JsonProtocolTraitsBuilder();
-
-  JsonProtocolTraitsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _memberWireNames = $v.memberWireNames.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(covariant JsonProtocolTraits other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$JsonProtocolTraits;
-  }
-
-  @override
-  void update(void Function(JsonProtocolTraitsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$JsonProtocolTraits build() {
-    _$JsonProtocolTraits _$result;
-    try {
-      _$result = _$v ??
-          new _$JsonProtocolTraits._(memberWireNames: memberWireNames.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'memberWireNames';
-        memberWireNames.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'JsonProtocolTraits', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$RestJson1ProtocolTraits extends RestJson1ProtocolTraits {
-  @override
-  final BuiltMap<MemberShape, String> memberWireNames;
-
-  factory _$RestJson1ProtocolTraits(
-          [void Function(RestJson1ProtocolTraitsBuilder)? updates]) =>
-      (new RestJson1ProtocolTraitsBuilder()..update(updates)).build();
-
-  _$RestJson1ProtocolTraits._({required this.memberWireNames}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        memberWireNames, 'RestJson1ProtocolTraits', 'memberWireNames');
-  }
-
-  @override
-  RestJson1ProtocolTraits rebuild(
-          void Function(RestJson1ProtocolTraitsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  RestJson1ProtocolTraitsBuilder toBuilder() =>
-      new RestJson1ProtocolTraitsBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is RestJson1ProtocolTraits &&
-        memberWireNames == other.memberWireNames;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(0, memberWireNames.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('RestJson1ProtocolTraits')
-          ..add('memberWireNames', memberWireNames))
-        .toString();
-  }
-}
-
-class RestJson1ProtocolTraitsBuilder
-    implements
-        Builder<RestJson1ProtocolTraits, RestJson1ProtocolTraitsBuilder>,
-        ProtocolTraitsBuilder {
-  _$RestJson1ProtocolTraits? _$v;
-
-  MapBuilder<MemberShape, String>? _memberWireNames;
-  MapBuilder<MemberShape, String> get memberWireNames =>
-      _$this._memberWireNames ??= new MapBuilder<MemberShape, String>();
-  set memberWireNames(
-          covariant MapBuilder<MemberShape, String>? memberWireNames) =>
-      _$this._memberWireNames = memberWireNames;
-
-  RestJson1ProtocolTraitsBuilder();
-
-  RestJson1ProtocolTraitsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _memberWireNames = $v.memberWireNames.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(covariant RestJson1ProtocolTraits other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$RestJson1ProtocolTraits;
-  }
-
-  @override
-  void update(void Function(RestJson1ProtocolTraitsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$RestJson1ProtocolTraits build() {
-    _$RestJson1ProtocolTraits _$result;
-    try {
-      _$result = _$v ??
-          new _$RestJson1ProtocolTraits._(
-              memberWireNames: memberWireNames.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'memberWireNames';
-        memberWireNames.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'RestJson1ProtocolTraits', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$XmlProtocolTraits extends XmlProtocolTraits {
-  @override
-  final String? wireName;
-  @override
-  final XmlNamespaceTrait namespace;
-  @override
-  final BuiltSet<MemberShape> attributeMembers;
-  @override
-  final BuiltSet<MemberShape> flattenedMembers;
-  @override
-  final BuiltMap<MemberShape, XmlNamespaceTrait> memberNamespaces;
-  @override
-  final BuiltMap<MemberShape, String> memberWireNames;
-
-  factory _$XmlProtocolTraits(
-          [void Function(XmlProtocolTraitsBuilder)? updates]) =>
-      (new XmlProtocolTraitsBuilder()..update(updates)).build();
-
-  _$XmlProtocolTraits._(
-      {this.wireName,
-      required this.namespace,
-      required this.attributeMembers,
-      required this.flattenedMembers,
-      required this.memberNamespaces,
-      required this.memberWireNames})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        namespace, 'XmlProtocolTraits', 'namespace');
-    BuiltValueNullFieldError.checkNotNull(
-        attributeMembers, 'XmlProtocolTraits', 'attributeMembers');
-    BuiltValueNullFieldError.checkNotNull(
-        flattenedMembers, 'XmlProtocolTraits', 'flattenedMembers');
-    BuiltValueNullFieldError.checkNotNull(
-        memberNamespaces, 'XmlProtocolTraits', 'memberNamespaces');
-    BuiltValueNullFieldError.checkNotNull(
-        memberWireNames, 'XmlProtocolTraits', 'memberWireNames');
-  }
-
-  @override
-  XmlProtocolTraits rebuild(void Function(XmlProtocolTraitsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  XmlProtocolTraitsBuilder toBuilder() =>
-      new XmlProtocolTraitsBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is XmlProtocolTraits &&
-        wireName == other.wireName &&
-        namespace == other.namespace &&
-        attributeMembers == other.attributeMembers &&
-        flattenedMembers == other.flattenedMembers &&
-        memberNamespaces == other.memberNamespaces &&
-        memberWireNames == other.memberWireNames;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, wireName.hashCode), namespace.hashCode),
-                    attributeMembers.hashCode),
-                flattenedMembers.hashCode),
-            memberNamespaces.hashCode),
-        memberWireNames.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('XmlProtocolTraits')
-          ..add('wireName', wireName)
-          ..add('namespace', namespace)
-          ..add('attributeMembers', attributeMembers)
-          ..add('flattenedMembers', flattenedMembers)
-          ..add('memberNamespaces', memberNamespaces)
-          ..add('memberWireNames', memberWireNames))
-        .toString();
-  }
-}
-
-class XmlProtocolTraitsBuilder
-    implements
-        Builder<XmlProtocolTraits, XmlProtocolTraitsBuilder>,
-        ProtocolTraitsBuilder {
-  _$XmlProtocolTraits? _$v;
-
-  String? _wireName;
-  String? get wireName => _$this._wireName;
-  set wireName(covariant String? wireName) => _$this._wireName = wireName;
-
-  XmlNamespaceTrait? _namespace;
-  XmlNamespaceTrait? get namespace => _$this._namespace;
-  set namespace(covariant XmlNamespaceTrait? namespace) =>
-      _$this._namespace = namespace;
-
-  SetBuilder<MemberShape>? _attributeMembers;
-  SetBuilder<MemberShape> get attributeMembers =>
-      _$this._attributeMembers ??= new SetBuilder<MemberShape>();
-  set attributeMembers(covariant SetBuilder<MemberShape>? attributeMembers) =>
-      _$this._attributeMembers = attributeMembers;
-
-  SetBuilder<MemberShape>? _flattenedMembers;
-  SetBuilder<MemberShape> get flattenedMembers =>
-      _$this._flattenedMembers ??= new SetBuilder<MemberShape>();
-  set flattenedMembers(covariant SetBuilder<MemberShape>? flattenedMembers) =>
-      _$this._flattenedMembers = flattenedMembers;
-
-  MapBuilder<MemberShape, XmlNamespaceTrait>? _memberNamespaces;
-  MapBuilder<MemberShape, XmlNamespaceTrait> get memberNamespaces =>
-      _$this._memberNamespaces ??=
-          new MapBuilder<MemberShape, XmlNamespaceTrait>();
-  set memberNamespaces(
-          covariant MapBuilder<MemberShape, XmlNamespaceTrait>?
-              memberNamespaces) =>
-      _$this._memberNamespaces = memberNamespaces;
-
-  MapBuilder<MemberShape, String>? _memberWireNames;
-  MapBuilder<MemberShape, String> get memberWireNames =>
-      _$this._memberWireNames ??= new MapBuilder<MemberShape, String>();
-  set memberWireNames(
-          covariant MapBuilder<MemberShape, String>? memberWireNames) =>
-      _$this._memberWireNames = memberWireNames;
-
-  XmlProtocolTraitsBuilder();
-
-  XmlProtocolTraitsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _wireName = $v.wireName;
-      _namespace = $v.namespace;
-      _attributeMembers = $v.attributeMembers.toBuilder();
-      _flattenedMembers = $v.flattenedMembers.toBuilder();
-      _memberNamespaces = $v.memberNamespaces.toBuilder();
-      _memberWireNames = $v.memberWireNames.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(covariant XmlProtocolTraits other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$XmlProtocolTraits;
-  }
-
-  @override
-  void update(void Function(XmlProtocolTraitsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$XmlProtocolTraits build() {
-    _$XmlProtocolTraits _$result;
-    try {
-      _$result = _$v ??
-          new _$XmlProtocolTraits._(
-              wireName: wireName,
-              namespace: BuiltValueNullFieldError.checkNotNull(
-                  namespace, 'XmlProtocolTraits', 'namespace'),
-              attributeMembers: attributeMembers.build(),
-              flattenedMembers: flattenedMembers.build(),
-              memberNamespaces: memberNamespaces.build(),
-              memberWireNames: memberWireNames.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'attributeMembers';
-        attributeMembers.build();
-        _$failedField = 'flattenedMembers';
-        flattenedMembers.build();
-        _$failedField = 'memberNamespaces';
-        memberNamespaces.build();
-        _$failedField = 'memberWireNames';
-        memberWireNames.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'XmlProtocolTraits', _$failedField, e.toString());
       }
       rethrow;
     }

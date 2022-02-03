@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - master
+      - pub
   pull_request:
 defaults:
   run:
@@ -35,16 +35,16 @@ jobs:
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
-    name: "analyze_and_format; Dart dev; PKGS: packages/smithy_aws/test/goldens/awsJson1_0, packages/smithy_aws/test/goldens/awsJson1_1, packages/smithy_aws/test/goldens/restJson1; `dart format --output=none --set-exit-if-changed .`, `dart analyze --fatal-infos .`"
+    name: "analyze_and_format; Dart dev; PKGS: packages/goldens/lib/awsJson1_0, packages/goldens/lib/awsJson1_1, packages/goldens/lib/restJson1, packages/goldens/lib/restXml, packages/goldens/lib/restXmlWithNamespace, packages/smithy, packages/smithy_ast, packages/smithy_aws, packages/smithy_codegen, packages/smithy_test; `dart format --output=none --set-exit-if-changed .`, `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1;commands:format-analyze"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:packages/goldens/lib/awsJson1_0-packages/goldens/lib/awsJson1_1-packages/goldens/lib/restJson1-packages/goldens/lib/restXml-packages/goldens/lib/restXmlWithNamespace-packages/smithy-packages/smithy_ast-packages/smithy_aws-packages/smithy_codegen-packages/smithy_test;commands:format-analyze"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:packages/goldens/lib/awsJson1_0-packages/goldens/lib/awsJson1_1-packages/goldens/lib/restJson1-packages/goldens/lib/restXml-packages/goldens/lib/restXmlWithNamespace-packages/smithy-packages/smithy_ast-packages/smithy_aws-packages/smithy_codegen-packages/smithy_test
             os:ubuntu-latest;pub-cache-hosted;sdk:dev
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -53,56 +53,147 @@ jobs:
           sdk: dev
       - id: checkout
         uses: actions/checkout@v2.4.0
-      - id: packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade
-        name: packages/smithy_aws/test/goldens/awsJson1_0; dart pub upgrade
+      - id: packages_goldens_lib_awsJson1_0_pub_upgrade
+        name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        working-directory: packages/goldens/lib/awsJson1_0
         run: dart pub upgrade
-      - name: "packages/smithy_aws/test/goldens/awsJson1_0; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+      - name: "packages/goldens/lib/awsJson1_0; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_0
         run: "dart format --output=none --set-exit-if-changed ."
-      - name: "packages/smithy_aws/test/goldens/awsJson1_0; dart analyze --fatal-infos ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+      - name: "packages/goldens/lib/awsJson1_0; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_0
         run: dart analyze --fatal-infos .
-      - id: packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade
-        name: packages/smithy_aws/test/goldens/awsJson1_1; dart pub upgrade
+      - id: packages_goldens_lib_awsJson1_1_pub_upgrade
+        name: packages/goldens/lib/awsJson1_1; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        working-directory: packages/goldens/lib/awsJson1_1
         run: dart pub upgrade
-      - name: "packages/smithy_aws/test/goldens/awsJson1_1; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+      - name: "packages/goldens/lib/awsJson1_1; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_1
         run: "dart format --output=none --set-exit-if-changed ."
-      - name: "packages/smithy_aws/test/goldens/awsJson1_1; dart analyze --fatal-infos ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+      - name: "packages/goldens/lib/awsJson1_1; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_1
         run: dart analyze --fatal-infos .
-      - id: packages_smithy_aws_test_goldens_restJson1_pub_upgrade
-        name: packages/smithy_aws/test/goldens/restJson1; dart pub upgrade
+      - id: packages_goldens_lib_restJson1_pub_upgrade
+        name: packages/goldens/lib/restJson1; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/restJson1
+        working-directory: packages/goldens/lib/restJson1
         run: dart pub upgrade
-      - name: "packages/smithy_aws/test/goldens/restJson1; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/restJson1
+      - name: "packages/goldens/lib/restJson1; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restJson1
         run: "dart format --output=none --set-exit-if-changed ."
-      - name: "packages/smithy_aws/test/goldens/restJson1; dart analyze --fatal-infos ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/restJson1
+      - name: "packages/goldens/lib/restJson1; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restJson1
+        run: dart analyze --fatal-infos .
+      - id: packages_goldens_lib_restXml_pub_upgrade
+        name: packages/goldens/lib/restXml; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXml
+        run: dart pub upgrade
+      - name: "packages/goldens/lib/restXml; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_restXml_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXml
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/goldens/lib/restXml; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_restXml_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXml
+        run: dart analyze --fatal-infos .
+      - id: packages_goldens_lib_restXmlWithNamespace_pub_upgrade
+        name: packages/goldens/lib/restXmlWithNamespace; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXmlWithNamespace
+        run: dart pub upgrade
+      - name: "packages/goldens/lib/restXmlWithNamespace; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_restXmlWithNamespace_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXmlWithNamespace
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/goldens/lib/restXmlWithNamespace; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_restXmlWithNamespace_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXmlWithNamespace
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_pub_upgrade
+        name: packages/smithy; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy
+        run: dart pub upgrade
+      - name: "packages/smithy; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_ast_pub_upgrade
+        name: packages/smithy_ast; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_ast
+        run: dart pub upgrade
+      - name: "packages/smithy_ast; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_ast_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_ast
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_ast; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_ast_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_ast
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_aws_pub_upgrade
+        name: packages/smithy_aws; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws
+        run: dart pub upgrade
+      - name: "packages/smithy_aws; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_aws_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_aws; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_aws_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_codegen_pub_upgrade
+        name: packages/smithy_codegen; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_codegen
+        run: dart pub upgrade
+      - name: "packages/smithy_codegen; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_codegen
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_codegen; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_codegen
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_test_pub_upgrade
+        name: packages/smithy_test; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_test
+        run: dart pub upgrade
+      - name: "packages/smithy_test; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_test_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_test
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_test; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_test_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_test
         run: dart analyze --fatal-infos .
   job_003:
-    name: "analyze_and_format; Dart stable; PKGS: packages/smithy_aws/test/goldens/awsJson1_0, packages/smithy_aws/test/goldens/awsJson1_1, packages/smithy_aws/test/goldens/restJson1; `dart format --output=none --set-exit-if-changed .`, `dart analyze --fatal-infos .`"
+    name: "analyze_and_format; Dart stable; PKGS: packages/goldens/lib/awsJson1_0, packages/goldens/lib/awsJson1_1, packages/goldens/lib/restJson1, packages/goldens/lib/restXml, packages/goldens/lib/restXmlWithNamespace, packages/smithy, packages/smithy_ast, packages/smithy_aws, packages/smithy_codegen, packages/smithy_test; `dart format --output=none --set-exit-if-changed .`, `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1;commands:format-analyze"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/goldens/lib/awsJson1_0-packages/goldens/lib/awsJson1_1-packages/goldens/lib/restJson1-packages/goldens/lib/restXml-packages/goldens/lib/restXmlWithNamespace-packages/smithy-packages/smithy_ast-packages/smithy_aws-packages/smithy_codegen-packages/smithy_test;commands:format-analyze"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/smithy_aws/test/goldens/awsJson1_0-packages/smithy_aws/test/goldens/awsJson1_1-packages/smithy_aws/test/goldens/restJson1
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/goldens/lib/awsJson1_0-packages/goldens/lib/awsJson1_1-packages/goldens/lib/restJson1-packages/goldens/lib/restXml-packages/goldens/lib/restXmlWithNamespace-packages/smithy-packages/smithy_ast-packages/smithy_aws-packages/smithy_codegen-packages/smithy_test
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -111,42 +202,133 @@ jobs:
           sdk: stable
       - id: checkout
         uses: actions/checkout@v2.4.0
-      - id: packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade
-        name: packages/smithy_aws/test/goldens/awsJson1_0; dart pub upgrade
+      - id: packages_goldens_lib_awsJson1_0_pub_upgrade
+        name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+        working-directory: packages/goldens/lib/awsJson1_0
         run: dart pub upgrade
-      - name: "packages/smithy_aws/test/goldens/awsJson1_0; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+      - name: "packages/goldens/lib/awsJson1_0; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_0
         run: "dart format --output=none --set-exit-if-changed ."
-      - name: "packages/smithy_aws/test/goldens/awsJson1_0; dart analyze --fatal-infos ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_0_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_0
+      - name: "packages/goldens/lib/awsJson1_0; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_0_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_0
         run: dart analyze --fatal-infos .
-      - id: packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade
-        name: packages/smithy_aws/test/goldens/awsJson1_1; dart pub upgrade
+      - id: packages_goldens_lib_awsJson1_1_pub_upgrade
+        name: packages/goldens/lib/awsJson1_1; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+        working-directory: packages/goldens/lib/awsJson1_1
         run: dart pub upgrade
-      - name: "packages/smithy_aws/test/goldens/awsJson1_1; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+      - name: "packages/goldens/lib/awsJson1_1; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_1
         run: "dart format --output=none --set-exit-if-changed ."
-      - name: "packages/smithy_aws/test/goldens/awsJson1_1; dart analyze --fatal-infos ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_awsJson1_1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/awsJson1_1
+      - name: "packages/goldens/lib/awsJson1_1; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_awsJson1_1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/awsJson1_1
         run: dart analyze --fatal-infos .
-      - id: packages_smithy_aws_test_goldens_restJson1_pub_upgrade
-        name: packages/smithy_aws/test/goldens/restJson1; dart pub upgrade
+      - id: packages_goldens_lib_restJson1_pub_upgrade
+        name: packages/goldens/lib/restJson1; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/restJson1
+        working-directory: packages/goldens/lib/restJson1
         run: dart pub upgrade
-      - name: "packages/smithy_aws/test/goldens/restJson1; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/restJson1
+      - name: "packages/goldens/lib/restJson1; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restJson1
         run: "dart format --output=none --set-exit-if-changed ."
-      - name: "packages/smithy_aws/test/goldens/restJson1; dart analyze --fatal-infos ."
-        if: "always() && steps.packages_smithy_aws_test_goldens_restJson1_pub_upgrade.conclusion == 'success'"
-        working-directory: packages/smithy_aws/test/goldens/restJson1
+      - name: "packages/goldens/lib/restJson1; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_restJson1_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restJson1
+        run: dart analyze --fatal-infos .
+      - id: packages_goldens_lib_restXml_pub_upgrade
+        name: packages/goldens/lib/restXml; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXml
+        run: dart pub upgrade
+      - name: "packages/goldens/lib/restXml; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_restXml_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXml
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/goldens/lib/restXml; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_restXml_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXml
+        run: dart analyze --fatal-infos .
+      - id: packages_goldens_lib_restXmlWithNamespace_pub_upgrade
+        name: packages/goldens/lib/restXmlWithNamespace; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXmlWithNamespace
+        run: dart pub upgrade
+      - name: "packages/goldens/lib/restXmlWithNamespace; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_goldens_lib_restXmlWithNamespace_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXmlWithNamespace
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/goldens/lib/restXmlWithNamespace; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_goldens_lib_restXmlWithNamespace_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/goldens/lib/restXmlWithNamespace
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_pub_upgrade
+        name: packages/smithy; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy
+        run: dart pub upgrade
+      - name: "packages/smithy; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_ast_pub_upgrade
+        name: packages/smithy_ast; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_ast
+        run: dart pub upgrade
+      - name: "packages/smithy_ast; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_ast_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_ast
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_ast; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_ast_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_ast
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_aws_pub_upgrade
+        name: packages/smithy_aws; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_aws
+        run: dart pub upgrade
+      - name: "packages/smithy_aws; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_aws_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_aws; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_aws_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_aws
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_codegen_pub_upgrade
+        name: packages/smithy_codegen; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_codegen
+        run: dart pub upgrade
+      - name: "packages/smithy_codegen; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_codegen
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_codegen; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_codegen
+        run: dart analyze --fatal-infos .
+      - id: packages_smithy_test_pub_upgrade
+        name: packages/smithy_test; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/smithy_test
+        run: dart pub upgrade
+      - name: "packages/smithy_test; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_smithy_test_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_test
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/smithy_test; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_smithy_test_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/smithy_test
         run: dart analyze --fatal-infos .

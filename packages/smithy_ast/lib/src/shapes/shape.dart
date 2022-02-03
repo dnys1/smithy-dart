@@ -1,6 +1,5 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:collection/collection.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 
 part 'shape.g.dart';
@@ -52,18 +51,6 @@ abstract class Shape {
         ..traits![unit] = const UnitTypeTrait(),
     ),
   };
-}
-
-extension ShapeUtils on Shape {
-  /// Returns the trait of type [T], if it exists on the shape.
-  T? getTrait<T extends Trait>() => traits.values.whereType<T>().firstOrNull;
-
-  /// Whether the shape has a trait of type [T].
-  bool hasTrait<T extends Trait>() => traits.values.any((t) => t is T);
-
-  /// Gets the trait of type [T] from the shape or throws if not found.
-  T expectTrait<T extends Trait>() =>
-      traits.values.firstWhere((t) => t is T) as T;
 }
 
 class ShapeSerializer extends StructuredSerializer<Shape> {

@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/generator/endpoint_resolver_generator.dart';
 import 'package:smithy_codegen/src/generator/enum_generator.dart';
 import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/operation_generator.dart';
@@ -44,9 +45,17 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       libraryType: SmithyLibrary_LibraryType.TEST,
       filename: shape.dartName,
     );
-    final generated = OperationTestGenerator(shape, context).generate();
+    final generated = OperationTestGenerator(
+      shape,
+      context,
+      smithyLibrary: testLibrary,
+    ).generate();
     if (generated != null) {
-      yield GeneratedLibrary(testLibrary, generated);
+      yield GeneratedLibrary(
+        testLibrary,
+        generated,
+        libraryDocs: '// ignore_for_file: unused_element\n',
+      );
     }
 
     // Build the input, output and error shapes
@@ -57,7 +66,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     ].map(context.shapeFor).cast<StructureShape>();
 
     for (final child in shapes) {
-      if (!context.shapes.values.contains(child)) {
+      if (!context.shapes.keys.contains(child.shapeId)) {
         yield* structureShape(child);
       }
     }
@@ -69,7 +78,11 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     // Build service client
     yield GeneratedLibrary(
       context.serviceClientLibrary,
-      ServiceClientGenerator(shape, context).generate(),
+      ServiceClientGenerator(
+        shape,
+        context,
+        smithyLibrary: context.serviceClientLibrary,
+      ).generate(),
     );
 
     // Build serializers library
@@ -78,10 +91,34 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
       SerializersGenerator(context).generate(),
     );
 
+    // Build the endpoint resolver library
+    final endpointResolver =
+        EndpointResolverGenerator(shape, context).generate();
+    if (endpointResolver != null) {
+      yield GeneratedLibrary(
+        context.endpointResolverLibrary,
+        endpointResolver,
+      );
+    }
+
     // Build top-level service library (should be last thing built)
+    final docs = StringBuffer();
+    final title = shape.getTrait<TitleTrait>()?.value;
+    if (title != null) {
+      docs.writeln('/// $title');
+    }
+    if (shape.hasDocs(context)) {
+      if (docs.isNotEmpty) docs.writeln('///');
+      docs.writeln(shape.formattedDocs(context));
+    }
     yield GeneratedLibrary(
       context.serviceLibrary,
-      ServiceGenerator(shape, context).generate(),
+      ServiceGenerator(
+        shape,
+        context,
+        smithyLibrary: context.serviceLibrary,
+      ).generate(),
+      libraryDocs: docs.toString(),
     );
   }
 
@@ -99,7 +136,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   }
 
   @override
-  Iterable<GeneratedLibrary>? setShape(SetShape shape, [Shape? parent]) {
+  Iterable<GeneratedLibrary> setShape(SetShape shape, [Shape? parent]) {
     return _foreignMembers([shape.member]);
   }
 
@@ -126,6 +163,14 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   Iterable<GeneratedLibrary> _foreignMembers(Iterable<MemberShape> members) {
     return members
         .map((shape) => context.shapeFor(shape.target))
+        .expand((shape) {
+          if (shape is CollectionShape) {
+            return [context.shapeFor(shape.member.target)];
+          } else if (shape is MapShape) {
+            return [shape.key.target, shape.value.target].map(context.shapeFor);
+          }
+          return [shape];
+        })
         .where((target) => !context.shapes.keys.contains(target.shapeId))
         .expand((shape) => shape.accept(this) ?? const Iterable.empty());
   }

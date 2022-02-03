@@ -1,4 +1,6 @@
+import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy_codegen/src/generator/types.dart';
 
 extension ProtocolDefinitionUtils on ProtocolDefinitionTrait {
   /// Whether this is a known JSON protocol.
@@ -6,4 +8,12 @@ extension ProtocolDefinitionUtils on ProtocolDefinitionTrait {
 
   /// Whether this is a known XML protocol.
   bool get isXmlProtocol => traits.contains(XmlNameTrait.id);
+}
+
+extension XmlInstance on XmlNamespaceTrait {
+  Expression get constructedInstance =>
+      DartTypes.smithy.xmlNamespace.constInstance([
+        literalString(uri),
+        if (prefix != null) literalString(prefix!),
+      ]);
 }

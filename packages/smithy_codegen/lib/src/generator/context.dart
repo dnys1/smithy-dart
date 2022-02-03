@@ -2,6 +2,8 @@ import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
+// ignore: implementation_imports
+import 'package:smithy/src/protocol/generic_json_protocol.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
@@ -16,12 +18,14 @@ class CodegenContext {
     ShapeId? serviceShapeId,
     String? serviceName,
     this.pubspec,
+    List<ShapeId> additionalShapes = const [],
   })  : _shapes = shapes,
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
             shapes.entries.singleWhereOrNull((entry) {
               return entry.value is ServiceShape;
-            })?.key {
+            })?.key,
+        _additionalShapes = additionalShapes.toSet() {
     if (serviceShapeId == null && serviceName == null) {
       throw ArgumentError(
         'Either serviceShapeId or serviceName must be provided.',
@@ -38,11 +42,15 @@ class CodegenContext {
   /// The service closure's shape map.
   final ShapeMap _shapes;
 
+  /// Additional shapes to generate as part of the service closure.
+  final Set<ShapeId> _additionalShapes;
+
   /// The service closure's shape map.
   late final ShapeMap shapes = ShapeMap(Map.fromEntries(
     _shapes.entries.where((entry) {
       return serviceShapeId == null ||
-          entry.key.namespace == serviceShapeId!.namespace;
+          entry.key.namespace == serviceShapeId!.namespace ||
+          _additionalShapes.contains(entry.key);
     }),
   ));
 
@@ -88,7 +96,7 @@ class CodegenContext {
     final protocols =
         service?.traits.values.whereType<ProtocolDefinitionTrait>().toList();
     if (protocols == null || protocols.isEmpty) {
-      return const [GenericProtocolDefinitionTrait()];
+      return const [GenericJsonProtocolDefinitionTrait()];
     }
     return protocols;
   }();
@@ -114,6 +122,14 @@ class CodegenContext {
     serviceName: serviceName,
     libraryType: SmithyLibrary_LibraryType.COMMON,
     filename: 'serializers.dart',
+  );
+
+  /// The service's endpoint resolvers library.
+  late final SmithyLibrary endpointResolverLibrary = SmithyLibraryX.create(
+    packageName: packageName,
+    serviceName: serviceName,
+    libraryType: SmithyLibrary_LibraryType.COMMON,
+    filename: 'endpoint_resolver.dart',
   );
 
   /// The service's serializers reference.
@@ -148,34 +164,4 @@ class CodegenContext {
     libraryType: SmithyLibrary_LibraryType.SERVICE,
     filename: serviceName,
   );
-}
-
-/// A generic JSON protocol definition for generating service clients without
-/// a defined protocol.
-///
-/// This ensures that at least one serializer is always generated.
-class GenericProtocolDefinitionTrait implements ProtocolDefinitionTrait {
-  const GenericProtocolDefinitionTrait();
-
-  @override
-  bool get isSynthetic => true;
-
-  @override
-  bool get noInlineDocumentSupport => false;
-
-  @override
-  List<Object?> get props => [shapeId];
-
-  @override
-  ShapeId get shapeId =>
-      ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol');
-
-  @override
-  Map<String, Object?> toJson() => throw UnimplementedError();
-
-  @override
-  List<ShapeId> get traits => [JsonNameTrait.id];
-
-  @override
-  ProtocolDefinitionTrait get value => this;
 }

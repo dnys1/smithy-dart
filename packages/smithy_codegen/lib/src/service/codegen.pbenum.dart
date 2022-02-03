@@ -10,14 +10,40 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class SmithyLibrary_LibraryType extends $pb.ProtobufEnum {
-  static const SmithyLibrary_LibraryType MODEL = SmithyLibrary_LibraryType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'MODEL');
-  static const SmithyLibrary_LibraryType CLIENT = SmithyLibrary_LibraryType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CLIENT');
-  static const SmithyLibrary_LibraryType SERVICE = SmithyLibrary_LibraryType._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'SERVICE');
-  static const SmithyLibrary_LibraryType OPERATION = SmithyLibrary_LibraryType._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'OPERATION');
-  static const SmithyLibrary_LibraryType COMMON = SmithyLibrary_LibraryType._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'COMMON');
-  static const SmithyLibrary_LibraryType TEST = SmithyLibrary_LibraryType._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TEST');
+  static const SmithyLibrary_LibraryType MODEL = SmithyLibrary_LibraryType._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'MODEL');
+  static const SmithyLibrary_LibraryType CLIENT = SmithyLibrary_LibraryType._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'CLIENT');
+  static const SmithyLibrary_LibraryType SERVICE = SmithyLibrary_LibraryType._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'SERVICE');
+  static const SmithyLibrary_LibraryType OPERATION =
+      SmithyLibrary_LibraryType._(
+          3,
+          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+              ? ''
+              : 'OPERATION');
+  static const SmithyLibrary_LibraryType COMMON = SmithyLibrary_LibraryType._(
+      4,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'COMMON');
+  static const SmithyLibrary_LibraryType TEST = SmithyLibrary_LibraryType._(
+      5,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'TEST');
 
-  static const $core.List<SmithyLibrary_LibraryType> values = <SmithyLibrary_LibraryType> [
+  static const $core.List<SmithyLibrary_LibraryType> values =
+      <SmithyLibrary_LibraryType>[
     MODEL,
     CLIENT,
     SERVICE,
@@ -26,9 +52,9 @@ class SmithyLibrary_LibraryType extends $pb.ProtobufEnum {
     TEST,
   ];
 
-  static final $core.Map<$core.int, SmithyLibrary_LibraryType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, SmithyLibrary_LibraryType> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
   static SmithyLibrary_LibraryType? valueOf($core.int value) => _byValue[value];
 
   const SmithyLibrary_LibraryType._($core.int v, $core.String n) : super(v, n);
 }
-

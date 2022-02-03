@@ -26,9 +26,6 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
 
   @override
   Class generate() {
-    // Tracks the generated type.
-    context.generatedTypes[symbol] = [];
-
     return Class(
       (c) => c
         ..name = serializerClassName
@@ -69,8 +66,8 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     for (final member in sortedMembers) {
       builder.statements.addAll([
         Code("case '${member.memberName}':"),
-        refer(variantClassName(member))
-            .newInstance([
+        symbol
+            .newInstanceNamed(variantName(member), [
               deserializerFor(
                 member,
                 memberSymbol: memberSymbols[member]!.unboxed,
@@ -86,8 +83,8 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
 
       // Add the unknown option. Do not try to deserialize it since
       // we have no information about it.
-      refer(variantClassName(unknownMember))
-          .newInstance([refer('key'), refer('value')])
+      symbol
+          .newInstanceNamed(sdkUnknown, [refer('key'), refer('value')])
           .returned
           .statement,
     ]);
@@ -100,30 +97,34 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     final builder = BlockBuilder();
 
     final object = refer('object');
+    final branches = <String, Expression>{};
+    for (final member in sortedMembers) {
+      final memberName = member.dartName(ShapeType.union);
+      branches[memberName] = Method(
+        (m) => m
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = memberSymbols[member]!.unboxed
+            ..name = memberName))
+          ..lambda = true
+          ..body = serializerFor(
+            member,
+            refer(memberName),
+            memberSymbol: memberSymbols[member]!.unboxed,
+          ).code,
+      ).closure;
+    }
     builder.statements.addAll([
       object.asA(symbol).statement,
       literalList([
         object.property('name'),
         object.property('when').call([], {
-          for (final member in sortedMembers)
-            member.dartName: Method(
-              (m) => m
-                ..requiredParameters.add(Parameter((p) => p
-                  ..type = memberSymbols[member]!.unboxed
-                  ..name = member.dartName))
-                ..lambda = true
-                ..body = serializerFor(
-                  member,
-                  refer(member.dartName),
-                  memberSymbol: memberSymbols[member]!.unboxed,
-                ).code,
-            ).closure,
+          ...branches,
 
           // Do not try to serialize the unknown type since
           // we have no information about it and it could fail.
           // We could try/catch the serialization, but that would
           // be inconsistent with the deserialize code.
-          unknownMember.dartName: Method(
+          sdkUnknown: Method(
             (m) => m
               ..requiredParameters.addAll([
                 Parameter((p) => p
@@ -131,10 +132,10 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
                   ..name = '_'),
                 Parameter((p) => p
                   ..type = unknownMemberSymbol
-                  ..name = unknownMember.dartName),
+                  ..name = sdkUnknown),
               ])
               ..lambda = true
-              ..body = refer(unknownMember.dartName).code,
+              ..body = refer(sdkUnknown).code,
           ).closure,
         }, [
           DartTypes.core.object.boxed

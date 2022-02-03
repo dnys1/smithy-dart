@@ -11,17 +11,7 @@
             "type": "dart",
             "program": "tool/update_goldens.dart",
             "args": [
-                "structure**"
-            ]
-        },
-        {
-            "name": "Update Goldens (AWS)",
-            "cwd": "packages/smithy_aws",
-            "request": "launch",
-            "type": "dart",
-            "program": "tool/update_goldens.dart",
-            "args": [
-                // "restJson1"
+                // "restXml*"
             ]
         }
     ]

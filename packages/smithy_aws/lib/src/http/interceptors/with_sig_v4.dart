@@ -28,7 +28,6 @@ class WithSigV4 extends HttpInterceptor {
   @override
   Future<AWSStreamedHttpRequest> intercept(
     AWSStreamedHttpRequest request,
-    HttpRequestContextBuilder context,
   ) async {
     // Try to retrieve credentials. If it fails, continue without authentication
     // for optional auth requests only.
@@ -47,8 +46,8 @@ class WithSigV4 extends HttpInterceptor {
     return signer.sign(
       request,
       credentialScope: AWSCredentialScope(
-        region: context.awsSigningRegion ?? region,
-        service: context.awsSigningService ?? serviceName,
+        region: region,
+        service: serviceName,
       ),
       serviceConfiguration: serviceConfiguration,
     );

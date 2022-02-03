@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_codegen/src/generator/context.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
@@ -11,8 +11,11 @@ import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class OperationGenerator extends LibraryGenerator<OperationShape>
     with OperationGenerationContext {
-  OperationGenerator(OperationShape shape, CodegenContext context)
-      : super(shape, context: context);
+  OperationGenerator(
+    OperationShape shape,
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(shape, context: context, smithyLibrary: smithyLibrary);
 
   @override
   String get className => shape.dartName;
@@ -30,7 +33,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   Class get _operationClass => Class(
         (c) => c
           ..docs.addAll([
-            if (shape.docs != null) formatDocs(shape.docs!),
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
           ])
           ..name = className
           ..extend = paginatedTraits == null
@@ -55,16 +58,20 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..constructors.add(_constructor)
           ..fields.addAll([
             _protocolsGetter,
-            ...shape.protocolFields(context, forShape: shape),
+            ..._httpOverrides.whereType<Field>(),
+            ...shape.protocolFields(context),
           ])
           ..methods.addAll([
-            ..._httpOverrides,
+            ..._httpOverrides.whereType<Method>(),
             ..._paginatedMethods,
           ]),
       );
 
   Constructor get _constructor => Constructor(
         (ctor) => ctor
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..optionalParameters.addAll(shape.constructorParameters(context))
           ..initializers.addAll(shape.constructorInitializers(context).map(
                 (tuple) => refer(tuple.item1).assign(refer(tuple.item2)).code,
@@ -80,13 +87,47 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         .property('method')
         .assign(literalString(httpTrait!.method))
         .statement;
-    yield builder
-        .property('path')
-        .assign(literalString(httpTrait!.uri))
-        .statement;
+
+    final uri = httpTrait!.uri;
+    // S3 requires special treatment of the path
+    // https://awslabs.github.io/smithy/1.0/spec/aws/customizations/s3-customizations.html
+    final isS3 = context.service?.resolvedService?.sdkId == 'S3';
+    if (isS3 && uri.contains(RegExp('^/{Bucket}'))) {
+      yield builder
+          .property('path')
+          .assign(refer('s3ClientConfig').property('usePathStyle').conditional(
+                // `raw` because some AWS paths use the '$' char.
+                literalString(uri, raw: true),
+
+                // Change `/{Bucket}/{Key+}?param` to `/{Key+}?param` and
+                // `/{Bucket}` to `/`
+                literalString(
+                  uri.replaceFirst(RegExp('^/{Bucket}/?'), '/'),
+                  raw: true,
+                ),
+              ))
+          .statement;
+    } else {
+      yield builder
+          .property('path')
+
+          // `raw` because some AWS paths use the '$' char.
+          .assign(literalString(uri, raw: true))
+          .statement;
+    }
 
     final hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
-    if (hostPrefix != null) {
+    if (isS3 && uri.contains(RegExp('^/{Bucket}'))) {
+      yield builder
+          .property('hostPrefix')
+          .assign(
+            refer('s3ClientConfig').property('usePathStyle').conditional(
+                  literal(hostPrefix),
+                  literalString('{Bucket}.' + (hostPrefix ?? '')),
+                ),
+          )
+          .statement;
+    } else if (hostPrefix != null) {
       yield builder
           .property('hostPrefix')
           .assign(literalString(hostPrefix))
@@ -97,7 +138,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       yield _inputHttpHeader(
         literalString(entry.key),
         entry.value,
-        input.property(entry.value.dartName),
+        input.property(entry.value.dartName(ShapeType.structure)),
         isNullable: entry.value.isNullable(context, inputShape),
       );
     }
@@ -110,7 +151,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       yield _httpQuery(
         literalString(entry.key),
         entry.value,
-        input.property(entry.value.dartName),
+        input.property(entry.value.dartName(ShapeType.structure)),
         isNullable: entry.value.isNullable(context, inputShape),
       );
     }
@@ -237,7 +278,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   /// Adds the prefixed headers to the request's headers map.
   Code _httpPrefixedHeaders(HttpPrefixHeaders headers) {
     final mapShape = context.shapeFor(headers.member.target) as MapShape;
-    final mapRef = refer('input').property(headers.member.dartName);
+    final mapRef =
+        refer('input').property(headers.member.dartName(ShapeType.structure));
     final isNullableMap = headers.member.isNullable(context, inputShape);
     final valueTarget = context.shapeFor(mapShape.value.target);
     return Block.of([
@@ -358,7 +400,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final targetShape = context.shapeFor(queryParameters.target) as MapShape;
     final valueShape = context.shapeFor(targetShape.value.target);
     final isNullable = queryParameters.isNullable(context, inputShape);
-    final mapRef = refer('input').property(queryParameters.dartName);
+    final mapRef =
+        refer('input').property(queryParameters.dartName(ShapeType.structure));
     var entriesRef = mapRef;
     if (isNullable) {
       entriesRef = entriesRef.nullChecked;
@@ -380,7 +423,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   }
 
   /// The required HTTP operation overrides.
-  Iterable<Method> get _httpOverrides sync* {
+  Iterable<Spec> get _httpOverrides sync* {
     // The `buildRequest` method
     final request = DartTypes.smithy.httpRequest.newInstance([
       Method(
@@ -406,7 +449,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final responseCodeMember = httpOutputTraits.httpResponseCode;
     if (responseCodeMember != null) {
       successCode = refer('output')
-          .nullSafeProperty(responseCodeMember.dartName)
+          .nullSafeProperty(responseCodeMember.dartName(ShapeType.structure))
           .ifNullThen(successCode);
     }
     yield Method(
@@ -471,16 +514,60 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ]).code,
     );
 
-    if (context.service?.hasTrait<ServiceTrait>() ?? false) {
-      yield Method(
+    final resolvedService = context.service?.resolvedService;
+    final isAwsService = resolvedService != null;
+    if (isAwsService) {
+      // S3 requires a special baseUri to consider customizations
+      if (resolvedService.sdkId == 'S3') {
+        yield Method(
+          (m) => m
+            ..annotations.add(DartTypes.core.override)
+            ..returns = DartTypes.core.uri
+            ..name = 'baseUri'
+            ..type = MethodType.getter
+            ..body = Code.scope((allocate) => '''
+  var baseUri = _baseUri ?? endpoint.uri;
+  if (s3ClientConfig.useDualStack) {
+    baseUri = baseUri.replace(
+      host: baseUri.host.replaceFirst(${allocate(DartTypes.core.regExp)}(r'^s3\\.'), 's3.dualstack.'),
+    );
+  }
+  if (s3ClientConfig.useAcceleration) {
+    baseUri = baseUri.replace(
+      host: baseUri.host
+        .replaceFirst(${allocate(DartTypes.core.regExp)}('\$region\\\\.'), '')
+        .replaceFirst(${allocate(DartTypes.core.regExp)}(r'^s3\\.'), 's3-accelerate.'),
+    );
+  }
+  return baseUri;'''),
+        );
+      } else {
+        yield Method(
+          (m) => m
+            ..annotations.add(DartTypes.core.override)
+            ..returns = DartTypes.core.uri
+            ..name = 'baseUri'
+            ..type = MethodType.getter
+            ..body = refer('_baseUri')
+                .ifNullThen(refer('endpoint').property('uri'))
+                .code,
+        );
+      }
+
+      // Create an awsEndpoint field we can reuse
+      final endpointResolverLib = context.endpointResolverLibrary.libraryUrl;
+      final endpointResolver = refer('endpointResolver', endpointResolverLib);
+      final sdkId = refer('sdkId', endpointResolverLib);
+      yield Field(
         (m) => m
-          ..annotations.add(DartTypes.core.override)
-          ..returns = DartTypes.core.uri
-          ..name = 'baseUri'
-          ..type = MethodType.getter
-          ..body = refer('_baseUri')
-              .ifNullThen(refer('endpoint').property('uri'))
-              .code,
+          ..late = true
+          ..modifier = FieldModifier.final$
+          ..type = DartTypes.smithyAws.awsEndpoint
+          ..name = '_awsEndpoint'
+          ..assignment = endpointResolver.property('resolve').call([
+            sdkId,
+            refer('region'),
+          ]).code,
       );
 
       yield Method(
@@ -489,15 +576,51 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..returns = DartTypes.smithy.endpoint
           ..name = 'endpoint'
           ..type = MethodType.getter
-          ..body = refer('_endpointResolver')
-              .property('resolveWithContext')
+          ..body = refer('_awsEndpoint').property('endpoint').code,
+      );
+
+      // Override `run` to use zone values
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.async.future(outputSymbol)
+          ..name = 'run'
+          ..requiredParameters.add(Parameter((p) => p
+            ..type = inputSymbol
+            ..name = 'input'))
+          ..optionalParameters.addAll([
+            Parameter((p) => p
+              ..type = DartTypes.core.uri.boxed
+              ..name = 'baseUri'
+              ..named = true),
+            Parameter((p) => p
+              ..type = DartTypes.smithy.httpClient.boxed
+              ..name = 'client'
+              ..named = true),
+            Parameter((p) => p
+              ..type = DartTypes.smithy.shapeId.boxed
+              ..name = 'useProtocol'
+              ..named = true),
+          ])
+          ..body = DartTypes.async.runZoned
               .call([
-                refer('_sdkId'),
-                refer('region'),
-                refer('context'),
-              ])
-              .property('endpoint')
-              .code,
+                Method(
+                  (m) => m
+                    ..body = refer('super').property('run').call([
+                      refer('input')
+                    ], {
+                      'baseUri': refer('baseUri'),
+                      'client': refer('client'),
+                      'useProtocol': refer('useProtocol')
+                    }).code,
+                ).closure,
+              ], {
+                'zoneValues': refer('_awsEndpoint')
+                    .property('credentialScope')
+                    .nullSafeProperty('zoneValues'),
+              })
+              .returned
+              .statement,
       );
     }
   }
@@ -523,7 +646,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                 'serializers': _protocolSerializers(protocol),
                 'builderFactories': context.builderFactoriesRef,
                 'interceptors': literalList(_protocolInterceptors(protocol)),
-                ...?_protocolParameters(protocol),
+                ..._protocolParameters(protocol),
               }),
           ]).code,
       );
@@ -553,6 +676,12 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       needsContentLength = targetShape is! BlobShape ||
           !targetShape.isStreaming ||
           targetShape.hasTrait<RequiresLengthTrait>();
+    }
+    // Empty payloads should not contain `Content-Length` and `Content-Type`
+    // headers.
+    if (protocol is RestJson1Trait &&
+        inputShape.payloadMembers(context).isEmpty) {
+      needsContentLength = false;
     }
     if (needsContentLength) {
       yield DartTypes.smithy.withContentLength.constInstance([]);
@@ -610,7 +739,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       });
     }
 
-    // AWS-specific properties
+    // AWS customizations
     final serviceId = context.serviceShapeId;
     final aws = context.service?.getTrait<ServiceTrait>();
     if (aws != null && serviceId != null) {
@@ -629,11 +758,13 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
   }
 
-  Map<String, Expression>? _protocolParameters(
+  Map<String, Expression> _protocolParameters(
     ProtocolDefinitionTrait protocol,
   ) {
+    final parameters = <String, Expression>{};
     switch (protocol.runtimeType) {
       case RestJson1Trait:
+      case RestXmlTrait:
         String? mediaType;
         final payloadShape = inputPayload.member;
         if (payloadShape != null) {
@@ -642,10 +773,17 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   targetShape.getTrait<MediaTypeTrait>())
               ?.value;
         }
-        return {
-          if (mediaType != null) 'mediaType': literalString(mediaType),
-        };
+        if (mediaType != null) {
+          parameters['mediaType'] = literalString(mediaType);
+        }
+        break;
     }
+
+    if (protocol is RestXmlTrait) {
+      parameters['noErrorWrapping'] = literalBool(protocol.noErrorWrapping);
+    }
+
+    return parameters;
   }
 
   Iterable<Method> get _paginatedMethods sync* {
@@ -709,14 +847,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ShapeType.structure,
       ];
       final needsBuilder = builderTypes.contains(inputTokenTarget.getType());
-      var input = inputToken.buildExpression(refer('input'));
-      if (inputToken.isNullable) {
-        input = input.nullChecked;
-      }
+      final token = refer('token');
       if (needsBuilder) {
-        inputTokenBuilder = inputTokenBuilder.property('replace').call([input]);
+        inputTokenBuilder = inputTokenBuilder.property('replace').call([token]);
       } else {
-        inputTokenBuilder = inputTokenBuilder.assign(input);
+        inputTokenBuilder = inputTokenBuilder.assign(token);
       }
     }
     yield Method(
@@ -741,21 +876,15 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             (m) => m
               ..requiredParameters.add(Parameter((p) => p..name = 'b'))
               ..body = Block.of([
-                if (inputToken != null)
-                  inputTokenBuilder!.statement.wrapWithBlockIf(
-                    inputToken
-                        .buildExpression(refer('input'))
-                        .notEqualTo(literalNull),
-                    inputToken.isNullable,
-                  ),
+                if (inputToken != null && outputToken != null)
+                  inputTokenBuilder!.statement,
                 if (pageSize != null)
                   pageSize
                       .buildExpression(refer('b'))
-                      .assign(pageSize.buildExpression(refer('input')))
-                      .wrapWithBlockNullCheck(
-                        pageSize
-                            .buildExpression(refer('input'))
-                            .notEqualTo(literalNull),
+                      .assign(refer('pageSize'))
+                      .statement
+                      .wrapWithBlockIf(
+                        refer('pageSize').notEqualTo(literalNull),
                         pageSize.isNullable,
                       ),
               ]),

@@ -3,9 +3,9 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
-import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
@@ -15,8 +15,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     with StructureGenerationContext, NamedMembersGenerationContext {
   StructureGenerator(
     StructureShape shape,
-    CodegenContext context,
-  ) : super(shape, context: context);
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          shape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   /// The members marked with the `hostLabel` or `httpLabel` traits.
   late final List<MemberShape> labels = shape.isInputShape
@@ -29,7 +34,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   @override
   Library generate() {
     // Add .g.dart part directive
-    builder.directives.add(Directive.part('${className.snakeCase}.g.dart'));
+    builder.directives
+        .add(Directive.part('${shape.className(context)!.snakeCase}.g.dart'));
+
+    // Hide the payload symbol if there is one
     (context.generatedTypes[symbol] ??= []).addAll([
       if (hasBuiltPayload) payloadSymbol.symbol!,
     ]);
@@ -50,14 +58,17 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = className
           ..abstract = true
           ..docs.addAll([
-            if (shape.docs != null) formatDocs(shape.docs!),
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
+          ..annotations.addAll([
+            if (shape.isUnstable) DartTypes.meta.experimental,
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(symbol, builderSymbol),
 
             // A marker trait for empty payloads, which should be serialized
             // than payloads with all null members.
-            if (payloadShape == null && payloadMembers.isEmpty)
+            if (payloadMember == null && payloadMembers.isEmpty)
               DartTypes.smithy.emptyPayload,
 
             if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol.unboxed),
@@ -81,11 +92,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               members: sortedMembers,
               builderSymbol: builderSymbol,
             ),
-            ..._fieldGetters(sortedMembers, isPayload: false),
+            ..._fieldGetters(isPayload: false),
             ..._httpInputOverrides,
             if (shape.isInputShape || hasPayload) _getPayload,
             ..._errorFields,
             _props(sortedMembers),
+            _toString(isPayload: false),
           ])
           ..fields.addAll([
             _serializersField(serializerClasses),
@@ -95,18 +107,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   /// The struct's built payload class.
   Class get _payloadClass => Class(
         (c) => c
-          ..name = '${className}Payload'
+          ..name = payloadClassName
           ..abstract = true
           ..annotations.addAll([
             // Developers only ever interact with the main struct.
             DartTypes.meta.internal,
-
-            // Payload types do not need nested builders. These are nice for DX
-            // in the main struct, but do not add anything in the payload since
-            // this is an internal class.
-            DartTypes.builtValue.builtValue.newInstance([], {
-              'nestedBuilders': literalFalse,
-            }),
           ])
           ..implements.addAll([
             DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol!),
@@ -130,8 +135,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               members: payloadMembers,
               builderSymbol: payloadBuilderSymbol!,
             ),
-            ..._fieldGetters(payloadMembers, isPayload: true),
+            ..._fieldGetters(isPayload: true),
             _props(payloadMembers),
+            _toString(isPayload: true),
           ]),
       );
 
@@ -201,7 +207,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = 'props'
           ..lambda = true
           ..body = literalList([
-            for (final member in members) refer(member.dartName),
+            for (final member in members)
+              refer(member.dartName(ShapeType.structure)),
           ]).code,
       );
 
@@ -225,7 +232,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
   Code? _defaultValue(MemberShape member) {
-    final property = refer('b').property(member.dartName);
+    final property = refer('b').property(member.dartName(ShapeType.structure));
     // In tests, client implementations that automatically provide values for
     // members marked with the idempotencyToken trait MUST use a constant value
     // of `00000000-0000-4000-8000-000000000000`.
@@ -255,10 +262,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   }
 
   /// Fields for this type.
-  Iterable<Method> _fieldGetters(
-    List<MemberShape> members, {
+  Iterable<Method> _fieldGetters({
     required bool isPayload,
   }) sync* {
+    final members = isPayload ? payloadMembers : sortedMembers;
     for (var member in members) {
       yield Method(
         (f) => f
@@ -271,15 +278,20 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             // treated specially.
             //
             // https://awslabs.github.io/smithy/1.0/spec/core/type-refinement-traits.html#error-trait
-            if (shape.isError && member.dartName == 'message' && !isPayload)
+            if (shape.isError &&
+                member.dartName(ShapeType.structure) == 'message' &&
+                !isPayload)
               DartTypes.core.override,
+
+            if (member.isUnstable || context.shapeFor(member.target).isUnstable)
+              DartTypes.meta.experimental,
           ])
           ..docs.addAll([
-            if (member.docs != null) formatDocs(member.docs!),
+            if (member.hasDocs(context)) member.formattedDocs(context),
           ])
           ..returns = memberSymbols[member]!
           ..type = MethodType.getter
-          ..name = member.dartName,
+          ..name = member.dartName(ShapeType.structure),
       );
     }
   }
@@ -300,12 +312,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // If an instance member, return it.
-    if (payloadShape != null) {
-      Expression payload = refer(payloadShape!.dartName);
+    if (payloadMember != null) {
+      Expression payload = refer(payloadMember!.dartName(ShapeType.structure));
       // If the payload shape is empty or has only nullable instance members,
       // and this shape's instance member is null, return a built payload.
-      final targetShape = context.shapeFor(payloadShape!.target);
-      if (payloadShape!.isNullable(context, shape) &&
+      final targetShape = context.shapeFor(payloadMember!.target);
+      if (payloadMember!.isNullable(context, shape) &&
           targetShape is StructureShape &&
           targetShape.members.values.map((member) {
             return member.isNullable(context, targetShape);
@@ -316,15 +328,37 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // Build the payload using the payload builder class.
-    Expression builder = refer('b');
+    final builder = refer('b');
+    final block = BlockBuilder();
     for (final member in payloadMembers) {
-      builder = builder.cascade(member.dartName).assign(refer(member.dartName));
+      final memberName = member.dartName(ShapeType.structure);
+      final hasNestedBuilder = [
+        ShapeType.list,
+        ShapeType.set,
+        ShapeType.map,
+        ShapeType.structure,
+      ].contains(context.shapeFor(member.target).getType());
+      final isNullable = member.isNullable(context, payloadShape);
+      if (hasNestedBuilder) {
+        block.statements.add(
+          builder.property(memberName).property('replace').call([
+            isNullable ? refer(memberName).nullChecked : refer(memberName)
+          ]).wrapWithBlockIf(
+            refer(memberName).notEqualTo(literalNull),
+            isNullable,
+          ),
+        );
+      } else {
+        block.statements.add(
+          builder.property(memberName).assign(refer(memberName)).statement,
+        );
+      }
     }
     return payloadSymbol.newInstance([
       if (payloadMembers.isNotEmpty)
         Method((m) => m
           ..requiredParameters.add(Parameter((p) => p..name = 'b'))
-          ..body = builder.code).closure,
+          ..body = block.build()).closure,
     ]).code;
   }
 
@@ -407,7 +441,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             const Code('switch (key) {'),
             for (var label in labels) ...[
               Code("case '${label.memberName}':"),
-              _labelToString(label, refer(label.dartName)).returned.statement,
+              _labelToString(label, refer(label.dartName(ShapeType.structure)))
+                  .returned
+                  .statement,
             ],
             const Code('}'),
             DartTypes.smithy.missingLabelException
@@ -436,10 +472,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Map<String, Class> get _serializerClasses {
     final classes = <String, Class>{};
     for (var protocol in context.serviceProtocols) {
-      final generator = StructureSerializerGenerator(shape, context, protocol);
-      final class$ = generator.generate();
-      if (class$ != null) {
-        classes[generator.serializerClassName] = class$;
+      final generator = protocol.structureGenerator(shape, context);
+      final clazz = generator.generate();
+      if (clazz != null) {
+        classes[generator.serializerClassName] = clazz;
       }
     }
     return classes;
@@ -453,7 +489,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     }
 
     // `message` getter
-    if (!shape.members.values.map((m) => m.dartName).contains('message')) {
+    if (!shape.members.values
+        .map((m) => m.dartName(ShapeType.structure))
+        .contains('message')) {
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
@@ -488,7 +526,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final payload = refer('payload');
     final response = refer('response');
 
-    final payloadShape = this.payloadShape;
+    final payloadShape = payloadMember;
 
     // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {
@@ -502,7 +540,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       if (isNestedBuilder) {
         final isNullable = member.isNullable(context, shape);
         return builder
-            .property(member.dartName)
+            .property(member.dartName(ShapeType.structure))
             .property('replace')
             .call([
               isNullable && member != payloadShape
@@ -512,7 +550,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             .statement
             .wrapWithBlockIf(payloadProp.notEqualTo(literalNull), isNullable);
       } else {
-        return builder.property(member.dartName).assign(payloadProp).statement;
+        return builder
+            .property(member.dartName(ShapeType.structure))
+            .assign(payloadProp)
+            .statement;
       }
     }
 
@@ -521,7 +562,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       yield _putShape(payloadShape, payload);
     } else if (hasBuiltPayload) {
       for (final member in payloadMembers) {
-        final payloadProp = payload.property(member.dartName);
+        final payloadProp =
+            payload.property(member.dartName(ShapeType.structure));
         yield _putShape(member, payloadProp);
       }
     }
@@ -535,7 +577,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       yield _outputHttpHeader(
         headersRef.index(literalString(entry.key)),
         entry.value,
-        builder.property(entry.value.dartName),
+        builder.property(entry.value.dartName(ShapeType.structure)),
         isNullable: true,
       );
     }
@@ -544,7 +586,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final prefixHeaders = responseTraits.httpPrefixHeaders;
     if (prefixHeaders != null) {
       yield builder
-          .property(prefixHeaders.member.dartName)
+          .property(prefixHeaders.member.dartName(ShapeType.structure))
           .property('addEntries')
           .call([
         prefixHeaders.trait.value == ''
@@ -589,7 +631,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       final statusCode = responseTraits.httpResponseCode;
       if (statusCode != null) {
         yield builder
-            .property(statusCode.dartName)
+            .property(statusCode.dartName(ShapeType.structure))
             .assign(response.property('statusCode'))
             .statement;
       }
@@ -629,7 +671,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         case ShapeType.long:
           return DartTypes.fixNum.int64.property('parseInt').call([headerRef]);
 
-        // string values with a mediaType trait are always base64 encoded.
         case ShapeType.string:
           if (targetShape.isEnum) {
             final targetSymbol = context.symbolFor(targetShape.shapeId).unboxed;
@@ -642,17 +683,17 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           // From the restJson1 test suite:
           // "Headers that target strings with a mediaType are base64 encoded"
           final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          if (mediaType != null) {
-            headerRef = DartTypes.convert.utf8.property('decode').call([
-              DartTypes.convert.base64Decode.call([headerRef]),
-            ]);
-            switch (mediaType) {
-              case 'application/json':
-                return DartTypes.builtValue.jsonObject.newInstance([
-                  DartTypes.convert.jsonDecode.call([headerRef]),
-                ]);
-            }
+          if (mediaType == null) {
             return headerRef;
+          }
+          headerRef = DartTypes.convert.utf8.property('decode').call([
+            DartTypes.convert.base64Decode.call([headerRef]),
+          ]);
+          switch (mediaType) {
+            case 'application/json':
+              headerRef = DartTypes.builtValue.jsonObject.newInstance([
+                DartTypes.convert.jsonDecode.call([headerRef]),
+              ]);
           }
           return headerRef;
 
@@ -715,6 +756,39 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     return addHeader.wrapWithBlockIf(
       headerRef.notEqualTo(literalNull),
       isNullable,
+    );
+  }
+
+  /// Custom `toString` impl which mirrors the built_value impl but allows for
+  /// handling sensitive types defined by the `@sensitive` trait.
+  Method _toString({required bool isPayload}) {
+    final builder = BlockBuilder();
+    final helper = refer('helper');
+    builder.addExpression(
+      DartTypes.builtValue.newBuiltValueToStringHelper.call([
+        literalString(isPayload ? payloadClassName! : className)
+      ]).assignFinal('helper'),
+    );
+    final members = isPayload ? payloadMembers : sortedMembers;
+    for (final member in members) {
+      final dartName = member.dartName(ShapeType.structure);
+      final isSensitive = shape.hasTrait<SensitiveTrait>() ||
+          member.hasTrait<SensitiveTrait>() ||
+          context.shapeFor(member.target).hasTrait<SensitiveTrait>();
+      final stringValue =
+          isSensitive ? literalString('***SENSITIVE***') : refer(dartName);
+      builder.addExpression(helper.property('add').call([
+        literalString(dartName),
+        stringValue,
+      ]));
+    }
+    builder.addExpression(helper.property('toString').call([]).returned);
+    return Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.string
+        ..name = 'toString'
+        ..body = builder.build(),
     );
   }
 }

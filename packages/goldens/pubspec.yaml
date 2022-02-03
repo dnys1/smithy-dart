@@ -1,5 +1,5 @@
 name: goldens
-description: Golden files for smithy-dart-codegen
+description: Golden files for smithy-dart
 version: 1.0.0
 publish_to: none
 
@@ -9,6 +9,16 @@ environment:
 dependencies:
   smithy:
     path: ../smithy
+
+dependency_overrides:
+  smithy_ast:
+    path: ../smithy_ast
+  smithy:
+    path: ../smithy
+  smithy_aws:
+    path: ../smithy_aws
+  smithy_codegen:
+    path: ../smithy_codegen
 
 dev_dependencies:
   file: ^6.1.2

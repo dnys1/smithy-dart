@@ -1,13 +1,17 @@
 name: smithy_codegen
 description: Smithy model generator from AST representation
-version: 0.1.0
-publish_to: none
+version: 0.1.1
+homepage: https://github.com/dnys1/smithy-dart
+publish_to: https://pub.dillonnys.com
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   args: ^2.3.0
+  aws_common:
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
   build_cli_annotations: ^2.0.0
   built_collection: ^5.1.1
   built_value: ^8.1.3
@@ -25,20 +29,25 @@ dependencies:
   pub_semver: ^2.1.0
   pubspec_parse: ^1.2.0
   smithy:
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
+  smithy_ast:
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
+  smithy_aws:
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
+  tuple: ^2.0.0
+  yaml_edit: ^2.0.1
+
+# REMOVE FOR PUBLISHING
+dependency_overrides:
+  smithy:
     path: ../smithy
   smithy_ast:
     path: ../smithy_ast
   smithy_aws:
     path: ../smithy_aws
-  tuple: ^2.0.0
-  yaml_edit: ^2.0.1
-
-dependency_overrides:
-  aws_common:
-    git:
-      url: https://github.com/dnys1/aws-sdk-dart.git
-      ref: smithy
-      path: packages/aws_common
 
 dev_dependencies:
   amplify_lints: ^1.0.0

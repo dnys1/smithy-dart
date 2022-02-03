@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_codegen/src/generator/context.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/union_serializer_generator.dart';
@@ -12,8 +12,9 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
     with UnionGenerationContext, NamedMembersGenerationContext {
   UnionGenerator(
     UnionShape shape,
-    CodegenContext context,
-  ) : super(shape, context: context);
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(shape, context: context, smithyLibrary: smithyLibrary);
 
   late final _serializers = [
     for (final protocol in context.serviceProtocols)
@@ -22,6 +23,9 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
 
   @override
   Library generate() {
+    // Tracks the generated type.
+    context.generatedTypes[symbol] ??= [];
+
     builder.body.addAll([
       _unionClass,
       ..._variantClasses,
@@ -33,7 +37,9 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
 
   Class get _unionClass => Class(
         (c) => c
-          ..docs.addAll([if (shape.docs != null) formatDocs(shape.docs!)])
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..abstract = true
           ..name = className
           ..extend = DartTypes.smithy.smithyUnion(symbol)
@@ -45,6 +51,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
             ..._variantGetters,
             _valueGetter,
             _whenMethod,
+            _toString,
           ])
           ..fields.addAll([
             _serializersField,
@@ -63,6 +70,9 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
     for (var member in sortedMembers) {
       yield Method(
         (m) => m
+          ..docs.addAll([
+            if (member.hasDocs(context)) member.formattedDocs(context),
+          ])
           ..returns = memberSymbols[member]!.boxed
           ..type = MethodType.getter
           ..name = variantName(member)
@@ -123,7 +133,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
       (c) => c
         ..constant = true
         ..factory = true
-        ..name = variantName(unknownMember)
+        ..name = sdkUnknown
         ..requiredParameters.addAll([
           Parameter(
             (p) => p
@@ -165,7 +175,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
         Parameter(
           (p) => p
             ..named = true
-            ..name = variantName(unknownMember)
+            ..name = sdkUnknown
             ..type = FunctionType(
               (t) => t
                 ..isNullable = true
@@ -194,7 +204,7 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
               .statement,
           const Code('}'),
         ],
-        refer(variantName(unknownMember))
+        refer('sdkUnknown')
             .nullSafeProperty('call')
             .call([refer('name'), refer('value')])
             .returned
@@ -287,5 +297,40 @@ class UnionGenerator extends LibraryGenerator<UnionShape>
           ..type = DartTypes.core.string),
         value,
       ]));
+  }
+
+  Method get _toString {
+    final builder = BlockBuilder();
+    final helper = refer('helper');
+    builder.addExpression(
+      DartTypes.builtValue.newBuiltValueToStringHelper
+          .call([literalString(className, raw: true)]).assignFinal('helper'),
+    );
+    for (final member in sortedMembers) {
+      final dartName = member.dartName(ShapeType.union);
+      final isSensitive = shape.hasTrait<SensitiveTrait>() ||
+          member.hasTrait<SensitiveTrait>() ||
+          context.shapeFor(member.target).hasTrait<SensitiveTrait>();
+      final stringValue =
+          isSensitive ? literalString('***SENSITIVE***') : refer(dartName);
+      builder.statements.add(
+        helper
+            .property('add')
+            .call([
+              literalString(dartName, raw: true),
+              stringValue,
+            ])
+            .statement
+            .wrapWithBlockIf(refer(dartName).notEqualTo(literalNull), true),
+      );
+    }
+    builder.addExpression(helper.property('toString').call([]).returned);
+    return Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.core.string
+        ..name = 'toString'
+        ..body = builder.build(),
+    );
   }
 }

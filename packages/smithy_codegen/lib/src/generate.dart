@@ -2,9 +2,6 @@ import 'package:code_builder/code_builder.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/format/format_stub.dart'
-    if (dart.library.io) 'package:smithy_codegen/src/format/format_io.dart';
-import 'package:smithy_codegen/src/generator/allocator.dart';
 import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
 
@@ -12,8 +9,8 @@ import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
 const header = '// Generated code. DO NOT MODIFY.';
 
 /// The default emitter for codegen operations.
-DartEmitter buildEmitter(Library library) => DartEmitter(
-      allocator: SmithyAllocator(library),
+DartEmitter buildEmitter(Allocator allocator) => DartEmitter(
+      allocator: allocator,
       orderDirectives: true,
       useNullSafetySyntax: true,
     );
@@ -21,11 +18,12 @@ DartEmitter buildEmitter(Library library) => DartEmitter(
 /// Generates a Dart file for each of the relevant shape types in [ast].
 ///
 /// Returns a map from the library to its formatted definition file.
-Map<SmithyLibrary, String> generateForAst(
+List<GeneratedLibrary> generateForAst(
   SmithyAst ast, {
   required String packageName,
   String? serviceName,
   Pubspec? pubspec,
+  List<ShapeId> additionalShapes = const [],
 }) {
   var serviceShapes = ast.shapes.values.whereType<ServiceShape>();
   if (serviceName != null) {
@@ -43,7 +41,7 @@ Map<SmithyLibrary, String> generateForAst(
 
   for (final serviceShape in serviceShapes) {
     // Builds a service closure with just one service shape. All the other
-    // shape can remain - they will not be generated for services which do
+    // shapes can remain - they will not be generated for services which do
     // not reference them due to how LibraryVisitor works.
     final serviceClosure = ShapeMap({
       for (final entry
@@ -58,7 +56,8 @@ Map<SmithyLibrary, String> generateForAst(
       shapes: serviceClosure,
       packageName: packageName,
       serviceShapeId: serviceShape.shapeId,
-      serviceName: serviceName,
+      serviceName: serviceShapes.length == 1 ? serviceName : null,
+      additionalShapes: additionalShapes,
     );
 
     // Generate libraries for relevant shape types.
@@ -72,12 +71,5 @@ Map<SmithyLibrary, String> generateForAst(
     ));
   }
 
-  // Emit Dart code and format
-  return Map.fromEntries(libraries.map((generated) {
-    final library = generated.library;
-    return MapEntry(
-      generated.smithyLibrary,
-      '$header\n\n' + format('${library.accept(buildEmitter(library))}'),
-    );
-  }));
+  return libraries;
 }

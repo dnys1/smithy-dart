@@ -4,6 +4,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/docs.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
@@ -11,8 +12,13 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 class EnumGenerator extends LibraryGenerator<StringShape> {
   EnumGenerator(
     StringShape enumShape,
-    CodegenContext context,
-  ) : super(enumShape, context: context);
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          enumShape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   late final EnumTrait enumTrait = shape.expectTrait<EnumTrait>();
 
@@ -24,7 +30,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
 
   @override
   Library generate() {
-    context.generatedTypes[symbol] = [];
+    // Tracks the generated type.
+    context.generatedTypes[symbol] ??= [];
 
     builder.body.addAll([
       _classDefinition,
@@ -35,13 +42,12 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
   }
 
   /// The `SmithyEnum` class definition.
-  Class get _classDefinition => Class((c) {
-        final docs = shape.docs;
-        if (docs != null) {
-          c.docs.add(formatDocs(docs));
-        }
-        c
+  Class get _classDefinition => Class(
+        (c) => c
           ..name = className
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..extend = DartTypes.smithy.smithyEnum(symbol)
           ..constructors.addAll([
             _privateConstructor,
@@ -51,8 +57,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
             ..._variantFields,
             _valuesField,
             _serializersField,
-          ]);
-      });
+          ]),
+      );
 
   /// The private constructor which is used internally.
   ///
@@ -218,7 +224,8 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
     ]));
 }
 
-extension on EnumDefinition {
+extension EnumVariantName on EnumDefinition {
   /// The name of the enum variant.
-  String get variantName => (name ?? value).camelCase.nameEscaped();
+  String get variantName =>
+      (name ?? value).camelCase.nameEscaped(ShapeType.string);
 }

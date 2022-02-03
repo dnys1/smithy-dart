@@ -21,16 +21,21 @@ class CodegenService extends CodegenServiceBase {
         serviceName: request.serviceName,
         pubspec: pubspec,
       );
+      final response = <CodegenResponse_Library>[];
+      final dependencies = <String>{};
+      for (final library in libraries) {
+        dependencies.addAll(library.dependencies);
+        final output = library.emit();
+        response.add(CodegenResponse_Library(
+          metadata: library.smithyLibrary,
+          definition: output,
+        ));
+      }
+      final pubspecYaml = PubspecGenerator(pubspec, dependencies).generate();
       return CodegenResponse()
         ..success = true
-        ..libraries.addAll([
-          for (var entry in libraries.entries)
-            CodegenResponse_Library(
-              metadata: entry.key,
-              definition: entry.value,
-            )
-        ])
-        ..pubspec = pubspec.toYaml();
+        ..libraries.addAll(response)
+        ..pubspec = pubspecYaml;
     } catch (e) {
       return CodegenResponse()
         ..success = false

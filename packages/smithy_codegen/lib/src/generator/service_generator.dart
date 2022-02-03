@@ -10,8 +10,13 @@ import 'package:smithy_codegen/src/generator/generator.dart';
 class ServiceGenerator extends LibraryGenerator<ServiceShape> {
   ServiceGenerator(
     ServiceShape shape,
-    CodegenContext context,
-  ) : super(shape, context: context);
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          shape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   @override
   Library generate() {

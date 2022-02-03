@@ -7,8 +7,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_test/smithy_test.dart';
 
-import 'serializers.dart';
-
 final _dummyHttpRequest = AWSStreamedHttpRequest(
   method: HttpMethod.get,
   host: '',
@@ -26,12 +24,10 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
   );
-  final serializers = (protocol.serializers.toBuilder()
-        ..addAll([
-          ...testSerializers,
-          ...?outputSerializers,
-        ]))
-      .build();
+  final serializers = buildSerializers(
+    protocol.serializers,
+    outputSerializers,
+  );
   final expectedOutput = serializers.deserialize(
     testCase.params,
     specifiedType: FullType(Output),
@@ -88,12 +84,10 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
   );
-  final serializers = (protocol.serializers.toBuilder()
-        ..addAll([
-          ...testSerializers,
-          ...?errorSerializers,
-        ]))
-      .build();
+  final serializers = buildSerializers(
+    protocol.serializers,
+    errorSerializers,
+  );
   final expectedError = serializers.deserialize(
     testCase.params,
     specifiedType: FullType(ExpectedError),

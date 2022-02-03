@@ -1,22 +1,19 @@
 name: smithy_aws
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-publish_to: none
+description: Smithy runtime for AWS clients
+version: 0.1.2
+homepage: https://github.com/dnys1/smithy-dart
+publish_to: https://pub.dillonnys.com
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   aws_common:
-    git:
-      url: https://github.com/dnys1/aws-sdk-dart.git
-      ref: smithy
-      path: packages/aws_common
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
   aws_signature_v4:
-    git:
-      url: https://github.com/dnys1/aws-sdk-dart.git
-      ref: smithy
-      path: packages/aws_signature_v4
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
   built_collection: ^5.0.0
   built_value: ^8.0.0
   collection: ^1.15.0
@@ -29,20 +26,24 @@ dependencies:
   meta: ^1.7.0
   path: ^1.8.0
   smithy:
-    path: ../smithy
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
   smithy_ast:
-    path: ../smithy_ast
+    hosted: https://pub.dillonnys.com
+    version: ^0.1.0
+  xml: ^5.3.1
 
-dependency_overrides:
-  aws_common:
-    git:
-      url: https://github.com/dnys1/aws-sdk-dart.git
-      ref: smithy
-      path: packages/aws_common
+# REMOVE FOR PUBLISHING
+# dependency_overrides:
+#   smithy:
+#     path: ../smithy
+#   smithy_ast:
+#     path: ../smithy_ast
 
 dev_dependencies:
   amplify_lints: ^1.0.0
   build_runner: ^2.1.7
+  built_value_generator: ^8.0.0
   file: ^6.1.2
   glob: ^2.0.2
   json_serializable: ^6.1.4

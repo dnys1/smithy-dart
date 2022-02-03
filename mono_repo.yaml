@@ -1,4 +1,11 @@
 github:
+  on:
+    push:
+      branches:
+        - main
+        - pub
+    pull_request:
+
   workflows:
     lint:
       name: Dart Lint

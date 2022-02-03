@@ -1,40 +1,112 @@
+import 'package:aws_common/aws_common.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
+import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
-import 'package:smithy_codegen/src/version.dart';
 import 'package:path/path.dart' as path;
 
-extension PubspecYaml on Pubspec {
-  String toYaml([String? smithyPath]) {
+enum DependencyType { aws, smithy }
+
+class Dependency with AWSEquatable<Dependency> {
+  const Dependency(this.semver, [this.type]) : isDevDependency = false;
+
+  const Dependency.dev(this.semver, [this.type]) : isDevDependency = true;
+
+  final String semver;
+  final DependencyType? type;
+  final bool isDevDependency;
+
+  @override
+  List<Object?> get props => [semver, type, isDevDependency];
+}
+
+/// All dependencies and the current versions.
+final dependencyVersions = {
+  // Dependencies
+  'smithy': Dependency('^0.1.0', DependencyType.smithy),
+  'smithy_ast': Dependency('^0.1.0', DependencyType.smithy),
+  'smithy_aws': Dependency('^0.1.0', DependencyType.smithy),
+  'smithy_codegen': Dependency('^0.1.0', DependencyType.smithy),
+  'aws_common': Dependency('^0.1.0', DependencyType.aws),
+  'aws_signature_v4': Dependency('^0.1.0', DependencyType.aws),
+  'built_value': Dependency('^8.0.0'),
+  'built_collection': Dependency('^5.0.0'),
+  'fixnum': Dependency('^1.0.0'),
+  'meta': Dependency('^1.7.0'),
+  'uuid': Dependency('^3.0.0'),
+  'xml': Dependency('^5.3.1'),
+
+  // Dev Dependencies
+  'smithy_test': Dependency.dev('^0.1.0', DependencyType.smithy),
+  'build_runner': Dependency.dev('^2.0.0'),
+  'built_value_generator': Dependency.dev('^8.0.0'),
+  'lints': Dependency.dev('^1.0.0'),
+  'test': Dependency.dev('^1.16.0'),
+};
+
+class PubspecGenerator implements Generator<String> {
+  const PubspecGenerator(
+    this.pubspec,
+    this._dependencies, {
+    this.smithyPath,
+  });
+
+  final Pubspec pubspec;
+  final Iterable<String> _dependencies;
+  final String? smithyPath;
+
+  Iterable<String> get dependencies =>
+      _dependencies.where((dep) => !dependencyVersions[dep]!.isDevDependency);
+  Iterable<String> get devDependencies => dependencyVersions.entries
+      .where((entry) => entry.value.isDevDependency)
+      .map((entry) => entry.key);
+
+  String dependencyYaml(String name, Dependency dependency) {
+    if (dependency.type == DependencyType.smithy && smithyPath != null) {
+      return '''
+  $name:
+    path: ${path.join(smithyPath!, name)}''';
+    } else if (dependency.type == DependencyType.smithy ||
+        dependency.type == DependencyType.aws) {
+      return '''
+  $name:
+    hosted: https://pub.dillonnys.com
+    version: ${dependency.semver}''';
+    }
+    return '  $name: ${dependency.semver}';
+  }
+
+  @override
+  String generate() {
+    final dependenciesBlock = dependencies
+        .map((dep) => dependencyYaml(dep, dependencyVersions[dep]!))
+        .join('\n');
+    final devDependenciesBlock = devDependencies
+        .map((dep) => dependencyYaml(dep, dependencyVersions[dep]!))
+        .join('\n');
+    String? dependencyOverridesBlock;
+    if (smithyPath != null) {
+      dependencyOverridesBlock = dependencyVersions.entries
+          .where((dep) => dep.value.type == DependencyType.smithy)
+          .map((dep) => dependencyYaml(dep.key, dep.value))
+          .join('\n');
+    }
     return '''
-name: $name
-description: ${name.capitalized} client SDK
-version: ${version?.canonicalizedVersion ?? '1.0.0'}
-${smithyPath == null ? '' : 'publish_to: none'}
+name: ${pubspec.name}
+description: ${pubspec.description ?? pubspec.name.groupIntoWords().map((s) => s.capitalized).join(' ') + ' client SDK'}
+version: ${pubspec.version?.canonicalizedVersion ?? '0.1.0'}
+${smithyPath == null ? pubspec.publishTo != null ? 'publish_to: ${pubspec.publishTo}\n' : '' : 'publish_to: none\n'}${pubspec.homepage != null ? 'homepage: ${pubspec.homepage}\n' : ''}
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  smithy: ${smithyPath == null ? '^$packageVersion' : ''}
-    ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy')}' : ''}
-  smithy_aws: ${smithyPath == null ? '^$packageVersion' : ''}
-    ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy_aws')}' : ''}
-  uuid: ^3.0.0
+$dependenciesBlock
 
-dependency_overrides:
-  aws_common:
-    git:
-      url: https://github.com/dnys1/aws-sdk-dart.git
-      ref: smithy
-      path: packages/aws_common
+${dependencyOverridesBlock == null ? '' : 'dependency_overrides:'}
+${dependencyOverridesBlock ?? ''}
 
 dev_dependencies:
-  build_runner: ^2.0.0
-  built_value_generator: ^8.0.0
-  lints: ^1.0.0
-  smithy_test: ${smithyPath == null ? '^$packageVersion' : ''}
-    ${smithyPath != null ? 'path: ${path.join(smithyPath, 'smithy_test')}' : ''}
-  test: ^1.16.0
+$devDependenciesBlock
 ''';
   }
 }

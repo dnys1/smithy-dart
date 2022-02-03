@@ -1,14 +1,12 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';
-import 'package:smithy_aws/smithy_aws.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/aws/endpoints.dart';
-import 'package:smithy_codegen/src/aws/partition_node.dart';
 import 'package:smithy_codegen/src/core/reserved_words.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
+import 'package:smithy_codegen/src/util/docs.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 import 'package:tuple/tuple.dart';
@@ -52,15 +50,65 @@ extension SimpleShapeUtil on SimpleShape {
   }
 }
 
+extension ShapeClassName on Shape {
+  /// The unescaped, unmodified class name for the shape.
+  ///
+  /// Should use [escapedClassName] instead.
+  String? className(CodegenContext context) {
+    final type = getType();
+    switch (type) {
+      case ShapeType.string:
+        if (!isEnum) return null;
+        break;
+      case ShapeType.structure:
+      case ShapeType.operation:
+      case ShapeType.union:
+      case ShapeType.resource:
+        break;
+      default:
+        return null;
+    }
+    return (rename(context) ?? shapeId.shape).pascalCase;
+  }
+
+  /// The escaped class name.
+  String? escapedClassName(CodegenContext context) {
+    final name = className(context);
+    if (name == null) {
+      return null;
+    }
+    final needsRename = reservedTypeNames.contains(name) ||
+        context.shapes.values.any((shape) {
+          return shape.className(context) == '${name}Builder';
+        });
+    if (needsRename) {
+      return '${context.serviceName.pascalCase}$name';
+    }
+    return name;
+  }
+}
+
 extension DartName on String {
-  String nameEscaped([String escapeChar = '_']) {
+  String nameEscaped(ShapeType parentType) {
+    assert(parentType == ShapeType.string ||
+        parentType == ShapeType.union ||
+        parentType == ShapeType.structure);
+    final reservedWords = [
+      ...hardReservedWords,
+      if (parentType == ShapeType.string) ...enumReservedWords,
+      if (parentType == ShapeType.union) ...unionReservedWords,
+      if (parentType == ShapeType.structure) ...structReservedWords,
+    ];
+
+    // `built_value` doesn't escape names in generated strings, so using '$'
+    // causes compilation errors.
+    final escapeChar =
+        // (parentType == ShapeType.string || parentType == ShapeType.union)
+        //     ? '\$'
+        /* : */ '_';
     var name = this;
-    if (hardReservedWords.contains(name)) {
-      if (escapeChar == '\$') {
-        name = '\$$name';
-      } else {
-        name = '$name$escapeChar';
-      }
+    if (reservedWords.contains(name)) {
+      name = '$name$escapeChar';
     }
     return name;
   }
@@ -68,7 +116,7 @@ extension DartName on String {
 
 extension MemberShapeUtils on MemberShape {
   /// The name of this shape in a Dart struct.
-  String get dartName => memberName.camelCase.nameEscaped();
+  String dartName(ShapeType type) => memberName.camelCase.nameEscaped(type);
 }
 
 extension ShapeUtils on Shape {
@@ -119,8 +167,66 @@ extension ShapeUtils on Shape {
   String? rename(CodegenContext context) =>
       context.service?.rename[shapeId.toString()];
 
-  /// Documentation for the shape.
-  String? get docs => getTrait<DocumentationTrait>()?.value;
+  /// Whether the shape has documentation which needs processing.
+  bool hasDocs(CodegenContext context) =>
+      hasTrait<DocumentationTrait>() ||
+      (this is MemberShape &&
+          context.shapeFor((this as MemberShape).target).hasDocs(context)) ||
+      hasTrait<ExternalDocumentationTrait>() ||
+      hasTrait<ExamplesTrait>();
+
+  /// The formatted documentation for the shape.
+  String formattedDocs(CodegenContext context) {
+    if (!hasDocs(context)) return '';
+
+    final buf = StringBuffer();
+    var docs = getTrait<DocumentationTrait>()?.value;
+
+    // The effective documentation trait of a shape is resolved using the following process:
+    //
+    // 1. Use the documentation trait of the shape, if present.
+    // 2. If the shape is a Member, then use the documentation trait of the shape targeted by the member, if present.
+    //
+    // See: https://awslabs.github.io/smithy/1.0/spec/core/documentation-traits.html?highlight=sensitive#documentation-trait
+    if (this is MemberShape) {
+      docs ??= context
+          .shapeFor((this as MemberShape).target)
+          .getTrait<DocumentationTrait>()
+          ?.value;
+    }
+    if (docs != null) {
+      buf.write(formatDocs(docs));
+    }
+
+    // Add external documentation
+    final externalDocs = getTrait<ExternalDocumentationTrait>()?.urls;
+    if (externalDocs != null && externalDocs.isNotEmpty) {
+      if (buf.isNotEmpty) buf.writeln('///');
+      buf.writeln('/// See also:');
+      externalDocs.forEach((key, value) {
+        buf.writeln('/// - [$key]($value)');
+      });
+    }
+
+    // TODO: Once service client interface is finalized.
+    // Add examples (only valid for operation shapes)
+    // final examples = getTrait<ExamplesTrait>()?.examples;
+    // if (examples != null && examples.isNotEmpty) {
+    //   final operation = this as OperationShape;
+    //   if (buf.isNotEmpty) buf.writeln('///');
+    //   for (final example in examples) {
+    //     buf.writeln('### Example: ${example.title}');
+    //     final docs = example.documentation;
+    //     if (docs != null) {
+    //       buf.writeln();
+    //       buf.writeln(docs);
+    //     }
+    //     final input = example.input;
+    //   }
+    // }
+
+    return buf.toString();
+  }
 
   Expression? get deprecatedAnnotation {
     const defaultMessage =
@@ -258,20 +364,18 @@ extension OperationShapeUtil on OperationShape {
         b.pageSizePath = operationTraits!.pageSizePath;
       }
 
-      PaginationItem _parsePath(StructureShape s, String p) {
+      PaginationItem _parsePath(NamedMembersShape shape, String p) {
         final path = p.split('.');
         final List<Expression Function(Expression)> exps = [];
-        NamedMembersShape shape = s;
         bool isNullable = false;
         late MemberShape member;
         late Reference symbol;
         while (path.isNotEmpty) {
           final memberName = path.removeAt(0);
           member = shape.members[memberName]!;
+          final dartName = member.dartName(shape.getType());
           final _isNullable = isNullable; // local copy for capture
-          exps.add(
-            (exp) => exp.nullableProperty(member.dartName, _isNullable),
-          );
+          exps.add((exp) => exp.nullableProperty(dartName, _isNullable));
           isNullable = member.isNullable(context, shape);
           symbol = context.symbolFor(member.target, shape);
           final targetShape = context.shapeFor(member.target);
@@ -340,56 +444,14 @@ extension OperationShapeUtil on OperationShape {
     return null;
   }
 
-  Expression _buildEndpointDefinition(EndpointDefinition definition) =>
-      DartTypes.smithyAws.endpointDefinition.constInstance([], {
-        if (definition.hostname != null)
-          'hostname': literal(definition.hostname),
-        if (definition.protocols.isNotEmpty)
-          'protocols': literalList(definition.protocols.map(literalString)),
-        if (definition.signatureVersions.isNotEmpty)
-          'signatureVersions':
-              literalList(definition.signatureVersions.map(literalString)),
-        if (definition.credentialScope != null)
-          'credentialScope':
-              DartTypes.smithyAws.credentialScope.constInstance([], {
-            if (definition.credentialScope?.region != null)
-              'region': literal(definition.credentialScope?.region),
-            if (definition.credentialScope?.service != null)
-              'service': literal(definition.credentialScope?.service),
-          }),
-      });
-
-  Expression _buildPartition(Partition partition) {
-    return DartTypes.smithyAws.partition.newInstance([], {
-      'id': literalString(partition.id),
-      'regionRegex': DartTypes.core.regExp.newInstance([
-        literalString(partition.regionRegex.pattern, raw: true),
-      ]),
-      'partitionEndpoint': partition.partitionEndpoint == null
-          ? literalNull
-          : literalString(partition.partitionEndpoint!),
-      'isRegionalized': literalBool(partition.isRegionalized),
-      'defaults': _buildEndpointDefinition(partition.defaults),
-      'endpoints': literalConstMap({
-        for (final entry in partition.endpoints.entries)
-          literalString(entry.key): _buildEndpointDefinition(entry.value),
-      })
-    });
-  }
-
   /// Fields which should be generated for the operation and its service client
   /// based off the traits attached to this shape's service.
-  Iterable<Field> protocolFields(
-    CodegenContext context, {
-    required Shape forShape,
-  }) sync* {
+  Iterable<Field> protocolFields(CodegenContext context) sync* {
     final serviceShape = context.service;
     if (serviceShape == null) {
       return;
     }
-    final isOperation = forShape is OperationShape;
-    final serviceTrait = serviceShape.getTrait<ServiceTrait>();
-    if (serviceTrait != null) {
+    if (serviceShape.isAwsService) {
       yield Field(
         (f) => f
           ..type = DartTypes.core.string
@@ -404,44 +466,6 @@ extension OperationShapeUtil on OperationShape {
           ..type = DartTypes.core.uri.boxed
           ..name = '_baseUri',
       );
-
-      final resolvedService = serviceTrait.resolve(serviceShape.shapeId);
-      final sortedPartitions = [...awsPartitions.keys]..sort();
-      if (isOperation) {
-        yield Field(
-          (f) => f
-            ..static = true
-            ..modifier = FieldModifier.final$
-            ..name = '_partitions'
-            ..assignment = literalList([
-              for (final partitionName in sortedPartitions)
-                _buildPartition(awsPartitions[partitionName]!
-                    .toPartition(resolvedService.endpointPrefix)),
-            ]).code,
-        );
-
-        // The endpoint resolver
-        final endpointResolver = DartTypes.smithyAws.awsEndpointResolver
-            .newInstance([refer('_partitions')]);
-        yield Field(
-          (f) => f
-            ..late = true
-            ..modifier = FieldModifier.final$
-            ..type = DartTypes.smithyAws.awsEndpointResolver
-            ..name = '_endpointResolver'
-            ..assignment = endpointResolver.code,
-        );
-
-        // The sdkId
-        yield Field(
-          (f) => f
-            ..static = true
-            ..modifier = FieldModifier.constant
-            ..type = DartTypes.core.string
-            ..name = '_sdkId'
-            ..assignment = literalString(resolvedService.sdkId).code,
-        );
-      }
     } else {
       // The baseUri field
       yield Field(
@@ -452,6 +476,17 @@ extension OperationShapeUtil on OperationShape {
           ..name = 'baseUri',
       );
     }
+
+    final isS3 = serviceShape.resolvedService?.sdkId == 'S3';
+    if (isS3) {
+      yield Field(
+        (f) => f
+          ..type = DartTypes.smithyAws.s3ClientConfig
+          ..name = 's3ClientConfig'
+          ..modifier = FieldModifier.final$,
+      );
+    }
+
     if (serviceShape.hasTrait<SigV4Trait>()) {
       yield Field(
         (f) => f
@@ -469,7 +504,7 @@ extension OperationShapeUtil on OperationShape {
     if (serviceShape == null) {
       return;
     }
-    final isAwsService = serviceShape.hasTrait<ServiceTrait>();
+    final isAwsService = serviceShape.isAwsService;
     yield Parameter(
       (p) => p
         ..toThis = !isAwsService
@@ -487,6 +522,19 @@ extension OperationShapeUtil on OperationShape {
           ..named = true,
       );
     }
+
+    final isS3 = serviceShape.resolvedService?.sdkId == 'S3';
+    if (isS3) {
+      yield Parameter(
+        (p) => p
+          ..toThis = true
+          ..name = 's3ClientConfig'
+          ..named = true
+          ..defaultTo =
+              DartTypes.smithyAws.s3ClientConfig.constInstance([]).code,
+      );
+    }
+
     if (serviceShape.hasTrait<SigV4Trait>()) {
       yield Parameter(
         (p) => p
@@ -502,22 +550,38 @@ extension OperationShapeUtil on OperationShape {
   /// Constructor initializers which should be generated for the operation and its
   /// service client based off the traits attached to this shape's service.
   Iterable<Tuple2<String, String>> constructorInitializers(
-      CodegenContext context) sync* {
+    CodegenContext context,
+  ) sync* {
     final serviceShape = context.service;
     if (serviceShape == null) {
       return;
     }
-    final isAwsService = serviceShape.hasTrait<ServiceTrait>();
-    if (isAwsService) {
+    if (serviceShape.isAwsService) {
       yield Tuple2('_baseUri', 'baseUri');
     }
   }
 }
 
 extension StructureShapeUtil on StructureShape {
+  /// The operation this shape belongs to, if any.
+  OperationShape? operationShape(CodegenContext context) =>
+      context.shapes.values.whereType<OperationShape>().firstWhereOrNull(
+            (operation) =>
+                operation.input?.target == shapeId ||
+                operation.output?.target == shapeId ||
+                operation.errors.map((ref) => ref.target).contains(shapeId),
+          );
+
   /// The symbol for the HTTP payload, or `this` if not supported.
   HttpPayload httpPayload(CodegenContext context) {
-    final payloadMember = members.values.firstWhereOrNull((shape) {
+    MemberShape? payloadMember;
+    final operationShape = this.operationShape(context);
+    if (operationShape != null &&
+        operationShape.hasTrait<S3UnwrappedXmlOutputTrait>() &&
+        isOutputShape) {
+      payloadMember = members.values.single;
+    }
+    payloadMember ??= members.values.firstWhereOrNull((shape) {
       return shape.hasTrait<HttpPayloadTrait>();
     });
     if (payloadMember == null) {
@@ -529,7 +593,7 @@ extension StructureShapeUtil on StructureShape {
     }
     return HttpPayload(
       (b) => b
-        ..symbol = payloadMember.accept(SymbolVisitor(context), this)
+        ..symbol = payloadMember!.accept(SymbolVisitor(context), this)
         ..member.replace(payloadMember),
     );
   }
@@ -643,7 +707,7 @@ extension StructureShapeUtil on StructureShape {
   /// Members sorted by their re-cased Dart name.
   List<MemberShape> get sortedMembers => members.values.toList()
     ..sort((a, b) {
-      return a.dartName.compareTo(b.dartName);
+      return a.dartName(getType()).compareTo(b.dartName(getType()));
     });
 
   /// The member shape to serialize when [HttpPayloadTrait] is used.
@@ -669,7 +733,9 @@ extension StructureShapeUtil on StructureShape {
       ...?httpErrorTraits?.httpHeaders.values,
       httpErrorTraits?.httpPrefixHeaders?.member,
     }.whereType<MemberShape>().toList()
-      ..sorted((a, b) => a.dartName.compareTo(b.dartName));
+      ..sorted(
+        (a, b) => a.dartName(getType()).compareTo(b.dartName(getType())),
+      );
   }
 
   /// The list of all members which should always be included in the body of
@@ -705,4 +771,18 @@ extension ShapeIdUtil on ShapeId {
         'shape': literalString(shape),
         if (member != null) 'member': literalString(member!),
       });
+}
+
+extension ServiceShapeUtil on ServiceShape {
+  /// Whether this is an AWS service.
+  bool get isAwsService => resolvedService != null;
+
+  /// The resolved service trait for AWS services.
+  ResolvedServiceTrait? get resolvedService {
+    final serviceTrait = getTrait<ServiceTrait>();
+    if (serviceTrait == null) {
+      return null;
+    }
+    return serviceTrait.resolve(shapeId);
+  }
 }

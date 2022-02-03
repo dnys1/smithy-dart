@@ -28,7 +28,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.9"
+    version: "3.1.11"
   args:
     dependency: "direct main"
     description:
@@ -44,23 +44,19 @@ packages:
     source: hosted
     version: "2.8.2"
   aws_common:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: "packages/aws_common"
-      ref: smithy
-      resolved-ref: a137ac04449c8438369df8834d27b54885e2816a
-      url: "https://github.com/dnys1/aws-sdk-dart.git"
-    source: git
-    version: "0.1.0"
+      name: aws_common
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.1.2"
   aws_signature_v4:
     dependency: transitive
     description:
-      path: "packages/aws_signature_v4"
-      ref: smithy
-      resolved-ref: a137ac04449c8438369df8834d27b54885e2816a
-      url: "https://github.com/dnys1/aws-sdk-dart.git"
-    source: git
-    version: "0.1.0"
+      name: aws_signature_v4
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.1.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -515,28 +511,28 @@ packages:
       path: "../smithy"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.2"
   smithy_ast:
     dependency: "direct main"
     description:
       path: "../smithy_ast"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.2"
   smithy_aws:
     dependency: "direct main"
     description:
       path: "../smithy_aws"
       relative: true
     source: path
-    version: "1.0.0"
+    version: "0.1.2"
   smithy_test:
     dependency: "direct dev"
     description:
       path: "../smithy_test"
       relative: true
     source: path
-    version: "1.0.0"
+    version: "0.1.0"
   source_gen:
     dependency: transitive
     description:

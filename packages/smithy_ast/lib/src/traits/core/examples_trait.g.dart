@@ -21,8 +21,8 @@ Map<String, dynamic> _$ExamplesTraitToJson(ExamplesTrait instance) =>
 Example _$ExampleFromJson(Map<String, dynamic> json) => Example(
       title: json['title'] as String,
       documentation: json['documentation'] as String?,
-      input: json['input'] as Object,
-      output: json['output'] as Object,
+      input: json['input'] as Map<String, dynamic>? ?? const {},
+      output: json['output'] as Map<String, dynamic>? ?? const {},
       error: json['error'] == null
           ? null
           : ErrorExample.fromJson(json['error'] as Map<String, dynamic>),
@@ -38,7 +38,7 @@ Map<String, dynamic> _$ExampleToJson(Example instance) => <String, dynamic>{
 
 ErrorExample _$ErrorExampleFromJson(Map<String, dynamic> json) => ErrorExample(
       shapeId: const ShapeIdConverter().fromJson(json['shapeId'] as String),
-      content: json['content'] as Object,
+      content: json['content'] as Map<String, dynamic>? ?? const {},
     );
 
 Map<String, dynamic> _$ErrorExampleToJson(ErrorExample instance) =>

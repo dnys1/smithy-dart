@@ -132,6 +132,7 @@ abstract class Trait<TraitValue extends Object>
     AwsJson1_1Trait.id: AwsJson1_1Trait.fromJson,
     RestJson1Trait.id: RestJson1Trait.fromJson,
     RestXmlTrait.id: RestXmlTrait.fromJson,
+    S3UnwrappedXmlOutputTrait.id: S3UnwrappedXmlOutputTrait.fromJson,
 
     // Protocol Tests
     HttpMalformedRequestTestsTrait.id: HttpMalformedRequestTestsTrait.fromJson,

@@ -68,9 +68,11 @@ class HomeComponent implements AfterContentInit {
           packageName: 'example',
           serviceName: 'MyService',
         );
-        libraries.forEach((lib, definition) {
-          outputs[lib.filename + '.dart'] = TransformOutput('dart', definition);
-        });
+        for (final lib in libraries) {
+          final smithyLib = lib.smithyLibrary;
+          outputs[smithyLib.filename + '.dart'] =
+              TransformOutput('dart', lib.emit());
+        }
       } catch (e, st) {
         window.console.error(e);
         window.console.error(st);

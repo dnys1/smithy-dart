@@ -34,12 +34,12 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
 
   ShapeId replace({
     String? namespace,
-    String? name,
+    String? shape,
     Object? member = const Object(),
   }) {
     return ShapeId(
       namespace: namespace ?? this.namespace,
-      shape: name ?? this.shape,
+      shape: shape ?? this.shape,
       member: member is String
           ? member
           : member == const Object()

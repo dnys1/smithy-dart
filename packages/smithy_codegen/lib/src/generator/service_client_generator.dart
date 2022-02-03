@@ -10,8 +10,15 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
-  ServiceClientGenerator(ServiceShape shape, CodegenContext context)
-      : super(shape, context: context);
+  ServiceClientGenerator(
+    ServiceShape shape,
+    CodegenContext context, {
+    SmithyLibrary? smithyLibrary,
+  }) : super(
+          shape,
+          context: context,
+          smithyLibrary: smithyLibrary,
+        );
 
   late final List<OperationShape> _operations =
       context.shapes.values.whereType<OperationShape>().toList();
@@ -32,6 +39,9 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
   Class get _clientClass => Class((c) {
         c
           ..name = className
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..constructors.add(_clientConstructor)
           ..methods.addAll(_operationMethods)
           ..fields.addAll([
@@ -39,14 +49,19 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
               equals: (a, b) => a.name == b.name,
               hashCode: (key) => key.name.hashCode,
             )..addAll(
-                _operations.expand(
-                    (op) => op.protocolFields(context, forShape: shape)),
+                _operations.expand((op) => op.protocolFields(context)).map(
+                      // Fields won't be overriding anything on the service client
+                      (field) => field.rebuild((f) => f.annotations.clear()),
+                    ),
               ),
           ]);
       });
 
   Constructor get _clientConstructor => Constructor(
         (ctor) => ctor
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
           ..constant = true
           ..optionalParameters.addAll([
             ...LinkedHashSet<Parameter>(
@@ -82,7 +97,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       yield Method(
         (m) => m
           ..docs.addAll([
-            if (operation.docs != null) formatDocs(operation.docs!),
+            if (operation.hasDocs(context)) operation.formattedDocs(context),
           ])
           ..returns = isPaginated
               ? DartTypes.async.future(DartTypes.smithy.paginatedResult(
@@ -102,8 +117,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ..body = context
               .symbolFor(operation.shapeId)
               .newInstance([], {
-                for (final field
-                    in operation.protocolFields(context, forShape: shape))
+                for (final field in operation.protocolFields(context))
                   _public(field.name): refer(field.name),
               })
               .property(isPaginated ? 'runPaginated' : 'run')

@@ -25,12 +25,17 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   late final SerializerConfig config;
   final ProtocolDefinitionTrait protocol;
 
+  // Use the unprocessed shape name as the wire name, since this is
+  // what we can expect to see for protocols which use it like XML.
+  late final String wireName = shape.className(context)!;
+
   bool get isStructuredSerializer;
 
   String get serializerClassName {
     final withProtocolName = protocol.isSynthetic ? '' : protocol.shapeId.shape;
     return '_' +
-        '${shape.shapeId.shape}_${withProtocolName}_Serializer'.pascalCase;
+        '${shape.className(context)!}_${withProtocolName}_Serializer'
+            .pascalCase;
   }
 
   /// The symbol to be serialized.
@@ -43,11 +48,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
         (c) => c
           ..constant = true
           ..initializers.add(
-            refer('super').call([
-              // Use the unprocessed shape name as the wire name, since this is
-              // what we can expect to see for protocols which use it like XML.
-              literalString(shape.shapeId.shape),
-            ]).code,
+            refer('super').call([literalString(wireName)]).code,
           ),
       );
 
@@ -132,33 +133,27 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
   }) {
     final targetShape = context.shapeFor(member.target);
     final type = targetShape.getType();
-    final isNullable = member.isNullable(context, shape);
     memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
-    if (type == ShapeType.timestamp) {
+    if (type == ShapeType.timestamp &&
+        protocol.supportsTrait(TimestampFormatTrait.id)) {
       final format = member.timestampFormat ?? targetShape.timestampFormat;
       if (format != null) {
         return DartTypes.smithy.timestampSerializer
             .property(format.name)
             .property('serialize')
-            .call([
-          refer('serializers'),
-          isNullable ? memberRef.nullChecked : memberRef
-        ]);
+            .call([refer('serializers'), memberRef]);
       }
     }
-    if (type == ShapeType.string) {
+    if (type == ShapeType.string && protocol.supportsTrait(MediaTypeTrait.id)) {
       final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
       switch (mediaType) {
         case 'application/json':
           return DartTypes.smithy.encodedJsonObjectSerializer
               .constInstance([])
               .property('serialize')
-              .call([
-                refer('serializers'),
-                isNullable ? memberRef.nullChecked : memberRef
-              ]);
+              .call([refer('serializers'), memberRef]);
       }
     }
 
@@ -182,7 +177,8 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     memberSymbol ??= memberSymbols[member]!;
 
     // For timestamps, check if there is a custom serializer needed.
-    if (type == ShapeType.timestamp) {
+    if (type == ShapeType.timestamp &&
+        protocol.supportsTrait(TimestampFormatTrait.id)) {
       final format = config.isTest
           // Test params are always in epoch seconds.
           // https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#parameter-format
@@ -195,7 +191,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
             .call([refer('serializers'), value]);
       }
     }
-    if (type == ShapeType.string) {
+    if (type == ShapeType.string && protocol.supportsTrait(MediaTypeTrait.id)) {
       final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
       switch (mediaType) {
         case 'application/json':

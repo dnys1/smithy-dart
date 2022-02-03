@@ -6,7 +6,9 @@ import 'package:built_value/serializer.dart';
 import 'package:http/http.dart';
 import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/smithy.dart';
+import 'package:smithy_test/src/xml/equatable.dart';
 import 'package:test/test.dart';
+import 'package:xml/xml.dart';
 
 import 'serializers.dart';
 
@@ -20,12 +22,10 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
   final protocol = operation.resolveProtocol(
     useProtocol: testCase.protocol,
   );
-  final serializers = (protocol.serializers.toBuilder()
-        ..addAll([
-          ...testSerializers,
-          ...?inputSerializers,
-        ]))
-      .build();
+  final serializers = buildSerializers(
+    protocol.serializers,
+    inputSerializers,
+  );
   final input = serializers.deserialize(
     testCase.params,
     specifiedType: FullType(Input),
@@ -164,6 +164,15 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
           }
         }
         expect(jsonBody, equals(expectedJsonBody));
+        break;
+      case 'application/xml':
+        final expectedXmlBody = expectedBody.isEmpty
+            ? const []
+            : XmlDocument.parse(expectedBody).toEquatable();
+        final body = utf8.decode(bodyBytes);
+        final xmlBody =
+            body.isEmpty ? const [] : XmlDocument.parse(body).toEquatable();
+        expect(xmlBody, orderedEquals(expectedXmlBody));
         break;
       default:
         expectBytes(expectedBody.codeUnits);

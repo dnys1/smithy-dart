@@ -74,11 +74,16 @@ packages:
   aws_common:
     dependency: transitive
     description:
-      path: "packages/aws_common"
-      ref: smithy
-      resolved-ref: a137ac04449c8438369df8834d27b54885e2816a
-      url: "https://github.com/dnys1/aws-sdk-dart.git"
-    source: git
+      name: aws_common
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.1.1"
+  aws_signature_v4:
+    dependency: transitive
+    description:
+      name: aws_signature_v4
+      url: "https://pub.dillonnys.com"
+    source: hosted
     version: "0.1.0"
   bazel_worker:
     dependency: transitive
@@ -374,6 +379,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.0"
+  html2md:
+    dependency: transitive
+    description:
+      name: html2md
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.5"
   http:
     dependency: "direct main"
     description:
@@ -608,31 +620,31 @@ packages:
   smithy:
     dependency: transitive
     description:
-      path: "../../packages/smithy"
-      relative: true
-    source: path
-    version: "0.1.0"
+      name: smithy
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.1.1"
   smithy_ast:
     dependency: transitive
     description:
-      path: "../../packages/smithy_ast"
-      relative: true
-    source: path
-    version: "0.1.0"
+      name: smithy_ast
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.1.1"
   smithy_aws:
     dependency: transitive
     description:
-      path: "../../packages/smithy_aws"
-      relative: true
-    source: path
-    version: "1.0.0"
+      name: smithy_aws
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.1.1"
   smithy_codegen:
     dependency: "direct main"
     description:
       path: "../../packages/smithy_codegen"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.1"
   source_gen:
     dependency: transitive
     description:

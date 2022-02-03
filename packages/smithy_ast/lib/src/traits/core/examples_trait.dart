@@ -39,8 +39,8 @@ class Example with AWSEquatable<Example>, AWSSerializable {
   const Example({
     required this.title,
     this.documentation,
-    required this.input,
-    required this.output,
+    this.input = const {},
+    this.output = const {},
     this.error,
   });
 
@@ -49,8 +49,8 @@ class Example with AWSEquatable<Example>, AWSSerializable {
 
   final String title;
   final String? documentation;
-  final Object input;
-  final Object output;
+  final Map<String, Object?> input;
+  final Map<String, Object?> output;
   final ErrorExample? error;
 
   @override
@@ -71,14 +71,14 @@ class Example with AWSEquatable<Example>, AWSSerializable {
 class ErrorExample with AWSEquatable<ErrorExample>, AWSSerializable {
   const ErrorExample({
     required this.shapeId,
-    required this.content,
+    this.content = const {},
   });
 
   factory ErrorExample.fromJson(Map<String, Object?> json) =>
       _$ErrorExampleFromJson(json);
 
   final ShapeId shapeId;
-  final Object content;
+  final Map<String, Object?> content;
 
   @override
   List<Object?> get props => [

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 import 'package:smithy_ast/smithy_ast.dart';

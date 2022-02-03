@@ -3,7 +3,6 @@ github:
     push:
       branches:
         - main
-        - pub
     pull_request:
 
   workflows:

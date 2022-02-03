@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:built_value/serializer.dart';
 import 'package:meta/meta.dart';
-import 'package:path/path.dart' as p;
 import 'package:retry/retry.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_ast/smithy_ast.dart';

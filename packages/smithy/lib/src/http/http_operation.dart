@@ -147,7 +147,7 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     if (basePath.startsWith('/')) {
       basePath = basePath.substring(1);
     }
-    path = p.join(basePath, path);
+    path = '$basePath/$path';
     if (needsTrailingSlash && !path.endsWith('/')) {
       path += '/';
     }

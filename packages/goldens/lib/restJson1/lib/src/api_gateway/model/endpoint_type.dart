@@ -8,7 +8,7 @@ class EndpointType extends _i1.SmithyEnum<EndpointType> {
   const EndpointType._(int index, String name, String value)
       : super(index, name, value);
 
-  const EndpointType.sdkUnknown(String value) : super.sdkUnknown(value);
+  const EndpointType._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const edge = EndpointType._(0, 'EDGE', 'EDGE');
 
@@ -26,7 +26,7 @@ class EndpointType extends _i1.SmithyEnum<EndpointType> {
   static const List<_i1.SmithySerializer<EndpointType>> serializers = [
     _i1.SmithyEnumSerializer('EndpointType',
         values: values,
-        sdkUnknown: EndpointType.sdkUnknown,
+        sdkUnknown: EndpointType._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')
         ])
@@ -41,6 +41,5 @@ extension EndpointTypeHelpers on List<EndpointType> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [EndpointType] whose value matches [value].
-  EndpointType byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => EndpointType.sdkUnknown(value));
+  EndpointType byValue(String value) => firstWhere((el) => el.value == value);
 }

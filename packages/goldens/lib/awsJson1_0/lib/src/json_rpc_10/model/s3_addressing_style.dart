@@ -9,7 +9,7 @@ class S3AddressingStyle extends _i1.SmithyEnum<S3AddressingStyle> {
   const S3AddressingStyle._(int index, String name, String value)
       : super(index, name, value);
 
-  const S3AddressingStyle.sdkUnknown(String value) : super.sdkUnknown(value);
+  const S3AddressingStyle._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const auto = S3AddressingStyle._(0, 'AUTO', 'auto');
 
@@ -27,7 +27,7 @@ class S3AddressingStyle extends _i1.SmithyEnum<S3AddressingStyle> {
   static const List<_i1.SmithySerializer<S3AddressingStyle>> serializers = [
     _i1.SmithyEnumSerializer('S3AddressingStyle',
         values: values,
-        sdkUnknown: S3AddressingStyle.sdkUnknown,
+        sdkUnknown: S3AddressingStyle._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')
         ])
@@ -43,6 +43,5 @@ extension S3AddressingStyleHelpers on List<S3AddressingStyle> {
 
   /// Returns the value of [S3AddressingStyle] whose value matches [value].
   S3AddressingStyle byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => S3AddressingStyle.sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

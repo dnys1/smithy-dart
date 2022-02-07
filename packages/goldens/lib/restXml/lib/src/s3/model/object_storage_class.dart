@@ -8,7 +8,7 @@ class ObjectStorageClass extends _i1.SmithyEnum<ObjectStorageClass> {
   const ObjectStorageClass._(int index, String name, String value)
       : super(index, name, value);
 
-  const ObjectStorageClass.sdkUnknown(String value) : super.sdkUnknown(value);
+  const ObjectStorageClass._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const deepArchive =
       ObjectStorageClass._(0, 'DEEP_ARCHIVE', 'DEEP_ARCHIVE');
@@ -45,7 +45,7 @@ class ObjectStorageClass extends _i1.SmithyEnum<ObjectStorageClass> {
   static const List<_i1.SmithySerializer<ObjectStorageClass>> serializers = [
     _i1.SmithyEnumSerializer('ObjectStorageClass',
         values: values,
-        sdkUnknown: ObjectStorageClass.sdkUnknown,
+        sdkUnknown: ObjectStorageClass._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restXml')
         ])
@@ -61,6 +61,5 @@ extension ObjectStorageClassHelpers on List<ObjectStorageClass> {
 
   /// Returns the value of [ObjectStorageClass] whose value matches [value].
   ObjectStorageClass byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => ObjectStorageClass.sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

@@ -8,7 +8,7 @@ class FooEnum extends _i1.SmithyEnum<FooEnum> {
   const FooEnum._(int index, String name, String value)
       : super(index, name, value);
 
-  const FooEnum.sdkUnknown(String value) : super.sdkUnknown(value);
+  const FooEnum._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const bar = FooEnum._(0, 'BAR', 'Bar');
 
@@ -32,7 +32,7 @@ class FooEnum extends _i1.SmithyEnum<FooEnum> {
   static const List<_i1.SmithySerializer<FooEnum>> serializers = [
     _i1.SmithyEnumSerializer('FooEnum',
         values: values,
-        sdkUnknown: FooEnum.sdkUnknown,
+        sdkUnknown: FooEnum._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')
         ])
@@ -47,6 +47,5 @@ extension FooEnumHelpers on List<FooEnum> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [FooEnum] whose value matches [value].
-  FooEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => FooEnum.sdkUnknown(value));
+  FooEnum byValue(String value) => firstWhere((el) => el.value == value);
 }

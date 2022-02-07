@@ -9,7 +9,7 @@ class BucketLocationConstraint
   const BucketLocationConstraint._(int index, String name, String value)
       : super(index, name, value);
 
-  const BucketLocationConstraint.sdkUnknown(String value)
+  const BucketLocationConstraint._sdkUnknown(String value)
       : super.sdkUnknown(value);
 
   static const usWest2 =
@@ -24,7 +24,7 @@ class BucketLocationConstraint
       serializers = [
     _i1.SmithyEnumSerializer('BucketLocationConstraint',
         values: values,
-        sdkUnknown: BucketLocationConstraint.sdkUnknown,
+        sdkUnknown: BucketLocationConstraint._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restXml')
         ])
@@ -40,6 +40,5 @@ extension BucketLocationConstraintHelpers on List<BucketLocationConstraint> {
 
   /// Returns the value of [BucketLocationConstraint] whose value matches [value].
   BucketLocationConstraint byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => BucketLocationConstraint.sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

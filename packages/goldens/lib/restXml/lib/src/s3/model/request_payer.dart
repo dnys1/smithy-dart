@@ -8,7 +8,7 @@ class RequestPayer extends _i1.SmithyEnum<RequestPayer> {
   const RequestPayer._(int index, String name, String value)
       : super(index, name, value);
 
-  const RequestPayer.sdkUnknown(String value) : super.sdkUnknown(value);
+  const RequestPayer._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const requester = RequestPayer._(0, 'requester', 'requester');
 
@@ -18,7 +18,7 @@ class RequestPayer extends _i1.SmithyEnum<RequestPayer> {
   static const List<_i1.SmithySerializer<RequestPayer>> serializers = [
     _i1.SmithyEnumSerializer('RequestPayer',
         values: values,
-        sdkUnknown: RequestPayer.sdkUnknown,
+        sdkUnknown: RequestPayer._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restXml')
         ])
@@ -33,6 +33,5 @@ extension RequestPayerHelpers on List<RequestPayer> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [RequestPayer] whose value matches [value].
-  RequestPayer byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => RequestPayer.sdkUnknown(value));
+  RequestPayer byValue(String value) => firstWhere((el) => el.value == value);
 }

@@ -8,7 +8,7 @@ class MyEnum extends _i1.SmithyEnum<MyEnum> {
   const MyEnum._(int index, String name, String value)
       : super(index, name, value);
 
-  const MyEnum.sdkUnknown(String value) : super.sdkUnknown(value);
+  const MyEnum._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const variant1 = MyEnum._(0, 'Variant1', 'rawValue1');
 
@@ -19,7 +19,7 @@ class MyEnum extends _i1.SmithyEnum<MyEnum> {
 
   static const List<_i1.SmithySerializer<MyEnum>> serializers = [
     _i1.SmithyEnumSerializer('MyEnum',
-        values: values, sdkUnknown: MyEnum.sdkUnknown, supportedProtocols: [])
+        values: values, sdkUnknown: MyEnum._sdkUnknown, supportedProtocols: [])
   ];
 }
 
@@ -31,6 +31,5 @@ extension MyEnumHelpers on List<MyEnum> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [MyEnum] whose value matches [value].
-  MyEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => MyEnum.sdkUnknown(value));
+  MyEnum byValue(String value) => firstWhere((el) => el.value == value);
 }

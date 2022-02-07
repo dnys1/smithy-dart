@@ -8,7 +8,7 @@ class TestFunction extends _i1.SmithyEnum<TestFunction> {
   const TestFunction._(int index, String name, String value)
       : super(index, name, value);
 
-  const TestFunction.sdkUnknown(String value) : super.sdkUnknown(value);
+  const TestFunction._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const index_ = TestFunction._(0, 'index', 'INDEX_');
 
@@ -18,7 +18,7 @@ class TestFunction extends _i1.SmithyEnum<TestFunction> {
   static const List<_i1.SmithySerializer<TestFunction>> serializers = [
     _i1.SmithyEnumSerializer('Function',
         values: values,
-        sdkUnknown: TestFunction.sdkUnknown,
+        sdkUnknown: TestFunction._sdkUnknown,
         supportedProtocols: [])
   ];
 }
@@ -32,5 +32,5 @@ extension TestFunctionHelpers on List<TestFunction> {
 
   /// Returns the value of [TestFunction] whose value matches [value].
   TestFunction byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => TestFunction.sdkUnknown(value));
+      orElse: () => TestFunction._sdkUnknown(value));
 }

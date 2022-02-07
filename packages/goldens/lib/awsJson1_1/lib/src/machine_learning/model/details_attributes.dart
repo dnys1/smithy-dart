@@ -8,7 +8,7 @@ class DetailsAttributes extends _i1.SmithyEnum<DetailsAttributes> {
   const DetailsAttributes._(int index, String name, String value)
       : super(index, name, value);
 
-  const DetailsAttributes.sdkUnknown(String value) : super.sdkUnknown(value);
+  const DetailsAttributes._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const algorithm = DetailsAttributes._(0, 'ALGORITHM', 'Algorithm');
 
@@ -24,7 +24,7 @@ class DetailsAttributes extends _i1.SmithyEnum<DetailsAttributes> {
   static const List<_i1.SmithySerializer<DetailsAttributes>> serializers = [
     _i1.SmithyEnumSerializer('DetailsAttributes',
         values: values,
-        sdkUnknown: DetailsAttributes.sdkUnknown,
+        sdkUnknown: DetailsAttributes._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')
         ])
@@ -41,5 +41,5 @@ extension DetailsAttributesHelpers on List<DetailsAttributes> {
   /// Returns the value of [DetailsAttributes] whose value matches [value].
   DetailsAttributes byValue(String value) =>
       firstWhere((el) => el.value == value,
-          orElse: () => DetailsAttributes.sdkUnknown(value));
+          orElse: () => DetailsAttributes._sdkUnknown(value));
 }

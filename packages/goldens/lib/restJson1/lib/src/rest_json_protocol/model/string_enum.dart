@@ -8,7 +8,7 @@ class StringEnum extends _i1.SmithyEnum<StringEnum> {
   const StringEnum._(int index, String name, String value)
       : super(index, name, value);
 
-  const StringEnum.sdkUnknown(String value) : super.sdkUnknown(value);
+  const StringEnum._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const v = StringEnum._(0, 'V', 'enumvalue');
 
@@ -18,7 +18,7 @@ class StringEnum extends _i1.SmithyEnum<StringEnum> {
   static const List<_i1.SmithySerializer<StringEnum>> serializers = [
     _i1.SmithyEnumSerializer('StringEnum',
         values: values,
-        sdkUnknown: StringEnum.sdkUnknown,
+        sdkUnknown: StringEnum._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')
         ])
@@ -34,5 +34,5 @@ extension StringEnumHelpers on List<StringEnum> {
 
   /// Returns the value of [StringEnum] whose value matches [value].
   StringEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => StringEnum.sdkUnknown(value));
+      orElse: () => StringEnum._sdkUnknown(value));
 }

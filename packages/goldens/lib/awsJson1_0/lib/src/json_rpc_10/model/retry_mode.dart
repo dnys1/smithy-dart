@@ -9,7 +9,7 @@ class RetryMode extends _i1.SmithyEnum<RetryMode> {
   const RetryMode._(int index, String name, String value)
       : super(index, name, value);
 
-  const RetryMode.sdkUnknown(String value) : super.sdkUnknown(value);
+  const RetryMode._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const adaptive = RetryMode._(0, 'ADAPTIVE', 'adaptive');
 
@@ -27,7 +27,7 @@ class RetryMode extends _i1.SmithyEnum<RetryMode> {
   static const List<_i1.SmithySerializer<RetryMode>> serializers = [
     _i1.SmithyEnumSerializer('RetryMode',
         values: values,
-        sdkUnknown: RetryMode.sdkUnknown,
+        sdkUnknown: RetryMode._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')
         ])
@@ -43,5 +43,5 @@ extension RetryModeHelpers on List<RetryMode> {
 
   /// Returns the value of [RetryMode] whose value matches [value].
   RetryMode byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => RetryMode.sdkUnknown(value));
+      orElse: () => RetryMode._sdkUnknown(value));
 }

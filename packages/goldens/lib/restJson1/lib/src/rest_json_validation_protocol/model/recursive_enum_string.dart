@@ -8,7 +8,7 @@ class RecursiveEnumString extends _i1.SmithyEnum<RecursiveEnumString> {
   const RecursiveEnumString._(int index, String name, String value)
       : super(index, name, value);
 
-  const RecursiveEnumString.sdkUnknown(String value) : super.sdkUnknown(value);
+  const RecursiveEnumString._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const abc = RecursiveEnumString._(0, 'ABC', 'abc');
 
@@ -23,7 +23,7 @@ class RecursiveEnumString extends _i1.SmithyEnum<RecursiveEnumString> {
   static const List<_i1.SmithySerializer<RecursiveEnumString>> serializers = [
     _i1.SmithyEnumSerializer('RecursiveEnumString',
         values: values,
-        sdkUnknown: RecursiveEnumString.sdkUnknown,
+        sdkUnknown: RecursiveEnumString._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')
         ])
@@ -40,5 +40,5 @@ extension RecursiveEnumStringHelpers on List<RecursiveEnumString> {
   /// Returns the value of [RecursiveEnumString] whose value matches [value].
   RecursiveEnumString byValue(String value) =>
       firstWhere((el) => el.value == value,
-          orElse: () => RecursiveEnumString.sdkUnknown(value));
+          orElse: () => RecursiveEnumString._sdkUnknown(value));
 }

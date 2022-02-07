@@ -8,7 +8,7 @@ class ApiKeySourceType extends _i1.SmithyEnum<ApiKeySourceType> {
   const ApiKeySourceType._(int index, String name, String value)
       : super(index, name, value);
 
-  const ApiKeySourceType.sdkUnknown(String value) : super.sdkUnknown(value);
+  const ApiKeySourceType._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const authorizer = ApiKeySourceType._(0, 'AUTHORIZER', 'AUTHORIZER');
 
@@ -23,7 +23,7 @@ class ApiKeySourceType extends _i1.SmithyEnum<ApiKeySourceType> {
   static const List<_i1.SmithySerializer<ApiKeySourceType>> serializers = [
     _i1.SmithyEnumSerializer('ApiKeySourceType',
         values: values,
-        sdkUnknown: ApiKeySourceType.sdkUnknown,
+        sdkUnknown: ApiKeySourceType._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')
         ])
@@ -40,5 +40,5 @@ extension ApiKeySourceTypeHelpers on List<ApiKeySourceType> {
   /// Returns the value of [ApiKeySourceType] whose value matches [value].
   ApiKeySourceType byValue(String value) =>
       firstWhere((el) => el.value == value,
-          orElse: () => ApiKeySourceType.sdkUnknown(value));
+          orElse: () => ApiKeySourceType._sdkUnknown(value));
 }

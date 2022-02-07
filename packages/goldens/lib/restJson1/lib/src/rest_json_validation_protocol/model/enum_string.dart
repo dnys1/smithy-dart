@@ -8,7 +8,7 @@ class EnumString extends _i1.SmithyEnum<EnumString> {
   const EnumString._(int index, String name, String value)
       : super(index, name, value);
 
-  const EnumString.sdkUnknown(String value) : super.sdkUnknown(value);
+  const EnumString._sdkUnknown(String value) : super.sdkUnknown(value);
 
   static const abc = EnumString._(0, 'ABC', 'abc');
 
@@ -20,7 +20,7 @@ class EnumString extends _i1.SmithyEnum<EnumString> {
   static const List<_i1.SmithySerializer<EnumString>> serializers = [
     _i1.SmithyEnumSerializer('EnumString',
         values: values,
-        sdkUnknown: EnumString.sdkUnknown,
+        sdkUnknown: EnumString._sdkUnknown,
         supportedProtocols: [
           _i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')
         ])
@@ -36,5 +36,5 @@ extension EnumStringHelpers on List<EnumString> {
 
   /// Returns the value of [EnumString] whose value matches [value].
   EnumString byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => EnumString.sdkUnknown(value));
+      orElse: () => EnumString._sdkUnknown(value));
 }

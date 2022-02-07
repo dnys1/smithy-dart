@@ -40,6 +40,5 @@ extension DetailsAttributesHelpers on List<DetailsAttributes> {
 
   /// Returns the value of [DetailsAttributes] whose value matches [value].
   DetailsAttributes byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => DetailsAttributes._sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

@@ -47,6 +47,5 @@ extension FooEnumHelpers on List<FooEnum> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [FooEnum] whose value matches [value].
-  FooEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => FooEnum._sdkUnknown(value));
+  FooEnum byValue(String value) => firstWhere((el) => el.value == value);
 }

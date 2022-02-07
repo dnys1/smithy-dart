@@ -61,6 +61,5 @@ extension ObjectStorageClassHelpers on List<ObjectStorageClass> {
 
   /// Returns the value of [ObjectStorageClass] whose value matches [value].
   ObjectStorageClass byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => ObjectStorageClass._sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

@@ -40,6 +40,5 @@ extension BucketLocationConstraintHelpers on List<BucketLocationConstraint> {
 
   /// Returns the value of [BucketLocationConstraint] whose value matches [value].
   BucketLocationConstraint byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => BucketLocationConstraint._sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

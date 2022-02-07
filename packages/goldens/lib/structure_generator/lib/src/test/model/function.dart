@@ -31,6 +31,5 @@ extension TestFunctionHelpers on List<TestFunction> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [TestFunction] whose value matches [value].
-  TestFunction byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => TestFunction._sdkUnknown(value));
+  TestFunction byValue(String value) => firstWhere((el) => el.value == value);
 }

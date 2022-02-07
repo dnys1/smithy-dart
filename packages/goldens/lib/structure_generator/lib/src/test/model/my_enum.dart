@@ -31,6 +31,5 @@ extension MyEnumHelpers on List<MyEnum> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [MyEnum] whose value matches [value].
-  MyEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => MyEnum._sdkUnknown(value));
+  MyEnum byValue(String value) => firstWhere((el) => el.value == value);
 }

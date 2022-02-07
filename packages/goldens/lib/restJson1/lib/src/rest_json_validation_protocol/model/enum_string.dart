@@ -35,6 +35,5 @@ extension EnumStringHelpers on List<EnumString> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [EnumString] whose value matches [value].
-  EnumString byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => EnumString._sdkUnknown(value));
+  EnumString byValue(String value) => firstWhere((el) => el.value == value);
 }

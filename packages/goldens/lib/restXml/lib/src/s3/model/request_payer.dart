@@ -33,6 +33,5 @@ extension RequestPayerHelpers on List<RequestPayer> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [RequestPayer] whose value matches [value].
-  RequestPayer byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => RequestPayer._sdkUnknown(value));
+  RequestPayer byValue(String value) => firstWhere((el) => el.value == value);
 }

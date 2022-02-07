@@ -43,6 +43,5 @@ extension S3AddressingStyleHelpers on List<S3AddressingStyle> {
 
   /// Returns the value of [S3AddressingStyle] whose value matches [value].
   S3AddressingStyle byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => S3AddressingStyle._sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

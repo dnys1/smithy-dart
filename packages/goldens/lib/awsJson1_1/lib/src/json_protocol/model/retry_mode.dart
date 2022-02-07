@@ -42,6 +42,5 @@ extension RetryModeHelpers on List<RetryMode> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [RetryMode] whose value matches [value].
-  RetryMode byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => RetryMode._sdkUnknown(value));
+  RetryMode byValue(String value) => firstWhere((el) => el.value == value);
 }

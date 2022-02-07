@@ -33,6 +33,5 @@ extension EncodingTypeHelpers on List<EncodingType> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [EncodingType] whose value matches [value].
-  EncodingType byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => EncodingType._sdkUnknown(value));
+  EncodingType byValue(String value) => firstWhere((el) => el.value == value);
 }

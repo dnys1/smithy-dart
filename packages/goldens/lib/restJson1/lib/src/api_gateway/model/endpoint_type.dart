@@ -41,6 +41,5 @@ extension EndpointTypeHelpers on List<EndpointType> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [EndpointType] whose value matches [value].
-  EndpointType byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => EndpointType._sdkUnknown(value));
+  EndpointType byValue(String value) => firstWhere((el) => el.value == value);
 }

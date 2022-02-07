@@ -33,6 +33,5 @@ extension StringEnumHelpers on List<StringEnum> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [StringEnum] whose value matches [value].
-  StringEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => StringEnum._sdkUnknown(value));
+  StringEnum byValue(String value) => firstWhere((el) => el.value == value);
 }

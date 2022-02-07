@@ -39,6 +39,5 @@ extension RecursiveEnumStringHelpers on List<RecursiveEnumString> {
 
   /// Returns the value of [RecursiveEnumString] whose value matches [value].
   RecursiveEnumString byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => RecursiveEnumString._sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

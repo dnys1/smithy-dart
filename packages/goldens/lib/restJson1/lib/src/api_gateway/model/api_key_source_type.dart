@@ -39,6 +39,5 @@ extension ApiKeySourceTypeHelpers on List<ApiKeySourceType> {
 
   /// Returns the value of [ApiKeySourceType] whose value matches [value].
   ApiKeySourceType byValue(String value) =>
-      firstWhere((el) => el.value == value,
-          orElse: () => ApiKeySourceType._sdkUnknown(value));
+      firstWhere((el) => el.value == value);
 }

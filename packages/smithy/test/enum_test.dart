@@ -19,6 +19,16 @@ class _MyEnum extends SmithyEnum<_MyEnum> {
     _MyEnum.baz,
     _MyEnum.foo,
   ];
+
+  // ignore: unused_field
+  static const List<SmithySerializer<_MyEnum>> serializers = [
+    SmithyEnumSerializer(
+      '_MyEnum',
+      values: values,
+      sdkUnknown: _MyEnum._sdkUnknown,
+      supportedProtocols: [],
+    )
+  ];
 }
 
 extension _MyEnumHelpers on List<_MyEnum> {
@@ -29,8 +39,7 @@ extension _MyEnumHelpers on List<_MyEnum> {
       firstWhere((el) => el.name.toLowerCase() == name.toLowerCase());
 
   /// Returns the value of [_MyEnum] whose value matches [value].
-  _MyEnum byValue(String value) => firstWhere((el) => el.value == value,
-      orElse: () => _MyEnum._sdkUnknown(value));
+  _MyEnum byValue(String value) => firstWhere((el) => el.value == value);
 }
 
 void main() {
@@ -60,10 +69,9 @@ void main() {
     });
 
     test('byValue (unknown)', () {
-      final unknown = _MyEnum.values.byValue('UNKNOWN');
       expect(
-        unknown.value,
-        equals('UNKNOWN'),
+        () => _MyEnum.values.byValue('UNKNOWN'),
+        throwsStateError,
       );
     });
   });

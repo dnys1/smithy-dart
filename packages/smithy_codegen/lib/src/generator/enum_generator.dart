@@ -212,14 +212,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
                 ..body =
                     refer('el').property('value').equalTo(refer('value')).code,
             ).closure,
-          ], {
-            'orElse': Method(
-              (c) => c
-                ..lambda = true
-                ..body = symbol
-                    .newInstanceNamed('_sdkUnknown', [refer('value')]).code,
-            ).closure,
-          }).code,
+          ]).code,
       ),
     ]));
 }

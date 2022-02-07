@@ -92,12 +92,12 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
   /// enumerated ones.
   ///
   /// ```dart
-  /// const MyEnum.sdkUnknown(String value) : super.sdkUnknown(value);
+  /// const MyEnum._sdkUnknown(String value) : super.sdkUnknown(value);
   /// ```
   Constructor get _sdkUnknownConstructor => Constructor(
         (c) => c
           ..constant = true
-          ..name = 'sdkUnknown'
+          ..name = '_sdkUnknown'
           ..requiredParameters.add(Parameter((p) => p
             ..name = 'value'
             ..type = DartTypes.core.string))
@@ -150,7 +150,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
         literalString(shape.shapeId.shape),
       ], {
         'values': refer('values'),
-        'sdkUnknown': symbol.property('sdkUnknown'),
+        'sdkUnknown': symbol.property('_sdkUnknown'),
         'supportedProtocols': literalConstList([
           for (final protocol in context.serviceProtocols)
             if (!protocol.isSynthetic) protocol.shapeId.constructed,
@@ -217,7 +217,7 @@ class EnumGenerator extends LibraryGenerator<StringShape> {
               (c) => c
                 ..lambda = true
                 ..body = symbol
-                    .newInstanceNamed('sdkUnknown', [refer('value')]).code,
+                    .newInstanceNamed('_sdkUnknown', [refer('value')]).code,
             ).closure,
           }).code,
       ),

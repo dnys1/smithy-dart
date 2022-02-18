@@ -86,8 +86,10 @@ class HomeComponent implements AfterContentInit {
             );
           }),
         );
+        outputs.clear();
         outputs['AST'] = TransformOutput('application/json', astJson);
         outputs.addEntries(formattedLibraries);
+        tabIndex = 0;
         errorText = null;
       } catch (e, st) {
         window.console.error(e);

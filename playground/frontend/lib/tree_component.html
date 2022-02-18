@@ -3,31 +3,31 @@
         <li class="label"><span>lib/</span>
             <ul>
                 <li *ngFor="let lib of services">
-                    <a href="#" (click)="visit(lib)">{{ lib.filename + '.dart' }}</a>
+                    <a href="#" (click)="visit(lib)">{{ filename(lib) }}</a>
                 </li>
                 <li class="label"><span>src/</span>
                     <ul>
                         <li *ngFor="let lib of clients">
-                            <a href="#" (click)="visit(lib)">{{ lib.filename + '.dart' }}</a>
+                            <a href="#" (click)="visit(lib)">{{ filename(lib) }}</a>
                         </li>
                         <li class="label"><span>common/</span>
                             <ul>
                                 <li *ngFor="let lib of commons">
-                                    <a href="#" (click)="visit(lib)">{{ lib.filename + '.dart' }}</a>
+                                    <a href="#" (click)="visit(lib)">{{ filename(lib) }}</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="label"><span>model/</span>
                             <ul>
                                 <li *ngFor="let lib of models">
-                                    <a href="#" (click)="visit(lib)">{{ lib.filename + '.dart' }}</a>
+                                    <a href="#" (click)="visit(lib)">{{ filename(lib) }}</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="label"><span>operation/</span>
                             <ul>
                                 <li *ngFor="let lib of operations">
-                                    <a href="#" (click)="visit(lib)">{{ lib.filename + '.dart' }}</a>
+                                    <a href="#" (click)="visit(lib)">{{ filename(lib) }}</a>
                                 </li>
                             </ul>
                         </li>

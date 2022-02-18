@@ -25,10 +25,12 @@ class TreeComponent {
   @Output('indexChange')
   Stream<int> get indexChange => _indexController.stream;
 
-  void clicked(TreeNode node) => node.link();
-
   void visit(SmithyLibrary library) {
     _indexController.add(libraries.indexOf(library));
+  }
+
+  String filename(SmithyLibrary library) {
+    return library.sanitizedFilename + '.dart';
   }
 
   String testPath(SmithyLibrary library) {

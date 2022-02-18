@@ -25,5 +25,8 @@
     "constructs": "^10.0.0",
     "fs-extra": "^10.0.0",
     "source-map-support": "^0.5.16"
+  },
+  "resolutions": {
+    "vm2": ">=3.9.6"
   }
 }

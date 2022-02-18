@@ -6,7 +6,6 @@ import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart'
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 

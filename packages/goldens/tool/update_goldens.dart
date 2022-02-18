@@ -7,8 +7,6 @@ import 'package:path/path.dart' as path;
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_codegen/src/util/pubspec.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 
 const modelsDir = 'models';
 final modelsPath = path.join(Directory.current.path, modelsDir);

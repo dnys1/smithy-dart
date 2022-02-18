@@ -7,7 +7,6 @@ import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart'
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/docs.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 import 'package:tuple/tuple.dart';
 

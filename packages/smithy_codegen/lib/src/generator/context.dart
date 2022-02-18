@@ -6,7 +6,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy/src/protocol/generic_json_protocol.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
 
 /// The context for code generation.
 class CodegenContext {

@@ -3,7 +3,6 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/endpoint_resolver_generator.dart';
 import 'package:smithy_codegen/src/generator/enum_generator.dart';
-import 'package:smithy_codegen/src/generator/generated_library.dart';
 import 'package:smithy_codegen/src/generator/operation_generator.dart';
 import 'package:smithy_codegen/src/generator/operation_test_generator.dart';
 import 'package:smithy_codegen/src/generator/serializers_generator.dart';

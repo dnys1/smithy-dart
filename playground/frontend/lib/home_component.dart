@@ -3,11 +3,8 @@ import 'dart:collection';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
-import 'package:built_collection/built_collection.dart';
-import 'package:collection/collection.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_playground/editor/editor_component.dart';
-import 'package:smithy_playground/model/tree_node.dart';
 import 'package:smithy_playground/service/transform_service.dart';
 import 'package:fo_components/fo_components.dart';
 

@@ -1,3 +1,7 @@
+## 0.1.4
+
+- fix: Export expression
+
 ## 0.1.3
 
 - chore: Update exports

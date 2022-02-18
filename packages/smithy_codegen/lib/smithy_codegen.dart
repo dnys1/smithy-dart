@@ -4,7 +4,7 @@ library smithy_codegen;
 export 'src/config.dart';
 export 'src/exception.dart';
 export 'src/format/format_stub.dart'
-    if (library.dart.io) 'src/format/format_io.dart';
+    if (dart.library.io) 'src/format/format_io.dart';
 export 'src/generate.dart';
 export 'src/generator/context.dart';
 export 'src/generator/generated_library.dart';

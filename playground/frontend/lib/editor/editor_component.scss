@@ -3,3 +3,7 @@
 :host {
   height: 100%;
 }
+
+::ng-deep .CodeMirror-code {
+  margin-bottom: $header-height !important;
+}

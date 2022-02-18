@@ -3,10 +3,15 @@ import 'dart:collection';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:collection/collection.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_playground/editor/editor_component.dart';
+import 'package:smithy_playground/model/tree_node.dart';
 import 'package:smithy_playground/service/transform_service.dart';
 import 'package:fo_components/fo_components.dart';
+
+import 'tree_component.dart';
 
 class TransformOutput {
   const TransformOutput(this.lang, this.doc);
@@ -33,23 +38,29 @@ class TransformOutput {
     FoLoadIndicatorComponent,
     FoTabComponent,
     FoTabPanelComponent,
+    TreeComponent,
   ],
 )
 class HomeComponent implements AfterContentInit {
-  HomeComponent(this.transformService, this._ref);
+  HomeComponent(this.transformService);
 
-  final ChangeDetectorRef _ref;
   final TransformerService transformService;
 
   final LinkedHashMap<String, TransformOutput> outputs = LinkedHashMap();
 
+  List<SmithyLibrary> libraries = const [];
+
   String editorText = defaultText;
   String? errorText;
+
+  int tabIndex = 0;
 
   @ViewChild('button')
   ButtonElement? buttonElement;
 
   bool isLoading = false;
+
+  void goToFile(int index) => tabIndex = index + 2; // for files + AST
 
   Future<void> transform() async {
     if (isLoading) {
@@ -58,21 +69,29 @@ class HomeComponent implements AfterContentInit {
     setBusy(true);
     try {
       final astJson = await transformService.transform(editorText);
-      outputs['AST'] = TransformOutput('application/json', astJson);
 
       // Code generate libraries for AST
       try {
         final ast = parseAstJson(astJson);
-        final libraries = generateForAst(
-          ast,
-          packageName: 'example',
-          serviceName: 'MyService',
+        final libraries = generateForAst(ast, packageName: 'example');
+        this.libraries = libraries.map((lib) => lib.smithyLibrary).toList();
+        final formattedLibraries =
+            await Future.wait<MapEntry<String, TransformOutput>>(
+          libraries.map((lib) async {
+            return MapEntry(
+              lib.smithyLibrary.filename + '.dart',
+              TransformOutput(
+                'dart',
+                await transformService.format(lib.emit(
+                  withPrefixing: false,
+                )),
+              ),
+            );
+          }),
         );
-        for (final lib in libraries) {
-          final smithyLib = lib.smithyLibrary;
-          outputs[smithyLib.filename + '.dart'] =
-              TransformOutput('dart', lib.emit());
-        }
+        outputs['AST'] = TransformOutput('application/json', astJson);
+        outputs.addEntries(formattedLibraries);
+        errorText = null;
       } catch (e, st) {
         window.console.error(e);
         window.console.error(st);
@@ -91,7 +110,6 @@ class HomeComponent implements AfterContentInit {
 
   void setBusy(bool busy) {
     isLoading = busy;
-    _ref.markForCheck();
   }
 
   @override
@@ -129,6 +147,7 @@ union MyUnion {
   aLong: Long
 }
 
+@http(method: "POST", uri: "/foo")
 operation GetFoo {
   input: GetFooInput,
   output: GetFooOutput

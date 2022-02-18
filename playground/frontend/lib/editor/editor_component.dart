@@ -48,11 +48,11 @@ class EditorComponent implements AfterContentInit {
     } else {
       _outputController.addStream(
         _editor!.onChange.map((dynamic event) {
-          return _editor!.getDoc()?.getValue('\n') ?? '';
+          return _editor!.doc.getValue('\n') ?? '';
         }).cast<String>(),
       );
     }
-    _editor!.getDoc()!.setValue(_text ?? '');
+    _editor!.doc.setValue(_text ?? '');
   }
 
   String? _text;
@@ -61,14 +61,14 @@ class EditorComponent implements AfterContentInit {
   /// 1. The initial text, if available
   /// 2. The document text, if created
   /// 3. An empty string
-  String get text => _text ?? _editor?.getDoc()?.getValue('\n') ?? '';
+  String get text => _text ?? _editor?.doc.getValue('\n') ?? '';
 
   @Input()
   set text(String text) {
     if (text == '') {
       return;
     }
-    var doc = _editor?.getDoc();
+    var doc = _editor?.doc;
 
     if (doc == null) {
       // Sets the initial text (before content has initialized).

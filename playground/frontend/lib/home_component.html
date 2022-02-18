@@ -17,24 +17,20 @@
 </header>
 <div id="explorer" class="row">
   <div id="editor" class="m6 col">
-    <editor
-      [readOnly]="false"
-      [text]="editorText"
-      (textChange)="updateText($event)"
-    ></editor>
+    <editor [readOnly]="false" [text]="editorText" (textChange)="updateText($event)"></editor>
   </div>
   <div id="output" class="m6 col">
     <div *ngIf="errorText != null">
       <span class="error" [innerText]="errorText"></span>
     </div>
     <div id="outputs" *ngIf="errorText == null">
-      <fo-tab-panel>
+      <fo-tab-panel *ngIf="outputs.isNotEmpty" [(tabIndex)]="tabIndex">
+        <fo-tab label="Files">
+          <tree [libraries]="libraries" (indexChange)="goToFile($event)"></tree>
+        </fo-tab>
         <fo-tab *ngFor="let name of outputs.keys" [label]="name">
-          <editor
-            [readOnly]="true"
-            [text]="outputs[name]!.doc"
-            [lang]="outputs[name]!.lang"
-          ></editor>
+          <editor [readOnly]="true" [text]="outputs[name]!.doc" [lang]="outputs[name]!.lang">
+          </editor>
         </fo-tab>
       </fo-tab-panel>
     </div>

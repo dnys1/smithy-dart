@@ -27,7 +27,7 @@ void main() {
         final shapes = [myStruct, myStructBuilder];
         final context = createTestContext(shapes);
         final name = StructureGenerator(myStruct, context).className;
-        expect(name, equals('MyStructX'));
+        expect(name, equals('TestMyStruct'));
       });
 
       test('member names', () {
@@ -85,7 +85,7 @@ void main() {
         final shapes = [myUnion, myUnionBuilder];
         final context = createTestContext(shapes);
         final name = UnionGenerator(myUnion, context).className;
-        expect(name, equals('MyUnionX'));
+        expect(name, equals('TestMyUnion'));
       });
 
       test('member names', () {
@@ -109,9 +109,9 @@ void main() {
         expect(
           memberNames,
           unorderedEquals([
-            'value\$',
-            'sdkUnknown\$',
-            'unknown\$',
+            'value_',
+            'sdkUnknown_',
+            'unknown_',
           ]),
         );
       });
@@ -143,7 +143,7 @@ void main() {
         final shapes = [myEnum, myEnumBuilder];
         final context = createTestContext(shapes);
         final name = EnumGenerator(myEnum, context).className;
-        expect(name, equals('MyEnumX'));
+        expect(name, equals('TestMyEnum'));
       });
 
       test('member names', () {
@@ -156,9 +156,9 @@ void main() {
         expect(
           memberNames,
           unorderedEquals([
-            'name\$',
-            'value\$',
-            'index\$',
+            'name_',
+            'value_',
+            'index_',
           ]),
         );
       });

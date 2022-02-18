@@ -8,7 +8,12 @@ import 'package:smithy_codegen/src/generator/types.dart';
 /// Unlike [Allocator.simplePrefixing], though, it accepts a [library] parameter
 /// so that references to values in the same file are not prefixed.
 class SmithyAllocator implements Allocator {
-  SmithyAllocator(this.library);
+  SmithyAllocator(
+    this.library, {
+    this.withPrefixing = true,
+  });
+
+  final bool withPrefixing;
 
   /// Prefixing core makes things messy, although it does require escaping all
   /// core names.
@@ -62,7 +67,7 @@ class SmithyAllocator implements Allocator {
       }
     }
 
-    if (_doNotPrefix.contains(url)) {
+    if (!withPrefixing || _doNotPrefix.contains(url)) {
       _imports[url] = -1;
       return symbol!;
     }
@@ -79,7 +84,9 @@ class SmithyAllocator implements Allocator {
       _imports.keys.where((key) => key != 'dart:core').map(
             (u) => Directive.import(
               u,
-              as: _doNotPrefix.contains(u) ? null : '_i${_imports[u]}',
+              as: !withPrefixing || _doNotPrefix.contains(u)
+                  ? null
+                  : '_i${_imports[u]}',
             ),
           );
 }

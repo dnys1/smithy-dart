@@ -19,8 +19,8 @@ class GeneratedLibrary {
   /// via code_builder).
   final String? libraryDocs;
 
-  String emit() {
-    final allocator = SmithyAllocator(library);
+  String emit({bool withPrefixing = true}) {
+    final allocator = SmithyAllocator(library, withPrefixing: withPrefixing);
     final output = '$header\n\n${libraryDocs ?? ''}' +
         format('${library.accept(buildEmitter(allocator))}');
     dependencies.addAll(allocator.dependencies);

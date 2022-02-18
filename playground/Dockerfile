@@ -6,7 +6,7 @@ COPY lambda .
 RUN go env -w GOPROXY=direct
 RUN go mod download
 
-RUN go build -o handler .
+RUN go build -o handler ./cmd/prod
 
 # Build Smithy CLI using latest JDK
 FROM gradle:7-jdk17 AS cli

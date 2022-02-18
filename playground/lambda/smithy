@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -v "$2:$2" -v "$HOME/smithy/traits:/home/traits" --rm smithy-playground smithy "$1" -d "/home/traits" "$2"

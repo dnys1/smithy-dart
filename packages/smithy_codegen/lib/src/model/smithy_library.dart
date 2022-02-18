@@ -14,7 +14,7 @@ extension SmithyLibraryX on SmithyLibrary {
         packageName: _sanitize(packageName),
         serviceName: _sanitize(serviceName),
         libraryType: libraryType,
-        filename: _sanitize(filename),
+        filename: _sanitizeFilename(libraryType, filename),
       );
 
   /// Creates a [SmithyLibrary] from a [libraryName].
@@ -27,26 +27,29 @@ extension SmithyLibraryX on SmithyLibrary {
   static SmithyLibrary fromParts(List<String> parts) {
     switch (parts.length) {
       case 2:
+        final libraryType = SmithyLibrary_LibraryType.SERVICE;
         return SmithyLibrary(
           packageName: _sanitize(parts[0]),
           serviceName: _sanitize(parts[1]),
-          libraryType: SmithyLibrary_LibraryType.SERVICE,
-          filename: _sanitize(parts[1]),
+          libraryType: libraryType,
+          filename: _sanitizeFilename(libraryType, parts[1]),
         );
       case 3:
+        final libraryType = SmithyLibrary_LibraryType.CLIENT;
         return SmithyLibrary(
           packageName: _sanitize(parts[0]),
           serviceName: _sanitize(parts[1]),
           libraryType: SmithyLibrary_LibraryType.CLIENT,
-          filename: _sanitize(parts[2]),
+          filename: _sanitizeFilename(libraryType, parts[2]),
         );
       case 4:
+        final libraryType = SmithyLibrary_LibraryType.values
+            .firstWhere((el) => _sanitize(el.name) == _sanitize(parts[2]));
         return SmithyLibrary(
           packageName: _sanitize(parts[0]),
           serviceName: _sanitize(parts[1]),
-          libraryType: SmithyLibrary_LibraryType.values
-              .firstWhere((el) => _sanitize(el.name) == _sanitize(parts[2])),
-          filename: _sanitize(parts[3]),
+          libraryType: libraryType,
+          filename: _sanitizeFilename(libraryType, parts[3]),
         );
       default:
         throw ArgumentError('Cannot parse path: ${parts.join('.')}');
@@ -74,6 +77,28 @@ extension SmithyLibraryX on SmithyLibrary {
     ]);
   }
 
+  static String _sanitizeFilename(
+    SmithyLibrary_LibraryType libraryType,
+    String filename,
+  ) {
+    filename = _sanitize(filename);
+    switch (libraryType) {
+      case SmithyLibrary_LibraryType.OPERATION:
+        if (!filename.endsWith('_operation')) {
+          filename = '${filename}_operation';
+        }
+        break;
+      case SmithyLibrary_LibraryType.TEST:
+        if (!filename.endsWith('_test')) {
+          filename = '${filename}_test';
+        }
+        break;
+      default:
+        break;
+    }
+    return filename;
+  }
+
   static String _sanitize(String name) {
     var sanitized = name.replaceAll(RegExp(r'.dart$'), '').snakeCase;
     if (name.startsWith('_') && !sanitized.startsWith('_')) {
@@ -82,10 +107,13 @@ extension SmithyLibraryX on SmithyLibrary {
     return sanitized;
   }
 
+  /// The sanitized filename.
+  String get sanitizedFilename => _sanitizeFilename(libraryType, filename);
+
   /// The `lib/`-relative path.
   String get libRelativePath {
     final serviceName = _sanitize(this.serviceName);
-    final filename = _sanitize(this.filename);
+    final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
         return 'src/$serviceName/$filename.dart';
@@ -105,7 +133,7 @@ extension SmithyLibraryX on SmithyLibrary {
 
   /// The path relative to the project root.
   String get projectRelativePath {
-    var filename = _sanitize(this.filename);
+    final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
       case SmithyLibrary_LibraryType.MODEL:
@@ -114,9 +142,6 @@ extension SmithyLibraryX on SmithyLibrary {
       case SmithyLibrary_LibraryType.COMMON:
         return 'lib/$libRelativePath';
       case SmithyLibrary_LibraryType.TEST:
-        if (!filename.endsWith('_test')) {
-          filename = '${filename}_test';
-        }
         return 'test/$serviceName/$filename.dart';
     }
     throw ArgumentError('Invalid library type: $libraryType');
@@ -126,7 +151,7 @@ extension SmithyLibraryX on SmithyLibrary {
   String get libraryName {
     final packageName = _sanitize(this.packageName);
     final serviceName = _sanitize(this.serviceName);
-    final filename = _sanitize(this.filename);
+    final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
         return '$packageName.$serviceName.$filename';

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
-import 'package:smithy_playground/model/tree_node.dart';
 
 @Component(
   selector: 'tree',

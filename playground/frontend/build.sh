@@ -20,7 +20,7 @@ EOF
 
 dart pub get
 dart pub global activate webdev
-dart pub global run webdev build
+dart pub global run webdev build -- --delete-conflicting-outputs
 
 aws --profile=personal s3 sync build s3://$BUCKET_NAME --delete
 aws --profile=personal cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*" >/dev/null

@@ -6,7 +6,8 @@ import 'dart:async' as _i1;
 
 import 'package:operation_generator/src/test/model/map_input_request.dart'
     as _i2;
-import 'package:operation_generator/src/test/operation/map_input.dart' as _i3;
+import 'package:operation_generator/src/test/operation/map_input_operation.dart'
+    as _i3;
 
 class TestClient {
   const TestClient({required this.baseUri});

@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_1.json_protocol.test.null_operation_test;
+library aws_json1_1.json_protocol.test.null_operation_test_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/null_operation_input_output.dart'
     as _i6;

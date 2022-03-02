@@ -1,9 +1,9 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.rest_json_protocol.test.unit_input_and_output_operation_test;
+library rest_json1.rest_json_protocol.test.unit_input_and_output_operation_test_test;
 
-import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_output.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_output_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

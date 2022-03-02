@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml_with_namespace.rest_xml_protocol_namespace.test.simple_scalar_properties_operation_test;
+library rest_xml_with_namespace.rest_xml_protocol_namespace.test.simple_scalar_properties_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:fixnum/fixnum.dart' as _i6;
@@ -9,7 +9,7 @@ import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/model/ne
     as _i7;
 import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/model/simple_scalar_properties_input_output.dart'
     as _i5;
-import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/operation/simple_scalar_properties.dart'
+import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/operation/simple_scalar_properties_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

@@ -1,12 +1,12 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.rest_xml_protocol.test.omits_null_serializes_empty_string_operation_test;
+library rest_xml.rest_xml_protocol.test.omits_null_serializes_empty_string_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/rest_xml_protocol/model/omits_null_serializes_empty_string_input.dart'
     as _i5;
-import 'package:rest_xml/src/rest_xml_protocol/operation/omits_null_serializes_empty_string.dart'
+import 'package:rest_xml/src/rest_xml_protocol/operation/omits_null_serializes_empty_string_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

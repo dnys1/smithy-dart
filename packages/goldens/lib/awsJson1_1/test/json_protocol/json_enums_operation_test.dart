@@ -1,12 +1,13 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_1.json_protocol.test.json_enums_operation_test;
+library aws_json1_1.json_protocol.test.json_enums_operation_test_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/foo_enum.dart' as _i7;
 import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart'
     as _i6;
-import 'package:aws_json1_1/src/json_protocol/operation/json_enums.dart' as _i3;
+import 'package:aws_json1_1/src/json_protocol/operation/json_enums_operation.dart'
+    as _i3;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:built_collection/built_collection.dart' as _i8;
 import 'package:built_value/serializer.dart';

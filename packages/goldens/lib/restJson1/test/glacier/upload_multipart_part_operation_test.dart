@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.glacier.test.upload_multipart_part_operation_test;
+library rest_json1.glacier.test.upload_multipart_part_operation_test_test;
 
 import 'dart:async' as _i7;
 
@@ -21,7 +21,7 @@ import 'package:rest_json1/src/glacier/model/upload_multipart_part_input.dart'
     as _i6;
 import 'package:rest_json1/src/glacier/model/upload_multipart_part_output.dart'
     as _i8;
-import 'package:rest_json1/src/glacier/operation/upload_multipart_part.dart'
+import 'package:rest_json1/src/glacier/operation/upload_multipart_part_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i5;
 import 'package:smithy_test/smithy_test.dart' as _i2;

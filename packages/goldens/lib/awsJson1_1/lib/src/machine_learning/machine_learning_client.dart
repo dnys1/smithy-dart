@@ -8,7 +8,8 @@ import 'package:aws_json1_1/src/machine_learning/model/predict_input.dart'
     as _i4;
 import 'package:aws_json1_1/src/machine_learning/model/predict_output.dart'
     as _i3;
-import 'package:aws_json1_1/src/machine_learning/operation/predict.dart' as _i5;
+import 'package:aws_json1_1/src/machine_learning/operation/predict_operation.dart'
+    as _i5;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i1;
 
 class MachineLearningClient {

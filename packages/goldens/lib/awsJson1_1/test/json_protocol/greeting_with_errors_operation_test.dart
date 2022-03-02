@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_1.json_protocol.test.greeting_with_errors_operation_test;
+library aws_json1_1.json_protocol.test.greeting_with_errors_operation_test_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/complex_error.dart' as _i5;
 import 'package:aws_json1_1/src/json_protocol/model/complex_nested_error_data.dart'
@@ -11,7 +11,7 @@ import 'package:aws_json1_1/src/json_protocol/model/greeting_with_errors_output.
     as _i4;
 import 'package:aws_json1_1/src/json_protocol/model/invalid_greeting.dart'
     as _i9;
-import 'package:aws_json1_1/src/json_protocol/operation/greeting_with_errors.dart'
+import 'package:aws_json1_1/src/json_protocol/operation/greeting_with_errors_operation.dart'
     as _i6;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i7;
 import 'package:built_value/serializer.dart';

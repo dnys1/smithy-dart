@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_1.json_protocol.test.endpoint_with_host_label_operation_test;
+library aws_json1_1.json_protocol.test.endpoint_with_host_label_operation_test_test;
 
 import 'package:aws_json1_1/src/json_protocol/model/host_label_input.dart'
     as _i6;

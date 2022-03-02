@@ -21,7 +21,8 @@ class EndpointOperation
     _i2.RestXmlProtocol(
         serializers: _i3.serializers,
         builderFactories: _i3.builderFactories,
-        interceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [const _i1.WithContentLength()],
+        responseInterceptors: [],
         noErrorWrapping: false)
   ];
 

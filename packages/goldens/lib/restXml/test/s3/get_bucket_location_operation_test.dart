@@ -1,14 +1,15 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.s3.test.get_bucket_location_operation_test;
+library rest_xml.s3.test.get_bucket_location_operation_test_test;
 
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i5;
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/s3/model/bucket_location_constraint.dart' as _i9;
 import 'package:rest_xml/src/s3/model/get_bucket_location_output.dart' as _i8;
 import 'package:rest_xml/src/s3/model/get_bucket_location_request.dart' as _i7;
-import 'package:rest_xml/src/s3/operation/get_bucket_location.dart' as _i4;
+import 'package:rest_xml/src/s3/operation/get_bucket_location_operation.dart'
+    as _i4;
 import 'package:smithy/smithy.dart' as _i6;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 import 'package:smithy_test/smithy_test.dart' as _i3;

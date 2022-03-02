@@ -8,8 +8,10 @@ import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
 import 'package:rest_xml/src/s3/model/get_bucket_location_output.dart' as _i4;
 import 'package:rest_xml/src/s3/model/get_bucket_location_request.dart' as _i5;
 import 'package:rest_xml/src/s3/model/list_objects_v2_request.dart' as _i8;
-import 'package:rest_xml/src/s3/operation/get_bucket_location.dart' as _i6;
-import 'package:rest_xml/src/s3/operation/list_objects_v2.dart' as _i9;
+import 'package:rest_xml/src/s3/operation/get_bucket_location_operation.dart'
+    as _i6;
+import 'package:rest_xml/src/s3/operation/list_objects_v2_operation.dart'
+    as _i9;
 import 'package:smithy/smithy.dart' as _i7;
 import 'package:smithy_aws/smithy_aws.dart' as _i1;
 

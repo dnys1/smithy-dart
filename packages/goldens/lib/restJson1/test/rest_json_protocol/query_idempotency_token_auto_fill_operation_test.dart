@@ -1,12 +1,12 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.rest_json_protocol.test.query_idempotency_token_auto_fill_operation_test;
+library rest_json1.rest_json_protocol.test.query_idempotency_token_auto_fill_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/query_idempotency_token_auto_fill_input.dart'
     as _i5;
-import 'package:rest_json1/src/rest_json_protocol/operation/query_idempotency_token_auto_fill.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/query_idempotency_token_auto_fill_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

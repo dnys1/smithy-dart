@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_1.json_protocol.test.kitchen_sink_operation_test;
+library aws_json1_1.json_protocol.test.kitchen_sink_operation_test_test;
 
 import 'dart:typed_data' as _i7;
 

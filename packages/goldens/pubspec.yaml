@@ -11,6 +11,11 @@ dependencies:
     path: ../smithy
 
 dependency_overrides:
+  # TODO: Remove with next release
+  dart_style:
+    git:
+      url: https://github.com/dart-lang/dart_style
+      ref: master
   smithy_ast:
     path: ../smithy_ast
   smithy:

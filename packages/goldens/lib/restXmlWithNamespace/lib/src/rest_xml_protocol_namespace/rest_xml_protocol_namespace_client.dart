@@ -6,7 +6,7 @@ import 'dart:async' as _i1;
 
 import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/model/simple_scalar_properties_input_output.dart'
     as _i2;
-import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/operation/simple_scalar_properties.dart'
+import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/operation/simple_scalar_properties_operation.dart'
     as _i3;
 
 /// A REST XML service that sends XML requests and responses.

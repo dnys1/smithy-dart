@@ -27,14 +27,15 @@ class EmptyOperation
     _i3.AwsJson1_1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [
+        requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.EmptyOperation'),
           _i3.WithSigV4(
               region: region,
               serviceName: 'foo',
               credentialsProvider: credentialsProvider)
-        ])
+        ],
+        responseInterceptors: [])
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =

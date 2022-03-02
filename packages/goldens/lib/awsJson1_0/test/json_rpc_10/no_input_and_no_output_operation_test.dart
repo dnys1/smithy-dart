@@ -1,9 +1,9 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_0.json_rpc_10.test.no_input_and_no_output_operation_test;
+library aws_json1_0.json_rpc_10.test.no_input_and_no_output_operation_test_test;
 
-import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_no_output.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_no_output_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

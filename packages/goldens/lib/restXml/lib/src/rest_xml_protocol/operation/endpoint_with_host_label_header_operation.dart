@@ -28,7 +28,8 @@ class EndpointWithHostLabelHeaderOperation extends _i1.HttpOperation<
     _i3.RestXmlProtocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [const _i1.WithContentLength()],
+        responseInterceptors: [],
         noErrorWrapping: false)
   ];
 

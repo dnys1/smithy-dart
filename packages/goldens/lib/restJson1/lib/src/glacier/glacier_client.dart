@@ -12,8 +12,9 @@ import 'package:rest_json1/src/glacier/model/upload_multipart_part_input.dart'
     as _i7;
 import 'package:rest_json1/src/glacier/model/upload_multipart_part_output.dart'
     as _i6;
-import 'package:rest_json1/src/glacier/operation/upload_archive.dart' as _i5;
-import 'package:rest_json1/src/glacier/operation/upload_multipart_part.dart'
+import 'package:rest_json1/src/glacier/operation/upload_archive_operation.dart'
+    as _i5;
+import 'package:rest_json1/src/glacier/operation/upload_multipart_part_operation.dart'
     as _i8;
 
 class GlacierClient {

@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.rest_xml_protocol.test.endpoint_operation_test;
+library rest_xml.rest_xml_protocol.test.endpoint_operation_test_test;
 
 import 'package:rest_xml/src/rest_xml_protocol/operation/endpoint_operation.dart'
     as _i3;

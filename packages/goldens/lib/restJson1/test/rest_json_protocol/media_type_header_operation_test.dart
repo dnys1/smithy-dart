@@ -1,14 +1,14 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.rest_json_protocol.test.media_type_header_operation_test;
+library rest_json1.rest_json_protocol.test.media_type_header_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/media_type_header_input.dart'
     as _i5;
 import 'package:rest_json1/src/rest_json_protocol/model/media_type_header_output.dart'
     as _i6;
-import 'package:rest_json1/src/rest_json_protocol/operation/media_type_header.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/media_type_header_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

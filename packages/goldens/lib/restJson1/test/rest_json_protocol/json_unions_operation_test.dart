@@ -1,13 +1,13 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.rest_json_protocol.test.json_unions_operation_test;
+library rest_json1.rest_json_protocol.test.json_unions_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/my_union.dart' as _i6;
 import 'package:rest_json1/src/rest_json_protocol/model/union_input_output.dart'
     as _i5;
-import 'package:rest_json1/src/rest_json_protocol/operation/json_unions.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/json_unions_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

@@ -22,11 +22,12 @@ class HostWithPathOperation
     _i2.AwsJson1_0Protocol(
         serializers: _i3.serializers,
         builderFactories: _i3.builderFactories,
-        interceptors: [
+        requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.HostWithPathOperation')
-        ])
+        ],
+        responseInterceptors: [])
   ];
 
   late final _i2.AWSEndpoint _awsEndpoint =

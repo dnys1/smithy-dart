@@ -24,22 +24,23 @@ import 'package:aws_json1_0/src/json_rpc_10/model/simple_scalar_properties_input
     as _i20;
 import 'package:aws_json1_0/src/json_rpc_10/model/simple_scalar_properties_output.dart'
     as _i19;
-import 'package:aws_json1_0/src/json_rpc_10/operation/empty_input_and_empty_output.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/empty_input_and_empty_output_operation.dart'
     as _i4;
 import 'package:aws_json1_0/src/json_rpc_10/operation/endpoint_operation.dart'
     as _i5;
 import 'package:aws_json1_0/src/json_rpc_10/operation/endpoint_with_host_label_operation.dart'
     as _i8;
-import 'package:aws_json1_0/src/json_rpc_10/operation/greeting_with_errors.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/greeting_with_errors_operation.dart'
     as _i11;
 import 'package:aws_json1_0/src/json_rpc_10/operation/host_with_path_operation.dart'
     as _i12;
-import 'package:aws_json1_0/src/json_rpc_10/operation/json_unions.dart' as _i15;
-import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_no_output.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/json_unions_operation.dart'
+    as _i15;
+import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_no_output_operation.dart'
     as _i16;
-import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_output.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/no_input_and_output_operation.dart'
     as _i18;
-import 'package:aws_json1_0/src/json_rpc_10/operation/simple_scalar_properties.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/simple_scalar_properties_operation.dart'
     as _i21;
 import 'package:smithy/smithy.dart' as _i6;
 

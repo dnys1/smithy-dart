@@ -36,14 +36,15 @@ class NullOperation extends _i1.HttpOperation<
     _i4.AwsJson1_1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [
+        requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.NullOperation'),
           _i4.WithSigV4(
               region: region,
               serviceName: 'foo',
               credentialsProvider: credentialsProvider)
-        ])
+        ],
+        responseInterceptors: [])
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =

@@ -1,13 +1,13 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.rest_xml_protocol.test.http_request_with_labels_operation_test;
+library rest_xml.rest_xml_protocol.test.http_request_with_labels_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:fixnum/fixnum.dart' as _i6;
 import 'package:rest_xml/src/rest_xml_protocol/model/http_request_with_labels_input.dart'
     as _i5;
-import 'package:rest_xml/src/rest_xml_protocol/operation/http_request_with_labels.dart'
+import 'package:rest_xml/src/rest_xml_protocol/operation/http_request_with_labels_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

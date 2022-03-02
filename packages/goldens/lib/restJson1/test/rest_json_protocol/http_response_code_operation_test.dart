@@ -1,12 +1,12 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.rest_json_protocol.test.http_response_code_operation_test;
+library rest_json1.rest_json_protocol.test.http_response_code_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/http_response_code_output.dart'
     as _i5;
-import 'package:rest_json1/src/rest_json_protocol/operation/http_response_code.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/http_response_code_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

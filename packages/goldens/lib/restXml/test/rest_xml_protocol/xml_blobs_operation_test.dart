@@ -1,14 +1,15 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.rest_xml_protocol.test.xml_blobs_operation_test;
+library rest_xml.rest_xml_protocol.test.xml_blobs_operation_test_test;
 
 import 'dart:typed_data' as _i6;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/rest_xml_protocol/model/xml_blobs_input_output.dart'
     as _i5;
-import 'package:rest_xml/src/rest_xml_protocol/operation/xml_blobs.dart' as _i3;
+import 'package:rest_xml/src/rest_xml_protocol/operation/xml_blobs_operation.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;

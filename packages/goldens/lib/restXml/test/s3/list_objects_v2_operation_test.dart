@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.s3.test.list_objects_v2_operation_test;
+library rest_xml.s3.test.list_objects_v2_operation_test_test;
 
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i11;
 import 'package:built_collection/built_collection.dart' as _i15;
@@ -25,7 +25,8 @@ import 'package:rest_xml/src/s3/model/retry_mode.dart' as _i4;
 import 'package:rest_xml/src/s3/model/s3_addressing_style.dart' as _i5;
 import 'package:rest_xml/src/s3/model/s3_config.dart' as _i25;
 import 'package:rest_xml/src/s3/model/scoped_config.dart' as _i20;
-import 'package:rest_xml/src/s3/operation/list_objects_v2.dart' as _i10;
+import 'package:rest_xml/src/s3/operation/list_objects_v2_operation.dart'
+    as _i10;
 import 'package:smithy/smithy.dart' as _i12;
 import 'package:smithy_aws/smithy_aws.dart' as _i9;
 import 'package:smithy_test/smithy_test.dart' as _i1;

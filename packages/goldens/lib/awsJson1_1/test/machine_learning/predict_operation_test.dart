@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_1.machine_learning.test.predict_operation_test;
+library aws_json1_1.machine_learning.test.predict_operation_test_test;
 
 import 'package:aws_json1_1/src/machine_learning/model/details_attributes.dart'
     as _i10;
@@ -20,7 +20,8 @@ import 'package:aws_json1_1/src/machine_learning/model/predictor_not_mounted_exc
     as _i14;
 import 'package:aws_json1_1/src/machine_learning/model/resource_not_found_exception.dart'
     as _i15;
-import 'package:aws_json1_1/src/machine_learning/operation/predict.dart' as _i3;
+import 'package:aws_json1_1/src/machine_learning/operation/predict_operation.dart'
+    as _i3;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:built_collection/built_collection.dart' as _i7;
 import 'package:built_value/serializer.dart';

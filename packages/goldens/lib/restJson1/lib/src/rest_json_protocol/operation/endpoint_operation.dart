@@ -22,10 +22,11 @@ class EndpointOperation
     _i2.RestJson1Protocol(
         serializers: _i3.serializers,
         builderFactories: _i3.builderFactories,
-        interceptors: [
+        requestInterceptors: [
           const _i1.WithNoHeader('Content-Length'),
           const _i1.WithNoHeader('Content-Type')
-        ])
+        ],
+        responseInterceptors: [])
   ];
 
   late final _i2.AWSEndpoint _awsEndpoint =

@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_json1.api_gateway.test.get_rest_apis_operation_test;
+library rest_json1.api_gateway.test.get_rest_apis_operation_test_test;
 
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:built_collection/built_collection.dart' as _i8;
@@ -21,7 +21,8 @@ import 'package:rest_json1/src/api_gateway/model/too_many_requests_exception.dar
     as _i14;
 import 'package:rest_json1/src/api_gateway/model/unauthorized_exception.dart'
     as _i15;
-import 'package:rest_json1/src/api_gateway/operation/get_rest_apis.dart' as _i3;
+import 'package:rest_json1/src/api_gateway/operation/get_rest_apis_operation.dart'
+    as _i3;
 import 'package:smithy/smithy.dart' as _i5;
 import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;

@@ -9,7 +9,8 @@ import 'package:built_collection/built_collection.dart' as _i4;
 import 'package:rest_json1/src/api_gateway/model/get_rest_apis_request.dart'
     as _i6;
 import 'package:rest_json1/src/api_gateway/model/rest_api.dart' as _i5;
-import 'package:rest_json1/src/api_gateway/operation/get_rest_apis.dart' as _i7;
+import 'package:rest_json1/src/api_gateway/operation/get_rest_apis_operation.dart'
+    as _i7;
 import 'package:smithy/smithy.dart' as _i3;
 
 class ApiGatewayClient {

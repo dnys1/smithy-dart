@@ -26,7 +26,8 @@ class EndpointWithHostLabelOperation extends _i1
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [const _i1.WithContentLength()])
+        requestInterceptors: [const _i1.WithContentLength()],
+        responseInterceptors: [])
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =

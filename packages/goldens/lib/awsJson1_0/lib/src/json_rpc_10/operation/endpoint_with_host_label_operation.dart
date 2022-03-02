@@ -31,11 +31,12 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
     _i3.AwsJson1_0Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        interceptors: [
+        requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.EndpointWithHostLabelOperation')
-        ])
+        ],
+        responseInterceptors: [])
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =

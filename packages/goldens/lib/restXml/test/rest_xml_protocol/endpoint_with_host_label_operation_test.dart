@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.rest_xml_protocol.test.endpoint_with_host_label_operation_test;
+library rest_xml.rest_xml_protocol.test.endpoint_with_host_label_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/rest_xml_protocol/model/host_label_input.dart'

@@ -30,7 +30,7 @@ class EndpointWithHostLabelOperation extends _i1
     _i4.AwsJson1_1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        interceptors: [
+        requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.EndpointWithHostLabelOperation'),
@@ -38,7 +38,8 @@ class EndpointWithHostLabelOperation extends _i1
               region: region,
               serviceName: 'foo',
               credentialsProvider: credentialsProvider)
-        ])
+        ],
+        responseInterceptors: [])
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =

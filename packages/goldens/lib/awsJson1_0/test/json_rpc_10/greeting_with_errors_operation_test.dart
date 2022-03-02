@@ -1,7 +1,7 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library aws_json1_0.json_rpc_10.test.greeting_with_errors_operation_test;
+library aws_json1_0.json_rpc_10.test.greeting_with_errors_operation_test_test;
 
 import 'package:aws_json1_0/src/json_rpc_10/model/complex_error.dart' as _i5;
 import 'package:aws_json1_0/src/json_rpc_10/model/complex_nested_error_data.dart'
@@ -12,7 +12,7 @@ import 'package:aws_json1_0/src/json_rpc_10/model/greeting_with_errors_input.dar
 import 'package:aws_json1_0/src/json_rpc_10/model/greeting_with_errors_output.dart'
     as _i4;
 import 'package:aws_json1_0/src/json_rpc_10/model/invalid_greeting.dart' as _i9;
-import 'package:aws_json1_0/src/json_rpc_10/operation/greeting_with_errors.dart'
+import 'package:aws_json1_0/src/json_rpc_10/operation/greeting_with_errors_operation.dart'
     as _i6;
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i7;

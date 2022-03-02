@@ -1,14 +1,14 @@
 // Generated code. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
-library rest_xml.rest_xml_protocol.test.empty_input_and_empty_output_operation_test;
+library rest_xml.rest_xml_protocol.test.empty_input_and_empty_output_operation_test_test;
 
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/rest_xml_protocol/model/empty_input_and_empty_output_input.dart'
     as _i5;
 import 'package:rest_xml/src/rest_xml_protocol/model/empty_input_and_empty_output_output.dart'
     as _i6;
-import 'package:rest_xml/src/rest_xml_protocol/operation/empty_input_and_empty_output.dart'
+import 'package:rest_xml/src/rest_xml_protocol/operation/empty_input_and_empty_output_operation.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i4;
 import 'package:smithy_test/smithy_test.dart' as _i2;

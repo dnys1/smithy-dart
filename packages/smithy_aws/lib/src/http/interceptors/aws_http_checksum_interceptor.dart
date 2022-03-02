@@ -9,7 +9,7 @@ import 'package:smithy/smithy.dart';
 /// Handles the checksum required by the `aws.protocols#httpChecksum` trait.
 ///
 /// https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#aws-protocols-httpchecksum-trait
-class AWSHttpChecksumInterceptor extends HttpInterceptor {
+class AWSHttpChecksumInterceptor extends HttpRequestInterceptor {
   const AWSHttpChecksumInterceptor([
     this.headerKey = 'Content-MD5',
     this.alg = ChecksumAlgorithm.md5,

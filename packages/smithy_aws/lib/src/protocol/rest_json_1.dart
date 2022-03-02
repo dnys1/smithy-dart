@@ -12,14 +12,16 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
     with AWSJsonProtocol {
   RestJson1Protocol({
     this.mediaType,
-    List<HttpInterceptor> interceptors = const [],
+    List<HttpRequestInterceptor> requestInterceptors = const [],
+    List<HttpResponseInterceptor> responseInterceptors = const [],
     List<SmithySerializer> serializers = const [],
     Map<FullType, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
           serializers: serializers,
           builderFactories: builderFactories,
-          interceptors: interceptors,
+          requestInterceptors: requestInterceptors,
+          responseInterceptors: responseInterceptors,
         );
 
   static late final _coreSerializers = (Serializers().toBuilder()

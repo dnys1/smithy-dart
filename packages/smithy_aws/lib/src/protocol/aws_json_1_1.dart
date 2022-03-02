@@ -6,13 +6,15 @@ import 'package:smithy_aws/smithy_aws.dart';
 class AwsJson1_1Protocol<InputPayload, Input, OutputPayload, Output>
     extends AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output> {
   AwsJson1_1Protocol({
-    List<HttpInterceptor> interceptors = const [],
+    List<HttpRequestInterceptor> requestInterceptors = const [],
+    List<HttpResponseInterceptor> responseInterceptors = const [],
     List<SmithySerializer> serializers = const [],
     Map<FullType, Function> builderFactories = const {},
   }) : super(
           serializers: serializers,
           builderFactories: builderFactories,
-          interceptors: interceptors,
+          requestInterceptors: requestInterceptors,
+          responseInterceptors: responseInterceptors,
         );
 
   @override

@@ -8,14 +8,16 @@ class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
     with AWSJsonProtocol {
   AwsJson1_0Protocol({
-    List<HttpInterceptor> interceptors = const [],
+    List<HttpRequestInterceptor> requestInterceptors = const [],
+    List<HttpResponseInterceptor> responseInterceptors = const [],
     List<SmithySerializer> serializers = const [],
     Map<FullType, Function> builderFactories = const {},
   }) : super(
           _coreSerializers,
           serializers: serializers,
           builderFactories: builderFactories,
-          interceptors: interceptors,
+          requestInterceptors: requestInterceptors,
+          responseInterceptors: responseInterceptors,
         );
 
   static late final _coreSerializers = (Serializers().toBuilder()

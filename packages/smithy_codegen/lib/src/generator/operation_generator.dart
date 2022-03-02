@@ -645,7 +645,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
               protocol.instantiableProtocolSymbol.newInstance([], {
                 'serializers': _protocolSerializers(protocol),
                 'builderFactories': context.builderFactoriesRef,
-                'interceptors': literalList(_protocolInterceptors(protocol)),
+                'requestInterceptors':
+                    literalList(_protocolRequestInterceptors(protocol)),
+                'responseInterceptors':
+                    literalList(_protocolResponseInterceptors(protocol)),
                 ..._protocolParameters(protocol),
               }),
           ]).code,
@@ -661,8 +664,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         : context.serializersRef;
   }
 
-  /// Interceptors for the protocol.
-  Iterable<Expression> _protocolInterceptors(
+  /// Request interceptors for the protocol.
+  Iterable<Expression> _protocolRequestInterceptors(
       ProtocolDefinitionTrait protocol) sync* {
     // HTTP checksum (supported by all)
     if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
@@ -755,6 +758,15 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             literalString('application/json'),
           ]);
       }
+    }
+  }
+
+  /// Response interceptors for the protocol.
+  Iterable<Expression> _protocolResponseInterceptors(
+      ProtocolDefinitionTrait protocol) sync* {
+    // HTTP checksum (supported by all)
+    if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
+      yield DartTypes.smithy.validateChecksum.constInstance([]);
     }
   }
 

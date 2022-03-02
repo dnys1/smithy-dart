@@ -11,7 +11,8 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
   RestXmlProtocol({
     this.mediaType,
-    List<HttpInterceptor> interceptors = const [],
+    List<HttpRequestInterceptor> requestInterceptors = const [],
+    List<HttpResponseInterceptor> responseInterceptors = const [],
     List<SmithySerializer> serializers = const [],
     Map<FullType, Function> builderFactories = const {},
     this.noErrorWrapping = false,
@@ -19,7 +20,8 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
           _coreSerializers,
           serializers: serializers,
           builderFactories: builderFactories,
-          interceptors: interceptors,
+          requestInterceptors: requestInterceptors,
+          responseInterceptors: responseInterceptors,
         );
 
   static final _coreSerializers = (Serializers().toBuilder()

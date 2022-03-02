@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:aws_signature_v4/aws_signature_v4.dart';
 import 'package:smithy/smithy.dart';
 
-class WithSigV4 extends HttpInterceptor {
+class WithSigV4 extends HttpRequestInterceptor {
   const WithSigV4({
     required this.region,
     required this.serviceName,

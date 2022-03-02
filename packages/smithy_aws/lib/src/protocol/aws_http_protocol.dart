@@ -7,15 +7,20 @@ abstract class AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
     this._coreSerializers, {
     required List<SmithySerializer> serializers,
     required Map<FullType, Function> builderFactories,
-    required List<HttpInterceptor> interceptors,
+    required this.requestInterceptors,
+    this.responseInterceptors = const [],
   })  : _userSerializers = serializers,
-        _builderFactories = builderFactories,
-        _userInterceptors = interceptors;
+        _builderFactories = builderFactories;
 
   final Serializers _coreSerializers;
   final List<SmithySerializer> _userSerializers;
   final Map<FullType, Function> _builderFactories;
-  final List<HttpInterceptor> _userInterceptors;
+
+  @override
+  final List<HttpRequestInterceptor> requestInterceptors;
+
+  @override
+  final List<HttpResponseInterceptor> responseInterceptors;
 
   @override
   late final Serializers serializers = () {
@@ -31,7 +36,4 @@ abstract class AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
     builder.add(BlobSerializer(contentType));
     return builder.build();
   }();
-
-  @override
-  late final List<HttpInterceptor> interceptors = _userInterceptors;
 }

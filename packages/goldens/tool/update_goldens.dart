@@ -128,13 +128,14 @@ stages:
           - format
           - analyze: --fatal-infos .
   - unit_test:
+      - group:
+          - test:
+          - test: -p chrome
+  - unit_test_native:
       - test:
         os:
           - windows
           - macos
-      - group:
-          - test:
-          - test: -p chrome
 ''');
   }
 

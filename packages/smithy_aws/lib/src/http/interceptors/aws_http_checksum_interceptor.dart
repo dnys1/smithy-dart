@@ -1,70 +1,91 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:convert/convert.dart';
 import 'package:crclib/catalog.dart';
 import 'package:crypto/crypto.dart';
-import 'package:http/http.dart';
 import 'package:smithy/smithy.dart';
 
-extension on ChecksumAlgorithm {
-  String get headerKey => 'x-amz-checksum-${name.toLowerCase()}';
+extension ChecksumAlgorithmUtils on ChecksumAlgorithm {
+  /// The key to use in the request/response headers.
+  String get headerKey {
+    switch (this) {
+      case ChecksumAlgorithm.md5:
+        return 'Content-MD5';
+      default:
+        return 'x-amz-checksum-${name.toLowerCase()}';
+    }
+  }
+
+  /// Computes the digest hash for [body].
+  Future<String> computeFor(Stream<List<int>> body) async {
+    switch (this) {
+      case ChecksumAlgorithm.crc32c:
+        final crc = await Crc32C().bind(body).last;
+        return base64Encode(hex.decode(crc.toRadixString(16)));
+      case ChecksumAlgorithm.crc32:
+        final crc = await Crc32().bind(body).last;
+        return base64Encode(hex.decode(crc.toRadixString(16)));
+      case ChecksumAlgorithm.sha1:
+        final digest = await sha1.bind(body).last;
+        return base64Encode(digest.bytes);
+      case ChecksumAlgorithm.sha256:
+        final digest = await sha256.bind(body).last;
+        return base64Encode(digest.bytes);
+      case ChecksumAlgorithm.md5:
+        final digest = await md5.bind(body).last;
+        return base64Encode(digest.bytes);
+    }
+  }
 }
 
+/// {@template smithy_aws.aws_htto_checksum_request_interceptor}
 /// Handles the checksum required by the `aws.protocols#httpChecksum` trait.
 ///
 /// https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#aws-protocols-httpchecksum-trait
-class AWSHttpChecksumInterceptor extends HttpRequestInterceptor {
-  const AWSHttpChecksumInterceptor([
-    this.headerKey = 'Content-MD5',
+/// {@endtemplate}
+class AWSHttpChecksumRequestInterceptor extends HttpRequestInterceptor {
+  /// {@macro smithy_aws.aws_htto_checksum_request_interceptor}
+  const AWSHttpChecksumRequestInterceptor([
     this.alg = ChecksumAlgorithm.md5,
   ]);
 
-  final String headerKey;
   final ChecksumAlgorithm alg;
 
   @override
   Future<AWSStreamedHttpRequest> intercept(
     AWSStreamedHttpRequest request,
   ) async {
-    final body = await ByteStream(request.split()).toBytes();
-    final String checksum;
-    switch (alg) {
-      case ChecksumAlgorithm.crc32c:
-        final crc = Crc32C().convert(body);
-        checksum = crc.toRadixString(16);
-        break;
-      case ChecksumAlgorithm.crc32:
-        final crc = Crc32().convert(body);
-        checksum = crc.toRadixString(16);
-        break;
-      case ChecksumAlgorithm.sha1:
-        checksum = hex.encode(sha1.convert(body).bytes);
-        break;
-      case ChecksumAlgorithm.sha256:
-        checksum = hex.encode(sha256.convert(body).bytes);
-        break;
-      case ChecksumAlgorithm.md5:
-        checksum = hex.encode(md5.convert(body).bytes);
-        break;
+    if (request.headers.containsKey(alg.headerKey)) {
+      return request;
     }
-    request.headers[headerKey] = checksum;
+    final checksum = await alg.computeFor(request.split());
+    request.headers[alg.headerKey] = checksum;
     return request;
   }
 }
 
+/// {@template smithy_aws.aws_htto_checksum_response_interceptor}
+/// Handles the checksum required by the `aws.protocols#httpChecksum` trait.
+///
+/// https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#aws-protocols-httpchecksum-trait
+/// {@endtemplate}
 class AWSHttpChecksumResponseInterceptor extends HttpResponseInterceptor {
-  const AWSHttpChecksumResponseInterceptor({
-    required this.responseAlgorithms,
-  });
+  /// {@macro smithy_aws.aws_htto_checksum_response_interceptor}
+  const AWSHttpChecksumResponseInterceptor(this.responseAlgorithms);
 
   final List<ChecksumAlgorithm> responseAlgorithms;
 
   @override
   Future<void> intercept(AWSStreamedHttpResponse response) async {
     for (final alg in responseAlgorithms) {
-      final checksum = response.headers[alg];
+      final checksum = response.headers[alg.headerKey];
       if (checksum == null) {
         continue;
+      }
+      final computed = await alg.computeFor(response.split());
+      if (checksum != computed) {
+        throw ChecksumValidationException('Expected: $checksum\nGot:$computed');
       }
     }
   }

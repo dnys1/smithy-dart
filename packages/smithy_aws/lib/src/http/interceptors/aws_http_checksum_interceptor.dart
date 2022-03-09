@@ -6,6 +6,10 @@ import 'package:crypto/crypto.dart';
 import 'package:http/http.dart';
 import 'package:smithy/smithy.dart';
 
+extension on ChecksumAlgorithm {
+  String get headerKey => 'x-amz-checksum-${name.toLowerCase()}';
+}
+
 /// Handles the checksum required by the `aws.protocols#httpChecksum` trait.
 ///
 /// https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#aws-protocols-httpchecksum-trait
@@ -45,5 +49,23 @@ class AWSHttpChecksumInterceptor extends HttpRequestInterceptor {
     }
     request.headers[headerKey] = checksum;
     return request;
+  }
+}
+
+class AWSHttpChecksumResponseInterceptor extends HttpResponseInterceptor {
+  const AWSHttpChecksumResponseInterceptor({
+    required this.responseAlgorithms,
+  });
+
+  final List<ChecksumAlgorithm> responseAlgorithms;
+
+  @override
+  Future<void> intercept(AWSStreamedHttpResponse response) async {
+    for (final alg in responseAlgorithms) {
+      final checksum = response.headers[alg];
+      if (checksum == null) {
+        continue;
+      }
+    }
   }
 }

@@ -9,46 +9,50 @@ import 'package:rest_xml/src/s3/model/get_bucket_location_output.dart' as _i4;
 import 'package:rest_xml/src/s3/model/get_bucket_location_request.dart' as _i5;
 import 'package:rest_xml/src/s3/model/list_objects_v2_request.dart' as _i8;
 import 'package:rest_xml/src/s3/operation/get_bucket_location_operation.dart'
-    as _i6;
+    as _i7;
 import 'package:rest_xml/src/s3/operation/list_objects_v2_operation.dart'
     as _i9;
-import 'package:smithy/smithy.dart' as _i7;
+import 'package:smithy/smithy.dart' as _i6;
 import 'package:smithy_aws/smithy_aws.dart' as _i1;
 
 class S3Client {
   const S3Client(
-      {Uri? baseUri,
-      required this.region,
-      this.s3ClientConfig = const _i1.S3ClientConfig(),
-      this.credentialsProvider =
-          const _i2.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      {required String region,
+      Uri? baseUri,
+      required _i1.S3ClientConfig s3ClientConfig,
+      required _i2.AWSCredentialsProvider credentialsProvider})
+      : _region = region,
+        _baseUri = baseUri,
+        _s3ClientConfig = s3ClientConfig,
+        _credentialsProvider = credentialsProvider;
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i1.S3ClientConfig s3ClientConfig;
+  final _i1.S3ClientConfig _s3ClientConfig;
 
-  final _i2.AWSCredentialsProvider credentialsProvider;
+  final _i2.AWSCredentialsProvider _credentialsProvider;
 
   _i3.Future<_i4.GetBucketLocationOutput> getBucketLocation(
-      _i5.GetBucketLocationRequest input) {
-    return _i6.GetBucketLocationOperation(
-            region: region,
+      _i5.GetBucketLocationRequest input,
+      {_i6.HttpClient? client}) {
+    return _i7.GetBucketLocationOperation(
+            region: _region,
             baseUri: _baseUri,
-            s3ClientConfig: s3ClientConfig,
-            credentialsProvider: credentialsProvider)
-        .run(input);
+            s3ClientConfig: _s3ClientConfig,
+            credentialsProvider: _credentialsProvider)
+        .run(input, client: client);
   }
 
-  _i3.Future<_i7.PaginatedResult<void, int>> listObjectsV2(
-      _i8.ListObjectsV2Request input) {
+  _i3.Future<_i6.PaginatedResult<void, int>> listObjectsV2(
+      _i8.ListObjectsV2Request input,
+      {_i6.HttpClient? client}) {
     return _i9.ListObjectsV2Operation(
-            region: region,
+            region: _region,
             baseUri: _baseUri,
-            s3ClientConfig: s3ClientConfig,
-            credentialsProvider: credentialsProvider)
-        .runPaginated(input);
+            s3ClientConfig: _s3ClientConfig,
+            credentialsProvider: _credentialsProvider)
+        .runPaginated(input, client: client);
   }
 }

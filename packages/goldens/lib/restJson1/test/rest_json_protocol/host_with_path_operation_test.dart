@@ -15,8 +15,8 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.HostWithPathOperation(
-              baseUri: Uri.parse('https://example.com/custom'),
-              region: 'us-east-1'),
+              region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com/custom')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHostWithPath',
               documentation:

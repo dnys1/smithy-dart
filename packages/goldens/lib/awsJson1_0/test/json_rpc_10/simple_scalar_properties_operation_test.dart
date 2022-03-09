@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10SupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -57,7 +57,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10SupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -95,7 +95,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',
@@ -133,7 +133,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10SupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -161,7 +161,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10SupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -190,7 +190,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'AwsJson10SupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',

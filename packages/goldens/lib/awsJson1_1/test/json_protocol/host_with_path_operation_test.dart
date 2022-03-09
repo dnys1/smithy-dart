@@ -16,8 +16,8 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.HostWithPathOperation(
-              baseUri: Uri.parse('https://example.com/custom'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com/custom'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),

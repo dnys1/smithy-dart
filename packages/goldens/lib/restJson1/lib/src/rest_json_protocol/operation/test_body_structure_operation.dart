@@ -29,8 +29,9 @@ class TestBodyStructureOperation extends _i1.HttpOperation<
   /// It should ensure Content-Type: application/json is
   /// used in all requests and that an "empty" body is
   /// an empty JSON document ({}).
-  TestBodyStructureOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  TestBodyStructureOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -47,9 +48,9 @@ class TestBodyStructureOperation extends _i1.HttpOperation<
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, region);
+      _i5.endpointResolver.resolve(_i5.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -80,12 +81,10 @@ class TestBodyStructureOperation extends _i1.HttpOperation<
   @override
   _i7.Future<_i2.TestBodyStructureInputOutput> run(
       _i2.TestBodyStructureInputOutput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

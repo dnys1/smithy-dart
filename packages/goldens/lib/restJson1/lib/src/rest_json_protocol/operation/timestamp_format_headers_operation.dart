@@ -21,8 +21,9 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
     _i2.TimestampFormatHeadersIoPayload,
     _i2.TimestampFormatHeadersIo> {
   /// This example tests how timestamp request and response headers are serialized.
-  TimestampFormatHeadersOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  TimestampFormatHeadersOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -42,9 +43,9 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, region);
+      _i5.endpointResolver.resolve(_i5.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -107,12 +108,10 @@ class TimestampFormatHeadersOperation extends _i1.HttpOperation<
   @override
   _i7.Future<_i2.TimestampFormatHeadersIo> run(
       _i2.TimestampFormatHeadersIo input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

@@ -31,11 +31,13 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
     _i4.UploadMultipartPartOutputPayload,
     _i4.UploadMultipartPartOutput> {
   UploadMultipartPartOperation(
-      {Uri? baseUri,
-      required this.region,
-      this.credentialsProvider =
+      {required String region,
+      Uri? baseUri,
+      _i5.AWSCredentialsProvider credentialsProvider =
           const _i5.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      : _region = region,
+        _baseUri = baseUri,
+        _credentialsProvider = credentialsProvider;
 
   @override
   late final List<
@@ -49,21 +51,21 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
         builderFactories: _i7.builderFactories,
         requestInterceptors: [
           _i6.WithSigV4(
-              region: region,
+              region: _region,
               serviceName: 'glacier',
-              credentialsProvider: credentialsProvider)
+              credentialsProvider: _credentialsProvider)
         ],
         responseInterceptors: [])
   ];
 
   late final _i6.AWSEndpoint _awsEndpoint =
-      _i8.endpointResolver.resolve(_i8.sdkId, region);
+      _i8.endpointResolver.resolve(_i8.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i5.AWSCredentialsProvider credentialsProvider;
+  final _i5.AWSCredentialsProvider _credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i3.UploadMultipartPartInput input) =>
@@ -139,12 +141,10 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
   @override
   _i2.Future<_i4.UploadMultipartPartOutput> run(
       _i3.UploadMultipartPartInput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i2.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

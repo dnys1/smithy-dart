@@ -14,8 +14,10 @@ import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
 class MalformedContentTypeWithoutBodyOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
-  MalformedContentTypeWithoutBodyOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  MalformedContentTypeWithoutBodyOperation(
+      {required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<_i1.HttpProtocol<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit>>
@@ -31,9 +33,9 @@ class MalformedContentTypeWithoutBodyOperation
   ];
 
   late final _i2.AWSEndpoint _awsEndpoint =
-      _i4.endpointResolver.resolve(_i4.sdkId, region);
+      _i4.endpointResolver.resolve(_i4.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -56,10 +58,9 @@ class MalformedContentTypeWithoutBodyOperation
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i6.Future<_i1.Unit> run(_i1.Unit input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i6.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

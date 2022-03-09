@@ -22,7 +22,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.XmlEmptyListsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'XmlEmptyLists',
               documentation: 'Serializes Empty XML lists',
@@ -58,7 +58,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlEmptyListsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlEmptyLists',
               documentation: 'Deserializes Empty XML lists',

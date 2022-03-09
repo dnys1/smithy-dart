@@ -18,7 +18,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.ConstantAndVariableQueryStringOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonConstantAndVariableQueryStringMissingOneValue',
               documentation:
@@ -53,7 +53,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.ConstantAndVariableQueryStringOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonConstantAndVariableQueryStringAllValues',
               documentation:

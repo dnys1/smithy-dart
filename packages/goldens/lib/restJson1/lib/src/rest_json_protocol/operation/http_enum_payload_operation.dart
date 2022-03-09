@@ -18,8 +18,9 @@ import 'package:smithy_aws/smithy_aws.dart' as _i4;
 
 class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
     _i3.EnumPayloadInput, _i2.StringEnum, _i3.EnumPayloadInput> {
-  HttpEnumPayloadOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  HttpEnumPayloadOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -33,9 +34,9 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -59,10 +60,9 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i8.Future<_i3.EnumPayloadInput> run(_i3.EnumPayloadInput input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

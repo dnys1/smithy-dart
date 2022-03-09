@@ -8,7 +8,8 @@ import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 import 'package:smithy_codegen/src/util/docs.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
-import 'package:tuple/tuple.dart';
+
+import 'config_parameter.dart';
 
 extension SimpleShapeUtil on SimpleShape {
   Reference get typeReference {
@@ -448,55 +449,87 @@ extension OperationShapeUtil on OperationShape {
     return null;
   }
 
-  /// Fields which should be generated for the operation and its service client
-  /// based off the traits attached to this shape's service.
-  Iterable<Field> protocolFields(CodegenContext context) sync* {
+  Iterable<ConfigParameter> operationParameters(CodegenContext context) sync* {
     final serviceShape = context.service;
     if (serviceShape == null) {
       return;
     }
+
+    // The client field
+    yield ConfigParameter(
+      (p) => p
+        ..type = DartTypes.smithy.httpClient.boxed
+        ..name = 'client'
+        ..location = ParameterLocation.run,
+    );
+
     if (serviceShape.isAwsService) {
-      yield Field(
-        (f) => f
+      yield ConfigParameter(
+        (p) => p
           ..type = DartTypes.core.string
           ..name = 'region'
-          ..modifier = FieldModifier.final$,
+          ..required = true
+          ..location = ParameterLocation.constructor,
       );
 
-      // The baseUri override
-      yield Field(
-        (f) => f
-          ..modifier = FieldModifier.final$
+      // The baseUri field
+      yield ConfigParameter(
+        (p) => p
           ..type = DartTypes.core.uri.boxed
-          ..name = '_baseUri',
+          ..name = 'baseUri'
+          ..location = ParameterLocation.constructor,
       );
     } else {
-      // The baseUri field
-      yield Field(
-        (f) => f
-          ..annotations.add(DartTypes.core.override)
-          ..modifier = FieldModifier.final$
+      // The baseUri override
+      yield ConfigParameter(
+        (p) => p
           ..type = DartTypes.core.uri
-          ..name = 'baseUri',
+          ..name = 'baseUri'
+          ..isOverride = true
+          ..required = true
+          ..location = ParameterLocation.constructor,
       );
     }
 
     final isS3 = serviceShape.resolvedService?.sdkId == 'S3';
     if (isS3) {
-      yield Field(
-        (f) => f
+      yield ConfigParameter(
+        (p) => p
           ..type = DartTypes.smithyAws.s3ClientConfig
           ..name = 's3ClientConfig'
-          ..modifier = FieldModifier.final$,
+          ..required = true
+          ..location = ParameterLocation.constructor
+          ..defaultTo =
+              DartTypes.smithyAws.s3ClientConfig.constInstance([]).code,
       );
     }
 
     if (serviceShape.hasTrait<SigV4Trait>()) {
-      yield Field(
-        (f) => f
+      yield ConfigParameter(
+        (p) => p
           ..type = DartTypes.awsSigV4.awsCredentialsProvider
           ..name = 'credentialsProvider'
-          ..modifier = FieldModifier.final$,
+          ..location = ParameterLocation.constructor
+          ..required = true
+          ..defaultTo = DartTypes.awsSigV4.awsCredentialsProvider
+              .constInstanceNamed('dartEnvironment', []).code,
+      );
+    }
+  }
+
+  /// Fields which should be generated for the operation and its service client
+  /// based off the traits attached to this shape's service.
+  Iterable<Field> protocolFields(CodegenContext context) sync* {
+    for (final parameter in operationParameters(context)
+        .where((p) => p.location.inConstructor)) {
+      yield Field(
+        (f) => f
+          ..modifier = FieldModifier.final$
+          ..type = parameter.type
+          ..annotations.addAll([
+            if (parameter.isOverride) DartTypes.core.override,
+          ])
+          ..name = parameter.isOverride ? parameter.name : '_${parameter.name}',
       );
     }
   }
@@ -504,64 +537,18 @@ extension OperationShapeUtil on OperationShape {
   /// Constructor parameters which should be generated for the operation and its
   /// service client based off the traits attached to this shape's service.
   Iterable<Parameter> constructorParameters(CodegenContext context) sync* {
-    final serviceShape = context.service;
-    if (serviceShape == null) {
-      return;
-    }
-    final isAwsService = serviceShape.isAwsService;
-    yield Parameter(
-      (p) => p
-        ..toThis = !isAwsService
-        ..required = !isAwsService
-        ..type = isAwsService ? DartTypes.core.uri.boxed : null
-        ..name = 'baseUri'
-        ..named = true,
-    );
-    if (isAwsService) {
-      yield Parameter(
-        (p) => p
-          ..toThis = true
-          ..required = true
-          ..name = 'region'
-          ..named = true,
-      );
-    }
-
-    final isS3 = serviceShape.resolvedService?.sdkId == 'S3';
-    if (isS3) {
-      yield Parameter(
-        (p) => p
-          ..toThis = true
-          ..name = 's3ClientConfig'
+    for (final parameter in operationParameters(context)
+        .where((p) => p.location.inConstructor)) {
+      yield Parameter((p) {
+        final toThis = parameter.isOverride;
+        p
+          ..toThis = toThis
+          ..required = parameter.required && parameter.defaultTo == null
+          ..type = toThis ? null : parameter.type
+          ..name = parameter.name
           ..named = true
-          ..defaultTo =
-              DartTypes.smithyAws.s3ClientConfig.constInstance([]).code,
-      );
-    }
-
-    if (serviceShape.hasTrait<SigV4Trait>()) {
-      yield Parameter(
-        (p) => p
-          ..toThis = true
-          ..defaultTo = DartTypes.awsSigV4.awsCredentialsProvider
-              .constInstanceNamed('dartEnvironment', []).code
-          ..name = 'credentialsProvider'
-          ..named = true,
-      );
-    }
-  }
-
-  /// Constructor initializers which should be generated for the operation and its
-  /// service client based off the traits attached to this shape's service.
-  Iterable<Tuple2<String, String>> constructorInitializers(
-    CodegenContext context,
-  ) sync* {
-    final serviceShape = context.service;
-    if (serviceShape == null) {
-      return;
-    }
-    if (serviceShape.isAwsService) {
-      yield Tuple2('_baseUri', 'baseUri');
+          ..defaultTo = parameter.defaultTo;
+      });
     }
   }
 }

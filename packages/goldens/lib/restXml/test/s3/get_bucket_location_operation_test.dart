@@ -22,8 +22,8 @@ void main() {
       const s3ClientConfig = _i2.S3ClientConfig();
       await _i3.httpResponseTest(
           operation: _i4.GetBucketLocationOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i5.AWSCredentialsProvider(
                   _i5.AWSCredentials(

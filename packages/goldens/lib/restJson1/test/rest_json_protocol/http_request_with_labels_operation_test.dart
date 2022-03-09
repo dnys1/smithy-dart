@@ -19,7 +19,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.HttpRequestWithLabelsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputWithHeadersAndAllParams',
               documentation: 'Sends a GET request that uses URI label bindings',
@@ -63,7 +63,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.HttpRequestWithLabelsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpRequestLabelEscaping',
               documentation: 'Sends a GET request that uses URI label bindings',

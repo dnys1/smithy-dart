@@ -30,11 +30,13 @@ import 'package:smithy_aws/smithy_aws.dart' as _i5;
 class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
     _i2.PredictInput, _i3.PredictOutput, _i3.PredictOutput> {
   PredictOperation(
-      {Uri? baseUri,
-      required this.region,
-      this.credentialsProvider =
+      {required String region,
+      Uri? baseUri,
+      _i4.AWSCredentialsProvider credentialsProvider =
           const _i4.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      : _region = region,
+        _baseUri = baseUri,
+        _credentialsProvider = credentialsProvider;
 
   @override
   late final List<
@@ -47,21 +49,21 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
           const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'AmazonML_20141212.Predict'),
           _i5.WithSigV4(
-              region: region,
+              region: _region,
               serviceName: 'machinelearning',
-              credentialsProvider: credentialsProvider)
+              credentialsProvider: _credentialsProvider)
         ],
         responseInterceptors: [])
   ];
 
   late final _i5.AWSEndpoint _awsEndpoint =
-      _i7.endpointResolver.resolve(_i7.sdkId, region);
+      _i7.endpointResolver.resolve(_i7.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i4.AWSCredentialsProvider credentialsProvider;
+  final _i4.AWSCredentialsProvider _credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.PredictInput input) => _i1.HttpRequest((b) {
@@ -123,10 +125,9 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i14.Future<_i3.PredictOutput> run(_i2.PredictInput input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i14.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

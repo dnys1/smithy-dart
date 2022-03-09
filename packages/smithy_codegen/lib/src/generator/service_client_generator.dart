@@ -5,6 +5,7 @@ import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/config_parameter.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
@@ -43,17 +44,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ])
           ..constructors.add(_clientConstructor)
           ..methods.addAll(_operationMethods)
-          ..fields.addAll([
-            ...LinkedHashSet<Field>(
-              equals: (a, b) => a.name == b.name,
-              hashCode: (key) => key.name.hashCode,
-            )..addAll(
-                _operations.expand((op) => op.protocolFields(context)).map(
-                      // Fields won't be overriding anything on the service client
-                      (field) => field.rebuild((f) => f.annotations.clear()),
-                    ),
-              ),
-          ]);
+          ..fields.addAll(protocolFields);
       });
 
   Constructor get _clientConstructor => Constructor(
@@ -62,19 +53,46 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
             if (shape.hasDocs(context)) shape.formattedDocs(context),
           ])
           ..constant = true
-          ..optionalParameters.addAll([
-            ...LinkedHashSet<Parameter>(
-              equals: (a, b) => a.name == b.name,
-              hashCode: (key) => key.name.hashCode,
-            )..addAll(
-                _operations.expand((op) => op.constructorParameters(context)),
+          ..optionalParameters.addAll(constructorParameters)
+          ..initializers.addAll(constructorInitializers),
+      );
+
+  Iterable<Field> get protocolFields => LinkedHashSet<Field>(
+        equals: (a, b) => a.name == b.name,
+        hashCode: (key) => key.name.hashCode,
+      )..addAll(
+          _operations.expand((op) => op.protocolFields(context)).map(
+                // Fields won't be overriding anything on the service client
+                (field) => field.rebuild((f) {
+                  f.annotations.clear();
+                  if (!f.name!.startsWith('_')) {
+                    f.name = '_${f.name}';
+                  }
+                }),
               ),
-          ])
-          ..initializers.addAll({
-            ..._operations.expand((op) => op.constructorInitializers(context))
-          }.map(
-            (params) => refer(params.item1).assign(refer(params.item2)).code,
-          )),
+        );
+
+  Iterable<Parameter> get constructorParameters =>
+      operationParameters.where((p) => p.location.inConstructor).map((param) {
+        return Parameter(
+          (p) => p
+            ..type = param.type
+            ..required = param.required
+            ..name = param.name
+            ..named = true,
+        );
+      });
+
+  Iterable<ConfigParameter> get operationParameters =>
+      LinkedHashSet<ConfigParameter>(
+        equals: (a, b) => a.name == b.name,
+        hashCode: (key) => key.name.hashCode,
+      )..addAll(
+          _operations.expand((op) => op.operationParameters(context)),
+        );
+
+  Iterable<Code> get constructorInitializers => constructorParameters.map(
+        (param) => refer('_${param.name}').assign(refer(param.name)).code,
       );
 
   /// Generate a callable method for each operation.
@@ -113,10 +131,21 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
                 ..type = operationInput
                 ..name = 'input')
           ])
+          ..optionalParameters.addAll(
+              operationParameters.where((p) => p.location.inRun).map((param) {
+            return Parameter(
+              (p) => p
+                ..required = false
+                ..toThis = false
+                ..type = param.type.boxed
+                ..name = param.name
+                ..named = true,
+            );
+          }))
           ..body = context
               .symbolFor(operation.shapeId)
               .newInstance([], {
-                for (final field in operation.protocolFields(context))
+                for (final field in protocolFields)
                   _public(field.name): refer(field.name),
               })
               .property(isPaginated ? 'runPaginated' : 'run')
@@ -125,7 +154,11 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
                   DartTypes.smithy.unit.constInstance([])
                 else
                   refer('input'),
-              ])
+              ], {
+                for (final param
+                    in operationParameters.where((p) => p.location.inRun))
+                  param.name: refer(param.name)
+              })
               .returned
               .statement,
       );

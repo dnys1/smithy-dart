@@ -16,7 +16,7 @@ void main() {
   _i1.test('QueryIdempotencyTokenAutoFill (request)', () async {
     await _i2.httpRequestTest(
         operation: _i3.QueryIdempotencyTokenAutoFillOperation(
-            baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+            region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
         testCase: const _i2.HttpRequestTestCase(
             id: 'QueryIdempotencyTokenAutoFill',
             documentation: 'Automatically adds idempotency token when not set',
@@ -48,7 +48,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.QueryIdempotencyTokenAutoFillOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'QueryIdempotencyTokenAutoFillIsSet',
               documentation: 'Uses the given idempotency token as-is',

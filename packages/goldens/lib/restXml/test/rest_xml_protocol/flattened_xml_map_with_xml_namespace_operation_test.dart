@@ -19,7 +19,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.FlattenedXmlMapWithXmlNamespaceOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestXmlFlattenedXmlMapWithXmlNamespace',
               documentation:

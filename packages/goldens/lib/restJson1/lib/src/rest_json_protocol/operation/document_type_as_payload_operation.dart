@@ -22,8 +22,9 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
     _i2.JsonObject,
     _i3.DocumentTypeAsPayloadInputOutput> {
   /// This example serializes a document as the entire HTTP payload.
-  DocumentTypeAsPayloadOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  DocumentTypeAsPayloadOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -37,9 +38,9 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -64,12 +65,10 @@ class DocumentTypeAsPayloadOperation extends _i1.HttpOperation<
   @override
   _i8.Future<_i3.DocumentTypeAsPayloadInputOutput> run(
       _i3.DocumentTypeAsPayloadInputOutput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

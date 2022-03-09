@@ -16,8 +16,9 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class MalformedAcceptWithBodyOperation extends _i1
     .HttpOperation<_i1.Unit, _i1.Unit, _i2.GreetingStruct, _i2.GreetingStruct> {
-  MalformedAcceptWithBodyOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  MalformedAcceptWithBodyOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -34,9 +35,9 @@ class MalformedAcceptWithBodyOperation extends _i1
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, region);
+      _i5.endpointResolver.resolve(_i5.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -59,10 +60,9 @@ class MalformedAcceptWithBodyOperation extends _i1
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i7.Future<_i2.GreetingStruct> run(_i1.Unit input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

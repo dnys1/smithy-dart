@@ -15,8 +15,9 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
 class HttpResponseCodeOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i2.HttpResponseCodeOutputPayload, _i2.HttpResponseCodeOutput> {
-  HttpResponseCodeOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  HttpResponseCodeOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -31,9 +32,9 @@ class HttpResponseCodeOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, region);
+      _i5.endpointResolver.resolve(_i5.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -58,10 +59,9 @@ class HttpResponseCodeOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i7.Future<_i2.HttpResponseCodeOutput> run(_i1.Unit input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

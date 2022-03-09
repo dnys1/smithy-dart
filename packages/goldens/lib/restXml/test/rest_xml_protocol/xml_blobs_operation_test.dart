@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.XmlBlobsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'XmlBlobs',
               documentation: 'Blobs are base64 encoded',
@@ -53,7 +53,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlBlobsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlBlobs',
               documentation: 'Blobs are base64 encoded',

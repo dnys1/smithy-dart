@@ -19,7 +19,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'SimpleScalarProperties',
               documentation: 'Serializes simple scalar properties',
@@ -65,7 +65,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'SimpleScalarPropertiesWithEscapedCharacter',
               documentation: 'Serializes string with escaping',
@@ -100,7 +100,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'SimpleScalarPropertiesWithWhiteSpace',
               documentation: 'Serializes string containing white space',
@@ -135,7 +135,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'SimpleScalarPropertiesPureWhiteSpace',
               documentation:
@@ -171,7 +171,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlSupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -206,7 +206,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlSupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -241,7 +241,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlSupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',
@@ -276,7 +276,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'SimpleScalarProperties',
               documentation: 'Serializes simple scalar properties',
@@ -316,7 +316,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'SimpleScalarPropertiesComplexEscapes',
               documentation:
@@ -344,7 +344,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'SimpleScalarPropertiesWithEscapedCharacter',
               documentation: 'Serializes string with escaping',
@@ -373,7 +373,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'SimpleScalarPropertiesWithXMLPreamble',
               documentation:
@@ -401,7 +401,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'SimpleScalarPropertiesWithWhiteSpace',
               documentation: 'Serializes string containing white space',
@@ -430,7 +430,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'SimpleScalarPropertiesPureWhiteSpace',
               documentation: 'Serializes string containing white space',
@@ -459,7 +459,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestXmlSupportsNaNFloatOutputs',
               documentation: 'Supports handling NaN float values.',
@@ -488,7 +488,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestXmlSupportsInfinityFloatOutputs',
               documentation: 'Supports handling Infinity float values.',
@@ -517,7 +517,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestXmlSupportsNegativeInfinityFloatOutputs',
               documentation: 'Supports handling -Infinity float values.',

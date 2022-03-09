@@ -20,8 +20,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     _i2.SimpleScalarPropertiesInput,
     _i3.SimpleScalarPropertiesOutput,
     _i3.SimpleScalarPropertiesOutput> {
-  SimpleScalarPropertiesOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  SimpleScalarPropertiesOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -42,9 +43,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -70,12 +71,10 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
   @override
   _i8.Future<_i3.SimpleScalarPropertiesOutput> run(
       _i2.SimpleScalarPropertiesInput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

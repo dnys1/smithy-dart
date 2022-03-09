@@ -28,8 +28,9 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
   /// no request or response payload because the operation has an empty input
   /// and empty output structure that reuses the same shape. While this should
   /// be rare, code generators must support this.
-  EmptyInputAndEmptyOutputOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  EmptyInputAndEmptyOutputOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -50,9 +51,9 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -78,12 +79,10 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
   @override
   _i8.Future<_i3.EmptyInputAndEmptyOutputOutput> run(
       _i2.EmptyInputAndEmptyOutputInput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

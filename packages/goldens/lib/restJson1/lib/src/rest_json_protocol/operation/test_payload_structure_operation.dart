@@ -29,8 +29,9 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
   ///
   /// This enforces the same requirements as TestBodyStructure
   /// but with the body specified by the @httpPayload trait.
-  TestPayloadStructureOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  TestPayloadStructureOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -44,9 +45,9 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -76,12 +77,10 @@ class TestPayloadStructureOperation extends _i1.HttpOperation<
   @override
   _i8.Future<_i3.TestPayloadStructureInputOutput> run(
       _i3.TestPayloadStructureInputOutput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

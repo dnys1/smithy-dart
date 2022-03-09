@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.HttpPayloadTraitsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPayloadTraitsWithBlob',
               documentation: 'Serializes a blob in the HTTP payload',
@@ -57,7 +57,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.HttpPayloadTraitsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpPayloadTraitsWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',
@@ -91,7 +91,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.HttpPayloadTraitsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpPayloadTraitsWithBlob',
               documentation: 'Serializes a blob in the HTTP payload',
@@ -119,7 +119,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.HttpPayloadTraitsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonHttpPayloadTraitsWithNoBlobBody',
               documentation: 'Serializes an empty blob in the HTTP payload',

@@ -18,7 +18,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestNoPayloadOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithNoModeledBody',
               documentation: 'Serializes a GET request with no modeled body',
@@ -52,7 +52,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestNoPayloadOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithHeaderMemberNoModeledBody',
               documentation:

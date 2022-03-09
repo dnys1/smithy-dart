@@ -73,8 +73,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(
@@ -134,8 +134,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(
@@ -198,8 +198,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(
@@ -265,8 +265,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(
@@ -335,8 +335,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(
@@ -406,8 +406,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(
@@ -477,8 +477,8 @@ void main() {
               _i5.S3AddressingStyle.path);
       await _i1.httpRequestTest(
           operation: _i10.ListObjectsV2Operation(
-              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
+              baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
               credentialsProvider: const _i11.AWSCredentialsProvider(
                   _i11.AWSCredentials(

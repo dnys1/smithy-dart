@@ -9,22 +9,35 @@ extension SmithyLibraryX on SmithyLibrary {
     required String serviceName,
     required SmithyLibrary_LibraryType libraryType,
     required String filename,
+    String? basePath,
   }) =>
       SmithyLibrary(
         packageName: _sanitize(packageName),
         serviceName: _sanitize(serviceName),
         libraryType: libraryType,
         filename: _sanitizeFilename(libraryType, filename),
+        basePath: basePath != null && !basePath.endsWith('/')
+            ? '$basePath/'
+            : basePath,
       );
 
   /// Creates a [SmithyLibrary] from a [libraryName].
-  static SmithyLibrary fromLibraryName(String libraryName) {
+  static SmithyLibrary fromLibraryName(
+    String libraryName, {
+    String? basePath,
+  }) {
     final parts = libraryName.split('.');
-    return fromParts(parts);
+    return fromParts(
+      parts,
+      basePath: basePath,
+    );
   }
 
   /// Creates a [SmithyLibrary] from the segments of its library name.
-  static SmithyLibrary fromParts(List<String> parts) {
+  static SmithyLibrary fromParts(
+    List<String> parts, {
+    String? basePath,
+  }) {
     switch (parts.length) {
       case 2:
         final libraryType = SmithyLibrary_LibraryType.SERVICE;
@@ -33,6 +46,7 @@ extension SmithyLibraryX on SmithyLibrary {
           serviceName: _sanitize(parts[1]),
           libraryType: libraryType,
           filename: _sanitizeFilename(libraryType, parts[1]),
+          basePath: basePath,
         );
       case 3:
         final libraryType = SmithyLibrary_LibraryType.CLIENT;
@@ -41,6 +55,7 @@ extension SmithyLibraryX on SmithyLibrary {
           serviceName: _sanitize(parts[1]),
           libraryType: SmithyLibrary_LibraryType.CLIENT,
           filename: _sanitizeFilename(libraryType, parts[2]),
+          basePath: basePath,
         );
       case 4:
         final libraryType = SmithyLibrary_LibraryType.values
@@ -50,6 +65,7 @@ extension SmithyLibraryX on SmithyLibrary {
           serviceName: _sanitize(parts[1]),
           libraryType: libraryType,
           filename: _sanitizeFilename(libraryType, parts[3]),
+          basePath: basePath,
         );
       default:
         throw ArgumentError('Cannot parse path: ${parts.join('.')}');
@@ -57,8 +73,12 @@ extension SmithyLibraryX on SmithyLibrary {
   }
 
   /// Creates a [SmithyLibrary] from a `lib/`-relative [path].
-  static SmithyLibrary fromPath(String packageName, String path) {
-    final formattedPath = path.replaceAll(RegExp(r'.dart$'), '');
+  static SmithyLibrary fromPath(
+    String packageName,
+    String path, {
+    String? basePath,
+  }) {
+    final formattedPath = path.replaceAll(RegExp(r'\.dart$'), '');
     final parts = formattedPath.split('/');
 
     if (parts.length > 1 && parts.first != 'src') {
@@ -69,12 +89,16 @@ extension SmithyLibraryX on SmithyLibrary {
       );
     }
 
-    return fromParts([
-      packageName,
-      ...parts.whereIndexed((index, part) {
-        return index > 0 || part != 'src';
-      }),
-    ]);
+    final basePathLength = (basePath ?? '').split('/').length;
+    return fromParts(
+      [
+        packageName,
+        ...parts.whereIndexed((index, part) {
+          return index > basePathLength || part != 'src';
+        }),
+      ],
+      basePath: basePath,
+    );
   }
 
   static String _sanitizeFilename(
@@ -100,7 +124,7 @@ extension SmithyLibraryX on SmithyLibrary {
   }
 
   static String _sanitize(String name) {
-    var sanitized = name.replaceAll(RegExp(r'.dart$'), '').snakeCase;
+    var sanitized = name.replaceAll(RegExp(r'\.dart$'), '').snakeCase;
     if (name.startsWith('_') && !sanitized.startsWith('_')) {
       sanitized = '_$sanitized';
     }
@@ -112,19 +136,20 @@ extension SmithyLibraryX on SmithyLibrary {
 
   /// The `lib/`-relative path.
   String get libRelativePath {
+    final basePath = hasBasePath() ? this.basePath : '';
     final serviceName = _sanitize(this.serviceName);
     final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
-        return 'src/$serviceName/$filename.dart';
+        return '${basePath}src/$serviceName/$filename.dart';
       case SmithyLibrary_LibraryType.MODEL:
-        return 'src/$serviceName/model/$filename.dart';
+        return '${basePath}src/$serviceName/model/$filename.dart';
       case SmithyLibrary_LibraryType.OPERATION:
-        return 'src/$serviceName/operation/$filename.dart';
+        return '${basePath}src/$serviceName/operation/$filename.dart';
       case SmithyLibrary_LibraryType.SERVICE:
-        return '$filename.dart';
+        return '$basePath$filename.dart';
       case SmithyLibrary_LibraryType.COMMON:
-        return 'src/$serviceName/common/$filename.dart';
+        return '${basePath}src/$serviceName/common/$filename.dart';
       case SmithyLibrary_LibraryType.TEST:
         break;
     }

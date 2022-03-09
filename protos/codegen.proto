@@ -26,6 +26,9 @@ message SmithyLibrary {
 
     // The name of the file.
     string filename = 4;
+
+    // The base path of the file, if different than root.
+    string basePath = 5;
 }
 
 message CodegenRequest {

@@ -9,7 +9,8 @@ import 'package:smithy_codegen/src/generator/types.dart';
 /// so that references to values in the same file are not prefixed.
 class SmithyAllocator implements Allocator {
   SmithyAllocator(
-    this.library, {
+    this.library,
+    this.smithyLibrary, {
     this.withPrefixing = true,
   });
 
@@ -33,10 +34,10 @@ class SmithyAllocator implements Allocator {
   var _keys = 1;
 
   final Library library;
+  final SmithyLibrary smithyLibrary;
 
   /// The URL for the [library] being generated.
   String? get libraryUrl {
-    final smithyLibrary = SmithyLibraryX.fromLibraryName(library.name!);
     if (smithyLibrary.libraryType == SmithyLibrary_LibraryType.TEST) {
       return null;
     }
@@ -50,7 +51,7 @@ class SmithyAllocator implements Allocator {
   @override
   String allocate(Reference reference) {
     final symbol = reference.symbol;
-    final url = reference.url;
+    var url = reference.url;
     final thisLibrary = libraryUrl;
     if (url == null || url == thisLibrary) {
       return symbol!;

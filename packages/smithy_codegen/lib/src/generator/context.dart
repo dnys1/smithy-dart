@@ -16,8 +16,10 @@ class CodegenContext {
     required this.packageName,
     ShapeId? serviceShapeId,
     String? serviceName,
+    this.basePath,
     this.pubspec,
-    List<ShapeId> additionalShapes = const [],
+    Iterable<ShapeId> includeShapes = const {},
+    Iterable<ShapeId> additionalShapes = const {},
   })  : _shapes = shapes,
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
@@ -63,6 +65,10 @@ class CodegenContext {
 
   /// The name of the package being generated.
   final String packageName;
+
+  /// If the SDK is being generated as a subpackage, the base path indicates
+  /// the root of the subpackage.
+  final String? basePath;
 
   /// The shape ID of the service being generated.
   final ShapeId? serviceShapeId;
@@ -121,6 +127,7 @@ class CodegenContext {
     serviceName: serviceName,
     libraryType: SmithyLibrary_LibraryType.COMMON,
     filename: 'serializers.dart',
+    basePath: basePath,
   );
 
   /// The service's endpoint resolvers library.
@@ -129,6 +136,7 @@ class CodegenContext {
     serviceName: serviceName,
     libraryType: SmithyLibrary_LibraryType.COMMON,
     filename: 'endpoint_resolver.dart',
+    basePath: basePath,
   );
 
   /// The service's serializers reference.
@@ -145,6 +153,7 @@ class CodegenContext {
     serviceName: serviceName,
     libraryType: SmithyLibrary_LibraryType.CLIENT,
     filename: serviceClientName,
+    basePath: basePath,
   );
 
   late final String serviceClientName =
@@ -162,5 +171,6 @@ class CodegenContext {
     serviceName: serviceName,
     libraryType: SmithyLibrary_LibraryType.SERVICE,
     filename: serviceName,
+    basePath: basePath,
   );
 }

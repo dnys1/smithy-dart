@@ -291,11 +291,16 @@ extension ShapeUtils on Shape {
   /// The smithy library for this shape.
   SmithyLibrary smithyLibrary(CodegenContext context) {
     final rename = this.rename(context);
+    var basePath = context.basePath;
+    if (basePath != null && !basePath.endsWith('/')) {
+      basePath = '$basePath/';
+    }
     return SmithyLibrary()
       ..packageName = context.packageName
       ..serviceName = context.serviceName
       ..libraryType = libraryType
-      ..filename = (rename ?? shapeId.shape).pascalCase.snakeCase;
+      ..filename = (rename ?? shapeId.shape).pascalCase.snakeCase
+      ..basePath = basePath ?? '';
   }
 
   PaginatedTraits? get _paginatedTraits {

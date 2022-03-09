@@ -7,7 +7,6 @@ export 'src/endpoint/aws_endpoint_resolver.dart';
 export 'src/endpoint/credential_scope.dart';
 export 'src/endpoint/partition.dart';
 
-export 'src/http/interceptors/aws_http_checksum_interceptor.dart';
 export 'src/http/interceptors/with_sig_v4.dart';
 export 'src/protocol/aws_json_1_0.dart';
 export 'src/protocol/aws_json_1_1.dart';

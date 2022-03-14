@@ -9,38 +9,64 @@ const _fromJson = JsonSerializable(
   anyMap: true,
 );
 
+/// {@template smithy_codegen.partition_node}
+/// Node for a single partition found in endpoints.json.
+/// {@endtemplate}
 @_fromJson
 class PartitionNode with AWSEquatable<PartitionNode> {
+  /// {@macro smithy_codegen.partition_node}
   const PartitionNode({
-    required this.defaults,
+    this.defaults = const EndpointDefinition(),
     required this.dnsSuffix,
     required this.partition,
-    required this.partitionName,
+    this.partitionName,
     required this.regionRegex,
-    this.services = const {},
+    required this.regions,
+    required this.services,
   });
 
+  /// {@macro smithy_codegen.partition_node}
   factory PartitionNode.fromJson(Map<String, Object?> json) =>
       _$PartitionNodeFromJson(json);
 
+  /// Default values to merge into each endpoint of the partition
   final EndpointDefinition defaults;
+
+  /// Suffix used as a varspec in the hostname
   final String dnsSuffix;
+
+  /// Partition identifier
   final String partition;
-  final String partitionName;
+
+  /// Descriptive partition name
+  final String? partitionName;
+
+  /// Regular expression that should match all regions in the partition
   final String regionRegex;
+
+  /// Map of region name to region data
+  final Map<String, PartitionNodeRegion> regions;
+
+  /// Map of service identifier to service configuration
   final Map<String, PartitionNodeServiceConfiguration> services;
 
-  Partition toPartition(String endpointPrefix) {
+  /// Retrieves the [Partition] for the given service ID.
+  Partition operator [](String serviceId) {
+    return toPartition(serviceId);
+  }
+
+  /// Creates a [Partition] for the given service ID.
+  Partition toPartition(String serviceId) {
     final service =
-        services[endpointPrefix] ?? const PartitionNodeServiceConfiguration();
-    final mergedDefaults = EndpointDefinition.merge(defaults, service.defaults);
+        services[serviceId] ?? const PartitionNodeServiceConfiguration();
+    final mergedDefaults = service.defaults.withDefaults(defaults);
     final partitionEndpoint =
         service.isRegionalized ? null : service.partitionEndpoint;
     return Partition(
       id: partition,
       defaults: EndpointDefinition(
         hostname: mergedDefaults.hostname!
-            .replaceAll('{service}', endpointPrefix)
+            .replaceAll('{service}', serviceId)
             .replaceAll('{dnsSuffix}', dnsSuffix),
         protocols: mergedDefaults.protocols,
         credentialScope: mergedDefaults.credentialScope,
@@ -48,6 +74,7 @@ class PartitionNode with AWSEquatable<PartitionNode> {
       ),
       regionRegex: RegExp(regionRegex),
       partitionEndpoint: partitionEndpoint,
+      regions: regions.keys.toSet(),
       endpoints: service.endpoints,
       isRegionalized: service.isRegionalized,
     );
@@ -60,6 +87,7 @@ class PartitionNode with AWSEquatable<PartitionNode> {
         partition,
         partitionName,
         regionRegex,
+        regions,
         services,
       ];
 }
@@ -71,6 +99,7 @@ class PartitionNodeRegion with AWSEquatable<PartitionNodeRegion> {
   factory PartitionNodeRegion.fromJson(Map<String, Object?> json) =>
       _$PartitionNodeRegionFromJson(json);
 
+  /// Short, human readable, name of the region
   final String description;
 
   @override
@@ -80,6 +109,7 @@ class PartitionNodeRegion with AWSEquatable<PartitionNodeRegion> {
 @_fromJson
 class PartitionNodeDefaults with AWSEquatable<PartitionNodeDefaults> {
   const PartitionNodeDefaults({
+    this.credentialScope,
     this.hostname,
     this.protocols = const [],
     this.signatureVersions = const [],
@@ -88,38 +118,25 @@ class PartitionNodeDefaults with AWSEquatable<PartitionNodeDefaults> {
   factory PartitionNodeDefaults.fromJson(Map<String, Object?> json) =>
       _$PartitionNodeDefaultsFromJson(json);
 
+  /// Signature version 4 credential scope information
+  final CredentialScope? credentialScope;
+
+  /// URI template containing the hostname to connect to
   final String? hostname;
+
+  /// List of acceptable protocols to connect with
   final List<String> protocols;
+
+  /// List of acceptable signature versions
   final List<String> signatureVersions;
 
-  PartitionNodeDefaults merge(PartitionNodeDefaults other) {
-    return PartitionNodeDefaults(
-      hostname: hostname ?? other.hostname,
-      protocols: {
-        ...protocols,
-        ...other.protocols,
-      }.toList(),
-      signatureVersions: {
-        ...signatureVersions,
-        ...other.signatureVersions,
-      }.toList(),
-    );
-  }
-
-  PartitionNodeDefaults copyWith({
-    String? hostname,
-    List<String>? protocols,
-    List<String>? signatureVersions,
-  }) {
-    return PartitionNodeDefaults(
-      hostname: hostname ?? this.hostname,
-      protocols: protocols ?? this.protocols,
-      signatureVersions: signatureVersions ?? this.signatureVersions,
-    );
-  }
-
   @override
-  List<Object?> get props => [hostname, protocols, signatureVersions];
+  List<Object?> get props => [
+        credentialScope,
+        hostname,
+        protocols,
+        signatureVersions,
+      ];
 }
 
 @_fromJson
@@ -128,24 +145,46 @@ class PartitionNodeServiceConfiguration
   const PartitionNodeServiceConfiguration({
     this.defaults = const EndpointDefinition(),
     this.endpoints = const {},
+    this.protocols = const [],
     this.partitionEndpoint,
     this.isRegionalized = true,
+    this.deprecated = false,
+    this.variants = const [],
   });
 
   factory PartitionNodeServiceConfiguration.fromJson(
           Map<String, Object?> json) =>
       _$PartitionNodeServiceConfigurationFromJson(json);
 
+  /// Default values to merge into each endpoint of the service.
   final EndpointDefinition defaults;
+
+  /// Map of region names to endpoint data
   final Map<String, EndpointDefinition> endpoints;
+
+  /// List of acceptable protocols to connect with.
+  final List<String> protocols;
+
+  /// Specifies the endpoint name to use as a partition-global endpoint.
   final String? partitionEndpoint;
+
+  /// Specifies whether or not the service is regionalized in the partition.
   final bool isRegionalized;
+
+  /// Whether the region specification is deprecated for usage.
+  final bool deprecated;
+
+  /// Variants of the endpoint configuration, e.g. for FIPS or DualStack.
+  final List<EndpointDefinitionVariant> variants;
 
   @override
   List<Object?> get props => [
         defaults,
         endpoints,
+        protocols,
         partitionEndpoint,
         isRegionalized,
+        deprecated,
+        variants,
       ];
 }

@@ -33,8 +33,8 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
         if (definition.protocols.isNotEmpty)
           'protocols': literalList(definition.protocols.map(literalString)),
         if (definition.signatureVersions.isNotEmpty)
-          'signatureVersions':
-              literalList(definition.signatureVersions.map(literalString)),
+          'signatureVersions': literalList(definition.signatureVersions
+              .map((version) => literalString(version.name))),
         if (definition.credentialScope != null)
           'credentialScope':
               DartTypes.smithyAws.credentialScope.constInstance([], {

@@ -204,13 +204,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  crclib:
-    dependency: transitive
-    description:
-      name: crclib
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   crypto:
     dependency: transitive
     description:
@@ -501,23 +494,16 @@ packages:
   smithy:
     dependency: "direct main"
     description:
-      name: smithy
-      url: "https://pub.dillonnys.com"
-    source: hosted
-    version: "0.1.1"
-  smithy_ast:
-    dependency: "direct main"
-    description:
-      name: smithy_ast
-      url: "https://pub.dillonnys.com"
-    source: hosted
-    version: "0.1.0"
+      path: "../smithy"
+      relative: true
+    source: path
+    version: "0.1.2"
   smithy_aws:
     dependency: "direct main"
     description:
-      name: smithy_aws
-      url: "https://pub.dillonnys.com"
-    source: hosted
+      path: "../smithy_aws"
+      relative: true
+    source: path
     version: "0.1.1"
   smithy_test:
     dependency: "direct dev"

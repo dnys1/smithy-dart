@@ -1,3 +1,5 @@
+## 0.2.0
+
 ## 0.1.2
 
 - fix: Client and operation overrides of operation params

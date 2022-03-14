@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:grpc/grpc.dart';
 import 'package:smithy_codegen/src/server.dart';

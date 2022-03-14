@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as path;
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_test/src/common.dart';
 import 'package:test/test.dart';

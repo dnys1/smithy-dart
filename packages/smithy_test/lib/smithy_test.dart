@@ -1,7 +1,7 @@
 /// Test utilities for Smithy packages.
 library smithy_test;
 
-export 'package:smithy_ast/smithy_ast.dart'
+export 'package:smithy/ast.dart'
     show AppliesTo, HttpRequestTestCase, HttpResponseTestCase;
 export 'package:test/test.dart';
 

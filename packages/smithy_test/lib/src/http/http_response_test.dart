@@ -1,9 +1,10 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
+import 'package:aws_common/aws_common.dart';
 import 'package:built_value/serializer.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_test/smithy_test.dart';
 

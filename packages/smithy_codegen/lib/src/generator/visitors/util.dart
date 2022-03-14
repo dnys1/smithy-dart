@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 
 /// Adds functionality to track renaming of shapes in recursive visiting.

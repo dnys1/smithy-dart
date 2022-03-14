@@ -1,4 +1,4 @@
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 
 /// Visits shapes, returning `null` as the default.
 class DefaultVisitor<T> implements ShapeVisitor<T?> {

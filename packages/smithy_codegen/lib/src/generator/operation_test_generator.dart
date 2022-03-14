@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:code_builder/code_builder.dart';
 // ignore: implementation_imports
 import 'package:smithy/src/protocol/generic_json_protocol.dart';
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';

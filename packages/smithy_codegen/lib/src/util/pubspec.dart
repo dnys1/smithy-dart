@@ -23,7 +23,6 @@ class Dependency with AWSEquatable<Dependency> {
 final dependencyVersions = {
   // Dependencies
   'smithy': Dependency('^0.1.0', DependencyType.smithy),
-  'smithy_ast': Dependency('^0.1.0', DependencyType.smithy),
   'smithy_aws': Dependency('^0.1.0', DependencyType.smithy),
   'smithy_codegen': Dependency('^0.1.0', DependencyType.smithy),
   'aws_common': Dependency('^0.1.0', DependencyType.aws),

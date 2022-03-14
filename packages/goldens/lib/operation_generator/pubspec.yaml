@@ -21,8 +21,6 @@ dependencies:
 dependency_overrides:
   smithy:
     path: ../../../smithy
-  smithy_ast:
-    path: ../../../smithy_ast
   smithy_aws:
     path: ../../../smithy_aws
   smithy_codegen:

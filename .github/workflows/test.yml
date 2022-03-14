@@ -1,4 +1,4 @@
-# Created with package:mono_repo v6.0.0
+# Created with package:mono_repo v6.1.0
 name: Test
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: packages_goldens_lib_awsJson1_0_pub_upgrade
         name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -143,7 +143,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: packages_goldens_lib_awsJson1_0_pub_upgrade
         name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -253,7 +253,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: packages_goldens_lib_awsJson1_0_pub_upgrade
         name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -339,7 +339,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: packages_goldens_lib_awsJson1_0_pub_upgrade
         name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -415,7 +415,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: packages_goldens_lib_awsJson1_0_pub_upgrade
         name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -491,7 +491,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: packages_goldens_lib_awsJson1_0_pub_upgrade
         name: packages/goldens/lib/awsJson1_0; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"

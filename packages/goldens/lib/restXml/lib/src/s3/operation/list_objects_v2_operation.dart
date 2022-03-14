@@ -23,12 +23,15 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
     int,
     void> {
   ListObjectsV2Operation(
-      {Uri? baseUri,
-      required this.region,
-      this.s3ClientConfig = const _i4.S3ClientConfig(),
-      this.credentialsProvider =
+      {required String region,
+      Uri? baseUri,
+      _i4.S3ClientConfig s3ClientConfig = const _i4.S3ClientConfig(),
+      _i5.AWSCredentialsProvider credentialsProvider =
           const _i5.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      : _region = region,
+        _baseUri = baseUri,
+        _s3ClientConfig = s3ClientConfig,
+        _credentialsProvider = credentialsProvider;
 
   @override
   late final List<
@@ -43,33 +46,33 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
         requestInterceptors: [
           const _i1.WithContentLength(),
           _i4.WithSigV4(
-              region: region,
+              region: _region,
               serviceName: 's3',
-              credentialsProvider: credentialsProvider)
+              credentialsProvider: _credentialsProvider)
         ],
         responseInterceptors: [],
         noErrorWrapping: true)
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i7.endpointResolver.resolve(_i7.sdkId, region);
+      _i7.endpointResolver.resolve(_i7.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i4.S3ClientConfig s3ClientConfig;
+  final _i4.S3ClientConfig _s3ClientConfig;
 
-  final _i5.AWSCredentialsProvider credentialsProvider;
+  final _i5.AWSCredentialsProvider _credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.ListObjectsV2Request input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path = s3ClientConfig.usePathStyle
+        b.path = _s3ClientConfig.usePathStyle
             ? r'/{Bucket}?list-type=2'
             : r'/?list-type=2';
-        b.hostPrefix = s3ClientConfig.usePathStyle ? null : '{Bucket}.';
+        b.hostPrefix = _s3ClientConfig.usePathStyle ? null : '{Bucket}.';
         if (input.requestPayer != null) {
           b.headers['x-amz-request-payer'] = input.requestPayer!.value;
         }
@@ -118,15 +121,15 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
   @override
   Uri get baseUri {
     var baseUri = _baseUri ?? endpoint.uri;
-    if (s3ClientConfig.useDualStack) {
+    if (_s3ClientConfig.useDualStack) {
       baseUri = baseUri.replace(
         host: baseUri.host.replaceFirst(RegExp(r'^s3\.'), 's3.dualstack.'),
       );
     }
-    if (s3ClientConfig.useAcceleration) {
+    if (_s3ClientConfig.useAcceleration) {
       baseUri = baseUri.replace(
         host: baseUri.host
-            .replaceFirst(RegExp('$region\\.'), '')
+            .replaceFirst(RegExp('$_region\\.'), '')
             .replaceFirst(RegExp(r'^s3\.'), 's3-accelerate.'),
       );
     }
@@ -137,10 +140,9 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i10.Future<_i3.ListObjectsV2Output> run(_i2.ListObjectsV2Request input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i10.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 

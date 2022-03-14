@@ -23,7 +23,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.GreetingWithErrorsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'GreetingWithErrors',
               documentation:
@@ -56,7 +56,7 @@ void main() {
               _i5.GreetingWithErrorsOutput,
               _i6.ComplexError>(
           operation: _i3.GreetingWithErrorsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'ComplexError',
               documentation: null,
@@ -95,7 +95,7 @@ void main() {
               _i5.GreetingWithErrorsOutput,
               _i7.InvalidGreeting>(
           operation: _i3.GreetingWithErrorsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'InvalidGreetingError',
               documentation: 'Parses simple XML errors',

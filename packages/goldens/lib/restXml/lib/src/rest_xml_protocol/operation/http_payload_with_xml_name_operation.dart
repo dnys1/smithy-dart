@@ -24,8 +24,9 @@ class HttpPayloadWithXmlNameOperation extends _i1.HttpOperation<
     _i3.HttpPayloadWithXmlNameInputOutput> {
   /// The following example serializes a payload that uses an XML name,
   /// changing the wrapper name.
-  HttpPayloadWithXmlNameOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  HttpPayloadWithXmlNameOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -43,9 +44,9 @@ class HttpPayloadWithXmlNameOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -71,12 +72,10 @@ class HttpPayloadWithXmlNameOperation extends _i1.HttpOperation<
   @override
   _i8.Future<_i3.HttpPayloadWithXmlNameInputOutput> run(
       _i3.HttpPayloadWithXmlNameInputOutput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestBodyStructureOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTestBodyStructure',
               documentation: 'Serializes a structure',
@@ -57,7 +57,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestBodyStructureOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithEmptyBody',
               documentation: 'Serializes an empty structure in the body',

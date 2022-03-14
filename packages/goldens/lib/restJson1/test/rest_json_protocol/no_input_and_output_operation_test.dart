@@ -18,7 +18,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.NoInputAndOutputOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonNoInputAndOutput',
               documentation:
@@ -51,7 +51,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.NoInputAndOutputOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonNoInputAndOutputWithJson',
               documentation:
@@ -79,7 +79,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.NoInputAndOutputOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonNoInputAndOutputNoPayload',
               documentation:

@@ -19,7 +19,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSimpleScalarProperties',
               documentation: 'Serializes simple scalar properties',
@@ -65,7 +65,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonDoesntSerializeNullStructureValues',
               documentation:
@@ -100,7 +100,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -135,7 +135,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -170,7 +170,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',
@@ -205,7 +205,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSimpleScalarProperties',
               documentation: 'Serializes simple scalar properties',
@@ -245,7 +245,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonDoesntDeserializeNullStructureValues',
               documentation:
@@ -274,7 +274,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNaNFloatInputs',
               documentation: 'Supports handling NaN float values.',
@@ -303,7 +303,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsInfinityFloatInputs',
               documentation: 'Supports handling Infinity float values.',
@@ -332,7 +332,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatInputs',
               documentation: 'Supports handling -Infinity float values.',

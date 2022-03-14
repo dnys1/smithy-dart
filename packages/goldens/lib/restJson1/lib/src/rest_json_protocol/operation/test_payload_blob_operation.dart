@@ -34,8 +34,9 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
   /// only a generic "Content-Type: application/octet-stream" header
   /// is used, and that we are not treating an empty body as an
   /// empty JSON document.
-  TestPayloadBlobOperation({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  TestPayloadBlobOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -49,9 +50,9 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -81,12 +82,10 @@ class TestPayloadBlobOperation extends _i1.HttpOperation<
   @override
   _i8.Future<_i3.TestPayloadBlobInputOutput> run(
       _i3.TestPayloadBlobInputOutput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

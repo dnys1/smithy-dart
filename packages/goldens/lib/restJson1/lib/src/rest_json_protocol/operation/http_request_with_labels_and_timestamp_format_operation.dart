@@ -25,8 +25,9 @@ class HttpRequestWithLabelsAndTimestampFormatOperation
   /// The example tests how requests serialize different timestamp formats in the
   /// URI path.
   HttpRequestWithLabelsAndTimestampFormatOperation(
-      {Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+      {required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -46,9 +47,9 @@ class HttpRequestWithLabelsAndTimestampFormatOperation
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, region);
+      _i5.endpointResolver.resolve(_i5.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -75,12 +76,10 @@ class HttpRequestWithLabelsAndTimestampFormatOperation
   @override
   _i7.Future<_i1.Unit> run(
       _i2.HttpRequestWithLabelsAndTimestampFormatInput input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

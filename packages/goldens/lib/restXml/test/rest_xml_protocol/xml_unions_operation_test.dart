@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'XmlUnionsWithStructMember',
               documentation: 'Serializes union struct member',
@@ -66,7 +66,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'XmlUnionsWithStringMember',
               documentation: 'serialize union string member',
@@ -101,7 +101,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'XmlUnionsWithBooleanMember',
               documentation: 'Serializes union boolean member',
@@ -136,7 +136,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'XmlUnionsWithUnionMember',
               documentation: 'Serializes union member',
@@ -173,7 +173,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlUnionsWithStructMember',
               documentation: 'Serializes union struct member',
@@ -213,7 +213,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlUnionsWithStringMember',
               documentation: 'Serializes union string member',
@@ -242,7 +242,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlUnionsWithBooleanMember',
               documentation: 'Serializes union boolean member',
@@ -271,7 +271,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlUnionsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlUnionsWithUnionMember',
               documentation: 'Serializes union member',

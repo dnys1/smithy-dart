@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestPayloadBlobOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithEmptyBlobPayload',
               documentation: 'Serializes a payload targeting an empty blob',
@@ -54,7 +54,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestPayloadBlobOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTestPayloadBlob',
               documentation: 'Serializes a payload targeting a blob',

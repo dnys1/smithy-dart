@@ -19,8 +19,8 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
@@ -60,8 +60,8 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
@@ -102,8 +102,8 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
@@ -144,8 +144,8 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
@@ -176,8 +176,8 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
@@ -209,8 +209,8 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.SimpleScalarPropertiesOperation(
-              baseUri: Uri.parse('https://example.com'),
               region: 'us-east-1',
+              baseUri: Uri.parse('https://example.com'),
               credentialsProvider: const _i4.AWSCredentialsProvider(
                   _i4.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),

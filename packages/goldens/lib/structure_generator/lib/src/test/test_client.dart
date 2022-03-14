@@ -3,7 +3,7 @@
 library structure_generator.test.test_client;
 
 class TestClient {
-  const TestClient({required this.baseUri});
+  const TestClient({required Uri baseUri}) : _baseUri = baseUri;
 
-  final Uri baseUri;
+  final Uri _baseUri;
 }

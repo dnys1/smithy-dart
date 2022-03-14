@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlEmptyBlobsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlEmptyBlobs',
               documentation: 'Empty blobs are deserialized as empty string',
@@ -47,7 +47,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.XmlEmptyBlobsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'XmlEmptySelfClosedBlobs',
               documentation:

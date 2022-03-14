@@ -17,7 +17,9 @@ import 'package:smithy_aws/smithy_aws.dart' as _i3;
 class XmlEnumsOperation extends _i1.HttpOperation<_i2.XmlEnumsInputOutput,
     _i2.XmlEnumsInputOutput, _i2.XmlEnumsInputOutput, _i2.XmlEnumsInputOutput> {
   /// This example serializes enums as top level properties, in lists, sets, and maps.
-  XmlEnumsOperation({Uri? baseUri, required this.region}) : _baseUri = baseUri;
+  XmlEnumsOperation({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
   @override
   late final List<
@@ -32,9 +34,9 @@ class XmlEnumsOperation extends _i1.HttpOperation<_i2.XmlEnumsInputOutput,
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, region);
+      _i5.endpointResolver.resolve(_i5.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
@@ -58,10 +60,9 @@ class XmlEnumsOperation extends _i1.HttpOperation<_i2.XmlEnumsInputOutput,
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i7.Future<_i2.XmlEnumsInputOutput> run(_i2.XmlEnumsInputOutput input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

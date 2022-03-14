@@ -19,11 +19,13 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
     _i2.UnionInputOutput, _i2.UnionInputOutput, _i2.UnionInputOutput> {
   /// This operation uses unions for inputs and outputs.
   JsonUnionsOperation(
-      {Uri? baseUri,
-      required this.region,
-      this.credentialsProvider =
+      {required String region,
+      Uri? baseUri,
+      _i3.AWSCredentialsProvider credentialsProvider =
           const _i3.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      : _region = region,
+        _baseUri = baseUri,
+        _credentialsProvider = credentialsProvider;
 
   @override
   late final List<
@@ -36,21 +38,21 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
           const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.JsonUnions'),
           _i4.WithSigV4(
-              region: region,
+              region: _region,
               serviceName: 'foo',
-              credentialsProvider: credentialsProvider)
+              credentialsProvider: _credentialsProvider)
         ],
         responseInterceptors: [])
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i3.AWSCredentialsProvider credentialsProvider;
+  final _i3.AWSCredentialsProvider _credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.UnionInputOutput input) =>
@@ -72,10 +74,9 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.UnionInputOutput,
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i8.Future<_i2.UnionInputOutput> run(_i2.UnionInputOutput input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

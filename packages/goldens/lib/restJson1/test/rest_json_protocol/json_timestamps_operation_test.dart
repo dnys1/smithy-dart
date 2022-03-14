@@ -18,7 +18,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestamps',
               documentation: 'Tests how normal timestamps are serialized',
@@ -52,7 +52,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestampsWithDateTimeFormat',
               documentation:
@@ -86,7 +86,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestampsWithEpochSecondsFormat',
               documentation:
@@ -121,7 +121,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonJsonTimestampsWithHttpDateFormat',
               documentation:
@@ -156,7 +156,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestamps',
               documentation: 'Tests how normal timestamps are serialized',
@@ -184,7 +184,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestampsWithDateTimeFormat',
               documentation:
@@ -212,7 +212,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestampsWithEpochSecondsFormat',
               documentation:
@@ -241,7 +241,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.JsonTimestampsOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonJsonTimestampsWithHttpDateFormat',
               documentation:

@@ -7,15 +7,15 @@ import 'dart:async' as _i1;
 import 'package:rest_xml/src/rest_xml_protocol/model/all_query_string_types_input.dart'
     as _i2;
 import 'package:rest_xml/src/rest_xml_protocol/model/body_with_xml_name_input_output.dart'
-    as _i4;
+    as _i5;
 import 'package:rest_xml/src/rest_xml_protocol/model/constant_and_variable_query_string_input.dart'
-    as _i6;
+    as _i7;
 import 'package:rest_xml/src/rest_xml_protocol/model/constant_query_string_input.dart'
-    as _i8;
+    as _i9;
 import 'package:rest_xml/src/rest_xml_protocol/model/empty_input_and_empty_output_input.dart'
-    as _i11;
+    as _i12;
 import 'package:rest_xml/src/rest_xml_protocol/model/empty_input_and_empty_output_output.dart'
-    as _i10;
+    as _i11;
 import 'package:rest_xml/src/rest_xml_protocol/model/flattened_xml_map_input_output.dart'
     as _i19;
 import 'package:rest_xml/src/rest_xml_protocol/model/flattened_xml_map_with_xml_name_input_output.dart'
@@ -101,17 +101,17 @@ import 'package:rest_xml/src/rest_xml_protocol/model/xml_timestamps_input_output
 import 'package:rest_xml/src/rest_xml_protocol/model/xml_unions_input_output.dart'
     as _i102;
 import 'package:rest_xml/src/rest_xml_protocol/operation/all_query_string_types_operation.dart'
-    as _i3;
+    as _i4;
 import 'package:rest_xml/src/rest_xml_protocol/operation/body_with_xml_name_operation.dart'
-    as _i5;
+    as _i6;
 import 'package:rest_xml/src/rest_xml_protocol/operation/constant_and_variable_query_string_operation.dart'
-    as _i7;
+    as _i8;
 import 'package:rest_xml/src/rest_xml_protocol/operation/constant_query_string_operation.dart'
-    as _i9;
+    as _i10;
 import 'package:rest_xml/src/rest_xml_protocol/operation/empty_input_and_empty_output_operation.dart'
-    as _i12;
-import 'package:rest_xml/src/rest_xml_protocol/operation/endpoint_operation.dart'
     as _i13;
+import 'package:rest_xml/src/rest_xml_protocol/operation/endpoint_operation.dart'
+    as _i14;
 import 'package:rest_xml/src/rest_xml_protocol/operation/endpoint_with_host_label_header_operation.dart'
     as _i16;
 import 'package:rest_xml/src/rest_xml_protocol/operation/endpoint_with_host_label_operation.dart'
@@ -206,102 +206,112 @@ import 'package:rest_xml/src/rest_xml_protocol/operation/xml_timestamps_operatio
     as _i101;
 import 'package:rest_xml/src/rest_xml_protocol/operation/xml_unions_operation.dart'
     as _i103;
-import 'package:smithy/smithy.dart' as _i14;
+import 'package:smithy/smithy.dart' as _i3;
 
 /// A REST XML service that sends XML requests and responses.
 class RestXmlProtocolClient {
   /// A REST XML service that sends XML requests and responses.
-  const RestXmlProtocolClient({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  const RestXmlProtocolClient({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
   /// This example uses all query string types.
-  _i1.Future<void> allQueryStringTypes(_i2.AllQueryStringTypesInput input) {
-    return _i3.AllQueryStringTypesOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> allQueryStringTypes(_i2.AllQueryStringTypesInput input,
+      {_i3.HttpClient? client}) {
+    return _i4.AllQueryStringTypesOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The following example serializes a body that uses an XML name,
   /// changing the wrapper name.
-  _i1.Future<_i4.BodyWithXmlNameInputOutput> bodyWithXmlName(
-      _i4.BodyWithXmlNameInputOutput input) {
-    return _i5.BodyWithXmlNameOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i5.BodyWithXmlNameInputOutput> bodyWithXmlName(
+      _i5.BodyWithXmlNameInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i6.BodyWithXmlNameOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example uses fixed query string params and variable query string params.
   /// The fixed query string parameters and variable parameters must both be
   /// serialized (implementations may need to merge them together).
   _i1.Future<void> constantAndVariableQueryString(
-      _i6.ConstantAndVariableQueryStringInput input) {
-    return _i7.ConstantAndVariableQueryStringOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+      _i7.ConstantAndVariableQueryStringInput input,
+      {_i3.HttpClient? client}) {
+    return _i8.ConstantAndVariableQueryStringOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example uses a constant query string parameters and a label.
   /// This simply tests that labels and query string parameters are
   /// compatible. The fixed query string parameter named "hello" should
   /// in no way conflict with the label, `{hello}`.
-  _i1.Future<void> constantQueryString(_i8.ConstantQueryStringInput input) {
-    return _i9.ConstantQueryStringOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> constantQueryString(_i9.ConstantQueryStringInput input,
+      {_i3.HttpClient? client}) {
+    return _i10.ConstantQueryStringOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has an empty input
   /// and empty output structure that reuses the same shape. While this should
   /// be rare, code generators must support this.
-  _i1.Future<_i10.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
-      _i11.EmptyInputAndEmptyOutputInput input) {
-    return _i12.EmptyInputAndEmptyOutputOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i11.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
+      _i12.EmptyInputAndEmptyOutputInput input,
+      {_i3.HttpClient? client}) {
+    return _i13.EmptyInputAndEmptyOutputOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> endpointOperation() {
-    return _i13.EndpointOperation(region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+  _i1.Future<void> endpointOperation({_i3.HttpClient? client}) {
+    return _i14.EndpointOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   _i1.Future<void> endpointWithHostLabelHeaderOperation(
-      _i15.HostLabelHeaderInput input) {
+      _i15.HostLabelHeaderInput input,
+      {_i3.HttpClient? client}) {
     return _i16.EndpointWithHostLabelHeaderOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> endpointWithHostLabelOperation(_i17.HostLabelInput input) {
+  _i1.Future<void> endpointWithHostLabelOperation(_i17.HostLabelInput input,
+      {_i3.HttpClient? client}) {
     return _i18.EndpointWithHostLabelOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Flattened maps
   _i1.Future<_i19.FlattenedXmlMapInputOutput> flattenedXmlMap(
-      _i19.FlattenedXmlMapInputOutput input) {
-    return _i20.FlattenedXmlMapOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i19.FlattenedXmlMapInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i20.FlattenedXmlMapOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Flattened maps with @xmlName
   _i1.Future<_i21.FlattenedXmlMapWithXmlNameInputOutput>
       flattenedXmlMapWithXmlName(
-          _i21.FlattenedXmlMapWithXmlNameInputOutput input) {
+          _i21.FlattenedXmlMapWithXmlNameInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i22.FlattenedXmlMapWithXmlNameOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Flattened maps with @xmlNamespace and @xmlName
   _i1.Future<_i23.FlattenedXmlMapWithXmlNamespaceOutput>
-      flattenedXmlMapWithXmlNamespace() {
+      flattenedXmlMapWithXmlNamespace({_i3.HttpClient? client}) {
     return _i24.FlattenedXmlMapWithXmlNamespaceOperation(
-            region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// This operation has three possible return values:
@@ -313,9 +323,10 @@ class RestXmlProtocolClient {
   /// Implementations must be able to successfully take a response and
   /// properly (de)serialize successful and error responses based on the
   /// the presence of the
-  _i1.Future<_i25.GreetingWithErrorsOutput> greetingWithErrors() {
-    return _i26.GreetingWithErrorsOperation(region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+  _i1.Future<_i25.GreetingWithErrorsOutput> greetingWithErrors(
+      {_i3.HttpClient? client}) {
+    return _i26.GreetingWithErrorsOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// This examples serializes a blob shape in the payload.
@@ -323,29 +334,32 @@ class RestXmlProtocolClient {
   /// In this example, no XML document is synthesized because the payload is
   /// not a structure or a union type.
   _i1.Future<_i27.HttpPayloadTraitsInputOutput> httpPayloadTraits(
-      _i27.HttpPayloadTraitsInputOutput input) {
-    return _i28.HttpPayloadTraitsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i27.HttpPayloadTraitsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i28.HttpPayloadTraitsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples uses a `@mediaType` trait on the payload to force a custom
   /// content-type to be serialized.
   _i1.Future<_i29.HttpPayloadTraitsWithMediaTypeInputOutput>
       httpPayloadTraitsWithMediaType(
-          _i29.HttpPayloadTraitsWithMediaTypeInputOutput input) {
+          _i29.HttpPayloadTraitsWithMediaTypeInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i30.HttpPayloadTraitsWithMediaTypeOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The following example serializes a payload that uses an XML name
   /// on the member, changing the wrapper name.
   _i1.Future<_i31.HttpPayloadWithMemberXmlNameInputOutput>
       httpPayloadWithMemberXmlName(
-          _i31.HttpPayloadWithMemberXmlNameInputOutput input) {
+          _i31.HttpPayloadWithMemberXmlNameInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i32.HttpPayloadWithMemberXmlNameOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples serializes a structure in the payload.
@@ -353,37 +367,41 @@ class RestXmlProtocolClient {
   /// Note that serializing a structure changes the wrapper element name
   /// to match the targeted structure.
   _i1.Future<_i33.HttpPayloadWithStructureInputOutput> httpPayloadWithStructure(
-      _i33.HttpPayloadWithStructureInputOutput input) {
+      _i33.HttpPayloadWithStructureInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i34.HttpPayloadWithStructureOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The following example serializes a payload that uses an XML name,
   /// changing the wrapper name.
   _i1.Future<_i35.HttpPayloadWithXmlNameInputOutput> httpPayloadWithXmlName(
-      _i35.HttpPayloadWithXmlNameInputOutput input) {
+      _i35.HttpPayloadWithXmlNameInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i36.HttpPayloadWithXmlNameOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The following example serializes a payload that uses an XML namespace.
   _i1.Future<_i37.HttpPayloadWithXmlNamespaceInputOutput>
       httpPayloadWithXmlNamespace(
-          _i37.HttpPayloadWithXmlNamespaceInputOutput input) {
+          _i37.HttpPayloadWithXmlNamespaceInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i38.HttpPayloadWithXmlNamespaceOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The following example serializes a payload that uses an XML namespace.
   _i1.Future<_i39.HttpPayloadWithXmlNamespaceAndPrefixInputOutput>
       httpPayloadWithXmlNamespaceAndPrefix(
-          _i39.HttpPayloadWithXmlNamespaceAndPrefixInputOutput input) {
+          _i39.HttpPayloadWithXmlNamespaceAndPrefixInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i40.HttpPayloadWithXmlNamespaceAndPrefixOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples adds headers to the input of a request and response by prefix.///
@@ -391,206 +409,231 @@ class RestXmlProtocolClient {
   /// - [httpPrefixHeaders Trait](https://awslabs.github.io/smithy/1.0/spec/http.html#httpprefixheaders-trait)
 
   _i1.Future<_i41.HttpPrefixHeadersInputOutput> httpPrefixHeaders(
-      _i41.HttpPrefixHeadersInputOutput input) {
-    return _i42.HttpPrefixHeadersOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i41.HttpPrefixHeadersInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i42.HttpPrefixHeadersOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> httpRequestWithFloatLabels(
-      _i43.HttpRequestWithFloatLabelsInput input) {
+      _i43.HttpRequestWithFloatLabelsInput input,
+      {_i3.HttpClient? client}) {
     return _i44.HttpRequestWithFloatLabelsOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> httpRequestWithGreedyLabelInPath(
-      _i45.HttpRequestWithGreedyLabelInPathInput input) {
+      _i45.HttpRequestWithGreedyLabelInPathInput input,
+      {_i3.HttpClient? client}) {
     return _i46.HttpRequestWithGreedyLabelInPathOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests are serialized when there's no input
   /// payload but there are HTTP labels.
-  _i1.Future<void> httpRequestWithLabels(
-      _i47.HttpRequestWithLabelsInput input) {
+  _i1.Future<void> httpRequestWithLabels(_i47.HttpRequestWithLabelsInput input,
+      {_i3.HttpClient? client}) {
     return _i48.HttpRequestWithLabelsOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests serialize different timestamp formats in the
   /// URI path.
   _i1.Future<void> httpRequestWithLabelsAndTimestampFormat(
-      _i49.HttpRequestWithLabelsAndTimestampFormatInput input) {
+      _i49.HttpRequestWithLabelsAndTimestampFormatInput input,
+      {_i3.HttpClient? client}) {
     return _i50.HttpRequestWithLabelsAndTimestampFormatOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<_i51.HttpResponseCodeOutput> httpResponseCode() {
-    return _i52.HttpResponseCodeOperation(region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+  _i1.Future<_i51.HttpResponseCodeOutput> httpResponseCode(
+      {_i3.HttpClient? client}) {
+    return _i52.HttpResponseCodeOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// This example ensures that query string bound request parameters are
   /// serialized in the body of responses if the structure is used in both
   /// the request and response.
   _i1.Future<_i53.IgnoreQueryParamsInResponseOutput>
-      ignoreQueryParamsInResponse() {
+      ignoreQueryParamsInResponse({_i3.HttpClient? client}) {
     return _i54.IgnoreQueryParamsInResponseOperation(
-            region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// The example tests how requests and responses are serialized when there is
   /// no input or output payload but there are HTTP header bindings.
   _i1.Future<_i55.InputAndOutputWithHeadersIo> inputAndOutputWithHeaders(
-      _i55.InputAndOutputWithHeadersIo input) {
+      _i55.InputAndOutputWithHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i56.InputAndOutputWithHeadersOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i57.NestedXmlMapsInputOutput> nestedXmlMaps(
-      _i57.NestedXmlMapsInputOutput input) {
-    return _i58.NestedXmlMapsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i57.NestedXmlMapsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i58.NestedXmlMapsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has no input or output.
   /// While this should be rare, code generators must support this.
-  _i1.Future<void> noInputAndNoOutput() {
-    return _i59.NoInputAndNoOutputOperation(region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+  _i1.Future<void> noInputAndNoOutput({_i3.HttpClient? client}) {
+    return _i59.NoInputAndNoOutputOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has no input and the
   /// output is empty. While this should be rare, code generators must support
   /// this.
-  _i1.Future<_i60.NoInputAndOutputOutput> noInputAndOutput() {
-    return _i61.NoInputAndOutputOperation(region: region, baseUri: _baseUri)
-        .run(const _i14.Unit());
+  _i1.Future<_i60.NoInputAndOutputOutput> noInputAndOutput(
+      {_i3.HttpClient? client}) {
+    return _i61.NoInputAndOutputOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// Null and empty headers are not sent over the wire.
   _i1.Future<_i62.NullAndEmptyHeadersIo> nullAndEmptyHeadersClient(
-      _i62.NullAndEmptyHeadersIo input) {
+      _i62.NullAndEmptyHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i63.NullAndEmptyHeadersClientOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Null and empty headers are not sent over the wire.
   _i1.Future<_i62.NullAndEmptyHeadersIo> nullAndEmptyHeadersServer(
-      _i62.NullAndEmptyHeadersIo input) {
+      _i62.NullAndEmptyHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i64.NullAndEmptyHeadersServerOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Omits null, but serializes empty string value.
   _i1.Future<void> omitsNullSerializesEmptyString(
-      _i65.OmitsNullSerializesEmptyStringInput input) {
+      _i65.OmitsNullSerializesEmptyStringInput input,
+      {_i3.HttpClient? client}) {
     return _i66.OmitsNullSerializesEmptyStringOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Automatically adds idempotency tokens.
   _i1.Future<void> queryIdempotencyTokenAutoFill(
-      _i67.QueryIdempotencyTokenAutoFillInput input) {
+      _i67.QueryIdempotencyTokenAutoFillInput input,
+      {_i3.HttpClient? client}) {
     return _i68.QueryIdempotencyTokenAutoFillOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> queryParamsAsStringListMap(
-      _i69.QueryParamsAsStringListMapInput input) {
+      _i69.QueryParamsAsStringListMapInput input,
+      {_i3.HttpClient? client}) {
     return _i70.QueryParamsAsStringListMapOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> queryPrecedence(_i71.QueryPrecedenceInput input) {
-    return _i72.QueryPrecedenceOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> queryPrecedence(_i71.QueryPrecedenceInput input,
+      {_i3.HttpClient? client}) {
+    return _i72.QueryPrecedenceOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Recursive shapes
   _i1.Future<_i73.RecursiveShapesInputOutput> recursiveShapes(
-      _i73.RecursiveShapesInputOutput input) {
-    return _i74.RecursiveShapesOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i73.RecursiveShapesInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i74.RecursiveShapesOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i75.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
-      _i75.SimpleScalarPropertiesInputOutput input) {
+      _i75.SimpleScalarPropertiesInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i76.SimpleScalarPropertiesOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how timestamp request and response headers are serialized.
   _i1.Future<_i77.TimestampFormatHeadersIo> timestampFormatHeaders(
-      _i77.TimestampFormatHeadersIo input) {
+      _i77.TimestampFormatHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i78.TimestampFormatHeadersOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example serializes an XML attributes on synthesized document.
   _i1.Future<_i79.XmlAttributesInputOutput> xmlAttributes(
-      _i79.XmlAttributesInputOutput input) {
-    return _i80.XmlAttributesOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i79.XmlAttributesInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i80.XmlAttributesOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example serializes an XML attributes on a document targeted by httpPayload.
   _i1.Future<_i81.XmlAttributesOnPayloadInputOutput> xmlAttributesOnPayload(
-      _i81.XmlAttributesOnPayloadInputOutput input) {
+      _i81.XmlAttributesOnPayloadInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i82.XmlAttributesOnPayloadOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Blobs are base64 encoded
-  _i1.Future<_i83.XmlBlobsInputOutput> xmlBlobs(
-      _i83.XmlBlobsInputOutput input) {
-    return _i84.XmlBlobsOperation(region: region, baseUri: _baseUri).run(input);
+  _i1.Future<_i83.XmlBlobsInputOutput> xmlBlobs(_i83.XmlBlobsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i84.XmlBlobsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Blobs are base64 encoded
   _i1.Future<_i83.XmlBlobsInputOutput> xmlEmptyBlobs(
-      _i83.XmlBlobsInputOutput input) {
-    return _i85.XmlEmptyBlobsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i83.XmlBlobsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i85.XmlEmptyBlobsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i86.XmlListsInputOutput> xmlEmptyLists(
-      _i86.XmlListsInputOutput input) {
-    return _i87.XmlEmptyListsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i86.XmlListsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i87.XmlEmptyListsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i88.XmlMapsInputOutput> xmlEmptyMaps(
-      _i88.XmlMapsInputOutput input) {
-    return _i89.XmlEmptyMapsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i88.XmlMapsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i89.XmlEmptyMapsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i90.XmlEmptyStringsInputOutput> xmlEmptyStrings(
-      _i90.XmlEmptyStringsInputOutput input) {
-    return _i91.XmlEmptyStringsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i90.XmlEmptyStringsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i91.XmlEmptyStringsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example serializes enums as top level properties, in lists, sets, and maps.
-  _i1.Future<_i92.XmlEnumsInputOutput> xmlEnums(
-      _i92.XmlEnumsInputOutput input) {
-    return _i93.XmlEnumsOperation(region: region, baseUri: _baseUri).run(input);
+  _i1.Future<_i92.XmlEnumsInputOutput> xmlEnums(_i92.XmlEnumsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i93.XmlEnumsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This test case serializes XML lists for the following cases for both
@@ -605,40 +648,47 @@ class RestXmlProtocolClient {
   /// 7. Flattened XML lists with @xmlNamespace.
   /// 8. Lists of structures.
   /// 9. Flattened XML list of structures
-  _i1.Future<_i86.XmlListsInputOutput> xmlLists(
-      _i86.XmlListsInputOutput input) {
-    return _i94.XmlListsOperation(region: region, baseUri: _baseUri).run(input);
+  _i1.Future<_i86.XmlListsInputOutput> xmlLists(_i86.XmlListsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i94.XmlListsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests basic map serialization.
-  _i1.Future<_i88.XmlMapsInputOutput> xmlMaps(_i88.XmlMapsInputOutput input) {
-    return _i95.XmlMapsOperation(region: region, baseUri: _baseUri).run(input);
+  _i1.Future<_i88.XmlMapsInputOutput> xmlMaps(_i88.XmlMapsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i95.XmlMapsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i96.XmlMapsXmlNameInputOutput> xmlMapsXmlName(
-      _i96.XmlMapsXmlNameInputOutput input) {
-    return _i97.XmlMapsXmlNameOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i96.XmlMapsXmlNameInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i97.XmlMapsXmlNameOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i98.XmlNamespacesInputOutput> xmlNamespaces(
-      _i98.XmlNamespacesInputOutput input) {
-    return _i99.XmlNamespacesOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i98.XmlNamespacesInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i99.XmlNamespacesOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This tests how timestamps are serialized, including using the
   /// default format of date-time and various @timestampFormat trait
   /// values.
   _i1.Future<_i100.XmlTimestampsInputOutput> xmlTimestamps(
-      _i100.XmlTimestampsInputOutput input) {
-    return _i101.XmlTimestampsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i100.XmlTimestampsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i101.XmlTimestampsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i102.XmlUnionsInputOutput> xmlUnions(
-      _i102.XmlUnionsInputOutput input) {
-    return _i103.XmlUnionsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i102.XmlUnionsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i103.XmlUnionsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 }

@@ -20,7 +20,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestPayloadStructureOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithEmptyStructurePayload',
               documentation:
@@ -56,7 +56,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestPayloadStructureOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonTestPayloadStructure',
               documentation: 'Serializes a payload targeting a structure',
@@ -93,7 +93,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.TestPayloadStructureOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonHttpWithHeadersButNoPayload',
               documentation:

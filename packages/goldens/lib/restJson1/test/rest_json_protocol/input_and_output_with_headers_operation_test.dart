@@ -21,7 +21,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithStringHeaders',
               documentation: 'Tests requests with string header bindings',
@@ -63,7 +63,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
               documentation:
@@ -99,7 +99,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithNumericHeaders',
               documentation: 'Tests requests with numeric header bindings',
@@ -149,7 +149,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithBooleanHeaders',
               documentation: 'Tests requests with boolean header bindings',
@@ -191,7 +191,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithTimestampHeaders',
               documentation: 'Tests requests with timestamp header bindings',
@@ -230,7 +230,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonInputAndOutputWithEnumHeaders',
               documentation: 'Tests requests with enum header bindings',
@@ -267,7 +267,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNaNFloatHeaderInputs',
               documentation: 'Supports handling NaN float header values.',
@@ -301,7 +301,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsInfinityFloatHeaderInputs',
               documentation: 'Supports handling Infinity float header values.',
@@ -335,7 +335,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatHeaderInputs',
               documentation: 'Supports handling -Infinity float header values.',
@@ -369,7 +369,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithStringHeaders',
               documentation: 'Tests responses with string header bindings',
@@ -405,7 +405,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithQuotedStringHeaders',
               documentation:
@@ -435,7 +435,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithNumericHeaders',
               documentation: 'Tests responses with numeric header bindings',
@@ -479,7 +479,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithBooleanHeaders',
               documentation: 'Tests responses with boolean header bindings',
@@ -515,7 +515,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithTimestampHeaders',
               documentation: 'Tests responses with timestamp header bindings',
@@ -548,7 +548,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonInputAndOutputWithEnumHeaders',
               documentation: 'Tests responses with enum header bindings',
@@ -579,7 +579,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNaNFloatHeaderOutputs',
               documentation: 'Supports handling NaN float header values.',
@@ -607,7 +607,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsInfinityFloatHeaderOutputs',
               documentation: 'Supports handling Infinity float header values.',
@@ -635,7 +635,7 @@ void main() {
     () async {
       await _i2.httpResponseTest(
           operation: _i3.InputAndOutputWithHeadersOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpResponseTestCase(
               id: 'RestJsonSupportsNegativeInfinityFloatHeaderOutputs',
               documentation: 'Supports handling -Infinity float header values.',

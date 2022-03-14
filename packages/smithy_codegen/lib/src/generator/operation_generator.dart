@@ -73,8 +73,12 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             if (shape.hasDocs(context)) shape.formattedDocs(context),
           ])
           ..optionalParameters.addAll(shape.constructorParameters(context))
-          ..initializers.addAll(shape.constructorInitializers(context).map(
-                (tuple) => refer(tuple.item1).assign(refer(tuple.item2)).code,
+          ..initializers.addAll(shape
+              .constructorParameters(context)
+              .where((p) => p.toThis == false)
+              .map(
+                (field) =>
+                    refer('_${field.name}').assign(refer(field.name)).code,
               )),
       );
 
@@ -95,7 +99,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     if (isS3 && uri.contains(RegExp('^/{Bucket}'))) {
       yield builder
           .property('path')
-          .assign(refer('s3ClientConfig').property('usePathStyle').conditional(
+          .assign(refer('_s3ClientConfig').property('usePathStyle').conditional(
                 // `raw` because some AWS paths use the '$' char.
                 literalString(uri, raw: true),
 
@@ -121,7 +125,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       yield builder
           .property('hostPrefix')
           .assign(
-            refer('s3ClientConfig').property('usePathStyle').conditional(
+            refer('_s3ClientConfig').property('usePathStyle').conditional(
                   literal(hostPrefix),
                   literalString('{Bucket}.' + (hostPrefix ?? '')),
                 ),
@@ -527,15 +531,15 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             ..type = MethodType.getter
             ..body = Code.scope((allocate) => '''
   var baseUri = _baseUri ?? endpoint.uri;
-  if (s3ClientConfig.useDualStack) {
+  if (_s3ClientConfig.useDualStack) {
     baseUri = baseUri.replace(
       host: baseUri.host.replaceFirst(${allocate(DartTypes.core.regExp)}(r'^s3\\.'), 's3.dualstack.'),
     );
   }
-  if (s3ClientConfig.useAcceleration) {
+  if (_s3ClientConfig.useAcceleration) {
     baseUri = baseUri.replace(
       host: baseUri.host
-        .replaceFirst(${allocate(DartTypes.core.regExp)}('\$region\\\\.'), '')
+        .replaceFirst(${allocate(DartTypes.core.regExp)}('\$_region\\\\.'), '')
         .replaceFirst(${allocate(DartTypes.core.regExp)}(r'^s3\\.'), 's3-accelerate.'),
     );
   }
@@ -566,7 +570,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..name = '_awsEndpoint'
           ..assignment = endpointResolver.property('resolve').call([
             sdkId,
-            refer('region'),
+            refer('_region'),
           ]).code,
       );
 
@@ -590,10 +594,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
             ..name = 'input'))
           ..optionalParameters.addAll([
             Parameter((p) => p
-              ..type = DartTypes.core.uri.boxed
-              ..name = 'baseUri'
-              ..named = true),
-            Parameter((p) => p
               ..type = DartTypes.smithy.httpClient.boxed
               ..name = 'client'
               ..named = true),
@@ -609,7 +609,6 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                     ..body = refer('super').property('run').call([
                       refer('input')
                     ], {
-                      'baseUri': refer('baseUri'),
                       'client': refer('client'),
                       'useProtocol': refer('useProtocol')
                     }).code,
@@ -735,9 +734,9 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final sigV4 = context.service?.getTrait<SigV4Trait>()?.name;
     if (sigV4 != null) {
       yield DartTypes.smithyAws.withSigV4.newInstance([], {
-        'region': refer('region'),
+        'region': refer('_region'),
         'serviceName': literalString(sigV4),
-        'credentialsProvider': refer('credentialsProvider'),
+        'credentialsProvider': refer('_credentialsProvider'),
         if (isOptionalAuth) 'isOptional': literalTrue,
       });
     }

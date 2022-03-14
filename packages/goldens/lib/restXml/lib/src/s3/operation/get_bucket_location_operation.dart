@@ -20,12 +20,15 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
     _i3.BucketLocationConstraint,
     _i4.GetBucketLocationOutput> {
   GetBucketLocationOperation(
-      {Uri? baseUri,
-      required this.region,
-      this.s3ClientConfig = const _i5.S3ClientConfig(),
-      this.credentialsProvider =
+      {required String region,
+      Uri? baseUri,
+      _i5.S3ClientConfig s3ClientConfig = const _i5.S3ClientConfig(),
+      _i6.AWSCredentialsProvider credentialsProvider =
           const _i6.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      : _region = region,
+        _baseUri = baseUri,
+        _s3ClientConfig = s3ClientConfig,
+        _credentialsProvider = credentialsProvider;
 
   @override
   late final List<
@@ -40,32 +43,33 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
         requestInterceptors: [
           const _i1.WithContentLength(),
           _i5.WithSigV4(
-              region: region,
+              region: _region,
               serviceName: 's3',
-              credentialsProvider: credentialsProvider)
+              credentialsProvider: _credentialsProvider)
         ],
         responseInterceptors: [],
         noErrorWrapping: true)
   ];
 
   late final _i5.AWSEndpoint _awsEndpoint =
-      _i8.endpointResolver.resolve(_i8.sdkId, region);
+      _i8.endpointResolver.resolve(_i8.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i5.S3ClientConfig s3ClientConfig;
+  final _i5.S3ClientConfig _s3ClientConfig;
 
-  final _i6.AWSCredentialsProvider credentialsProvider;
+  final _i6.AWSCredentialsProvider _credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.GetBucketLocationRequest input) =>
       _i1.HttpRequest((b) {
         b.method = 'GET';
-        b.path =
-            s3ClientConfig.usePathStyle ? r'/{Bucket}?location' : r'/?location';
-        b.hostPrefix = s3ClientConfig.usePathStyle ? null : '{Bucket}.';
+        b.path = _s3ClientConfig.usePathStyle
+            ? r'/{Bucket}?location'
+            : r'/?location';
+        b.hostPrefix = _s3ClientConfig.usePathStyle ? null : '{Bucket}.';
       });
   @override
   int successCode([_i4.GetBucketLocationOutput? output]) => 200;
@@ -78,15 +82,15 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
   @override
   Uri get baseUri {
     var baseUri = _baseUri ?? endpoint.uri;
-    if (s3ClientConfig.useDualStack) {
+    if (_s3ClientConfig.useDualStack) {
       baseUri = baseUri.replace(
         host: baseUri.host.replaceFirst(RegExp(r'^s3\.'), 's3.dualstack.'),
       );
     }
-    if (s3ClientConfig.useAcceleration) {
+    if (_s3ClientConfig.useAcceleration) {
       baseUri = baseUri.replace(
         host: baseUri.host
-            .replaceFirst(RegExp('$region\\.'), '')
+            .replaceFirst(RegExp('$_region\\.'), '')
             .replaceFirst(RegExp(r'^s3\.'), 's3-accelerate.'),
       );
     }
@@ -98,12 +102,10 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
   @override
   _i10.Future<_i4.GetBucketLocationOutput> run(
       _i2.GetBucketLocationRequest input,
-      {Uri? baseUri,
-      _i1.HttpClient? client,
+      {_i1.HttpClient? client,
       _i1.ShapeId? useProtocol}) {
     return _i10.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 }

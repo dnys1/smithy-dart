@@ -7,17 +7,17 @@ import 'dart:async' as _i1;
 import 'package:rest_json1/src/rest_json_protocol/model/all_query_string_types_input.dart'
     as _i2;
 import 'package:rest_json1/src/rest_json_protocol/model/constant_and_variable_query_string_input.dart'
-    as _i4;
+    as _i5;
 import 'package:rest_json1/src/rest_json_protocol/model/constant_query_string_input.dart'
-    as _i6;
+    as _i7;
 import 'package:rest_json1/src/rest_json_protocol/model/document_type_as_payload_input_output.dart'
-    as _i10;
+    as _i11;
 import 'package:rest_json1/src/rest_json_protocol/model/document_type_input_output.dart'
-    as _i8;
+    as _i9;
 import 'package:rest_json1/src/rest_json_protocol/model/empty_input_and_empty_output_input.dart'
-    as _i13;
+    as _i14;
 import 'package:rest_json1/src/rest_json_protocol/model/empty_input_and_empty_output_output.dart'
-    as _i12;
+    as _i13;
 import 'package:rest_json1/src/rest_json_protocol/model/enum_payload_input.dart'
     as _i24;
 import 'package:rest_json1/src/rest_json_protocol/model/greeting_struct.dart'
@@ -173,19 +173,19 @@ import 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers
 import 'package:rest_json1/src/rest_json_protocol/model/union_input_output.dart'
     as _i66;
 import 'package:rest_json1/src/rest_json_protocol/operation/all_query_string_types_operation.dart'
-    as _i3;
+    as _i4;
 import 'package:rest_json1/src/rest_json_protocol/operation/constant_and_variable_query_string_operation.dart'
-    as _i5;
+    as _i6;
 import 'package:rest_json1/src/rest_json_protocol/operation/constant_query_string_operation.dart'
-    as _i7;
+    as _i8;
 import 'package:rest_json1/src/rest_json_protocol/operation/document_type_as_payload_operation.dart'
-    as _i11;
+    as _i12;
 import 'package:rest_json1/src/rest_json_protocol/operation/document_type_operation.dart'
-    as _i9;
+    as _i10;
 import 'package:rest_json1/src/rest_json_protocol/operation/empty_input_and_empty_output_operation.dart'
-    as _i14;
-import 'package:rest_json1/src/rest_json_protocol/operation/endpoint_operation.dart'
     as _i15;
+import 'package:rest_json1/src/rest_json_protocol/operation/endpoint_operation.dart'
+    as _i16;
 import 'package:rest_json1/src/rest_json_protocol/operation/endpoint_with_host_label_operation.dart'
     as _i18;
 import 'package:rest_json1/src/rest_json_protocol/operation/greeting_with_errors_operation.dart'
@@ -344,78 +344,86 @@ import 'package:rest_json1/src/rest_json_protocol/operation/timestamp_format_hea
     as _i171;
 import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_output_operation.dart'
     as _i172;
-import 'package:smithy/smithy.dart' as _i16;
+import 'package:smithy/smithy.dart' as _i3;
 
 /// A REST JSON service that sends JSON requests and responses.
 class RestJsonProtocolClient {
   /// A REST JSON service that sends JSON requests and responses.
-  const RestJsonProtocolClient({Uri? baseUri, required this.region})
-      : _baseUri = baseUri;
+  const RestJsonProtocolClient({required String region, Uri? baseUri})
+      : _region = region,
+        _baseUri = baseUri;
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
   /// This example uses all query string types.
-  _i1.Future<void> allQueryStringTypes(_i2.AllQueryStringTypesInput input) {
-    return _i3.AllQueryStringTypesOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> allQueryStringTypes(_i2.AllQueryStringTypesInput input,
+      {_i3.HttpClient? client}) {
+    return _i4.AllQueryStringTypesOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example uses fixed query string params and variable query string params.
   /// The fixed query string parameters and variable parameters must both be
   /// serialized (implementations may need to merge them together).
   _i1.Future<void> constantAndVariableQueryString(
-      _i4.ConstantAndVariableQueryStringInput input) {
-    return _i5.ConstantAndVariableQueryStringOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+      _i5.ConstantAndVariableQueryStringInput input,
+      {_i3.HttpClient? client}) {
+    return _i6.ConstantAndVariableQueryStringOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example uses a constant query string parameters and a label.
   /// This simply tests that labels and query string parameters are
   /// compatible. The fixed query string parameter named "hello" should
   /// in no way conflict with the label, `{hello}`.
-  _i1.Future<void> constantQueryString(_i6.ConstantQueryStringInput input) {
-    return _i7.ConstantQueryStringOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> constantQueryString(_i7.ConstantQueryStringInput input,
+      {_i3.HttpClient? client}) {
+    return _i8.ConstantQueryStringOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example serializes a document as part of the payload.
-  _i1.Future<_i8.DocumentTypeInputOutput> documentType(
-      _i8.DocumentTypeInputOutput input) {
-    return _i9.DocumentTypeOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i9.DocumentTypeInputOutput> documentType(
+      _i9.DocumentTypeInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i10.DocumentTypeOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example serializes a document as the entire HTTP payload.
-  _i1.Future<_i10.DocumentTypeAsPayloadInputOutput> documentTypeAsPayload(
-      _i10.DocumentTypeAsPayloadInputOutput input) {
-    return _i11.DocumentTypeAsPayloadOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i11.DocumentTypeAsPayloadInputOutput> documentTypeAsPayload(
+      _i11.DocumentTypeAsPayloadInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i12.DocumentTypeAsPayloadOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has an empty input
   /// and empty output structure that reuses the same shape. While this should
   /// be rare, code generators must support this.
-  _i1.Future<_i12.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
-      _i13.EmptyInputAndEmptyOutputInput input) {
-    return _i14.EmptyInputAndEmptyOutputOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i13.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
+      _i14.EmptyInputAndEmptyOutputInput input,
+      {_i3.HttpClient? client}) {
+    return _i15.EmptyInputAndEmptyOutputOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> endpointOperation() {
-    return _i15.EndpointOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<void> endpointOperation({_i3.HttpClient? client}) {
+    return _i16.EndpointOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
-  _i1.Future<void> endpointWithHostLabelOperation(_i17.HostLabelInput input) {
+  _i1.Future<void> endpointWithHostLabelOperation(_i17.HostLabelInput input,
+      {_i3.HttpClient? client}) {
     return _i18.EndpointWithHostLabelOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This operation has four possible return values:
@@ -428,27 +436,30 @@ class RestJsonProtocolClient {
   /// Implementations must be able to successfully take a response and
   /// properly (de)serialize successful and error responses based on the
   /// the presence of the
-  _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrors() {
-    return _i20.GreetingWithErrorsOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrors(
+      {_i3.HttpClient? client}) {
+    return _i20.GreetingWithErrorsOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
-  _i1.Future<void> hostWithPathOperation() {
-    return _i21.HostWithPathOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<void> hostWithPathOperation({_i3.HttpClient? client}) {
+    return _i21.HostWithPathOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// This example tests httpChecksumRequired trait
   _i1.Future<_i22.HttpChecksumRequiredInputOutput> httpChecksumRequired(
-      _i22.HttpChecksumRequiredInputOutput input) {
-    return _i23.HttpChecksumRequiredOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i22.HttpChecksumRequiredInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i23.HttpChecksumRequiredOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<_i24.EnumPayloadInput> httpEnumPayload(
-      _i24.EnumPayloadInput input) {
-    return _i25.HttpEnumPayloadOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i24.EnumPayloadInput> httpEnumPayload(_i24.EnumPayloadInput input,
+      {_i3.HttpClient? client}) {
+    return _i25.HttpEnumPayloadOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples serializes a blob shape in the payload.
@@ -456,19 +467,21 @@ class RestJsonProtocolClient {
   /// In this example, no JSON document is synthesized because the payload is
   /// not a structure or a union type.
   _i1.Future<_i26.HttpPayloadTraitsInputOutput> httpPayloadTraits(
-      _i26.HttpPayloadTraitsInputOutput input) {
-    return _i27.HttpPayloadTraitsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i26.HttpPayloadTraitsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i27.HttpPayloadTraitsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples uses a `@mediaType` trait on the payload to force a custom
   /// content-type to be serialized.
   _i1.Future<_i28.HttpPayloadTraitsWithMediaTypeInputOutput>
       httpPayloadTraitsWithMediaType(
-          _i28.HttpPayloadTraitsWithMediaTypeInputOutput input) {
+          _i28.HttpPayloadTraitsWithMediaTypeInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i29.HttpPayloadTraitsWithMediaTypeOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples serializes a structure in the payload.
@@ -476,10 +489,11 @@ class RestJsonProtocolClient {
   /// Note that serializing a structure changes the wrapper element name
   /// to match the targeted structure.
   _i1.Future<_i30.HttpPayloadWithStructureInputOutput> httpPayloadWithStructure(
-      _i30.HttpPayloadWithStructureInputOutput input) {
+      _i30.HttpPayloadWithStructureInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i31.HttpPayloadWithStructureOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples adds headers to the input of a request and response by prefix.///
@@ -487,100 +501,111 @@ class RestJsonProtocolClient {
   /// - [httpPrefixHeaders Trait](https://awslabs.github.io/smithy/1.0/spec/http.html#httpprefixheaders-trait)
 
   _i1.Future<_i32.HttpPrefixHeadersOutput> httpPrefixHeaders(
-      _i33.HttpPrefixHeadersInput input) {
-    return _i34.HttpPrefixHeadersOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i33.HttpPrefixHeadersInput input,
+      {_i3.HttpClient? client}) {
+    return _i34.HttpPrefixHeadersOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Clients that perform this test extract all headers from the response.
   _i1.Future<_i35.HttpPrefixHeadersInResponseOutput>
-      httpPrefixHeadersInResponse(_i36.HttpPrefixHeadersInResponseInput input) {
+      httpPrefixHeadersInResponse(_i36.HttpPrefixHeadersInResponseInput input,
+          {_i3.HttpClient? client}) {
     return _i37.HttpPrefixHeadersInResponseOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> httpRequestWithFloatLabels(
-      _i38.HttpRequestWithFloatLabelsInput input) {
+      _i38.HttpRequestWithFloatLabelsInput input,
+      {_i3.HttpClient? client}) {
     return _i39.HttpRequestWithFloatLabelsOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> httpRequestWithGreedyLabelInPath(
-      _i40.HttpRequestWithGreedyLabelInPathInput input) {
+      _i40.HttpRequestWithGreedyLabelInPathInput input,
+      {_i3.HttpClient? client}) {
     return _i41.HttpRequestWithGreedyLabelInPathOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests are serialized when there's no input
   /// payload but there are HTTP labels.
-  _i1.Future<void> httpRequestWithLabels(
-      _i42.HttpRequestWithLabelsInput input) {
+  _i1.Future<void> httpRequestWithLabels(_i42.HttpRequestWithLabelsInput input,
+      {_i3.HttpClient? client}) {
     return _i43.HttpRequestWithLabelsOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests serialize different timestamp formats in the
   /// URI path.
   _i1.Future<void> httpRequestWithLabelsAndTimestampFormat(
-      _i44.HttpRequestWithLabelsAndTimestampFormatInput input) {
+      _i44.HttpRequestWithLabelsAndTimestampFormatInput input,
+      {_i3.HttpClient? client}) {
     return _i45.HttpRequestWithLabelsAndTimestampFormatOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> httpRequestWithRegexLiteral(
-      _i46.HttpRequestWithRegexLiteralInput input) {
+      _i46.HttpRequestWithRegexLiteralInput input,
+      {_i3.HttpClient? client}) {
     return _i47.HttpRequestWithRegexLiteralOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<_i48.HttpResponseCodeOutput> httpResponseCode() {
-    return _i49.HttpResponseCodeOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<_i48.HttpResponseCodeOutput> httpResponseCode(
+      {_i3.HttpClient? client}) {
+    return _i49.HttpResponseCodeOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   _i1.Future<_i50.StringPayloadInput> httpStringPayload(
-      _i50.StringPayloadInput input) {
-    return _i51.HttpStringPayloadOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i50.StringPayloadInput input,
+      {_i3.HttpClient? client}) {
+    return _i51.HttpStringPayloadOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example ensures that query string bound request parameters are
   /// serialized in the body of responses if the structure is used in both
   /// the request and response.
   _i1.Future<_i52.IgnoreQueryParamsInResponseOutput>
-      ignoreQueryParamsInResponse() {
+      ignoreQueryParamsInResponse({_i3.HttpClient? client}) {
     return _i53.IgnoreQueryParamsInResponseOperation(
-            region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// The example tests how requests and responses are serialized when there is
   /// no input or output payload but there are HTTP header bindings.
   _i1.Future<_i54.InputAndOutputWithHeadersIo> inputAndOutputWithHeaders(
-      _i54.InputAndOutputWithHeadersIo input) {
+      _i54.InputAndOutputWithHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i55.InputAndOutputWithHeadersOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Blobs are base64 encoded
   _i1.Future<_i56.JsonBlobsInputOutput> jsonBlobs(
-      _i56.JsonBlobsInputOutput input) {
-    return _i57.JsonBlobsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i56.JsonBlobsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i57.JsonBlobsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example serializes enums as top level properties, in lists, sets, and maps.
   _i1.Future<_i58.JsonEnumsInputOutput> jsonEnums(
-      _i58.JsonEnumsInputOutput input) {
-    return _i59.JsonEnumsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i58.JsonEnumsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i59.JsonEnumsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This test case serializes JSON lists for the following cases for both
@@ -591,319 +616,366 @@ class RestJsonProtocolClient {
   /// 3. JSON lists of lists.
   /// 4. Lists of structures.
   _i1.Future<_i60.JsonListsInputOutput> jsonLists(
-      _i60.JsonListsInputOutput input) {
-    return _i61.JsonListsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i60.JsonListsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i61.JsonListsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests basic map serialization.
-  _i1.Future<_i62.JsonMapsInputOutput> jsonMaps(
-      _i62.JsonMapsInputOutput input) {
-    return _i63.JsonMapsOperation(region: region, baseUri: _baseUri).run(input);
+  _i1.Future<_i62.JsonMapsInputOutput> jsonMaps(_i62.JsonMapsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i63.JsonMapsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This tests how timestamps are serialized, including using the
   /// default format of date-time and various @timestampFormat trait
   /// values.
   _i1.Future<_i64.JsonTimestampsInputOutput> jsonTimestamps(
-      _i64.JsonTimestampsInputOutput input) {
-    return _i65.JsonTimestampsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i64.JsonTimestampsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i65.JsonTimestampsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This operation uses unions for inputs and outputs.
-  _i1.Future<_i66.UnionInputOutput> jsonUnions(_i66.UnionInputOutput input) {
-    return _i67.JsonUnionsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<_i66.UnionInputOutput> jsonUnions(_i66.UnionInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i67.JsonUnionsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<_i68.GreetingStruct> malformedAcceptWithBody() {
+  _i1.Future<_i68.GreetingStruct> malformedAcceptWithBody(
+      {_i3.HttpClient? client}) {
     return _i69.MalformedAcceptWithBodyOperation(
-            region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   _i1.Future<void> malformedAcceptWithGenericString(
-      _i70.MalformedAcceptWithGenericStringInput input) {
+      _i70.MalformedAcceptWithGenericStringInput input,
+      {_i3.HttpClient? client}) {
     return _i71.MalformedAcceptWithGenericStringOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<_i72.MalformedAcceptWithPayloadOutput>
-      malformedAcceptWithPayload() {
+  _i1.Future<_i72.MalformedAcceptWithPayloadOutput> malformedAcceptWithPayload(
+      {_i3.HttpClient? client}) {
     return _i73.MalformedAcceptWithPayloadOperation(
-            region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
-  _i1.Future<void> malformedBlob(_i74.MalformedBlobInput input) {
-    return _i75.MalformedBlobOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedBlob(_i74.MalformedBlobInput input,
+      {_i3.HttpClient? client}) {
+    return _i75.MalformedBlobOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedBoolean(_i76.MalformedBooleanInput input) {
-    return _i77.MalformedBooleanOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedBoolean(_i76.MalformedBooleanInput input,
+      {_i3.HttpClient? client}) {
+    return _i77.MalformedBooleanOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedByte(_i78.MalformedByteInput input) {
-    return _i79.MalformedByteOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedByte(_i78.MalformedByteInput input,
+      {_i3.HttpClient? client}) {
+    return _i79.MalformedByteOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedContentTypeWithBody(_i68.GreetingStruct input) {
+  _i1.Future<void> malformedContentTypeWithBody(_i68.GreetingStruct input,
+      {_i3.HttpClient? client}) {
     return _i80.MalformedContentTypeWithBodyOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedContentTypeWithGenericString(
-      _i81.MalformedContentTypeWithGenericStringInput input) {
+      _i81.MalformedContentTypeWithGenericStringInput input,
+      {_i3.HttpClient? client}) {
     return _i82.MalformedContentTypeWithGenericStringOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedContentTypeWithPayload(
-      _i83.MalformedContentTypeWithPayloadInput input) {
+      _i83.MalformedContentTypeWithPayloadInput input,
+      {_i3.HttpClient? client}) {
     return _i84.MalformedContentTypeWithPayloadOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedContentTypeWithoutBody() {
+  _i1.Future<void> malformedContentTypeWithoutBody({_i3.HttpClient? client}) {
     return _i85.MalformedContentTypeWithoutBodyOperation(
-            region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
-  _i1.Future<void> malformedDouble(_i86.MalformedDoubleInput input) {
-    return _i87.MalformedDoubleOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedDouble(_i86.MalformedDoubleInput input,
+      {_i3.HttpClient? client}) {
+    return _i87.MalformedDoubleOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedFloat(_i88.MalformedFloatInput input) {
-    return _i89.MalformedFloatOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedFloat(_i88.MalformedFloatInput input,
+      {_i3.HttpClient? client}) {
+    return _i89.MalformedFloatOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedInteger(_i90.MalformedIntegerInput input) {
-    return _i91.MalformedIntegerOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedInteger(_i90.MalformedIntegerInput input,
+      {_i3.HttpClient? client}) {
+    return _i91.MalformedIntegerOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedList(_i92.MalformedListInput input) {
-    return _i93.MalformedListOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedList(_i92.MalformedListInput input,
+      {_i3.HttpClient? client}) {
+    return _i93.MalformedListOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedLong(_i94.MalformedLongInput input) {
-    return _i95.MalformedLongOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedLong(_i94.MalformedLongInput input,
+      {_i3.HttpClient? client}) {
+    return _i95.MalformedLongOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedMap(_i96.MalformedMapInput input) {
-    return _i97.MalformedMapOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedMap(_i96.MalformedMapInput input,
+      {_i3.HttpClient? client}) {
+    return _i97.MalformedMapOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedRequestBody(_i98.MalformedRequestBodyInput input) {
-    return _i99.MalformedRequestBodyOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedRequestBody(_i98.MalformedRequestBodyInput input,
+      {_i3.HttpClient? client}) {
+    return _i99.MalformedRequestBodyOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedSet(_i100.MalformedSetInput input) {
-    return _i101.MalformedSetOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedSet(_i100.MalformedSetInput input,
+      {_i3.HttpClient? client}) {
+    return _i101.MalformedSetOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedShort(_i102.MalformedShortInput input) {
-    return _i103.MalformedShortOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedShort(_i102.MalformedShortInput input,
+      {_i3.HttpClient? client}) {
+    return _i103.MalformedShortOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedString(_i104.MalformedStringInput input) {
-    return _i105.MalformedStringOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedString(_i104.MalformedStringInput input,
+      {_i3.HttpClient? client}) {
+    return _i105.MalformedStringOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampBodyDateTime(
-      _i106.MalformedTimestampBodyDateTimeInput input) {
+      _i106.MalformedTimestampBodyDateTimeInput input,
+      {_i3.HttpClient? client}) {
     return _i107.MalformedTimestampBodyDateTimeOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampBodyDefault(
-      _i108.MalformedTimestampBodyDefaultInput input) {
+      _i108.MalformedTimestampBodyDefaultInput input,
+      {_i3.HttpClient? client}) {
     return _i109.MalformedTimestampBodyDefaultOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampBodyHttpDate(
-      _i110.MalformedTimestampBodyHttpDateInput input) {
+      _i110.MalformedTimestampBodyHttpDateInput input,
+      {_i3.HttpClient? client}) {
     return _i111.MalformedTimestampBodyHttpDateOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampHeaderDateTime(
-      _i112.MalformedTimestampHeaderDateTimeInput input) {
+      _i112.MalformedTimestampHeaderDateTimeInput input,
+      {_i3.HttpClient? client}) {
     return _i113.MalformedTimestampHeaderDateTimeOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampHeaderDefault(
-      _i114.MalformedTimestampHeaderDefaultInput input) {
+      _i114.MalformedTimestampHeaderDefaultInput input,
+      {_i3.HttpClient? client}) {
     return _i115.MalformedTimestampHeaderDefaultOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampHeaderEpoch(
-      _i116.MalformedTimestampHeaderEpochInput input) {
+      _i116.MalformedTimestampHeaderEpochInput input,
+      {_i3.HttpClient? client}) {
     return _i117.MalformedTimestampHeaderEpochOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampPathDefault(
-      _i118.MalformedTimestampPathDefaultInput input) {
+      _i118.MalformedTimestampPathDefaultInput input,
+      {_i3.HttpClient? client}) {
     return _i119.MalformedTimestampPathDefaultOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampPathEpoch(
-      _i120.MalformedTimestampPathEpochInput input) {
+      _i120.MalformedTimestampPathEpochInput input,
+      {_i3.HttpClient? client}) {
     return _i121.MalformedTimestampPathEpochOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampPathHttpDate(
-      _i122.MalformedTimestampPathHttpDateInput input) {
+      _i122.MalformedTimestampPathHttpDateInput input,
+      {_i3.HttpClient? client}) {
     return _i123.MalformedTimestampPathHttpDateOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampQueryDefault(
-      _i124.MalformedTimestampQueryDefaultInput input) {
+      _i124.MalformedTimestampQueryDefaultInput input,
+      {_i3.HttpClient? client}) {
     return _i125.MalformedTimestampQueryDefaultOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampQueryEpoch(
-      _i126.MalformedTimestampQueryEpochInput input) {
+      _i126.MalformedTimestampQueryEpochInput input,
+      {_i3.HttpClient? client}) {
     return _i127.MalformedTimestampQueryEpochOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> malformedTimestampQueryHttpDate(
-      _i128.MalformedTimestampQueryHttpDateInput input) {
+      _i128.MalformedTimestampQueryHttpDateInput input,
+      {_i3.HttpClient? client}) {
     return _i129.MalformedTimestampQueryHttpDateOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> malformedUnion(_i130.MalformedUnionInput input) {
-    return _i131.MalformedUnionOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> malformedUnion(_i130.MalformedUnionInput input,
+      {_i3.HttpClient? client}) {
+    return _i131.MalformedUnionOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example ensures that mediaType strings are base64 encoded in headers.
   _i1.Future<_i132.MediaTypeHeaderOutput> mediaTypeHeader(
-      _i133.MediaTypeHeaderInput input) {
-    return _i134.MediaTypeHeaderOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i133.MediaTypeHeaderInput input,
+      {_i3.HttpClient? client}) {
+    return _i134.MediaTypeHeaderOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has no input or output.
   /// While this should be rare, code generators must support this.
-  _i1.Future<void> noInputAndNoOutput() {
-    return _i135.NoInputAndNoOutputOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<void> noInputAndNoOutput({_i3.HttpClient? client}) {
+    return _i135.NoInputAndNoOutputOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// The example tests how requests and responses are serialized when there's
   /// no request or response payload because the operation has no input and the
   /// output is empty. While this should be rare, code generators must support
   /// this.
-  _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutput() {
-    return _i137.NoInputAndOutputOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutput(
+      {_i3.HttpClient? client}) {
+    return _i137.NoInputAndOutputOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 
   /// Null and empty headers are not sent over the wire.
   _i1.Future<_i138.NullAndEmptyHeadersIo> nullAndEmptyHeadersClient(
-      _i138.NullAndEmptyHeadersIo input) {
+      _i138.NullAndEmptyHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i139.NullAndEmptyHeadersClientOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Null and empty headers are not sent over the wire.
   _i1.Future<_i138.NullAndEmptyHeadersIo> nullAndEmptyHeadersServer(
-      _i138.NullAndEmptyHeadersIo input) {
+      _i138.NullAndEmptyHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i140.NullAndEmptyHeadersServerOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Omits null, but serializes empty string value.
   _i1.Future<void> omitsNullSerializesEmptyString(
-      _i141.OmitsNullSerializesEmptyStringInput input) {
+      _i141.OmitsNullSerializesEmptyStringInput input,
+      {_i3.HttpClient? client}) {
     return _i142.OmitsNullSerializesEmptyStringOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This operation defines a union with a Unit member.
   _i1.Future<_i143.PostPlayerActionOutput> postPlayerAction(
-      _i144.PostPlayerActionInput input) {
-    return _i145.PostPlayerActionOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i144.PostPlayerActionInput input,
+      {_i3.HttpClient? client}) {
+    return _i145.PostPlayerActionOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Automatically adds idempotency tokens.
   _i1.Future<void> queryIdempotencyTokenAutoFill(
-      _i146.QueryIdempotencyTokenAutoFillInput input) {
+      _i146.QueryIdempotencyTokenAutoFillInput input,
+      {_i3.HttpClient? client}) {
     return _i147.QueryIdempotencyTokenAutoFillOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<void> queryParamsAsStringListMap(
-      _i148.QueryParamsAsStringListMapInput input) {
+      _i148.QueryParamsAsStringListMapInput input,
+      {_i3.HttpClient? client}) {
     return _i149.QueryParamsAsStringListMapOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
-  _i1.Future<void> queryPrecedence(_i150.QueryPrecedenceInput input) {
-    return _i151.QueryPrecedenceOperation(region: region, baseUri: _baseUri)
-        .run(input);
+  _i1.Future<void> queryPrecedence(_i150.QueryPrecedenceInput input,
+      {_i3.HttpClient? client}) {
+    return _i151.QueryPrecedenceOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// Recursive shapes
   _i1.Future<_i152.RecursiveShapesInputOutput> recursiveShapes(
-      _i152.RecursiveShapesInputOutput input) {
-    return _i153.RecursiveShapesOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i152.RecursiveShapesInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i153.RecursiveShapesOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   _i1.Future<_i154.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
-      _i154.SimpleScalarPropertiesInputOutput input) {
+      _i154.SimpleScalarPropertiesInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i155.SimpleScalarPropertiesOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples serializes a streaming blob shape in the request body.
@@ -911,9 +983,10 @@ class RestJsonProtocolClient {
   /// In this example, no JSON document is synthesized because the payload is
   /// not a structure or a union type.
   _i1.Future<_i156.StreamingTraitsInputOutput> streamingTraits(
-      _i156.StreamingTraitsInputOutput input) {
-    return _i157.StreamingTraitsOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i156.StreamingTraitsInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i157.StreamingTraitsOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples serializes a streaming blob shape with a required content
@@ -923,10 +996,11 @@ class RestJsonProtocolClient {
   /// not a structure or a union type.
   _i1.Future<_i158.StreamingTraitsRequireLengthInputOutput>
       streamingTraitsRequireLength(
-          _i158.StreamingTraitsRequireLengthInputOutput input) {
+          _i158.StreamingTraitsRequireLengthInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i159.StreamingTraitsRequireLengthOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This examples serializes a streaming media-typed blob shape in the request body.
@@ -935,10 +1009,11 @@ class RestJsonProtocolClient {
   /// content-type to be serialized.
   _i1.Future<_i160.StreamingTraitsWithMediaTypeInputOutput>
       streamingTraitsWithMediaType(
-          _i160.StreamingTraitsWithMediaTypeInputOutput input) {
+          _i160.StreamingTraitsWithMediaTypeInputOutput input,
+          {_i3.HttpClient? client}) {
     return _i161.StreamingTraitsWithMediaTypeOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example operation serializes a structure in the HTTP body.
@@ -947,9 +1022,10 @@ class RestJsonProtocolClient {
   /// used in all requests and that an "empty" body is
   /// an empty JSON document ({}).
   _i1.Future<_i162.TestBodyStructureInputOutput> testBodyStructure(
-      _i162.TestBodyStructureInputOutput input) {
-    return _i163.TestBodyStructureOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i162.TestBodyStructureInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i163.TestBodyStructureOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example operation serializes a request without an HTTP body.
@@ -958,9 +1034,10 @@ class RestJsonProtocolClient {
   /// (Content-Length, Content-Type) to operations that semantically
   /// cannot produce an HTTP body.
   _i1.Future<_i164.TestNoPayloadInputOutput> testNoPayload(
-      _i164.TestNoPayloadInputOutput input) {
-    return _i165.TestNoPayloadOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i164.TestNoPayloadInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i165.TestNoPayloadOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example operation serializes a payload targeting a blob.
@@ -971,9 +1048,10 @@ class RestJsonProtocolClient {
   /// is used, and that we are not treating an empty body as an
   /// empty JSON document.
   _i1.Future<_i166.TestPayloadBlobInputOutput> testPayloadBlob(
-      _i166.TestPayloadBlobInputOutput input) {
-    return _i167.TestPayloadBlobOperation(region: region, baseUri: _baseUri)
-        .run(input);
+      _i166.TestPayloadBlobInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i167.TestPayloadBlobOperation(region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example operation serializes a payload targeting a structure.
@@ -981,23 +1059,25 @@ class RestJsonProtocolClient {
   /// This enforces the same requirements as TestBodyStructure
   /// but with the body specified by the @httpPayload trait.
   _i1.Future<_i168.TestPayloadStructureInputOutput> testPayloadStructure(
-      _i168.TestPayloadStructureInputOutput input) {
+      _i168.TestPayloadStructureInputOutput input,
+      {_i3.HttpClient? client}) {
     return _i169.TestPayloadStructureOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This example tests how timestamp request and response headers are serialized.
   _i1.Future<_i170.TimestampFormatHeadersIo> timestampFormatHeaders(
-      _i170.TimestampFormatHeadersIo input) {
+      _i170.TimestampFormatHeadersIo input,
+      {_i3.HttpClient? client}) {
     return _i171.TimestampFormatHeadersOperation(
-            region: region, baseUri: _baseUri)
-        .run(input);
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
   }
 
   /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
-  _i1.Future<void> unitInputAndOutput() {
-    return _i172.UnitInputAndOutputOperation(region: region, baseUri: _baseUri)
-        .run(const _i16.Unit());
+  _i1.Future<void> unitInputAndOutput({_i3.HttpClient? client}) {
+    return _i172.UnitInputAndOutputOperation(region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
   }
 }

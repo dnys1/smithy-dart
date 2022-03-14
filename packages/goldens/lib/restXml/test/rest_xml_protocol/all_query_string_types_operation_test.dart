@@ -21,7 +21,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.AllQueryStringTypesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'AllQueryStringTypes',
               documentation:
@@ -110,7 +110,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.AllQueryStringTypesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlQueryStringMap',
               documentation: 'Handles query string maps',
@@ -152,7 +152,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.AllQueryStringTypesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlSupportsNaNFloatQueryValues',
               documentation: 'Supports handling NaN float query values.',
@@ -186,7 +186,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.AllQueryStringTypesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlSupportsInfinityFloatQueryValues',
               documentation: 'Supports handling Infinity float query values.',
@@ -220,7 +220,7 @@ void main() {
     () async {
       await _i2.httpRequestTest(
           operation: _i3.AllQueryStringTypesOperation(
-              baseUri: Uri.parse('https://example.com'), region: 'us-east-1'),
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
           testCase: const _i2.HttpRequestTestCase(
               id: 'RestXmlSupportsNegativeInfinityFloatQueryValues',
               documentation: 'Supports handling -Infinity float query values.',

@@ -32,11 +32,13 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
     int,
     _i4.BuiltList<_i5.RestApi>> {
   GetRestApisOperation(
-      {Uri? baseUri,
-      required this.region,
-      this.credentialsProvider =
+      {required String region,
+      Uri? baseUri,
+      _i6.AWSCredentialsProvider credentialsProvider =
           const _i6.AWSCredentialsProvider.dartEnvironment()})
-      : _baseUri = baseUri;
+      : _region = region,
+        _baseUri = baseUri,
+        _credentialsProvider = credentialsProvider;
 
   @override
   late final List<
@@ -49,22 +51,22 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
           const _i1.WithNoHeader('Content-Length'),
           const _i1.WithNoHeader('Content-Type'),
           _i7.WithSigV4(
-              region: region,
+              region: _region,
               serviceName: 'apigateway',
-              credentialsProvider: credentialsProvider),
+              credentialsProvider: _credentialsProvider),
           const _i1.WithHeader('Accept', 'application/json')
         ],
         responseInterceptors: [])
   ];
 
   late final _i7.AWSEndpoint _awsEndpoint =
-      _i9.endpointResolver.resolve(_i9.sdkId, region);
+      _i9.endpointResolver.resolve(_i9.sdkId, _region);
 
-  final String region;
+  final String _region;
 
   final Uri? _baseUri;
 
-  final _i6.AWSCredentialsProvider credentialsProvider;
+  final _i6.AWSCredentialsProvider _credentialsProvider;
 
   @override
   _i1.HttpRequest buildRequest(_i2.GetRestApisRequest input) =>
@@ -117,10 +119,9 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
   _i14.Future<_i3.RestApis> run(_i2.GetRestApisRequest input,
-      {Uri? baseUri, _i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i14.runZoned(
-        () => super.run(input,
-            baseUri: baseUri, client: client, useProtocol: useProtocol),
+        () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: _awsEndpoint.credentialScope?.zoneValues);
   }
 

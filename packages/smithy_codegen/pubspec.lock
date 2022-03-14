@@ -112,7 +112,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.7"
+    version: "2.1.8"
   build_runner_core:
     dependency: transitive
     description:
@@ -494,24 +494,24 @@ packages:
   smithy:
     dependency: "direct main"
     description:
-      path: "../smithy"
-      relative: true
-    source: path
-    version: "0.1.2"
+      name: smithy
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.2.1"
   smithy_aws:
     dependency: "direct main"
     description:
-      path: "../smithy_aws"
-      relative: true
-    source: path
-    version: "0.1.1"
+      name: smithy_aws
+      url: "https://pub.dillonnys.com"
+    source: hosted
+    version: "0.2.0"
   smithy_test:
     dependency: "direct dev"
     description:
       path: "../smithy_test"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.2.0"
   source_gen:
     dependency: transitive
     description:

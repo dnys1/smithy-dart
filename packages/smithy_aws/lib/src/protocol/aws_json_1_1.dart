@@ -1,6 +1,6 @@
 import 'package:built_value/serializer.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
-import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/smithy_aws.dart';
 
 class AwsJson1_1Protocol<InputPayload, Input, OutputPayload, Output>

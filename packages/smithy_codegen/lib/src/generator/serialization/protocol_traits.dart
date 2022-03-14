@@ -2,7 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 
 part 'protocol_traits.g.dart';
 

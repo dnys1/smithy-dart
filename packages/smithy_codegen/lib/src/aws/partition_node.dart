@@ -1,5 +1,5 @@
+import 'package:aws_common/aws_common.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:smithy/smithy.dart';
 import 'package:smithy_aws/smithy_aws.dart';
 
 part 'partition_node.g.dart';

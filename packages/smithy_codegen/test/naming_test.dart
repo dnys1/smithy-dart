@@ -1,4 +1,4 @@
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/src/generator/enum_generator.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';

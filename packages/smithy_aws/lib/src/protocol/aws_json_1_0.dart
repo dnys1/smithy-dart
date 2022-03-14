@@ -1,6 +1,6 @@
 import 'package:built_value/serializer.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
-import 'package:smithy_ast/smithy_ast.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 import 'package:smithy_aws/src/protocol/aws_json_protocol.dart';
 

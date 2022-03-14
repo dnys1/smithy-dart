@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:built_value/serializer.dart';
 import 'package:http/http.dart';
-import 'package:smithy_ast/smithy_ast.dart';
+import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_test/src/xml/equatable.dart';
 import 'package:test/test.dart';

@@ -711,12 +711,20 @@ class _SmithyAws {
   Reference get awsJson1_1Protocol =>
       const Reference('AwsJson1_1Protocol', _url);
 
+  /// Creates a [smithy_aws.AWSSignatureVersion] refererence.
+  Reference get awsSignatureVersion =>
+      const Reference('AWSSignatureVersion', _url);
+
   /// Creates a [smithy_aws.CredentialScope] refererence.
   Reference get credentialScope => const Reference('CredentialScope', _url);
 
   /// Creates a [smithy_aws.EndpointDefinition] refererence.
   Reference get endpointDefinition =>
       const Reference('EndpointDefinition', _url);
+
+  /// Creates a [smithy_aws.EndpointDefinitionVariant] refererence.
+  Reference get endpointDefinitionVariant =>
+      const Reference('EndpointDefinitionVariant', _url);
 
   /// Creates a [smithy_aws.Partition] refererence.
   Reference get partition => const Reference('Partition', _url);

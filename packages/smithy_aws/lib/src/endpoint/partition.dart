@@ -1,3 +1,4 @@
+import 'package:aws_common/aws_common.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_aws/src/endpoint/aws_endpoint.dart';
@@ -6,7 +7,7 @@ import 'package:smithy_aws/src/endpoint/credential_scope.dart';
 part 'partition.g.dart';
 
 const _defaultProtocol = 'https';
-const _defaultSigner = 'v4';
+const _defaultSigner = AWSSignatureVersion.v4;
 const _protocolPriority = ['https', 'http'];
 
 AWSEndpoint resolveEndpoint(List<Partition> partitions, String region) {
@@ -18,16 +19,31 @@ AWSEndpoint resolveEndpoint(List<Partition> partitions, String region) {
       .resolveEndpoint(region);
 }
 
+/// Acceptable signature versions
+enum AWSSignatureVersion {
+  v2,
+  v4,
+  s3,
+  s3v4,
+  v3,
+  v3https,
+}
+
+/// {@template smithy_aws.endpoint_definition}
 /// A description of a single service endpoint.
+/// {@endtemplate}
 @JsonSerializable()
-class EndpointDefinition {
+class EndpointDefinition with AWSSerializable {
+  /// {@macro smithy_aws.endpoint_definition}
   const EndpointDefinition({
     this.hostname,
     this.protocols = const [],
     this.credentialScope,
     this.signatureVersions = const [],
+    this.variants = const [],
   });
 
+  /// {@macro smithy_aws.endpoint_definition}
   factory EndpointDefinition.fromJson(Map<String, Object?> json) =>
       _$EndpointDefinitionFromJson(json);
 
@@ -43,15 +59,18 @@ class EndpointDefinition {
   /// A list of supported protocols for the endpoint (e.g. "https", "http", etc)
   final List<String> protocols;
 
-  /// A custom signing constraint for the endpoint
+  /// Signature version 4 credential scope information
   final CredentialScope? credentialScope;
 
   /// A list of allowable signature versions for the endpoint (e.g. "v4", "v2",
   /// "v3", "s3v3", etc)
-  final List<String> signatureVersions;
+  final List<AWSSignatureVersion> signatureVersions;
+
+  /// Variants of the endpoint configuration, e.g. for FIPS or DualStack.
+  final List<EndpointDefinitionVariant> variants;
 
   AWSEndpoint resolve(String region, EndpointDefinition defaults) {
-    final merged = merge(this, defaults);
+    final merged = withDefaults(defaults);
     ArgumentError.checkNotNull(merged.hostname, 'hostname');
 
     final hostname = merged.hostname!.replaceAll('{region}', region);
@@ -66,7 +85,7 @@ class EndpointDefinition {
       });
     final protocol = sortedProtocols.first;
     final signingName = merged.credentialScope?.service;
-    final signingRegion = merged.credentialScope?.region ?? region;
+    final signingRegion = merged.credentialScope?.region;
 
     final uri = Uri(scheme: protocol, host: hostname);
     return AWSEndpoint(
@@ -78,27 +97,27 @@ class EndpointDefinition {
     );
   }
 
+  @override
   Map<String, Object?> toJson() => _$EndpointDefinitionToJson(this);
 
-  static EndpointDefinition merge(
-    EndpointDefinition into,
-    EndpointDefinition from,
-  ) {
-    final hostname = into.hostname ?? from.hostname;
+  /// Applies [defaults] to this endpoint definition.
+  EndpointDefinition withDefaults(EndpointDefinition defaults) {
+    final hostname = this.hostname ?? defaults.hostname;
     final protocols = {
-      ...into.protocols,
-      ...from.protocols,
+      ...this.protocols,
+      ...defaults.protocols,
     }.toList();
     if (protocols.isEmpty) {
       protocols.add(_defaultProtocol);
     }
-    final region = into.credentialScope?.region ?? from.credentialScope?.region;
+    final region =
+        this.credentialScope?.region ?? defaults.credentialScope?.region;
     final service =
-        into.credentialScope?.service ?? from.credentialScope?.service;
+        this.credentialScope?.service ?? defaults.credentialScope?.service;
     final credentialScope = CredentialScope(region: region, service: service);
     final signatureVersions = {
-      ...into.signatureVersions,
-      ...from.signatureVersions,
+      ...this.signatureVersions,
+      ...defaults.signatureVersions,
     }.toList();
     if (signatureVersions.isEmpty) {
       signatureVersions.add(_defaultSigner);
@@ -112,6 +131,29 @@ class EndpointDefinition {
   }
 }
 
+@JsonSerializable()
+class EndpointDefinitionVariant
+    with AWSEquatable<EndpointDefinitionVariant>, AWSSerializable {
+  const EndpointDefinitionVariant({
+    this.dnsSuffix,
+    this.hostname,
+    required this.tags,
+  });
+
+  factory EndpointDefinitionVariant.fromJson(Map<String, Object?> json) =>
+      _$EndpointDefinitionVariantFromJson(json);
+
+  final String? dnsSuffix;
+  final String? hostname;
+  final List<String> tags;
+
+  @override
+  List<Object?> get props => [dnsSuffix, hostname, tags];
+
+  @override
+  Map<String, Object?> toJson() => _$EndpointDefinitionVariantToJson(this);
+}
+
 /// A partition describes logical slice(s) of the AWS fabric.
 class Partition implements Comparable<Partition> {
   const Partition({
@@ -120,6 +162,7 @@ class Partition implements Comparable<Partition> {
     this.partitionEndpoint,
     required this.isRegionalized,
     required this.defaults,
+    required this.regions,
     required this.endpoints,
   });
 
@@ -142,19 +185,24 @@ class Partition implements Comparable<Partition> {
   /// specified may be superseded by an entry in [endpoints].
   final EndpointDefinition defaults;
 
+  /// Supported regions for the partition.
+  final Set<String> regions;
+
   /// Map of endpoint names to their definitions.
   final Map<String, EndpointDefinition> endpoints;
 
   /// Tests if this partition is able to resolve an endpoint for the given
   /// region.
   bool canResolveEndpoint(String region) =>
-      endpoints.containsKey(region) || regionRegex.hasMatch(region);
+      endpoints.containsKey(region) ||
+      regions.contains(region) ||
+      regionRegex.hasMatch(region);
 
+  /// Resolves the endpoint for a [region].
   AWSEndpoint resolveEndpoint(String region) {
     final resolvedRegion = partitionEndpoint ?? region;
-    final endpointDefinition = endpoints[resolvedRegion] ??
-        (!isRegionalized ? endpoints[partitionEndpoint] : null) ??
-        const EndpointDefinition();
+    final endpointDefinition =
+        endpoints[resolvedRegion] ?? const EndpointDefinition();
     return endpointDefinition.resolve(region, defaults);
   }
 

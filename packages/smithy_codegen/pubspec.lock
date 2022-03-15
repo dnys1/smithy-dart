@@ -497,14 +497,14 @@ packages:
       name: smithy
       url: "https://pub.dillonnys.com"
     source: hosted
-    version: "0.2.1"
+    version: "0.2.2"
   smithy_aws:
     dependency: "direct main"
     description:
       name: smithy_aws
       url: "https://pub.dillonnys.com"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   smithy_test:
     dependency: "direct dev"
     description:

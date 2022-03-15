@@ -33,8 +33,9 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
         if (definition.protocols.isNotEmpty)
           'protocols': literalList(definition.protocols.map(literalString)),
         if (definition.signatureVersions.isNotEmpty)
-          'signatureVersions': literalList(definition.signatureVersions
-              .map((version) => literalString(version.name))),
+          'signatureVersions': literalList(definition.signatureVersions.map(
+              (version) => DartTypes.smithyAws.awsSignatureVersion
+                  .property(version.name))),
         if (definition.credentialScope != null)
           'credentialScope':
               DartTypes.smithyAws.credentialScope.constInstance([], {
@@ -43,6 +44,20 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
             if (definition.credentialScope?.service != null)
               'service': literal(definition.credentialScope?.service),
           }),
+        'variants': literalConstList([
+          for (final variant in definition.variants)
+            _buildEndpointDefinitionVariant(variant),
+        ]),
+      });
+
+  Expression _buildEndpointDefinitionVariant(
+          EndpointDefinitionVariant variant) =>
+      DartTypes.smithyAws.endpointDefinitionVariant.constInstance([], {
+        if (variant.dnsSuffix != null)
+          'dnsSuffix': literalString(variant.dnsSuffix!),
+        if (variant.hostname != null)
+          'hostname': literalString(variant.hostname!),
+        'tags': literalConstList(variant.tags.map(literalString).toList()),
       });
 
   Expression _buildPartition(Partition partition) {
@@ -56,10 +71,13 @@ class EndpointResolverGenerator extends ShapeGenerator<ServiceShape, Library?> {
           : literalString(partition.partitionEndpoint!),
       'isRegionalized': literalBool(partition.isRegionalized),
       'defaults': _buildEndpointDefinition(partition.defaults),
+      'regions': literalConstSet({
+        for (final region in partition.regions) literalString(region),
+      }),
       'endpoints': literalConstMap({
         for (final entry in partition.endpoints.entries)
           literalString(entry.key): _buildEndpointDefinition(entry.value),
-      })
+      }),
     });
   }
 

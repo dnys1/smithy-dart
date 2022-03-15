@@ -18,7 +18,7 @@ EndpointDefinition _$EndpointDefinitionFromJson(Map<String, dynamic> json) =>
           : CredentialScope.fromJson(
               json['credentialScope'] as Map<String, dynamic>),
       signatureVersions: (json['signatureVersions'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SignatureVersionEnumMap, e))
+              ?.map((e) => $enumDecode(_$AWSSignatureVersionEnumMap, e))
               .toList() ??
           const [],
       variants: (json['variants'] as List<dynamic>?)
@@ -34,18 +34,18 @@ Map<String, dynamic> _$EndpointDefinitionToJson(EndpointDefinition instance) =>
       'protocols': instance.protocols,
       'credentialScope': instance.credentialScope,
       'signatureVersions': instance.signatureVersions
-          .map((e) => _$SignatureVersionEnumMap[e])
+          .map((e) => _$AWSSignatureVersionEnumMap[e])
           .toList(),
       'variants': instance.variants,
     };
 
-const _$SignatureVersionEnumMap = {
-  SignatureVersion.v2: 'v2',
-  SignatureVersion.v4: 'v4',
-  SignatureVersion.s3: 's3',
-  SignatureVersion.s3v4: 's3v4',
-  SignatureVersion.v3: 'v3',
-  SignatureVersion.v3https: 'v3https',
+const _$AWSSignatureVersionEnumMap = {
+  AWSSignatureVersion.v2: 'v2',
+  AWSSignatureVersion.v4: 'v4',
+  AWSSignatureVersion.s3: 's3',
+  AWSSignatureVersion.s3v4: 's3v4',
+  AWSSignatureVersion.v3: 'v3',
+  AWSSignatureVersion.v3https: 'v3https',
 };
 
 EndpointDefinitionVariant _$EndpointDefinitionVariantFromJson(

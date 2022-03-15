@@ -7,7 +7,7 @@ import 'package:smithy_aws/src/endpoint/credential_scope.dart';
 part 'partition.g.dart';
 
 const _defaultProtocol = 'https';
-const _defaultSigner = SignatureVersion.v4;
+const _defaultSigner = AWSSignatureVersion.v4;
 const _protocolPriority = ['https', 'http'];
 
 AWSEndpoint resolveEndpoint(List<Partition> partitions, String region) {
@@ -20,7 +20,7 @@ AWSEndpoint resolveEndpoint(List<Partition> partitions, String region) {
 }
 
 /// Acceptable signature versions
-enum SignatureVersion {
+enum AWSSignatureVersion {
   v2,
   v4,
   s3,
@@ -64,7 +64,7 @@ class EndpointDefinition with AWSSerializable {
 
   /// A list of allowable signature versions for the endpoint (e.g. "v4", "v2",
   /// "v3", "s3v3", etc)
-  final List<SignatureVersion> signatureVersions;
+  final List<AWSSignatureVersion> signatureVersions;
 
   /// Variants of the endpoint configuration, e.g. for FIPS or DualStack.
   final List<EndpointDefinitionVariant> variants;

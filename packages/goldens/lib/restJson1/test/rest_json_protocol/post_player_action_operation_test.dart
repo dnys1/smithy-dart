@@ -107,9 +107,11 @@ class _PostPlayerActionInputRestJson1Serializer
       final value = iterator.current;
       switch (key) {
         case 'action':
-          result.action = (serializers.deserialize(value!,
-                  specifiedType: const FullType(_i6.PlayerAction))
-              as _i6.PlayerAction);
+          if (value != null) {
+            result.action = (serializers.deserialize(value,
+                    specifiedType: const FullType(_i6.PlayerAction))
+                as _i6.PlayerAction);
+          }
           break;
       }
     }

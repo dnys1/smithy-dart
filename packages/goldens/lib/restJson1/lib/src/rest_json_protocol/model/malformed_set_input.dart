@@ -2,6 +2,8 @@
 
 library rest_json1.rest_json_protocol.model.malformed_set_input;
 
+import 'dart:typed_data' as _i4;
+
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
@@ -24,14 +26,16 @@ abstract class MalformedSetInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedSetInputBuilder b) {}
+  _i3.BuiltSet<_i4.Uint8List>? get blobSet;
   _i3.BuiltSet<String>? get set;
   @override
   MalformedSetInput getPayload() => this;
   @override
-  List<Object?> get props => [set];
+  List<Object?> get props => [blobSet, set];
   @override
   String toString() {
     final helper = newBuiltValueToStringHelper('MalformedSetInput');
+    helper.add('blobSet', blobSet);
     helper.add('set', set);
     return helper.toString();
   }
@@ -57,6 +61,14 @@ class _MalformedSetInputRestJson1Serializer
       iterator.moveNext();
       final value = iterator.current;
       switch (key) {
+        case 'blobSet':
+          if (value != null) {
+            result.blobSet.replace((serializers.deserialize(value,
+                    specifiedType:
+                        const FullType(_i3.BuiltSet, [FullType(_i4.Uint8List)]))
+                as _i3.BuiltSet<_i4.Uint8List>));
+          }
+          break;
         case 'set':
           if (value != null) {
             result.set.replace((serializers.deserialize(value,
@@ -76,6 +88,13 @@ class _MalformedSetInputRestJson1Serializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as MalformedSetInput);
     final result = <Object?>[];
+    if (payload.blobSet != null) {
+      result
+        ..add('blobSet')
+        ..add(serializers.serialize(payload.blobSet!,
+            specifiedType:
+                const FullType(_i3.BuiltSet, [FullType(_i4.Uint8List)])));
+    }
     if (payload.set != null) {
       result
         ..add('set')

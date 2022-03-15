@@ -28,7 +28,7 @@ abstract class PostPlayerActionInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(PostPlayerActionInputBuilder b) {}
-  _i3.PlayerAction get action;
+  _i3.PlayerAction? get action;
   @override
   PostPlayerActionInput getPayload() => this;
   @override
@@ -64,9 +64,11 @@ class _PostPlayerActionInputRestJson1Serializer
       final value = iterator.current;
       switch (key) {
         case 'action':
-          result.action = (serializers.deserialize(value!,
-                  specifiedType: const FullType(_i3.PlayerAction))
-              as _i3.PlayerAction);
+          if (value != null) {
+            result.action = (serializers.deserialize(value,
+                    specifiedType: const FullType(_i3.PlayerAction))
+                as _i3.PlayerAction);
+          }
           break;
       }
     }
@@ -78,11 +80,13 @@ class _PostPlayerActionInputRestJson1Serializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as PostPlayerActionInput);
-    final result = <Object?>[
-      'action',
-      serializers.serialize(payload.action,
-          specifiedType: const FullType(_i3.PlayerAction))
-    ];
+    final result = <Object?>[];
+    if (payload.action != null) {
+      result
+        ..add('action')
+        ..add(serializers.serialize(payload.action!,
+            specifiedType: const FullType(_i3.PlayerAction)));
+    }
     return result;
   }
 }

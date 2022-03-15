@@ -23,11 +23,21 @@ late final Map<String, PartitionNode> endpoints = Map.fromEntries(
   }),
 );
 
+String? skipReason(TestCase testCase) {
+  if (testCase.dualStack) {
+    return 'DualStack is not supported';
+  }
+  if (testCase.fips) {
+    return 'FIPS is not supported';
+  }
+  return null;
+}
+
 void main() {
   group('Endpoints', () {
     for (var i = 0; i < testCases.length; i++) {
+      final testCase = testCases[i];
       test('Test Case $i', () {
-        final testCase = testCases[i];
         final partitions =
             endpoints.values.map((node) => node[testCase.service]).toList();
         final endpointResolver = AWSEndpointResolver(partitions);
@@ -39,7 +49,7 @@ void main() {
               .host,
           equals(testCase.endpoint),
         );
-      });
+      }, skip: skipReason(testCase));
     }
 
     // Error cases

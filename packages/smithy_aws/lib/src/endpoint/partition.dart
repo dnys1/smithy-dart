@@ -201,10 +201,8 @@ class Partition implements Comparable<Partition> {
   /// Resolves the endpoint for a [region].
   AWSEndpoint resolveEndpoint(String region) {
     final resolvedRegion = partitionEndpoint ?? region;
-    final endpointDefinition = endpoints[resolvedRegion];
-    if (endpointDefinition == null) {
-      throw ArgumentError('No endpoint found for region: $resolvedRegion');
-    }
+    final endpointDefinition =
+        endpoints[resolvedRegion] ?? const EndpointDefinition();
     return endpointDefinition.resolve(region, defaults);
   }
 

@@ -54,30 +54,30 @@ void main() {
 
     // Error cases
     test('Warning: Deprecated Endpoint', () {
-      const testCase = TestCase(
+      const _ = TestCase(
         service: 'multi-variant-service',
         region: 'af-south-1',
         fips: false,
         dualStack: false,
       );
-    });
+    }, skip: 'No logging enabled');
 
     test('Error: FIPS not supported', () {
-      const testCase = TestCase(
+      const _ = TestCase(
         service: 'some-service',
         region: 'us-iso-east-1',
         fips: true,
         dualStack: false,
       );
-    });
+    }, skip: 'FIPS not supported');
 
     test('Error: DualStack not supported', () {
-      const testCase = TestCase(
+      const _ = TestCase(
         service: 'some-service',
         region: 'us-iso-east-1',
         fips: false,
         dualStack: true,
       );
-    });
+    }, skip: 'DualStack not supported');
   });
 }

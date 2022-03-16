@@ -297,7 +297,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     if (shape.isError) {
       yield Method(
         (m) => m
-          ..annotations.add(DartTypes.core.override)
+          ..annotations.addAll([
+            if (!isPayload) DartTypes.core.override,
+          ])
           ..returns = DartTypes.smithy.shapeId
           ..type = MethodType.getter
           ..name = 'shapeId'

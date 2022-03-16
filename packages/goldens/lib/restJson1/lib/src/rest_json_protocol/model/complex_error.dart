@@ -85,7 +85,6 @@ abstract class ComplexErrorPayload
   static void _init(ComplexErrorPayloadBuilder b) {}
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
-  @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
       namespace: 'aws.protocoltests.restjson', shape: 'ComplexError');
   @override

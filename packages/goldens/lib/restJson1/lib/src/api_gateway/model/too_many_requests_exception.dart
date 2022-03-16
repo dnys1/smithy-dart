@@ -78,7 +78,6 @@ abstract class TooManyRequestsExceptionPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TooManyRequestsExceptionPayloadBuilder b) {}
   String? get message;
-  @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
       namespace: 'com.amazonaws.apigateway', shape: 'TooManyRequestsException');
   @override

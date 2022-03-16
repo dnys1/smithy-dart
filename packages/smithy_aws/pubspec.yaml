@@ -43,3 +43,4 @@ dev_dependencies:
   smithy_codegen:
     path: ../smithy_codegen
   test: ^1.16.0
+  yaml: ^3.1.0

@@ -711,6 +711,9 @@ class _SmithyAws {
   Reference get awsJson1_1Protocol =>
       const Reference('AwsJson1_1Protocol', _url);
 
+  /// Creates a [smithy_aws.AWSRetryer] refererence.
+  Reference get awsRetryer => const Reference('AWSRetryer', _url);
+
   /// Creates a [smithy_aws.AWSSignatureVersion] refererence.
   Reference get awsSignatureVersion =>
       const Reference('AWSSignatureVersion', _url);

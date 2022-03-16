@@ -7,7 +7,11 @@ export 'src/endpoint/aws_endpoint_resolver.dart';
 export 'src/endpoint/credential_scope.dart';
 export 'src/endpoint/partition.dart';
 
+// HTTP
 export 'src/http/interceptors/with_sig_v4.dart';
+export 'src/http/retry/aws_retryer.dart';
+
+// AWS Protocols
 export 'src/protocol/aws_json_1_0.dart';
 export 'src/protocol/aws_json_1_1.dart';
 export 'src/protocol/rest_json_1.dart';

@@ -521,6 +521,16 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final resolvedService = context.service?.resolvedService;
     final isAwsService = resolvedService != null;
     if (isAwsService) {
+      // The standard AWS retryer
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.smithyAws.awsRetryer
+          ..name = 'retryer'
+          ..type = MethodType.getter
+          ..body = DartTypes.smithyAws.awsRetryer.newInstance([]).code,
+      );
+
       // S3 requires a special baseUri to consider customizations
       if (resolvedService.sdkId == 'S3') {
         yield Method(

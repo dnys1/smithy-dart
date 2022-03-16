@@ -1,10 +1,17 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:aws_common/aws_common.dart';
 // ignore: implementation_imports
 import 'package:aws_common/src/config/aws_config_value.dart';
 import 'package:meta/meta.dart';
 import 'package:smithy/smithy.dart';
+
+/// The retry attempt for the current request.
+const $retryAttempt = #awsSdkRetryAttempt;
+
+/// The maximum number of attempts for the current request.
+const $maxAttempts = #awsSdkMaxAttempts;
 
 class AWSRetryer implements Retryer {
   AWSRetryer({
@@ -93,7 +100,7 @@ class AWSRetryer implements Retryer {
       return false;
     }
     if (exception is SmithyHttpException) {
-      if (exception.headers?.containsKey('x-amz-retry-after') ?? false) {
+      if (exception.headers?.containsKey(AWSHeaders.retryAfter) ?? false) {
         return true;
       }
     }
@@ -117,7 +124,7 @@ class AWSRetryer implements Retryer {
     final exponentialBackoff = _exponentialBackoff(attempt);
     if (e is SmithyHttpException) {
       // Retry after represents the minimum delay to wait before retrying.
-      final retryAfter = e.headers?['x-amz-retry-after'];
+      final retryAfter = e.headers?[AWSHeaders.retryAfter];
       if (retryAfter != null) {
         final retryAfterMilliseconds = num.tryParse(retryAfter);
         if (retryAfterMilliseconds != null) {
@@ -150,7 +157,10 @@ class AWSRetryer implements Retryer {
     int? retryToken;
     while (true) {
       try {
-        final result = await f();
+        final result = await runZoned(f, zoneValues: {
+          $retryAttempt: attempts,
+          $maxAttempts: _maxAttempts,
+        });
         if (retryToken == null) {
           _returnRetryToken(_noRetryIncrement);
         } else {

@@ -12,6 +12,7 @@ import 'package:aws_json1_0/src/json_rpc_10/model/endpoint_with_host_label_opera
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 class EndpointWithHostLabelOperation extends _i1.HttpOperation<
     _i2.EndpointWithHostLabelOperationInput,
@@ -35,7 +36,9 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
         requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonRpc10.EndpointWithHostLabelOperation')
+              'X-Amz-Target', 'JsonRpc10.EndpointWithHostLabelOperation'),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -73,6 +76,9 @@ class EndpointWithHostLabelOperation extends _i1.HttpOperation<
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

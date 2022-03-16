@@ -13,6 +13,7 @@ import 'package:rest_json1/src/rest_json_protocol/model/json_blobs_input_output.
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 /// Blobs are base64 encoded
 class JsonBlobsOperation extends _i1.HttpOperation<
@@ -32,7 +33,11 @@ class JsonBlobsOperation extends _i1.HttpOperation<
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [
+          const _i1.WithContentLength(),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
+        ],
         responseInterceptors: [])
   ];
 
@@ -68,6 +73,9 @@ class JsonBlobsOperation extends _i1.HttpOperation<
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

@@ -11,6 +11,7 @@ import 'package:rest_json1/src/rest_json_protocol/common/serializers.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:uuid/uuid.dart' as _i7;
 
 /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
 class UnitInputAndOutputOperation
@@ -28,7 +29,9 @@ class UnitInputAndOutputOperation
         builderFactories: _i3.builderFactories,
         requestInterceptors: [
           const _i1.WithNoHeader('Content-Length'),
-          const _i1.WithNoHeader('Content-Type')
+          const _i1.WithNoHeader('Content-Type'),
+          const _i2.WithSdkInvocationId(),
+          const _i2.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -64,6 +67,9 @@ class UnitInputAndOutputOperation
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i6.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i5.AWSHeaders.sdkInvocationId: const _i7.Uuid().v4()}
+        });
   }
 }

@@ -14,6 +14,7 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_payload_traits_inpu
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i9;
 
 /// This examples serializes a blob shape in the payload.
 ///
@@ -39,7 +40,11 @@ class HttpPayloadTraitsOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [
+          const _i1.WithContentLength(),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
+        ],
         responseInterceptors: [])
   ];
 
@@ -82,6 +87,9 @@ class HttpPayloadTraitsOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+        });
   }
 }

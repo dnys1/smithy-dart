@@ -10,6 +10,7 @@ import 'package:aws_json1_0/src/json_rpc_10/common/endpoint_resolver.dart'
 import 'package:aws_json1_0/src/json_rpc_10/common/serializers.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
+import 'package:uuid/uuid.dart' as _i7;
 
 class HostWithPathOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
@@ -26,7 +27,9 @@ class HostWithPathOperation
         requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonRpc10.HostWithPathOperation')
+              'X-Amz-Target', 'JsonRpc10.HostWithPathOperation'),
+          const _i2.WithSdkInvocationId(),
+          const _i2.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -62,6 +65,9 @@ class HostWithPathOperation
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i6.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i5.AWSHeaders.sdkInvocationId: const _i7.Uuid().v4()}
+        });
   }
 }

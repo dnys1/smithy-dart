@@ -14,6 +14,7 @@ import 'package:aws_json1_0/src/json_rpc_10/model/simple_scalar_properties_outpu
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i9;
 
 class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
     _i2.SimpleScalarPropertiesInput,
@@ -37,7 +38,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         requestInterceptors: [
           const _i1.WithContentLength(),
           const _i1.WithHeader(
-              'X-Amz-Target', 'JsonRpc10.SimpleScalarProperties')
+              'X-Amz-Target', 'JsonRpc10.SimpleScalarProperties'),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -77,6 +80,9 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+        });
   }
 }

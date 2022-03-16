@@ -206,6 +206,9 @@ class _AwsCommon {
           ..types.add(ref),
       );
 
+  /// Creates an [aws_common.AWSHeaders] reference.
+  Reference get awsHeaders => const Reference('AWSHeaders', _url);
+
   /// Creates an [aws_common.AWSSerializable] reference.
   Reference get awsSerializable => const Reference('AWSSerializable', _url);
 
@@ -747,6 +750,13 @@ class _SmithyAws {
 
   /// Creates a [smithy_aws.S3ClientConfig] refererence.
   Reference get s3ClientConfig => const Reference('S3ClientConfig', _url);
+
+  /// Creates a [smithy_aws.WithSdkInvocationId] refererence.
+  Reference get withSdkInvocationId =>
+      const Reference('WithSdkInvocationId', _url);
+
+  /// Creates a [smithy_aws.WithSdkRequest] refererence.
+  Reference get withSdkRequest => const Reference('WithSdkRequest', _url);
 
   /// Creates a [smithy_aws.WithSigV4] refererence.
   Reference get withSigV4 => const Reference('WithSigV4', _url);

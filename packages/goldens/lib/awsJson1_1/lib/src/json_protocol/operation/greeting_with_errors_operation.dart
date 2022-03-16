@@ -17,6 +17,7 @@ import 'package:aws_json1_1/src/json_protocol/model/invalid_greeting.dart'
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i12;
 
 /// This operation has three possible return values:
 ///
@@ -59,7 +60,9 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
           _i4.WithSigV4(
               region: _region,
               serviceName: 'foo',
-              credentialsProvider: _credentialsProvider)
+              credentialsProvider: _credentialsProvider),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -115,6 +118,9 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i11.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i12.Uuid().v4()}
+        });
   }
 }

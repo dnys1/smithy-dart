@@ -13,6 +13,7 @@ import 'package:rest_json1/src/rest_json_protocol/model/http_checksum_required_i
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 /// This example tests httpChecksumRequired trait
 class HttpChecksumRequiredOperation extends _i1.HttpOperation<
@@ -37,7 +38,9 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
           const _i1.WithChecksum(),
-          const _i1.WithContentLength()
+          const _i1.WithContentLength(),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
         ],
         responseInterceptors: [
           const _i1.ValidateChecksum()
@@ -79,6 +82,9 @@ class HttpChecksumRequiredOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

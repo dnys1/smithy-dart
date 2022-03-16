@@ -624,9 +624,25 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                     }).code,
                 ).closure,
               ], {
-                'zoneValues': refer('_awsEndpoint')
-                    .property('credentialScope')
-                    .nullSafeProperty('zoneValues'),
+                // Create a map with spread and new values. Cannot be done
+                // via [literalMap].
+                'zoneValues': CodeExpression(Block.of([
+                  const Code('{'),
+                  refer('_awsEndpoint')
+                      .property('credentialScope')
+                      .nullSafeProperty('zoneValues')
+                      .nullSafeSpread
+                      .code,
+                  const Code(','),
+                  literalMap({
+                    DartTypes.awsCommon.awsHeaders.property('sdkInvocationId'):
+                        DartTypes.uuid.uuid
+                            .constInstance([])
+                            .property('v4')
+                            .call([]),
+                  }).spread.code,
+                  const Code('}'),
+                ])),
               })
               .returned
               .statement,
@@ -755,6 +771,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final serviceId = context.serviceShapeId;
     final aws = context.service?.getTrait<ServiceTrait>();
     if (aws != null && serviceId != null) {
+      // Common AWS interceptors
+      yield DartTypes.smithyAws.withSdkInvocationId.constInstance([]);
+      yield DartTypes.smithyAws.withSdkRequest.constInstance([]);
+
       final trait = aws.resolve(serviceId);
       switch (trait.sdkId) {
         // A client for Amazon API Gateway MUST set the Accept header to the

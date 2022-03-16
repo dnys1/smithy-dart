@@ -13,6 +13,7 @@ import 'package:rest_json1/src/rest_json_protocol/model/query_params_as_string_l
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 class QueryParamsAsStringListMapOperation extends _i1.HttpOperation<
     _i2.QueryParamsAsStringListMapInputPayload,
@@ -35,7 +36,9 @@ class QueryParamsAsStringListMapOperation extends _i1.HttpOperation<
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
           const _i1.WithNoHeader('Content-Length'),
-          const _i1.WithNoHeader('Content-Type')
+          const _i1.WithNoHeader('Content-Type'),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -82,6 +85,9 @@ class QueryParamsAsStringListMapOperation extends _i1.HttpOperation<
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

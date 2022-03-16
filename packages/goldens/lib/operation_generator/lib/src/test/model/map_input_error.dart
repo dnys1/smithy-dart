@@ -31,6 +31,9 @@ abstract class MapInputError
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MapInputErrorBuilder b) {}
   @override
+  _i2.ShapeId get shapeId =>
+      const _i2.ShapeId(namespace: 'com.test', shape: 'MapInputError');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig =>

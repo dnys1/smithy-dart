@@ -33,6 +33,9 @@ abstract class ComplexError
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.json10', shape: 'ComplexError');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;

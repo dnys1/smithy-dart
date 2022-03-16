@@ -46,6 +46,9 @@ abstract class ComplexError
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.restjson', shape: 'ComplexError');
+  @override
   ComplexErrorPayload getPayload() => ComplexErrorPayload((b) {
         if (nested != null) {
           b.nested.replace(nested!);
@@ -82,6 +85,9 @@ abstract class ComplexErrorPayload
   static void _init(ComplexErrorPayloadBuilder b) {}
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
+  @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.restjson', shape: 'ComplexError');
   @override
   List<Object?> get props => [nested, topLevel];
   @override

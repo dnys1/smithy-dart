@@ -45,6 +45,9 @@ abstract class ValidationException
   @override
   String get message;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'smithy.framework', shape: 'ValidationException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [fieldList, message];

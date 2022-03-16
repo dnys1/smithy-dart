@@ -38,6 +38,10 @@ abstract class InvalidParameterValueException
   String? get message;
   String? get type;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.glacier',
+      shape: 'InvalidParameterValueException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message, type];

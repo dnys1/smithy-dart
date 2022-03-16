@@ -32,6 +32,9 @@ abstract class FooError
   @BuiltValueHook(initializeBuilder: true)
   static void _init(FooErrorBuilder b) {}
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.json10', shape: 'FooError');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;

@@ -31,6 +31,9 @@ abstract class NoSuchBucket
   @BuiltValueHook(initializeBuilder: true)
   static void _init(NoSuchBucketBuilder b) {}
   @override
+  _i2.ShapeId get shapeId =>
+      const _i2.ShapeId(namespace: 'com.amazonaws.s3', shape: 'NoSuchBucket');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;

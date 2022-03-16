@@ -42,6 +42,9 @@ abstract class TooManyRequestsException
   String? get message;
   String? get retryAfterSeconds;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.apigateway', shape: 'TooManyRequestsException');
+  @override
   TooManyRequestsExceptionPayload getPayload() =>
       TooManyRequestsExceptionPayload((b) {
         b.message = message;
@@ -75,6 +78,9 @@ abstract class TooManyRequestsExceptionPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TooManyRequestsExceptionPayloadBuilder b) {}
   String? get message;
+  @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.apigateway', shape: 'TooManyRequestsException');
   @override
   List<Object?> get props => [message];
   @override

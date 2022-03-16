@@ -42,6 +42,9 @@ abstract class ErrorWithMembers
   /// abc
   String? get stringField;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.json', shape: 'ErrorWithMembers');
+  @override
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [

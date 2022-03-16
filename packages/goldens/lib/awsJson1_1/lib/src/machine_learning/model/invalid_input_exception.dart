@@ -34,6 +34,10 @@ abstract class InvalidInputException
   @override
   String? get message;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.machinelearning',
+      shape: 'InvalidInputException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message];

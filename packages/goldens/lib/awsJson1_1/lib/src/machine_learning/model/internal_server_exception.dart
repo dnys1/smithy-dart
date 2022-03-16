@@ -34,6 +34,10 @@ abstract class InternalServerException
   @override
   String? get message;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.machinelearning',
+      shape: 'InternalServerException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
   @override
   List<Object?> get props => [code, message];

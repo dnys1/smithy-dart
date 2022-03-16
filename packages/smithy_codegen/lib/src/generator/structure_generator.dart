@@ -267,7 +267,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final members = isPayload ? payloadMembers : sortedMembers;
     for (var member in members) {
       yield Method(
-        (f) => f
+        (m) => m
           ..annotations.addAll([
             if (member.deprecatedAnnotation != null)
               member.deprecatedAnnotation!,
@@ -291,6 +291,17 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..returns = memberSymbols[member]!
           ..type = MethodType.getter
           ..name = member.dartName(ShapeType.structure),
+      );
+    }
+
+    if (shape.isError) {
+      yield Method(
+        (m) => m
+          ..annotations.add(DartTypes.core.override)
+          ..returns = DartTypes.smithy.shapeId
+          ..type = MethodType.getter
+          ..name = 'shapeId'
+          ..body = shape.shapeId.constructed.code,
       );
     }
   }

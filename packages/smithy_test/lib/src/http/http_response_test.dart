@@ -41,9 +41,9 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
       headers: testCase.headers,
     );
   });
-  final output = await operation.innerSend(
+  final output = await operation.send(
     client: HttpClient.v1(baseClient: client),
-    httpRequest: _dummyHttpRequest,
+    createRequest: () async => _dummyHttpRequest,
     protocol: protocol,
   );
 
@@ -102,9 +102,9 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
     );
   });
   try {
-    await operation.innerSend(
+    await operation.send(
       client: HttpClient.v1(baseClient: client),
-      httpRequest: _dummyHttpRequest,
+      createRequest: () async => _dummyHttpRequest,
       protocol: protocol,
     );
     fail('Operation should throw');

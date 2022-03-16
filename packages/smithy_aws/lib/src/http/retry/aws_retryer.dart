@@ -93,7 +93,7 @@ class AWSRetryer implements Retryer {
       return false;
     }
     if (exception is SmithyHttpException) {
-      if (exception.headers.containsKey('x-amz-retry-after')) {
+      if (exception.headers?.containsKey('x-amz-retry-after') ?? false) {
         return true;
       }
     }
@@ -117,7 +117,7 @@ class AWSRetryer implements Retryer {
     final exponentialBackoff = _exponentialBackoff(attempt);
     if (e is SmithyHttpException) {
       // Retry after represents the minimum delay to wait before retrying.
-      final retryAfter = e.headers['x-amz-retry-after'];
+      final retryAfter = e.headers?['x-amz-retry-after'];
       if (retryAfter != null) {
         final retryAfterMilliseconds = num.tryParse(retryAfter);
         if (retryAfterMilliseconds != null) {

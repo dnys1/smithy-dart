@@ -65,6 +65,8 @@ class MalformedPatternOverrideOperation extends _i1.HttpOperation<
             builder: _i7.ValidationException.fromResponse)
       ];
   @override
+  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

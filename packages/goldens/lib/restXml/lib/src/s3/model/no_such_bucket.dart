@@ -14,7 +14,7 @@ abstract class NoSuchBucket
     implements
         Built<NoSuchBucket, NoSuchBucketBuilder>,
         _i2.EmptyPayload,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory NoSuchBucket([void Function(NoSuchBucketBuilder) updates]) =
       _$NoSuchBucket;
 
@@ -22,7 +22,10 @@ abstract class NoSuchBucket
 
   factory NoSuchBucket.fromResponse(
           NoSuchBucket payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _NoSuchBucketRestXmlSerializer()
@@ -31,9 +34,18 @@ abstract class NoSuchBucket
   @BuiltValueHook(initializeBuilder: true)
   static void _init(NoSuchBucketBuilder b) {}
   @override
+  _i2.ShapeId get shapeId =>
+      const _i2.ShapeId(namespace: 'com.amazonaws.s3', shape: 'NoSuchBucket');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [];
   @override

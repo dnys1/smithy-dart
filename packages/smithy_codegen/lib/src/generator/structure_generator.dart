@@ -71,7 +71,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               DartTypes.smithy.emptyPayload,
 
             if (hasPayload) DartTypes.smithy.hasPayload(payloadSymbol.unboxed),
-            if (shape.isError) DartTypes.smithy.smithyException,
+            if (shape.isError) DartTypes.smithy.smithyHttpException,
           ])
           ..mixins.addAll([
             if (shape.isInputShape)
@@ -172,16 +172,30 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// The builder/factory constructor.
   Constructor get _fromResponseConstructor {
-    final output = payloadSymbol == symbol
-        ? refer('payload')
-        : symbol.newInstance([
-            Method(
-              (m) => m
-                ..requiredParameters.add(Parameter((p) => p..name = 'b'))
-                ..lambda = false
-                ..body = Block.of(_outputBuilder),
-            ).closure,
-          ]);
+    final Expression output;
+    if (payloadSymbol == symbol) {
+      if (httpErrorTraits == null) {
+        output = refer('payload');
+      } else {
+        output = refer('payload').property('rebuild').call([
+          Method(
+            (m) => m
+              ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+              ..lambda = false
+              ..body = Block.of(_rebuildOutput),
+          ).closure,
+        ]);
+      }
+    } else {
+      output = symbol.newInstance([
+        Method(
+          (m) => m
+            ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+            ..lambda = false
+            ..body = Block.of(_outputBuilder),
+        ).closure,
+      ]);
+    }
     return Constructor(
       (c) => c
         ..factory = true
@@ -267,7 +281,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final members = isPayload ? payloadMembers : sortedMembers;
     for (var member in members) {
       yield Method(
-        (f) => f
+        (m) => m
           ..annotations.addAll([
             if (member.deprecatedAnnotation != null)
               member.deprecatedAnnotation!,
@@ -487,6 +501,16 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       return;
     }
 
+    // `shapeId` getter
+    yield Method(
+      (m) => m
+        ..annotations.add(DartTypes.core.override)
+        ..returns = DartTypes.smithy.shapeId
+        ..type = MethodType.getter
+        ..name = 'shapeId'
+        ..body = shape.shapeId.constructed.code,
+    );
+
     // `message` getter
     if (!shape.members.values
         .map((m) => m.dartName(ShapeType.structure))
@@ -516,6 +540,51 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
                 'isThrottlingError':
                     literalBool(errorTraits.retryConfig!.isThrottlingError),
               }).code,
+    );
+
+    // SmithyHttpException overrides
+    // TODO(dnys1): Find a way to make these non-null.
+    /// Make every HTTP error a payload?
+    if (!shape.members.values
+        .map((m) => m.dartName(ShapeType.structure))
+        .contains('statusCode')) {
+      final statusCode = errorTraits.statusCode;
+      yield Method(
+        (m) {
+          m
+            ..annotations.addAll([
+              DartTypes.core.override,
+              DartTypes.builtValue.builtValueField.newInstance([], {
+                'compare': literalFalse,
+              })
+            ])
+            ..returns = DartTypes.core.int.withBoxed(statusCode == null)
+            ..type = MethodType.getter
+            ..name = 'statusCode';
+
+          if (statusCode != null) {
+            m.body = literalNum(statusCode).code;
+          }
+        },
+      );
+    }
+
+    yield Method(
+      (m) => m
+        ..annotations.addAll([
+          DartTypes.core.override,
+          DartTypes.builtValue.builtValueField.newInstance([], {
+            'compare': literalFalse,
+          })
+        ])
+        ..returns = DartTypes.core
+            .map(
+              DartTypes.core.string,
+              DartTypes.core.string,
+            )
+            .boxed
+        ..type = MethodType.getter
+        ..name = 'headers',
     );
   }
 
@@ -625,8 +694,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       ]).statement;
     }
 
-    // Add the HTTP status code to the output.
-    if (responseTraits is HttpOutputTraits) {
+    // Add the HTTP context to the output.
+    final isOutput = responseTraits is HttpOutputTraits;
+    if (isOutput) {
       final statusCode = responseTraits.httpResponseCode;
       if (statusCode != null) {
         yield builder
@@ -634,7 +704,40 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             .assign(response.property('statusCode'))
             .statement;
       }
+    } else {
+      final errorTraits = responseTraits as HttpErrorTraits;
+      if (errorTraits.statusCode == null) {
+        yield builder
+            .property('statusCode')
+            .assign(response.property('statusCode'))
+            .statement;
+      }
+      yield builder
+          .property('headers')
+          .assign(response.property('headers'))
+          .statement;
     }
+  }
+
+  Iterable<Code> get _rebuildOutput sync* {
+    final errorTraits = httpErrorTraits;
+    if (errorTraits == null) {
+      return;
+    }
+
+    final builder = refer('b');
+    final response = refer('response');
+
+    if (errorTraits.statusCode == null) {
+      yield builder
+          .property('statusCode')
+          .assign(response.property('statusCode'))
+          .statement;
+    }
+    yield builder
+        .property('headers')
+        .assign(response.property('headers'))
+        .statement;
   }
 
   /// Adds the header to the request's headers map.

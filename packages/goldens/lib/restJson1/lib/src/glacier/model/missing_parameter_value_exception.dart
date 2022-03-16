@@ -15,7 +15,7 @@ abstract class MissingParameterValueException
     implements
         Built<MissingParameterValueException,
             MissingParameterValueExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory MissingParameterValueException(
           [void Function(MissingParameterValueExceptionBuilder) updates]) =
       _$MissingParameterValueException;
@@ -25,7 +25,9 @@ abstract class MissingParameterValueException
   factory MissingParameterValueException.fromResponse(
           MissingParameterValueException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _MissingParameterValueExceptionRestJson1Serializer()
@@ -38,7 +40,17 @@ abstract class MissingParameterValueException
   String? get message;
   String? get type;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.glacier',
+      shape: 'MissingParameterValueException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 400;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message, type];
   @override

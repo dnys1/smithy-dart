@@ -14,7 +14,9 @@ part 'complex_error.g.dart';
 /// This error is thrown when a request is invalid.
 abstract class ComplexError
     with _i1.AWSEquatable<ComplexError>
-    implements Built<ComplexError, ComplexErrorBuilder>, _i2.SmithyException {
+    implements
+        Built<ComplexError, ComplexErrorBuilder>,
+        _i2.SmithyHttpException {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
@@ -22,7 +24,10 @@ abstract class ComplexError
 
   factory ComplexError.fromResponse(
           ComplexError payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ComplexErrorAwsJson10Serializer()
@@ -33,9 +38,18 @@ abstract class ComplexError
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.json10', shape: 'ComplexError');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [nested, topLevel];
   @override

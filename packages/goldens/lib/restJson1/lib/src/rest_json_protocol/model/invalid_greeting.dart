@@ -14,7 +14,7 @@ abstract class InvalidGreeting
     with _i1.AWSEquatable<InvalidGreeting>
     implements
         Built<InvalidGreeting, InvalidGreetingBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
       _$InvalidGreeting;
 
@@ -22,7 +22,9 @@ abstract class InvalidGreeting
 
   factory InvalidGreeting.fromResponse(
           InvalidGreeting payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _InvalidGreetingRestJson1Serializer()
@@ -33,7 +35,16 @@ abstract class InvalidGreeting
   @override
   String? get message;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.restjson', shape: 'InvalidGreeting');
+  @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 400;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [message];
   @override

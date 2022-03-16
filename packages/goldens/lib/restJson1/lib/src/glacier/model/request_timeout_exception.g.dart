@@ -13,12 +13,16 @@ class _$RequestTimeoutException extends RequestTimeoutException {
   final String? message;
   @override
   final String? type;
+  @override
+  final Map<String, String>? headers;
 
   factory _$RequestTimeoutException(
           [void Function(RequestTimeoutExceptionBuilder)? updates]) =>
       (new RequestTimeoutExceptionBuilder()..update(updates)).build();
 
-  _$RequestTimeoutException._({this.code, this.message, this.type}) : super._();
+  _$RequestTimeoutException._(
+      {this.code, this.message, this.type, this.headers})
+      : super._();
 
   @override
   RequestTimeoutException rebuild(
@@ -62,6 +66,10 @@ class RequestTimeoutExceptionBuilder
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   RequestTimeoutExceptionBuilder() {
     RequestTimeoutException._init(this);
   }
@@ -72,6 +80,7 @@ class RequestTimeoutExceptionBuilder
       _code = $v.code;
       _message = $v.message;
       _type = $v.type;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -92,7 +101,7 @@ class RequestTimeoutExceptionBuilder
   _$RequestTimeoutException build() {
     final _$result = _$v ??
         new _$RequestTimeoutException._(
-            code: code, message: message, type: type);
+            code: code, message: message, type: type, headers: headers);
     replace(_$result);
     return _$result;
   }

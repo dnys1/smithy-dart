@@ -21,6 +21,10 @@ class _$ErrorWithMembers extends ErrorWithMembers {
   final String? message;
   @override
   final String? stringField;
+  @override
+  final int? statusCode;
+  @override
+  final Map<String, String>? headers;
 
   factory _$ErrorWithMembers(
           [void Function(ErrorWithMembersBuilder)? updates]) =>
@@ -33,7 +37,9 @@ class _$ErrorWithMembers extends ErrorWithMembers {
       this.listField,
       this.mapField,
       this.message,
-      this.stringField})
+      this.stringField,
+      this.statusCode,
+      this.headers})
       : super._();
 
   @override
@@ -110,6 +116,14 @@ class ErrorWithMembersBuilder
   String? get stringField => _$this._stringField;
   set stringField(String? stringField) => _$this._stringField = stringField;
 
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   ErrorWithMembersBuilder() {
     ErrorWithMembers._init(this);
   }
@@ -124,6 +138,8 @@ class ErrorWithMembersBuilder
       _mapField = $v.mapField?.toBuilder();
       _message = $v.message;
       _stringField = $v.stringField;
+      _statusCode = $v.statusCode;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -152,7 +168,9 @@ class ErrorWithMembersBuilder
               listField: _listField?.build(),
               mapField: _mapField?.build(),
               message: message,
-              stringField: stringField);
+              stringField: stringField,
+              statusCode: statusCode,
+              headers: headers);
     } catch (_) {
       late String _$failedField;
       try {

@@ -11,12 +11,15 @@ class _$InvalidInputException extends InvalidInputException {
   final int? code;
   @override
   final String? message;
+  @override
+  final Map<String, String>? headers;
 
   factory _$InvalidInputException(
           [void Function(InvalidInputExceptionBuilder)? updates]) =>
       (new InvalidInputExceptionBuilder()..update(updates)).build();
 
-  _$InvalidInputException._({this.code, this.message}) : super._();
+  _$InvalidInputException._({this.code, this.message, this.headers})
+      : super._();
 
   @override
   InvalidInputException rebuild(
@@ -53,6 +56,10 @@ class InvalidInputExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   InvalidInputExceptionBuilder() {
     InvalidInputException._init(this);
   }
@@ -62,6 +69,7 @@ class InvalidInputExceptionBuilder
     if ($v != null) {
       _code = $v.code;
       _message = $v.message;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -80,8 +88,9 @@ class InvalidInputExceptionBuilder
 
   @override
   _$InvalidInputException build() {
-    final _$result =
-        _$v ?? new _$InvalidInputException._(code: code, message: message);
+    final _$result = _$v ??
+        new _$InvalidInputException._(
+            code: code, message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

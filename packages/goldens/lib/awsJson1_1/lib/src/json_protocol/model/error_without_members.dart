@@ -14,7 +14,7 @@ abstract class ErrorWithoutMembers
     implements
         Built<ErrorWithoutMembers, ErrorWithoutMembersBuilder>,
         _i2.EmptyPayload,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory ErrorWithoutMembers(
           [void Function(ErrorWithoutMembersBuilder) updates]) =
       _$ErrorWithoutMembers;
@@ -23,7 +23,10 @@ abstract class ErrorWithoutMembers
 
   factory ErrorWithoutMembers.fromResponse(
           ErrorWithoutMembers payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ErrorWithoutMembersAwsJson11Serializer()
@@ -32,9 +35,18 @@ abstract class ErrorWithoutMembers
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ErrorWithoutMembersBuilder b) {}
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.json', shape: 'ErrorWithoutMembers');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [];
   @override

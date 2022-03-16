@@ -54,6 +54,8 @@ class UnitInputAndOutputOperation
   @override
   List<_i1.SmithyError> get errorTypes => const [];
   @override
+  _i2.AWSRetryer get retryer => _i2.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

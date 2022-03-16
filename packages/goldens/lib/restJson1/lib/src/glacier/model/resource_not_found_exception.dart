@@ -13,7 +13,7 @@ abstract class ResourceNotFoundException
     with _i1.AWSEquatable<ResourceNotFoundException>
     implements
         Built<ResourceNotFoundException, ResourceNotFoundExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory ResourceNotFoundException(
           [void Function(ResourceNotFoundExceptionBuilder) updates]) =
       _$ResourceNotFoundException;
@@ -23,7 +23,9 @@ abstract class ResourceNotFoundException
   factory ResourceNotFoundException.fromResponse(
           ResourceNotFoundException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ResourceNotFoundExceptionRestJson1Serializer()
@@ -36,7 +38,16 @@ abstract class ResourceNotFoundException
   String? get message;
   String? get type;
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.glacier', shape: 'ResourceNotFoundException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 404;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message, type];
   @override

@@ -9,12 +9,14 @@ part of rest_json1.api_gateway.model.unauthorized_exception;
 class _$UnauthorizedException extends UnauthorizedException {
   @override
   final String? message;
+  @override
+  final Map<String, String>? headers;
 
   factory _$UnauthorizedException(
           [void Function(UnauthorizedExceptionBuilder)? updates]) =>
       (new UnauthorizedExceptionBuilder()..update(updates)).build();
 
-  _$UnauthorizedException._({this.message}) : super._();
+  _$UnauthorizedException._({this.message, this.headers}) : super._();
 
   @override
   UnauthorizedException rebuild(
@@ -45,6 +47,10 @@ class UnauthorizedExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   UnauthorizedExceptionBuilder() {
     UnauthorizedException._init(this);
   }
@@ -53,6 +59,7 @@ class UnauthorizedExceptionBuilder
     final $v = _$v;
     if ($v != null) {
       _message = $v.message;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -71,7 +78,8 @@ class UnauthorizedExceptionBuilder
 
   @override
   _$UnauthorizedException build() {
-    final _$result = _$v ?? new _$UnauthorizedException._(message: message);
+    final _$result = _$v ??
+        new _$UnauthorizedException._(message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

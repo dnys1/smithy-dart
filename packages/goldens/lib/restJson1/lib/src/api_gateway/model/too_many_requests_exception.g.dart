@@ -11,12 +11,15 @@ class _$TooManyRequestsException extends TooManyRequestsException {
   final String? message;
   @override
   final String? retryAfterSeconds;
+  @override
+  final Map<String, String>? headers;
 
   factory _$TooManyRequestsException(
           [void Function(TooManyRequestsExceptionBuilder)? updates]) =>
       (new TooManyRequestsExceptionBuilder()..update(updates)).build();
 
-  _$TooManyRequestsException._({this.message, this.retryAfterSeconds})
+  _$TooManyRequestsException._(
+      {this.message, this.retryAfterSeconds, this.headers})
       : super._();
 
   @override
@@ -56,6 +59,10 @@ class TooManyRequestsExceptionBuilder
   set retryAfterSeconds(String? retryAfterSeconds) =>
       _$this._retryAfterSeconds = retryAfterSeconds;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   TooManyRequestsExceptionBuilder() {
     TooManyRequestsException._init(this);
   }
@@ -65,6 +72,7 @@ class TooManyRequestsExceptionBuilder
     if ($v != null) {
       _message = $v.message;
       _retryAfterSeconds = $v.retryAfterSeconds;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -85,7 +93,9 @@ class TooManyRequestsExceptionBuilder
   _$TooManyRequestsException build() {
     final _$result = _$v ??
         new _$TooManyRequestsException._(
-            message: message, retryAfterSeconds: retryAfterSeconds);
+            message: message,
+            retryAfterSeconds: retryAfterSeconds,
+            headers: headers);
     replace(_$result);
     return _$result;
   }

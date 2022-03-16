@@ -55,6 +55,8 @@ class MalformedAcceptWithBodyOperation extends _i1
   @override
   List<_i1.SmithyError> get errorTypes => const [];
   @override
+  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

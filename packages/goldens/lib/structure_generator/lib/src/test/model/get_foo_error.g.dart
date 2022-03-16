@@ -9,11 +9,16 @@ part of structure_generator.test.model.get_foo_error;
 class _$GetFooError extends GetFooError {
   @override
   final String message;
+  @override
+  final int? statusCode;
+  @override
+  final Map<String, String>? headers;
 
   factory _$GetFooError([void Function(GetFooErrorBuilder)? updates]) =>
       (new GetFooErrorBuilder()..update(updates)).build();
 
-  _$GetFooError._({required this.message}) : super._() {
+  _$GetFooError._({required this.message, this.statusCode, this.headers})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(message, 'GetFooError', 'message');
   }
 
@@ -43,6 +48,14 @@ class GetFooErrorBuilder implements Builder<GetFooError, GetFooErrorBuilder> {
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   GetFooErrorBuilder() {
     GetFooError._init(this);
   }
@@ -51,6 +64,8 @@ class GetFooErrorBuilder implements Builder<GetFooError, GetFooErrorBuilder> {
     final $v = _$v;
     if ($v != null) {
       _message = $v.message;
+      _statusCode = $v.statusCode;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -72,7 +87,9 @@ class GetFooErrorBuilder implements Builder<GetFooError, GetFooErrorBuilder> {
     final _$result = _$v ??
         new _$GetFooError._(
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'GetFooError', 'message'));
+                message, 'GetFooError', 'message'),
+            statusCode: statusCode,
+            headers: headers);
     replace(_$result);
     return _$result;
   }

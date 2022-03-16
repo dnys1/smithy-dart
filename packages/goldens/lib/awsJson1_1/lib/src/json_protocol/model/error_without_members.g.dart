@@ -7,11 +7,16 @@ part of aws_json1_1.json_protocol.model.error_without_members;
 // **************************************************************************
 
 class _$ErrorWithoutMembers extends ErrorWithoutMembers {
+  @override
+  final int? statusCode;
+  @override
+  final Map<String, String>? headers;
+
   factory _$ErrorWithoutMembers(
           [void Function(ErrorWithoutMembersBuilder)? updates]) =>
       (new ErrorWithoutMembersBuilder()..update(updates)).build();
 
-  _$ErrorWithoutMembers._() : super._();
+  _$ErrorWithoutMembers._({this.statusCode, this.headers}) : super._();
 
   @override
   ErrorWithoutMembers rebuild(
@@ -38,8 +43,26 @@ class ErrorWithoutMembersBuilder
     implements Builder<ErrorWithoutMembers, ErrorWithoutMembersBuilder> {
   _$ErrorWithoutMembers? _$v;
 
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   ErrorWithoutMembersBuilder() {
     ErrorWithoutMembers._init(this);
+  }
+
+  ErrorWithoutMembersBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _statusCode = $v.statusCode;
+      _headers = $v.headers;
+      _$v = null;
+    }
+    return this;
   }
 
   @override
@@ -55,7 +78,8 @@ class ErrorWithoutMembersBuilder
 
   @override
   _$ErrorWithoutMembers build() {
-    final _$result = _$v ?? new _$ErrorWithoutMembers._();
+    final _$result = _$v ??
+        new _$ErrorWithoutMembers._(statusCode: statusCode, headers: headers);
     replace(_$result);
     return _$result;
   }

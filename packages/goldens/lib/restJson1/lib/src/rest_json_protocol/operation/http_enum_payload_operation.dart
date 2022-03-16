@@ -55,6 +55,8 @@ class HttpEnumPayloadOperation extends _i1.HttpOperation<_i2.StringEnum,
   @override
   List<_i1.SmithyError> get errorTypes => const [];
   @override
+  _i4.AWSRetryer get retryer => _i4.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

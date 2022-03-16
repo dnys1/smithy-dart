@@ -9,12 +9,14 @@ part of rest_json1.api_gateway.model.bad_request_exception;
 class _$BadRequestException extends BadRequestException {
   @override
   final String? message;
+  @override
+  final Map<String, String>? headers;
 
   factory _$BadRequestException(
           [void Function(BadRequestExceptionBuilder)? updates]) =>
       (new BadRequestExceptionBuilder()..update(updates)).build();
 
-  _$BadRequestException._({this.message}) : super._();
+  _$BadRequestException._({this.message, this.headers}) : super._();
 
   @override
   BadRequestException rebuild(
@@ -45,6 +47,10 @@ class BadRequestExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   BadRequestExceptionBuilder() {
     BadRequestException._init(this);
   }
@@ -53,6 +59,7 @@ class BadRequestExceptionBuilder
     final $v = _$v;
     if ($v != null) {
       _message = $v.message;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -71,7 +78,8 @@ class BadRequestExceptionBuilder
 
   @override
   _$BadRequestException build() {
-    final _$result = _$v ?? new _$BadRequestException._(message: message);
+    final _$result =
+        _$v ?? new _$BadRequestException._(message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

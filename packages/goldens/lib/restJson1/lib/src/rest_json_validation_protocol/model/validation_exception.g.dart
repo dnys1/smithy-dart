@@ -11,12 +11,18 @@ class _$ValidationException extends ValidationException {
   final _i3.BuiltList<_i4.ValidationExceptionField>? fieldList;
   @override
   final String message;
+  @override
+  final int? statusCode;
+  @override
+  final Map<String, String>? headers;
 
   factory _$ValidationException(
           [void Function(ValidationExceptionBuilder)? updates]) =>
       (new ValidationExceptionBuilder()..update(updates)).build();
 
-  _$ValidationException._({this.fieldList, required this.message}) : super._() {
+  _$ValidationException._(
+      {this.fieldList, required this.message, this.statusCode, this.headers})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(
         message, 'ValidationException', 'message');
   }
@@ -58,6 +64,14 @@ class ValidationExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   ValidationExceptionBuilder() {
     ValidationException._init(this);
   }
@@ -67,6 +81,8 @@ class ValidationExceptionBuilder
     if ($v != null) {
       _fieldList = $v.fieldList?.toBuilder();
       _message = $v.message;
+      _statusCode = $v.statusCode;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -91,7 +107,9 @@ class ValidationExceptionBuilder
           new _$ValidationException._(
               fieldList: _fieldList?.build(),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'ValidationException', 'message'));
+                  message, 'ValidationException', 'message'),
+              statusCode: statusCode,
+              headers: headers);
     } catch (_) {
       late String _$failedField;
       try {

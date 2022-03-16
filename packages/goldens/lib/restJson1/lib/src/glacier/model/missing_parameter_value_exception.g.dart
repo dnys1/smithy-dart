@@ -13,12 +13,15 @@ class _$MissingParameterValueException extends MissingParameterValueException {
   final String? message;
   @override
   final String? type;
+  @override
+  final Map<String, String>? headers;
 
   factory _$MissingParameterValueException(
           [void Function(MissingParameterValueExceptionBuilder)? updates]) =>
       (new MissingParameterValueExceptionBuilder()..update(updates)).build();
 
-  _$MissingParameterValueException._({this.code, this.message, this.type})
+  _$MissingParameterValueException._(
+      {this.code, this.message, this.type, this.headers})
       : super._();
 
   @override
@@ -64,6 +67,10 @@ class MissingParameterValueExceptionBuilder
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   MissingParameterValueExceptionBuilder() {
     MissingParameterValueException._init(this);
   }
@@ -74,6 +81,7 @@ class MissingParameterValueExceptionBuilder
       _code = $v.code;
       _message = $v.message;
       _type = $v.type;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -94,7 +102,7 @@ class MissingParameterValueExceptionBuilder
   _$MissingParameterValueException build() {
     final _$result = _$v ??
         new _$MissingParameterValueException._(
-            code: code, message: message, type: type);
+            code: code, message: message, type: type, headers: headers);
     replace(_$result);
     return _$result;
   }

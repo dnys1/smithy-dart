@@ -133,6 +133,8 @@ class UploadArchiveOperation extends _i1.HttpOperation<
             builder: _i14.ServiceUnavailableException.fromResponse)
       ];
   @override
+  _i6.AWSRetryer get retryer => _i6.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

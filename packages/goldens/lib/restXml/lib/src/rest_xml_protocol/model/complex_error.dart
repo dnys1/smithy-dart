@@ -18,7 +18,7 @@ abstract class ComplexError
     implements
         Built<ComplexError, ComplexErrorBuilder>,
         _i2.HasPayload<ComplexErrorPayload>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
@@ -34,6 +34,7 @@ abstract class ComplexError
         if (response.headers['X-Header'] != null) {
           b.header = response.headers['X-Header']!;
         }
+        b.headers = response.headers;
       });
 
   static const List<_i2.SmithySerializer> serializers = [
@@ -53,9 +54,18 @@ abstract class ComplexError
         b.topLevel = topLevel;
       });
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'aws.protocoltests.restxml', shape: 'ComplexError');
+  @override
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 403;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [header, nested, topLevel];
   @override

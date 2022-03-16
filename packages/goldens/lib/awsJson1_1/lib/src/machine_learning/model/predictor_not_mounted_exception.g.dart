@@ -9,12 +9,14 @@ part of aws_json1_1.machine_learning.model.predictor_not_mounted_exception;
 class _$PredictorNotMountedException extends PredictorNotMountedException {
   @override
   final String? message;
+  @override
+  final Map<String, String>? headers;
 
   factory _$PredictorNotMountedException(
           [void Function(PredictorNotMountedExceptionBuilder)? updates]) =>
       (new PredictorNotMountedExceptionBuilder()..update(updates)).build();
 
-  _$PredictorNotMountedException._({this.message}) : super._();
+  _$PredictorNotMountedException._({this.message, this.headers}) : super._();
 
   @override
   PredictorNotMountedException rebuild(
@@ -47,6 +49,10 @@ class PredictorNotMountedExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   PredictorNotMountedExceptionBuilder() {
     PredictorNotMountedException._init(this);
   }
@@ -55,6 +61,7 @@ class PredictorNotMountedExceptionBuilder
     final $v = _$v;
     if ($v != null) {
       _message = $v.message;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -73,8 +80,9 @@ class PredictorNotMountedExceptionBuilder
 
   @override
   _$PredictorNotMountedException build() {
-    final _$result =
-        _$v ?? new _$PredictorNotMountedException._(message: message);
+    final _$result = _$v ??
+        new _$PredictorNotMountedException._(
+            message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

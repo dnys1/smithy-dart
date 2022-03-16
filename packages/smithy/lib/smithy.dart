@@ -14,6 +14,7 @@ export 'ast.dart'
 
 // Behavior
 export 'src/behavior/paginated_result.dart';
+export 'src/behavior/retryer.dart';
 
 export 'src/endpoint.dart';
 
@@ -35,9 +36,9 @@ export 'src/http/interceptors/auth/bearer_auth.dart';
 export 'src/http/interceptors/auth/digest_auth.dart';
 
 // Protocol
-export 'src/protocol/protocol.dart';
-export 'src/http/http_protocol.dart';
+export 'src/protocol/generic_json_protocol.dart';
 export 'src/protocol/json_serializer.dart';
+export 'src/protocol/protocol.dart';
 export 'src/protocol/xml_serializer.dart';
 
 // Serialization

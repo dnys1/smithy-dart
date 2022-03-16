@@ -13,12 +13,15 @@ class _$ServiceUnavailableException extends ServiceUnavailableException {
   final String? message;
   @override
   final String? type;
+  @override
+  final Map<String, String>? headers;
 
   factory _$ServiceUnavailableException(
           [void Function(ServiceUnavailableExceptionBuilder)? updates]) =>
       (new ServiceUnavailableExceptionBuilder()..update(updates)).build();
 
-  _$ServiceUnavailableException._({this.code, this.message, this.type})
+  _$ServiceUnavailableException._(
+      {this.code, this.message, this.type, this.headers})
       : super._();
 
   @override
@@ -64,6 +67,10 @@ class ServiceUnavailableExceptionBuilder
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   ServiceUnavailableExceptionBuilder() {
     ServiceUnavailableException._init(this);
   }
@@ -74,6 +81,7 @@ class ServiceUnavailableExceptionBuilder
       _code = $v.code;
       _message = $v.message;
       _type = $v.type;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -94,7 +102,7 @@ class ServiceUnavailableExceptionBuilder
   _$ServiceUnavailableException build() {
     final _$result = _$v ??
         new _$ServiceUnavailableException._(
-            code: code, message: message, type: type);
+            code: code, message: message, type: type, headers: headers);
     replace(_$result);
     return _$result;
   }

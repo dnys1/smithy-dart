@@ -4,7 +4,6 @@ import 'package:aws_common/aws_common.dart';
 import 'package:built_value/serializer.dart';
 import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import 'package:retry/retry.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 
@@ -85,6 +84,9 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
 
   /// The endpoint for the operation.
   Endpoint get endpoint => Endpoint(uri: baseUri);
+
+  /// The retry handler for the operation.
+  Retryer get retryer => const Retryer();
 
   @visibleForTesting
   HttpProtocol<InputPayload, Input, OutputPayload, Output> resolveProtocol({
@@ -189,15 +191,17 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     }
   }
 
+  @visibleForOverriding
   @visibleForTesting
-  Future<Output> innerSend({
+  Future<Output> send({
     required HttpClient client,
-    required AWSStreamedHttpRequest httpRequest,
-    required HttpProtocol protocol,
+    required Future<AWSStreamedHttpRequest> Function() createRequest,
+    required HttpProtocol<InputPayload, Input, OutputPayload, Output> protocol,
   }) {
-    const r = RetryOptions();
-    return r.retry(
+    return retryer.retry(
       () async {
+        // Re-create the request on each retry to perform signing again, etc.
+        final httpRequest = await createRequest();
         final response = await client.send(httpRequest);
         await _validateResponse(
           response: response,
@@ -208,10 +212,7 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
           response: response,
         );
       },
-      retryIf: (e) {
-        return e is SmithyException && e.retryConfig != null;
-      },
-      onRetry: (e) {
+      onRetry: (e, [delay]) {
         debugNumRetries++;
         print('Retrying $e ($debugNumRetries)');
       },
@@ -220,7 +221,7 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
 
   @visibleForTesting
   Future<Output> deserializeOutput({
-    required HttpProtocol protocol,
+    required HttpProtocol<InputPayload, Input, OutputPayload, Output> protocol,
     required AWSStreamedHttpResponse response,
   }) async {
     Output? output;
@@ -253,16 +254,20 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     }
     smithyError ??= errorTypes
         .singleWhereOrNull((t) => t.statusCode == response.statusCode);
-    final errorType = smithyError?.type ?? SmithyException;
-    final errorPayload = await protocol.deserialize(
+    if (smithyError == null) {
+      throw SmithyHttpException(
+        statusCode: response.statusCode,
+        headers: response.headers,
+      );
+    }
+    final Type errorType = smithyError.type;
+    final Function builder = smithyError.builder;
+    final Object? errorPayload = await protocol.deserialize(
       response.body,
       specifiedType: FullType(errorType),
     );
-    final builder = smithyError?.builder;
-    if (builder != null) {
-      throw builder(errorPayload, response);
-    }
-    throw errorPayload as SmithyException;
+    final SmithyException smithyException = builder(errorPayload, response);
+    throw smithyException;
   }
 
   @override
@@ -274,15 +279,14 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     final protocol = resolveProtocol(useProtocol: useProtocol);
     client ??= protocol.getClient(input);
     final request = buildRequest(input);
-    final httpRequest = await createRequest(
-      request,
-      protocol,
-      input,
-    );
-    return innerSend(
+    return send(
+      createRequest: () => createRequest(
+        request,
+        protocol,
+        input,
+      ),
       client: client,
       protocol: protocol,
-      httpRequest: httpRequest,
     );
   }
 }

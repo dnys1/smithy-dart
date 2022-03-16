@@ -41,6 +41,7 @@ Future<void> httpResponseTest<InputPayload, Input, OutputPayload, Output>({
       headers: testCase.headers,
     );
   });
+  // ignore: invalid_use_of_visible_for_overriding_member
   final output = await operation.send(
     client: HttpClient.v1(baseClient: client),
     createRequest: () async => _dummyHttpRequest,
@@ -102,6 +103,7 @@ Future<void> httpErrorResponseTest<InputPayload, Input, OutputPayload, Output,
     );
   });
   try {
+    // ignore: invalid_use_of_visible_for_overriding_member
     await operation.send(
       client: HttpClient.v1(baseClient: client),
       createRequest: () async => _dummyHttpRequest,

@@ -35,6 +35,28 @@ apply MalformedSet @httpMalformedRequestTests([
         }
     },
     {
+        id: "RestJsonMalformedSetDuplicateBlobs",
+        documentation: """
+        When the set has duplicated blobs, the response should be a 400
+        SerializationException.""",
+        protocol: restJson1,
+        request: {
+            method: "POST",
+            uri: "/MalformedSet",
+            body: """
+            { "blobSet" : ["YmxvYg==", "b3RoZXJibG9i", "YmxvYg=="] }""",
+            headers: {
+                "content-type": "application/json"
+            }
+        },
+        response: {
+            code: 400,
+            headers: {
+                "x-amzn-errortype": "SerializationException"
+            }
+        }
+    },
+    {
         id: "RestJsonMalformedSetNullItem",
         documentation: """
         When the set contains null, the response should be a 400
@@ -59,11 +81,14 @@ apply MalformedSet @httpMalformedRequestTests([
 ])
 
 structure MalformedSetInput {
-    set: SimpleSet
+    set: SimpleSet,
+    blobSet: BlobSet
 }
-
 
 set SimpleSet {
     member: String
 }
 
+set BlobSet {
+    member: Blob
+}

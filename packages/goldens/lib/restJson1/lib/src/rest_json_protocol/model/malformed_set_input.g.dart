@@ -8,13 +8,15 @@ part of rest_json1.rest_json_protocol.model.malformed_set_input;
 
 class _$MalformedSetInput extends MalformedSetInput {
   @override
+  final _i3.BuiltSet<_i4.Uint8List>? blobSet;
+  @override
   final _i3.BuiltSet<String>? set;
 
   factory _$MalformedSetInput(
           [void Function(MalformedSetInputBuilder)? updates]) =>
       (new MalformedSetInputBuilder()..update(updates)).build();
 
-  _$MalformedSetInput._({this.set}) : super._();
+  _$MalformedSetInput._({this.blobSet, this.set}) : super._();
 
   @override
   MalformedSetInput rebuild(void Function(MalformedSetInputBuilder) updates) =>
@@ -27,18 +29,26 @@ class _$MalformedSetInput extends MalformedSetInput {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MalformedSetInput && set == other.set;
+    return other is MalformedSetInput &&
+        blobSet == other.blobSet &&
+        set == other.set;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, set.hashCode));
+    return $jf($jc($jc(0, blobSet.hashCode), set.hashCode));
   }
 }
 
 class MalformedSetInputBuilder
     implements Builder<MalformedSetInput, MalformedSetInputBuilder> {
   _$MalformedSetInput? _$v;
+
+  _i3.SetBuilder<_i4.Uint8List>? _blobSet;
+  _i3.SetBuilder<_i4.Uint8List> get blobSet =>
+      _$this._blobSet ??= new _i3.SetBuilder<_i4.Uint8List>();
+  set blobSet(_i3.SetBuilder<_i4.Uint8List>? blobSet) =>
+      _$this._blobSet = blobSet;
 
   _i3.SetBuilder<String>? _set;
   _i3.SetBuilder<String> get set =>
@@ -52,6 +62,7 @@ class MalformedSetInputBuilder
   MalformedSetInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _blobSet = $v.blobSet?.toBuilder();
       _set = $v.set?.toBuilder();
       _$v = null;
     }
@@ -73,10 +84,14 @@ class MalformedSetInputBuilder
   _$MalformedSetInput build() {
     _$MalformedSetInput _$result;
     try {
-      _$result = _$v ?? new _$MalformedSetInput._(set: _set?.build());
+      _$result = _$v ??
+          new _$MalformedSetInput._(
+              blobSet: _blobSet?.build(), set: _set?.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'blobSet';
+        _blobSet?.build();
         _$failedField = 'set';
         _set?.build();
       } catch (e) {

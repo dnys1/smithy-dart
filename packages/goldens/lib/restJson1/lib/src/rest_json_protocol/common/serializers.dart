@@ -2,6 +2,8 @@
 
 library rest_json1.rest_json_protocol.common.serializers;
 
+import 'dart:typed_data' as _i113;
+
 import 'package:built_collection/built_collection.dart' as _i112;
 import 'package:built_value/serializer.dart';
 import 'package:rest_json1/src/rest_json_protocol/model/all_query_string_types_input.dart'
@@ -384,5 +386,7 @@ final Map<FullType, Function> builderFactories = {
   const FullType(_i112.BuiltMap, [
     FullType(String),
     FullType.nullable(_i50.GreetingStruct)
-  ]): _i112.MapBuilder<String, _i50.GreetingStruct?>.new
+  ]): _i112.MapBuilder<String, _i50.GreetingStruct?>.new,
+  const FullType(_i112.BuiltSet, [FullType(_i113.Uint8List)]):
+      _i112.SetBuilder<_i113.Uint8List>.new
 };

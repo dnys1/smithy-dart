@@ -8,16 +8,13 @@ part of rest_json1.rest_json_protocol.model.post_player_action_input;
 
 class _$PostPlayerActionInput extends PostPlayerActionInput {
   @override
-  final _i3.PlayerAction action;
+  final _i3.PlayerAction? action;
 
   factory _$PostPlayerActionInput(
           [void Function(PostPlayerActionInputBuilder)? updates]) =>
       (new PostPlayerActionInputBuilder()..update(updates)).build();
 
-  _$PostPlayerActionInput._({required this.action}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        action, 'PostPlayerActionInput', 'action');
-  }
+  _$PostPlayerActionInput._({this.action}) : super._();
 
   @override
   PostPlayerActionInput rebuild(
@@ -74,10 +71,7 @@ class PostPlayerActionInputBuilder
 
   @override
   _$PostPlayerActionInput build() {
-    final _$result = _$v ??
-        new _$PostPlayerActionInput._(
-            action: BuiltValueNullFieldError.checkNotNull(
-                action, 'PostPlayerActionInput', 'action'));
+    final _$result = _$v ?? new _$PostPlayerActionInput._(action: action);
     replace(_$result);
     return _$result;
   }

@@ -195,7 +195,14 @@ void main() {
               authScheme: null,
               body: '',
               bodyMediaType: null,
-              params: {'queryFloat': 'NaN', 'queryDouble': 'NaN'},
+              params: {
+                'queryFloat': 'NaN',
+                'queryDouble': 'NaN',
+                'queryParamsMapOfStringList': {
+                  'Float': ['NaN'],
+                  'Double': ['NaN']
+                }
+              },
               vendorParamsShape: null,
               vendorParams: {},
               headers: {},
@@ -229,7 +236,14 @@ void main() {
               authScheme: null,
               body: '',
               bodyMediaType: null,
-              params: {'queryFloat': 'Infinity', 'queryDouble': 'Infinity'},
+              params: {
+                'queryFloat': 'Infinity',
+                'queryDouble': 'Infinity',
+                'queryParamsMapOfStringList': {
+                  'Float': ['Infinity'],
+                  'Double': ['Infinity']
+                }
+              },
               vendorParamsShape: null,
               vendorParams: {},
               headers: {},
@@ -263,7 +277,14 @@ void main() {
               authScheme: null,
               body: '',
               bodyMediaType: null,
-              params: {'queryFloat': '-Infinity', 'queryDouble': '-Infinity'},
+              params: {
+                'queryFloat': '-Infinity',
+                'queryDouble': '-Infinity',
+                'queryParamsMapOfStringList': {
+                  'Float': ['-Infinity'],
+                  'Double': ['-Infinity']
+                }
+              },
               vendorParamsShape: null,
               vendorParams: {},
               headers: {},

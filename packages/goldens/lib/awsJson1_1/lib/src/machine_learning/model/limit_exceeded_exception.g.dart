@@ -11,12 +11,15 @@ class _$LimitExceededException extends LimitExceededException {
   final int? code;
   @override
   final String? message;
+  @override
+  final Map<String, String>? headers;
 
   factory _$LimitExceededException(
           [void Function(LimitExceededExceptionBuilder)? updates]) =>
       (new LimitExceededExceptionBuilder()..update(updates)).build();
 
-  _$LimitExceededException._({this.code, this.message}) : super._();
+  _$LimitExceededException._({this.code, this.message, this.headers})
+      : super._();
 
   @override
   LimitExceededException rebuild(
@@ -53,6 +56,10 @@ class LimitExceededExceptionBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   LimitExceededExceptionBuilder() {
     LimitExceededException._init(this);
   }
@@ -62,6 +69,7 @@ class LimitExceededExceptionBuilder
     if ($v != null) {
       _code = $v.code;
       _message = $v.message;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -80,8 +88,9 @@ class LimitExceededExceptionBuilder
 
   @override
   _$LimitExceededException build() {
-    final _$result =
-        _$v ?? new _$LimitExceededException._(code: code, message: message);
+    final _$result = _$v ??
+        new _$LimitExceededException._(
+            code: code, message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

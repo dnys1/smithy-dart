@@ -7,10 +7,13 @@ part of operation_generator.test.model.map_input_error;
 // **************************************************************************
 
 class _$MapInputError extends MapInputError {
+  @override
+  final Map<String, String>? headers;
+
   factory _$MapInputError([void Function(MapInputErrorBuilder)? updates]) =>
       (new MapInputErrorBuilder()..update(updates)).build();
 
-  _$MapInputError._() : super._();
+  _$MapInputError._({this.headers}) : super._();
 
   @override
   MapInputError rebuild(void Function(MapInputErrorBuilder) updates) =>
@@ -35,8 +38,21 @@ class MapInputErrorBuilder
     implements Builder<MapInputError, MapInputErrorBuilder> {
   _$MapInputError? _$v;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   MapInputErrorBuilder() {
     MapInputError._init(this);
+  }
+
+  MapInputErrorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _headers = $v.headers;
+      _$v = null;
+    }
+    return this;
   }
 
   @override
@@ -52,7 +68,7 @@ class MapInputErrorBuilder
 
   @override
   _$MapInputError build() {
-    final _$result = _$v ?? new _$MapInputError._();
+    final _$result = _$v ?? new _$MapInputError._(headers: headers);
     replace(_$result);
     return _$result;
   }

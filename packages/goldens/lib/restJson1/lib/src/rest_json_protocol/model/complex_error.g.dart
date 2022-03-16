@@ -13,11 +13,14 @@ class _$ComplexError extends ComplexError {
   final _i3.ComplexNestedErrorData? nested;
   @override
   final String? topLevel;
+  @override
+  final Map<String, String>? headers;
 
   factory _$ComplexError([void Function(ComplexErrorBuilder)? updates]) =>
       (new ComplexErrorBuilder()..update(updates)).build();
 
-  _$ComplexError._({this.header, this.nested, this.topLevel}) : super._();
+  _$ComplexError._({this.header, this.nested, this.topLevel, this.headers})
+      : super._();
 
   @override
   ComplexError rebuild(void Function(ComplexErrorBuilder) updates) =>
@@ -60,6 +63,10 @@ class ComplexErrorBuilder
   String? get topLevel => _$this._topLevel;
   set topLevel(String? topLevel) => _$this._topLevel = topLevel;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   ComplexErrorBuilder() {
     ComplexError._init(this);
   }
@@ -70,6 +77,7 @@ class ComplexErrorBuilder
       _header = $v.header;
       _nested = $v.nested?.toBuilder();
       _topLevel = $v.topLevel;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -92,7 +100,10 @@ class ComplexErrorBuilder
     try {
       _$result = _$v ??
           new _$ComplexError._(
-              header: header, nested: _nested?.build(), topLevel: topLevel);
+              header: header,
+              nested: _nested?.build(),
+              topLevel: topLevel,
+              headers: headers);
     } catch (_) {
       late String _$failedField;
       try {

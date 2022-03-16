@@ -120,6 +120,8 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
             builder: _i13.ResourceNotFoundException.fromResponse)
       ];
   @override
+  _i5.AWSRetryer get retryer => _i5.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

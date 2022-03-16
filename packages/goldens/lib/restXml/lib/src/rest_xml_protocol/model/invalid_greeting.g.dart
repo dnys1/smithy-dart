@@ -9,11 +9,13 @@ part of rest_xml.rest_xml_protocol.model.invalid_greeting;
 class _$InvalidGreeting extends InvalidGreeting {
   @override
   final String? message;
+  @override
+  final Map<String, String>? headers;
 
   factory _$InvalidGreeting([void Function(InvalidGreetingBuilder)? updates]) =>
       (new InvalidGreetingBuilder()..update(updates)).build();
 
-  _$InvalidGreeting._({this.message}) : super._();
+  _$InvalidGreeting._({this.message, this.headers}) : super._();
 
   @override
   InvalidGreeting rebuild(void Function(InvalidGreetingBuilder) updates) =>
@@ -43,6 +45,10 @@ class InvalidGreetingBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   InvalidGreetingBuilder() {
     InvalidGreeting._init(this);
   }
@@ -51,6 +57,7 @@ class InvalidGreetingBuilder
     final $v = _$v;
     if ($v != null) {
       _message = $v.message;
+      _headers = $v.headers;
       _$v = null;
     }
     return this;
@@ -69,7 +76,8 @@ class InvalidGreetingBuilder
 
   @override
   _$InvalidGreeting build() {
-    final _$result = _$v ?? new _$InvalidGreeting._(message: message);
+    final _$result =
+        _$v ?? new _$InvalidGreeting._(message: message, headers: headers);
     replace(_$result);
     return _$result;
   }

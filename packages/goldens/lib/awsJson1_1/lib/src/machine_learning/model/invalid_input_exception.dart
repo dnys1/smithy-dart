@@ -13,7 +13,7 @@ abstract class InvalidInputException
     with _i1.AWSEquatable<InvalidInputException>
     implements
         Built<InvalidInputException, InvalidInputExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory InvalidInputException(
           [void Function(InvalidInputExceptionBuilder) updates]) =
       _$InvalidInputException;
@@ -22,7 +22,9 @@ abstract class InvalidInputException
 
   factory InvalidInputException.fromResponse(InvalidInputException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _InvalidInputExceptionAwsJson11Serializer()
@@ -39,6 +41,12 @@ abstract class InvalidInputException
       shape: 'InvalidInputException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 400;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message];
   @override

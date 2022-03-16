@@ -114,6 +114,8 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
             builder: _i13.UnauthorizedException.fromResponse)
       ];
   @override
+  _i7.AWSRetryer get retryer => _i7.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

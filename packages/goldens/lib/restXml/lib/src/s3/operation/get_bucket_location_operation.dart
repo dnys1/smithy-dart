@@ -80,6 +80,8 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
   @override
   List<_i1.SmithyError> get errorTypes => const [];
   @override
+  _i5.AWSRetryer get retryer => _i5.AWSRetryer();
+  @override
   Uri get baseUri {
     var baseUri = _baseUri ?? endpoint.uri;
     if (_s3ClientConfig.useDualStack) {

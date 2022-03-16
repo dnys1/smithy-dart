@@ -15,7 +15,7 @@ abstract class PredictorNotMountedException
     implements
         Built<PredictorNotMountedException,
             PredictorNotMountedExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory PredictorNotMountedException(
           [void Function(PredictorNotMountedExceptionBuilder) updates]) =
       _$PredictorNotMountedException;
@@ -25,7 +25,9 @@ abstract class PredictorNotMountedException
   factory PredictorNotMountedException.fromResponse(
           PredictorNotMountedException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _PredictorNotMountedExceptionAwsJson11Serializer()
@@ -41,6 +43,12 @@ abstract class PredictorNotMountedException
       shape: 'PredictorNotMountedException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 400;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [message];
   @override

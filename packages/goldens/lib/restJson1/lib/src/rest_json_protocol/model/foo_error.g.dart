@@ -7,10 +7,13 @@ part of rest_json1.rest_json_protocol.model.foo_error;
 // **************************************************************************
 
 class _$FooError extends FooError {
+  @override
+  final Map<String, String>? headers;
+
   factory _$FooError([void Function(FooErrorBuilder)? updates]) =>
       (new FooErrorBuilder()..update(updates)).build();
 
-  _$FooError._() : super._();
+  _$FooError._({this.headers}) : super._();
 
   @override
   FooError rebuild(void Function(FooErrorBuilder) updates) =>
@@ -34,8 +37,21 @@ class _$FooError extends FooError {
 class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
   _$FooError? _$v;
 
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   FooErrorBuilder() {
     FooError._init(this);
+  }
+
+  FooErrorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _headers = $v.headers;
+      _$v = null;
+    }
+    return this;
   }
 
   @override
@@ -51,7 +67,7 @@ class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
 
   @override
   _$FooError build() {
-    final _$result = _$v ?? new _$FooError._();
+    final _$result = _$v ?? new _$FooError._(headers: headers);
     replace(_$result);
     return _$result;
   }

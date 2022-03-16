@@ -241,6 +241,9 @@ class BuiltValue {
   /// A [built_value.BuiltValue] reference.
   Reference get builtValue => const Reference('BuiltValue', mainUrl);
 
+  /// A [built_value.BuiltValueField] reference.
+  Reference get builtValueField => const Reference('BuiltValueField', mainUrl);
+
   /// A [built_value.BuiltValueHook] reference.
   Reference get builtValueHook => const Reference('BuiltValueHook', mainUrl);
 
@@ -612,6 +615,10 @@ class _Smithy {
 
   /// Creates a [smithy.SmithyException] reference.
   Reference get smithyException => const Reference('SmithyException', _url);
+
+  /// Creates a [smithy.SmithyHttpException] reference.
+  Reference get smithyHttpException =>
+      const Reference('SmithyHttpException', _url);
 
   /// Creates a [smithy.SmithyUnion] reference for [ref], the union class.
   Reference smithyUnion(Reference ref) => TypeReference(

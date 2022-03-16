@@ -7,10 +7,15 @@ part of aws_json1_0.json_rpc_10.model.foo_error;
 // **************************************************************************
 
 class _$FooError extends FooError {
+  @override
+  final int? statusCode;
+  @override
+  final Map<String, String>? headers;
+
   factory _$FooError([void Function(FooErrorBuilder)? updates]) =>
       (new FooErrorBuilder()..update(updates)).build();
 
-  _$FooError._() : super._();
+  _$FooError._({this.statusCode, this.headers}) : super._();
 
   @override
   FooError rebuild(void Function(FooErrorBuilder) updates) =>
@@ -34,8 +39,26 @@ class _$FooError extends FooError {
 class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
   _$FooError? _$v;
 
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   FooErrorBuilder() {
     FooError._init(this);
+  }
+
+  FooErrorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _statusCode = $v.statusCode;
+      _headers = $v.headers;
+      _$v = null;
+    }
+    return this;
   }
 
   @override
@@ -51,7 +74,8 @@ class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
 
   @override
   _$FooError build() {
-    final _$result = _$v ?? new _$FooError._();
+    final _$result =
+        _$v ?? new _$FooError._(statusCode: statusCode, headers: headers);
     replace(_$result);
     return _$result;
   }

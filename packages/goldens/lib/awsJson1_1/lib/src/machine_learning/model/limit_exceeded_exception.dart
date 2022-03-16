@@ -13,7 +13,7 @@ abstract class LimitExceededException
     with _i1.AWSEquatable<LimitExceededException>
     implements
         Built<LimitExceededException, LimitExceededExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory LimitExceededException(
           [void Function(LimitExceededExceptionBuilder) updates]) =
       _$LimitExceededException;
@@ -22,7 +22,9 @@ abstract class LimitExceededException
 
   factory LimitExceededException.fromResponse(LimitExceededException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _LimitExceededExceptionAwsJson11Serializer()
@@ -39,6 +41,12 @@ abstract class LimitExceededException
       shape: 'LimitExceededException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 417;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message];
   @override

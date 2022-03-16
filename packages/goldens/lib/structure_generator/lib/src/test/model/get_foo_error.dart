@@ -11,7 +11,7 @@ part 'get_foo_error.g.dart';
 
 abstract class GetFooError
     with _i1.AWSEquatable<GetFooError>
-    implements Built<GetFooError, GetFooErrorBuilder>, _i2.SmithyException {
+    implements Built<GetFooError, GetFooErrorBuilder>, _i2.SmithyHttpException {
   factory GetFooError([void Function(GetFooErrorBuilder) updates]) =
       _$GetFooError;
 
@@ -19,7 +19,10 @@ abstract class GetFooError
 
   factory GetFooError.fromResponse(
           GetFooError payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _GetFooErrorSerializer()
@@ -36,6 +39,12 @@ abstract class GetFooError
       namespace: 'com.test.documentation', shape: 'GetFooError');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [message];
   @override

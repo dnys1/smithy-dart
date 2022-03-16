@@ -15,7 +15,7 @@ abstract class ErrorWithMembers
     with _i1.AWSEquatable<ErrorWithMembers>
     implements
         Built<ErrorWithMembers, ErrorWithMembersBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory ErrorWithMembers([void Function(ErrorWithMembersBuilder) updates]) =
       _$ErrorWithMembers;
 
@@ -23,7 +23,10 @@ abstract class ErrorWithMembers
 
   factory ErrorWithMembers.fromResponse(
           ErrorWithMembers payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ErrorWithMembersAwsJson11Serializer()
@@ -46,6 +49,12 @@ abstract class ErrorWithMembers
       namespace: 'aws.protocoltests.json', shape: 'ErrorWithMembers');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [
         code,

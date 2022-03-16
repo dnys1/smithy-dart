@@ -16,14 +16,16 @@ abstract class FooError
     implements
         Built<FooError, FooErrorBuilder>,
         _i2.EmptyPayload,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();
 
   factory FooError.fromResponse(
           FooError payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _FooErrorRestJson1Serializer()
@@ -38,6 +40,12 @@ abstract class FooError
   String? get message => null;
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 500;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [];
   @override

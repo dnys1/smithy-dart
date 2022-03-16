@@ -15,7 +15,7 @@ abstract class TooManyRequestsException
     implements
         Built<TooManyRequestsException, TooManyRequestsExceptionBuilder>,
         _i2.HasPayload<TooManyRequestsExceptionPayload>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory TooManyRequestsException(
           [void Function(TooManyRequestsExceptionBuilder) updates]) =
       _$TooManyRequestsException;
@@ -30,6 +30,7 @@ abstract class TooManyRequestsException
         if (response.headers['Retry-After'] != null) {
           b.retryAfterSeconds = response.headers['Retry-After']!;
         }
+        b.headers = response.headers;
       });
 
   static const List<_i2.SmithySerializer> serializers = [
@@ -42,15 +43,21 @@ abstract class TooManyRequestsException
   String? get message;
   String? get retryAfterSeconds;
   @override
-  _i2.ShapeId get shapeId => const _i2.ShapeId(
-      namespace: 'com.amazonaws.apigateway', shape: 'TooManyRequestsException');
-  @override
   TooManyRequestsExceptionPayload getPayload() =>
       TooManyRequestsExceptionPayload((b) {
         b.message = message;
       });
   @override
+  _i2.ShapeId get shapeId => const _i2.ShapeId(
+      namespace: 'com.amazonaws.apigateway', shape: 'TooManyRequestsException');
+  @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 429;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [message, retryAfterSeconds];
   @override
@@ -78,8 +85,6 @@ abstract class TooManyRequestsExceptionPayload
   @BuiltValueHook(initializeBuilder: true)
   static void _init(TooManyRequestsExceptionPayloadBuilder b) {}
   String? get message;
-  _i2.ShapeId get shapeId => const _i2.ShapeId(
-      namespace: 'com.amazonaws.apigateway', shape: 'TooManyRequestsException');
   @override
   List<Object?> get props => [message];
   @override

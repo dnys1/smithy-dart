@@ -14,7 +14,7 @@ abstract class MapInputError
     implements
         Built<MapInputError, MapInputErrorBuilder>,
         _i2.EmptyPayload,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory MapInputError([void Function(MapInputErrorBuilder) updates]) =
       _$MapInputError;
 
@@ -22,7 +22,9 @@ abstract class MapInputError
 
   factory MapInputError.fromResponse(
           MapInputError payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _MapInputErrorAwsJson11Serializer()
@@ -38,6 +40,12 @@ abstract class MapInputError
   @override
   _i2.RetryConfig? get retryConfig =>
       const _i2.RetryConfig(isThrottlingError: false);
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 429;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [];
   @override

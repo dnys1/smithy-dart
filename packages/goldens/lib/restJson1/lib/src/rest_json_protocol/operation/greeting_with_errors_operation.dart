@@ -104,6 +104,8 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
             builder: _i9.InvalidGreeting.fromResponse)
       ];
   @override
+  _i3.AWSRetryer get retryer => _i3.AWSRetryer();
+  @override
   Uri get baseUri => _baseUri ?? endpoint.uri;
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;

@@ -19,7 +19,7 @@ abstract class ValidationException
     with _i1.AWSEquatable<ValidationException>
     implements
         Built<ValidationException, ValidationExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory ValidationException(
           [void Function(ValidationExceptionBuilder) updates]) =
       _$ValidationException;
@@ -28,7 +28,10 @@ abstract class ValidationException
 
   factory ValidationException.fromResponse(
           ValidationException payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ValidationExceptionRestJson1Serializer()
@@ -49,6 +52,12 @@ abstract class ValidationException
       namespace: 'smithy.framework', shape: 'ValidationException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [fieldList, message];
   @override

@@ -7,10 +7,15 @@ part of rest_xml.s3.model.no_such_bucket;
 // **************************************************************************
 
 class _$NoSuchBucket extends NoSuchBucket {
+  @override
+  final int? statusCode;
+  @override
+  final Map<String, String>? headers;
+
   factory _$NoSuchBucket([void Function(NoSuchBucketBuilder)? updates]) =>
       (new NoSuchBucketBuilder()..update(updates)).build();
 
-  _$NoSuchBucket._() : super._();
+  _$NoSuchBucket._({this.statusCode, this.headers}) : super._();
 
   @override
   NoSuchBucket rebuild(void Function(NoSuchBucketBuilder) updates) =>
@@ -35,8 +40,26 @@ class NoSuchBucketBuilder
     implements Builder<NoSuchBucket, NoSuchBucketBuilder> {
   _$NoSuchBucket? _$v;
 
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  Map<String, String>? _headers;
+  Map<String, String>? get headers => _$this._headers;
+  set headers(Map<String, String>? headers) => _$this._headers = headers;
+
   NoSuchBucketBuilder() {
     NoSuchBucket._init(this);
+  }
+
+  NoSuchBucketBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _statusCode = $v.statusCode;
+      _headers = $v.headers;
+      _$v = null;
+    }
+    return this;
   }
 
   @override
@@ -52,7 +75,8 @@ class NoSuchBucketBuilder
 
   @override
   _$NoSuchBucket build() {
-    final _$result = _$v ?? new _$NoSuchBucket._();
+    final _$result =
+        _$v ?? new _$NoSuchBucket._(statusCode: statusCode, headers: headers);
     replace(_$result);
     return _$result;
   }

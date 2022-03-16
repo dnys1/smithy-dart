@@ -13,7 +13,7 @@ abstract class RequestTimeoutException
     with _i1.AWSEquatable<RequestTimeoutException>
     implements
         Built<RequestTimeoutException, RequestTimeoutExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory RequestTimeoutException(
           [void Function(RequestTimeoutExceptionBuilder) updates]) =
       _$RequestTimeoutException;
@@ -22,7 +22,9 @@ abstract class RequestTimeoutException
 
   factory RequestTimeoutException.fromResponse(RequestTimeoutException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _RequestTimeoutExceptionRestJson1Serializer()
@@ -39,6 +41,12 @@ abstract class RequestTimeoutException
       namespace: 'com.amazonaws.glacier', shape: 'RequestTimeoutException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 408;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message, type];
   @override

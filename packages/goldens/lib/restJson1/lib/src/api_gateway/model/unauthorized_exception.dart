@@ -13,7 +13,7 @@ abstract class UnauthorizedException
     with _i1.AWSEquatable<UnauthorizedException>
     implements
         Built<UnauthorizedException, UnauthorizedExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory UnauthorizedException(
           [void Function(UnauthorizedExceptionBuilder) updates]) =
       _$UnauthorizedException;
@@ -22,7 +22,9 @@ abstract class UnauthorizedException
 
   factory UnauthorizedException.fromResponse(UnauthorizedException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _UnauthorizedExceptionRestJson1Serializer()
@@ -37,6 +39,12 @@ abstract class UnauthorizedException
       namespace: 'com.amazonaws.apigateway', shape: 'UnauthorizedException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 401;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [message];
   @override

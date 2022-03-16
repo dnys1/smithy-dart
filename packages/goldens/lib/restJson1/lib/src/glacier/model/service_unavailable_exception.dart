@@ -13,7 +13,7 @@ abstract class ServiceUnavailableException
     with _i1.AWSEquatable<ServiceUnavailableException>
     implements
         Built<ServiceUnavailableException, ServiceUnavailableExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory ServiceUnavailableException(
           [void Function(ServiceUnavailableExceptionBuilder) updates]) =
       _$ServiceUnavailableException;
@@ -23,7 +23,9 @@ abstract class ServiceUnavailableException
   factory ServiceUnavailableException.fromResponse(
           ServiceUnavailableException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ServiceUnavailableExceptionRestJson1Serializer()
@@ -40,6 +42,12 @@ abstract class ServiceUnavailableException
       namespace: 'com.amazonaws.glacier', shape: 'ServiceUnavailableException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 500;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message, type];
   @override

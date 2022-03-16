@@ -11,7 +11,7 @@ part 'server_error.g.dart';
 
 abstract class ServerError
     with _i1.AWSEquatable<ServerError>
-    implements Built<ServerError, ServerErrorBuilder>, _i2.SmithyException {
+    implements Built<ServerError, ServerErrorBuilder>, _i2.SmithyHttpException {
   factory ServerError([void Function(ServerErrorBuilder) updates]) =
       _$ServerError;
 
@@ -19,7 +19,10 @@ abstract class ServerError
 
   factory ServerError.fromResponse(
           ServerError payload, _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.statusCode = response.statusCode;
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _ServerErrorAwsJson11Serializer()
@@ -34,6 +37,12 @@ abstract class ServerError
       const _i2.ShapeId(namespace: 'com.test', shape: 'ServerError');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int? get statusCode;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [message];
   @override

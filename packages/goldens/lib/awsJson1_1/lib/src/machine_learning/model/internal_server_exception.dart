@@ -13,7 +13,7 @@ abstract class InternalServerException
     with _i1.AWSEquatable<InternalServerException>
     implements
         Built<InternalServerException, InternalServerExceptionBuilder>,
-        _i2.SmithyException {
+        _i2.SmithyHttpException {
   factory InternalServerException(
           [void Function(InternalServerExceptionBuilder) updates]) =
       _$InternalServerException;
@@ -22,7 +22,9 @@ abstract class InternalServerException
 
   factory InternalServerException.fromResponse(InternalServerException payload,
           _i1.AWSStreamedHttpResponse response) =>
-      payload;
+      payload.rebuild((b) {
+        b.headers = response.headers;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _InternalServerExceptionAwsJson11Serializer()
@@ -39,6 +41,12 @@ abstract class InternalServerException
       shape: 'InternalServerException');
   @override
   _i2.RetryConfig? get retryConfig => null;
+  @override
+  @BuiltValueField(compare: false)
+  int get statusCode => 500;
+  @override
+  @BuiltValueField(compare: false)
+  Map<String, String>? get headers;
   @override
   List<Object?> get props => [code, message];
   @override

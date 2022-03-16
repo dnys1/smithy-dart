@@ -119,6 +119,8 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
             builder: _i9.NoSuchBucket.fromResponse)
       ];
   @override
+  _i4.AWSRetryer get retryer => _i4.AWSRetryer();
+  @override
   Uri get baseUri {
     var baseUri = _baseUri ?? endpoint.uri;
     if (_s3ClientConfig.useDualStack) {

@@ -55,7 +55,14 @@ func HandleRequest(ctx context.Context, idl string) (string, int, error) {
 
 	// AST-ify the model
 	stderr := new(bytes.Buffer)
-	cmd := exec.CommandContext(ctx, "smithy", "ast", f.Name())
+	cmd := exec.CommandContext(
+		ctx,
+		"smithy",
+		"ast",
+		"-d",
+		"/smithy/lib/traits",
+		f.Name(),
+	)
 	cmd.Stderr = stderr
 	ast, err := cmd.Output()
 	processedStdErr := processStdErr(stderr.String())

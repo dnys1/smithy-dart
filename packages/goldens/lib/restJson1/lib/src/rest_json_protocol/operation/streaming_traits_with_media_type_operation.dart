@@ -13,6 +13,7 @@ import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_with_me
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i8;
 
 /// This examples serializes a streaming media-typed blob shape in the request body.
 ///
@@ -41,7 +42,10 @@ class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        requestInterceptors: [],
+        requestInterceptors: [
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
+        ],
         responseInterceptors: [],
         mediaType: 'text/plain')
   ];
@@ -88,6 +92,9 @@ class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i2.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

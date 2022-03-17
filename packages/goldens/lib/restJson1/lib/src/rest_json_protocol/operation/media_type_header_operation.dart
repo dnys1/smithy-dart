@@ -16,6 +16,7 @@ import 'package:rest_json1/src/rest_json_protocol/model/media_type_header_output
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i10;
 
 /// This example ensures that mediaType strings are base64 encoded in headers.
 class MediaTypeHeaderOperation extends _i1.HttpOperation<
@@ -40,7 +41,9 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
           const _i1.WithNoHeader('Content-Length'),
-          const _i1.WithNoHeader('Content-Type')
+          const _i1.WithNoHeader('Content-Type'),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -82,6 +85,9 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i9.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i8.AWSHeaders.sdkInvocationId: const _i10.Uuid().v4()}
+        });
   }
 }

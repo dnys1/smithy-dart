@@ -14,6 +14,7 @@ import 'package:rest_xml/src/rest_xml_protocol/model/empty_input_and_empty_outpu
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i9;
 
 /// The example tests how requests and responses are serialized when there's
 /// no request or response payload because the operation has an empty input
@@ -42,7 +43,11 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
     _i4.RestXmlProtocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [
+          const _i1.WithContentLength(),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
+        ],
         responseInterceptors: [],
         noErrorWrapping: false)
   ];
@@ -82,6 +87,9 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+        });
   }
 }

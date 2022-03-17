@@ -12,6 +12,7 @@ import 'package:rest_xml/src/rest_xml_protocol/model/xml_lists_input_output.dart
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 /// This test case serializes XML lists for the following cases for both
 /// input and output:
@@ -50,7 +51,11 @@ class XmlListsOperation extends _i1.HttpOperation<_i2.XmlListsInputOutput,
     _i3.RestXmlProtocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [
+          const _i1.WithContentLength(),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
+        ],
         responseInterceptors: [],
         noErrorWrapping: false)
   ];
@@ -87,6 +92,9 @@ class XmlListsOperation extends _i1.HttpOperation<_i2.XmlListsInputOutput,
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

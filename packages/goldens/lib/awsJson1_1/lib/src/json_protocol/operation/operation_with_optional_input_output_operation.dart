@@ -15,6 +15,7 @@ import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_inpu
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i5;
+import 'package:uuid/uuid.dart' as _i10;
 
 class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
     _i2.OperationWithOptionalInputOutputInput,
@@ -47,7 +48,9 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
           _i5.WithSigV4(
               region: _region,
               serviceName: 'foo',
-              credentialsProvider: _credentialsProvider)
+              credentialsProvider: _credentialsProvider),
+          const _i5.WithSdkInvocationId(),
+          const _i5.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -91,6 +94,9 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i9.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i8.AWSHeaders.sdkInvocationId: const _i10.Uuid().v4()}
+        });
   }
 }

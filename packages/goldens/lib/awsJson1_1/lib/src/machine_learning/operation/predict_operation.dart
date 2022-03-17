@@ -26,6 +26,7 @@ import 'package:aws_json1_1/src/machine_learning/model/resource_not_found_except
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i5;
+import 'package:uuid/uuid.dart' as _i15;
 
 class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
     _i2.PredictInput, _i3.PredictOutput, _i3.PredictOutput> {
@@ -51,7 +52,9 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
           _i5.WithSigV4(
               region: _region,
               serviceName: 'machinelearning',
-              credentialsProvider: _credentialsProvider)
+              credentialsProvider: _credentialsProvider),
+          const _i5.WithSdkInvocationId(),
+          const _i5.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -130,6 +133,9 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i14.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i8.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+        });
   }
 }

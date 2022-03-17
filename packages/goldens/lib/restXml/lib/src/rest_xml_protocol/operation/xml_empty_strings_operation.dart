@@ -12,6 +12,7 @@ import 'package:rest_xml/src/rest_xml_protocol/model/xml_empty_strings_input_out
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 class XmlEmptyStringsOperation extends _i1.HttpOperation<
     _i2.XmlEmptyStringsInputOutput,
@@ -32,7 +33,11 @@ class XmlEmptyStringsOperation extends _i1.HttpOperation<
     _i3.RestXmlProtocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [
+          const _i1.WithContentLength(),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
+        ],
         responseInterceptors: [],
         noErrorWrapping: false)
   ];
@@ -72,6 +77,9 @@ class XmlEmptyStringsOperation extends _i1.HttpOperation<
       _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

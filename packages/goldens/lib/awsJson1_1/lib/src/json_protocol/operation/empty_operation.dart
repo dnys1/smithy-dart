@@ -11,6 +11,7 @@ import 'package:aws_json1_1/src/json_protocol/common/serializers.dart' as _i4;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 class EmptyOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
@@ -35,7 +36,9 @@ class EmptyOperation
           _i3.WithSigV4(
               region: _region,
               serviceName: 'foo',
-              credentialsProvider: _credentialsProvider)
+              credentialsProvider: _credentialsProvider),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -73,6 +76,9 @@ class EmptyOperation
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

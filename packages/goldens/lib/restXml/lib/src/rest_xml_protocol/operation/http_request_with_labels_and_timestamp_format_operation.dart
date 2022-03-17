@@ -12,6 +12,7 @@ import 'package:rest_xml/src/rest_xml_protocol/model/http_request_with_labels_an
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
+import 'package:uuid/uuid.dart' as _i8;
 
 /// The example tests how requests serialize different timestamp formats in the
 /// URI path.
@@ -38,7 +39,11 @@ class HttpRequestWithLabelsAndTimestampFormatOperation
     _i3.RestXmlProtocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [
+          const _i1.WithContentLength(),
+          const _i3.WithSdkInvocationId(),
+          const _i3.WithSdkRequest()
+        ],
         responseInterceptors: [],
         noErrorWrapping: false)
   ];
@@ -79,6 +84,9 @@ class HttpRequestWithLabelsAndTimestampFormatOperation
       _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+        });
   }
 }

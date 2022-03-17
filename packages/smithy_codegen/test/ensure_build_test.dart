@@ -7,5 +7,6 @@ void main() {
   test(
     'ensure_build',
     () => expectBuildClean(packageRelativeDirectory: 'packages/smithy_codegen'),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }

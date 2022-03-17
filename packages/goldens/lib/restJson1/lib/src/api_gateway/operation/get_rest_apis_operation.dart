@@ -22,6 +22,7 @@ import 'package:rest_json1/src/api_gateway/model/unauthorized_exception.dart'
     as _i13;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i7;
+import 'package:uuid/uuid.dart' as _i15;
 
 class GetRestApisOperation extends _i1.PaginatedHttpOperation<
     _i2.GetRestApisRequestPayload,
@@ -54,6 +55,8 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
               region: _region,
               serviceName: 'apigateway',
               credentialsProvider: _credentialsProvider),
+          const _i7.WithSdkInvocationId(),
+          const _i7.WithSdkRequest(),
           const _i1.WithHeader('Accept', 'application/json')
         ],
         responseInterceptors: [])
@@ -124,7 +127,10 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i14.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i10.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+        });
   }
 
   @override

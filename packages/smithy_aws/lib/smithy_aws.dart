@@ -8,6 +8,8 @@ export 'src/endpoint/credential_scope.dart';
 export 'src/endpoint/partition.dart';
 
 // HTTP
+export 'src/http/interceptors/with_sdk_invocation.dart';
+export 'src/http/interceptors/with_sdk_request.dart';
 export 'src/http/interceptors/with_sig_v4.dart';
 export 'src/http/retry/aws_retryer.dart';
 

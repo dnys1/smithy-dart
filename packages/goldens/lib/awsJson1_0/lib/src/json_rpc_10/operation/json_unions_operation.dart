@@ -14,6 +14,7 @@ import 'package:aws_json1_0/src/json_rpc_10/model/json_unions_output.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i9;
 
 /// This operation uses unions for inputs and outputs.
 class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
@@ -32,7 +33,9 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
           const _i1.WithContentLength(),
-          const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.JsonUnions')
+          const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.JsonUnions'),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -69,6 +72,9 @@ class JsonUnionsOperation extends _i1.HttpOperation<_i2.JsonUnionsInput,
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+        });
   }
 }

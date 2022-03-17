@@ -20,9 +20,9 @@ dependencies:
   aws_signature_v4:
     hosted: https://pub.dillonnys.com
     version: ^0.1.0
+  uuid: ^3.0.0
   meta: ^1.7.0
   fixnum: ^1.0.0
-  uuid: ^3.0.0
   xml: ^5.3.1
 
 dependency_overrides:

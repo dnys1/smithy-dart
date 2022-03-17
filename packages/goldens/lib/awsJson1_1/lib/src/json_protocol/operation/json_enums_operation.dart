@@ -13,6 +13,7 @@ import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
+import 'package:uuid/uuid.dart' as _i9;
 
 /// This example serializes enums as top level properties, in lists, sets, and maps.
 class JsonEnumsOperation extends _i1.HttpOperation<
@@ -43,7 +44,9 @@ class JsonEnumsOperation extends _i1.HttpOperation<
           _i4.WithSigV4(
               region: _region,
               serviceName: 'foo',
-              credentialsProvider: _credentialsProvider)
+              credentialsProvider: _credentialsProvider),
+          const _i4.WithSdkInvocationId(),
+          const _i4.WithSdkRequest()
         ],
         responseInterceptors: [])
   ];
@@ -82,6 +85,9 @@ class JsonEnumsOperation extends _i1.HttpOperation<
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i8.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
-        zoneValues: _awsEndpoint.credentialScope?.zoneValues);
+        zoneValues: {
+          ...?_awsEndpoint.credentialScope?.zoneValues,
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+        });
   }
 }

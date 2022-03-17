@@ -2,11 +2,11 @@ import 'package:built_value/serializer.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart' hide Serializer;
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
-import 'package:smithy_aws/src/protocol/aws_json_protocol.dart';
+import 'package:smithy_aws/src/protocol/aws_json_error_protocol.dart';
 
 class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
-    with AWSJsonProtocol {
+    with AWSJsonErrorProtocol {
   AwsJson1_0Protocol({
     List<HttpRequestInterceptor> requestInterceptors = const [],
     List<HttpResponseInterceptor> responseInterceptors = const [],

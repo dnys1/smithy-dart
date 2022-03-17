@@ -4,7 +4,11 @@ import 'package:aws_common/aws_common.dart';
 import 'package:http/http.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-mixin AWSJsonProtocol<InputPayload, Input, OutputPayload, Output>
+/// Provides common error handling to the JSON-based AWS protocols:
+/// - [AWS JSON 1.0](https://awslabs.github.io/smithy/1.0/spec/aws/aws-json-1_0-protocol.html#operation-error-serialization)
+/// - [AWS JSON 1.1](https://awslabs.github.io/smithy/1.0/spec/aws/aws-json-1_1-protocol.html#operation-error-serialization)
+/// - [restJson1](https://awslabs.github.io/smithy/1.0/spec/aws/aws-restjson1-protocol.html#operation-error-serialization)
+mixin AWSJsonErrorProtocol<InputPayload, Input, OutputPayload, Output>
     on AWSHttpProtocol<InputPayload, Input, OutputPayload, Output> {
   /// Error responses in the awsJson1_0 protocol are serialized identically to
   /// standard responses with one additional component to distinguish which

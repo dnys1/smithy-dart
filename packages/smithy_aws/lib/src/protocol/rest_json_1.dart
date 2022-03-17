@@ -5,11 +5,11 @@ import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
-import 'aws_json_protocol.dart';
+import 'aws_json_error_protocol.dart';
 
 class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
     extends AWSHttpProtocol<InputPayload, Input, OutputPayload, Output>
-    with AWSJsonProtocol {
+    with AWSJsonErrorProtocol {
   RestJson1Protocol({
     this.mediaType,
     List<HttpRequestInterceptor> requestInterceptors = const [],

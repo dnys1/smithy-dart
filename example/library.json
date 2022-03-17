@@ -1,0 +1,130 @@
+{
+    "smithy": "1.0",
+    "shapes": {
+        "org.publiclibrary#Author": {
+            "type": "structure",
+            "members": {
+                "id": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                },
+                "name": {
+                    "target": "smithy.api#String"
+                }
+            }
+        },
+        "org.publiclibrary#BookAlreadyDefinedError": {
+            "type": "structure",
+            "members": {
+                "existingId": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                }
+            },
+            "traits": {
+                "smithy.api#error": "client",
+                "smithy.api#httpError": 409
+            }
+        },
+        "org.publiclibrary#CheckoutBook": {
+            "type": "operation",
+            "input": {
+                "target": "org.publiclibrary#CheckoutBookInput"
+            },
+            "output": {
+                "target": "smithy.api#Unit"
+            },
+            "traits": {
+                "smithy.api#http": {
+                    "method": "POST",
+                    "uri": "/checkout/{bookId}"
+                }
+            }
+        },
+        "org.publiclibrary#CheckoutBookInput": {
+            "type": "structure",
+            "members": {
+                "bookId": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#httpLabel": {},
+                        "smithy.api#required": {}
+                    }
+                },
+                "libraryCard": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#httpHeader": "X-Library-Card",
+                        "smithy.api#required": {}
+                    }
+                }
+            }
+        },
+        "org.publiclibrary#CreateBook": {
+            "type": "operation",
+            "input": {
+                "target": "org.publiclibrary#CreateBookInputOutput"
+            },
+            "output": {
+                "target": "org.publiclibrary#CreateBookInputOutput"
+            },
+            "errors": [
+                {
+                    "target": "org.publiclibrary#BookAlreadyDefinedError"
+                }
+            ],
+            "traits": {
+                "smithy.api#http": {
+                    "method": "POST",
+                    "uri": "/books/{id}"
+                }
+            }
+        },
+        "org.publiclibrary#CreateBookInputOutput": {
+            "type": "structure",
+            "members": {
+                "id": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#httpLabel": {},
+                        "smithy.api#required": {}
+                    }
+                },
+                "title": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                },
+                "author": {
+                    "target": "org.publiclibrary#Author",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                },
+                "isbn": {
+                    "target": "smithy.api#String"
+                },
+                "datePublished": {
+                    "target": "smithy.api#Timestamp"
+                }
+            }
+        },
+        "org.publiclibrary#LibraryService": {
+            "type": "service",
+            "version": "1.0",
+            "operations": [
+                {
+                    "target": "org.publiclibrary#CheckoutBook"
+                },
+                {
+                    "target": "org.publiclibrary#CreateBook"
+                }
+            ]
+        }
+    }
+}

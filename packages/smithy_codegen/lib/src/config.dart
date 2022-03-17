@@ -13,6 +13,7 @@ class CodegenConfig {
     required this.output,
     this.inputFile,
     required this.server,
+    this.packageName,
   });
 
   @CliOption(
@@ -32,6 +33,13 @@ class CodegenConfig {
     help: 'Starts a gRPC server for accepting commands.',
   )
   final bool server;
+
+  @CliOption(
+    abbr: 'p',
+    help: 'The name of the generated package. '
+        'Defaults to the service name.',
+  )
+  final String? packageName;
 }
 
 extension ConfigOptions on CodegenConfig {

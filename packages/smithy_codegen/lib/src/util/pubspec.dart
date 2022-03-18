@@ -1,5 +1,5 @@
 import 'package:aws_common/aws_common.dart';
-import 'package:pubspec_parse/pubspec_parse.dart';
+import 'package:pubspec_parse/pubspec_parse.dart' hide Dependency;
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/util/recase.dart';
 import 'package:path/path.dart' as path;
@@ -22,9 +22,9 @@ class Dependency with AWSEquatable<Dependency> {
 /// All dependencies and the current versions.
 final dependencyVersions = {
   // Dependencies
-  'smithy': Dependency('^0.1.0', DependencyType.smithy),
-  'smithy_aws': Dependency('^0.1.0', DependencyType.smithy),
-  'smithy_codegen': Dependency('^0.1.0', DependencyType.smithy),
+  'smithy': Dependency('^0.2.0', DependencyType.smithy),
+  'smithy_aws': Dependency('^0.2.0', DependencyType.smithy),
+  'smithy_codegen': Dependency('^0.2.0', DependencyType.smithy),
   'aws_common': Dependency('^0.1.0', DependencyType.aws),
   'aws_signature_v4': Dependency('^0.1.0', DependencyType.aws),
   'built_value': Dependency('^8.0.0'),
@@ -35,7 +35,7 @@ final dependencyVersions = {
   'xml': Dependency('^5.3.1'),
 
   // Dev Dependencies
-  'smithy_test': Dependency.dev('^0.1.0', DependencyType.smithy),
+  'smithy_test': Dependency.dev('^0.2.0', DependencyType.smithy),
   'build_runner': Dependency.dev('^2.0.0'),
   'built_value_generator': Dependency.dev('^8.0.0'),
   'lints': Dependency.dev('^1.0.0'),

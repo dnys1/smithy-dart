@@ -10,6 +10,7 @@ CodegenConfig _$parseCodegenConfigResult(ArgResults result) => CodegenConfig(
       output: result['output'] as String,
       inputFile: result['input-file'] as String?,
       server: result['server'] as bool,
+      packageName: result['package-name'] as String?,
     );
 
 ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
@@ -29,6 +30,11 @@ ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
     'server',
     abbr: 's',
     help: 'Starts a gRPC server for accepting commands.',
+  )
+  ..addOption(
+    'package-name',
+    abbr: 'p',
+    help: 'The name of the generated package. Defaults to the service name.',
   );
 
 final _$parserForCodegenConfig = _$populateCodegenConfigParser(ArgParser());

@@ -26,12 +26,12 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
 
   static late final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
-        ..addAll([
+        ..addAll(const [
           BigIntSerializer.asNum,
-          const DoubleSerializer(),
+          DoubleSerializer(),
           Int64Serializer.asNum,
           TimestampSerializer.epochSeconds,
-          const UnitSerializer(),
+          UnitSerializer(),
         ]))
       .build();
 

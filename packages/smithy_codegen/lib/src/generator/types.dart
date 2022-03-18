@@ -4,6 +4,7 @@ import 'dart:convert' as convert;
 import 'dart:typed_data';
 
 import 'package:aws_common/aws_common.dart' as aws_common;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as aws_sig_v4;
 import 'package:built_collection/built_collection.dart' as built_collection;
 import 'package:built_value/built_value.dart' as built_value;
 import 'package:built_value/json_object.dart' as built_value_json_object;
@@ -15,6 +16,8 @@ import 'package:http/testing.dart' as http_test;
 import 'package:meta/meta.dart' as meta;
 import 'package:smithy/smithy.dart' as smithy;
 import 'package:smithy_aws/smithy_aws.dart' as smithy_aws;
+import 'package:uuid/uuid.dart' as _uuid;
+import 'package:xml/xml.dart' as xml;
 
 /// Common type references used throughout code generation.
 abstract class DartTypes {
@@ -475,10 +478,8 @@ class _Smithy {
   Reference get endpoint => const Reference('Endpoint', _url);
 
   /// Creates a `GenericJsonProtocol` refererence.
-  Reference get genericJsonProtocol => const Reference(
-        'GenericJsonProtocol',
-        'package:smithy/src/protocol/generic_json_protocol.dart',
-      );
+  Reference get genericJsonProtocol =>
+      const Reference('GenericJsonProtocol', _url);
 
   /// Creates a [smithy.HasPayload] reference for [ref], the payload type.
   Reference hasPayload(Reference ref) => TypeReference(
@@ -535,9 +536,6 @@ class _Smithy {
   /// Creates a [smithy.HttpRequestBuilder] AST reference.
   Reference get httpRequestBuilder =>
       const Reference('HttpRequestBuilder', _url);
-
-  /// Creates a [smithy.HttpResponse] AST reference.
-  Reference get httpResponse => const Reference('HttpResponse', _url);
 
   /// Creates a [smithy.MissingLabelException] reference.
   Reference get missingLabelException =>
@@ -819,7 +817,7 @@ class _Uuid {
 
   static const _url = 'package:uuid/uuid.dart';
 
-  /// Creates a `Uuid` reference.
+  /// Creates a [_uuid.Uuid] reference.
   Reference get uuid => const Reference('Uuid', _url);
 }
 
@@ -829,9 +827,9 @@ class _Xml {
 
   static const _url = 'package:xml/xml.dart';
 
-  /// Creates a `XmlName` reference.
+  /// Creates a [xml.XmlName] reference.
   Reference get xmlName => const Reference('XmlName', _url);
 
-  /// Creates a `XmlAttribute` reference.
+  /// Creates a [xml.XmlAttribute] reference.
   Reference get xmlAttribute => const Reference('XmlAttribute', _url);
 }

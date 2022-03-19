@@ -172,9 +172,8 @@ class StructureSerializerGenerator extends SerializerGenerator<StructureShape>
       ).returned.statement;
     }
 
-    final builderSymbol = config.usePayload
-        ? payloadBuilderSymbol ?? this.builderSymbol
-        : this.builderSymbol;
+    final builderSymbol =
+        config.usePayload ? payloadBuilderSymbol : this.builderSymbol;
     if (serializedMembers.isEmpty) {
       return builderSymbol
           .newInstance([])

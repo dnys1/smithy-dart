@@ -52,7 +52,6 @@ Future<void> _generateFor(FileSystemEntity modelEnt) async {
       '--rm',
       '-v',
       '$modelsPath:/home/$modelsDir',
-      'smithy-playground',
       'smithy',
       'ast',
       '-d',

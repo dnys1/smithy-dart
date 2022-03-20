@@ -23,6 +23,23 @@ abstract class MalformedDoubleInput
 
   const MalformedDoubleInput._();
 
+  factory MalformedDoubleInput.fromRequest(
+          MalformedDoubleInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedDoubleInput((b) {
+        b.doubleInBody = payload.doubleInBody;
+        if (request.headers['doubleInHeader'] != null) {
+          b.doubleInHeader = double.parse(request.headers['doubleInHeader']!);
+        }
+        if (request.queryParameters['doubleInQuery'] != null) {
+          b.doubleInQuery =
+              double.parse(request.queryParameters['doubleInQuery']!);
+        }
+        if (labels['doubleInPath'] != null) {
+          b.doubleInPath = double.parse(labels['doubleInPath']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedDoubleInputRestJson1Serializer()
   ];

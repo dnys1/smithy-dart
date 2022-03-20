@@ -20,8 +20,8 @@ abstract class PostPlayerActionOutput
 
   const PostPlayerActionOutput._();
 
-  factory PostPlayerActionOutput.fromResponse(PostPlayerActionOutput payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory PostPlayerActionOutput.fromResponse(
+          PostPlayerActionOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

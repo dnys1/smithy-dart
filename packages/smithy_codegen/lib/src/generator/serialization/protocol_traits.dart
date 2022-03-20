@@ -40,34 +40,26 @@ abstract class HttpPrefixHeaders
 }
 
 @BuiltValue(instantiable: false)
-abstract class HttpTraits {}
+abstract class HttpTraits {
+  BuiltMap<String, MemberShape> get httpHeaders;
+  HttpPrefixHeaders? get httpPrefixHeaders;
+}
 
 abstract class HttpInputTraits
-    implements Built<HttpInputTraits, HttpInputTraitsBuilder> {
+    implements HttpTraits, Built<HttpInputTraits, HttpInputTraitsBuilder> {
   factory HttpInputTraits([void Function(HttpInputTraitsBuilder) updates]) =
       _$HttpInputTraits;
   HttpInputTraits._();
 
-  BuiltMap<String, MemberShape> get httpHeaders;
-
   /// Shapes marked with an [HttpLabelTrait] annotation.
   BuiltSet<MemberShape> get httpLabels;
-  HttpPrefixHeaders? get httpPrefixHeaders;
   MemberShape? get hostLabel;
   BuiltMap<String, MemberShape> get httpQuery;
   MemberShape? get httpQueryParams;
 }
 
-@BuiltValue(instantiable: false)
-abstract class HttpResponseTraits {
-  BuiltMap<String, MemberShape> get httpHeaders;
-  HttpPrefixHeaders? get httpPrefixHeaders;
-}
-
 abstract class HttpOutputTraits
-    implements
-        HttpResponseTraits,
-        Built<HttpOutputTraits, HttpOutputTraitsBuilder> {
+    implements HttpTraits, Built<HttpOutputTraits, HttpOutputTraitsBuilder> {
   factory HttpOutputTraits([void Function(HttpOutputTraitsBuilder) updates]) =
       _$HttpOutputTraits;
   HttpOutputTraits._();
@@ -76,9 +68,7 @@ abstract class HttpOutputTraits
 }
 
 abstract class HttpErrorTraits
-    implements
-        HttpResponseTraits,
-        Built<HttpErrorTraits, HttpErrorTraitsBuilder> {
+    implements HttpTraits, Built<HttpErrorTraits, HttpErrorTraitsBuilder> {
   factory HttpErrorTraits([void Function(HttpErrorTraitsBuilder) updates]) =
       _$HttpErrorTraits;
   HttpErrorTraits._();

@@ -22,9 +22,15 @@ abstract class HttpChecksumRequiredInputOutput
 
   const HttpChecksumRequiredInputOutput._();
 
+  factory HttpChecksumRequiredInputOutput.fromRequest(
+          HttpChecksumRequiredInputOutput payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory HttpChecksumRequiredInputOutput.fromResponse(
           HttpChecksumRequiredInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

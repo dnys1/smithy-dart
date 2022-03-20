@@ -25,6 +25,11 @@ abstract class MalformedLengthOverrideInput
 
   const MalformedLengthOverrideInput._();
 
+  factory MalformedLengthOverrideInput.fromRequest(
+          MalformedLengthOverrideInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedLengthOverrideInputRestJson1Serializer()
   ];

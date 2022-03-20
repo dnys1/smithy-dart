@@ -18,6 +18,11 @@ abstract class GetFooInput
 
   const GetFooInput._();
 
+  factory GetFooInput.fromRequest(
+          GetFooInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _GetFooInputSerializer()
   ];

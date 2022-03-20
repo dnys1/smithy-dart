@@ -25,6 +25,19 @@ abstract class HttpPrefixHeadersInput
 
   const HttpPrefixHeadersInput._();
 
+  factory HttpPrefixHeadersInput.fromRequest(
+          HttpPrefixHeadersInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPrefixHeadersInput((b) {
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+        b.fooMap.addEntries(request.headers.entries
+            .where((el) => el.key.startsWith('X-Foo-'))
+            .map(
+                (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPrefixHeadersInputRestJson1Serializer()
   ];

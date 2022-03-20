@@ -25,6 +25,15 @@ abstract class QueryPrecedenceInput
 
   const QueryPrecedenceInput._();
 
+  factory QueryPrecedenceInput.fromRequest(
+          QueryPrecedenceInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      QueryPrecedenceInput((b) {
+        if (request.queryParameters['bar'] != null) {
+          b.foo = request.queryParameters['bar']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _QueryPrecedenceInputRestXmlSerializer()
   ];

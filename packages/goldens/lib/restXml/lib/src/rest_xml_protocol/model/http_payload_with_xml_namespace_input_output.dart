@@ -25,9 +25,18 @@ abstract class HttpPayloadWithXmlNamespaceInputOutput
 
   const HttpPayloadWithXmlNamespaceInputOutput._();
 
+  factory HttpPayloadWithXmlNamespaceInputOutput.fromRequest(
+          _i2.PayloadWithXmlNamespace? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadWithXmlNamespaceInputOutput((b) {
+        if (payload != null) {
+          b.nested.replace(payload);
+        }
+      });
+
   factory HttpPayloadWithXmlNamespaceInputOutput.fromResponse(
           _i2.PayloadWithXmlNamespace? payload,
-          _i3.AWSStreamedHttpResponse response) =>
+          _i3.AWSBaseHttpResponse response) =>
       HttpPayloadWithXmlNamespaceInputOutput((b) {
         if (payload != null) {
           b.nested.replace(payload);

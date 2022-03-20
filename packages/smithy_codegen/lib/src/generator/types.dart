@@ -215,6 +215,21 @@ class _AwsCommon {
   /// Creates an [aws_common.AWSSerializable] reference.
   Reference get awsSerializable => const Reference('AWSSerializable', _url);
 
+  /// Creates an [aws_common.AWSBaseHttpRequest] reference.
+  Reference get awsBaseHttpRequest =>
+      const Reference('AWSBaseHttpRequest', _url);
+
+  /// Creates an [aws_common.AWSBaseHttpResponse] reference.
+  Reference get awsBaseHttpResponse =>
+      const Reference('AWSBaseHttpResponse', _url);
+
+  /// Creates an [aws_common.AWSHttpRequest] reference.
+  Reference get awsHttpRequest => const Reference('AWSHttpRequest', _url);
+
+  /// Creates an [aws_common.AWSStreamedHttpRequest] reference.
+  Reference get awsStreamedHttpRequest =>
+      const Reference('AWSStreamedHttpRequest', _url);
+
   /// Creates an [aws_common.AWSStreamedHttpResponse] reference.
   Reference get awsStreamedHttpResponse =>
       const Reference('AWSStreamedHttpResponse', _url);

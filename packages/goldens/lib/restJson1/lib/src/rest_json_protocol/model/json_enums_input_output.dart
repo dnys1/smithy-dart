@@ -22,8 +22,13 @@ abstract class JsonEnumsInputOutput
 
   const JsonEnumsInputOutput._();
 
+  factory JsonEnumsInputOutput.fromRequest(
+          JsonEnumsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory JsonEnumsInputOutput.fromResponse(
-          JsonEnumsInputOutput payload, _i2.AWSStreamedHttpResponse response) =>
+          JsonEnumsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

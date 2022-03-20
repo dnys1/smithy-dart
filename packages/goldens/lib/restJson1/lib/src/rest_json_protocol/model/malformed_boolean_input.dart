@@ -23,6 +23,23 @@ abstract class MalformedBooleanInput
 
   const MalformedBooleanInput._();
 
+  factory MalformedBooleanInput.fromRequest(
+          MalformedBooleanInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedBooleanInput((b) {
+        b.booleanInBody = payload.booleanInBody;
+        if (request.headers['booleanInHeader'] != null) {
+          b.booleanInHeader = request.headers['booleanInHeader']! == 'true';
+        }
+        if (request.queryParameters['booleanInQuery'] != null) {
+          b.booleanInQuery =
+              request.queryParameters['booleanInQuery']! == 'true';
+        }
+        if (labels['booleanInPath'] != null) {
+          b.booleanInPath = labels['booleanInPath']! == 'true';
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedBooleanInputRestJson1Serializer()
   ];

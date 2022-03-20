@@ -24,7 +24,7 @@ abstract class HttpResponseCodeOutput
 
   factory HttpResponseCodeOutput.fromResponse(
           HttpResponseCodeOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       HttpResponseCodeOutput((b) {
         b.status = response.statusCode;
       });

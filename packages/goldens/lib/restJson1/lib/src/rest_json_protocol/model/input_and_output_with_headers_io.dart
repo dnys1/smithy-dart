@@ -27,9 +27,79 @@ abstract class InputAndOutputWithHeadersIo
 
   const InputAndOutputWithHeadersIo._();
 
+  factory InputAndOutputWithHeadersIo.fromRequest(
+          InputAndOutputWithHeadersIoPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      InputAndOutputWithHeadersIo((b) {
+        if (request.headers['X-String'] != null) {
+          b.headerString = request.headers['X-String']!;
+        }
+        if (request.headers['X-Byte'] != null) {
+          b.headerByte = int.parse(request.headers['X-Byte']!);
+        }
+        if (request.headers['X-Short'] != null) {
+          b.headerShort = int.parse(request.headers['X-Short']!);
+        }
+        if (request.headers['X-Integer'] != null) {
+          b.headerInteger = int.parse(request.headers['X-Integer']!);
+        }
+        if (request.headers['X-Long'] != null) {
+          b.headerLong = _i3.Int64.parseInt(request.headers['X-Long']!);
+        }
+        if (request.headers['X-Float'] != null) {
+          b.headerFloat = double.parse(request.headers['X-Float']!);
+        }
+        if (request.headers['X-Double'] != null) {
+          b.headerDouble = double.parse(request.headers['X-Double']!);
+        }
+        if (request.headers['X-Boolean1'] != null) {
+          b.headerTrueBool = request.headers['X-Boolean1']! == 'true';
+        }
+        if (request.headers['X-Boolean2'] != null) {
+          b.headerFalseBool = request.headers['X-Boolean2']! == 'true';
+        }
+        if (request.headers['X-StringList'] != null) {
+          b.headerStringList.addAll(_i1
+              .parseHeader(request.headers['X-StringList']!)
+              .map((el) => el.trim()));
+        }
+        if (request.headers['X-StringSet'] != null) {
+          b.headerStringSet.addAll(_i1
+              .parseHeader(request.headers['X-StringSet']!)
+              .map((el) => el.trim()));
+        }
+        if (request.headers['X-IntegerList'] != null) {
+          b.headerIntegerList.addAll(_i1
+              .parseHeader(request.headers['X-IntegerList']!)
+              .map((el) => int.parse(el.trim())));
+        }
+        if (request.headers['X-BooleanList'] != null) {
+          b.headerBooleanList.addAll(_i1
+              .parseHeader(request.headers['X-BooleanList']!)
+              .map((el) => el.trim() == 'true'));
+        }
+        if (request.headers['X-TimestampList'] != null) {
+          b.headerTimestampList.addAll(_i1
+              .parseHeader(request.headers['X-TimestampList']!,
+                  isTimestampList: true)
+              .map((el) => _i1.Timestamp.parse(el.trim(),
+                      format: _i1.TimestampFormat.httpDate)
+                  .asDateTime));
+        }
+        if (request.headers['X-Enum'] != null) {
+          b.headerEnum = _i4.FooEnum.values.byValue(request.headers['X-Enum']!);
+        }
+        if (request.headers['X-EnumList'] != null) {
+          b.headerEnumList.addAll(_i1
+              .parseHeader(request.headers['X-EnumList']!)
+              .map((el) => _i4.FooEnum.values.byValue(el.trim())));
+        }
+      });
+
   factory InputAndOutputWithHeadersIo.fromResponse(
           InputAndOutputWithHeadersIoPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       InputAndOutputWithHeadersIo((b) {
         if (response.headers['X-String'] != null) {
           b.headerString = response.headers['X-String']!;

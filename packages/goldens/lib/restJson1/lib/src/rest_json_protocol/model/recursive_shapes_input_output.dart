@@ -23,9 +23,14 @@ abstract class RecursiveShapesInputOutput
 
   const RecursiveShapesInputOutput._();
 
+  factory RecursiveShapesInputOutput.fromRequest(
+          RecursiveShapesInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory RecursiveShapesInputOutput.fromResponse(
           RecursiveShapesInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

@@ -21,6 +21,11 @@ abstract class SensitiveValidationInput
 
   const SensitiveValidationInput._();
 
+  factory SensitiveValidationInput.fromRequest(
+          SensitiveValidationInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _SensitiveValidationInputRestJson1Serializer()
   ];

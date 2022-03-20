@@ -23,6 +23,11 @@ abstract class MalformedPatternInput
 
   const MalformedPatternInput._();
 
+  factory MalformedPatternInput.fromRequest(
+          MalformedPatternInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedPatternInputRestJson1Serializer()
   ];

@@ -22,6 +22,12 @@ abstract class MalformedTimestampBodyHttpDateInput
 
   const MalformedTimestampBodyHttpDateInput._();
 
+  factory MalformedTimestampBodyHttpDateInput.fromRequest(
+          MalformedTimestampBodyHttpDateInput payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampBodyHttpDateInputRestJson1Serializer()
   ];

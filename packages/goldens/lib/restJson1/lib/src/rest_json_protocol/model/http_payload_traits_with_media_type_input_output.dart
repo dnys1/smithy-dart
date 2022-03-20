@@ -25,8 +25,18 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
 
   const HttpPayloadTraitsWithMediaTypeInputOutput._();
 
+  factory HttpPayloadTraitsWithMediaTypeInputOutput.fromRequest(
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
+        b.blob = payload;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
+
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromResponse(
-          _i2.Uint8List? payload, _i3.AWSStreamedHttpResponse response) =>
+          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadTraitsWithMediaTypeInputOutput((b) {
         b.blob = payload;
         if (response.headers['X-Foo'] != null) {

@@ -24,6 +24,23 @@ abstract class MalformedLongInput
 
   const MalformedLongInput._();
 
+  factory MalformedLongInput.fromRequest(
+          MalformedLongInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedLongInput((b) {
+        b.longInBody = payload.longInBody;
+        if (request.headers['longInHeader'] != null) {
+          b.longInHeader = _i3.Int64.parseInt(request.headers['longInHeader']!);
+        }
+        if (request.queryParameters['longInQuery'] != null) {
+          b.longInQuery =
+              _i3.Int64.parseInt(request.queryParameters['longInQuery']!);
+        }
+        if (labels['longInPath'] != null) {
+          b.longInPath = _i3.Int64.parseInt(labels['longInPath']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedLongInputRestJson1Serializer()
   ];

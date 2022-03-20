@@ -24,6 +24,16 @@ abstract class GetBucketLocationRequest
 
   const GetBucketLocationRequest._();
 
+  factory GetBucketLocationRequest.fromRequest(
+          GetBucketLocationRequestPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      GetBucketLocationRequest((b) {
+        if (labels['bucket'] != null) {
+          b.bucket = labels['bucket']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _GetBucketLocationRequestRestXmlSerializer()
   ];

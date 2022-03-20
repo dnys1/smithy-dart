@@ -20,8 +20,7 @@ abstract class GreetingWithErrorsOutput
   const GreetingWithErrorsOutput._();
 
   factory GreetingWithErrorsOutput.fromResponse(
-          GreetingWithErrorsOutput payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          GreetingWithErrorsOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

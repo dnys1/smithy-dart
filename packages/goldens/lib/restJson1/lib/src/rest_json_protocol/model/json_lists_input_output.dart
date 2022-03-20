@@ -24,8 +24,13 @@ abstract class JsonListsInputOutput
 
   const JsonListsInputOutput._();
 
+  factory JsonListsInputOutput.fromRequest(
+          JsonListsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory JsonListsInputOutput.fromResponse(
-          JsonListsInputOutput payload, _i2.AWSStreamedHttpResponse response) =>
+          JsonListsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

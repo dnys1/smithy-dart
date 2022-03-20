@@ -25,6 +25,19 @@ abstract class ConstantAndVariableQueryStringInput
 
   const ConstantAndVariableQueryStringInput._();
 
+  factory ConstantAndVariableQueryStringInput.fromRequest(
+          ConstantAndVariableQueryStringInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      ConstantAndVariableQueryStringInput((b) {
+        if (request.queryParameters['baz'] != null) {
+          b.baz = request.queryParameters['baz']!;
+        }
+        if (request.queryParameters['maybeSet'] != null) {
+          b.maybeSet = request.queryParameters['maybeSet']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _ConstantAndVariableQueryStringInputRestJson1Serializer()
   ];

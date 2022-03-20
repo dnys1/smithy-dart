@@ -25,6 +25,16 @@ abstract class HttpRequestWithRegexLiteralInput
 
   const HttpRequestWithRegexLiteralInput._();
 
+  factory HttpRequestWithRegexLiteralInput.fromRequest(
+          HttpRequestWithRegexLiteralInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpRequestWithRegexLiteralInput((b) {
+        if (labels['str'] != null) {
+          b.str = labels['str']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithRegexLiteralInputRestJson1Serializer()
   ];

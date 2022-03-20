@@ -21,7 +21,7 @@ abstract class GetBucketLocationOutput
 
   factory GetBucketLocationOutput.fromResponse(
           _i2.BucketLocationConstraint? payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       GetBucketLocationOutput((b) {
         b.locationConstraint = payload;
       });

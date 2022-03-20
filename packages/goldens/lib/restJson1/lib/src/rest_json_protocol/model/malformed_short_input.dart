@@ -23,6 +23,22 @@ abstract class MalformedShortInput
 
   const MalformedShortInput._();
 
+  factory MalformedShortInput.fromRequest(
+          MalformedShortInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedShortInput((b) {
+        b.shortInBody = payload.shortInBody;
+        if (request.headers['shortInHeader'] != null) {
+          b.shortInHeader = int.parse(request.headers['shortInHeader']!);
+        }
+        if (request.queryParameters['shortInQuery'] != null) {
+          b.shortInQuery = int.parse(request.queryParameters['shortInQuery']!);
+        }
+        if (labels['shortInPath'] != null) {
+          b.shortInPath = int.parse(labels['shortInPath']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedShortInputRestJson1Serializer()
   ];

@@ -396,39 +396,44 @@ class HttpPrefixHeadersBuilder
 abstract class HttpTraitsBuilder {
   void replace(HttpTraits other);
   void update(void Function(HttpTraitsBuilder) updates);
+  MapBuilder<String, MemberShape> get httpHeaders;
+  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders);
+
+  HttpPrefixHeadersBuilder get httpPrefixHeaders;
+  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders);
 }
 
 class _$HttpInputTraits extends HttpInputTraits {
   @override
-  final BuiltMap<String, MemberShape> httpHeaders;
-  @override
   final BuiltSet<MemberShape> httpLabels;
-  @override
-  final HttpPrefixHeaders? httpPrefixHeaders;
   @override
   final MemberShape? hostLabel;
   @override
   final BuiltMap<String, MemberShape> httpQuery;
   @override
   final MemberShape? httpQueryParams;
+  @override
+  final BuiltMap<String, MemberShape> httpHeaders;
+  @override
+  final HttpPrefixHeaders? httpPrefixHeaders;
 
   factory _$HttpInputTraits([void Function(HttpInputTraitsBuilder)? updates]) =>
       (new HttpInputTraitsBuilder()..update(updates)).build();
 
   _$HttpInputTraits._(
-      {required this.httpHeaders,
-      required this.httpLabels,
-      this.httpPrefixHeaders,
+      {required this.httpLabels,
       this.hostLabel,
       required this.httpQuery,
-      this.httpQueryParams})
+      this.httpQueryParams,
+      required this.httpHeaders,
+      this.httpPrefixHeaders})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        httpHeaders, 'HttpInputTraits', 'httpHeaders');
     BuiltValueNullFieldError.checkNotNull(
         httpLabels, 'HttpInputTraits', 'httpLabels');
     BuiltValueNullFieldError.checkNotNull(
         httpQuery, 'HttpInputTraits', 'httpQuery');
+    BuiltValueNullFieldError.checkNotNull(
+        httpHeaders, 'HttpInputTraits', 'httpHeaders');
   }
 
   @override
@@ -443,12 +448,12 @@ class _$HttpInputTraits extends HttpInputTraits {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HttpInputTraits &&
-        httpHeaders == other.httpHeaders &&
         httpLabels == other.httpLabels &&
-        httpPrefixHeaders == other.httpPrefixHeaders &&
         hostLabel == other.hostLabel &&
         httpQuery == other.httpQuery &&
-        httpQueryParams == other.httpQueryParams;
+        httpQueryParams == other.httpQueryParams &&
+        httpHeaders == other.httpHeaders &&
+        httpPrefixHeaders == other.httpPrefixHeaders;
   }
 
   @override
@@ -456,83 +461,87 @@ class _$HttpInputTraits extends HttpInputTraits {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, httpHeaders.hashCode), httpLabels.hashCode),
-                    httpPrefixHeaders.hashCode),
-                hostLabel.hashCode),
-            httpQuery.hashCode),
-        httpQueryParams.hashCode));
+                $jc($jc($jc(0, httpLabels.hashCode), hostLabel.hashCode),
+                    httpQuery.hashCode),
+                httpQueryParams.hashCode),
+            httpHeaders.hashCode),
+        httpPrefixHeaders.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HttpInputTraits')
-          ..add('httpHeaders', httpHeaders)
           ..add('httpLabels', httpLabels)
-          ..add('httpPrefixHeaders', httpPrefixHeaders)
           ..add('hostLabel', hostLabel)
           ..add('httpQuery', httpQuery)
-          ..add('httpQueryParams', httpQueryParams))
+          ..add('httpQueryParams', httpQueryParams)
+          ..add('httpHeaders', httpHeaders)
+          ..add('httpPrefixHeaders', httpPrefixHeaders))
         .toString();
   }
 }
 
 class HttpInputTraitsBuilder
-    implements Builder<HttpInputTraits, HttpInputTraitsBuilder> {
+    implements
+        Builder<HttpInputTraits, HttpInputTraitsBuilder>,
+        HttpTraitsBuilder {
   _$HttpInputTraits? _$v;
-
-  MapBuilder<String, MemberShape>? _httpHeaders;
-  MapBuilder<String, MemberShape> get httpHeaders =>
-      _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
-  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders) =>
-      _$this._httpHeaders = httpHeaders;
 
   SetBuilder<MemberShape>? _httpLabels;
   SetBuilder<MemberShape> get httpLabels =>
       _$this._httpLabels ??= new SetBuilder<MemberShape>();
-  set httpLabels(SetBuilder<MemberShape>? httpLabels) =>
+  set httpLabels(covariant SetBuilder<MemberShape>? httpLabels) =>
       _$this._httpLabels = httpLabels;
-
-  HttpPrefixHeadersBuilder? _httpPrefixHeaders;
-  HttpPrefixHeadersBuilder get httpPrefixHeaders =>
-      _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
-  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
-      _$this._httpPrefixHeaders = httpPrefixHeaders;
 
   MemberShapeBuilder? _hostLabel;
   MemberShapeBuilder get hostLabel =>
       _$this._hostLabel ??= new MemberShapeBuilder();
-  set hostLabel(MemberShapeBuilder? hostLabel) => _$this._hostLabel = hostLabel;
+  set hostLabel(covariant MemberShapeBuilder? hostLabel) =>
+      _$this._hostLabel = hostLabel;
 
   MapBuilder<String, MemberShape>? _httpQuery;
   MapBuilder<String, MemberShape> get httpQuery =>
       _$this._httpQuery ??= new MapBuilder<String, MemberShape>();
-  set httpQuery(MapBuilder<String, MemberShape>? httpQuery) =>
+  set httpQuery(covariant MapBuilder<String, MemberShape>? httpQuery) =>
       _$this._httpQuery = httpQuery;
 
   MemberShapeBuilder? _httpQueryParams;
   MemberShapeBuilder get httpQueryParams =>
       _$this._httpQueryParams ??= new MemberShapeBuilder();
-  set httpQueryParams(MemberShapeBuilder? httpQueryParams) =>
+  set httpQueryParams(covariant MemberShapeBuilder? httpQueryParams) =>
       _$this._httpQueryParams = httpQueryParams;
+
+  MapBuilder<String, MemberShape>? _httpHeaders;
+  MapBuilder<String, MemberShape> get httpHeaders =>
+      _$this._httpHeaders ??= new MapBuilder<String, MemberShape>();
+  set httpHeaders(covariant MapBuilder<String, MemberShape>? httpHeaders) =>
+      _$this._httpHeaders = httpHeaders;
+
+  HttpPrefixHeadersBuilder? _httpPrefixHeaders;
+  HttpPrefixHeadersBuilder get httpPrefixHeaders =>
+      _$this._httpPrefixHeaders ??= new HttpPrefixHeadersBuilder();
+  set httpPrefixHeaders(
+          covariant HttpPrefixHeadersBuilder? httpPrefixHeaders) =>
+      _$this._httpPrefixHeaders = httpPrefixHeaders;
 
   HttpInputTraitsBuilder();
 
   HttpInputTraitsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _httpHeaders = $v.httpHeaders.toBuilder();
       _httpLabels = $v.httpLabels.toBuilder();
-      _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
       _hostLabel = $v.hostLabel?.toBuilder();
       _httpQuery = $v.httpQuery.toBuilder();
       _httpQueryParams = $v.httpQueryParams?.toBuilder();
+      _httpHeaders = $v.httpHeaders.toBuilder();
+      _httpPrefixHeaders = $v.httpPrefixHeaders?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(HttpInputTraits other) {
+  void replace(covariant HttpInputTraits other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$HttpInputTraits;
   }
@@ -548,27 +557,27 @@ class HttpInputTraitsBuilder
     try {
       _$result = _$v ??
           new _$HttpInputTraits._(
-              httpHeaders: httpHeaders.build(),
               httpLabels: httpLabels.build(),
-              httpPrefixHeaders: _httpPrefixHeaders?.build(),
               hostLabel: _hostLabel?.build(),
               httpQuery: httpQuery.build(),
-              httpQueryParams: _httpQueryParams?.build());
+              httpQueryParams: _httpQueryParams?.build(),
+              httpHeaders: httpHeaders.build(),
+              httpPrefixHeaders: _httpPrefixHeaders?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'httpHeaders';
-        httpHeaders.build();
         _$failedField = 'httpLabels';
         httpLabels.build();
-        _$failedField = 'httpPrefixHeaders';
-        _httpPrefixHeaders?.build();
         _$failedField = 'hostLabel';
         _hostLabel?.build();
         _$failedField = 'httpQuery';
         httpQuery.build();
         _$failedField = 'httpQueryParams';
         _httpQueryParams?.build();
+        _$failedField = 'httpHeaders';
+        httpHeaders.build();
+        _$failedField = 'httpPrefixHeaders';
+        _httpPrefixHeaders?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'HttpInputTraits', _$failedField, e.toString());
@@ -578,16 +587,6 @@ class HttpInputTraitsBuilder
     replace(_$result);
     return _$result;
   }
-}
-
-abstract class HttpResponseTraitsBuilder {
-  void replace(HttpResponseTraits other);
-  void update(void Function(HttpResponseTraitsBuilder) updates);
-  MapBuilder<String, MemberShape> get httpHeaders;
-  set httpHeaders(MapBuilder<String, MemberShape>? httpHeaders);
-
-  HttpPrefixHeadersBuilder get httpPrefixHeaders;
-  set httpPrefixHeaders(HttpPrefixHeadersBuilder? httpPrefixHeaders);
 }
 
 class _$HttpOutputTraits extends HttpOutputTraits {
@@ -647,7 +646,7 @@ class _$HttpOutputTraits extends HttpOutputTraits {
 class HttpOutputTraitsBuilder
     implements
         Builder<HttpOutputTraits, HttpOutputTraitsBuilder>,
-        HttpResponseTraitsBuilder {
+        HttpTraitsBuilder {
   _$HttpOutputTraits? _$v;
 
   MemberShapeBuilder? _httpResponseCode;
@@ -810,7 +809,7 @@ class _$HttpErrorTraits extends HttpErrorTraits {
 class HttpErrorTraitsBuilder
     implements
         Builder<HttpErrorTraits, HttpErrorTraitsBuilder>,
-        HttpResponseTraitsBuilder {
+        HttpTraitsBuilder {
   _$HttpErrorTraits? _$v;
 
   ShapeId? _shapeId;

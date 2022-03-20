@@ -25,9 +25,28 @@ abstract class SimpleScalarPropertiesInputOutput
 
   const SimpleScalarPropertiesInputOutput._();
 
+  factory SimpleScalarPropertiesInputOutput.fromRequest(
+          SimpleScalarPropertiesInputOutputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      SimpleScalarPropertiesInputOutput((b) {
+        b.byteValue = payload.byteValue;
+        b.doubleValue = payload.doubleValue;
+        b.falseBooleanValue = payload.falseBooleanValue;
+        b.floatValue = payload.floatValue;
+        b.integerValue = payload.integerValue;
+        b.longValue = payload.longValue;
+        b.shortValue = payload.shortValue;
+        b.stringValue = payload.stringValue;
+        b.trueBooleanValue = payload.trueBooleanValue;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
+
   factory SimpleScalarPropertiesInputOutput.fromResponse(
           SimpleScalarPropertiesInputOutputPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       SimpleScalarPropertiesInputOutput((b) {
         b.byteValue = payload.byteValue;
         b.doubleValue = payload.doubleValue;

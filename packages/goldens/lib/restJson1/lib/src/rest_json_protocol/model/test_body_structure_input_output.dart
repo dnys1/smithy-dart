@@ -26,9 +26,22 @@ abstract class TestBodyStructureInputOutput
 
   const TestBodyStructureInputOutput._();
 
+  factory TestBodyStructureInputOutput.fromRequest(
+          TestBodyStructureInputOutputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      TestBodyStructureInputOutput((b) {
+        if (payload.testConfig != null) {
+          b.testConfig.replace(payload.testConfig!);
+        }
+        if (request.headers['x-amz-test-id'] != null) {
+          b.testId = request.headers['x-amz-test-id']!;
+        }
+      });
+
   factory TestBodyStructureInputOutput.fromResponse(
           TestBodyStructureInputOutputPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       TestBodyStructureInputOutput((b) {
         if (payload.testConfig != null) {
           b.testConfig.replace(payload.testConfig!);

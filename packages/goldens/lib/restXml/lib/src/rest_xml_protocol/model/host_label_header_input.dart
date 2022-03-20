@@ -24,6 +24,15 @@ abstract class HostLabelHeaderInput
 
   const HostLabelHeaderInput._();
 
+  factory HostLabelHeaderInput.fromRequest(
+          HostLabelHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HostLabelHeaderInput((b) {
+        if (request.headers['X-Amz-Account-Id'] != null) {
+          b.accountId = request.headers['X-Amz-Account-Id']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _HostLabelHeaderInputRestXmlSerializer()
   ];

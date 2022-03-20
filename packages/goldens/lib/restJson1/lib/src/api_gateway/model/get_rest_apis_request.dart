@@ -24,6 +24,18 @@ abstract class GetRestApisRequest
 
   const GetRestApisRequest._();
 
+  factory GetRestApisRequest.fromRequest(
+          GetRestApisRequestPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      GetRestApisRequest((b) {
+        if (request.queryParameters['position'] != null) {
+          b.position = request.queryParameters['position']!;
+        }
+        if (request.queryParameters['limit'] != null) {
+          b.limit = int.parse(request.queryParameters['limit']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _GetRestApisRequestRestJson1Serializer()
   ];

@@ -27,7 +27,7 @@ abstract class HttpPrefixHeadersInResponseOutput
 
   factory HttpPrefixHeadersInResponseOutput.fromResponse(
           HttpPrefixHeadersInResponseOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       HttpPrefixHeadersInResponseOutput((b) {
         b.prefixHeaders.addEntries(response.headers.entries);
       });

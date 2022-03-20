@@ -25,6 +25,18 @@ abstract class MalformedTimestampPathEpochInput
 
   const MalformedTimestampPathEpochInput._();
 
+  factory MalformedTimestampPathEpochInput.fromRequest(
+          MalformedTimestampPathEpochInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedTimestampPathEpochInput((b) {
+        if (labels['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(int.parse(labels['timestamp']!),
+                  format: _i1.TimestampFormat.epochSeconds)
+              .asDateTime;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampPathEpochInputRestJson1Serializer()
   ];

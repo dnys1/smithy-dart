@@ -21,9 +21,13 @@ abstract class XmlTimestampsInputOutput
 
   const XmlTimestampsInputOutput._();
 
+  factory XmlTimestampsInputOutput.fromRequest(
+          XmlTimestampsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory XmlTimestampsInputOutput.fromResponse(
-          XmlTimestampsInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          XmlTimestampsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

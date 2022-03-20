@@ -24,6 +24,25 @@ abstract class UploadArchiveInput
 
   const UploadArchiveInput._();
 
+  factory UploadArchiveInput.fromRequest(
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      UploadArchiveInput((b) {
+        b.body = payload;
+        if (request.headers['x-amz-archive-description'] != null) {
+          b.archiveDescription = request.headers['x-amz-archive-description']!;
+        }
+        if (request.headers['x-amz-sha256-tree-hash'] != null) {
+          b.checksum = request.headers['x-amz-sha256-tree-hash']!;
+        }
+        if (labels['vaultName'] != null) {
+          b.vaultName = labels['vaultName']!;
+        }
+        if (labels['accountId'] != null) {
+          b.accountId = labels['accountId']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _UploadArchiveInputRestJson1Serializer()
   ];

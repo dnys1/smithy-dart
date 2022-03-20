@@ -20,8 +20,15 @@ abstract class StringPayloadInput
 
   const StringPayloadInput._();
 
+  factory StringPayloadInput.fromRequest(
+          String? payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      StringPayloadInput((b) {
+        b.payload = payload;
+      });
+
   factory StringPayloadInput.fromResponse(
-          String? payload, _i2.AWSStreamedHttpResponse response) =>
+          String? payload, _i2.AWSBaseHttpResponse response) =>
       StringPayloadInput((b) {
         b.payload = payload;
       });

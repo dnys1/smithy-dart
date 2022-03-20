@@ -23,7 +23,7 @@ abstract class OperationWithOptionalInputOutputOutput
 
   factory OperationWithOptionalInputOutputOutput.fromResponse(
           OperationWithOptionalInputOutputOutput payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

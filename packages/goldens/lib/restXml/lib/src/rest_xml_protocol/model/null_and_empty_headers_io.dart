@@ -25,9 +25,25 @@ abstract class NullAndEmptyHeadersIo
 
   const NullAndEmptyHeadersIo._();
 
+  factory NullAndEmptyHeadersIo.fromRequest(
+          NullAndEmptyHeadersIoPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      NullAndEmptyHeadersIo((b) {
+        if (request.headers['X-A'] != null) {
+          b.a = request.headers['X-A']!;
+        }
+        if (request.headers['X-B'] != null) {
+          b.b = request.headers['X-B']!;
+        }
+        if (request.headers['X-C'] != null) {
+          b.c.addAll(
+              _i1.parseHeader(request.headers['X-C']!).map((el) => el.trim()));
+        }
+      });
+
   factory NullAndEmptyHeadersIo.fromResponse(
           NullAndEmptyHeadersIoPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       NullAndEmptyHeadersIo((b) {
         if (response.headers['X-A'] != null) {
           b.a = response.headers['X-A']!;

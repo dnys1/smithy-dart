@@ -18,6 +18,11 @@ abstract class MapInputRequest
 
   const MapInputRequest._();
 
+  factory MapInputRequest.fromRequest(
+          MapInputRequest payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MapInputRequestAwsJson11Serializer()
   ];

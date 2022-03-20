@@ -24,7 +24,7 @@ abstract class InvalidParameterValueException
 
   factory InvalidParameterValueException.fromResponse(
           InvalidParameterValueException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

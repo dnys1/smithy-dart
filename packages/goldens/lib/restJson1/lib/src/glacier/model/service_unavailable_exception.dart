@@ -22,7 +22,7 @@ abstract class ServiceUnavailableException
 
   factory ServiceUnavailableException.fromResponse(
           ServiceUnavailableException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

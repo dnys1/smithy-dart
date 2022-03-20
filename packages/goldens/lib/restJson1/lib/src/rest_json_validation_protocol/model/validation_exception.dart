@@ -27,7 +27,7 @@ abstract class ValidationException
   const ValidationException._();
 
   factory ValidationException.fromResponse(
-          ValidationException payload, _i1.AWSStreamedHttpResponse response) =>
+          ValidationException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

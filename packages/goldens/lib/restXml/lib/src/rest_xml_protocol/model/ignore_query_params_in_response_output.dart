@@ -23,7 +23,7 @@ abstract class IgnoreQueryParamsInResponseOutput
 
   factory IgnoreQueryParamsInResponseOutput.fromResponse(
           IgnoreQueryParamsInResponseOutput payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

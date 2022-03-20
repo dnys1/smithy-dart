@@ -24,9 +24,58 @@ abstract class TimestampFormatHeadersIo
 
   const TimestampFormatHeadersIo._();
 
+  factory TimestampFormatHeadersIo.fromRequest(
+          TimestampFormatHeadersIoPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      TimestampFormatHeadersIo((b) {
+        if (request.headers['X-memberEpochSeconds'] != null) {
+          b.memberEpochSeconds = _i1.Timestamp.parse(
+                  int.parse(request.headers['X-memberEpochSeconds']!),
+                  format: _i1.TimestampFormat.epochSeconds)
+              .asDateTime;
+        }
+        if (request.headers['X-memberHttpDate'] != null) {
+          b.memberHttpDate = _i1.Timestamp.parse(
+                  request.headers['X-memberHttpDate']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+        if (request.headers['X-memberDateTime'] != null) {
+          b.memberDateTime = _i1.Timestamp.parse(
+                  request.headers['X-memberDateTime']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+        if (request.headers['X-defaultFormat'] != null) {
+          b.defaultFormat = _i1.Timestamp.parse(
+                  request.headers['X-defaultFormat']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+        if (request.headers['X-targetEpochSeconds'] != null) {
+          b.targetEpochSeconds = _i1.Timestamp.parse(
+                  int.parse(request.headers['X-targetEpochSeconds']!),
+                  format: _i1.TimestampFormat.epochSeconds)
+              .asDateTime;
+        }
+        if (request.headers['X-targetHttpDate'] != null) {
+          b.targetHttpDate = _i1.Timestamp.parse(
+                  request.headers['X-targetHttpDate']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+        if (request.headers['X-targetDateTime'] != null) {
+          b.targetDateTime = _i1.Timestamp.parse(
+                  request.headers['X-targetDateTime']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+      });
+
   factory TimestampFormatHeadersIo.fromResponse(
           TimestampFormatHeadersIoPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       TimestampFormatHeadersIo((b) {
         if (response.headers['X-memberEpochSeconds'] != null) {
           b.memberEpochSeconds = _i1.Timestamp.parse(

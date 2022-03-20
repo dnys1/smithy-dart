@@ -25,7 +25,7 @@ abstract class ComplexError
   const ComplexError._();
 
   factory ComplexError.fromResponse(
-          ComplexErrorPayload payload, _i1.AWSStreamedHttpResponse response) =>
+          ComplexErrorPayload payload, _i1.AWSBaseHttpResponse response) =>
       ComplexError((b) {
         if (payload.nested != null) {
           b.nested.replace(payload.nested!);

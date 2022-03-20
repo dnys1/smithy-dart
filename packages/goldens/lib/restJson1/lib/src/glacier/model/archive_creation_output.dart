@@ -24,7 +24,7 @@ abstract class ArchiveCreationOutput
 
   factory ArchiveCreationOutput.fromResponse(
           ArchiveCreationOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       ArchiveCreationOutput((b) {
         if (response.headers['Location'] != null) {
           b.location = response.headers['Location']!;

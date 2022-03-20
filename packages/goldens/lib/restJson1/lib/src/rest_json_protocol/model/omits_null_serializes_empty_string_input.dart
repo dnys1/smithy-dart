@@ -25,6 +25,19 @@ abstract class OmitsNullSerializesEmptyStringInput
 
   const OmitsNullSerializesEmptyStringInput._();
 
+  factory OmitsNullSerializesEmptyStringInput.fromRequest(
+          OmitsNullSerializesEmptyStringInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      OmitsNullSerializesEmptyStringInput((b) {
+        if (request.queryParameters['Null'] != null) {
+          b.nullValue = request.queryParameters['Null']!;
+        }
+        if (request.queryParameters['Empty'] != null) {
+          b.emptyString = request.queryParameters['Empty']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _OmitsNullSerializesEmptyStringInputRestJson1Serializer()
   ];

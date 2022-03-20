@@ -20,8 +20,8 @@ abstract class InternalServerException
 
   const InternalServerException._();
 
-  factory InternalServerException.fromResponse(InternalServerException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory InternalServerException.fromResponse(
+          InternalServerException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

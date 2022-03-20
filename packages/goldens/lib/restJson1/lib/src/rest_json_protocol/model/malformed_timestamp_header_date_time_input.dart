@@ -25,6 +25,18 @@ abstract class MalformedTimestampHeaderDateTimeInput
 
   const MalformedTimestampHeaderDateTimeInput._();
 
+  factory MalformedTimestampHeaderDateTimeInput.fromRequest(
+          MalformedTimestampHeaderDateTimeInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedTimestampHeaderDateTimeInput((b) {
+        if (request.headers['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(request.headers['timestamp']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampHeaderDateTimeInputRestJson1Serializer()
   ];

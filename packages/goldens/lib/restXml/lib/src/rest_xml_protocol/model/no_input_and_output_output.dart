@@ -20,8 +20,8 @@ abstract class NoInputAndOutputOutput
 
   const NoInputAndOutputOutput._();
 
-  factory NoInputAndOutputOutput.fromResponse(NoInputAndOutputOutput payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory NoInputAndOutputOutput.fromResponse(
+          NoInputAndOutputOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

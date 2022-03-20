@@ -26,8 +26,13 @@ abstract class KitchenSink
 
   const KitchenSink._();
 
+  factory KitchenSink.fromRequest(
+          KitchenSink payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory KitchenSink.fromResponse(
-          KitchenSink payload, _i2.AWSStreamedHttpResponse response) =>
+          KitchenSink payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

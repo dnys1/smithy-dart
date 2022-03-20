@@ -25,8 +25,18 @@ abstract class HttpPayloadTraitsInputOutput
 
   const HttpPayloadTraitsInputOutput._();
 
+  factory HttpPayloadTraitsInputOutput.fromRequest(
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadTraitsInputOutput((b) {
+        b.blob = payload;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
+
   factory HttpPayloadTraitsInputOutput.fromResponse(
-          _i2.Uint8List? payload, _i3.AWSStreamedHttpResponse response) =>
+          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadTraitsInputOutput((b) {
         b.blob = payload;
         if (response.headers['X-Foo'] != null) {

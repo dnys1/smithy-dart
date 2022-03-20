@@ -24,7 +24,7 @@ abstract class GreetingWithErrorsOutput
 
   factory GreetingWithErrorsOutput.fromResponse(
           GreetingWithErrorsOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       GreetingWithErrorsOutput((b) {
         if (response.headers['X-Greeting'] != null) {
           b.greeting = response.headers['X-Greeting']!;

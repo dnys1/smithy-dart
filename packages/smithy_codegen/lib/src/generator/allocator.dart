@@ -25,6 +25,7 @@ class SmithyAllocator implements Allocator {
     'dart:core',
     BuiltValue.mainUrl,
     BuiltValue.serializerUrl,
+    ShelfRouter.url,
   ];
 
   /// Tracks dependencies by looking at the packages we import.

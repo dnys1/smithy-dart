@@ -39,12 +39,13 @@ const SmithyLibrary_LibraryType$json = const {
     const {'1': 'OPERATION', '2': 3},
     const {'1': 'COMMON', '2': 4},
     const {'1': 'TEST', '2': 5},
+    const {'1': 'SERVER', '2': 6},
   ],
 };
 
 /// Descriptor for `SmithyLibrary`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List smithyLibraryDescriptor = $convert.base64Decode(
-    'Cg1TbWl0aHlMaWJyYXJ5EiAKC3BhY2thZ2VOYW1lGAEgASgJUgtwYWNrYWdlTmFtZRIgCgtzZXJ2aWNlTmFtZRgCIAEoCVILc2VydmljZU5hbWUSPAoLbGlicmFyeVR5cGUYAyABKA4yGi5TbWl0aHlMaWJyYXJ5LkxpYnJhcnlUeXBlUgtsaWJyYXJ5VHlwZRIaCghmaWxlbmFtZRgEIAEoCVIIZmlsZW5hbWUSGgoIYmFzZVBhdGgYBSABKAlSCGJhc2VQYXRoIlYKC0xpYnJhcnlUeXBlEgkKBU1PREVMEAASCgoGQ0xJRU5UEAESCwoHU0VSVklDRRACEg0KCU9QRVJBVElPThADEgoKBkNPTU1PThAEEggKBFRFU1QQBQ==');
+    'Cg1TbWl0aHlMaWJyYXJ5EiAKC3BhY2thZ2VOYW1lGAEgASgJUgtwYWNrYWdlTmFtZRIgCgtzZXJ2aWNlTmFtZRgCIAEoCVILc2VydmljZU5hbWUSPAoLbGlicmFyeVR5cGUYAyABKA4yGi5TbWl0aHlMaWJyYXJ5LkxpYnJhcnlUeXBlUgtsaWJyYXJ5VHlwZRIaCghmaWxlbmFtZRgEIAEoCVIIZmlsZW5hbWUSGgoIYmFzZVBhdGgYBSABKAlSCGJhc2VQYXRoImIKC0xpYnJhcnlUeXBlEgkKBU1PREVMEAASCgoGQ0xJRU5UEAESCwoHU0VSVklDRRACEg0KCU9QRVJBVElPThADEgoKBkNPTU1PThAEEggKBFRFU1QQBRIKCgZTRVJWRVIQBg==');
 @$core.Deprecated('Use codegenRequestDescriptor instead')
 const CodegenRequest$json = const {
   '1': 'CodegenRequest',

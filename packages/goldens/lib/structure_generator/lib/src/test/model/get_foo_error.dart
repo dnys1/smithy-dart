@@ -18,7 +18,7 @@ abstract class GetFooError
   const GetFooError._();
 
   factory GetFooError.fromResponse(
-          GetFooError payload, _i1.AWSStreamedHttpResponse response) =>
+          GetFooError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;
@@ -62,7 +62,8 @@ class _GetFooErrorSerializer
   @override
   Iterable<Type> get types => const [GetFooError, _$GetFooError];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   GetFooError deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

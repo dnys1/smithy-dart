@@ -23,8 +23,13 @@ abstract class JsonMapsInputOutput
 
   const JsonMapsInputOutput._();
 
+  factory JsonMapsInputOutput.fromRequest(
+          JsonMapsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory JsonMapsInputOutput.fromResponse(
-          JsonMapsInputOutput payload, _i2.AWSStreamedHttpResponse response) =>
+          JsonMapsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

@@ -23,6 +23,22 @@ abstract class MalformedByteInput
 
   const MalformedByteInput._();
 
+  factory MalformedByteInput.fromRequest(
+          MalformedByteInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedByteInput((b) {
+        b.byteInBody = payload.byteInBody;
+        if (request.headers['byteInHeader'] != null) {
+          b.byteInHeader = int.parse(request.headers['byteInHeader']!);
+        }
+        if (request.queryParameters['byteInQuery'] != null) {
+          b.byteInQuery = int.parse(request.queryParameters['byteInQuery']!);
+        }
+        if (labels['byteInPath'] != null) {
+          b.byteInPath = int.parse(labels['byteInPath']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedByteInputRestJson1Serializer()
   ];

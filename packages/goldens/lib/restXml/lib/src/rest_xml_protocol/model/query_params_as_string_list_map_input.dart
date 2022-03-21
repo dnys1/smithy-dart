@@ -26,6 +26,16 @@ abstract class QueryParamsAsStringListMapInput
 
   const QueryParamsAsStringListMapInput._();
 
+  factory QueryParamsAsStringListMapInput.fromRequest(
+          QueryParamsAsStringListMapInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      QueryParamsAsStringListMapInput((b) {
+        if (request.queryParameters['corge'] != null) {
+          b.qux = request.queryParameters['corge']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _QueryParamsAsStringListMapInputRestXmlSerializer()
   ];

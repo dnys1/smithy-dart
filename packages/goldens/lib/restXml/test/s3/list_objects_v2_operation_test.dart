@@ -908,7 +908,8 @@ class _AwsConfigSerializer
   @override
   Iterable<Type> get types => const [_i8.AwsConfig];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i8.AwsConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -953,7 +954,8 @@ class _ScopedConfigSerializer
   @override
   Iterable<Type> get types => const [_i20.ScopedConfig];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i20.ScopedConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -1024,7 +1026,8 @@ class _EnvironmentConfigSerializer
   @override
   Iterable<Type> get types => const [_i23.EnvironmentConfig];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i23.EnvironmentConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -1092,7 +1095,8 @@ class _FileConfigSettingsSerializer
   @override
   Iterable<Type> get types => const [_i22.FileConfigSettings];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i22.FileConfigSettings deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -1167,7 +1171,8 @@ class _S3ConfigSerializer
   @override
   Iterable<Type> get types => const [_i25.S3Config];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i25.S3Config deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -1218,7 +1223,8 @@ class _ClientConfigSerializer
   @override
   Iterable<Type> get types => const [_i21.ClientConfig];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i21.ClientConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -1294,7 +1300,8 @@ class _RetryConfigSerializer
   @override
   Iterable<Type> get types => const [_i26.RetryConfig];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i26.RetryConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -1338,7 +1345,8 @@ class _OperationConfigSerializer
   @override
   Iterable<Type> get types => const [_i24.OperationConfig];
   @override
-  Iterable<_i12.ShapeId> get supportedProtocols => const [];
+  Iterable<_i12.ShapeId> get supportedProtocols =>
+      const [_i12.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   _i24.OperationConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,

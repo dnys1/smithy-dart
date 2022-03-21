@@ -24,8 +24,15 @@ abstract class DocumentTypeAsPayloadInputOutput
 
   const DocumentTypeAsPayloadInputOutput._();
 
+  factory DocumentTypeAsPayloadInputOutput.fromRequest(
+          _i2.JsonObject? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      DocumentTypeAsPayloadInputOutput((b) {
+        b.documentValue = payload;
+      });
+
   factory DocumentTypeAsPayloadInputOutput.fromResponse(
-          _i2.JsonObject? payload, _i3.AWSStreamedHttpResponse response) =>
+          _i2.JsonObject? payload, _i3.AWSBaseHttpResponse response) =>
       DocumentTypeAsPayloadInputOutput((b) {
         b.documentValue = payload;
       });

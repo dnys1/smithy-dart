@@ -25,6 +25,16 @@ abstract class MalformedLengthQueryStringInput
 
   const MalformedLengthQueryStringInput._();
 
+  factory MalformedLengthQueryStringInput.fromRequest(
+          MalformedLengthQueryStringInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedLengthQueryStringInput((b) {
+        if (request.queryParameters['string'] != null) {
+          b.string = request.queryParameters['string']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedLengthQueryStringInputRestJson1Serializer()
   ];

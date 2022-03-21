@@ -24,8 +24,13 @@ abstract class XmlListsInputOutput
 
   const XmlListsInputOutput._();
 
+  factory XmlListsInputOutput.fromRequest(
+          XmlListsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory XmlListsInputOutput.fromResponse(
-          XmlListsInputOutput payload, _i2.AWSStreamedHttpResponse response) =>
+          XmlListsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

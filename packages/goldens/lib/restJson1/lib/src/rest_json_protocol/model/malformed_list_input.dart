@@ -19,6 +19,11 @@ abstract class MalformedListInput
 
   const MalformedListInput._();
 
+  factory MalformedListInput.fromRequest(
+          MalformedListInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedListInputRestJson1Serializer()
   ];

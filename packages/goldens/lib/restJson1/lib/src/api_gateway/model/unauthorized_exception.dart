@@ -20,8 +20,8 @@ abstract class UnauthorizedException
 
   const UnauthorizedException._();
 
-  factory UnauthorizedException.fromResponse(UnauthorizedException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory UnauthorizedException.fromResponse(
+          UnauthorizedException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

@@ -21,9 +21,14 @@ abstract class XmlEmptyStringsInputOutput
 
   const XmlEmptyStringsInputOutput._();
 
+  factory XmlEmptyStringsInputOutput.fromRequest(
+          XmlEmptyStringsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory XmlEmptyStringsInputOutput.fromResponse(
           XmlEmptyStringsInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

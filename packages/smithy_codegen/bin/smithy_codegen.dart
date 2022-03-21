@@ -19,7 +19,7 @@ void main(List<String> args) async {
     usage();
   }
 
-  if (config.server) {
+  if (config.listen) {
     // Connect server at local port.
     final server = Server([CodegenService()]);
     await server.serve(address: InternetAddress.loopbackIPv4, port: 0);
@@ -56,6 +56,7 @@ void main(List<String> args) async {
   final libraries = generateForAst(
     ast,
     packageName: packageName,
+    generateServer: config.server,
   );
   final Set<String> dependencies = {};
   for (final library in libraries) {

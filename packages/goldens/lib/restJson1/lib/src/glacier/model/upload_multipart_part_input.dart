@@ -24,6 +24,28 @@ abstract class UploadMultipartPartInput
 
   const UploadMultipartPartInput._();
 
+  factory UploadMultipartPartInput.fromRequest(
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      UploadMultipartPartInput((b) {
+        b.body = payload;
+        if (request.headers['x-amz-sha256-tree-hash'] != null) {
+          b.checksum = request.headers['x-amz-sha256-tree-hash']!;
+        }
+        if (request.headers['Content-Range'] != null) {
+          b.range = request.headers['Content-Range']!;
+        }
+        if (labels['accountId'] != null) {
+          b.accountId = labels['accountId']!;
+        }
+        if (labels['vaultName'] != null) {
+          b.vaultName = labels['vaultName']!;
+        }
+        if (labels['uploadId'] != null) {
+          b.uploadId = labels['uploadId']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _UploadMultipartPartInputRestJson1Serializer()
   ];

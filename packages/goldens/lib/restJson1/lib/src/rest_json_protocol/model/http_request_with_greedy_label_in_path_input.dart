@@ -25,6 +25,19 @@ abstract class HttpRequestWithGreedyLabelInPathInput
 
   const HttpRequestWithGreedyLabelInPathInput._();
 
+  factory HttpRequestWithGreedyLabelInPathInput.fromRequest(
+          HttpRequestWithGreedyLabelInPathInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpRequestWithGreedyLabelInPathInput((b) {
+        if (labels['foo'] != null) {
+          b.foo = labels['foo']!;
+        }
+        if (labels['baz'] != null) {
+          b.baz = labels['baz']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithGreedyLabelInPathInputRestJson1Serializer()
   ];

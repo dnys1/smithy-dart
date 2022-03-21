@@ -18,6 +18,11 @@ abstract class GetFooInput
 
   const GetFooInput._();
 
+  factory GetFooInput.fromRequest(
+          GetFooInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _GetFooInputSerializer()
   ];
@@ -44,7 +49,8 @@ class _GetFooInputSerializer
   @override
   Iterable<Type> get types => const [GetFooInput, _$GetFooInput];
   @override
-  Iterable<_i1.ShapeId> get supportedProtocols => const [];
+  Iterable<_i1.ShapeId> get supportedProtocols =>
+      const [_i1.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   GetFooInput deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

@@ -22,7 +22,7 @@ abstract class ErrorWithoutMembers
   const ErrorWithoutMembers._();
 
   factory ErrorWithoutMembers.fromResponse(
-          ErrorWithoutMembers payload, _i1.AWSStreamedHttpResponse response) =>
+          ErrorWithoutMembers payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

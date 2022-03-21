@@ -105,25 +105,26 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
         if (input.headerIntegerList != null) {
           if (input.headerIntegerList!.isNotEmpty) {
             b.headers['X-IntegerList'] = input.headerIntegerList!
-                .map((el) => _i1.sanitizeHeader(el.toString()))
+                .map((el) => el.toString())
+                .map((el) => _i1.sanitizeHeader(el))
                 .join(', ');
           }
         }
         if (input.headerBooleanList != null) {
           if (input.headerBooleanList!.isNotEmpty) {
             b.headers['X-BooleanList'] = input.headerBooleanList!
-                .map((el) => _i1.sanitizeHeader(el.toString()))
+                .map((el) => el.toString())
+                .map((el) => _i1.sanitizeHeader(el))
                 .join(', ');
           }
         }
         if (input.headerTimestampList != null) {
           if (input.headerTimestampList!.isNotEmpty) {
             b.headers['X-TimestampList'] = input.headerTimestampList!
-                .map((el) => _i1.sanitizeHeader(
-                    _i1.Timestamp(el)
-                        .format(_i1.TimestampFormat.httpDate)
-                        .toString(),
-                    isTimestampList: true))
+                .map((el) => _i1.Timestamp(el)
+                    .format(_i1.TimestampFormat.httpDate)
+                    .toString())
+                .map((el) => _i1.sanitizeHeader(el, isTimestampList: true))
                 .join(', ');
           }
         }
@@ -133,7 +134,8 @@ class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
         if (input.headerEnumList != null) {
           if (input.headerEnumList!.isNotEmpty) {
             b.headers['X-EnumList'] = input.headerEnumList!
-                .map((el) => _i1.sanitizeHeader(el.value))
+                .map((el) => el.value)
+                .map((el) => _i1.sanitizeHeader(el))
                 .join(', ');
           }
         }

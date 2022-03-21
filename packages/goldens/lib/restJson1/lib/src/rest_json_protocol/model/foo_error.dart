@@ -22,7 +22,7 @@ abstract class FooError
   const FooError._();
 
   factory FooError.fromResponse(
-          FooError payload, _i1.AWSStreamedHttpResponse response) =>
+          FooError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

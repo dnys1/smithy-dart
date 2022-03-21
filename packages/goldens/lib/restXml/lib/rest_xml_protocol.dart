@@ -97,3 +97,4 @@ export 'package:rest_xml/src/rest_xml_protocol/model/xml_timestamps_input_output
 export 'package:rest_xml/src/rest_xml_protocol/model/xml_union_shape.dart';
 export 'package:rest_xml/src/rest_xml_protocol/model/xml_unions_input_output.dart';
 export 'package:rest_xml/src/rest_xml_protocol/rest_xml_protocol_client.dart';
+export 'package:rest_xml/src/rest_xml_protocol/rest_xml_protocol_server.dart';

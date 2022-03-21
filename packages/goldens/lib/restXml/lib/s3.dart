@@ -28,3 +28,4 @@ export 'package:rest_xml/src/s3/model/s3_addressing_style.dart';
 export 'package:rest_xml/src/s3/model/s3_config.dart';
 export 'package:rest_xml/src/s3/model/scoped_config.dart';
 export 'package:rest_xml/src/s3/s3_client.dart';
+export 'package:rest_xml/src/s3/s3_server.dart';

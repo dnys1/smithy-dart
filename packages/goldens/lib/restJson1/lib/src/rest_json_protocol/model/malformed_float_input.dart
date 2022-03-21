@@ -23,6 +23,23 @@ abstract class MalformedFloatInput
 
   const MalformedFloatInput._();
 
+  factory MalformedFloatInput.fromRequest(
+          MalformedFloatInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedFloatInput((b) {
+        b.floatInBody = payload.floatInBody;
+        if (request.headers['floatInHeader'] != null) {
+          b.floatInHeader = double.parse(request.headers['floatInHeader']!);
+        }
+        if (request.queryParameters['floatInQuery'] != null) {
+          b.floatInQuery =
+              double.parse(request.queryParameters['floatInQuery']!);
+        }
+        if (labels['floatInPath'] != null) {
+          b.floatInPath = double.parse(labels['floatInPath']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedFloatInputRestJson1Serializer()
   ];

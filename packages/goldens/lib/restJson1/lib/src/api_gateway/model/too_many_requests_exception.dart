@@ -24,7 +24,7 @@ abstract class TooManyRequestsException
 
   factory TooManyRequestsException.fromResponse(
           TooManyRequestsExceptionPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       TooManyRequestsException((b) {
         b.message = payload.message;
         if (response.headers['Retry-After'] != null) {

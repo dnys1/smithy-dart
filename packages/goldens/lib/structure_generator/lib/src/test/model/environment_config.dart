@@ -62,7 +62,8 @@ class _EnvironmentConfigSerializer
   @override
   Iterable<Type> get types => const [EnvironmentConfig, _$EnvironmentConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   EnvironmentConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,

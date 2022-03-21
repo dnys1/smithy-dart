@@ -18,6 +18,11 @@ abstract class MalformedMapInput
 
   const MalformedMapInput._();
 
+  factory MalformedMapInput.fromRequest(
+          MalformedMapInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedMapInputRestJson1Serializer()
   ];

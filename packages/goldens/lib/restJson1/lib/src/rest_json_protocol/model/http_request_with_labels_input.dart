@@ -25,6 +25,39 @@ abstract class HttpRequestWithLabelsInput
 
   const HttpRequestWithLabelsInput._();
 
+  factory HttpRequestWithLabelsInput.fromRequest(
+          HttpRequestWithLabelsInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpRequestWithLabelsInput((b) {
+        if (labels['string'] != null) {
+          b.string = labels['string']!;
+        }
+        if (labels['short'] != null) {
+          b.short = int.parse(labels['short']!);
+        }
+        if (labels['integer'] != null) {
+          b.integer = int.parse(labels['integer']!);
+        }
+        if (labels['long'] != null) {
+          b.long = _i3.Int64.parseInt(labels['long']!);
+        }
+        if (labels['float'] != null) {
+          b.float = double.parse(labels['float']!);
+        }
+        if (labels['double_'] != null) {
+          b.double_ = double.parse(labels['double_']!);
+        }
+        if (labels['boolean'] != null) {
+          b.boolean = labels['boolean']! == 'true';
+        }
+        if (labels['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(labels['timestamp']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithLabelsInputRestJson1Serializer()
   ];

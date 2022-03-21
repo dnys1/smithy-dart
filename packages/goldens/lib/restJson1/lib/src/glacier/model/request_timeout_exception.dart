@@ -20,8 +20,8 @@ abstract class RequestTimeoutException
 
   const RequestTimeoutException._();
 
-  factory RequestTimeoutException.fromResponse(RequestTimeoutException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory RequestTimeoutException.fromResponse(
+          RequestTimeoutException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

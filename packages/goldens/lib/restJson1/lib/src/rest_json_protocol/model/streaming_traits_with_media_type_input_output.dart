@@ -25,9 +25,18 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
 
   const StreamingTraitsWithMediaTypeInputOutput._();
 
+  factory StreamingTraitsWithMediaTypeInputOutput.fromRequest(
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      StreamingTraitsWithMediaTypeInputOutput((b) {
+        b.blob = payload;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
+
   factory StreamingTraitsWithMediaTypeInputOutput.fromResponse(
-          _i2.Stream<List<int>>? payload,
-          _i3.AWSStreamedHttpResponse response) =>
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
       StreamingTraitsWithMediaTypeInputOutput((b) {
         b.blob = payload;
         if (response.headers['X-Foo'] != null) {

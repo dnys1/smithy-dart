@@ -22,8 +22,13 @@ abstract class JsonBlobsInputOutput
 
   const JsonBlobsInputOutput._();
 
+  factory JsonBlobsInputOutput.fromRequest(
+          JsonBlobsInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory JsonBlobsInputOutput.fromResponse(
-          JsonBlobsInputOutput payload, _i2.AWSStreamedHttpResponse response) =>
+          JsonBlobsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

@@ -25,7 +25,7 @@ abstract class HttpPrefixHeadersOutput
 
   factory HttpPrefixHeadersOutput.fromResponse(
           HttpPrefixHeadersOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       HttpPrefixHeadersOutput((b) {
         if (response.headers['X-Foo'] != null) {
           b.foo = response.headers['X-Foo']!;

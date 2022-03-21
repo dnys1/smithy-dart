@@ -19,7 +19,7 @@ abstract class RestApis
   const RestApis._();
 
   factory RestApis.fromResponse(
-          RestApis payload, _i1.AWSStreamedHttpResponse response) =>
+          RestApis payload, _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

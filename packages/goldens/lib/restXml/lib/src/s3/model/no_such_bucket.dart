@@ -21,7 +21,7 @@ abstract class NoSuchBucket
   const NoSuchBucket._();
 
   factory NoSuchBucket.fromResponse(
-          NoSuchBucket payload, _i1.AWSStreamedHttpResponse response) =>
+          NoSuchBucket payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

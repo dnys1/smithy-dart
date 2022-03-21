@@ -22,7 +22,7 @@ abstract class ErrorWithMembers
   const ErrorWithMembers._();
 
   factory ErrorWithMembers.fromResponse(
-          ErrorWithMembers payload, _i1.AWSStreamedHttpResponse response) =>
+          ErrorWithMembers payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

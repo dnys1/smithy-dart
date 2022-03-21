@@ -22,9 +22,13 @@ abstract class NullOperationInputOutput
 
   const NullOperationInputOutput._();
 
+  factory NullOperationInputOutput.fromRequest(
+          NullOperationInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory NullOperationInputOutput.fromResponse(
-          NullOperationInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          NullOperationInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

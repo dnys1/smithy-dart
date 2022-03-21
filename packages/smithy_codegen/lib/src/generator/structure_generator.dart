@@ -84,6 +84,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               builtSymbol: builtSymbol,
             ),
             _privateConstructor,
+            if (shape.isInputShape) _fromRequestConstructor,
             if (shape.isOutputShape || shape.isError) _fromResponseConstructor,
           ])
           ..methods.addAll([
@@ -170,6 +171,45 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..redirect = builtSymbol,
       );
 
+  /// The server constructor from an incoming request.
+  Constructor get _fromRequestConstructor {
+    final Expression output;
+    if (payloadSymbol == symbol) {
+      output = refer('payload');
+    } else {
+      output = symbol.newInstance([
+        Method(
+          (m) => m
+            ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+            ..lambda = false
+            ..body = Block.of(_outputBuilder(refer('request'))),
+        ).closure,
+      ]);
+    }
+    return Constructor(
+      (c) => c
+        ..factory = true
+        ..name = 'fromRequest'
+        ..requiredParameters.addAll([
+          Parameter((p) => p
+            ..name = 'payload'
+            ..type = payloadSymbol),
+          Parameter((p) => p
+            ..name = 'request'
+            ..type = DartTypes.awsCommon.awsBaseHttpRequest),
+        ])
+        ..optionalParameters.add(Parameter((p) => p
+          ..name = 'labels'
+          ..type = DartTypes.core.map(
+            DartTypes.core.string,
+            DartTypes.core.string,
+          )
+          ..named = true
+          ..defaultTo = literalConstMap({}).code))
+        ..body = output.code,
+    );
+  }
+
   /// The builder/factory constructor.
   Constructor get _fromResponseConstructor {
     final Expression output;
@@ -192,7 +232,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           (m) => m
             ..requiredParameters.add(Parameter((p) => p..name = 'b'))
             ..lambda = false
-            ..body = Block.of(_outputBuilder),
+            ..body = Block.of(_outputBuilder(refer('response'))),
         ).closure,
       ]);
     }
@@ -206,7 +246,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             ..type = payloadSymbol),
           Parameter((p) => p
             ..name = 'response'
-            ..type = DartTypes.awsCommon.awsStreamedHttpResponse),
+            ..type = DartTypes.awsCommon.awsBaseHttpResponse),
         ])
         ..body = output.code,
     );
@@ -377,65 +417,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     ]).code;
   }
 
-  /// Creates the `toString` equivalent for [labelShape] in the context of the
-  /// `labelFor` method.
-  ///
-  /// Labels must be marked `@required`, thus we do not have to do null checks.
-  ///
-  /// See: https://awslabs.github.io/smithy/1.0/spec/core/http-traits.html?highlight=http#httplabel-trait
-  Expression _labelToString(MemberShape labelShape, Expression labelRef) {
-    final targetShape = context.shapeFor(labelShape.target);
-    final type = targetShape.getType();
-    switch (type) {
-      case ShapeType.boolean:
-      case ShapeType.bigDecimal:
-      case ShapeType.bigInteger:
-      case ShapeType.byte:
-      case ShapeType.double:
-      case ShapeType.float:
-      case ShapeType.integer:
-      case ShapeType.long:
-      case ShapeType.short:
-        return labelRef.property('toString').call([]);
-
-      // string values with a mediaType trait are always base64 encoded.
-      case ShapeType.string:
-        if (targetShape.isEnum) {
-          return labelRef.property('value');
-        }
-        final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-        switch (mediaType) {
-          case 'application/json':
-            return DartTypes.convert.jsonEncode
-                .call([labelRef.property('value')]);
-        }
-        return labelRef;
-
-      // timestamp values are serialized as an RFC 3339 string by default
-      // (for example, 1985-04-12T23:20:50.52Z, and with percent-encoding,
-      // 1985-04-12T23%3A20%3A50.52Z). The timestampFormat trait MAY be used
-      // to use a custom serialization format.
-      case ShapeType.timestamp:
-        final format = labelShape.timestampFormat ??
-            targetShape.timestampFormat ??
-            TimestampFormat.dateTime;
-        return DartTypes.smithy.timestamp
-            .newInstance([labelRef])
-            .property('format')
-            .call([
-              DartTypes.smithy.timestampFormat.property(format.name),
-            ])
-            .property('toString') // Since we can get a num or String back.
-            .call([]);
-
-      // The `httpLabel` trait can be applied to `structure` members marked with
-      // the `required` trait that target a `string`, `number`, `boolean`, or
-      // `timestamp`.
-      default:
-        throw ArgumentError('Invalid label shape type: $type');
-    }
-  }
-
   /// Methods to conform to `HttpInput`.
   Iterable<Method> get _httpInputOverrides sync* {
     if (!shape.isInputShape) {
@@ -456,9 +437,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             const Code('switch (key) {'),
             for (var label in labels) ...[
               Code("case '${label.memberName}':"),
-              _labelToString(label, refer(label.dartName(ShapeType.structure)))
-                  .returned
-                  .statement,
+              valueToString(
+                refer(label.dartName(ShapeType.structure)),
+                label,
+                isHeader: false,
+              ).returned.statement,
             ],
             const Code('}'),
             DartTypes.smithy.missingLabelException
@@ -591,10 +574,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   }
 
   /// The statements of the output builder.
-  Iterable<Code> get _outputBuilder sync* {
+  Iterable<Code> _outputBuilder(Expression httpObj) sync* {
     final builder = refer('b');
     final payload = refer('payload');
-    final response = refer('response');
 
     final payloadShape = payloadMember;
 
@@ -638,22 +620,23 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       }
     }
 
-    final responseTraits =
-        (shape.isOutputShape ? httpOutputTraits! : httpErrorTraits!);
+    final HttpTraits httpTraits =
+        (httpInputTraits ?? httpOutputTraits ?? httpErrorTraits)!;
 
     // Add HTTP headers to the output.
-    final headersRef = response.property('headers');
-    for (final entry in responseTraits.httpHeaders.entries) {
-      yield _outputHttpHeader(
+    final headersRef = httpObj.property('headers');
+    for (final entry in httpTraits.httpHeaders.entries) {
+      yield _outputMapValue(
         headersRef.index(literalString(entry.key)),
         entry.value,
         builder.property(entry.value.dartName(ShapeType.structure)),
         isNullable: true,
+        isHeader: true,
       );
     }
 
     // Add all HTTP headers with a certain prefix to the output.
-    final prefixHeaders = responseTraits.httpPrefixHeaders;
+    final prefixHeaders = httpTraits.httpPrefixHeaders;
     if (prefixHeaders != null) {
       yield builder
           .property(prefixHeaders.member.dartName(ShapeType.structure))
@@ -696,27 +679,55 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       ]).statement;
     }
 
+    if (httpTraits is HttpInputTraits) {
+      final queryRef = httpObj.property('queryParameters');
+      final httpQuery = httpTraits.httpQuery;
+      for (final entry in httpQuery.entries) {
+        yield _outputMapValue(
+          queryRef.index(literalString(entry.key)),
+          entry.value,
+          builder.property(entry.value.dartName(ShapeType.structure)),
+          isNullable: true,
+          isHeader: false,
+        );
+      }
+
+      final labelsRef = refer('labels');
+      for (final member in httpTraits.httpLabels) {
+        final memberName = member.dartName(ShapeType.structure);
+        final ref = labelsRef.index(literalString(memberName));
+        final fromString = valueFromString(
+          ref.nullChecked,
+          member,
+          isHeader: false,
+        );
+        yield builder
+            .property(memberName)
+            .assign(fromString)
+            .statement
+            .wrapWithBlockIf(ref.notEqualTo(literalNull));
+      }
+    }
+
     // Add the HTTP context to the output.
-    final isOutput = responseTraits is HttpOutputTraits;
-    if (isOutput) {
-      final statusCode = responseTraits.httpResponseCode;
+    if (httpTraits is HttpOutputTraits) {
+      final statusCode = httpTraits.httpResponseCode;
       if (statusCode != null) {
         yield builder
             .property(statusCode.dartName(ShapeType.structure))
-            .assign(response.property('statusCode'))
+            .assign(httpObj.property('statusCode'))
             .statement;
       }
-    } else {
-      final errorTraits = responseTraits as HttpErrorTraits;
-      if (errorTraits.statusCode == null) {
+    } else if (httpTraits is HttpErrorTraits) {
+      if (httpTraits.statusCode == null) {
         yield builder
             .property('statusCode')
-            .assign(response.property('statusCode'))
+            .assign(httpObj.property('statusCode'))
             .statement;
       }
       yield builder
           .property('headers')
-          .assign(response.property('headers'))
+          .assign(httpObj.property('headers'))
           .statement;
     }
   }
@@ -742,112 +753,18 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         .statement;
   }
 
-  /// Adds the header to the request's headers map.
-  Code _outputHttpHeader(
-    Expression headerRef,
+  /// Extracts the value from an HTTP map object (headers, query parameters).
+  Code _outputMapValue(
+    Expression ref,
     Shape value,
     Expression valueRef, {
     required bool isNullable,
+    required bool isHeader,
   }) {
-    // Creates the expression to parse the header into the type of `shape`.
-    Expression fromString(Expression headerRef, Shape shape) {
-      final targetShape =
-          shape is MemberShape ? context.shapeFor(shape.target) : shape;
-
-      final type = targetShape.getType();
-      switch (type) {
-        case ShapeType.boolean:
-          return headerRef.equalTo(literalString('true'));
-
-        case ShapeType.bigInteger:
-          return DartTypes.core.bigInt.property('parse').call([headerRef]);
-
-        case ShapeType.bigDecimal:
-        case ShapeType.double:
-        case ShapeType.float:
-          return DartTypes.core.double.property('parse').call([headerRef]);
-
-        case ShapeType.byte:
-        case ShapeType.integer:
-        case ShapeType.short:
-          return DartTypes.core.int.property('parse').call([headerRef]);
-
-        case ShapeType.long:
-          return DartTypes.fixNum.int64.property('parseInt').call([headerRef]);
-
-        case ShapeType.string:
-          if (targetShape.isEnum) {
-            final targetSymbol = context.symbolFor(targetShape.shapeId).unboxed;
-            return targetSymbol
-                .property('values')
-                .property('byValue')
-                .call([headerRef]);
-          }
-
-          // From the restJson1 test suite:
-          // "Headers that target strings with a mediaType are base64 encoded"
-          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          if (mediaType == null) {
-            return headerRef;
-          }
-          headerRef = DartTypes.convert.utf8.property('decode').call([
-            DartTypes.convert.base64Decode.call([headerRef]),
-          ]);
-          switch (mediaType) {
-            case 'application/json':
-              headerRef = DartTypes.builtValue.jsonObject.newInstance([
-                DartTypes.convert.jsonDecode.call([headerRef]),
-              ]);
-          }
-          return headerRef;
-
-        // timestamp values are serialized using the http-date format by
-        // default. The timestampFormat trait MAY be used to use a custom
-        // serialization format.
-        case ShapeType.timestamp:
-          final format = shape.timestampFormat ??
-              targetShape.timestampFormat ??
-              TimestampFormat.httpDate;
-          return DartTypes.smithy.timestamp.property('parse').call([
-            format == TimestampFormat.epochSeconds
-                ? DartTypes.core.int.property('parse').call([headerRef])
-                : headerRef
-          ], {
-            'format': DartTypes.smithy.timestampFormat.property(format.name),
-          }).property('asDateTime');
-
-        // When a list shape is targeted, each member of the shape is
-        // serialized as a separate HTTP header either by concatenating the
-        // values with a comma on a single line or by serializing each header
-        // value on its own line.
-        case ShapeType.list:
-        case ShapeType.set:
-          final memberShape = (targetShape as CollectionShape).member;
-          final memberTarget = context.shapeFor(memberShape.target);
-          return DartTypes.smithy.parseHeader
-              .call([
-                headerRef
-              ], {
-                if (memberTarget is TimestampShape)
-                  'isTimestampList': literalTrue,
-              })
-              .property('map')
-              .call([
-                Method((m) => m
-                  ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                  ..lambda = true
-                  ..body = fromString(
-                          refer('el').property('trim').call([]), memberShape)
-                      .code).closure,
-              ]);
-        default:
-          throw ArgumentError('Invalid header shape type: $type');
-      }
-    }
-
-    final fromStringExp = fromString(
-      (isNullable ? headerRef.nullChecked : headerRef),
+    final fromStringExp = valueFromString(
+      (isNullable ? ref.nullChecked : ref),
       value,
+      isHeader: isHeader,
     );
     final targetShape =
         value is MemberShape ? context.shapeFor(value.target) : value;
@@ -858,7 +775,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       addHeader = valueRef.assign(fromStringExp).statement;
     }
     return addHeader.wrapWithBlockIf(
-      headerRef.notEqualTo(literalNull),
+      ref.notEqualTo(literalNull),
       isNullable,
     );
   }

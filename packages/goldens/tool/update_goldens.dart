@@ -79,6 +79,7 @@ Future<void> _generateFor(FileSystemEntity modelEnt) async {
     additionalShapes: const [
       ShapeId(namespace: 'aws.protocoltests.config', shape: 'AwsConfig'),
     ],
+    generateServer: true,
   );
 
   final Set<String> dependencies = {};
@@ -111,6 +112,7 @@ include: package:lints/recommended.yaml
 analyzer:
   errors:
     avoid_unused_constructor_parameters: ignore
+    non_constant_identifier_names: ignore
 ''');
 
   // Create mono_pkg for testing

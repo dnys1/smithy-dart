@@ -21,6 +21,11 @@ abstract class MalformedRequestBodyInput
 
   const MalformedRequestBodyInput._();
 
+  factory MalformedRequestBodyInput.fromRequest(
+          MalformedRequestBodyInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedRequestBodyInputRestJson1Serializer()
   ];

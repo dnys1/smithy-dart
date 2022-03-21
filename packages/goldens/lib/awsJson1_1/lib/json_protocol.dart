@@ -4,6 +4,7 @@
 library aws_json1_1.json_protocol;
 
 export 'package:aws_json1_1/src/json_protocol/json_protocol_client.dart';
+export 'package:aws_json1_1/src/json_protocol/json_protocol_server.dart';
 export 'package:aws_json1_1/src/json_protocol/model/aws_config.dart';
 export 'package:aws_json1_1/src/json_protocol/model/client_config.dart';
 export 'package:aws_json1_1/src/json_protocol/model/complex_error.dart';

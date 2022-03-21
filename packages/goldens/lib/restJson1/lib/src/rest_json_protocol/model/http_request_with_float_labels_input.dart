@@ -25,6 +25,19 @@ abstract class HttpRequestWithFloatLabelsInput
 
   const HttpRequestWithFloatLabelsInput._();
 
+  factory HttpRequestWithFloatLabelsInput.fromRequest(
+          HttpRequestWithFloatLabelsInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpRequestWithFloatLabelsInput((b) {
+        if (labels['float'] != null) {
+          b.float = double.parse(labels['float']!);
+        }
+        if (labels['double_'] != null) {
+          b.double_ = double.parse(labels['double_']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithFloatLabelsInputRestJson1Serializer()
   ];

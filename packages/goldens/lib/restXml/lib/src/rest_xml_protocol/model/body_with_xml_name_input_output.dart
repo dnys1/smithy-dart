@@ -23,9 +23,14 @@ abstract class BodyWithXmlNameInputOutput
 
   const BodyWithXmlNameInputOutput._();
 
+  factory BodyWithXmlNameInputOutput.fromRequest(
+          BodyWithXmlNameInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory BodyWithXmlNameInputOutput.fromResponse(
           BodyWithXmlNameInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

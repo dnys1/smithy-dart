@@ -21,7 +21,7 @@ abstract class InvalidGreeting
   const InvalidGreeting._();
 
   factory InvalidGreeting.fromResponse(
-          InvalidGreeting payload, _i1.AWSStreamedHttpResponse response) =>
+          InvalidGreeting payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

@@ -25,6 +25,13 @@ abstract class MalformedContentTypeWithPayloadInput
 
   const MalformedContentTypeWithPayloadInput._();
 
+  factory MalformedContentTypeWithPayloadInput.fromRequest(
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedContentTypeWithPayloadInput((b) {
+        b.payload = payload;
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedContentTypeWithPayloadInputRestJson1Serializer()
   ];

@@ -18,7 +18,7 @@ abstract class ServerError
   const ServerError._();
 
   factory ServerError.fromResponse(
-          ServerError payload, _i1.AWSStreamedHttpResponse response) =>
+          ServerError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

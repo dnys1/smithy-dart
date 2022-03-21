@@ -173,91 +173,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     required bool isNullable,
   }) {
     final builder = refer('b');
-    Expression toString(Expression ref, Shape shape) {
-      final targetShape =
-          shape is MemberShape ? context.shapeFor(shape.target) : shape;
-      final type = targetShape.getType();
-      switch (type) {
-        case ShapeType.boolean:
-        case ShapeType.bigDecimal:
-        case ShapeType.bigInteger:
-        case ShapeType.byte:
-        case ShapeType.double:
-        case ShapeType.float:
-        case ShapeType.integer:
-        case ShapeType.long:
-        case ShapeType.short:
-          return ref.property('toString').call([]);
 
-        // string values with a mediaType trait are always base64 encoded.
-        case ShapeType.string:
-          if (targetShape.isEnum) {
-            return ref.property('value');
-          }
-          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          // From the restJson1 test suite:
-          // "Headers that target strings with a mediaType are base64 encoded"
-          if (mediaType != null) {
-            switch (mediaType) {
-              case 'application/json':
-                ref = DartTypes.convert.jsonEncode.call([
-                  ref.property('value'),
-                ]);
-                break;
-            }
-            return DartTypes.convert.base64Encode.call([
-              DartTypes.convert.utf8.property('encode').call([ref]),
-            ]);
-          }
-          return ref;
-
-        // timestamp values are serialized using the http-date format by
-        // default. The timestampFormat trait MAY be used to use a custom
-        // serialization format.
-        case ShapeType.timestamp:
-          final format = shape.timestampFormat ??
-              targetShape.timestampFormat ??
-              TimestampFormat.httpDate;
-          return DartTypes.smithy.timestamp
-              .newInstance([ref])
-              .property('format')
-              .call([
-                DartTypes.smithy.timestampFormat.property(format.name),
-              ])
-              .property('toString')
-              .call([]);
-
-        // When a list shape is targeted, each member of the shape is
-        // serialized as a separate HTTP header either by concatenating the
-        // values with a comma on a single line or by serializing each header
-        // value on its own line.
-        case ShapeType.list:
-        case ShapeType.set:
-          final memberShape = (targetShape as CollectionShape).member;
-          final memberTarget = context.shapeFor(memberShape.target);
-          return ref
-              .property('map')
-              .call([
-                Method((m) => m
-                  ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                  ..lambda = true
-                  ..body = DartTypes.smithy.sanitizeHeader.call([
-                    toString(refer('el'), memberShape),
-                  ], {
-                    if (memberTarget is TimestampShape)
-                      'isTimestampList': literalTrue,
-                  }).code).closure,
-              ])
-              .property('join')
-              .call([literalString(', ')]);
-        default:
-          throw ArgumentError('Invalid header shape type: $type');
-      }
-    }
-
-    final toStringExp = toString(
+    final toStringExp = valueToString(
       (isNullable ? valueRef.nullChecked : valueRef),
       value,
+      isHeader: true,
     );
     final addHeader =
         builder.property('headers').index(key).assign(toStringExp).statement;
@@ -337,58 +257,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       ]).wrapWithBlockIf(valueRef.notEqualTo(literalNull), isNullable);
     }
 
-    Expression toString(Expression ref, Shape shape) {
-      final targetShape =
-          shape is MemberShape ? context.shapeFor(shape.target) : shape;
-      final type = targetShape.getType();
-      switch (type) {
-        case ShapeType.boolean:
-        case ShapeType.bigDecimal:
-        case ShapeType.bigInteger:
-        case ShapeType.byte:
-        case ShapeType.double:
-        case ShapeType.float:
-        case ShapeType.integer:
-        case ShapeType.long:
-        case ShapeType.short:
-          return ref.property('toString').call([]);
-
-        // string values with a mediaType trait are always base64 encoded.
-        case ShapeType.string:
-          if (targetShape.isEnum) {
-            return ref.property('value');
-          }
-          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          switch (mediaType) {
-            case 'application/json':
-              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
-          }
-          return ref;
-
-        // timestamp values are serialized as an RFC 3339 date-time string by
-        // default (for example, 1985-04-12T23:20:50.52Z, and with
-        // percent-encoding, 1985-04-12T23%3A20%3A50.52Z). The timestampFormat
-        // trait MAY be used to use a custom serialization format.
-        case ShapeType.timestamp:
-          final format = shape.timestampFormat ??
-              targetShape.timestampFormat ??
-              TimestampFormat.dateTime;
-          return DartTypes.smithy.timestamp
-              .newInstance([ref])
-              .property('format')
-              .call([
-                DartTypes.smithy.timestampFormat.property(format.name),
-              ])
-              .property('toString')
-              .call([]);
-
-        default:
-          throw ArgumentError('Invalid query parameter value type: $type');
-      }
-    }
-
-    final toStringExp =
-        toString((isNullable ? valueRef.nullChecked : valueRef), targetShape);
+    final toStringExp = valueToString(
+      (isNullable ? valueRef.nullChecked : valueRef),
+      targetShape,
+      isHeader: false,
+    );
     final addParam = builder
         .property('queryParameters')
         .property('add')
@@ -668,164 +541,16 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..assignment = literalList([
             for (var protocol in context.serviceProtocols)
               protocol.instantiableProtocolSymbol.newInstance([], {
-                'serializers': _protocolSerializers(protocol),
+                'serializers': protocol.serializers(context),
                 'builderFactories': context.builderFactoriesRef,
                 'requestInterceptors':
-                    literalList(_protocolRequestInterceptors(protocol)),
+                    literalList(protocol.requestInterceptors(shape, context)),
                 'responseInterceptors':
-                    literalList(_protocolResponseInterceptors(protocol)),
-                ..._protocolParameters(protocol),
+                    literalList(protocol.responseInterceptors(shape, context)),
+                ...protocol.extraParameters(shape, context),
               }),
           ]).code,
       );
-
-  Expression _protocolSerializers(ProtocolDefinitionTrait protocol) {
-    final additionalSerializers = <Expression>[];
-    return additionalSerializers.isNotEmpty
-        ? literalConstList([
-            context.serializersRef.spread,
-            ...additionalSerializers,
-          ])
-        : context.serializersRef;
-  }
-
-  /// Request interceptors for the protocol.
-  Iterable<Expression> _protocolRequestInterceptors(
-      ProtocolDefinitionTrait protocol) sync* {
-    // HTTP checksum (supported by all)
-    if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
-      yield DartTypes.smithy.withChecksum.constInstance([]);
-    }
-
-    var needsContentLength = true;
-    final payloadMember = inputPayload.member;
-    if (payloadMember != null) {
-      final targetShape = context.shapeFor(payloadMember.target);
-      needsContentLength = targetShape is! BlobShape ||
-          !targetShape.isStreaming ||
-          targetShape.hasTrait<RequiresLengthTrait>();
-    }
-    // Empty payloads should not contain `Content-Length` and `Content-Type`
-    // headers.
-    if (protocol is RestJson1Trait &&
-        inputShape.payloadMembers(context).isEmpty) {
-      needsContentLength = false;
-    }
-    if (needsContentLength) {
-      yield DartTypes.smithy.withContentLength.constInstance([]);
-    }
-
-    switch (protocol.runtimeType) {
-      case AwsJson1_0Trait:
-      case AwsJson1_1Trait:
-        yield DartTypes.smithy.withHeader.constInstance([
-          literalString('X-Amz-Target'),
-
-          // The value of this header is the shape name of the service's Shape
-          // ID joined to the shape name of the operation's Shape ID,
-          // separated by a single period (.) character.
-          //
-          // For example, the value for the operation `ns.example#MyOp` of the
-          // service `ns.example#MyService` is MyService.MyOp.
-          literalString([
-            context.service!.shapeId.shape,
-            shape.shapeId.shape,
-          ].join('.'))
-        ]);
-        break;
-      case RestJson1Trait:
-        // Empty payloads should not contain `Content-Length` and `Content-Type`
-        // headers.
-        if (inputShape.payloadMembers(context).isEmpty) {
-          yield* [
-            DartTypes.smithy.withNoHeader.constInstance([
-              literalString('Content-Length'),
-            ]),
-            DartTypes.smithy.withNoHeader.constInstance([
-              literalString('Content-Type'),
-            ]),
-          ];
-        }
-        break;
-      case RestXmlTrait:
-      default:
-    }
-
-    // https://awslabs.github.io/smithy/1.0/spec/core/auth-traits.html#optionalauth-trait
-    final authTrait = shape.getTrait<AuthTrait>();
-    final bool isOptionalAuth = shape.hasTrait<OptionalAuthTrait>() ||
-        (authTrait != null && authTrait.values.isEmpty);
-
-    // SigV4
-    final sigV4 = context.service?.getTrait<SigV4Trait>()?.name;
-    if (sigV4 != null) {
-      yield DartTypes.smithyAws.withSigV4.newInstance([], {
-        'region': refer('_region'),
-        'serviceName': literalString(sigV4),
-        'credentialsProvider': refer('_credentialsProvider'),
-        if (isOptionalAuth) 'isOptional': literalTrue,
-      });
-    }
-
-    // AWS customizations
-    final serviceId = context.serviceShapeId;
-    final aws = context.service?.getTrait<ServiceTrait>();
-    if (aws != null && serviceId != null) {
-      // Common AWS interceptors
-      yield DartTypes.smithyAws.withSdkInvocationId.constInstance([]);
-      yield DartTypes.smithyAws.withSdkRequest.constInstance([]);
-
-      final trait = aws.resolve(serviceId);
-      switch (trait.sdkId) {
-        // A client for Amazon API Gateway MUST set the Accept header to the
-        // string literal value of "application/json" for all requests.
-        //
-        // https://awslabs.github.io/smithy/1.0/spec/aws/customizations/apigateway-customizations.html
-        case 'API Gateway':
-          yield DartTypes.smithy.withHeader.constInstance([
-            literalString('Accept'),
-            literalString('application/json'),
-          ]);
-      }
-    }
-  }
-
-  /// Response interceptors for the protocol.
-  Iterable<Expression> _protocolResponseInterceptors(
-      ProtocolDefinitionTrait protocol) sync* {
-    // HTTP checksum (supported by all)
-    if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
-      yield DartTypes.smithy.validateChecksum.constInstance([]);
-    }
-  }
-
-  Map<String, Expression> _protocolParameters(
-    ProtocolDefinitionTrait protocol,
-  ) {
-    final parameters = <String, Expression>{};
-    switch (protocol.runtimeType) {
-      case RestJson1Trait:
-      case RestXmlTrait:
-        String? mediaType;
-        final payloadShape = inputPayload.member;
-        if (payloadShape != null) {
-          final targetShape = context.shapeFor(payloadShape.target);
-          mediaType = (payloadShape.getTrait<MediaTypeTrait>() ??
-                  targetShape.getTrait<MediaTypeTrait>())
-              ?.value;
-        }
-        if (mediaType != null) {
-          parameters['mediaType'] = literalString(mediaType);
-        }
-        break;
-    }
-
-    if (protocol is RestXmlTrait) {
-      parameters['noErrorWrapping'] = literalBool(protocol.noErrorWrapping);
-    }
-
-    return parameters;
-  }
 
   Iterable<Method> get _paginatedMethods sync* {
     final paginatedTraits = this.paginatedTraits;

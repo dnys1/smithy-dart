@@ -22,6 +22,11 @@ abstract class MalformedUnionInput
 
   const MalformedUnionInput._();
 
+  factory MalformedUnionInput.fromRequest(
+          MalformedUnionInput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedUnionInputRestJson1Serializer()
   ];

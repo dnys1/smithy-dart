@@ -23,6 +23,23 @@ abstract class MalformedIntegerInput
 
   const MalformedIntegerInput._();
 
+  factory MalformedIntegerInput.fromRequest(
+          MalformedIntegerInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedIntegerInput((b) {
+        b.integerInBody = payload.integerInBody;
+        if (request.headers['integerInHeader'] != null) {
+          b.integerInHeader = int.parse(request.headers['integerInHeader']!);
+        }
+        if (request.queryParameters['integerInQuery'] != null) {
+          b.integerInQuery =
+              int.parse(request.queryParameters['integerInQuery']!);
+        }
+        if (labels['integerInPath'] != null) {
+          b.integerInPath = int.parse(labels['integerInPath']!);
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedIntegerInputRestJson1Serializer()
   ];

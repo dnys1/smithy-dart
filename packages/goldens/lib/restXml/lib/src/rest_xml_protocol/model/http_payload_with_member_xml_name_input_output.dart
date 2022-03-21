@@ -25,9 +25,17 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
 
   const HttpPayloadWithMemberXmlNameInputOutput._();
 
+  factory HttpPayloadWithMemberXmlNameInputOutput.fromRequest(
+          _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadWithMemberXmlNameInputOutput((b) {
+        if (payload != null) {
+          b.nested.replace(payload);
+        }
+      });
+
   factory HttpPayloadWithMemberXmlNameInputOutput.fromResponse(
-          _i2.PayloadWithXmlName? payload,
-          _i3.AWSStreamedHttpResponse response) =>
+          _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadWithMemberXmlNameInputOutput((b) {
         if (payload != null) {
           b.nested.replace(payload);

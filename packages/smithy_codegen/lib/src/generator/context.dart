@@ -20,6 +20,7 @@ class CodegenContext {
     this.pubspec,
     Iterable<ShapeId> includeShapes = const {},
     Iterable<ShapeId> additionalShapes = const {},
+    this.generateServer = false,
   })  : _shapes = shapes,
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
@@ -155,6 +156,20 @@ class CodegenContext {
     filename: serviceClientName,
     basePath: basePath,
   );
+
+  /// Whether to generate server code.
+  final bool generateServer;
+
+  /// The service's server library.
+  late final SmithyLibrary serviceServerLibrary = SmithyLibraryX.create(
+    packageName: packageName,
+    serviceName: serviceName,
+    libraryType: SmithyLibrary_LibraryType.SERVER,
+    filename: serviceServerName,
+    basePath: basePath,
+  );
+
+  late final String serviceServerName = serviceName.pascalCase + 'Server';
 
   late final String serviceClientName =
       // For backwards compatibility reasons, some services will include

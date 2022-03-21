@@ -19,7 +19,7 @@ abstract class JsonUnionsOutput
   const JsonUnionsOutput._();
 
   factory JsonUnionsOutput.fromResponse(
-          JsonUnionsOutput payload, _i1.AWSStreamedHttpResponse response) =>
+          JsonUnionsOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

@@ -23,7 +23,7 @@ abstract class SimpleScalarPropertiesOutput
 
   factory SimpleScalarPropertiesOutput.fromResponse(
           SimpleScalarPropertiesOutput payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i2.SmithySerializer> serializers = [

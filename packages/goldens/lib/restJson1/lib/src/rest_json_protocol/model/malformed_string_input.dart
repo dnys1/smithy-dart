@@ -2,11 +2,13 @@
 
 library rest_json1.rest_json_protocol.model.malformed_string_input;
 
+import 'dart:convert' as _i4;
+
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/json_object.dart' as _i3;
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
+import 'package:meta/meta.dart' as _i5;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'malformed_string_input.g.dart';
@@ -24,6 +26,16 @@ abstract class MalformedStringInput
       _$MalformedStringInput;
 
   const MalformedStringInput._();
+
+  factory MalformedStringInput.fromRequest(
+          MalformedStringInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedStringInput((b) {
+        if (request.headers['amz-media-typed-header'] != null) {
+          b.blob = _i3.JsonObject(_i4.jsonDecode(_i4.utf8.decode(
+              _i4.base64Decode(request.headers['amz-media-typed-header']!))));
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedStringInputRestJson1Serializer()
@@ -44,7 +56,7 @@ abstract class MalformedStringInput
   }
 }
 
-@_i4.internal
+@_i5.internal
 abstract class MalformedStringInputPayload
     with _i2.AWSEquatable<MalformedStringInputPayload>
     implements

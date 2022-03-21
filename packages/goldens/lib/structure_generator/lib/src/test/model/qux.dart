@@ -35,7 +35,8 @@ class _QuxSerializer extends _i2.StructuredSmithySerializer<Qux> {
   @override
   Iterable<Type> get types => const [Qux, _$Qux];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   Qux deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

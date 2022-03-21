@@ -25,6 +25,19 @@ abstract class MalformedTimestampQueryHttpDateInput
 
   const MalformedTimestampQueryHttpDateInput._();
 
+  factory MalformedTimestampQueryHttpDateInput.fromRequest(
+          MalformedTimestampQueryHttpDateInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedTimestampQueryHttpDateInput((b) {
+        if (request.queryParameters['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(
+                  request.queryParameters['timestamp']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampQueryHttpDateInputRestJson1Serializer()
   ];

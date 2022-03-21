@@ -27,7 +27,7 @@ abstract class MediaTypeHeaderOutput
 
   factory MediaTypeHeaderOutput.fromResponse(
           MediaTypeHeaderOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       MediaTypeHeaderOutput((b) {
         if (response.headers['X-Json'] != null) {
           b.json = _i3.JsonObject(_i4.jsonDecode(

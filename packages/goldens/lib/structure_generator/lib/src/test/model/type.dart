@@ -35,7 +35,8 @@ class _TypeSerializer extends _i2.StructuredSmithySerializer<TestType> {
   @override
   Iterable<Type> get types => const [TestType, _$TestType];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   TestType deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

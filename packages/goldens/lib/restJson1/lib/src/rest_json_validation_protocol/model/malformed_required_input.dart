@@ -23,6 +23,19 @@ abstract class MalformedRequiredInput
 
   const MalformedRequiredInput._();
 
+  factory MalformedRequiredInput.fromRequest(
+          MalformedRequiredInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedRequiredInput((b) {
+        b.string = payload.string;
+        if (request.headers['string-in-headers'] != null) {
+          b.stringInHeader = request.headers['string-in-headers']!;
+        }
+        if (request.queryParameters['stringInQuery'] != null) {
+          b.stringInQuery = request.queryParameters['stringInQuery']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedRequiredInputRestJson1Serializer()
   ];

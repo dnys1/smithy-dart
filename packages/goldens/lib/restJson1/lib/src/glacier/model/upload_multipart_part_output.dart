@@ -24,7 +24,7 @@ abstract class UploadMultipartPartOutput
 
   factory UploadMultipartPartOutput.fromResponse(
           UploadMultipartPartOutputPayload payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       UploadMultipartPartOutput((b) {
         if (response.headers['x-amz-sha256-tree-hash'] != null) {
           b.checksum = response.headers['x-amz-sha256-tree-hash']!;

@@ -2,11 +2,13 @@
 
 library rest_json1.rest_json_protocol.model.media_type_header_input;
 
+import 'dart:convert' as _i4;
+
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/json_object.dart' as _i3;
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
+import 'package:meta/meta.dart' as _i5;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'media_type_header_input.g.dart';
@@ -24,6 +26,16 @@ abstract class MediaTypeHeaderInput
       _$MediaTypeHeaderInput;
 
   const MediaTypeHeaderInput._();
+
+  factory MediaTypeHeaderInput.fromRequest(
+          MediaTypeHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MediaTypeHeaderInput((b) {
+        if (request.headers['X-Json'] != null) {
+          b.json = _i3.JsonObject(_i4.jsonDecode(
+              _i4.utf8.decode(_i4.base64Decode(request.headers['X-Json']!))));
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MediaTypeHeaderInputRestJson1Serializer()
@@ -44,7 +56,7 @@ abstract class MediaTypeHeaderInput
   }
 }
 
-@_i4.internal
+@_i5.internal
 abstract class MediaTypeHeaderInputPayload
     with _i2.AWSEquatable<MediaTypeHeaderInputPayload>
     implements

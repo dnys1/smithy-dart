@@ -21,7 +21,7 @@ abstract class MapInputError
   const MapInputError._();
 
   factory MapInputError.fromResponse(
-          MapInputError payload, _i1.AWSStreamedHttpResponse response) =>
+          MapInputError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

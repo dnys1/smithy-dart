@@ -23,9 +23,14 @@ abstract class FlattenedXmlMapInputOutput
 
   const FlattenedXmlMapInputOutput._();
 
+  factory FlattenedXmlMapInputOutput.fromRequest(
+          FlattenedXmlMapInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory FlattenedXmlMapInputOutput.fromResponse(
           FlattenedXmlMapInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

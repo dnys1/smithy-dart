@@ -21,7 +21,7 @@ abstract class BadRequestException
   const BadRequestException._();
 
   factory BadRequestException.fromResponse(
-          BadRequestException payload, _i1.AWSStreamedHttpResponse response) =>
+          BadRequestException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

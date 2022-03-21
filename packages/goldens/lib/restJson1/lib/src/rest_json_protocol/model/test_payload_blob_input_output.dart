@@ -24,8 +24,18 @@ abstract class TestPayloadBlobInputOutput
 
   const TestPayloadBlobInputOutput._();
 
+  factory TestPayloadBlobInputOutput.fromRequest(
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      TestPayloadBlobInputOutput((b) {
+        b.data = payload;
+        if (request.headers['Content-Type'] != null) {
+          b.contentType = request.headers['Content-Type']!;
+        }
+      });
+
   factory TestPayloadBlobInputOutput.fromResponse(
-          _i2.Uint8List? payload, _i3.AWSStreamedHttpResponse response) =>
+          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
       TestPayloadBlobInputOutput((b) {
         b.data = payload;
         if (response.headers['Content-Type'] != null) {

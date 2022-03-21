@@ -24,9 +24,14 @@ abstract class XmlMapsXmlNameInputOutput
 
   const XmlMapsXmlNameInputOutput._();
 
+  factory XmlMapsXmlNameInputOutput.fromRequest(
+          XmlMapsXmlNameInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
   factory XmlMapsXmlNameInputOutput.fromResponse(
           XmlMapsXmlNameInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

@@ -15,3 +15,4 @@ export 'package:structure_generator/src/test/model/s3_addressing_style.dart';
 export 'package:structure_generator/src/test/model/s3_config.dart';
 export 'package:structure_generator/src/test/model/scoped_config.dart';
 export 'package:structure_generator/src/test/test_client.dart';
+export 'package:structure_generator/src/test/test_server.dart';

@@ -3,10 +3,10 @@
 library rest_xml.rest_xml_protocol.model.all_query_string_types_input;
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i3;
+import 'package:built_collection/built_collection.dart' as _i5;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i5;
+import 'package:fixnum/fixnum.dart' as _i3;
 import 'package:meta/meta.dart' as _i6;
 import 'package:rest_xml/src/rest_xml_protocol/model/foo_enum.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
@@ -27,6 +27,90 @@ abstract class AllQueryStringTypesInput
 
   const AllQueryStringTypesInput._();
 
+  factory AllQueryStringTypesInput.fromRequest(
+          AllQueryStringTypesInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      AllQueryStringTypesInput((b) {
+        if (request.queryParameters['String'] != null) {
+          b.queryString = request.queryParameters['String']!;
+        }
+        if (request.queryParameters['StringList'] != null) {
+          b.queryStringList.addAll(_i1
+              .parseHeader(request.queryParameters['StringList']!)
+              .map((el) => el.trim()));
+        }
+        if (request.queryParameters['StringSet'] != null) {
+          b.queryStringSet.addAll(_i1
+              .parseHeader(request.queryParameters['StringSet']!)
+              .map((el) => el.trim()));
+        }
+        if (request.queryParameters['Byte'] != null) {
+          b.queryByte = int.parse(request.queryParameters['Byte']!);
+        }
+        if (request.queryParameters['Short'] != null) {
+          b.queryShort = int.parse(request.queryParameters['Short']!);
+        }
+        if (request.queryParameters['Integer'] != null) {
+          b.queryInteger = int.parse(request.queryParameters['Integer']!);
+        }
+        if (request.queryParameters['IntegerList'] != null) {
+          b.queryIntegerList.addAll(_i1
+              .parseHeader(request.queryParameters['IntegerList']!)
+              .map((el) => int.parse(el.trim())));
+        }
+        if (request.queryParameters['IntegerSet'] != null) {
+          b.queryIntegerSet.addAll(_i1
+              .parseHeader(request.queryParameters['IntegerSet']!)
+              .map((el) => int.parse(el.trim())));
+        }
+        if (request.queryParameters['Long'] != null) {
+          b.queryLong = _i3.Int64.parseInt(request.queryParameters['Long']!);
+        }
+        if (request.queryParameters['Float'] != null) {
+          b.queryFloat = double.parse(request.queryParameters['Float']!);
+        }
+        if (request.queryParameters['Double'] != null) {
+          b.queryDouble = double.parse(request.queryParameters['Double']!);
+        }
+        if (request.queryParameters['DoubleList'] != null) {
+          b.queryDoubleList.addAll(_i1
+              .parseHeader(request.queryParameters['DoubleList']!)
+              .map((el) => double.parse(el.trim())));
+        }
+        if (request.queryParameters['Boolean'] != null) {
+          b.queryBoolean = request.queryParameters['Boolean']! == 'true';
+        }
+        if (request.queryParameters['BooleanList'] != null) {
+          b.queryBooleanList.addAll(_i1
+              .parseHeader(request.queryParameters['BooleanList']!)
+              .map((el) => el.trim() == 'true'));
+        }
+        if (request.queryParameters['Timestamp'] != null) {
+          b.queryTimestamp = _i1.Timestamp.parse(
+                  request.queryParameters['Timestamp']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+        if (request.queryParameters['TimestampList'] != null) {
+          b.queryTimestampList.addAll(_i1
+              .parseHeader(request.queryParameters['TimestampList']!,
+                  isTimestampList: true)
+              .map((el) => _i1.Timestamp.parse(el.trim(),
+                      format: _i1.TimestampFormat.httpDate)
+                  .asDateTime));
+        }
+        if (request.queryParameters['Enum'] != null) {
+          b.queryEnum =
+              _i4.FooEnum.values.byValue(request.queryParameters['Enum']!);
+        }
+        if (request.queryParameters['EnumList'] != null) {
+          b.queryEnumList.addAll(_i1
+              .parseHeader(request.queryParameters['EnumList']!)
+              .map((el) => _i4.FooEnum.values.byValue(el.trim())));
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _AllQueryStringTypesInputRestXmlSerializer()
   ];
@@ -34,24 +118,24 @@ abstract class AllQueryStringTypesInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(AllQueryStringTypesInputBuilder b) {}
   bool? get queryBoolean;
-  _i3.BuiltList<bool>? get queryBooleanList;
+  _i5.BuiltList<bool>? get queryBooleanList;
   int? get queryByte;
   double? get queryDouble;
-  _i3.BuiltList<double>? get queryDoubleList;
+  _i5.BuiltList<double>? get queryDoubleList;
   _i4.FooEnum? get queryEnum;
-  _i3.BuiltList<_i4.FooEnum>? get queryEnumList;
+  _i5.BuiltList<_i4.FooEnum>? get queryEnumList;
   double? get queryFloat;
   int? get queryInteger;
-  _i3.BuiltList<int>? get queryIntegerList;
-  _i3.BuiltSet<int>? get queryIntegerSet;
-  _i5.Int64? get queryLong;
-  _i3.BuiltMap<String, String>? get queryParamsMapOfStrings;
+  _i5.BuiltList<int>? get queryIntegerList;
+  _i5.BuiltSet<int>? get queryIntegerSet;
+  _i3.Int64? get queryLong;
+  _i5.BuiltMap<String, String>? get queryParamsMapOfStrings;
   int? get queryShort;
   String? get queryString;
-  _i3.BuiltList<String>? get queryStringList;
-  _i3.BuiltSet<String>? get queryStringSet;
+  _i5.BuiltList<String>? get queryStringList;
+  _i5.BuiltSet<String>? get queryStringSet;
   DateTime? get queryTimestamp;
-  _i3.BuiltList<DateTime>? get queryTimestampList;
+  _i5.BuiltList<DateTime>? get queryTimestampList;
   @override
   AllQueryStringTypesInputPayload getPayload() =>
       AllQueryStringTypesInputPayload();

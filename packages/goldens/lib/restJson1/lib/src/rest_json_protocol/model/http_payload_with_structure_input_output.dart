@@ -25,8 +25,17 @@ abstract class HttpPayloadWithStructureInputOutput
 
   const HttpPayloadWithStructureInputOutput._();
 
+  factory HttpPayloadWithStructureInputOutput.fromRequest(
+          _i2.NestedPayload? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadWithStructureInputOutput((b) {
+        if (payload != null) {
+          b.nested.replace(payload);
+        }
+      });
+
   factory HttpPayloadWithStructureInputOutput.fromResponse(
-          _i2.NestedPayload? payload, _i3.AWSStreamedHttpResponse response) =>
+          _i2.NestedPayload? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadWithStructureInputOutput((b) {
         if (payload != null) {
           b.nested.replace(payload);

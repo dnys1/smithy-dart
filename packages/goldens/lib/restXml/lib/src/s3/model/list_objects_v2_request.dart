@@ -6,8 +6,8 @@ import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:meta/meta.dart' as _i5;
-import 'package:rest_xml/src/s3/model/encoding_type.dart' as _i3;
-import 'package:rest_xml/src/s3/model/request_payer.dart' as _i4;
+import 'package:rest_xml/src/s3/model/encoding_type.dart' as _i4;
+import 'package:rest_xml/src/s3/model/request_payer.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 
 part 'list_objects_v2_request.g.dart';
@@ -26,6 +26,45 @@ abstract class ListObjectsV2Request
 
   const ListObjectsV2Request._();
 
+  factory ListObjectsV2Request.fromRequest(
+          ListObjectsV2RequestPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      ListObjectsV2Request((b) {
+        if (request.headers['x-amz-request-payer'] != null) {
+          b.requestPayer = _i3.RequestPayer.values
+              .byValue(request.headers['x-amz-request-payer']!);
+        }
+        if (request.headers['x-amz-expected-bucket-owner'] != null) {
+          b.expectedBucketOwner =
+              request.headers['x-amz-expected-bucket-owner']!;
+        }
+        if (request.queryParameters['delimiter'] != null) {
+          b.delimiter = request.queryParameters['delimiter']!;
+        }
+        if (request.queryParameters['encoding-type'] != null) {
+          b.encodingType = _i4.EncodingType.values
+              .byValue(request.queryParameters['encoding-type']!);
+        }
+        if (request.queryParameters['max-keys'] != null) {
+          b.maxKeys = int.parse(request.queryParameters['max-keys']!);
+        }
+        if (request.queryParameters['prefix'] != null) {
+          b.prefix = request.queryParameters['prefix']!;
+        }
+        if (request.queryParameters['continuation-token'] != null) {
+          b.continuationToken = request.queryParameters['continuation-token']!;
+        }
+        if (request.queryParameters['fetch-owner'] != null) {
+          b.fetchOwner = request.queryParameters['fetch-owner']! == 'true';
+        }
+        if (request.queryParameters['start-after'] != null) {
+          b.startAfter = request.queryParameters['start-after']!;
+        }
+        if (labels['bucket'] != null) {
+          b.bucket = labels['bucket']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _ListObjectsV2RequestRestXmlSerializer()
   ];
@@ -35,12 +74,12 @@ abstract class ListObjectsV2Request
   String get bucket;
   String? get continuationToken;
   String? get delimiter;
-  _i3.EncodingType? get encodingType;
+  _i4.EncodingType? get encodingType;
   String? get expectedBucketOwner;
   bool? get fetchOwner;
   int? get maxKeys;
   String? get prefix;
-  _i4.RequestPayer? get requestPayer;
+  _i3.RequestPayer? get requestPayer;
   String? get startAfter;
   @override
   String labelFor(String key) {

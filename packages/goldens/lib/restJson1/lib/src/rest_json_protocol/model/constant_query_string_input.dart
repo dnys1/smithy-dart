@@ -24,6 +24,16 @@ abstract class ConstantQueryStringInput
 
   const ConstantQueryStringInput._();
 
+  factory ConstantQueryStringInput.fromRequest(
+          ConstantQueryStringInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      ConstantQueryStringInput((b) {
+        if (labels['hello'] != null) {
+          b.hello = labels['hello']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _ConstantQueryStringInputRestJson1Serializer()
   ];

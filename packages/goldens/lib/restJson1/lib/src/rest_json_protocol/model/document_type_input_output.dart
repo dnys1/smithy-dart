@@ -21,8 +21,13 @@ abstract class DocumentTypeInputOutput
 
   const DocumentTypeInputOutput._();
 
-  factory DocumentTypeInputOutput.fromResponse(DocumentTypeInputOutput payload,
-          _i2.AWSStreamedHttpResponse response) =>
+  factory DocumentTypeInputOutput.fromRequest(
+          DocumentTypeInputOutput payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      payload;
+
+  factory DocumentTypeInputOutput.fromResponse(
+          DocumentTypeInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;
 
   static const List<_i1.SmithySerializer> serializers = [

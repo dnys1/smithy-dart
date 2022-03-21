@@ -24,9 +24,19 @@ abstract class TestNoPayloadInputOutput
 
   const TestNoPayloadInputOutput._();
 
+  factory TestNoPayloadInputOutput.fromRequest(
+          TestNoPayloadInputOutputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      TestNoPayloadInputOutput((b) {
+        if (request.headers['X-Amz-Test-Id'] != null) {
+          b.testId = request.headers['X-Amz-Test-Id']!;
+        }
+      });
+
   factory TestNoPayloadInputOutput.fromResponse(
           TestNoPayloadInputOutputPayload payload,
-          _i2.AWSStreamedHttpResponse response) =>
+          _i2.AWSBaseHttpResponse response) =>
       TestNoPayloadInputOutput((b) {
         if (response.headers['X-Amz-Test-Id'] != null) {
           b.testId = response.headers['X-Amz-Test-Id']!;

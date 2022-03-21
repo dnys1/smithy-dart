@@ -26,9 +26,18 @@ abstract class XmlAttributesOnPayloadInputOutput
 
   const XmlAttributesOnPayloadInputOutput._();
 
+  factory XmlAttributesOnPayloadInputOutput.fromRequest(
+          _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      XmlAttributesOnPayloadInputOutput((b) {
+        if (payload != null) {
+          b.payload.replace(payload);
+        }
+      });
+
   factory XmlAttributesOnPayloadInputOutput.fromResponse(
           _i2.XmlAttributesInputOutput? payload,
-          _i3.AWSStreamedHttpResponse response) =>
+          _i3.AWSBaseHttpResponse response) =>
       XmlAttributesOnPayloadInputOutput((b) {
         if (payload != null) {
           b.payload.replace(payload);

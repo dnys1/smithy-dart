@@ -20,8 +20,8 @@ abstract class LimitExceededException
 
   const LimitExceededException._();
 
-  factory LimitExceededException.fromResponse(LimitExceededException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory LimitExceededException.fromResponse(
+          LimitExceededException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

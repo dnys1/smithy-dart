@@ -20,8 +20,8 @@ abstract class InvalidInputException
 
   const InvalidInputException._();
 
-  factory InvalidInputException.fromResponse(InvalidInputException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+  factory InvalidInputException.fromResponse(
+          InvalidInputException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

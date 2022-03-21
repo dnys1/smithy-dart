@@ -26,6 +26,16 @@ abstract class QueryIdempotencyTokenAutoFillInput
 
   const QueryIdempotencyTokenAutoFillInput._();
 
+  factory QueryIdempotencyTokenAutoFillInput.fromRequest(
+          QueryIdempotencyTokenAutoFillInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      QueryIdempotencyTokenAutoFillInput((b) {
+        if (request.queryParameters['token'] != null) {
+          b.token = request.queryParameters['token']!;
+        }
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _QueryIdempotencyTokenAutoFillInputRestJson1Serializer()
   ];

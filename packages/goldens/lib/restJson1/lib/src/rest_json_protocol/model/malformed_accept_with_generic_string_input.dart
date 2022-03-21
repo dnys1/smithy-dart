@@ -25,6 +25,13 @@ abstract class MalformedAcceptWithGenericStringInput
 
   const MalformedAcceptWithGenericStringInput._();
 
+  factory MalformedAcceptWithGenericStringInput.fromRequest(
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedAcceptWithGenericStringInput((b) {
+        b.payload = payload;
+      });
+
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedAcceptWithGenericStringInputRestJson1Serializer()
   ];

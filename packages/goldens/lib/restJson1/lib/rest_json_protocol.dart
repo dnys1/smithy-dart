@@ -157,3 +157,4 @@ export 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers
     hide TimestampFormatHeadersIoPayload;
 export 'package:rest_json1/src/rest_json_protocol/model/union_input_output.dart';
 export 'package:rest_json1/src/rest_json_protocol/rest_json_protocol_client.dart';
+export 'package:rest_json1/src/rest_json_protocol/rest_json_protocol_server.dart';

@@ -21,8 +21,15 @@ abstract class EnumPayloadInput
 
   const EnumPayloadInput._();
 
+  factory EnumPayloadInput.fromRequest(
+          _i2.StringEnum? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      EnumPayloadInput((b) {
+        b.payload = payload;
+      });
+
   factory EnumPayloadInput.fromResponse(
-          _i2.StringEnum? payload, _i3.AWSStreamedHttpResponse response) =>
+          _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) =>
       EnumPayloadInput((b) {
         b.payload = payload;
       });

@@ -22,7 +22,7 @@ abstract class ResourceNotFoundException
 
   factory ResourceNotFoundException.fromResponse(
           ResourceNotFoundException payload,
-          _i1.AWSStreamedHttpResponse response) =>
+          _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.headers = response.headers;
       });

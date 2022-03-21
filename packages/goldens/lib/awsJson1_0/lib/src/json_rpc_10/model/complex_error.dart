@@ -23,7 +23,7 @@ abstract class ComplexError
   const ComplexError._();
 
   factory ComplexError.fromResponse(
-          ComplexError payload, _i1.AWSStreamedHttpResponse response) =>
+          ComplexError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {
         b.statusCode = response.statusCode;
         b.headers = response.headers;

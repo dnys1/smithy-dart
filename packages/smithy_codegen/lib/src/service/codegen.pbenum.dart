@@ -41,6 +41,11 @@ class SmithyLibrary_LibraryType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEST');
+  static const SmithyLibrary_LibraryType SERVER = SmithyLibrary_LibraryType._(
+      6,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'SERVER');
 
   static const $core.List<SmithyLibrary_LibraryType> values =
       <SmithyLibrary_LibraryType>[
@@ -50,6 +55,7 @@ class SmithyLibrary_LibraryType extends $pb.ProtobufEnum {
     OPERATION,
     COMMON,
     TEST,
+    SERVER,
   ];
 
   static final $core.Map<$core.int, SmithyLibrary_LibraryType> _byValue =

@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:smithy_codegen/src/util/recase.dart';
-import 'package:smithy_codegen/src/service/codegen.pb.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 
 extension SmithyLibraryX on SmithyLibrary {
   /// Creates a [SmithyLibrary] with sanitized inputs.
@@ -49,11 +48,13 @@ extension SmithyLibraryX on SmithyLibrary {
           basePath: basePath,
         );
       case 3:
-        final libraryType = SmithyLibrary_LibraryType.CLIENT;
+        final libraryType = parts[2].endsWith('client')
+            ? SmithyLibrary_LibraryType.CLIENT
+            : SmithyLibrary_LibraryType.SERVER;
         return SmithyLibrary(
           packageName: _sanitize(parts[0]),
           serviceName: _sanitize(parts[1]),
-          libraryType: SmithyLibrary_LibraryType.CLIENT,
+          libraryType: libraryType,
           filename: _sanitizeFilename(libraryType, parts[2]),
           basePath: basePath,
         );
@@ -141,6 +142,7 @@ extension SmithyLibraryX on SmithyLibrary {
     final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
+      case SmithyLibrary_LibraryType.SERVER:
         return '${basePath}src/$serviceName/$filename.dart';
       case SmithyLibrary_LibraryType.MODEL:
         return '${basePath}src/$serviceName/model/$filename.dart';
@@ -161,6 +163,7 @@ extension SmithyLibraryX on SmithyLibrary {
     final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
+      case SmithyLibrary_LibraryType.SERVER:
       case SmithyLibrary_LibraryType.MODEL:
       case SmithyLibrary_LibraryType.OPERATION:
       case SmithyLibrary_LibraryType.SERVICE:
@@ -179,6 +182,7 @@ extension SmithyLibraryX on SmithyLibrary {
     final filename = sanitizedFilename;
     switch (libraryType) {
       case SmithyLibrary_LibraryType.CLIENT:
+      case SmithyLibrary_LibraryType.SERVER:
         return '$packageName.$serviceName.$filename';
       case SmithyLibrary_LibraryType.MODEL:
         return '$packageName.$serviceName.model.$filename';

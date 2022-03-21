@@ -59,9 +59,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
           ..type = MethodType.getter
           ..name = 'supportedProtocols'
           ..lambda = true
-          ..body = literalConstList([
-            if (!protocol.isSynthetic) protocol.shapeId.constructed,
-          ]).code,
+          ..body = literalConstList([protocol.shapeId.constructed]).code,
       );
 
   /// The deserialize method.

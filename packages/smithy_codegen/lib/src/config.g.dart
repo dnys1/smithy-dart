@@ -9,8 +9,10 @@ part of 'config.dart';
 CodegenConfig _$parseCodegenConfigResult(ArgResults result) => CodegenConfig(
       output: result['output'] as String,
       inputFile: result['input-file'] as String?,
-      server: result['server'] as bool,
+      listen: result['listen'] as bool,
       packageName: result['package-name'] as String?,
+      server: result['server'] as bool,
+      client: result['client'] as bool,
     );
 
 ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
@@ -27,14 +29,22 @@ ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
     help: 'The input model JSON file.',
   )
   ..addFlag(
-    'server',
-    abbr: 's',
+    'listen',
     help: 'Starts a gRPC server for accepting commands.',
   )
   ..addOption(
     'package-name',
     abbr: 'p',
     help: 'The name of the generated package. Defaults to the service name.',
+  )
+  ..addFlag(
+    'server',
+    help: 'Whether to generate server-side code.',
+  )
+  ..addFlag(
+    'client',
+    help: 'Whether to generate client-side code.',
+    defaultsTo: true,
   );
 
 final _$parserForCodegenConfig = _$populateCodegenConfigParser(ArgParser());

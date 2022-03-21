@@ -25,6 +25,7 @@ List<GeneratedLibrary> generateForAst(
   String? basePath,
   Iterable<ShapeId> includeShapes = const [],
   Iterable<ShapeId> additionalShapes = const [],
+  bool generateServer = false,
 }) {
   var serviceShapes = ast.shapes.values.whereType<ServiceShape>();
   if (serviceName != null) {
@@ -67,6 +68,7 @@ List<GeneratedLibrary> generateForAst(
       serviceShapeId: serviceShape.shapeId,
       serviceName: serviceShapes.length == 1 ? serviceName : null,
       additionalShapes: additionalShapes,
+      generateServer: generateServer,
     );
 
     // Generate libraries for relevant shape types.

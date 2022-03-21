@@ -12,8 +12,10 @@ class CodegenConfig {
   const CodegenConfig({
     required this.output,
     this.inputFile,
-    required this.server,
+    required this.listen,
     this.packageName,
+    required this.server,
+    required this.client,
   });
 
   @CliOption(
@@ -28,11 +30,10 @@ class CodegenConfig {
   final String? inputFile;
 
   @CliOption(
-    abbr: 's',
     defaultsTo: false,
     help: 'Starts a gRPC server for accepting commands.',
   )
-  final bool server;
+  final bool listen;
 
   @CliOption(
     abbr: 'p',
@@ -40,6 +41,20 @@ class CodegenConfig {
         'Defaults to the service name.',
   )
   final String? packageName;
+
+  @CliOption(
+    defaultsTo: false,
+    help: 'Whether to generate server-side code.',
+    negatable: true,
+  )
+  final bool server;
+
+  @CliOption(
+    defaultsTo: true,
+    help: 'Whether to generate client-side code.',
+    negatable: true,
+  )
+  final bool client;
 }
 
 extension ConfigOptions on CodegenConfig {

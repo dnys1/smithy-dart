@@ -39,7 +39,8 @@ class _ImageBuilderSerializer
   @override
   Iterable<Type> get types => const [ImageBuilder, _$ImageBuilder];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   ImageBuilder deserialize(
       Serializers serializers, Iterable<Object?> serialized,

@@ -45,7 +45,8 @@ class _OperationConfigSerializer
   @override
   Iterable<Type> get types => const [OperationConfig, _$OperationConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   OperationConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,

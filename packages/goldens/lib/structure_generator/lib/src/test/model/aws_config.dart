@@ -49,7 +49,8 @@ class _AwsConfigSerializer extends _i2.StructuredSmithySerializer<AwsConfig> {
   @override
   Iterable<Type> get types => const [AwsConfig, _$AwsConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   AwsConfig deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

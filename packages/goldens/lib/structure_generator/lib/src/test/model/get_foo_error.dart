@@ -62,7 +62,8 @@ class _GetFooErrorSerializer
   @override
   Iterable<Type> get types => const [GetFooError, _$GetFooError];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   GetFooError deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

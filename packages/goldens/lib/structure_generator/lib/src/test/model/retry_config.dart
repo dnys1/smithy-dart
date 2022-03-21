@@ -47,7 +47,8 @@ class _RetryConfigSerializer
   @override
   Iterable<Type> get types => const [RetryConfig, _$RetryConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   RetryConfig deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

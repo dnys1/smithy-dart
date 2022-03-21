@@ -47,7 +47,8 @@ class _S3ConfigSerializer extends _i2.StructuredSmithySerializer<S3Config> {
   @override
   Iterable<Type> get types => const [S3Config, _$S3Config];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols => const [];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'smithy.dart', shape: 'genericProtocol')];
   @override
   S3Config deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {

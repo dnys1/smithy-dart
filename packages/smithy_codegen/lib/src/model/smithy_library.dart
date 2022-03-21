@@ -48,7 +48,7 @@ extension SmithyLibraryX on SmithyLibrary {
           basePath: basePath,
         );
       case 3:
-        final libraryType = parts[2].endsWith('client')
+        final libraryType = _clientRegex.hasMatch(parts[2])
             ? SmithyLibrary_LibraryType.CLIENT
             : SmithyLibrary_LibraryType.SERVER;
         return SmithyLibrary(
@@ -72,6 +72,10 @@ extension SmithyLibraryX on SmithyLibrary {
         throw ArgumentError('Cannot parse path: ${parts.join('.')}');
     }
   }
+
+  // Used to match client filenames and library names.
+  static final _clientRegex =
+      RegExp(r'client(?:\.dart)?$', caseSensitive: false);
 
   /// Creates a [SmithyLibrary] from a `lib/`-relative [path].
   static SmithyLibrary fromPath(

@@ -66,6 +66,8 @@ extension ShapeClassName on Shape {
       case ShapeType.union:
       case ShapeType.resource:
         break;
+      case ShapeType.service:
+        return context.serviceName;
       default:
         return null;
     }

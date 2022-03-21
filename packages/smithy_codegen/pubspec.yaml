@@ -28,6 +28,8 @@ dependencies:
   protobuf: ^2.0.1
   pub_semver: ^2.1.0
   pubspec_parse: ^1.2.0
+  shelf: ^1.1.0
+  shelf_router: ^1.1.0
   smithy:
     hosted: https://pub.dillonnys.com
     version: ^0.2.0

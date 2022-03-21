@@ -8,6 +8,7 @@ import 'package:smithy_codegen/src/generator/operation_test_generator.dart';
 import 'package:smithy_codegen/src/generator/serializers_generator.dart';
 import 'package:smithy_codegen/src/generator/service_client_generator.dart';
 import 'package:smithy_codegen/src/generator/service_generator.dart';
+import 'package:smithy_codegen/src/generator/service_server_generator.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';
 import 'package:smithy_codegen/src/generator/visitors/default_visitor.dart';
@@ -83,6 +84,18 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
         smithyLibrary: context.serviceClientLibrary,
       ).generate(),
     );
+
+    if (context.generateServer) {
+      // Build service server
+      yield GeneratedLibrary(
+        context.serviceServerLibrary,
+        ServiceServerGenerator(
+          shape,
+          context,
+          smithyLibrary: context.serviceServerLibrary,
+        ).generate(),
+      );
+    }
 
     // Build serializers library
     yield GeneratedLibrary(

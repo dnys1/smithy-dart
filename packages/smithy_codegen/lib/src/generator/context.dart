@@ -160,6 +160,17 @@ class CodegenContext {
   /// Whether to generate server code.
   final bool generateServer;
 
+  /// The service's server library.
+  late final SmithyLibrary serviceServerLibrary = SmithyLibraryX.create(
+    packageName: packageName,
+    serviceName: serviceName,
+    libraryType: SmithyLibrary_LibraryType.SERVER,
+    filename: serviceServerName,
+    basePath: basePath,
+  );
+
+  late final String serviceServerName = serviceName.pascalCase + 'Server';
+
   late final String serviceClientName =
       // For backwards compatibility reasons, some services will include
       // "service" or "API" as a suffix. New SDK major versions SHOULD strip

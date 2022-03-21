@@ -14,6 +14,8 @@ import 'package:fixnum/fixnum.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart' as http_test;
 import 'package:meta/meta.dart' as meta;
+import 'package:shelf/shelf.dart' as shelf;
+import 'package:shelf_router/shelf_router.dart' as shelf_router;
 import 'package:smithy/smithy.dart' as smithy;
 import 'package:smithy_aws/smithy_aws.dart' as smithy_aws;
 import 'package:uuid/uuid.dart' as _uuid;
@@ -49,6 +51,12 @@ abstract class DartTypes {
 
   /// `package:meta` types.
   static const meta = _Meta();
+
+  /// `package:shelf` types.
+  static const shelf = _Shelf();
+
+  /// `package:shelf_router` types.
+  static const shelfRouter = ShelfRouter();
 
   /// `package:smithy` types.
   static const smithy = _Smithy();
@@ -233,6 +241,9 @@ class _AwsCommon {
   /// Creates an [aws_common.AWSStreamedHttpResponse] reference.
   Reference get awsStreamedHttpResponse =>
       const Reference('AWSStreamedHttpResponse', _url);
+
+  /// Creates an [aws_common.HttpMethodX] reference.
+  Reference get httpMethodX => const Reference('HttpMethodX', _url);
 }
 
 /// `package:aws_signature_v4` types.
@@ -470,6 +481,29 @@ class _Meta {
   Reference get immutable => const Reference('immutable', _url);
 }
 
+/// `package:shelf` types
+class _Shelf {
+  const _Shelf();
+
+  static const _url = 'package:shelf/shelf.dart';
+
+  /// Creates a [shelf.Request] reference.
+  Reference get request => const Reference('Request', _url);
+
+  /// Creates a [shelf.Response] reference.
+  Reference get response => const Reference('Response', _url);
+}
+
+/// `package:shelf_router` types
+class ShelfRouter {
+  const ShelfRouter();
+
+  static const url = 'package:shelf_router/shelf_router.dart';
+
+  /// Creates a [shelf_router.Route] reference.
+  Reference get route => const Reference('Route', url);
+}
+
 /// `package:smithy` types
 class _Smithy {
   const _Smithy();
@@ -507,6 +541,24 @@ class _Smithy {
   /// Creates a [smithy.HttpClient] refererence.
   Reference get httpClient => const Reference('HttpClient', _url);
 
+  /// Creates a [smithy.HttpServerBase] refererence.
+  Reference get httpServerBase => const Reference('HttpServerBase', _url);
+
+  /// Creates a [smithy.Context] refererence.
+  Reference get context => const Reference('Context', _url);
+
+  /// Creates a [smithy.RequestContext] refererence.
+  Reference get requestContext => const Reference('RequestContext', _url);
+
+  /// Creates a [smithy.ResponseContext] refererence.
+  Reference get responseContext => const Reference('ResponseContext', _url);
+
+  /// Creates a [smithy.HttpServer] refererence.
+  Reference httpServer(Reference baseService) => TypeReference((t) => t
+    ..symbol = 'HttpServer'
+    ..url = _url
+    ..types.add(baseService));
+
   /// Creates a [smithy.HttpInput] reference for [ref], the input type.
   Reference httpInput(Reference ref) => TypeReference(
         (t) => t
@@ -532,17 +584,22 @@ class _Smithy {
 
   /// Creates a [smithy.HttpProtocol] reference for an operation with input
   /// payload type [inputPayload], input type [input], and output type [output].
-  Reference httpProtocol(
-    Reference inputPayload,
-    Reference input,
-    Reference outputPayload,
-    Reference output,
-  ) =>
+  Reference httpProtocol([
+    Reference? inputPayload,
+    Reference? input,
+    Reference? outputPayload,
+    Reference? output,
+  ]) =>
       TypeReference(
         (t) => t
           ..symbol = 'HttpProtocol'
           ..url = _url
-          ..types.addAll([inputPayload, input, outputPayload, output]),
+          ..types.addAll([
+            if (inputPayload != null) inputPayload,
+            if (input != null) input,
+            if (outputPayload != null) outputPayload,
+            if (output != null) output,
+          ]),
       );
 
   /// Creates a [smithy.HttpRequest] AST reference.
@@ -551,6 +608,10 @@ class _Smithy {
   /// Creates a [smithy.HttpRequestBuilder] AST reference.
   Reference get httpRequestBuilder =>
       const Reference('HttpRequestBuilder', _url);
+
+  /// Creates a [smithy.HttpRequestContext] AST reference.
+  Reference get httpRequestContext =>
+      const Reference('HttpRequestContext', _url);
 
   /// Creates a [smithy.MissingLabelException] reference.
   Reference get missingLabelException =>

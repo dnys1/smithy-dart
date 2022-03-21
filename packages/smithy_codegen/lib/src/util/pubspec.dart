@@ -31,6 +31,8 @@ final dependencyVersions = {
   'built_collection': Dependency('^5.0.0'),
   'fixnum': Dependency('^1.0.0'),
   'meta': Dependency('^1.7.0'),
+  'shelf': Dependency('^1.1.0'),
+  'shelf_router': Dependency('^1.1.0'),
   'uuid': Dependency('^3.0.0'),
   'xml': Dependency('^5.3.1'),
 
@@ -39,6 +41,7 @@ final dependencyVersions = {
   'build_runner': Dependency.dev('^2.0.0'),
   'built_value_generator': Dependency.dev('^8.0.0'),
   'lints': Dependency.dev('^1.0.0'),
+  'shelf_router_generator': Dependency.dev('^1.0.0'),
   'test': Dependency.dev('^1.16.0'),
 };
 

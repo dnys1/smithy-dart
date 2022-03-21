@@ -417,155 +417,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     ]).code;
   }
 
-  /// Creates the `toString` equivalent for [shape].
-  Expression _valueToString(Expression ref, MemberShape shape) {
-    final targetShape = context.shapeFor(shape.target);
-    final type = targetShape.getType();
-    switch (type) {
-      case ShapeType.boolean:
-      case ShapeType.bigDecimal:
-      case ShapeType.bigInteger:
-      case ShapeType.byte:
-      case ShapeType.double:
-      case ShapeType.float:
-      case ShapeType.integer:
-      case ShapeType.long:
-      case ShapeType.short:
-        return ref.property('toString').call([]);
-
-      // string values with a mediaType trait are always base64 encoded.
-      case ShapeType.string:
-        if (targetShape.isEnum) {
-          return ref.property('value');
-        }
-        final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-        switch (mediaType) {
-          case 'application/json':
-            return DartTypes.convert.jsonEncode.call([ref.property('value')]);
-        }
-        return ref;
-
-      // timestamp values are serialized as an RFC 3339 string by default
-      // (for example, 1985-04-12T23:20:50.52Z, and with percent-encoding,
-      // 1985-04-12T23%3A20%3A50.52Z). The timestampFormat trait MAY be used
-      // to use a custom serialization format.
-      case ShapeType.timestamp:
-        final format = shape.timestampFormat ??
-            targetShape.timestampFormat ??
-            TimestampFormat.dateTime;
-        return DartTypes.smithy.timestamp
-            .newInstance([ref])
-            .property('format')
-            .call([
-              DartTypes.smithy.timestampFormat.property(format.name),
-            ])
-            .property('toString') // Since we can get a num or String back.
-            .call([]);
-
-      // The `httpLabel` trait can be applied to `structure` members marked with
-      // the `required` trait that target a `string`, `number`, `boolean`, or
-      // `timestamp`.
-      default:
-        throw ArgumentError('Invalid label shape type: $type');
-    }
-  }
-
-  // Creates the expression to parse the map value into the type of `shape`.
-  Expression _valueFromString(Expression ref, Shape shape) {
-    final targetShape =
-        shape is MemberShape ? context.shapeFor(shape.target) : shape;
-
-    final type = targetShape.getType();
-    switch (type) {
-      case ShapeType.boolean:
-        return ref.equalTo(literalString('true'));
-
-      case ShapeType.bigInteger:
-        return DartTypes.core.bigInt.property('parse').call([ref]);
-
-      case ShapeType.bigDecimal:
-      case ShapeType.double:
-      case ShapeType.float:
-        return DartTypes.core.double.property('parse').call([ref]);
-
-      case ShapeType.byte:
-      case ShapeType.integer:
-      case ShapeType.short:
-        return DartTypes.core.int.property('parse').call([ref]);
-
-      case ShapeType.long:
-        return DartTypes.fixNum.int64.property('parseInt').call([ref]);
-
-      case ShapeType.string:
-        if (targetShape.isEnum) {
-          final targetSymbol = context.symbolFor(targetShape.shapeId).unboxed;
-          return targetSymbol
-              .property('values')
-              .property('byValue')
-              .call([ref]);
-        }
-
-        // From the restJson1 test suite:
-        // "Headers that target strings with a mediaType are base64 encoded"
-        final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-        if (mediaType == null) {
-          return ref;
-        }
-        ref = DartTypes.convert.utf8.property('decode').call([
-          DartTypes.convert.base64Decode.call([ref]),
-        ]);
-        switch (mediaType) {
-          case 'application/json':
-            ref = DartTypes.builtValue.jsonObject.newInstance([
-              DartTypes.convert.jsonDecode.call([ref]),
-            ]);
-        }
-        return ref;
-
-      // timestamp values are serialized using the http-date format by
-      // default. The timestampFormat trait MAY be used to use a custom
-      // serialization format.
-      case ShapeType.timestamp:
-        final format = shape.timestampFormat ??
-            targetShape.timestampFormat ??
-            TimestampFormat.httpDate;
-        return DartTypes.smithy.timestamp.property('parse').call([
-          format == TimestampFormat.epochSeconds
-              ? DartTypes.core.int.property('parse').call([ref])
-              : ref
-        ], {
-          'format': DartTypes.smithy.timestampFormat.property(format.name),
-        }).property('asDateTime');
-
-      // When a list shape is targeted, each member of the shape is
-      // serialized as a separate HTTP header either by concatenating the
-      // values with a comma on a single line or by serializing each header
-      // value on its own line.
-      case ShapeType.list:
-      case ShapeType.set:
-        final memberShape = (targetShape as CollectionShape).member;
-        final memberTarget = context.shapeFor(memberShape.target);
-        return DartTypes.smithy.parseHeader
-            .call([
-              ref
-            ], {
-              if (memberTarget is TimestampShape)
-                'isTimestampList': literalTrue,
-            })
-            .property('map')
-            .call([
-              Method((m) => m
-                ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                ..lambda = true
-                ..body = _valueFromString(
-                        refer('el').property('trim').call([]), memberShape)
-                    .code).closure,
-            ]);
-      default:
-        throw ArgumentError('Invalid header shape type: $type');
-    }
-  }
-
   /// Methods to conform to `HttpInput`.
   Iterable<Method> get _httpInputOverrides sync* {
     if (!shape.isInputShape) {
@@ -586,7 +437,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             const Code('switch (key) {'),
             for (var label in labels) ...[
               Code("case '${label.memberName}':"),
-              _valueToString(
+              valueToString(
                 refer(label.dartName(ShapeType.structure)),
                 label,
               ).returned.statement,
@@ -842,7 +693,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       for (final member in httpTraits.httpLabels) {
         final memberName = member.dartName(ShapeType.structure);
         final ref = labelsRef.index(literalString(memberName));
-        final fromString = _valueFromString(ref.nullChecked, member);
+        final fromString = valueFromString(ref.nullChecked, member);
         yield builder
             .property(memberName)
             .assign(fromString)
@@ -902,7 +753,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     Expression valueRef, {
     required bool isNullable,
   }) {
-    final fromStringExp = _valueFromString(
+    final fromStringExp = valueFromString(
       (isNullable ? ref.nullChecked : ref),
       value,
     );

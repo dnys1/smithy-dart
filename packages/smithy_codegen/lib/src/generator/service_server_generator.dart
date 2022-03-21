@@ -46,15 +46,17 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
 
   @override
   Library generate() {
-    builder
-      ..name = context.serviceClientLibrary.libraryName
-      ..body.addAll([
-        _baseClass,
-        _serviceClass,
-      ])
-      ..directives.add(Directive.part(
-        '${context.serviceServerLibrary.filename.snakeCase}.g.dart',
-      ));
+    if (_httpOperations.isNotEmpty) {
+      builder
+        ..name = context.serviceClientLibrary.libraryName
+        ..body.addAll([
+          _baseClass,
+          _serviceClass,
+        ])
+        ..directives.add(Directive.part(
+          '${context.serviceServerLibrary.filename.snakeCase}.g.dart',
+        ));
+    }
     return builder.build();
   }
 
@@ -76,7 +78,11 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
 
   Iterable<Method> get _serviceMethods sync* {
     for (final shape in _httpOperations) {
-      final inputTraits = shape.inputLabels(context);
+      final inputTraits = shape.inputLabels(context).toList()
+        ..sort((a, b) {
+          final uri = shape.httpTrait(context)!.uri;
+          return uri.indexOf(a.memberName).compareTo(uri.indexOf(b.memberName));
+        });
       yield Method((m) => m
         ..annotations.add(shape.routeAnnotation(context))
         ..returns = DartTypes.async.future(DartTypes.shelf.response)
@@ -87,7 +93,7 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
             ..type = DartTypes.shelf.request),
           for (final label in inputTraits)
             Parameter((p) => p
-              ..name = label.dartName(ShapeType.structure)
+              ..name = label.memberName
               ..type = DartTypes.core.string)
         ])
         ..modifier = MethodModifier.async
@@ -104,6 +110,12 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
         .newInstance([refer('awsRequest')])
         .assignFinal('context')
         .statement;
+    yield refer('context')
+        .property('response')
+        .property('headers')
+        .index(literalString('Content-Type'))
+        .assign(refer(operation.protocolField).property('contentType'))
+        .statement;
     yield const Code('try {');
 
     final awsRequest = refer('awsRequest');
@@ -118,26 +130,25 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
         .call([
           awsRequest.property('split').call([]),
         ], {
-          'specifiedType': DartTypes.builtValue.fullType.constInstance([
-            payloadSymbol,
-          ]),
+          'specifiedType': payloadSymbol.fullType,
         })
         .awaited
         .asA(payloadSymbol);
     yield payload.assignFinal('payload').statement;
 
     final inputLabels = inputTraits?.httpLabels ?? BuiltSet();
-    final input =
-        operation.inputSymbol(context).newInstanceNamed('fromRequest', [
-      refer('payload'),
-      awsRequest,
-    ], {
-      'labels': literalMap({
-        for (final label in inputLabels)
-          label.dartName(ShapeType.structure):
-              refer(label.dartName(ShapeType.structure))
-      })
-    });
+    final inputSymbol = operation.inputSymbol(context);
+    final input = inputSymbol == DartTypes.smithy.unit
+        ? refer('payload')
+        : inputSymbol.newInstanceNamed('fromRequest', [
+            refer('payload'),
+            awsRequest,
+          ], {
+            'labels': literalMap({
+              for (final label in inputLabels)
+                label.memberName: refer(label.memberName)
+            })
+          });
     yield input.assignFinal('input').statement;
 
     final output = refer('service').property(operation.methodName).call([
@@ -148,17 +159,23 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
 
     final httpHeaders = outputTraits?.httpHeaders ?? BuiltMap();
     for (final entry in httpHeaders.entries) {
+      final property =
+          refer('output').property(entry.value.dartName(ShapeType.structure));
+      final isNullable =
+          entry.value.isNullable(context, operation.inputShape(context));
       yield refer('context')
           .property('response')
           .property('headers')
-          .property('add')
-          .call([
-        literalString(entry.key),
-        valueToString(
-          refer('output').property(entry.value.dartName(ShapeType.structure)),
-          entry.value,
-        )
-      ]).statement;
+          .index(literalString(entry.key))
+          .assign(valueToString(
+            isNullable ? property.nullChecked : property,
+            entry.value,
+            isHeader: true,
+          ))
+          .wrapWithBlockIf(
+            property.notEqualTo(literalNull),
+            isNullable,
+          );
     }
 
     final outputResponseCode = outputTraits?.httpResponseCode;
@@ -176,24 +193,10 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
         .call([
           refer('output')
         ], {
-          'specifiedType': DartTypes.builtValue.fullType.constInstance([
-            operation.outputSymbol(context),
-          ]),
+          'specifiedType': operation.outputSymbol(context).fullType,
         })
         .assignFinal('body')
         .statement;
-    yield refer('context')
-        .property('response')
-        .property('headers')
-        .property('putIfAbsent')
-        .call([
-      literalString('Content-Type'),
-      Method(
-        (m) => m
-          ..lambda = true
-          ..body = refer(operation.protocolField).property('contentType').code,
-      ).closure,
-    ]).statement;
     yield DartTypes.shelf.response
         .newInstance([
           refer('statusCode'),
@@ -221,16 +224,35 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
 
       yield Code.scope((allocate) => 'on ${allocate(errorSymbol)} catch (e) {');
 
-      yield refer('output').assign(refer('e')).statement;
+      yield refer(operation.protocolField)
+          .property('serialize')
+          .call([
+            refer('e')
+          ], {
+            'specifiedType': errorSymbol.fullType,
+          })
+          .assignFinal('body')
+          .statement;
 
       final statusCode =
           errorTrait.statusCode ?? errorTrait.kind.defaultStatusCode;
-      yield refer('statusCode').assign(literalNum(statusCode)).statement;
+      yield literalNum(statusCode).assignConst('statusCode').statement;
 
-      final specifiedType = DartTypes.builtValue.fullType.constInstance([
-        errorSymbol,
-      ]);
-      yield refer('specifiedType').assign(specifiedType).statement;
+      yield DartTypes.shelf.response
+          .newInstance([
+            refer('statusCode'),
+          ], {
+            'body': refer('body'),
+            'headers': refer('context')
+                .property('response')
+                .property('build')
+                .call([])
+                .property('headers')
+                .property('toMap')
+                .call([]),
+          })
+          .returned
+          .statement;
 
       yield const Code('}');
     }
@@ -279,10 +301,6 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
           ..assignment = protocol.instantiableProtocolSymbol.newInstance([], {
             'serializers': protocol.serializers(context),
             'builderFactories': context.builderFactoriesRef,
-            'requestInterceptors':
-                literalList(protocol.requestInterceptors(shape, context)),
-            'responseInterceptors':
-                literalList(protocol.responseInterceptors(shape, context)),
             ...protocol.extraParameters(shape, context),
           }).code,
       );
@@ -353,7 +371,10 @@ extension on OperationShape {
   Expression routeAnnotation(CodegenContext context) {
     final httpTrait = this.httpTrait(context)!;
     final method = httpTrait.method.toLowerCase();
-    final path = httpTrait.uri.replaceAll('{', '<').replaceAll('}', '>');
+    final path = httpTrait.uri
+        .replaceAll('{', '<')
+        .replaceAll('+}', '>')
+        .replaceAll('}', '>');
     return DartTypes.shelfRouter.route.newInstanceNamed(method, [
       literalString(path),
     ]);

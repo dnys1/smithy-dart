@@ -26,7 +26,11 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
   }
 
   /// Creates the expression to parse [ref] into the type of [shape].
-  Expression valueFromString(Expression ref, Shape shape) {
+  Expression valueFromString(
+    Expression ref,
+    Shape shape, {
+    required bool isHeader,
+  }) {
     final targetShape =
         shape is MemberShape ? context.shapeFor(shape.target) : shape;
 
@@ -77,13 +81,20 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
         }
         return ref;
 
+      // Header values:
       // timestamp values are serialized using the http-date format by
       // default. The timestampFormat trait MAY be used to use a custom
       // serialization format.
+      //
+      // Other values:
+      // timestamp values are serialized as an RFC 3339 date-time string by
+      // default (for example, 1985-04-12T23:20:50.52Z, and with
+      // percent-encoding, 1985-04-12T23%3A20%3A50.52Z). The timestampFormat
+      // trait MAY be used to use a custom serialization format.
       case ShapeType.timestamp:
         final format = shape.timestampFormat ??
             targetShape.timestampFormat ??
-            TimestampFormat.httpDate;
+            (isHeader ? TimestampFormat.httpDate : TimestampFormat.dateTime);
         return DartTypes.smithy.timestamp.property('parse').call([
           format == TimestampFormat.epochSeconds
               ? DartTypes.core.int.property('parse').call([ref])
@@ -113,8 +124,10 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
                 ..requiredParameters.add(Parameter((p) => p..name = 'el'))
                 ..lambda = true
                 ..body = valueFromString(
-                        refer('el').property('trim').call([]), memberShape)
-                    .code).closure,
+                  refer('el').property('trim').call([]),
+                  memberShape,
+                  isHeader: true,
+                ).code).closure,
             ]);
       default:
         throw ArgumentError('Invalid header shape type: $type');
@@ -122,7 +135,11 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
   }
 
   /// Creates the `toString` equivalent for [shape].
-  Expression valueToString(Expression ref, Shape shape) {
+  Expression valueToString(
+    Expression ref,
+    Shape shape, {
+    required bool isHeader,
+  }) {
     final targetShape =
         shape is MemberShape ? context.shapeFor(shape.target) : shape;
     final type = targetShape.getType();
@@ -144,9 +161,18 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
           return ref.property('value');
         }
         final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-        switch (mediaType) {
-          case 'application/json':
-            return DartTypes.convert.jsonEncode.call([ref.property('value')]);
+        if (mediaType != null) {
+          switch (mediaType) {
+            case 'application/json':
+              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
+          }
+          // From the restJson1 test suite:
+          // "Headers that target strings with a mediaType are base64 encoded"
+          if (isHeader) {
+            return DartTypes.convert.base64Encode.call([
+              DartTypes.convert.utf8.property('encode').call([ref]),
+            ]);
+          }
         }
         return ref;
 
@@ -157,7 +183,7 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
       case ShapeType.timestamp:
         final format = shape.timestampFormat ??
             targetShape.timestampFormat ??
-            TimestampFormat.dateTime;
+            (isHeader ? TimestampFormat.httpDate : TimestampFormat.dateTime);
         return DartTypes.smithy.timestamp
             .newInstance([ref])
             .property('format')
@@ -167,9 +193,43 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
             .property('toString') // Since we can get a num or String back.
             .call([]);
 
-      // The `httpLabel` trait can be applied to `structure` members marked with
-      // the `required` trait that target a `string`, `number`, `boolean`, or
-      // `timestamp`.
+      case ShapeType.list:
+      case ShapeType.set:
+        final memberShape = (targetShape as CollectionShape).member;
+        final memberTarget = context.shapeFor(memberShape.target);
+        final memberEl = refer('el');
+        final memberToString = valueToString(
+          memberEl,
+          memberShape,
+          isHeader: true,
+        );
+        var mappedRef = identical(memberEl, memberToString)
+            ? ref
+            : ref.property('map').call([
+                Method((m) => m
+                  ..requiredParameters.add(Parameter((p) => p..name = 'el'))
+                  ..lambda = true
+                  ..body = memberToString.code).closure,
+              ]);
+        if (isHeader) {
+          mappedRef = mappedRef.property('map').call([
+            Method((m) => m
+              ..requiredParameters.add(Parameter((p) => p..name = 'el'))
+              ..lambda = true
+              ..body = DartTypes.smithy.sanitizeHeader.call([
+                refer('el')
+              ], {
+                if (memberTarget is TimestampShape)
+                  'isTimestampList': literalTrue,
+              }).code).closure
+          ]);
+        }
+        if (isHeader) {
+          return mappedRef.property('join').call([literalString(', ')]);
+        }
+        return mappedRef
+            .property(targetShape is SetShape ? 'toSet' : 'toList')
+            .call([]);
       default:
         throw ArgumentError('Invalid label shape type: $type');
     }

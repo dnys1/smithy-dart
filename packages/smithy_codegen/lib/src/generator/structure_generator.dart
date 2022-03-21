@@ -440,6 +440,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               valueToString(
                 refer(label.dartName(ShapeType.structure)),
                 label,
+                isHeader: false,
               ).returned.statement,
             ],
             const Code('}'),
@@ -630,6 +631,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         entry.value,
         builder.property(entry.value.dartName(ShapeType.structure)),
         isNullable: true,
+        isHeader: true,
       );
     }
 
@@ -686,6 +688,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           entry.value,
           builder.property(entry.value.dartName(ShapeType.structure)),
           isNullable: true,
+          isHeader: false,
         );
       }
 
@@ -693,7 +696,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       for (final member in httpTraits.httpLabels) {
         final memberName = member.dartName(ShapeType.structure);
         final ref = labelsRef.index(literalString(memberName));
-        final fromString = valueFromString(ref.nullChecked, member);
+        final fromString = valueFromString(
+          ref.nullChecked,
+          member,
+          isHeader: false,
+        );
         yield builder
             .property(memberName)
             .assign(fromString)
@@ -752,10 +759,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     Shape value,
     Expression valueRef, {
     required bool isNullable,
+    required bool isHeader,
   }) {
     final fromStringExp = valueFromString(
       (isNullable ? ref.nullChecked : ref),
       value,
+      isHeader: isHeader,
     );
     final targetShape =
         value is MemberShape ? context.shapeFor(value.target) : value;

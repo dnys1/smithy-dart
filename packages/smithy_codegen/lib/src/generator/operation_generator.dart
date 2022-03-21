@@ -173,91 +173,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     required bool isNullable,
   }) {
     final builder = refer('b');
-    Expression toString(Expression ref, Shape shape) {
-      final targetShape =
-          shape is MemberShape ? context.shapeFor(shape.target) : shape;
-      final type = targetShape.getType();
-      switch (type) {
-        case ShapeType.boolean:
-        case ShapeType.bigDecimal:
-        case ShapeType.bigInteger:
-        case ShapeType.byte:
-        case ShapeType.double:
-        case ShapeType.float:
-        case ShapeType.integer:
-        case ShapeType.long:
-        case ShapeType.short:
-          return ref.property('toString').call([]);
 
-        // string values with a mediaType trait are always base64 encoded.
-        case ShapeType.string:
-          if (targetShape.isEnum) {
-            return ref.property('value');
-          }
-          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          // From the restJson1 test suite:
-          // "Headers that target strings with a mediaType are base64 encoded"
-          if (mediaType != null) {
-            switch (mediaType) {
-              case 'application/json':
-                ref = DartTypes.convert.jsonEncode.call([
-                  ref.property('value'),
-                ]);
-                break;
-            }
-            return DartTypes.convert.base64Encode.call([
-              DartTypes.convert.utf8.property('encode').call([ref]),
-            ]);
-          }
-          return ref;
-
-        // timestamp values are serialized using the http-date format by
-        // default. The timestampFormat trait MAY be used to use a custom
-        // serialization format.
-        case ShapeType.timestamp:
-          final format = shape.timestampFormat ??
-              targetShape.timestampFormat ??
-              TimestampFormat.httpDate;
-          return DartTypes.smithy.timestamp
-              .newInstance([ref])
-              .property('format')
-              .call([
-                DartTypes.smithy.timestampFormat.property(format.name),
-              ])
-              .property('toString')
-              .call([]);
-
-        // When a list shape is targeted, each member of the shape is
-        // serialized as a separate HTTP header either by concatenating the
-        // values with a comma on a single line or by serializing each header
-        // value on its own line.
-        case ShapeType.list:
-        case ShapeType.set:
-          final memberShape = (targetShape as CollectionShape).member;
-          final memberTarget = context.shapeFor(memberShape.target);
-          return ref
-              .property('map')
-              .call([
-                Method((m) => m
-                  ..requiredParameters.add(Parameter((p) => p..name = 'el'))
-                  ..lambda = true
-                  ..body = DartTypes.smithy.sanitizeHeader.call([
-                    toString(refer('el'), memberShape),
-                  ], {
-                    if (memberTarget is TimestampShape)
-                      'isTimestampList': literalTrue,
-                  }).code).closure,
-              ])
-              .property('join')
-              .call([literalString(', ')]);
-        default:
-          throw ArgumentError('Invalid header shape type: $type');
-      }
-    }
-
-    final toStringExp = toString(
+    final toStringExp = valueToString(
       (isNullable ? valueRef.nullChecked : valueRef),
       value,
+      isHeader: true,
     );
     final addHeader =
         builder.property('headers').index(key).assign(toStringExp).statement;
@@ -337,58 +257,11 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       ]).wrapWithBlockIf(valueRef.notEqualTo(literalNull), isNullable);
     }
 
-    Expression toString(Expression ref, Shape shape) {
-      final targetShape =
-          shape is MemberShape ? context.shapeFor(shape.target) : shape;
-      final type = targetShape.getType();
-      switch (type) {
-        case ShapeType.boolean:
-        case ShapeType.bigDecimal:
-        case ShapeType.bigInteger:
-        case ShapeType.byte:
-        case ShapeType.double:
-        case ShapeType.float:
-        case ShapeType.integer:
-        case ShapeType.long:
-        case ShapeType.short:
-          return ref.property('toString').call([]);
-
-        // string values with a mediaType trait are always base64 encoded.
-        case ShapeType.string:
-          if (targetShape.isEnum) {
-            return ref.property('value');
-          }
-          final mediaType = targetShape.getTrait<MediaTypeTrait>()?.value;
-          switch (mediaType) {
-            case 'application/json':
-              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
-          }
-          return ref;
-
-        // timestamp values are serialized as an RFC 3339 date-time string by
-        // default (for example, 1985-04-12T23:20:50.52Z, and with
-        // percent-encoding, 1985-04-12T23%3A20%3A50.52Z). The timestampFormat
-        // trait MAY be used to use a custom serialization format.
-        case ShapeType.timestamp:
-          final format = shape.timestampFormat ??
-              targetShape.timestampFormat ??
-              TimestampFormat.dateTime;
-          return DartTypes.smithy.timestamp
-              .newInstance([ref])
-              .property('format')
-              .call([
-                DartTypes.smithy.timestampFormat.property(format.name),
-              ])
-              .property('toString')
-              .call([]);
-
-        default:
-          throw ArgumentError('Invalid query parameter value type: $type');
-      }
-    }
-
-    final toStringExp =
-        toString((isNullable ? valueRef.nullChecked : valueRef), targetShape);
+    final toStringExp = valueToString(
+      (isNullable ? valueRef.nullChecked : valueRef),
+      targetShape,
+      isHeader: false,
+    );
     final addParam = builder
         .property('queryParameters')
         .property('add')

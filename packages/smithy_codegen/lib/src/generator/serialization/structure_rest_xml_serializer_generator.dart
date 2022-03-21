@@ -32,7 +32,7 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
       (payloadShape as StructureShape).hasBuiltPayload(context);
 
   @override
-  Reference? get payloadBuilderSymbol => payloadSymbol.unboxed.typeRef.rebuild(
+  Reference get payloadBuilderSymbol => payloadSymbol.unboxed.typeRef.rebuild(
         (t) => t.symbol = '${t.symbol}Builder',
       );
 

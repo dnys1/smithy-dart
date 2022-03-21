@@ -87,7 +87,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             if (shape.isOutputShape || shape.isError) _fromResponseConstructor,
           ])
           ..methods.addAll([
-            _defaultValues(
+            defaultValues(
               members: sortedMembers,
               builderSymbol: builderSymbol,
             ),
@@ -113,7 +113,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             DartTypes.meta.internal,
           ])
           ..implements.addAll([
-            DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol!),
+            DartTypes.builtValue.built(payloadSymbol, payloadBuilderSymbol),
 
             // A marker trait for empty payloads, which should be serialized
             // than payloads with all null members.
@@ -124,15 +124,15 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..constructors.addAll([
             _factoryConstructor(
-              builderSymbol: payloadBuilderSymbol!,
+              builderSymbol: payloadBuilderSymbol,
               builtSymbol: builtPayloadSymbol!,
             ),
             _privateConstructor,
           ])
           ..methods.addAll([
-            _defaultValues(
+            defaultValues(
               members: payloadMembers,
-              builderSymbol: payloadBuilderSymbol!,
+              builderSymbol: payloadBuilderSymbol,
             ),
             ..._fieldGetters(isPayload: true),
             _props(payloadMembers),
@@ -226,14 +226,14 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
   /// Adds default values to relevant properties.
-  Method _defaultValues({
+  Method defaultValues({
     required List<MemberShape> members,
     required Reference builderSymbol,
   }) =>
       Method.returnsVoid(
         (m) => m
           ..annotations.add(DartTypes.builtValue.builtValueHook
-              .newInstance([], {'initializeBuilder': literalBool(true)}))
+              .newInstance([], {'initializeBuilder': literalTrue}))
           ..static = true
           ..name = '_init'
           ..requiredParameters.add(Parameter((p) => p
@@ -268,10 +268,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         const Code('}'),
       ]);
     }
-    if (member.defaultValue == null) {
+    final targetShape = context.shapeFor(member.target);
+    final defaultValue = member.defaultValue ?? targetShape.defaultValue;
+    if (defaultValue == null) {
       return null;
     }
-    return property.assign(member.defaultValue!).statement;
+    return property.assign(defaultValue).statement;
   }
 
   /// Fields for this type.

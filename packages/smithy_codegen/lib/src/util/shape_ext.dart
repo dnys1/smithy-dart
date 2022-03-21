@@ -248,6 +248,9 @@ extension ShapeUtils on Shape {
 
   /// The default value of this shape when not boxed.
   Expression? get defaultValue {
+    if (isBoxed) {
+      return null;
+    }
     switch (getType()) {
       case ShapeType.byte:
       case ShapeType.short:

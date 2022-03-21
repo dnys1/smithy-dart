@@ -54,8 +54,8 @@ class MalformedStringOperation extends _i1.HttpOperation<
         b.method = 'POST';
         b.path = r'/MalformedString';
         if (input.blob != null) {
-          b.headers['amz-media-typed-header'] =
-              _i6.jsonEncode(input.blob!.value);
+          b.headers['amz-media-typed-header'] = _i6
+              .base64Encode(_i6.utf8.encode(_i6.jsonEncode(input.blob!.value)));
         }
       });
   @override

@@ -164,7 +164,7 @@ abstract class ShapeGenerator<T extends Shape, U> implements Generator<U> {
         if (mediaType != null) {
           switch (mediaType) {
             case 'application/json':
-              return DartTypes.convert.jsonEncode.call([ref.property('value')]);
+              ref = DartTypes.convert.jsonEncode.call([ref.property('value')]);
           }
           // From the restJson1 test suite:
           // "Headers that target strings with a mediaType are base64 encoded"

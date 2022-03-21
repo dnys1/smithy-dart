@@ -61,7 +61,8 @@ class MediaTypeHeaderOperation extends _i1.HttpOperation<
         b.method = 'GET';
         b.path = r'/MediaTypeHeader';
         if (input.json != null) {
-          b.headers['X-Json'] = _i7.jsonEncode(input.json!.value);
+          b.headers['X-Json'] = _i7
+              .base64Encode(_i7.utf8.encode(_i7.jsonEncode(input.json!.value)));
         }
       });
   @override

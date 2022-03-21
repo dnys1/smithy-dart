@@ -3,6 +3,7 @@
 library aws_json1_0.json_rpc_10;
 
 export 'package:aws_json1_0/src/json_rpc_10/json_rpc10_client.dart';
+export 'package:aws_json1_0/src/json_rpc_10/json_rpc10_server.dart';
 export 'package:aws_json1_0/src/json_rpc_10/model/aws_config.dart';
 export 'package:aws_json1_0/src/json_rpc_10/model/client_config.dart';
 export 'package:aws_json1_0/src/json_rpc_10/model/complex_error.dart';

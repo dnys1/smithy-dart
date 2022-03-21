@@ -32,7 +32,7 @@ abstract class MalformedTimestampPathDefaultInput
       MalformedTimestampPathDefaultInput((b) {
         if (labels['timestamp'] != null) {
           b.timestamp = _i1.Timestamp.parse(labels['timestamp']!,
-                  format: _i1.TimestampFormat.httpDate)
+                  format: _i1.TimestampFormat.dateTime)
               .asDateTime;
         }
       });

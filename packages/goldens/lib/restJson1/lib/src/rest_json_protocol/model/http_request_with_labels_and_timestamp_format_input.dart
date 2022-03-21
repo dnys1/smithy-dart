@@ -48,7 +48,7 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
         }
         if (labels['defaultFormat'] != null) {
           b.defaultFormat = _i1.Timestamp.parse(labels['defaultFormat']!,
-                  format: _i1.TimestampFormat.httpDate)
+                  format: _i1.TimestampFormat.dateTime)
               .asDateTime;
         }
         if (labels['targetEpochSeconds'] != null) {

@@ -17,6 +17,8 @@ dependencies:
   built_collection: ^5.0.0
   smithy_aws:
     path: ../../../smithy_aws
+  shelf: ^1.1.0
+  shelf_router: ^1.1.0
 
 dependency_overrides:
   smithy:

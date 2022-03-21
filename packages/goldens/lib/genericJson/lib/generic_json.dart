@@ -3,6 +3,7 @@
 library generic_json.generic_json;
 
 export 'package:generic_json/src/generic_json/generic_json_client.dart';
+export 'package:generic_json/src/generic_json/generic_json_server.dart';
 export 'package:generic_json/src/generic_json/model/aws_config.dart';
 export 'package:generic_json/src/generic_json/model/client_config.dart';
 export 'package:generic_json/src/generic_json/model/environment_config.dart';

@@ -89,7 +89,7 @@ abstract class AllQueryStringTypesInput
         if (request.queryParameters['Timestamp'] != null) {
           b.queryTimestamp = _i1.Timestamp.parse(
                   request.queryParameters['Timestamp']!,
-                  format: _i1.TimestampFormat.httpDate)
+                  format: _i1.TimestampFormat.dateTime)
               .asDateTime;
         }
         if (request.queryParameters['TimestampList'] != null) {

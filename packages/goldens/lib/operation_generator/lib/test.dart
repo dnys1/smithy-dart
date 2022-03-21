@@ -16,3 +16,4 @@ export 'package:operation_generator/src/test/model/s3_config.dart';
 export 'package:operation_generator/src/test/model/scoped_config.dart';
 export 'package:operation_generator/src/test/model/server_error.dart';
 export 'package:operation_generator/src/test/test_client.dart';
+export 'package:operation_generator/src/test/test_server.dart';

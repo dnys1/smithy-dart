@@ -22,6 +22,8 @@ dependencies:
     path: ../../../smithy_aws
   uuid: ^3.0.0
   meta: ^1.7.0
+  shelf: ^1.1.0
+  shelf_router: ^1.1.0
   fixnum: ^1.0.0
 
 dependency_overrides:

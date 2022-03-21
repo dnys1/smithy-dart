@@ -79,6 +79,7 @@ Future<void> _generateFor(FileSystemEntity modelEnt) async {
     additionalShapes: const [
       ShapeId(namespace: 'aws.protocoltests.config', shape: 'AwsConfig'),
     ],
+    generateServer: true,
   );
 
   final Set<String> dependencies = {};

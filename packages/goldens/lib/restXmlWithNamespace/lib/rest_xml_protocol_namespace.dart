@@ -23,3 +23,4 @@ export 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/model/sc
 export 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/model/simple_scalar_properties_input_output.dart'
     hide SimpleScalarPropertiesInputOutputPayload;
 export 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/rest_xml_protocol_namespace_client.dart';
+export 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/rest_xml_protocol_namespace_server.dart';

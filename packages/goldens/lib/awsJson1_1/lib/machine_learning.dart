@@ -4,6 +4,7 @@
 library aws_json1_1.machine_learning;
 
 export 'package:aws_json1_1/src/machine_learning/machine_learning_client.dart';
+export 'package:aws_json1_1/src/machine_learning/machine_learning_server.dart';
 export 'package:aws_json1_1/src/machine_learning/model/aws_config.dart';
 export 'package:aws_json1_1/src/machine_learning/model/client_config.dart';
 export 'package:aws_json1_1/src/machine_learning/model/details_attributes.dart';

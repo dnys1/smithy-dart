@@ -39,6 +39,7 @@ class RestXmlProtocol<InputPayload, Input, OutputPayload, Output>
           XmlBuiltMapSerializer(),
           XmlBuiltSetSerializer(),
           XmlStringSerializer(),
+          StreamSerializer<List<int>>(),
         ]))
       .build();
 

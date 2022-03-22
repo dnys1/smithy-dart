@@ -28,7 +28,6 @@ class AwsJson1_0Protocol<InputPayload, Input, OutputPayload, Output>
           Int64Serializer.asNum,
           TimestampSerializer.epochSeconds,
           UnitSerializer(),
-          StreamSerializer<List<int>>(),
         ]))
       .build();
 

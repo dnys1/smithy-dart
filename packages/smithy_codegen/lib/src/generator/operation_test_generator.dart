@@ -40,12 +40,6 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
         'Cannot handle this at the moment (empty vs. null).',
     'RestJsonSerializesSparseSetMapAndRetainsNull':
         'Cannot handle this at the moment (empty vs. null).',
-    'StreamingTraitsRequireLengthInputOutput': 'Streaming is not supported yet',
-    'RestJsonStreamingTraitsWithBlob': 'Streaming is not supported yet',
-    'RestJsonStreamingTraitsWithMediaTypeWithBlob':
-        'Streaming is not supported yet',
-    'RestJsonStreamingTraitsRequireLengthWithBlob':
-        'Streaming is not supported yet',
     'GlacierChecksums': 'Glacier is not supported yet',
     'GlacierVersionHeader': 'Glacier is not supported yet',
     'GlacierMultipartChecksums': 'Glacier is not supported yet',

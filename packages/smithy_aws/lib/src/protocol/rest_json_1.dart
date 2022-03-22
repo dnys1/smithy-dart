@@ -32,6 +32,7 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
           Int64Serializer.asNum,
           TimestampSerializer.epochSeconds,
           UnitSerializer(),
+          StreamSerializer<List<int>>(),
         ]))
       .build();
 
@@ -47,6 +48,7 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
       const {
         String: 'text/plain',
         Uint8List: 'application/octet-stream',
+        Stream<List<int>>: 'application/octet-stream',
       }[InputPayload] ??
       'application/json';
 

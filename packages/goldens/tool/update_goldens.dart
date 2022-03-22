@@ -116,9 +116,8 @@ analyzer:
 ''');
 
   // Create mono_pkg for testing
-  if (Directory(path.join(outputPath, 'test')).existsSync()) {
-    final monoPkgPath = path.join(outputPath, 'mono_pkg.yaml');
-    File(monoPkgPath).writeAsStringSync('''
+  final monoPkgPath = path.join(outputPath, 'mono_pkg.yaml');
+  final monoPkg = StringBuffer('''
 sdk:
   - stable
   - dev
@@ -128,6 +127,9 @@ stages:
       - group:
           - format
           - analyze: --fatal-infos .
+''');
+  if (Directory(path.join(outputPath, 'test')).existsSync()) {
+    monoPkg.write('''
   - unit_test:
       - test:
   - unit_test_native:
@@ -139,6 +141,7 @@ stages:
           - test: -p chrome
 ''');
   }
+  File(monoPkgPath).writeAsStringSync(monoPkg.toString());
 
   // Run `dart pub get`
   final pubGetRes = await Process.run(

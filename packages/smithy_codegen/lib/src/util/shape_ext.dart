@@ -385,8 +385,8 @@ extension OperationShapeUtil on OperationShape {
           final memberName = path.removeAt(0);
           member = shape.members[memberName]!;
           final dartName = member.dartName(shape.getType());
-          final _isNullable = isNullable; // local copy for capture
-          exps.add((exp) => exp.nullableProperty(dartName, _isNullable));
+          final localIsNullable = isNullable; // local copy for capture
+          exps.add((exp) => exp.nullableProperty(dartName, localIsNullable));
           isNullable = member.isNullable(context, shape);
           symbol = context.symbolFor(member.target, shape);
           final targetShape = context.shapeFor(member.target);

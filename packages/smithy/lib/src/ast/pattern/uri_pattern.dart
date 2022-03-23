@@ -14,13 +14,13 @@ class UriPattern extends SmithyPattern {
   factory UriPattern.parse(String uri) {
     if (uri.endsWith('?')) {
       throw InvalidUriPatternError(
-          'URI patterns must not end with "?". Found ' + uri);
+          'URI patterns must not end with "?". Found $uri');
     } else if (!uri.startsWith('/')) {
       throw InvalidUriPatternError(
-          'URI pattern must start with "/". Found ' + uri);
+          'URI pattern must start with "/". Found $uri');
     } else if (uri.contains('#')) {
       throw InvalidUriPatternError(
-          'URI pattern must not contain a fragment. Found ' + uri);
+          'URI pattern must not contain a fragment. Found $uri');
     }
 
     final parts = uri.split('?');
@@ -41,14 +41,14 @@ class UriPattern extends SmithyPattern {
     if (parts.length == 2) {
       if (parts[1].contains('{') || parts[1].contains('}')) {
         throw InvalidUriPatternError(
-            'URI labels must not appear in the query string. Found ' + uri);
+            'URI labels must not appear in the query string. Found $uri');
       }
       for (final kvp in parts[1].split('&')) {
         final parameterParts = kvp.split('=');
         String actualKey = parameterParts[0];
         if (queryLiterals.containsKey(actualKey)) {
           throw InvalidUriPatternError(
-              'Literal query parameters must not be repeated: ' + uri);
+              'Literal query parameters must not be repeated: $uri');
         }
         queryLiterals[actualKey] =
             parameterParts.length == 2 ? parameterParts[1] : '';

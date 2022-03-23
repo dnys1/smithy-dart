@@ -24,7 +24,7 @@ class RestJson1Protocol<InputPayload, Input, OutputPayload, Output>
           responseInterceptors: responseInterceptors,
         );
 
-  static late final _coreSerializers = (Serializers().toBuilder()
+  static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
         ..addAll(const [
           BigIntSerializer.asNum,

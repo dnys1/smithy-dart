@@ -33,7 +33,7 @@ class AWSRetryer implements Retryer {
   /// The `MAX_BACKOFF` value allowed for retry delays.
   final Duration maxBackoffTime;
 
-  static late final _random = Random();
+  static final _random = Random();
   late final _maxAttempts = AWSConfigValue.maxAttempts.value;
 
   static const _throttlingErrors = {

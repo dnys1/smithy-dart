@@ -57,7 +57,7 @@ class GenericJsonProtocol<InputPayload, Input, OutputPayload, Output>
   final List<SmithySerializer> _userSerializers;
   final Map<FullType, Function> _builderFactories;
 
-  static late final _coreSerializers = (Serializers().toBuilder()
+  static final _coreSerializers = (Serializers().toBuilder()
         ..addPlugin(SmithyJsonPlugin())
         ..addAll([
           BigIntSerializer.asString,

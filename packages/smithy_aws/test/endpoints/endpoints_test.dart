@@ -10,13 +10,12 @@ part 'endpoints_test.g.dart';
 @JsonLiteral('test-cases.json')
 List<Map<String, Object?>> get _testCases => _$_testCasesJsonLiteral;
 
-late final List<TestCase> testCases =
-    _testCases.map(TestCase.fromJson).toList();
+final List<TestCase> testCases = _testCases.map(TestCase.fromJson).toList();
 
 @JsonLiteral('endpoints.json')
 Map<String, Object?> get _endpoints => _$_endpointsJsonLiteral;
 
-late final Map<String, PartitionNode> endpoints = Map.fromEntries(
+final Map<String, PartitionNode> endpoints = Map.fromEntries(
   (_endpoints['partitions'] as List).map((Object? el) {
     final config = PartitionNode.fromJson((el as Map).cast());
     return MapEntry(config.partition, config);

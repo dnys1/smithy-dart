@@ -30,7 +30,7 @@ class ShapeId with AWSEquatable<ShapeId>, AWSSerializable {
   final String? member;
 
   String get absoluteName =>
-      '$namespace#$shape' + (member == null ? '' : '\$$member');
+      '$namespace#$shape${member == null ? '' : '\$$member'}';
 
   ShapeId replace({
     String? namespace,

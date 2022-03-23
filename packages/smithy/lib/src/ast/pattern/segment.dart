@@ -22,9 +22,9 @@ class Segment with AWSEquatable<Segment> {
         throw InvalidPatternError('Segments must not be empty');
       } else if (content.contains('{') || content.contains('}')) {
         throw InvalidPatternError(
-            'Literal segments must not contain `{` or `}` characters. Found segment `' +
-                content +
-                '`');
+          'Literal segments must not contain `{` or `}` characters. '
+          'Found segment `$content`',
+        );
       }
     } else if (content.isEmpty) {
       throw InvalidPatternError('Empty label declaration in pattern.');

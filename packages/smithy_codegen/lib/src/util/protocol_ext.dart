@@ -216,9 +216,9 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         break;
     }
 
-    final _this = this;
-    if (_this is RestXmlTrait) {
-      parameters['noErrorWrapping'] = literalBool(_this.noErrorWrapping);
+    final trait = this;
+    if (trait is RestXmlTrait) {
+      parameters['noErrorWrapping'] = literalBool(trait.noErrorWrapping);
     }
 
     return parameters;

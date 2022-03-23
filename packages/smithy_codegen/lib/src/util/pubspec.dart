@@ -40,7 +40,7 @@ final dependencyVersions = {
   'smithy_test': Dependency.dev('^0.2.0', DependencyType.smithy),
   'build_runner': Dependency.dev('^2.0.0'),
   'built_value_generator': Dependency.dev('^8.0.0'),
-  'lints': Dependency.dev('^1.0.0'),
+  'lints': Dependency.dev('^2.0.0'),
   'shelf_router_generator': Dependency.dev('^1.0.0'),
   'test': Dependency.dev('^1.16.0'),
 };
@@ -99,7 +99,7 @@ version: ${pubspec.version?.canonicalizedVersion ?? '0.1.0'}
 ${smithyPath == null ? pubspec.publishTo != null ? 'publish_to: ${pubspec.publishTo}\n' : '' : 'publish_to: none\n'}${pubspec.homepage != null ? 'homepage: ${pubspec.homepage}\n' : ''}
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.17.0-0 <3.0.0"
 
 dependencies:
 $dependenciesBlock

@@ -15,40 +15,43 @@ import 'package:smithy_test/smithy_test.dart' as _i2;
 import 'package:test/test.dart' as _i1;
 
 void main() {
-  _i1.test('RestJsonStreamingTraitsWithBlob (request)', () async {
-    await _i2.httpRequestTest(
-        operation: _i3.StreamingTraitsOperation(
-            region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
-        testCase: const _i2.HttpRequestTestCase(
-            id: 'RestJsonStreamingTraitsWithBlob',
-            documentation: 'Serializes a blob in the HTTP payload',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: 'blobby blob blob',
-            bodyMediaType: 'application/octet-stream',
-            params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Foo': 'Foo',
-              'Content-Type': 'application/octet-stream'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            method: 'POST',
-            uri: '/StreamingTraits',
-            host: null,
-            resolvedHost: null,
-            queryParams: [],
-            forbidQueryParams: [],
-            requireQueryParams: []),
-        inputSerializers: const [
-          _StreamingTraitsInputOutputRestJson1Serializer()
-        ]);
-  }, skip: 'Streaming is not supported yet');
+  _i1.test(
+    'RestJsonStreamingTraitsWithBlob (request)',
+    () async {
+      await _i2.httpRequestTest(
+          operation: _i3.StreamingTraitsOperation(
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
+          testCase: const _i2.HttpRequestTestCase(
+              id: 'RestJsonStreamingTraitsWithBlob',
+              documentation: 'Serializes a blob in the HTTP payload',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: 'blobby blob blob',
+              bodyMediaType: 'application/octet-stream',
+              params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Foo': 'Foo',
+                'Content-Type': 'application/octet-stream'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              method: 'POST',
+              uri: '/StreamingTraits',
+              host: null,
+              resolvedHost: null,
+              queryParams: [],
+              forbidQueryParams: [],
+              requireQueryParams: []),
+          inputSerializers: const [
+            _StreamingTraitsInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'RestJsonStreamingTraitsWithNoBlobBody (request)',
     () async {
@@ -83,34 +86,37 @@ void main() {
           ]);
     },
   );
-  _i1.test('RestJsonStreamingTraitsWithBlob (response)', () async {
-    await _i2.httpResponseTest(
-        operation: _i3.StreamingTraitsOperation(
-            region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
-        testCase: const _i2.HttpResponseTestCase(
-            id: 'RestJsonStreamingTraitsWithBlob',
-            documentation: 'Serializes a blob in the HTTP payload',
-            protocol:
-                _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
-            authScheme: null,
-            body: 'blobby blob blob',
-            bodyMediaType: 'application/octet-stream',
-            params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
-            vendorParamsShape: null,
-            vendorParams: {},
-            headers: {
-              'X-Foo': 'Foo',
-              'Content-Type': 'application/octet-stream'
-            },
-            forbidHeaders: [],
-            requireHeaders: [],
-            tags: [],
-            appliesTo: null,
-            code: 200),
-        outputSerializers: const [
-          _StreamingTraitsInputOutputRestJson1Serializer()
-        ]);
-  }, skip: 'Streaming is not supported yet');
+  _i1.test(
+    'RestJsonStreamingTraitsWithBlob (response)',
+    () async {
+      await _i2.httpResponseTest(
+          operation: _i3.StreamingTraitsOperation(
+              region: 'us-east-1', baseUri: Uri.parse('https://example.com')),
+          testCase: const _i2.HttpResponseTestCase(
+              id: 'RestJsonStreamingTraitsWithBlob',
+              documentation: 'Serializes a blob in the HTTP payload',
+              protocol:
+                  _i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1'),
+              authScheme: null,
+              body: 'blobby blob blob',
+              bodyMediaType: 'application/octet-stream',
+              params: {'foo': 'Foo', 'blob': 'blobby blob blob'},
+              vendorParamsShape: null,
+              vendorParams: {},
+              headers: {
+                'X-Foo': 'Foo',
+                'Content-Type': 'application/octet-stream'
+              },
+              forbidHeaders: [],
+              requireHeaders: [],
+              tags: [],
+              appliesTo: null,
+              code: 200),
+          outputSerializers: const [
+            _StreamingTraitsInputOutputRestJson1Serializer()
+          ]);
+    },
+  );
   _i1.test(
     'RestJsonStreamingTraitsWithNoBlobBody (response)',
     () async {

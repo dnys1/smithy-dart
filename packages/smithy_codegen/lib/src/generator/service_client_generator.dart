@@ -30,9 +30,11 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
 
   @override
   Library generate() {
-    builder
-      ..name = context.serviceClientLibrary.libraryName
-      ..body.add(_clientClass);
+    if (_operations.isNotEmpty) {
+      builder
+        ..name = context.serviceClientLibrary.libraryName
+        ..body.add(_clientClass);
+    }
     return builder.build();
   }
 

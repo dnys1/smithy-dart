@@ -16,9 +16,9 @@ abstract class JsonBlobsInputOutput
         _i1.HttpInput<JsonBlobsInputOutput>,
         _i2.AWSEquatable<JsonBlobsInputOutput>
     implements Built<JsonBlobsInputOutput, JsonBlobsInputOutputBuilder> {
-  factory JsonBlobsInputOutput(
-          [void Function(JsonBlobsInputOutputBuilder) updates]) =
-      _$JsonBlobsInputOutput;
+  factory JsonBlobsInputOutput({_i3.Uint8List? data}) {
+    return _$JsonBlobsInputOutput._(data: data);
+  }
 
   const JsonBlobsInputOutput._();
 
@@ -35,8 +35,6 @@ abstract class JsonBlobsInputOutput
     _JsonBlobsInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(JsonBlobsInputOutputBuilder b) {}
   _i3.Uint8List? get data;
   @override
   JsonBlobsInputOutput getPayload() => this;

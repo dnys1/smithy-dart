@@ -18,8 +18,9 @@ abstract class FlattenedXmlMapInputOutput
     implements
         Built<FlattenedXmlMapInputOutput, FlattenedXmlMapInputOutputBuilder> {
   factory FlattenedXmlMapInputOutput(
-          [void Function(FlattenedXmlMapInputOutputBuilder) updates]) =
-      _$FlattenedXmlMapInputOutput;
+      {_i3.BuiltMap<String, _i4.FooEnum>? myMap}) {
+    return _$FlattenedXmlMapInputOutput._(myMap: myMap);
+  }
 
   const FlattenedXmlMapInputOutput._();
 
@@ -37,8 +38,6 @@ abstract class FlattenedXmlMapInputOutput
     _FlattenedXmlMapInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(FlattenedXmlMapInputOutputBuilder b) {}
   _i3.BuiltMap<String, _i4.FooEnum>? get myMap;
   @override
   FlattenedXmlMapInputOutput getPayload() => this;

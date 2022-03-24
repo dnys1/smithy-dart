@@ -18,9 +18,9 @@ class _$ClientConfig extends ClientConfig {
   @override
   final String? region;
   @override
-  final _i3.RetryConfig? retryConfig;
+  final _i2.RetryConfig? retryConfig;
   @override
-  final _i4.S3Config? s3;
+  final _i3.S3Config? s3;
 
   factory _$ClientConfig([void Function(ClientConfigBuilder)? updates]) =>
       (new ClientConfigBuilder()..update(updates)).build();
@@ -99,19 +99,17 @@ class ClientConfigBuilder
   String? get region => _$this._region;
   set region(String? region) => _$this._region = region;
 
-  _i3.RetryConfigBuilder? _retryConfig;
-  _i3.RetryConfigBuilder get retryConfig =>
-      _$this._retryConfig ??= new _i3.RetryConfigBuilder();
-  set retryConfig(_i3.RetryConfigBuilder? retryConfig) =>
+  _i2.RetryConfigBuilder? _retryConfig;
+  _i2.RetryConfigBuilder get retryConfig =>
+      _$this._retryConfig ??= new _i2.RetryConfigBuilder();
+  set retryConfig(_i2.RetryConfigBuilder? retryConfig) =>
       _$this._retryConfig = retryConfig;
 
-  _i4.S3ConfigBuilder? _s3;
-  _i4.S3ConfigBuilder get s3 => _$this._s3 ??= new _i4.S3ConfigBuilder();
-  set s3(_i4.S3ConfigBuilder? s3) => _$this._s3 = s3;
+  _i3.S3ConfigBuilder? _s3;
+  _i3.S3ConfigBuilder get s3 => _$this._s3 ??= new _i3.S3ConfigBuilder();
+  set s3(_i3.S3ConfigBuilder? s3) => _$this._s3 = s3;
 
-  ClientConfigBuilder() {
-    ClientConfig._init(this);
-  }
+  ClientConfigBuilder();
 
   ClientConfigBuilder get _$this {
     final $v = _$v;

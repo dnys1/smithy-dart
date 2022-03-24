@@ -16,30 +16,31 @@ abstract class EnumPayloadInput
     implements
         Built<EnumPayloadInput, EnumPayloadInputBuilder>,
         _i1.HasPayload<_i2.StringEnum> {
-  factory EnumPayloadInput([void Function(EnumPayloadInputBuilder) updates]) =
-      _$EnumPayloadInput;
+  factory EnumPayloadInput({_i2.StringEnum? payload}) {
+    return _$EnumPayloadInput._(payload: payload);
+  }
 
   const EnumPayloadInput._();
 
   factory EnumPayloadInput.fromRequest(
-          _i2.StringEnum? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      EnumPayloadInput((b) {
-        b.payload = payload;
-      });
+      _i2.StringEnum? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = EnumPayloadInputBuilder();
+    builder.payload = payload;
+    return builder.build();
+  }
 
   factory EnumPayloadInput.fromResponse(
-          _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) =>
-      EnumPayloadInput((b) {
-        b.payload = payload;
-      });
+      _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = EnumPayloadInputBuilder();
+    builder.payload = payload;
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _EnumPayloadInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EnumPayloadInputBuilder b) {}
   _i2.StringEnum? get payload;
   @override
   _i2.StringEnum? getPayload() => payload;

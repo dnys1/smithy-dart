@@ -46,9 +46,7 @@ class UploadMultipartPartOutputBuilder
   String? get checksum => _$this._checksum;
   set checksum(String? checksum) => _$this._checksum = checksum;
 
-  UploadMultipartPartOutputBuilder() {
-    UploadMultipartPartOutput._init(this);
-  }
+  UploadMultipartPartOutputBuilder();
 
   UploadMultipartPartOutputBuilder get _$this {
     final $v = _$v;

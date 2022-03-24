@@ -79,19 +79,12 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             DartTypes.awsCommon.awsEquatable(symbol),
           ])
           ..constructors.addAll([
-            _factoryConstructor(
-              builderSymbol: builderSymbol,
-              builtSymbol: builtSymbol,
-            ),
+            _factoryConstructor,
             _privateConstructor,
             if (shape.isInputShape) _fromRequestConstructor,
             if (shape.isOutputShape || shape.isError) _fromResponseConstructor,
           ])
           ..methods.addAll([
-            defaultValues(
-              members: sortedMembers,
-              builderSymbol: builderSymbol,
-            ),
             ..._fieldGetters(isPayload: false),
             ..._httpInputOverrides,
             if (shape.isInputShape || hasPayload) _getPayload,
@@ -124,10 +117,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             DartTypes.awsCommon.awsEquatable(payloadSymbol),
           ])
           ..constructors.addAll([
-            _factoryConstructor(
-              builderSymbol: payloadBuilderSymbol,
-              builtSymbol: builtPayloadSymbol!,
-            ),
+            _payloadFactoryConstructor,
             _privateConstructor,
           ])
           ..methods.addAll([
@@ -148,43 +138,81 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..name = '_',
       );
 
-  /// The builder/factory constructor.
-  Constructor _factoryConstructor({
-    required Reference builderSymbol,
-    required Reference builtSymbol,
-  }) =>
-      Constructor(
+  /// The parameter-based factory constructor.
+  Constructor get _factoryConstructor {
+    final body = Block((b) {
+      final memberNames = <String>[];
+      for (final member in sortedMembers) {
+        final propertyName = member.dartName(ShapeType.structure);
+        memberNames.add(propertyName);
+        final defaultValue = _defaultValue(
+          member,
+        );
+        if (defaultValue != null) {
+          b.statements.add(defaultValue);
+        }
+      }
+      b.addExpression(
+        refer('${builtSymbol.symbol}._').newInstance([], {
+          for (final member in memberNames) member: refer(member),
+        }).returned,
+      );
+    });
+    return Constructor(
+      (c) => c
+        ..factory = true
+        ..annotations.addAll([
+          if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
+        ])
+        ..optionalParameters.addAll(sortedMembers.map(_memberParameter))
+        ..body = body,
+    );
+  }
+
+  /// Creates a constructor [Parameter] for [member].
+  Parameter _memberParameter(MemberShape member) {
+    final deprecatedAnnotation = member.deprecatedAnnotation ??
+        context.shapeFor(member.target).deprecatedAnnotation;
+    final symbol = memberSymbols[member]!;
+    // Factory constructors which redirect cannot have default values, so we
+    // must construct an instance in the body.
+    final defaultValue =
+        member.defaultValue ?? context.shapeFor(member.target).defaultValue;
+    final isNullable = symbol.typeRef.isNullable! || defaultValue != null;
+
+    return Parameter((p) => p
+      ..annotations.addAll([
+        if (deprecatedAnnotation != null) deprecatedAnnotation,
+      ])
+      ..required = !isNullable
+      ..name = member.dartName(ShapeType.structure)
+      ..named = true
+      ..type = symbol.typeRef.rebuild((t) => t.isNullable = isNullable));
+  }
+
+  /// The builder-based factory constructor.
+  Constructor get _payloadFactoryConstructor => Constructor(
         (c) => c
           ..factory = true
-          ..annotations.addAll([
-            if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
-          ])
           ..optionalParameters.add(Parameter(
             (p) => p
               ..name = 'updates'
               ..type = FunctionType(
                 (t) => t
                   ..returnType = DartTypes.core.void$
-                  ..requiredParameters.add(builderSymbol),
+                  ..requiredParameters.add(payloadBuilderSymbol),
               ),
           ))
-          ..redirect = builtSymbol,
+          ..redirect = builtPayloadSymbol,
       );
 
   /// The server constructor from an incoming request.
   Constructor get _fromRequestConstructor {
-    final Expression output;
+    final Code output;
     if (payloadSymbol == symbol) {
-      output = refer('payload');
+      output = refer('payload').code;
     } else {
-      output = symbol.newInstance([
-        Method(
-          (m) => m
-            ..requiredParameters.add(Parameter((p) => p..name = 'b'))
-            ..lambda = false
-            ..body = Block.of(_outputBuilder(refer('request'))),
-        ).closure,
-      ]);
+      output = Block.of(_outputBuilder(refer('request')));
     }
     return Constructor(
       (c) => c
@@ -206,16 +234,16 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           )
           ..named = true
           ..defaultTo = literalConstMap({}).code))
-        ..body = output.code,
+        ..body = output,
     );
   }
 
   /// The builder/factory constructor.
   Constructor get _fromResponseConstructor {
-    final Expression output;
+    final Code output;
     if (payloadSymbol == symbol) {
       if (httpErrorTraits == null) {
-        output = refer('payload');
+        output = refer('payload').code;
       } else {
         output = refer('payload').property('rebuild').call([
           Method(
@@ -224,17 +252,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
               ..lambda = false
               ..body = Block.of(_rebuildOutput),
           ).closure,
-        ]);
+        ]).code;
       }
     } else {
-      output = symbol.newInstance([
-        Method(
-          (m) => m
-            ..requiredParameters.add(Parameter((p) => p..name = 'b'))
-            ..lambda = false
-            ..body = Block.of(_outputBuilder(refer('response'))),
-        ).closure,
-      ]);
+      output = Block.of(_outputBuilder(refer('response')));
     }
     return Constructor(
       (c) => c
@@ -248,7 +269,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             ..name = 'response'
             ..type = DartTypes.awsCommon.awsBaseHttpResponse),
         ])
-        ..body = output.code,
+        ..body = output,
     );
   }
 
@@ -269,23 +290,37 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   Method defaultValues({
     required List<MemberShape> members,
     required Reference builderSymbol,
-  }) =>
-      Method.returnsVoid(
-        (m) => m
-          ..annotations.add(DartTypes.builtValue.builtValueHook
-              .newInstance([], {'initializeBuilder': literalTrue}))
-          ..static = true
-          ..name = '_init'
-          ..requiredParameters.add(Parameter((p) => p
-            ..type = builderSymbol
-            ..name = 'b'))
-          ..body = Block.of([
-            for (var member in members) _defaultValue(member),
-          ].whereType()),
-      );
+  }) {
+    final block = Block((b) {
+      for (var member in members) {
+        final defaultValue = _defaultValue(member, builder: refer('b'));
+        if (defaultValue != null) {
+          b.statements.add(defaultValue);
+        }
+      }
+    });
+    return Method.returnsVoid(
+      (m) => m
+        ..annotations.add(DartTypes.builtValue.builtValueHook
+            .newInstance([], {'initializeBuilder': literalTrue}))
+        ..static = true
+        ..name = '_init'
+        ..requiredParameters.add(Parameter((p) => p
+          ..type = builderSymbol
+          ..name = 'b'))
+        ..body = block,
+    );
+  }
 
-  Code? _defaultValue(MemberShape member) {
-    final property = refer('b').property(member.dartName(ShapeType.structure));
+  Code? _defaultValue(
+    MemberShape member, {
+    Reference? builder,
+  }) {
+    final useBuilder = builder != null;
+    final propertyName = member.dartName(ShapeType.structure);
+    final assign = useBuilder
+        ? builder.property(propertyName).assign
+        : refer(propertyName).assignNullAware;
     // In tests, client implementations that automatically provide values for
     // members marked with the idempotencyToken trait MUST use a constant value
     // of `00000000-0000-4000-8000-000000000000`.
@@ -293,18 +328,15 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     // https://awslabs.github.io/smithy/1.0/spec/http-protocol-compliance-tests.html#parameter-format
     if (member.isIdempotencyToken) {
       return Block.of([
-        property
-            .assign(literalString('00000000-0000-4000-8000-000000000000'))
+        assign(literalString('00000000-0000-4000-8000-000000000000'))
             .wrapWithBlockIf(
                 DartTypes.core.bool.constInstanceNamed('hasEnvironment', [
-              literalString('SMITHY_TEST'),
-            ])),
+          literalString('SMITHY_TEST'),
+        ])),
         const Code('else {'),
-        property
-            .assign(
-              DartTypes.uuid.uuid.constInstance([]).property('v4').call([]),
-            )
-            .statement,
+        assign(
+          DartTypes.uuid.uuid.constInstance([]).property('v4').call([]),
+        ).statement,
         const Code('}'),
       ]);
     }
@@ -313,7 +345,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     if (defaultValue == null) {
       return null;
     }
-    return property.assign(defaultValue).statement;
+    return assign(defaultValue).statement;
   }
 
   /// Fields for this type.
@@ -575,10 +607,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// The statements of the output builder.
   Iterable<Code> _outputBuilder(Expression httpObj) sync* {
-    final builder = refer('b');
+    final builder = refer('builder');
     final payload = refer('payload');
-
     final payloadShape = payloadMember;
+
+    yield builderSymbol.newInstance([]).assignFinal('builder').statement;
 
     // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {
@@ -730,6 +763,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           .assign(httpObj.property('headers'))
           .statement;
     }
+
+    yield builder.property('build').call([]).returned.statement;
   }
 
   Iterable<Code> get _rebuildOutput sync* {

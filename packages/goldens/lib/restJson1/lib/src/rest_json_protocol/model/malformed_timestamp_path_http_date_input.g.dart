@@ -55,9 +55,7 @@ class MalformedTimestampPathHttpDateInputBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
-  MalformedTimestampPathHttpDateInputBuilder() {
-    MalformedTimestampPathHttpDateInput._init(this);
-  }
+  MalformedTimestampPathHttpDateInputBuilder();
 
   MalformedTimestampPathHttpDateInputBuilder get _$this {
     final $v = _$v;

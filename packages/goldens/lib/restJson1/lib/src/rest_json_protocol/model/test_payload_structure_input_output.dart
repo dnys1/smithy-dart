@@ -20,40 +20,42 @@ abstract class TestPayloadStructureInputOutput
             TestPayloadStructureInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadConfig> {
   factory TestPayloadStructureInputOutput(
-          [void Function(TestPayloadStructureInputOutputBuilder) updates]) =
-      _$TestPayloadStructureInputOutput;
+      {_i2.PayloadConfig? payloadConfig, String? testId}) {
+    return _$TestPayloadStructureInputOutput._(
+        payloadConfig: payloadConfig, testId: testId);
+  }
 
   const TestPayloadStructureInputOutput._();
 
   factory TestPayloadStructureInputOutput.fromRequest(
-          _i2.PayloadConfig? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      TestPayloadStructureInputOutput((b) {
-        if (payload != null) {
-          b.payloadConfig.replace(payload);
-        }
-        if (request.headers['x-amz-test-id'] != null) {
-          b.testId = request.headers['x-amz-test-id']!;
-        }
-      });
+      _i2.PayloadConfig? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = TestPayloadStructureInputOutputBuilder();
+    if (payload != null) {
+      builder.payloadConfig.replace(payload);
+    }
+    if (request.headers['x-amz-test-id'] != null) {
+      builder.testId = request.headers['x-amz-test-id']!;
+    }
+    return builder.build();
+  }
 
   factory TestPayloadStructureInputOutput.fromResponse(
-          _i2.PayloadConfig? payload, _i3.AWSBaseHttpResponse response) =>
-      TestPayloadStructureInputOutput((b) {
-        if (payload != null) {
-          b.payloadConfig.replace(payload);
-        }
-        if (response.headers['x-amz-test-id'] != null) {
-          b.testId = response.headers['x-amz-test-id']!;
-        }
-      });
+      _i2.PayloadConfig? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = TestPayloadStructureInputOutputBuilder();
+    if (payload != null) {
+      builder.payloadConfig.replace(payload);
+    }
+    if (response.headers['x-amz-test-id'] != null) {
+      builder.testId = response.headers['x-amz-test-id']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestPayloadStructureInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TestPayloadStructureInputOutputBuilder b) {}
   _i2.PayloadConfig? get payloadConfig;
   String? get testId;
   @override

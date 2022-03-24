@@ -18,27 +18,26 @@ abstract class HostLabelHeaderInput
         Built<HostLabelHeaderInput, HostLabelHeaderInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<HostLabelHeaderInputPayload> {
-  factory HostLabelHeaderInput(
-          [void Function(HostLabelHeaderInputBuilder) updates]) =
-      _$HostLabelHeaderInput;
+  factory HostLabelHeaderInput({required String accountId}) {
+    return _$HostLabelHeaderInput._(accountId: accountId);
+  }
 
   const HostLabelHeaderInput._();
 
   factory HostLabelHeaderInput.fromRequest(
-          HostLabelHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HostLabelHeaderInput((b) {
-        if (request.headers['X-Amz-Account-Id'] != null) {
-          b.accountId = request.headers['X-Amz-Account-Id']!;
-        }
-      });
+      HostLabelHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HostLabelHeaderInputBuilder();
+    if (request.headers['X-Amz-Account-Id'] != null) {
+      builder.accountId = request.headers['X-Amz-Account-Id']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HostLabelHeaderInputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HostLabelHeaderInputBuilder b) {}
   String get accountId;
   @override
   String labelFor(String key) {

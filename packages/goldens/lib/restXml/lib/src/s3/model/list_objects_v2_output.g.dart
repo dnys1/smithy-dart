@@ -8,15 +8,15 @@ part of rest_xml.s3.model.list_objects_v2_output;
 
 class _$ListObjectsV2Output extends ListObjectsV2Output {
   @override
-  final _i3.BuiltList<_i4.CommonPrefix>? commonPrefixes;
+  final _i2.BuiltList<_i3.CommonPrefix>? commonPrefixes;
   @override
-  final _i3.BuiltList<_i5.S3Object>? contents;
+  final _i2.BuiltList<_i4.S3Object>? contents;
   @override
   final String? continuationToken;
   @override
   final String? delimiter;
   @override
-  final _i6.EncodingType? encodingType;
+  final _i5.EncodingType? encodingType;
   @override
   final bool? isTruncated;
   @override
@@ -109,16 +109,16 @@ class ListObjectsV2OutputBuilder
     implements Builder<ListObjectsV2Output, ListObjectsV2OutputBuilder> {
   _$ListObjectsV2Output? _$v;
 
-  _i3.ListBuilder<_i4.CommonPrefix>? _commonPrefixes;
-  _i3.ListBuilder<_i4.CommonPrefix> get commonPrefixes =>
-      _$this._commonPrefixes ??= new _i3.ListBuilder<_i4.CommonPrefix>();
-  set commonPrefixes(_i3.ListBuilder<_i4.CommonPrefix>? commonPrefixes) =>
+  _i2.ListBuilder<_i3.CommonPrefix>? _commonPrefixes;
+  _i2.ListBuilder<_i3.CommonPrefix> get commonPrefixes =>
+      _$this._commonPrefixes ??= new _i2.ListBuilder<_i3.CommonPrefix>();
+  set commonPrefixes(_i2.ListBuilder<_i3.CommonPrefix>? commonPrefixes) =>
       _$this._commonPrefixes = commonPrefixes;
 
-  _i3.ListBuilder<_i5.S3Object>? _contents;
-  _i3.ListBuilder<_i5.S3Object> get contents =>
-      _$this._contents ??= new _i3.ListBuilder<_i5.S3Object>();
-  set contents(_i3.ListBuilder<_i5.S3Object>? contents) =>
+  _i2.ListBuilder<_i4.S3Object>? _contents;
+  _i2.ListBuilder<_i4.S3Object> get contents =>
+      _$this._contents ??= new _i2.ListBuilder<_i4.S3Object>();
+  set contents(_i2.ListBuilder<_i4.S3Object>? contents) =>
       _$this._contents = contents;
 
   String? _continuationToken;
@@ -130,9 +130,9 @@ class ListObjectsV2OutputBuilder
   String? get delimiter => _$this._delimiter;
   set delimiter(String? delimiter) => _$this._delimiter = delimiter;
 
-  _i6.EncodingType? _encodingType;
-  _i6.EncodingType? get encodingType => _$this._encodingType;
-  set encodingType(_i6.EncodingType? encodingType) =>
+  _i5.EncodingType? _encodingType;
+  _i5.EncodingType? get encodingType => _$this._encodingType;
+  set encodingType(_i5.EncodingType? encodingType) =>
       _$this._encodingType = encodingType;
 
   bool? _isTruncated;
@@ -164,9 +164,7 @@ class ListObjectsV2OutputBuilder
   String? get startAfter => _$this._startAfter;
   set startAfter(String? startAfter) => _$this._startAfter = startAfter;
 
-  ListObjectsV2OutputBuilder() {
-    ListObjectsV2Output._init(this);
-  }
+  ListObjectsV2OutputBuilder();
 
   ListObjectsV2OutputBuilder get _$this {
     final $v = _$v;

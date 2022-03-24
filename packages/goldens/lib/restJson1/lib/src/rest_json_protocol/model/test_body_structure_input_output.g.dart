@@ -57,9 +57,7 @@ class TestBodyStructureInputOutputBuilder
   String? get testId => _$this._testId;
   set testId(String? testId) => _$this._testId = testId;
 
-  TestBodyStructureInputOutputBuilder() {
-    TestBodyStructureInputOutput._init(this);
-  }
+  TestBodyStructureInputOutputBuilder();
 
   TestBodyStructureInputOutputBuilder get _$this {
     final $v = _$v;

@@ -21,8 +21,61 @@ part 'kitchen_sink.g.dart';
 abstract class KitchenSink
     with _i1.HttpInput<KitchenSink>, _i2.AWSEquatable<KitchenSink>
     implements Built<KitchenSink, KitchenSinkBuilder> {
-  factory KitchenSink([void Function(KitchenSinkBuilder) updates]) =
-      _$KitchenSink;
+  factory KitchenSink(
+      {_i3.Uint8List? blob,
+      bool? boolean,
+      double? double_,
+      _i4.EmptyStruct? emptyStruct,
+      double? float,
+      DateTime? httpdateTimestamp,
+      int? integer,
+      DateTime? iso8601Timestamp,
+      _i5.JsonObject? jsonValue,
+      _i6.BuiltList<_i6.BuiltList<String>>? listOfLists,
+      _i6.BuiltList<_i6.BuiltMap<String, String>>? listOfMapsOfStrings,
+      _i6.BuiltList<String>? listOfStrings,
+      _i6.BuiltList<_i7.SimpleStruct>? listOfStructs,
+      _i8.Int64? long,
+      _i6.BuiltListMultimap<String, String>? mapOfListsOfStrings,
+      _i6.BuiltMap<String, _i6.BuiltMap<String, String>>? mapOfMaps,
+      _i6.BuiltMap<String, String>? mapOfStrings,
+      _i6.BuiltMap<String, _i7.SimpleStruct>? mapOfStructs,
+      _i6.BuiltList<KitchenSink>? recursiveList,
+      _i6.BuiltMap<String, KitchenSink>? recursiveMap,
+      KitchenSink? recursiveStruct,
+      _i7.SimpleStruct? simpleStruct,
+      String? string,
+      _i9.StructWithJsonName? structWithJsonName,
+      DateTime? timestamp,
+      DateTime? unixTimestamp}) {
+    return _$KitchenSink._(
+        blob: blob,
+        boolean: boolean,
+        double_: double_,
+        emptyStruct: emptyStruct,
+        float: float,
+        httpdateTimestamp: httpdateTimestamp,
+        integer: integer,
+        iso8601Timestamp: iso8601Timestamp,
+        jsonValue: jsonValue,
+        listOfLists: listOfLists,
+        listOfMapsOfStrings: listOfMapsOfStrings,
+        listOfStrings: listOfStrings,
+        listOfStructs: listOfStructs,
+        long: long,
+        mapOfListsOfStrings: mapOfListsOfStrings,
+        mapOfMaps: mapOfMaps,
+        mapOfStrings: mapOfStrings,
+        mapOfStructs: mapOfStructs,
+        recursiveList: recursiveList,
+        recursiveMap: recursiveMap,
+        recursiveStruct: recursiveStruct,
+        simpleStruct: simpleStruct,
+        string: string,
+        structWithJsonName: structWithJsonName,
+        timestamp: timestamp,
+        unixTimestamp: unixTimestamp);
+  }
 
   const KitchenSink._();
 
@@ -39,8 +92,6 @@ abstract class KitchenSink
     _KitchenSinkAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(KitchenSinkBuilder b) {}
   _i3.Uint8List? get blob;
   bool? get boolean;
   double? get double_;

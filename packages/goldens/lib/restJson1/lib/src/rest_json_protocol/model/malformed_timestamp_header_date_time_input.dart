@@ -19,30 +19,29 @@ abstract class MalformedTimestampHeaderDateTimeInput
             MalformedTimestampHeaderDateTimeInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedTimestampHeaderDateTimeInputPayload> {
-  factory MalformedTimestampHeaderDateTimeInput(
-      [void Function(MalformedTimestampHeaderDateTimeInputBuilder)
-          updates]) = _$MalformedTimestampHeaderDateTimeInput;
+  factory MalformedTimestampHeaderDateTimeInput({required DateTime timestamp}) {
+    return _$MalformedTimestampHeaderDateTimeInput._(timestamp: timestamp);
+  }
 
   const MalformedTimestampHeaderDateTimeInput._();
 
   factory MalformedTimestampHeaderDateTimeInput.fromRequest(
-          MalformedTimestampHeaderDateTimeInputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      MalformedTimestampHeaderDateTimeInput((b) {
-        if (request.headers['timestamp'] != null) {
-          b.timestamp = _i1.Timestamp.parse(request.headers['timestamp']!,
-                  format: _i1.TimestampFormat.dateTime)
-              .asDateTime;
-        }
-      });
+      MalformedTimestampHeaderDateTimeInputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = MalformedTimestampHeaderDateTimeInputBuilder();
+    if (request.headers['timestamp'] != null) {
+      builder.timestamp = _i1.Timestamp.parse(request.headers['timestamp']!,
+              format: _i1.TimestampFormat.dateTime)
+          .asDateTime;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampHeaderDateTimeInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedTimestampHeaderDateTimeInputBuilder b) {}
   DateTime get timestamp;
   @override
   MalformedTimestampHeaderDateTimeInputPayload getPayload() =>

@@ -16,8 +16,10 @@ abstract class SimpleScalarPropertiesInput
     implements
         Built<SimpleScalarPropertiesInput, SimpleScalarPropertiesInputBuilder> {
   factory SimpleScalarPropertiesInput(
-          [void Function(SimpleScalarPropertiesInputBuilder) updates]) =
-      _$SimpleScalarPropertiesInput;
+      {double? doubleValue, double? floatValue}) {
+    return _$SimpleScalarPropertiesInput._(
+        doubleValue: doubleValue, floatValue: floatValue);
+  }
 
   const SimpleScalarPropertiesInput._();
 
@@ -30,8 +32,6 @@ abstract class SimpleScalarPropertiesInput
     _SimpleScalarPropertiesInputAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesInputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
   @override

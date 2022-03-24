@@ -55,9 +55,7 @@ class HttpPrefixHeadersOutputBuilder
       _$this._fooMap ??= new _i3.MapBuilder<String, String>();
   set fooMap(_i3.MapBuilder<String, String>? fooMap) => _$this._fooMap = fooMap;
 
-  HttpPrefixHeadersOutputBuilder() {
-    HttpPrefixHeadersOutput._init(this);
-  }
+  HttpPrefixHeadersOutputBuilder();
 
   HttpPrefixHeadersOutputBuilder get _$this {
     final $v = _$v;

@@ -21,35 +21,35 @@ abstract class XmlAttributesOnPayloadInputOutput
             XmlAttributesOnPayloadInputOutputBuilder>,
         _i1.HasPayload<_i2.XmlAttributesInputOutput> {
   factory XmlAttributesOnPayloadInputOutput(
-          [void Function(XmlAttributesOnPayloadInputOutputBuilder) updates]) =
-      _$XmlAttributesOnPayloadInputOutput;
+      {_i2.XmlAttributesInputOutput? payload}) {
+    return _$XmlAttributesOnPayloadInputOutput._(payload: payload);
+  }
 
   const XmlAttributesOnPayloadInputOutput._();
 
   factory XmlAttributesOnPayloadInputOutput.fromRequest(
-          _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      XmlAttributesOnPayloadInputOutput((b) {
-        if (payload != null) {
-          b.payload.replace(payload);
-        }
-      });
+      _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = XmlAttributesOnPayloadInputOutputBuilder();
+    if (payload != null) {
+      builder.payload.replace(payload);
+    }
+    return builder.build();
+  }
 
   factory XmlAttributesOnPayloadInputOutput.fromResponse(
-          _i2.XmlAttributesInputOutput? payload,
-          _i3.AWSBaseHttpResponse response) =>
-      XmlAttributesOnPayloadInputOutput((b) {
-        if (payload != null) {
-          b.payload.replace(payload);
-        }
-      });
+      _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = XmlAttributesOnPayloadInputOutputBuilder();
+    if (payload != null) {
+      builder.payload.replace(payload);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _XmlAttributesOnPayloadInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlAttributesOnPayloadInputOutputBuilder b) {}
   _i2.XmlAttributesInputOutput? get payload;
   @override
   _i2.XmlAttributesInputOutput? getPayload() =>

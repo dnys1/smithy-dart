@@ -20,24 +20,24 @@ abstract class HttpPrefixHeadersInResponseOutput
         _i2.EmptyPayload,
         _i2.HasPayload<HttpPrefixHeadersInResponseOutputPayload> {
   factory HttpPrefixHeadersInResponseOutput(
-          [void Function(HttpPrefixHeadersInResponseOutputBuilder) updates]) =
-      _$HttpPrefixHeadersInResponseOutput;
+      {_i3.BuiltMap<String, String>? prefixHeaders}) {
+    return _$HttpPrefixHeadersInResponseOutput._(prefixHeaders: prefixHeaders);
+  }
 
   const HttpPrefixHeadersInResponseOutput._();
 
   factory HttpPrefixHeadersInResponseOutput.fromResponse(
-          HttpPrefixHeadersInResponseOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      HttpPrefixHeadersInResponseOutput((b) {
-        b.prefixHeaders.addEntries(response.headers.entries);
-      });
+      HttpPrefixHeadersInResponseOutputPayload payload,
+      _i1.AWSBaseHttpResponse response) {
+    final builder = HttpPrefixHeadersInResponseOutputBuilder();
+    builder.prefixHeaders.addEntries(response.headers.entries);
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPrefixHeadersInResponseOutputBuilder b) {}
   _i3.BuiltMap<String, String>? get prefixHeaders;
   @override
   HttpPrefixHeadersInResponseOutputPayload getPayload() =>

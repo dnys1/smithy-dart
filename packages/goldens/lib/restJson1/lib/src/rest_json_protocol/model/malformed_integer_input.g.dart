@@ -82,9 +82,7 @@ class MalformedIntegerInputBuilder
   set integerInQuery(int? integerInQuery) =>
       _$this._integerInQuery = integerInQuery;
 
-  MalformedIntegerInputBuilder() {
-    MalformedIntegerInput._init(this);
-  }
+  MalformedIntegerInputBuilder();
 
   MalformedIntegerInputBuilder get _$this {
     final $v = _$v;

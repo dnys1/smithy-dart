@@ -12,9 +12,9 @@ part 'struct_with_json_name.g.dart';
 abstract class StructWithJsonName
     with _i1.AWSEquatable<StructWithJsonName>
     implements Built<StructWithJsonName, StructWithJsonNameBuilder> {
-  factory StructWithJsonName(
-          [void Function(StructWithJsonNameBuilder) updates]) =
-      _$StructWithJsonName;
+  factory StructWithJsonName({String? value}) {
+    return _$StructWithJsonName._(value: value);
+  }
 
   const StructWithJsonName._();
 
@@ -22,8 +22,6 @@ abstract class StructWithJsonName
     _StructWithJsonNameAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(StructWithJsonNameBuilder b) {}
   String? get value;
   @override
   List<Object?> get props => [value];

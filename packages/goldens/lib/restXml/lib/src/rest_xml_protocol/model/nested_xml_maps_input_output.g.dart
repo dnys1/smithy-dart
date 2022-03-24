@@ -65,9 +65,7 @@ class NestedXmlMapsInputOutputBuilder
               nestedMap) =>
       _$this._nestedMap = nestedMap;
 
-  NestedXmlMapsInputOutputBuilder() {
-    NestedXmlMapsInputOutput._init(this);
-  }
+  NestedXmlMapsInputOutputBuilder();
 
   NestedXmlMapsInputOutputBuilder get _$this {
     final $v = _$v;

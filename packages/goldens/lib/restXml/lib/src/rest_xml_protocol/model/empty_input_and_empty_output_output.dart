@@ -16,9 +16,9 @@ abstract class EmptyInputAndEmptyOutputOutput
         Built<EmptyInputAndEmptyOutputOutput,
             EmptyInputAndEmptyOutputOutputBuilder>,
         _i2.EmptyPayload {
-  factory EmptyInputAndEmptyOutputOutput(
-          [void Function(EmptyInputAndEmptyOutputOutputBuilder) updates]) =
-      _$EmptyInputAndEmptyOutputOutput;
+  factory EmptyInputAndEmptyOutputOutput() {
+    return _$EmptyInputAndEmptyOutputOutput._();
+  }
 
   const EmptyInputAndEmptyOutputOutput._();
 
@@ -31,8 +31,6 @@ abstract class EmptyInputAndEmptyOutputOutput
     _EmptyInputAndEmptyOutputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EmptyInputAndEmptyOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
   @override

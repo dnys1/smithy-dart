@@ -19,39 +19,50 @@ abstract class UploadMultipartPartInput
         Built<UploadMultipartPartInput, UploadMultipartPartInputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory UploadMultipartPartInput(
-          [void Function(UploadMultipartPartInputBuilder) updates]) =
-      _$UploadMultipartPartInput;
+      {required String accountId,
+      _i2.Stream<List<int>>? body,
+      String? checksum,
+      String? range,
+      required String uploadId,
+      required String vaultName}) {
+    return _$UploadMultipartPartInput._(
+        accountId: accountId,
+        body: body,
+        checksum: checksum,
+        range: range,
+        uploadId: uploadId,
+        vaultName: vaultName);
+  }
 
   const UploadMultipartPartInput._();
 
   factory UploadMultipartPartInput.fromRequest(
-          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      UploadMultipartPartInput((b) {
-        b.body = payload;
-        if (request.headers['x-amz-sha256-tree-hash'] != null) {
-          b.checksum = request.headers['x-amz-sha256-tree-hash']!;
-        }
-        if (request.headers['Content-Range'] != null) {
-          b.range = request.headers['Content-Range']!;
-        }
-        if (labels['accountId'] != null) {
-          b.accountId = labels['accountId']!;
-        }
-        if (labels['vaultName'] != null) {
-          b.vaultName = labels['vaultName']!;
-        }
-        if (labels['uploadId'] != null) {
-          b.uploadId = labels['uploadId']!;
-        }
-      });
+      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = UploadMultipartPartInputBuilder();
+    builder.body = payload;
+    if (request.headers['x-amz-sha256-tree-hash'] != null) {
+      builder.checksum = request.headers['x-amz-sha256-tree-hash']!;
+    }
+    if (request.headers['Content-Range'] != null) {
+      builder.range = request.headers['Content-Range']!;
+    }
+    if (labels['accountId'] != null) {
+      builder.accountId = labels['accountId']!;
+    }
+    if (labels['vaultName'] != null) {
+      builder.vaultName = labels['vaultName']!;
+    }
+    if (labels['uploadId'] != null) {
+      builder.uploadId = labels['uploadId']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _UploadMultipartPartInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(UploadMultipartPartInputBuilder b) {}
   String get accountId;
   _i2.Stream<List<int>>? get body;
   String? get checksum;

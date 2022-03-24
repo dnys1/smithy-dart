@@ -18,8 +18,9 @@ abstract class FlattenedXmlMapWithXmlNameInputOutput
         Built<FlattenedXmlMapWithXmlNameInputOutput,
             FlattenedXmlMapWithXmlNameInputOutputBuilder> {
   factory FlattenedXmlMapWithXmlNameInputOutput(
-      [void Function(FlattenedXmlMapWithXmlNameInputOutputBuilder)
-          updates]) = _$FlattenedXmlMapWithXmlNameInputOutput;
+      {_i3.BuiltMap<String, String>? myMap}) {
+    return _$FlattenedXmlMapWithXmlNameInputOutput._(myMap: myMap);
+  }
 
   const FlattenedXmlMapWithXmlNameInputOutput._();
 
@@ -38,8 +39,6 @@ abstract class FlattenedXmlMapWithXmlNameInputOutput
     _FlattenedXmlMapWithXmlNameInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(FlattenedXmlMapWithXmlNameInputOutputBuilder b) {}
   _i3.BuiltMap<String, String>? get myMap;
   @override
   FlattenedXmlMapWithXmlNameInputOutput getPayload() => this;

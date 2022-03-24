@@ -14,9 +14,9 @@ abstract class UnauthorizedException
     implements
         Built<UnauthorizedException, UnauthorizedExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory UnauthorizedException(
-          [void Function(UnauthorizedExceptionBuilder) updates]) =
-      _$UnauthorizedException;
+  factory UnauthorizedException({String? message}) {
+    return _$UnauthorizedException._(message: message);
+  }
 
   const UnauthorizedException._();
 
@@ -30,8 +30,6 @@ abstract class UnauthorizedException
     _UnauthorizedExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(UnauthorizedExceptionBuilder b) {}
   @override
   String? get message;
   @override

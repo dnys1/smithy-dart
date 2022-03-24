@@ -12,8 +12,9 @@ part 'payload_config.g.dart';
 abstract class PayloadConfig
     with _i1.AWSEquatable<PayloadConfig>
     implements Built<PayloadConfig, PayloadConfigBuilder> {
-  factory PayloadConfig([void Function(PayloadConfigBuilder) updates]) =
-      _$PayloadConfig;
+  factory PayloadConfig({int? data}) {
+    return _$PayloadConfig._(data: data);
+  }
 
   const PayloadConfig._();
 
@@ -21,8 +22,6 @@ abstract class PayloadConfig
     _PayloadConfigRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PayloadConfigBuilder b) {}
   int? get data;
   @override
   List<Object?> get props => [data];

@@ -20,30 +20,31 @@ abstract class OmitsNullSerializesEmptyStringInput
         _i1.EmptyPayload,
         _i1.HasPayload<OmitsNullSerializesEmptyStringInputPayload> {
   factory OmitsNullSerializesEmptyStringInput(
-          [void Function(OmitsNullSerializesEmptyStringInputBuilder) updates]) =
-      _$OmitsNullSerializesEmptyStringInput;
+      {String? emptyString, String? nullValue}) {
+    return _$OmitsNullSerializesEmptyStringInput._(
+        emptyString: emptyString, nullValue: nullValue);
+  }
 
   const OmitsNullSerializesEmptyStringInput._();
 
   factory OmitsNullSerializesEmptyStringInput.fromRequest(
-          OmitsNullSerializesEmptyStringInputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      OmitsNullSerializesEmptyStringInput((b) {
-        if (request.queryParameters['Null'] != null) {
-          b.nullValue = request.queryParameters['Null']!;
-        }
-        if (request.queryParameters['Empty'] != null) {
-          b.emptyString = request.queryParameters['Empty']!;
-        }
-      });
+      OmitsNullSerializesEmptyStringInputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = OmitsNullSerializesEmptyStringInputBuilder();
+    if (request.queryParameters['Null'] != null) {
+      builder.nullValue = request.queryParameters['Null']!;
+    }
+    if (request.queryParameters['Empty'] != null) {
+      builder.emptyString = request.queryParameters['Empty']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _OmitsNullSerializesEmptyStringInputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OmitsNullSerializesEmptyStringInputBuilder b) {}
   String? get emptyString;
   String? get nullValue;
   @override

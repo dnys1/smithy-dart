@@ -15,8 +15,10 @@ part 'malformed_set_input.g.dart';
 abstract class MalformedSetInput
     with _i1.HttpInput<MalformedSetInput>, _i2.AWSEquatable<MalformedSetInput>
     implements Built<MalformedSetInput, MalformedSetInputBuilder> {
-  factory MalformedSetInput([void Function(MalformedSetInputBuilder) updates]) =
-      _$MalformedSetInput;
+  factory MalformedSetInput(
+      {_i3.BuiltSet<_i4.Uint8List>? blobSet, _i3.BuiltSet<String>? set}) {
+    return _$MalformedSetInput._(blobSet: blobSet, set: set);
+  }
 
   const MalformedSetInput._();
 
@@ -29,8 +31,6 @@ abstract class MalformedSetInput
     _MalformedSetInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedSetInputBuilder b) {}
   _i3.BuiltSet<_i4.Uint8List>? get blobSet;
   _i3.BuiltSet<String>? get set;
   @override

@@ -15,8 +15,9 @@ abstract class InvalidGreeting
     implements
         Built<InvalidGreeting, InvalidGreetingBuilder>,
         _i2.SmithyHttpException {
-  factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
-      _$InvalidGreeting;
+  factory InvalidGreeting({String? message}) {
+    return _$InvalidGreeting._(message: message);
+  }
 
   const InvalidGreeting._();
 
@@ -31,8 +32,6 @@ abstract class InvalidGreeting
     _InvalidGreetingAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(InvalidGreetingBuilder b) {}
   @override
   String? get message;
   @override

@@ -13,9 +13,9 @@ abstract class GreetingWithErrorsOutput
     with _i1.AWSEquatable<GreetingWithErrorsOutput>
     implements
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder> {
-  factory GreetingWithErrorsOutput(
-          [void Function(GreetingWithErrorsOutputBuilder) updates]) =
-      _$GreetingWithErrorsOutput;
+  factory GreetingWithErrorsOutput({String? greeting}) {
+    return _$GreetingWithErrorsOutput._(greeting: greeting);
+  }
 
   const GreetingWithErrorsOutput._();
 
@@ -27,8 +27,6 @@ abstract class GreetingWithErrorsOutput
     _GreetingWithErrorsOutputAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
   @override
   List<Object?> get props => [greeting];

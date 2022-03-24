@@ -66,9 +66,7 @@ class HttpRequestWithGreedyLabelInPathInputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  HttpRequestWithGreedyLabelInPathInputBuilder() {
-    HttpRequestWithGreedyLabelInPathInput._init(this);
-  }
+  HttpRequestWithGreedyLabelInPathInputBuilder();
 
   HttpRequestWithGreedyLabelInPathInputBuilder get _$this {
     final $v = _$v;

@@ -18,7 +18,7 @@ class _$XmlNestedUnionStruct extends XmlNestedUnionStruct {
   @override
   final int? integerValue;
   @override
-  final _i3.Int64? longValue;
+  final _i2.Int64? longValue;
   @override
   final int? shortValue;
   @override
@@ -105,9 +105,9 @@ class XmlNestedUnionStructBuilder
   int? get integerValue => _$this._integerValue;
   set integerValue(int? integerValue) => _$this._integerValue = integerValue;
 
-  _i3.Int64? _longValue;
-  _i3.Int64? get longValue => _$this._longValue;
-  set longValue(_i3.Int64? longValue) => _$this._longValue = longValue;
+  _i2.Int64? _longValue;
+  _i2.Int64? get longValue => _$this._longValue;
+  set longValue(_i2.Int64? longValue) => _$this._longValue = longValue;
 
   int? _shortValue;
   int? get shortValue => _$this._shortValue;
@@ -117,9 +117,7 @@ class XmlNestedUnionStructBuilder
   String? get stringValue => _$this._stringValue;
   set stringValue(String? stringValue) => _$this._stringValue = stringValue;
 
-  XmlNestedUnionStructBuilder() {
-    XmlNestedUnionStruct._init(this);
-  }
+  XmlNestedUnionStructBuilder();
 
   XmlNestedUnionStructBuilder get _$this {
     final $v = _$v;

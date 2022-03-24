@@ -95,9 +95,7 @@ class MalformedLengthInputBuilder
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  MalformedLengthInputBuilder() {
-    MalformedLengthInput._init(this);
-  }
+  MalformedLengthInputBuilder();
 
   MalformedLengthInputBuilder get _$this {
     final $v = _$v;

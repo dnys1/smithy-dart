@@ -12,7 +12,9 @@ part 'owner.g.dart';
 abstract class Owner
     with _i1.AWSEquatable<Owner>
     implements Built<Owner, OwnerBuilder> {
-  factory Owner([void Function(OwnerBuilder) updates]) = _$Owner;
+  factory Owner({String? displayName, String? id}) {
+    return _$Owner._(displayName: displayName, id: id);
+  }
 
   const Owner._();
 
@@ -20,8 +22,6 @@ abstract class Owner
     _OwnerRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OwnerBuilder b) {}
   String? get displayName;
   String? get id;
   @override

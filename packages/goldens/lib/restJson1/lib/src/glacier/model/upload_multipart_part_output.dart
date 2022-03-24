@@ -16,27 +16,26 @@ abstract class UploadMultipartPartOutput
         Built<UploadMultipartPartOutput, UploadMultipartPartOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<UploadMultipartPartOutputPayload> {
-  factory UploadMultipartPartOutput(
-          [void Function(UploadMultipartPartOutputBuilder) updates]) =
-      _$UploadMultipartPartOutput;
+  factory UploadMultipartPartOutput({String? checksum}) {
+    return _$UploadMultipartPartOutput._(checksum: checksum);
+  }
 
   const UploadMultipartPartOutput._();
 
   factory UploadMultipartPartOutput.fromResponse(
-          UploadMultipartPartOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      UploadMultipartPartOutput((b) {
-        if (response.headers['x-amz-sha256-tree-hash'] != null) {
-          b.checksum = response.headers['x-amz-sha256-tree-hash']!;
-        }
-      });
+      UploadMultipartPartOutputPayload payload,
+      _i1.AWSBaseHttpResponse response) {
+    final builder = UploadMultipartPartOutputBuilder();
+    if (response.headers['x-amz-sha256-tree-hash'] != null) {
+      builder.checksum = response.headers['x-amz-sha256-tree-hash']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _UploadMultipartPartOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(UploadMultipartPartOutputBuilder b) {}
   String? get checksum;
   @override
   UploadMultipartPartOutputPayload getPayload() =>

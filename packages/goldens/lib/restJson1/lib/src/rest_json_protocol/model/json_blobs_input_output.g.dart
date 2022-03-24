@@ -45,9 +45,7 @@ class JsonBlobsInputOutputBuilder
   _i3.Uint8List? get data => _$this._data;
   set data(_i3.Uint8List? data) => _$this._data = data;
 
-  JsonBlobsInputOutputBuilder() {
-    JsonBlobsInputOutput._init(this);
-  }
+  JsonBlobsInputOutputBuilder();
 
   JsonBlobsInputOutputBuilder get _$this {
     final $v = _$v;

@@ -81,9 +81,7 @@ class MalformedPatternInputBuilder
   _i4.PatternUnion? get union => _$this._union;
   set union(_i4.PatternUnion? union) => _$this._union = union;
 
-  MalformedPatternInputBuilder() {
-    MalformedPatternInput._init(this);
-  }
+  MalformedPatternInputBuilder();
 
   MalformedPatternInputBuilder get _$this {
     final $v = _$v;

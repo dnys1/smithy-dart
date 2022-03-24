@@ -19,28 +19,27 @@ abstract class HttpRequestWithRegexLiteralInput
             HttpRequestWithRegexLiteralInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithRegexLiteralInputPayload> {
-  factory HttpRequestWithRegexLiteralInput(
-          [void Function(HttpRequestWithRegexLiteralInputBuilder) updates]) =
-      _$HttpRequestWithRegexLiteralInput;
+  factory HttpRequestWithRegexLiteralInput({required String str}) {
+    return _$HttpRequestWithRegexLiteralInput._(str: str);
+  }
 
   const HttpRequestWithRegexLiteralInput._();
 
   factory HttpRequestWithRegexLiteralInput.fromRequest(
-          HttpRequestWithRegexLiteralInputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HttpRequestWithRegexLiteralInput((b) {
-        if (labels['str'] != null) {
-          b.str = labels['str']!;
-        }
-      });
+      HttpRequestWithRegexLiteralInputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HttpRequestWithRegexLiteralInputBuilder();
+    if (labels['str'] != null) {
+      builder.str = labels['str']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithRegexLiteralInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpRequestWithRegexLiteralInputBuilder b) {}
   String get str;
   @override
   String labelFor(String key) {

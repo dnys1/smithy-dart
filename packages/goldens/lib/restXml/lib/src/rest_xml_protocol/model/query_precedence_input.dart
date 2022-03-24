@@ -20,26 +20,26 @@ abstract class QueryPrecedenceInput
         _i1.EmptyPayload,
         _i1.HasPayload<QueryPrecedenceInputPayload> {
   factory QueryPrecedenceInput(
-          [void Function(QueryPrecedenceInputBuilder) updates]) =
-      _$QueryPrecedenceInput;
+      {_i3.BuiltMap<String, String>? baz, String? foo}) {
+    return _$QueryPrecedenceInput._(baz: baz, foo: foo);
+  }
 
   const QueryPrecedenceInput._();
 
   factory QueryPrecedenceInput.fromRequest(
-          QueryPrecedenceInputPayload payload, _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      QueryPrecedenceInput((b) {
-        if (request.queryParameters['bar'] != null) {
-          b.foo = request.queryParameters['bar']!;
-        }
-      });
+      QueryPrecedenceInputPayload payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = QueryPrecedenceInputBuilder();
+    if (request.queryParameters['bar'] != null) {
+      builder.foo = request.queryParameters['bar']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _QueryPrecedenceInputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(QueryPrecedenceInputBuilder b) {}
   _i3.BuiltMap<String, String>? get baz;
   String? get foo;
   @override

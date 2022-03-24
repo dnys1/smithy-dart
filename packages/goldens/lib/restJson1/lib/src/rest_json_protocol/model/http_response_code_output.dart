@@ -16,25 +16,23 @@ abstract class HttpResponseCodeOutput
         Built<HttpResponseCodeOutput, HttpResponseCodeOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<HttpResponseCodeOutputPayload> {
-  factory HttpResponseCodeOutput(
-          [void Function(HttpResponseCodeOutputBuilder) updates]) =
-      _$HttpResponseCodeOutput;
+  factory HttpResponseCodeOutput({int? status}) {
+    return _$HttpResponseCodeOutput._(status: status);
+  }
 
   const HttpResponseCodeOutput._();
 
   factory HttpResponseCodeOutput.fromResponse(
-          HttpResponseCodeOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      HttpResponseCodeOutput((b) {
-        b.status = response.statusCode;
-      });
+      HttpResponseCodeOutputPayload payload, _i1.AWSBaseHttpResponse response) {
+    final builder = HttpResponseCodeOutputBuilder();
+    builder.status = response.statusCode;
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _HttpResponseCodeOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpResponseCodeOutputBuilder b) {}
   int? get status;
   @override
   HttpResponseCodeOutputPayload getPayload() => HttpResponseCodeOutputPayload();

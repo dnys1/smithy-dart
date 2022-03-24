@@ -13,9 +13,9 @@ part 'nested_with_namespace.g.dart';
 abstract class NestedWithNamespace
     with _i1.AWSEquatable<NestedWithNamespace>
     implements Built<NestedWithNamespace, NestedWithNamespaceBuilder> {
-  factory NestedWithNamespace(
-          [void Function(NestedWithNamespaceBuilder) updates]) =
-      _$NestedWithNamespace;
+  factory NestedWithNamespace({String? attrField}) {
+    return _$NestedWithNamespace._(attrField: attrField);
+  }
 
   const NestedWithNamespace._();
 
@@ -23,8 +23,6 @@ abstract class NestedWithNamespace
     _NestedWithNamespaceRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(NestedWithNamespaceBuilder b) {}
   String? get attrField;
   @override
   List<Object?> get props => [attrField];

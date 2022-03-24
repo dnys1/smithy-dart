@@ -15,9 +15,9 @@ abstract class PayloadWithXmlNamespaceAndPrefix
     implements
         Built<PayloadWithXmlNamespaceAndPrefix,
             PayloadWithXmlNamespaceAndPrefixBuilder> {
-  factory PayloadWithXmlNamespaceAndPrefix(
-          [void Function(PayloadWithXmlNamespaceAndPrefixBuilder) updates]) =
-      _$PayloadWithXmlNamespaceAndPrefix;
+  factory PayloadWithXmlNamespaceAndPrefix({String? name}) {
+    return _$PayloadWithXmlNamespaceAndPrefix._(name: name);
+  }
 
   const PayloadWithXmlNamespaceAndPrefix._();
 
@@ -25,8 +25,6 @@ abstract class PayloadWithXmlNamespaceAndPrefix
     _PayloadWithXmlNamespaceAndPrefixRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PayloadWithXmlNamespaceAndPrefixBuilder b) {}
   String? get name;
   @override
   List<Object?> get props => [name];

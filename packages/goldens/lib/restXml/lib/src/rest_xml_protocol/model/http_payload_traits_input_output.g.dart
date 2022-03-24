@@ -55,9 +55,7 @@ class HttpPayloadTraitsInputOutputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  HttpPayloadTraitsInputOutputBuilder() {
-    HttpPayloadTraitsInputOutput._init(this);
-  }
+  HttpPayloadTraitsInputOutputBuilder();
 
   HttpPayloadTraitsInputOutputBuilder get _$this {
     final $v = _$v;

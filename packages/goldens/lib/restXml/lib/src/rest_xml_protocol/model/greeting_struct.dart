@@ -12,8 +12,9 @@ part 'greeting_struct.g.dart';
 abstract class GreetingStruct
     with _i1.AWSEquatable<GreetingStruct>
     implements Built<GreetingStruct, GreetingStructBuilder> {
-  factory GreetingStruct([void Function(GreetingStructBuilder) updates]) =
-      _$GreetingStruct;
+  factory GreetingStruct({String? hi}) {
+    return _$GreetingStruct._(hi: hi);
+  }
 
   const GreetingStruct._();
 
@@ -21,8 +22,6 @@ abstract class GreetingStruct
     _GreetingStructRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingStructBuilder b) {}
   String? get hi;
   @override
   List<Object?> get props => [hi];

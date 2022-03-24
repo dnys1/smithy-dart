@@ -17,9 +17,9 @@ abstract class HttpPrefixHeadersInResponseInput
         Built<HttpPrefixHeadersInResponseInput,
             HttpPrefixHeadersInResponseInputBuilder>,
         _i1.EmptyPayload {
-  factory HttpPrefixHeadersInResponseInput(
-          [void Function(HttpPrefixHeadersInResponseInputBuilder) updates]) =
-      _$HttpPrefixHeadersInResponseInput;
+  factory HttpPrefixHeadersInResponseInput() {
+    return _$HttpPrefixHeadersInResponseInput._();
+  }
 
   const HttpPrefixHeadersInResponseInput._();
 
@@ -33,8 +33,6 @@ abstract class HttpPrefixHeadersInResponseInput
     _HttpPrefixHeadersInResponseInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPrefixHeadersInResponseInputBuilder b) {}
   @override
   HttpPrefixHeadersInResponseInput getPayload() => this;
   @override

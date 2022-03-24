@@ -51,9 +51,7 @@ class HttpPrefixHeadersInResponseOutputBuilder
   set prefixHeaders(_i3.MapBuilder<String, String>? prefixHeaders) =>
       _$this._prefixHeaders = prefixHeaders;
 
-  HttpPrefixHeadersInResponseOutputBuilder() {
-    HttpPrefixHeadersInResponseOutput._init(this);
-  }
+  HttpPrefixHeadersInResponseOutputBuilder();
 
   HttpPrefixHeadersInResponseOutputBuilder get _$this {
     final $v = _$v;

@@ -20,34 +20,35 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
             HttpPayloadWithMemberXmlNameInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlName> {
   factory HttpPayloadWithMemberXmlNameInputOutput(
-      [void Function(HttpPayloadWithMemberXmlNameInputOutputBuilder)
-          updates]) = _$HttpPayloadWithMemberXmlNameInputOutput;
+      {_i2.PayloadWithXmlName? nested}) {
+    return _$HttpPayloadWithMemberXmlNameInputOutput._(nested: nested);
+  }
 
   const HttpPayloadWithMemberXmlNameInputOutput._();
 
   factory HttpPayloadWithMemberXmlNameInputOutput.fromRequest(
-          _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithMemberXmlNameInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HttpPayloadWithMemberXmlNameInputOutputBuilder();
+    if (payload != null) {
+      builder.nested.replace(payload);
+    }
+    return builder.build();
+  }
 
   factory HttpPayloadWithMemberXmlNameInputOutput.fromResponse(
-          _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithMemberXmlNameInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = HttpPayloadWithMemberXmlNameInputOutputBuilder();
+    if (payload != null) {
+      builder.nested.replace(payload);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadWithMemberXmlNameInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPayloadWithMemberXmlNameInputOutputBuilder b) {}
   _i2.PayloadWithXmlName? get nested;
   @override
   _i2.PayloadWithXmlName? getPayload() => nested ?? _i2.PayloadWithXmlName();

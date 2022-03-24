@@ -12,8 +12,9 @@ part 'host_label_input.g.dart';
 abstract class HostLabelInput
     with _i1.HttpInput<HostLabelInput>, _i2.AWSEquatable<HostLabelInput>
     implements Built<HostLabelInput, HostLabelInputBuilder> {
-  factory HostLabelInput([void Function(HostLabelInputBuilder) updates]) =
-      _$HostLabelInput;
+  factory HostLabelInput({required String label}) {
+    return _$HostLabelInput._(label: label);
+  }
 
   const HostLabelInput._();
 
@@ -26,8 +27,6 @@ abstract class HostLabelInput
     _HostLabelInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HostLabelInputBuilder b) {}
   String get label;
   @override
   String labelFor(String key) {

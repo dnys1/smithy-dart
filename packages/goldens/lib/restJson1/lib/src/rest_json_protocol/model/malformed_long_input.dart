@@ -19,34 +19,42 @@ abstract class MalformedLongInput
         Built<MalformedLongInput, MalformedLongInputBuilder>,
         _i1.HasPayload<MalformedLongInputPayload> {
   factory MalformedLongInput(
-          [void Function(MalformedLongInputBuilder) updates]) =
-      _$MalformedLongInput;
+      {_i3.Int64? longInBody,
+      _i3.Int64? longInHeader,
+      required _i3.Int64 longInPath,
+      _i3.Int64? longInQuery}) {
+    return _$MalformedLongInput._(
+        longInBody: longInBody,
+        longInHeader: longInHeader,
+        longInPath: longInPath,
+        longInQuery: longInQuery);
+  }
 
   const MalformedLongInput._();
 
   factory MalformedLongInput.fromRequest(
-          MalformedLongInputPayload payload, _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      MalformedLongInput((b) {
-        b.longInBody = payload.longInBody;
-        if (request.headers['longInHeader'] != null) {
-          b.longInHeader = _i3.Int64.parseInt(request.headers['longInHeader']!);
-        }
-        if (request.queryParameters['longInQuery'] != null) {
-          b.longInQuery =
-              _i3.Int64.parseInt(request.queryParameters['longInQuery']!);
-        }
-        if (labels['longInPath'] != null) {
-          b.longInPath = _i3.Int64.parseInt(labels['longInPath']!);
-        }
-      });
+      MalformedLongInputPayload payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = MalformedLongInputBuilder();
+    builder.longInBody = payload.longInBody;
+    if (request.headers['longInHeader'] != null) {
+      builder.longInHeader =
+          _i3.Int64.parseInt(request.headers['longInHeader']!);
+    }
+    if (request.queryParameters['longInQuery'] != null) {
+      builder.longInQuery =
+          _i3.Int64.parseInt(request.queryParameters['longInQuery']!);
+    }
+    if (labels['longInPath'] != null) {
+      builder.longInPath = _i3.Int64.parseInt(labels['longInPath']!);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedLongInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedLongInputBuilder b) {}
   _i3.Int64? get longInBody;
   _i3.Int64? get longInHeader;
   _i3.Int64 get longInPath;

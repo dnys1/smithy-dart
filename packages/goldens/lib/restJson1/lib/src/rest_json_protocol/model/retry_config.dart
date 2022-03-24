@@ -5,8 +5,8 @@ library rest_json1.rest_json_protocol.model.retry_config;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1/src/rest_json_protocol/model/retry_mode.dart' as _i3;
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:rest_json1/src/rest_json_protocol/model/retry_mode.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'retry_config.g.dart';
 
@@ -14,21 +14,20 @@ part 'retry_config.g.dart';
 abstract class RetryConfig
     with _i1.AWSEquatable<RetryConfig>
     implements Built<RetryConfig, RetryConfigBuilder> {
-  factory RetryConfig([void Function(RetryConfigBuilder) updates]) =
-      _$RetryConfig;
+  factory RetryConfig({int? maxAttempts, _i2.RetryMode? mode}) {
+    return _$RetryConfig._(maxAttempts: maxAttempts, mode: mode);
+  }
 
   const RetryConfig._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     _RetryConfigRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RetryConfigBuilder b) {}
   int? get maxAttempts;
 
   /// Controls the strategy used for retries.
-  _i3.RetryMode? get mode;
+  _i2.RetryMode? get mode;
   @override
   List<Object?> get props => [maxAttempts, mode];
   @override
@@ -41,14 +40,14 @@ abstract class RetryConfig
 }
 
 class _RetryConfigRestJson1Serializer
-    extends _i2.StructuredSmithySerializer<RetryConfig> {
+    extends _i3.StructuredSmithySerializer<RetryConfig> {
   const _RetryConfigRestJson1Serializer() : super('RetryConfig');
 
   @override
   Iterable<Type> get types => const [RetryConfig, _$RetryConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i3.ShapeId> get supportedProtocols =>
+      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   RetryConfig deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
@@ -68,7 +67,7 @@ class _RetryConfigRestJson1Serializer
         case 'mode':
           if (value != null) {
             result.mode = (serializers.deserialize(value,
-                specifiedType: const FullType(_i3.RetryMode)) as _i3.RetryMode);
+                specifiedType: const FullType(_i2.RetryMode)) as _i2.RetryMode);
           }
           break;
       }
@@ -92,7 +91,7 @@ class _RetryConfigRestJson1Serializer
       result
         ..add('mode')
         ..add(serializers.serialize(payload.mode!,
-            specifiedType: const FullType(_i3.RetryMode)));
+            specifiedType: const FullType(_i2.RetryMode)));
     }
     return result;
   }

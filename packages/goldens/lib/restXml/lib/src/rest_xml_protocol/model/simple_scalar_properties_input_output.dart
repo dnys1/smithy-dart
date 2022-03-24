@@ -20,54 +20,74 @@ abstract class SimpleScalarPropertiesInputOutput
             SimpleScalarPropertiesInputOutputBuilder>,
         _i1.HasPayload<SimpleScalarPropertiesInputOutputPayload> {
   factory SimpleScalarPropertiesInputOutput(
-          [void Function(SimpleScalarPropertiesInputOutputBuilder) updates]) =
-      _$SimpleScalarPropertiesInputOutput;
+      {int? byteValue,
+      double? doubleValue,
+      bool? falseBooleanValue,
+      double? floatValue,
+      String? foo,
+      int? integerValue,
+      _i3.Int64? longValue,
+      int? shortValue,
+      String? stringValue,
+      bool? trueBooleanValue}) {
+    return _$SimpleScalarPropertiesInputOutput._(
+        byteValue: byteValue,
+        doubleValue: doubleValue,
+        falseBooleanValue: falseBooleanValue,
+        floatValue: floatValue,
+        foo: foo,
+        integerValue: integerValue,
+        longValue: longValue,
+        shortValue: shortValue,
+        stringValue: stringValue,
+        trueBooleanValue: trueBooleanValue);
+  }
 
   const SimpleScalarPropertiesInputOutput._();
 
   factory SimpleScalarPropertiesInputOutput.fromRequest(
-          SimpleScalarPropertiesInputOutputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      SimpleScalarPropertiesInputOutput((b) {
-        b.byteValue = payload.byteValue;
-        b.doubleValue = payload.doubleValue;
-        b.falseBooleanValue = payload.falseBooleanValue;
-        b.floatValue = payload.floatValue;
-        b.integerValue = payload.integerValue;
-        b.longValue = payload.longValue;
-        b.shortValue = payload.shortValue;
-        b.stringValue = payload.stringValue;
-        b.trueBooleanValue = payload.trueBooleanValue;
-        if (request.headers['X-Foo'] != null) {
-          b.foo = request.headers['X-Foo']!;
-        }
-      });
+      SimpleScalarPropertiesInputOutputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = SimpleScalarPropertiesInputOutputBuilder();
+    builder.byteValue = payload.byteValue;
+    builder.doubleValue = payload.doubleValue;
+    builder.falseBooleanValue = payload.falseBooleanValue;
+    builder.floatValue = payload.floatValue;
+    builder.integerValue = payload.integerValue;
+    builder.longValue = payload.longValue;
+    builder.shortValue = payload.shortValue;
+    builder.stringValue = payload.stringValue;
+    builder.trueBooleanValue = payload.trueBooleanValue;
+    if (request.headers['X-Foo'] != null) {
+      builder.foo = request.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   factory SimpleScalarPropertiesInputOutput.fromResponse(
-          SimpleScalarPropertiesInputOutputPayload payload,
-          _i2.AWSBaseHttpResponse response) =>
-      SimpleScalarPropertiesInputOutput((b) {
-        b.byteValue = payload.byteValue;
-        b.doubleValue = payload.doubleValue;
-        b.falseBooleanValue = payload.falseBooleanValue;
-        b.floatValue = payload.floatValue;
-        b.integerValue = payload.integerValue;
-        b.longValue = payload.longValue;
-        b.shortValue = payload.shortValue;
-        b.stringValue = payload.stringValue;
-        b.trueBooleanValue = payload.trueBooleanValue;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      SimpleScalarPropertiesInputOutputPayload payload,
+      _i2.AWSBaseHttpResponse response) {
+    final builder = SimpleScalarPropertiesInputOutputBuilder();
+    builder.byteValue = payload.byteValue;
+    builder.doubleValue = payload.doubleValue;
+    builder.falseBooleanValue = payload.falseBooleanValue;
+    builder.floatValue = payload.floatValue;
+    builder.integerValue = payload.integerValue;
+    builder.longValue = payload.longValue;
+    builder.shortValue = payload.shortValue;
+    builder.stringValue = payload.stringValue;
+    builder.trueBooleanValue = payload.trueBooleanValue;
+    if (response.headers['X-Foo'] != null) {
+      builder.foo = response.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _SimpleScalarPropertiesInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
   int? get byteValue;
   double? get doubleValue;
   bool? get falseBooleanValue;

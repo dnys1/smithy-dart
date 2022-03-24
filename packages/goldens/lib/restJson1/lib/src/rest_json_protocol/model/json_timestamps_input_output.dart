@@ -16,8 +16,16 @@ abstract class JsonTimestampsInputOutput
     implements
         Built<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder> {
   factory JsonTimestampsInputOutput(
-          [void Function(JsonTimestampsInputOutputBuilder) updates]) =
-      _$JsonTimestampsInputOutput;
+      {DateTime? dateTime,
+      DateTime? epochSeconds,
+      DateTime? httpDate,
+      DateTime? normal}) {
+    return _$JsonTimestampsInputOutput._(
+        dateTime: dateTime,
+        epochSeconds: epochSeconds,
+        httpDate: httpDate,
+        normal: normal);
+  }
 
   const JsonTimestampsInputOutput._();
 
@@ -35,8 +43,6 @@ abstract class JsonTimestampsInputOutput
     _JsonTimestampsInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(JsonTimestampsInputOutputBuilder b) {}
   DateTime? get dateTime;
   DateTime? get epochSeconds;
   DateTime? get httpDate;

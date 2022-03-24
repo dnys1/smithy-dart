@@ -18,8 +18,18 @@ abstract class MalformedPatternInput
         _i2.AWSEquatable<MalformedPatternInput>
     implements Built<MalformedPatternInput, MalformedPatternInputBuilder> {
   factory MalformedPatternInput(
-          [void Function(MalformedPatternInputBuilder) updates]) =
-      _$MalformedPatternInput;
+      {String? evilString,
+      _i3.BuiltList<String>? list,
+      _i3.BuiltMap<String, String>? map,
+      String? string,
+      _i4.PatternUnion? union}) {
+    return _$MalformedPatternInput._(
+        evilString: evilString,
+        list: list,
+        map: map,
+        string: string,
+        union: union);
+  }
 
   const MalformedPatternInput._();
 
@@ -32,8 +42,6 @@ abstract class MalformedPatternInput
     _MalformedPatternInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedPatternInputBuilder b) {}
   String? get evilString;
   _i3.BuiltList<String>? get list;
   _i3.BuiltMap<String, String>? get map;

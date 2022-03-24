@@ -52,9 +52,7 @@ class MalformedTimestampQueryEpochInputBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
-  MalformedTimestampQueryEpochInputBuilder() {
-    MalformedTimestampQueryEpochInput._init(this);
-  }
+  MalformedTimestampQueryEpochInputBuilder();
 
   MalformedTimestampQueryEpochInputBuilder get _$this {
     final $v = _$v;

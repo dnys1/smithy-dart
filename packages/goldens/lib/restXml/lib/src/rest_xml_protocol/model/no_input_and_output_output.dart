@@ -14,9 +14,9 @@ abstract class NoInputAndOutputOutput
     implements
         Built<NoInputAndOutputOutput, NoInputAndOutputOutputBuilder>,
         _i2.EmptyPayload {
-  factory NoInputAndOutputOutput(
-          [void Function(NoInputAndOutputOutputBuilder) updates]) =
-      _$NoInputAndOutputOutput;
+  factory NoInputAndOutputOutput() {
+    return _$NoInputAndOutputOutput._();
+  }
 
   const NoInputAndOutputOutput._();
 
@@ -28,8 +28,6 @@ abstract class NoInputAndOutputOutput
     _NoInputAndOutputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(NoInputAndOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
   @override

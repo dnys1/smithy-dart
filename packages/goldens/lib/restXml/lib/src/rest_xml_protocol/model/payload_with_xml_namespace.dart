@@ -12,9 +12,9 @@ part 'payload_with_xml_namespace.g.dart';
 abstract class PayloadWithXmlNamespace
     with _i1.AWSEquatable<PayloadWithXmlNamespace>
     implements Built<PayloadWithXmlNamespace, PayloadWithXmlNamespaceBuilder> {
-  factory PayloadWithXmlNamespace(
-          [void Function(PayloadWithXmlNamespaceBuilder) updates]) =
-      _$PayloadWithXmlNamespace;
+  factory PayloadWithXmlNamespace({String? name}) {
+    return _$PayloadWithXmlNamespace._(name: name);
+  }
 
   const PayloadWithXmlNamespace._();
 
@@ -22,8 +22,6 @@ abstract class PayloadWithXmlNamespace
     _PayloadWithXmlNamespaceRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PayloadWithXmlNamespaceBuilder b) {}
   String? get name;
   @override
   List<Object?> get props => [name];

@@ -3,11 +3,11 @@
 library aws_json1_0.json_rpc_10.model.file_config_settings;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_0/src/json_rpc_10/model/retry_mode.dart' as _i3;
-import 'package:aws_json1_0/src/json_rpc_10/model/s3_config.dart' as _i4;
+import 'package:aws_json1_0/src/json_rpc_10/model/retry_mode.dart' as _i2;
+import 'package:aws_json1_0/src/json_rpc_10/model/s3_config.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i4;
 
 part 'file_config_settings.g.dart';
 
@@ -17,17 +17,29 @@ abstract class FileConfigSettings
     with _i1.AWSEquatable<FileConfigSettings>
     implements Built<FileConfigSettings, FileConfigSettingsBuilder> {
   factory FileConfigSettings(
-          [void Function(FileConfigSettingsBuilder) updates]) =
-      _$FileConfigSettings;
+      {String? awsAccessKeyId,
+      String? awsSecretAccessKey,
+      String? awsSessionToken,
+      int? maxAttempts,
+      String? region,
+      _i2.RetryMode? retryMode,
+      _i3.S3Config? s3}) {
+    return _$FileConfigSettings._(
+        awsAccessKeyId: awsAccessKeyId,
+        awsSecretAccessKey: awsSecretAccessKey,
+        awsSessionToken: awsSessionToken,
+        maxAttempts: maxAttempts,
+        region: region,
+        retryMode: retryMode,
+        s3: s3);
+  }
 
   const FileConfigSettings._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i4.SmithySerializer> serializers = [
     _FileConfigSettingsAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(FileConfigSettingsBuilder b) {}
   String? get awsAccessKeyId;
   String? get awsSecretAccessKey;
   String? get awsSessionToken;
@@ -35,10 +47,10 @@ abstract class FileConfigSettings
   String? get region;
 
   /// Controls the strategy used for retries.
-  _i3.RetryMode? get retryMode;
+  _i2.RetryMode? get retryMode;
 
   /// Configuration specific to S3.
-  _i4.S3Config? get s3;
+  _i3.S3Config? get s3;
   @override
   List<Object?> get props => [
         awsAccessKeyId,
@@ -64,14 +76,14 @@ abstract class FileConfigSettings
 }
 
 class _FileConfigSettingsAwsJson10Serializer
-    extends _i2.StructuredSmithySerializer<FileConfigSettings> {
+    extends _i4.StructuredSmithySerializer<FileConfigSettings> {
   const _FileConfigSettingsAwsJson10Serializer() : super('FileConfigSettings');
 
   @override
   Iterable<Type> get types => const [FileConfigSettings, _$FileConfigSettings];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   FileConfigSettings deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -116,13 +128,13 @@ class _FileConfigSettingsAwsJson10Serializer
         case 'retry_mode':
           if (value != null) {
             result.retryMode = (serializers.deserialize(value,
-                specifiedType: const FullType(_i3.RetryMode)) as _i3.RetryMode);
+                specifiedType: const FullType(_i2.RetryMode)) as _i2.RetryMode);
           }
           break;
         case 's3':
           if (value != null) {
             result.s3.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i4.S3Config)) as _i4.S3Config));
+                specifiedType: const FullType(_i3.S3Config)) as _i3.S3Config));
           }
           break;
       }
@@ -170,13 +182,13 @@ class _FileConfigSettingsAwsJson10Serializer
       result
         ..add('retry_mode')
         ..add(serializers.serialize(payload.retryMode!,
-            specifiedType: const FullType(_i3.RetryMode)));
+            specifiedType: const FullType(_i2.RetryMode)));
     }
     if (payload.s3 != null) {
       result
         ..add('s3')
         ..add(serializers.serialize(payload.s3!,
-            specifiedType: const FullType(_i4.S3Config)));
+            specifiedType: const FullType(_i3.S3Config)));
     }
     return result;
   }

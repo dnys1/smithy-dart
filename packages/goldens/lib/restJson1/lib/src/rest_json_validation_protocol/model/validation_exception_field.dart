@@ -15,17 +15,15 @@ abstract class ValidationExceptionField
     implements
         Built<ValidationExceptionField, ValidationExceptionFieldBuilder> {
   factory ValidationExceptionField(
-          [void Function(ValidationExceptionFieldBuilder) updates]) =
-      _$ValidationExceptionField;
+      {required String message, required String path}) {
+    return _$ValidationExceptionField._(message: message, path: path);
+  }
 
   const ValidationExceptionField._();
 
   static const List<_i2.SmithySerializer> serializers = [
     _ValidationExceptionFieldRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ValidationExceptionFieldBuilder b) {}
 
   /// A detailed description of the validation failure.
   String get message;

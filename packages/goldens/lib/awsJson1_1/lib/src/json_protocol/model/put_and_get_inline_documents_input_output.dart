@@ -18,8 +18,10 @@ abstract class PutAndGetInlineDocumentsInputOutput
         Built<PutAndGetInlineDocumentsInputOutput,
             PutAndGetInlineDocumentsInputOutputBuilder> {
   factory PutAndGetInlineDocumentsInputOutput(
-          [void Function(PutAndGetInlineDocumentsInputOutputBuilder) updates]) =
-      _$PutAndGetInlineDocumentsInputOutput;
+      {_i3.JsonObject? inlineDocument}) {
+    return _$PutAndGetInlineDocumentsInputOutput._(
+        inlineDocument: inlineDocument);
+  }
 
   const PutAndGetInlineDocumentsInputOutput._();
 
@@ -38,8 +40,6 @@ abstract class PutAndGetInlineDocumentsInputOutput
     _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PutAndGetInlineDocumentsInputOutputBuilder b) {}
   _i3.JsonObject? get inlineDocument;
   @override
   PutAndGetInlineDocumentsInputOutput getPayload() => this;

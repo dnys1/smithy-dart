@@ -16,9 +16,9 @@ abstract class MalformedUnionInput
         _i1.HttpInput<MalformedUnionInput>,
         _i2.AWSEquatable<MalformedUnionInput>
     implements Built<MalformedUnionInput, MalformedUnionInputBuilder> {
-  factory MalformedUnionInput(
-          [void Function(MalformedUnionInputBuilder) updates]) =
-      _$MalformedUnionInput;
+  factory MalformedUnionInput({_i3.SimpleUnion? union}) {
+    return _$MalformedUnionInput._(union: union);
+  }
 
   const MalformedUnionInput._();
 
@@ -31,8 +31,6 @@ abstract class MalformedUnionInput
     _MalformedUnionInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedUnionInputBuilder b) {}
   _i3.SimpleUnion? get union;
   @override
   MalformedUnionInput getPayload() => this;

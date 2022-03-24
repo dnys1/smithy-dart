@@ -12,8 +12,9 @@ part 'simple_struct.g.dart';
 abstract class SimpleStruct
     with _i1.AWSEquatable<SimpleStruct>
     implements Built<SimpleStruct, SimpleStructBuilder> {
-  factory SimpleStruct([void Function(SimpleStructBuilder) updates]) =
-      _$SimpleStruct;
+  factory SimpleStruct({String? value}) {
+    return _$SimpleStruct._(value: value);
+  }
 
   const SimpleStruct._();
 
@@ -21,8 +22,6 @@ abstract class SimpleStruct
     _SimpleStructAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleStructBuilder b) {}
   String? get value;
   @override
   List<Object?> get props => [value];

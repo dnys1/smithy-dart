@@ -16,8 +16,10 @@ abstract class DocumentTypeInputOutput
         _i2.AWSEquatable<DocumentTypeInputOutput>
     implements Built<DocumentTypeInputOutput, DocumentTypeInputOutputBuilder> {
   factory DocumentTypeInputOutput(
-          [void Function(DocumentTypeInputOutputBuilder) updates]) =
-      _$DocumentTypeInputOutput;
+      {_i3.JsonObject? documentValue, String? stringValue}) {
+    return _$DocumentTypeInputOutput._(
+        documentValue: documentValue, stringValue: stringValue);
+  }
 
   const DocumentTypeInputOutput._();
 
@@ -34,8 +36,6 @@ abstract class DocumentTypeInputOutput
     _DocumentTypeInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(DocumentTypeInputOutputBuilder b) {}
   _i3.JsonObject? get documentValue;
   String? get stringValue;
   @override

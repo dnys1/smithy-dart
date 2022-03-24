@@ -21,42 +21,44 @@ abstract class TestBodyStructureInputOutput
             TestBodyStructureInputOutputBuilder>,
         _i1.HasPayload<TestBodyStructureInputOutputPayload> {
   factory TestBodyStructureInputOutput(
-          [void Function(TestBodyStructureInputOutputBuilder) updates]) =
-      _$TestBodyStructureInputOutput;
+      {_i3.TestConfig? testConfig, String? testId}) {
+    return _$TestBodyStructureInputOutput._(
+        testConfig: testConfig, testId: testId);
+  }
 
   const TestBodyStructureInputOutput._();
 
   factory TestBodyStructureInputOutput.fromRequest(
-          TestBodyStructureInputOutputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      TestBodyStructureInputOutput((b) {
-        if (payload.testConfig != null) {
-          b.testConfig.replace(payload.testConfig!);
-        }
-        if (request.headers['x-amz-test-id'] != null) {
-          b.testId = request.headers['x-amz-test-id']!;
-        }
-      });
+      TestBodyStructureInputOutputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = TestBodyStructureInputOutputBuilder();
+    if (payload.testConfig != null) {
+      builder.testConfig.replace(payload.testConfig!);
+    }
+    if (request.headers['x-amz-test-id'] != null) {
+      builder.testId = request.headers['x-amz-test-id']!;
+    }
+    return builder.build();
+  }
 
   factory TestBodyStructureInputOutput.fromResponse(
-          TestBodyStructureInputOutputPayload payload,
-          _i2.AWSBaseHttpResponse response) =>
-      TestBodyStructureInputOutput((b) {
-        if (payload.testConfig != null) {
-          b.testConfig.replace(payload.testConfig!);
-        }
-        if (response.headers['x-amz-test-id'] != null) {
-          b.testId = response.headers['x-amz-test-id']!;
-        }
-      });
+      TestBodyStructureInputOutputPayload payload,
+      _i2.AWSBaseHttpResponse response) {
+    final builder = TestBodyStructureInputOutputBuilder();
+    if (payload.testConfig != null) {
+      builder.testConfig.replace(payload.testConfig!);
+    }
+    if (response.headers['x-amz-test-id'] != null) {
+      builder.testId = response.headers['x-amz-test-id']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestBodyStructureInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TestBodyStructureInputOutputBuilder b) {}
   _i3.TestConfig? get testConfig;
   String? get testId;
   @override

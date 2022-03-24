@@ -79,9 +79,7 @@ class MalformedFloatInputBuilder
   double? get floatInQuery => _$this._floatInQuery;
   set floatInQuery(double? floatInQuery) => _$this._floatInQuery = floatInQuery;
 
-  MalformedFloatInputBuilder() {
-    MalformedFloatInput._init(this);
-  }
+  MalformedFloatInputBuilder();
 
   MalformedFloatInputBuilder get _$this {
     final $v = _$v;

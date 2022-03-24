@@ -78,9 +78,7 @@ class MalformedByteInputBuilder
   int? get byteInQuery => _$this._byteInQuery;
   set byteInQuery(int? byteInQuery) => _$this._byteInQuery = byteInQuery;
 
-  MalformedByteInputBuilder() {
-    MalformedByteInput._init(this);
-  }
+  MalformedByteInputBuilder();
 
   MalformedByteInputBuilder get _$this {
     final $v = _$v;

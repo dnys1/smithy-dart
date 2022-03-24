@@ -14,9 +14,9 @@ abstract class InternalServerException
     implements
         Built<InternalServerException, InternalServerExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory InternalServerException(
-          [void Function(InternalServerExceptionBuilder) updates]) =
-      _$InternalServerException;
+  factory InternalServerException({int? code, String? message}) {
+    return _$InternalServerException._(code: code, message: message);
+  }
 
   const InternalServerException._();
 
@@ -30,8 +30,6 @@ abstract class InternalServerException
     _InternalServerExceptionAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(InternalServerExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

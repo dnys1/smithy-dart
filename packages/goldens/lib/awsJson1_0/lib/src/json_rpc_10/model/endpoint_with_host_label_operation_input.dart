@@ -16,9 +16,9 @@ abstract class EndpointWithHostLabelOperationInput
     implements
         Built<EndpointWithHostLabelOperationInput,
             EndpointWithHostLabelOperationInputBuilder> {
-  factory EndpointWithHostLabelOperationInput(
-          [void Function(EndpointWithHostLabelOperationInputBuilder) updates]) =
-      _$EndpointWithHostLabelOperationInput;
+  factory EndpointWithHostLabelOperationInput({required String label}) {
+    return _$EndpointWithHostLabelOperationInput._(label: label);
+  }
 
   const EndpointWithHostLabelOperationInput._();
 
@@ -32,8 +32,6 @@ abstract class EndpointWithHostLabelOperationInput
     _EndpointWithHostLabelOperationInputAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EndpointWithHostLabelOperationInputBuilder b) {}
   String get label;
   @override
   String labelFor(String key) {

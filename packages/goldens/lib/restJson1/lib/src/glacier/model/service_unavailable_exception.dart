@@ -15,8 +15,10 @@ abstract class ServiceUnavailableException
         Built<ServiceUnavailableException, ServiceUnavailableExceptionBuilder>,
         _i2.SmithyHttpException {
   factory ServiceUnavailableException(
-          [void Function(ServiceUnavailableExceptionBuilder) updates]) =
-      _$ServiceUnavailableException;
+      {String? code, String? message, String? type}) {
+    return _$ServiceUnavailableException._(
+        code: code, message: message, type: type);
+  }
 
   const ServiceUnavailableException._();
 
@@ -31,8 +33,6 @@ abstract class ServiceUnavailableException
     _ServiceUnavailableExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ServiceUnavailableExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

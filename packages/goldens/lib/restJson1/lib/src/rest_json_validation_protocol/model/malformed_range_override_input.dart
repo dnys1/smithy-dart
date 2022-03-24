@@ -16,8 +16,26 @@ abstract class MalformedRangeOverrideInput
     implements
         Built<MalformedRangeOverrideInput, MalformedRangeOverrideInputBuilder> {
   factory MalformedRangeOverrideInput(
-          [void Function(MalformedRangeOverrideInputBuilder) updates]) =
-      _$MalformedRangeOverrideInput;
+      {int? byte,
+      double? float,
+      int? maxByte,
+      double? maxFloat,
+      int? minByte,
+      double? minFloat}) {
+    byte ??= 0;
+    float ??= 0;
+    maxByte ??= 0;
+    maxFloat ??= 0;
+    minByte ??= 0;
+    minFloat ??= 0;
+    return _$MalformedRangeOverrideInput._(
+        byte: byte,
+        float: float,
+        maxByte: maxByte,
+        maxFloat: maxFloat,
+        minByte: minByte,
+        minFloat: minFloat);
+  }
 
   const MalformedRangeOverrideInput._();
 
@@ -29,16 +47,6 @@ abstract class MalformedRangeOverrideInput
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedRangeOverrideInputRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedRangeOverrideInputBuilder b) {
-    b.byte = 0;
-    b.float = 0;
-    b.maxByte = 0;
-    b.maxFloat = 0;
-    b.minByte = 0;
-    b.minFloat = 0;
-  }
 
   int get byte;
   double get float;

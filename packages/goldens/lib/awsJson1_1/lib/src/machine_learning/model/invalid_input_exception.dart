@@ -14,9 +14,9 @@ abstract class InvalidInputException
     implements
         Built<InvalidInputException, InvalidInputExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory InvalidInputException(
-          [void Function(InvalidInputExceptionBuilder) updates]) =
-      _$InvalidInputException;
+  factory InvalidInputException({int? code, String? message}) {
+    return _$InvalidInputException._(code: code, message: message);
+  }
 
   const InvalidInputException._();
 
@@ -30,8 +30,6 @@ abstract class InvalidInputException
     _InvalidInputExceptionAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(InvalidInputExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

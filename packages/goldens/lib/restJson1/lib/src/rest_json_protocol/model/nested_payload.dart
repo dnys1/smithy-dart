@@ -12,8 +12,9 @@ part 'nested_payload.g.dart';
 abstract class NestedPayload
     with _i1.AWSEquatable<NestedPayload>
     implements Built<NestedPayload, NestedPayloadBuilder> {
-  factory NestedPayload([void Function(NestedPayloadBuilder) updates]) =
-      _$NestedPayload;
+  factory NestedPayload({String? greeting, String? name}) {
+    return _$NestedPayload._(greeting: greeting, name: name);
+  }
 
   const NestedPayload._();
 
@@ -21,8 +22,6 @@ abstract class NestedPayload
     _NestedPayloadRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(NestedPayloadBuilder b) {}
   String? get greeting;
   String? get name;
   @override

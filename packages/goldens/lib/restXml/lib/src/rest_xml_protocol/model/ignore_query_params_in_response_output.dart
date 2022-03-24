@@ -15,9 +15,9 @@ abstract class IgnoreQueryParamsInResponseOutput
     implements
         Built<IgnoreQueryParamsInResponseOutput,
             IgnoreQueryParamsInResponseOutputBuilder> {
-  factory IgnoreQueryParamsInResponseOutput(
-          [void Function(IgnoreQueryParamsInResponseOutputBuilder) updates]) =
-      _$IgnoreQueryParamsInResponseOutput;
+  factory IgnoreQueryParamsInResponseOutput({String? baz}) {
+    return _$IgnoreQueryParamsInResponseOutput._(baz: baz);
+  }
 
   const IgnoreQueryParamsInResponseOutput._();
 
@@ -30,8 +30,6 @@ abstract class IgnoreQueryParamsInResponseOutput
     _IgnoreQueryParamsInResponseOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(IgnoreQueryParamsInResponseOutputBuilder b) {}
   String? get baz;
   @override
   List<Object?> get props => [baz];

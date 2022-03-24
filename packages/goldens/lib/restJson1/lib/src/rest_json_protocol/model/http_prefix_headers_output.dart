@@ -18,30 +18,29 @@ abstract class HttpPrefixHeadersOutput
         _i2.EmptyPayload,
         _i2.HasPayload<HttpPrefixHeadersOutputPayload> {
   factory HttpPrefixHeadersOutput(
-          [void Function(HttpPrefixHeadersOutputBuilder) updates]) =
-      _$HttpPrefixHeadersOutput;
+      {String? foo, _i3.BuiltMap<String, String>? fooMap}) {
+    return _$HttpPrefixHeadersOutput._(foo: foo, fooMap: fooMap);
+  }
 
   const HttpPrefixHeadersOutput._();
 
   factory HttpPrefixHeadersOutput.fromResponse(
-          HttpPrefixHeadersOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      HttpPrefixHeadersOutput((b) {
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-        b.fooMap.addEntries(response.headers.entries
-            .where((el) => el.key.startsWith('X-Foo-'))
-            .map(
-                (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
-      });
+      HttpPrefixHeadersOutputPayload payload,
+      _i1.AWSBaseHttpResponse response) {
+    final builder = HttpPrefixHeadersOutputBuilder();
+    if (response.headers['X-Foo'] != null) {
+      builder.foo = response.headers['X-Foo']!;
+    }
+    builder.fooMap.addEntries(response.headers.entries
+        .where((el) => el.key.startsWith('X-Foo-'))
+        .map((el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _HttpPrefixHeadersOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPrefixHeadersOutputBuilder b) {}
   String? get foo;
   _i3.BuiltMap<String, String>? get fooMap;
   @override

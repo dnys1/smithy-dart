@@ -54,9 +54,7 @@ class QueryPrecedenceInputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  QueryPrecedenceInputBuilder() {
-    QueryPrecedenceInput._init(this);
-  }
+  QueryPrecedenceInputBuilder();
 
   QueryPrecedenceInputBuilder get _$this {
     final $v = _$v;

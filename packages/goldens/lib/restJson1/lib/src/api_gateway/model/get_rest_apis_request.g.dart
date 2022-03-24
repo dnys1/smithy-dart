@@ -53,9 +53,7 @@ class GetRestApisRequestBuilder
   String? get position => _$this._position;
   set position(String? position) => _$this._position = position;
 
-  GetRestApisRequestBuilder() {
-    GetRestApisRequest._init(this);
-  }
+  GetRestApisRequestBuilder();
 
   GetRestApisRequestBuilder get _$this {
     final $v = _$v;

@@ -51,9 +51,7 @@ class HttpRequestWithRegexLiteralInputBuilder
   String? get str => _$this._str;
   set str(String? str) => _$this._str = str;
 
-  HttpRequestWithRegexLiteralInputBuilder() {
-    HttpRequestWithRegexLiteralInput._init(this);
-  }
+  HttpRequestWithRegexLiteralInputBuilder();
 
   HttpRequestWithRegexLiteralInputBuilder get _$this {
     final $v = _$v;

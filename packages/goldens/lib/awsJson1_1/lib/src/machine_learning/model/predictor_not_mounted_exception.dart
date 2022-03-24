@@ -16,9 +16,9 @@ abstract class PredictorNotMountedException
         Built<PredictorNotMountedException,
             PredictorNotMountedExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory PredictorNotMountedException(
-          [void Function(PredictorNotMountedExceptionBuilder) updates]) =
-      _$PredictorNotMountedException;
+  factory PredictorNotMountedException({String? message}) {
+    return _$PredictorNotMountedException._(message: message);
+  }
 
   const PredictorNotMountedException._();
 
@@ -33,8 +33,6 @@ abstract class PredictorNotMountedException
     _PredictorNotMountedExceptionAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PredictorNotMountedExceptionBuilder b) {}
   @override
   String? get message;
   @override

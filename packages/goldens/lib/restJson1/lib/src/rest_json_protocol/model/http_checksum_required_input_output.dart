@@ -16,9 +16,9 @@ abstract class HttpChecksumRequiredInputOutput
     implements
         Built<HttpChecksumRequiredInputOutput,
             HttpChecksumRequiredInputOutputBuilder> {
-  factory HttpChecksumRequiredInputOutput(
-          [void Function(HttpChecksumRequiredInputOutputBuilder) updates]) =
-      _$HttpChecksumRequiredInputOutput;
+  factory HttpChecksumRequiredInputOutput({String? foo}) {
+    return _$HttpChecksumRequiredInputOutput._(foo: foo);
+  }
 
   const HttpChecksumRequiredInputOutput._();
 
@@ -37,8 +37,6 @@ abstract class HttpChecksumRequiredInputOutput
     _HttpChecksumRequiredInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpChecksumRequiredInputOutputBuilder b) {}
   String? get foo;
   @override
   HttpChecksumRequiredInputOutput getPayload() => this;

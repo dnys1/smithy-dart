@@ -19,8 +19,9 @@ abstract class XmlMapsXmlNameInputOutput
     implements
         Built<XmlMapsXmlNameInputOutput, XmlMapsXmlNameInputOutputBuilder> {
   factory XmlMapsXmlNameInputOutput(
-          [void Function(XmlMapsXmlNameInputOutputBuilder) updates]) =
-      _$XmlMapsXmlNameInputOutput;
+      {_i3.BuiltMap<String, _i4.GreetingStruct>? myMap}) {
+    return _$XmlMapsXmlNameInputOutput._(myMap: myMap);
+  }
 
   const XmlMapsXmlNameInputOutput._();
 
@@ -38,8 +39,6 @@ abstract class XmlMapsXmlNameInputOutput
     _XmlMapsXmlNameInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlMapsXmlNameInputOutputBuilder b) {}
   _i3.BuiltMap<String, _i4.GreetingStruct>? get myMap;
   @override
   XmlMapsXmlNameInputOutput getPayload() => this;

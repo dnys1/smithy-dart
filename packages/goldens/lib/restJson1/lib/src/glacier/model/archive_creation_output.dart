@@ -17,32 +17,32 @@ abstract class ArchiveCreationOutput
         _i2.EmptyPayload,
         _i2.HasPayload<ArchiveCreationOutputPayload> {
   factory ArchiveCreationOutput(
-          [void Function(ArchiveCreationOutputBuilder) updates]) =
-      _$ArchiveCreationOutput;
+      {String? archiveId, String? checksum, String? location}) {
+    return _$ArchiveCreationOutput._(
+        archiveId: archiveId, checksum: checksum, location: location);
+  }
 
   const ArchiveCreationOutput._();
 
   factory ArchiveCreationOutput.fromResponse(
-          ArchiveCreationOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      ArchiveCreationOutput((b) {
-        if (response.headers['Location'] != null) {
-          b.location = response.headers['Location']!;
-        }
-        if (response.headers['x-amz-sha256-tree-hash'] != null) {
-          b.checksum = response.headers['x-amz-sha256-tree-hash']!;
-        }
-        if (response.headers['x-amz-archive-id'] != null) {
-          b.archiveId = response.headers['x-amz-archive-id']!;
-        }
-      });
+      ArchiveCreationOutputPayload payload, _i1.AWSBaseHttpResponse response) {
+    final builder = ArchiveCreationOutputBuilder();
+    if (response.headers['Location'] != null) {
+      builder.location = response.headers['Location']!;
+    }
+    if (response.headers['x-amz-sha256-tree-hash'] != null) {
+      builder.checksum = response.headers['x-amz-sha256-tree-hash']!;
+    }
+    if (response.headers['x-amz-archive-id'] != null) {
+      builder.archiveId = response.headers['x-amz-archive-id']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _ArchiveCreationOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ArchiveCreationOutputBuilder b) {}
   String? get archiveId;
   String? get checksum;
   String? get location;

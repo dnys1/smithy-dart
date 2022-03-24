@@ -55,9 +55,7 @@ class MalformedSetInputBuilder
       _$this._set ??= new _i3.SetBuilder<String>();
   set set(_i3.SetBuilder<String>? set) => _$this._set = set;
 
-  MalformedSetInputBuilder() {
-    MalformedSetInput._init(this);
-  }
+  MalformedSetInputBuilder();
 
   MalformedSetInputBuilder get _$this {
     final $v = _$v;

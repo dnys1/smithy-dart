@@ -59,9 +59,7 @@ class ConstantAndVariableQueryStringInputBuilder
   String? get maybeSet => _$this._maybeSet;
   set maybeSet(String? maybeSet) => _$this._maybeSet = maybeSet;
 
-  ConstantAndVariableQueryStringInputBuilder() {
-    ConstantAndVariableQueryStringInput._init(this);
-  }
+  ConstantAndVariableQueryStringInputBuilder();
 
   ConstantAndVariableQueryStringInputBuilder get _$this {
     final $v = _$v;

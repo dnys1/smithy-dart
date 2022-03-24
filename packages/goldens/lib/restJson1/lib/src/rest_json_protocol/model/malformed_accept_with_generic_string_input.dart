@@ -19,25 +19,24 @@ abstract class MalformedAcceptWithGenericStringInput
         Built<MalformedAcceptWithGenericStringInput,
             MalformedAcceptWithGenericStringInputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
-  factory MalformedAcceptWithGenericStringInput(
-      [void Function(MalformedAcceptWithGenericStringInputBuilder)
-          updates]) = _$MalformedAcceptWithGenericStringInput;
+  factory MalformedAcceptWithGenericStringInput({_i2.Uint8List? payload}) {
+    return _$MalformedAcceptWithGenericStringInput._(payload: payload);
+  }
 
   const MalformedAcceptWithGenericStringInput._();
 
   factory MalformedAcceptWithGenericStringInput.fromRequest(
-          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      MalformedAcceptWithGenericStringInput((b) {
-        b.payload = payload;
-      });
+      _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = MalformedAcceptWithGenericStringInputBuilder();
+    builder.payload = payload;
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedAcceptWithGenericStringInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedAcceptWithGenericStringInputBuilder b) {}
   _i2.Uint8List? get payload;
   @override
   _i2.Uint8List? getPayload() => payload;

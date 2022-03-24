@@ -15,8 +15,26 @@ abstract class MalformedRangeInput
         _i2.AWSEquatable<MalformedRangeInput>
     implements Built<MalformedRangeInput, MalformedRangeInputBuilder> {
   factory MalformedRangeInput(
-          [void Function(MalformedRangeInputBuilder) updates]) =
-      _$MalformedRangeInput;
+      {int? byte,
+      double? float,
+      int? maxByte,
+      double? maxFloat,
+      int? minByte,
+      double? minFloat}) {
+    byte ??= 0;
+    float ??= 0;
+    maxByte ??= 0;
+    maxFloat ??= 0;
+    minByte ??= 0;
+    minFloat ??= 0;
+    return _$MalformedRangeInput._(
+        byte: byte,
+        float: float,
+        maxByte: maxByte,
+        maxFloat: maxFloat,
+        minByte: minByte,
+        minFloat: minFloat);
+  }
 
   const MalformedRangeInput._();
 
@@ -28,16 +46,6 @@ abstract class MalformedRangeInput
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedRangeInputRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedRangeInputBuilder b) {
-    b.byte = 0;
-    b.float = 0;
-    b.maxByte = 0;
-    b.maxFloat = 0;
-    b.minByte = 0;
-    b.minFloat = 0;
-  }
 
   int get byte;
   double get float;

@@ -80,9 +80,7 @@ class MalformedDoubleInputBuilder
   set doubleInQuery(double? doubleInQuery) =>
       _$this._doubleInQuery = doubleInQuery;
 
-  MalformedDoubleInputBuilder() {
-    MalformedDoubleInput._init(this);
-  }
+  MalformedDoubleInputBuilder();
 
   MalformedDoubleInputBuilder get _$this {
     final $v = _$v;

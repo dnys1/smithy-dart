@@ -12,8 +12,9 @@ part 'renamed_greeting.g.dart';
 abstract class RenamedGreeting
     with _i1.AWSEquatable<RenamedGreeting>
     implements Built<RenamedGreeting, RenamedGreetingBuilder> {
-  factory RenamedGreeting([void Function(RenamedGreetingBuilder) updates]) =
-      _$RenamedGreeting;
+  factory RenamedGreeting({String? salutation}) {
+    return _$RenamedGreeting._(salutation: salutation);
+  }
 
   const RenamedGreeting._();
 
@@ -21,8 +22,6 @@ abstract class RenamedGreeting
     _RenamedGreetingRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RenamedGreetingBuilder b) {}
   String? get salutation;
   @override
   List<Object?> get props => [salutation];

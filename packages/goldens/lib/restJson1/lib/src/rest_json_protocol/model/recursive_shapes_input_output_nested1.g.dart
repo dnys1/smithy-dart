@@ -11,7 +11,7 @@ class _$RecursiveShapesInputOutputNested1
   @override
   final String? foo;
   @override
-  final _i3.RecursiveShapesInputOutputNested2? nested;
+  final _i2.RecursiveShapesInputOutputNested2? nested;
 
   factory _$RecursiveShapesInputOutputNested1(
           [void Function(RecursiveShapesInputOutputNested1Builder)? updates]) =>
@@ -52,15 +52,13 @@ class RecursiveShapesInputOutputNested1Builder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  _i3.RecursiveShapesInputOutputNested2Builder? _nested;
-  _i3.RecursiveShapesInputOutputNested2Builder get nested =>
-      _$this._nested ??= new _i3.RecursiveShapesInputOutputNested2Builder();
-  set nested(_i3.RecursiveShapesInputOutputNested2Builder? nested) =>
+  _i2.RecursiveShapesInputOutputNested2Builder? _nested;
+  _i2.RecursiveShapesInputOutputNested2Builder get nested =>
+      _$this._nested ??= new _i2.RecursiveShapesInputOutputNested2Builder();
+  set nested(_i2.RecursiveShapesInputOutputNested2Builder? nested) =>
       _$this._nested = nested;
 
-  RecursiveShapesInputOutputNested1Builder() {
-    RecursiveShapesInputOutputNested1._init(this);
-  }
+  RecursiveShapesInputOutputNested1Builder();
 
   RecursiveShapesInputOutputNested1Builder get _$this {
     final $v = _$v;

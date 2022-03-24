@@ -17,8 +17,9 @@ abstract class ComplexError
     implements
         Built<ComplexError, ComplexErrorBuilder>,
         _i2.SmithyHttpException {
-  factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
-      _$ComplexError;
+  factory ComplexError({_i3.ComplexNestedErrorData? nested, String? topLevel}) {
+    return _$ComplexError._(nested: nested, topLevel: topLevel);
+  }
 
   const ComplexError._();
 
@@ -33,8 +34,6 @@ abstract class ComplexError
     _ComplexErrorAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ComplexErrorBuilder b) {}
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override

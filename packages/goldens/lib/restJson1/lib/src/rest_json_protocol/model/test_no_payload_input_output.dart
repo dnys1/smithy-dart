@@ -18,37 +18,36 @@ abstract class TestNoPayloadInputOutput
         Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<TestNoPayloadInputOutputPayload> {
-  factory TestNoPayloadInputOutput(
-          [void Function(TestNoPayloadInputOutputBuilder) updates]) =
-      _$TestNoPayloadInputOutput;
+  factory TestNoPayloadInputOutput({String? testId}) {
+    return _$TestNoPayloadInputOutput._(testId: testId);
+  }
 
   const TestNoPayloadInputOutput._();
 
   factory TestNoPayloadInputOutput.fromRequest(
-          TestNoPayloadInputOutputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      TestNoPayloadInputOutput((b) {
-        if (request.headers['X-Amz-Test-Id'] != null) {
-          b.testId = request.headers['X-Amz-Test-Id']!;
-        }
-      });
+      TestNoPayloadInputOutputPayload payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = TestNoPayloadInputOutputBuilder();
+    if (request.headers['X-Amz-Test-Id'] != null) {
+      builder.testId = request.headers['X-Amz-Test-Id']!;
+    }
+    return builder.build();
+  }
 
   factory TestNoPayloadInputOutput.fromResponse(
-          TestNoPayloadInputOutputPayload payload,
-          _i2.AWSBaseHttpResponse response) =>
-      TestNoPayloadInputOutput((b) {
-        if (response.headers['X-Amz-Test-Id'] != null) {
-          b.testId = response.headers['X-Amz-Test-Id']!;
-        }
-      });
+      TestNoPayloadInputOutputPayload payload,
+      _i2.AWSBaseHttpResponse response) {
+    final builder = TestNoPayloadInputOutputBuilder();
+    if (response.headers['X-Amz-Test-Id'] != null) {
+      builder.testId = response.headers['X-Amz-Test-Id']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestNoPayloadInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TestNoPayloadInputOutputBuilder b) {}
   String? get testId;
   @override
   TestNoPayloadInputOutputPayload getPayload() =>

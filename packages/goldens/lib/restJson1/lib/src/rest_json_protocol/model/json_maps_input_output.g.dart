@@ -161,9 +161,7 @@ class JsonMapsInputOutputBuilder
           _i3.MapBuilder<String, _i4.GreetingStruct?>? sparseStructMap) =>
       _$this._sparseStructMap = sparseStructMap;
 
-  JsonMapsInputOutputBuilder() {
-    JsonMapsInputOutput._init(this);
-  }
+  JsonMapsInputOutputBuilder();
 
   JsonMapsInputOutputBuilder get _$this {
     final $v = _$v;

@@ -52,9 +52,7 @@ class MalformedAcceptWithGenericStringInputBuilder
   _i2.Uint8List? get payload => _$this._payload;
   set payload(_i2.Uint8List? payload) => _$this._payload = payload;
 
-  MalformedAcceptWithGenericStringInputBuilder() {
-    MalformedAcceptWithGenericStringInput._init(this);
-  }
+  MalformedAcceptWithGenericStringInputBuilder();
 
   MalformedAcceptWithGenericStringInputBuilder get _$this {
     final $v = _$v;

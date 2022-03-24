@@ -20,8 +20,20 @@ abstract class MalformedLengthOverrideInput
         Built<MalformedLengthOverrideInput,
             MalformedLengthOverrideInputBuilder> {
   factory MalformedLengthOverrideInput(
-          [void Function(MalformedLengthOverrideInputBuilder) updates]) =
-      _$MalformedLengthOverrideInput;
+      {_i3.Uint8List? blob,
+      _i4.BuiltList<String>? list,
+      _i4.BuiltListMultimap<String, String>? map,
+      String? maxString,
+      String? minString,
+      String? string}) {
+    return _$MalformedLengthOverrideInput._(
+        blob: blob,
+        list: list,
+        map: map,
+        maxString: maxString,
+        minString: minString,
+        string: string);
+  }
 
   const MalformedLengthOverrideInput._();
 
@@ -34,8 +46,6 @@ abstract class MalformedLengthOverrideInput
     _MalformedLengthOverrideInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedLengthOverrideInputBuilder b) {}
   _i3.Uint8List? get blob;
   _i4.BuiltList<String>? get list;
   _i4.BuiltListMultimap<String, String>? get map;

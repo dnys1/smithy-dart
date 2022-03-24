@@ -17,7 +17,9 @@ abstract class FooError
         Built<FooError, FooErrorBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
+  factory FooError() {
+    return _$FooError._();
+  }
 
   const FooError._();
 
@@ -31,8 +33,6 @@ abstract class FooError
     _FooErrorRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(FooErrorBuilder b) {}
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
       namespace: 'aws.protocoltests.restjson', shape: 'FooError');

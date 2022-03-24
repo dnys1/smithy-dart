@@ -12,8 +12,9 @@ part 'empty_struct.g.dart';
 abstract class EmptyStruct
     with _i1.AWSEquatable<EmptyStruct>
     implements Built<EmptyStruct, EmptyStructBuilder>, _i2.EmptyPayload {
-  factory EmptyStruct([void Function(EmptyStructBuilder) updates]) =
-      _$EmptyStruct;
+  factory EmptyStruct() {
+    return _$EmptyStruct._();
+  }
 
   const EmptyStruct._();
 
@@ -21,8 +22,6 @@ abstract class EmptyStruct
     _EmptyStructAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EmptyStructBuilder b) {}
   @override
   List<Object?> get props => [];
   @override

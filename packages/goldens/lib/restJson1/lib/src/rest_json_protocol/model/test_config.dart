@@ -12,7 +12,9 @@ part 'test_config.g.dart';
 abstract class TestConfig
     with _i1.AWSEquatable<TestConfig>
     implements Built<TestConfig, TestConfigBuilder> {
-  factory TestConfig([void Function(TestConfigBuilder) updates]) = _$TestConfig;
+  factory TestConfig({int? timeout}) {
+    return _$TestConfig._(timeout: timeout);
+  }
 
   const TestConfig._();
 
@@ -20,8 +22,6 @@ abstract class TestConfig
     _TestConfigRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TestConfigBuilder b) {}
   int? get timeout;
   @override
   List<Object?> get props => [timeout];

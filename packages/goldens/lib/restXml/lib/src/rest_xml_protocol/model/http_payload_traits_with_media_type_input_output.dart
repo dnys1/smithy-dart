@@ -20,36 +20,37 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
             HttpPayloadTraitsWithMediaTypeInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory HttpPayloadTraitsWithMediaTypeInputOutput(
-      [void Function(HttpPayloadTraitsWithMediaTypeInputOutputBuilder)
-          updates]) = _$HttpPayloadTraitsWithMediaTypeInputOutput;
+      {_i2.Uint8List? blob, String? foo}) {
+    return _$HttpPayloadTraitsWithMediaTypeInputOutput._(blob: blob, foo: foo);
+  }
 
   const HttpPayloadTraitsWithMediaTypeInputOutput._();
 
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromRequest(
-          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
-        b.blob = payload;
-        if (request.headers['X-Foo'] != null) {
-          b.foo = request.headers['X-Foo']!;
-        }
-      });
+      _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HttpPayloadTraitsWithMediaTypeInputOutputBuilder();
+    builder.blob = payload;
+    if (request.headers['X-Foo'] != null) {
+      builder.foo = request.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromResponse(
-          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
-        b.blob = payload;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = HttpPayloadTraitsWithMediaTypeInputOutputBuilder();
+    builder.blob = payload;
+    if (response.headers['X-Foo'] != null) {
+      builder.foo = response.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadTraitsWithMediaTypeInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPayloadTraitsWithMediaTypeInputOutputBuilder b) {}
   _i2.Uint8List? get blob;
   String? get foo;
   @override

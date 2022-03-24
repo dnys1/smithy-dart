@@ -15,8 +15,9 @@ abstract class NoSuchBucket
         Built<NoSuchBucket, NoSuchBucketBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory NoSuchBucket([void Function(NoSuchBucketBuilder) updates]) =
-      _$NoSuchBucket;
+  factory NoSuchBucket() {
+    return _$NoSuchBucket._();
+  }
 
   const NoSuchBucket._();
 
@@ -31,8 +32,6 @@ abstract class NoSuchBucket
     _NoSuchBucketRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(NoSuchBucketBuilder b) {}
   @override
   _i2.ShapeId get shapeId =>
       const _i2.ShapeId(namespace: 'com.amazonaws.s3', shape: 'NoSuchBucket');

@@ -19,28 +19,27 @@ abstract class MalformedLengthQueryStringInput
             MalformedLengthQueryStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedLengthQueryStringInputPayload> {
-  factory MalformedLengthQueryStringInput(
-          [void Function(MalformedLengthQueryStringInputBuilder) updates]) =
-      _$MalformedLengthQueryStringInput;
+  factory MalformedLengthQueryStringInput({String? string}) {
+    return _$MalformedLengthQueryStringInput._(string: string);
+  }
 
   const MalformedLengthQueryStringInput._();
 
   factory MalformedLengthQueryStringInput.fromRequest(
-          MalformedLengthQueryStringInputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      MalformedLengthQueryStringInput((b) {
-        if (request.queryParameters['string'] != null) {
-          b.string = request.queryParameters['string']!;
-        }
-      });
+      MalformedLengthQueryStringInputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = MalformedLengthQueryStringInputBuilder();
+    if (request.queryParameters['string'] != null) {
+      builder.string = request.queryParameters['string']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedLengthQueryStringInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedLengthQueryStringInputBuilder b) {}
   String? get string;
   @override
   MalformedLengthQueryStringInputPayload getPayload() =>

@@ -15,8 +15,10 @@ abstract class ResourceNotFoundException
         Built<ResourceNotFoundException, ResourceNotFoundExceptionBuilder>,
         _i2.SmithyHttpException {
   factory ResourceNotFoundException(
-          [void Function(ResourceNotFoundExceptionBuilder) updates]) =
-      _$ResourceNotFoundException;
+      {String? code, String? message, String? type}) {
+    return _$ResourceNotFoundException._(
+        code: code, message: message, type: type);
+  }
 
   const ResourceNotFoundException._();
 
@@ -31,8 +33,6 @@ abstract class ResourceNotFoundException
     _ResourceNotFoundExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ResourceNotFoundExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

@@ -14,31 +14,31 @@ abstract class StringPayloadInput
     implements
         Built<StringPayloadInput, StringPayloadInputBuilder>,
         _i1.HasPayload<String> {
-  factory StringPayloadInput(
-          [void Function(StringPayloadInputBuilder) updates]) =
-      _$StringPayloadInput;
+  factory StringPayloadInput({String? payload}) {
+    return _$StringPayloadInput._(payload: payload);
+  }
 
   const StringPayloadInput._();
 
   factory StringPayloadInput.fromRequest(
-          String? payload, _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      StringPayloadInput((b) {
-        b.payload = payload;
-      });
+      String? payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = StringPayloadInputBuilder();
+    builder.payload = payload;
+    return builder.build();
+  }
 
   factory StringPayloadInput.fromResponse(
-          String? payload, _i2.AWSBaseHttpResponse response) =>
-      StringPayloadInput((b) {
-        b.payload = payload;
-      });
+      String? payload, _i2.AWSBaseHttpResponse response) {
+    final builder = StringPayloadInputBuilder();
+    builder.payload = payload;
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _StringPayloadInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(StringPayloadInputBuilder b) {}
   String? get payload;
   @override
   String? getPayload() => payload;

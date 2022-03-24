@@ -15,9 +15,9 @@ abstract class SensitiveValidationInput
         _i2.AWSEquatable<SensitiveValidationInput>
     implements
         Built<SensitiveValidationInput, SensitiveValidationInputBuilder> {
-  factory SensitiveValidationInput(
-          [void Function(SensitiveValidationInputBuilder) updates]) =
-      _$SensitiveValidationInput;
+  factory SensitiveValidationInput({String? string}) {
+    return _$SensitiveValidationInput._(string: string);
+  }
 
   const SensitiveValidationInput._();
 
@@ -30,8 +30,6 @@ abstract class SensitiveValidationInput
     _SensitiveValidationInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SensitiveValidationInputBuilder b) {}
   String? get string;
   @override
   SensitiveValidationInput getPayload() => this;

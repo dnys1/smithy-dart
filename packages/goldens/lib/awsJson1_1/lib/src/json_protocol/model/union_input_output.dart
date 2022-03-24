@@ -14,8 +14,9 @@ part 'union_input_output.g.dart';
 abstract class UnionInputOutput
     with _i1.HttpInput<UnionInputOutput>, _i2.AWSEquatable<UnionInputOutput>
     implements Built<UnionInputOutput, UnionInputOutputBuilder> {
-  factory UnionInputOutput([void Function(UnionInputOutputBuilder) updates]) =
-      _$UnionInputOutput;
+  factory UnionInputOutput({_i3.MyUnion? contents}) {
+    return _$UnionInputOutput._(contents: contents);
+  }
 
   const UnionInputOutput._();
 
@@ -31,9 +32,6 @@ abstract class UnionInputOutput
   static const List<_i1.SmithySerializer> serializers = [
     _UnionInputOutputAwsJson11Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(UnionInputOutputBuilder b) {}
 
   /// A union with a representative set of types for members.
   _i3.MyUnion? get contents;

@@ -16,9 +16,9 @@ abstract class XmlBlobsInputOutput
         _i1.HttpInput<XmlBlobsInputOutput>,
         _i2.AWSEquatable<XmlBlobsInputOutput>
     implements Built<XmlBlobsInputOutput, XmlBlobsInputOutputBuilder> {
-  factory XmlBlobsInputOutput(
-          [void Function(XmlBlobsInputOutputBuilder) updates]) =
-      _$XmlBlobsInputOutput;
+  factory XmlBlobsInputOutput({_i3.Uint8List? data}) {
+    return _$XmlBlobsInputOutput._(data: data);
+  }
 
   const XmlBlobsInputOutput._();
 
@@ -35,8 +35,6 @@ abstract class XmlBlobsInputOutput
     _XmlBlobsInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlBlobsInputOutputBuilder b) {}
   _i3.Uint8List? get data;
   @override
   XmlBlobsInputOutput getPayload() => this;

@@ -16,27 +16,26 @@ abstract class GreetingWithErrorsOutput
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<GreetingWithErrorsOutputPayload> {
-  factory GreetingWithErrorsOutput(
-          [void Function(GreetingWithErrorsOutputBuilder) updates]) =
-      _$GreetingWithErrorsOutput;
+  factory GreetingWithErrorsOutput({String? greeting}) {
+    return _$GreetingWithErrorsOutput._(greeting: greeting);
+  }
 
   const GreetingWithErrorsOutput._();
 
   factory GreetingWithErrorsOutput.fromResponse(
-          GreetingWithErrorsOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      GreetingWithErrorsOutput((b) {
-        if (response.headers['X-Greeting'] != null) {
-          b.greeting = response.headers['X-Greeting']!;
-        }
-      });
+      GreetingWithErrorsOutputPayload payload,
+      _i1.AWSBaseHttpResponse response) {
+    final builder = GreetingWithErrorsOutputBuilder();
+    if (response.headers['X-Greeting'] != null) {
+      builder.greeting = response.headers['X-Greeting']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _GreetingWithErrorsOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
   @override
   GreetingWithErrorsOutputPayload getPayload() =>

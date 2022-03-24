@@ -16,8 +16,10 @@ abstract class SimpleScalarPropertiesOutput
         Built<SimpleScalarPropertiesOutput,
             SimpleScalarPropertiesOutputBuilder> {
   factory SimpleScalarPropertiesOutput(
-          [void Function(SimpleScalarPropertiesOutputBuilder) updates]) =
-      _$SimpleScalarPropertiesOutput;
+      {double? doubleValue, double? floatValue}) {
+    return _$SimpleScalarPropertiesOutput._(
+        doubleValue: doubleValue, floatValue: floatValue);
+  }
 
   const SimpleScalarPropertiesOutput._();
 
@@ -30,8 +32,6 @@ abstract class SimpleScalarPropertiesOutput
     _SimpleScalarPropertiesOutputAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(SimpleScalarPropertiesOutputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
   @override

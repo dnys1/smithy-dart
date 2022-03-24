@@ -14,9 +14,9 @@ abstract class BadRequestException
     implements
         Built<BadRequestException, BadRequestExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory BadRequestException(
-          [void Function(BadRequestExceptionBuilder) updates]) =
-      _$BadRequestException;
+  factory BadRequestException({String? message}) {
+    return _$BadRequestException._(message: message);
+  }
 
   const BadRequestException._();
 
@@ -30,8 +30,6 @@ abstract class BadRequestException
     _BadRequestExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(BadRequestExceptionBuilder b) {}
   @override
   String? get message;
   @override

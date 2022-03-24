@@ -62,9 +62,7 @@ class ArchiveCreationOutputBuilder
   String? get location => _$this._location;
   set location(String? location) => _$this._location = location;
 
-  ArchiveCreationOutputBuilder() {
-    ArchiveCreationOutput._init(this);
-  }
+  ArchiveCreationOutputBuilder();
 
   ArchiveCreationOutputBuilder get _$this {
     final $v = _$v;

@@ -70,9 +70,7 @@ class PredictInputBuilder
       _$this._record ??= new _i3.MapBuilder<String, String>();
   set record(_i3.MapBuilder<String, String>? record) => _$this._record = record;
 
-  PredictInputBuilder() {
-    PredictInput._init(this);
-  }
+  PredictInputBuilder();
 
   PredictInputBuilder get _$this {
     final $v = _$v;

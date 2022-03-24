@@ -19,36 +19,37 @@ abstract class StreamingTraitsInputOutput
         Built<StreamingTraitsInputOutput, StreamingTraitsInputOutputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory StreamingTraitsInputOutput(
-          [void Function(StreamingTraitsInputOutputBuilder) updates]) =
-      _$StreamingTraitsInputOutput;
+      {_i2.Stream<List<int>>? blob, String? foo}) {
+    return _$StreamingTraitsInputOutput._(blob: blob, foo: foo);
+  }
 
   const StreamingTraitsInputOutput._();
 
   factory StreamingTraitsInputOutput.fromRequest(
-          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      StreamingTraitsInputOutput((b) {
-        b.blob = payload;
-        if (request.headers['X-Foo'] != null) {
-          b.foo = request.headers['X-Foo']!;
-        }
-      });
+      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = StreamingTraitsInputOutputBuilder();
+    builder.blob = payload;
+    if (request.headers['X-Foo'] != null) {
+      builder.foo = request.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   factory StreamingTraitsInputOutput.fromResponse(
-          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
-      StreamingTraitsInputOutput((b) {
-        b.blob = payload;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = StreamingTraitsInputOutputBuilder();
+    builder.blob = payload;
+    if (response.headers['X-Foo'] != null) {
+      builder.foo = response.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _StreamingTraitsInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(StreamingTraitsInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
   @override

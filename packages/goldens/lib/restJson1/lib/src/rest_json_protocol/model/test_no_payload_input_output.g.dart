@@ -46,9 +46,7 @@ class TestNoPayloadInputOutputBuilder
   String? get testId => _$this._testId;
   set testId(String? testId) => _$this._testId = testId;
 
-  TestNoPayloadInputOutputBuilder() {
-    TestNoPayloadInputOutput._init(this);
-  }
+  TestNoPayloadInputOutputBuilder();
 
   TestNoPayloadInputOutputBuilder get _$this {
     final $v = _$v;

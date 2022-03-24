@@ -54,9 +54,7 @@ class StreamingTraitsInputOutputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  StreamingTraitsInputOutputBuilder() {
-    StreamingTraitsInputOutput._init(this);
-  }
+  StreamingTraitsInputOutputBuilder();
 
   StreamingTraitsInputOutputBuilder get _$this {
     final $v = _$v;

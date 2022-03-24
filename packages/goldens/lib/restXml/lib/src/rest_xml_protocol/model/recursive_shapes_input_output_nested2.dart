@@ -6,8 +6,8 @@ import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/rest_xml_protocol/model/recursive_shapes_input_output_nested1.dart'
-    as _i3;
-import 'package:smithy/smithy.dart' as _i2;
+    as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'recursive_shapes_input_output_nested2.g.dart';
 
@@ -18,19 +18,19 @@ abstract class RecursiveShapesInputOutputNested2
         Built<RecursiveShapesInputOutputNested2,
             RecursiveShapesInputOutputNested2Builder> {
   factory RecursiveShapesInputOutputNested2(
-          [void Function(RecursiveShapesInputOutputNested2Builder) updates]) =
-      _$RecursiveShapesInputOutputNested2;
+      {String? bar, _i2.RecursiveShapesInputOutputNested1? recursiveMember}) {
+    return _$RecursiveShapesInputOutputNested2._(
+        bar: bar, recursiveMember: recursiveMember);
+  }
 
   const RecursiveShapesInputOutputNested2._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     _RecursiveShapesInputOutputNested2RestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RecursiveShapesInputOutputNested2Builder b) {}
   String? get bar;
-  _i3.RecursiveShapesInputOutputNested1? get recursiveMember;
+  _i2.RecursiveShapesInputOutputNested1? get recursiveMember;
   @override
   List<Object?> get props => [bar, recursiveMember];
   @override
@@ -44,7 +44,7 @@ abstract class RecursiveShapesInputOutputNested2
 }
 
 class _RecursiveShapesInputOutputNested2RestXmlSerializer
-    extends _i2.StructuredSmithySerializer<RecursiveShapesInputOutputNested2> {
+    extends _i3.StructuredSmithySerializer<RecursiveShapesInputOutputNested2> {
   const _RecursiveShapesInputOutputNested2RestXmlSerializer()
       : super('RecursiveShapesInputOutputNested2');
 
@@ -54,8 +54,8 @@ class _RecursiveShapesInputOutputNested2RestXmlSerializer
         _$RecursiveShapesInputOutputNested2
       ];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
+  Iterable<_i3.ShapeId> get supportedProtocols =>
+      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
   @override
   RecursiveShapesInputOutputNested2 deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -77,8 +77,8 @@ class _RecursiveShapesInputOutputNested2RestXmlSerializer
           if (value != null) {
             result.recursiveMember.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i3.RecursiveShapesInputOutputNested1))
-                as _i3.RecursiveShapesInputOutputNested1));
+                        const FullType(_i2.RecursiveShapesInputOutputNested1))
+                as _i2.RecursiveShapesInputOutputNested1));
           }
           break;
       }
@@ -92,20 +92,20 @@ class _RecursiveShapesInputOutputNested2RestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as RecursiveShapesInputOutputNested2);
     final result = <Object?>[
-      _i2.XmlElementName('RecursiveShapesInputOutputNested2')
+      _i3.XmlElementName('RecursiveShapesInputOutputNested2')
     ];
     if (payload.bar != null) {
       result
-        ..add(const _i2.XmlElementName('bar'))
+        ..add(const _i3.XmlElementName('bar'))
         ..add(serializers.serialize(payload.bar!,
             specifiedType: const FullType(String)));
     }
     if (payload.recursiveMember != null) {
       result
-        ..add(const _i2.XmlElementName('recursiveMember'))
+        ..add(const _i3.XmlElementName('recursiveMember'))
         ..add(serializers.serialize(payload.recursiveMember!,
             specifiedType:
-                const FullType(_i3.RecursiveShapesInputOutputNested1)));
+                const FullType(_i2.RecursiveShapesInputOutputNested1)));
     }
     return result;
   }

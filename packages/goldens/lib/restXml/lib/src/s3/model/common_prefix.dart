@@ -12,8 +12,9 @@ part 'common_prefix.g.dart';
 abstract class CommonPrefix
     with _i1.AWSEquatable<CommonPrefix>
     implements Built<CommonPrefix, CommonPrefixBuilder> {
-  factory CommonPrefix([void Function(CommonPrefixBuilder) updates]) =
-      _$CommonPrefix;
+  factory CommonPrefix({String? prefix}) {
+    return _$CommonPrefix._(prefix: prefix);
+  }
 
   const CommonPrefix._();
 
@@ -21,8 +22,6 @@ abstract class CommonPrefix
     _CommonPrefixRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(CommonPrefixBuilder b) {}
   String? get prefix;
   @override
   List<Object?> get props => [prefix];

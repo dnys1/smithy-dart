@@ -14,9 +14,9 @@ abstract class ResourceNotFoundException
     implements
         Built<ResourceNotFoundException, ResourceNotFoundExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory ResourceNotFoundException(
-          [void Function(ResourceNotFoundExceptionBuilder) updates]) =
-      _$ResourceNotFoundException;
+  factory ResourceNotFoundException({int? code, String? message}) {
+    return _$ResourceNotFoundException._(code: code, message: message);
+  }
 
   const ResourceNotFoundException._();
 
@@ -31,8 +31,6 @@ abstract class ResourceNotFoundException
     _ResourceNotFoundExceptionAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ResourceNotFoundExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

@@ -12,9 +12,9 @@ part 'payload_with_xml_name.g.dart';
 abstract class PayloadWithXmlName
     with _i1.AWSEquatable<PayloadWithXmlName>
     implements Built<PayloadWithXmlName, PayloadWithXmlNameBuilder> {
-  factory PayloadWithXmlName(
-          [void Function(PayloadWithXmlNameBuilder) updates]) =
-      _$PayloadWithXmlName;
+  factory PayloadWithXmlName({String? name}) {
+    return _$PayloadWithXmlName._(name: name);
+  }
 
   const PayloadWithXmlName._();
 
@@ -22,8 +22,6 @@ abstract class PayloadWithXmlName
     _PayloadWithXmlNameRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PayloadWithXmlNameBuilder b) {}
   String? get name;
   @override
   List<Object?> get props => [name];

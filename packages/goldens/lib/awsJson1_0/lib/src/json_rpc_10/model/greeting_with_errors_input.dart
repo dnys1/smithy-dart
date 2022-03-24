@@ -14,9 +14,9 @@ abstract class GreetingWithErrorsInput
         _i1.HttpInput<GreetingWithErrorsInput>,
         _i2.AWSEquatable<GreetingWithErrorsInput>
     implements Built<GreetingWithErrorsInput, GreetingWithErrorsInputBuilder> {
-  factory GreetingWithErrorsInput(
-          [void Function(GreetingWithErrorsInputBuilder) updates]) =
-      _$GreetingWithErrorsInput;
+  factory GreetingWithErrorsInput({String? greeting}) {
+    return _$GreetingWithErrorsInput._(greeting: greeting);
+  }
 
   const GreetingWithErrorsInput._();
 
@@ -29,8 +29,6 @@ abstract class GreetingWithErrorsInput
     _GreetingWithErrorsInputAwsJson10Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GreetingWithErrorsInputBuilder b) {}
   String? get greeting;
   @override
   GreetingWithErrorsInput getPayload() => this;

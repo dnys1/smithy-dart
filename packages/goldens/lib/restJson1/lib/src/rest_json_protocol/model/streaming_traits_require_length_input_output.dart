@@ -20,36 +20,37 @@ abstract class StreamingTraitsRequireLengthInputOutput
             StreamingTraitsRequireLengthInputOutputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory StreamingTraitsRequireLengthInputOutput(
-      [void Function(StreamingTraitsRequireLengthInputOutputBuilder)
-          updates]) = _$StreamingTraitsRequireLengthInputOutput;
+      {_i2.Stream<List<int>>? blob, String? foo}) {
+    return _$StreamingTraitsRequireLengthInputOutput._(blob: blob, foo: foo);
+  }
 
   const StreamingTraitsRequireLengthInputOutput._();
 
   factory StreamingTraitsRequireLengthInputOutput.fromRequest(
-          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      StreamingTraitsRequireLengthInputOutput((b) {
-        b.blob = payload;
-        if (request.headers['X-Foo'] != null) {
-          b.foo = request.headers['X-Foo']!;
-        }
-      });
+      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = StreamingTraitsRequireLengthInputOutputBuilder();
+    builder.blob = payload;
+    if (request.headers['X-Foo'] != null) {
+      builder.foo = request.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   factory StreamingTraitsRequireLengthInputOutput.fromResponse(
-          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
-      StreamingTraitsRequireLengthInputOutput((b) {
-        b.blob = payload;
-        if (response.headers['X-Foo'] != null) {
-          b.foo = response.headers['X-Foo']!;
-        }
-      });
+      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = StreamingTraitsRequireLengthInputOutputBuilder();
+    builder.blob = payload;
+    if (response.headers['X-Foo'] != null) {
+      builder.foo = response.headers['X-Foo']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _StreamingTraitsRequireLengthInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(StreamingTraitsRequireLengthInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
   @override

@@ -17,28 +17,29 @@ abstract class TooManyRequestsException
         _i2.HasPayload<TooManyRequestsExceptionPayload>,
         _i2.SmithyHttpException {
   factory TooManyRequestsException(
-          [void Function(TooManyRequestsExceptionBuilder) updates]) =
-      _$TooManyRequestsException;
+      {String? message, String? retryAfterSeconds}) {
+    return _$TooManyRequestsException._(
+        message: message, retryAfterSeconds: retryAfterSeconds);
+  }
 
   const TooManyRequestsException._();
 
   factory TooManyRequestsException.fromResponse(
-          TooManyRequestsExceptionPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      TooManyRequestsException((b) {
-        b.message = payload.message;
-        if (response.headers['Retry-After'] != null) {
-          b.retryAfterSeconds = response.headers['Retry-After']!;
-        }
-        b.headers = response.headers;
-      });
+      TooManyRequestsExceptionPayload payload,
+      _i1.AWSBaseHttpResponse response) {
+    final builder = TooManyRequestsExceptionBuilder();
+    builder.message = payload.message;
+    if (response.headers['Retry-After'] != null) {
+      builder.retryAfterSeconds = response.headers['Retry-After']!;
+    }
+    builder.headers = response.headers;
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _TooManyRequestsExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(TooManyRequestsExceptionBuilder b) {}
   @override
   String? get message;
   String? get retryAfterSeconds;

@@ -15,9 +15,9 @@ abstract class XmlEmptyStringsInputOutput
         _i2.AWSEquatable<XmlEmptyStringsInputOutput>
     implements
         Built<XmlEmptyStringsInputOutput, XmlEmptyStringsInputOutputBuilder> {
-  factory XmlEmptyStringsInputOutput(
-          [void Function(XmlEmptyStringsInputOutputBuilder) updates]) =
-      _$XmlEmptyStringsInputOutput;
+  factory XmlEmptyStringsInputOutput({String? emptyString}) {
+    return _$XmlEmptyStringsInputOutput._(emptyString: emptyString);
+  }
 
   const XmlEmptyStringsInputOutput._();
 
@@ -35,8 +35,6 @@ abstract class XmlEmptyStringsInputOutput
     _XmlEmptyStringsInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlEmptyStringsInputOutputBuilder b) {}
   String? get emptyString;
   @override
   XmlEmptyStringsInputOutput getPayload() => this;

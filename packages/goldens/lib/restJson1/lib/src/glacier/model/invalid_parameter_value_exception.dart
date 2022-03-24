@@ -17,8 +17,10 @@ abstract class InvalidParameterValueException
             InvalidParameterValueExceptionBuilder>,
         _i2.SmithyHttpException {
   factory InvalidParameterValueException(
-          [void Function(InvalidParameterValueExceptionBuilder) updates]) =
-      _$InvalidParameterValueException;
+      {String? code, String? message, String? type}) {
+    return _$InvalidParameterValueException._(
+        code: code, message: message, type: type);
+  }
 
   const InvalidParameterValueException._();
 
@@ -33,8 +35,6 @@ abstract class InvalidParameterValueException
     _InvalidParameterValueExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(InvalidParameterValueExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

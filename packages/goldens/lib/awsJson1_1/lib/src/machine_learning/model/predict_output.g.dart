@@ -8,7 +8,7 @@ part of aws_json1_1.machine_learning.model.predict_output;
 
 class _$PredictOutput extends PredictOutput {
   @override
-  final _i3.Prediction? prediction;
+  final _i2.Prediction? prediction;
 
   factory _$PredictOutput([void Function(PredictOutputBuilder)? updates]) =>
       (new PredictOutputBuilder()..update(updates)).build();
@@ -38,15 +38,13 @@ class PredictOutputBuilder
     implements Builder<PredictOutput, PredictOutputBuilder> {
   _$PredictOutput? _$v;
 
-  _i3.PredictionBuilder? _prediction;
-  _i3.PredictionBuilder get prediction =>
-      _$this._prediction ??= new _i3.PredictionBuilder();
-  set prediction(_i3.PredictionBuilder? prediction) =>
+  _i2.PredictionBuilder? _prediction;
+  _i2.PredictionBuilder get prediction =>
+      _$this._prediction ??= new _i2.PredictionBuilder();
+  set prediction(_i2.PredictionBuilder? prediction) =>
       _$this._prediction = prediction;
 
-  PredictOutputBuilder() {
-    PredictOutput._init(this);
-  }
+  PredictOutputBuilder();
 
   PredictOutputBuilder get _$this {
     final $v = _$v;

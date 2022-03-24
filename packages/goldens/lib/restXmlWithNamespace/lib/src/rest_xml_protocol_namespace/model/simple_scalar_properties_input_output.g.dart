@@ -153,9 +153,7 @@ class SimpleScalarPropertiesInputOutputBuilder
   set trueBooleanValue(bool? trueBooleanValue) =>
       _$this._trueBooleanValue = trueBooleanValue;
 
-  SimpleScalarPropertiesInputOutputBuilder() {
-    SimpleScalarPropertiesInputOutput._init(this);
-  }
+  SimpleScalarPropertiesInputOutputBuilder();
 
   SimpleScalarPropertiesInputOutputBuilder get _$this {
     final $v = _$v;

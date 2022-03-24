@@ -17,9 +17,9 @@ abstract class RecursiveStructuresInput
         _i2.AWSEquatable<RecursiveStructuresInput>
     implements
         Built<RecursiveStructuresInput, RecursiveStructuresInputBuilder> {
-  factory RecursiveStructuresInput(
-          [void Function(RecursiveStructuresInputBuilder) updates]) =
-      _$RecursiveStructuresInput;
+  factory RecursiveStructuresInput({_i3.RecursiveUnionOne? union}) {
+    return _$RecursiveStructuresInput._(union: union);
+  }
 
   const RecursiveStructuresInput._();
 
@@ -32,8 +32,6 @@ abstract class RecursiveStructuresInput
     _RecursiveStructuresInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RecursiveStructuresInputBuilder b) {}
   _i3.RecursiveUnionOne? get union;
   @override
   RecursiveStructuresInput getPayload() => this;

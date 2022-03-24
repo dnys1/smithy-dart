@@ -21,8 +21,10 @@ abstract class ValidationException
         Built<ValidationException, ValidationExceptionBuilder>,
         _i2.SmithyHttpException {
   factory ValidationException(
-          [void Function(ValidationExceptionBuilder) updates]) =
-      _$ValidationException;
+      {_i3.BuiltList<_i4.ValidationExceptionField>? fieldList,
+      required String message}) {
+    return _$ValidationException._(fieldList: fieldList, message: message);
+  }
 
   const ValidationException._();
 
@@ -36,9 +38,6 @@ abstract class ValidationException
   static const List<_i2.SmithySerializer> serializers = [
     _ValidationExceptionRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ValidationExceptionBuilder b) {}
 
   /// A list of specific failures encountered while validating the input.
   /// A member can appear in this list more than once if it failed to satisfy multiple constraints.

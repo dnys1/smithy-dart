@@ -15,9 +15,9 @@ abstract class ErrorWithoutMembers
         Built<ErrorWithoutMembers, ErrorWithoutMembersBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory ErrorWithoutMembers(
-          [void Function(ErrorWithoutMembersBuilder) updates]) =
-      _$ErrorWithoutMembers;
+  factory ErrorWithoutMembers() {
+    return _$ErrorWithoutMembers._();
+  }
 
   const ErrorWithoutMembers._();
 
@@ -32,8 +32,6 @@ abstract class ErrorWithoutMembers
     _ErrorWithoutMembersAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ErrorWithoutMembersBuilder b) {}
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
       namespace: 'aws.protocoltests.json', shape: 'ErrorWithoutMembers');

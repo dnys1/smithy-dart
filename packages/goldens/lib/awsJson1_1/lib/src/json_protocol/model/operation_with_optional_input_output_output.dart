@@ -15,9 +15,9 @@ abstract class OperationWithOptionalInputOutputOutput
     implements
         Built<OperationWithOptionalInputOutputOutput,
             OperationWithOptionalInputOutputOutputBuilder> {
-  factory OperationWithOptionalInputOutputOutput(
-      [void Function(OperationWithOptionalInputOutputOutputBuilder)
-          updates]) = _$OperationWithOptionalInputOutputOutput;
+  factory OperationWithOptionalInputOutputOutput({String? value}) {
+    return _$OperationWithOptionalInputOutputOutput._(value: value);
+  }
 
   const OperationWithOptionalInputOutputOutput._();
 
@@ -30,8 +30,6 @@ abstract class OperationWithOptionalInputOutputOutput
     _OperationWithOptionalInputOutputOutputAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(OperationWithOptionalInputOutputOutputBuilder b) {}
   String? get value;
   @override
   List<Object?> get props => [value];

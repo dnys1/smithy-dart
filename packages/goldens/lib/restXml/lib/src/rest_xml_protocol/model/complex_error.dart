@@ -19,30 +19,31 @@ abstract class ComplexError
         Built<ComplexError, ComplexErrorBuilder>,
         _i2.HasPayload<ComplexErrorPayload>,
         _i2.SmithyHttpException {
-  factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
-      _$ComplexError;
+  factory ComplexError(
+      {String? header, _i3.ComplexNestedErrorData? nested, String? topLevel}) {
+    return _$ComplexError._(header: header, nested: nested, topLevel: topLevel);
+  }
 
   const ComplexError._();
 
   factory ComplexError.fromResponse(
-          ComplexErrorPayload payload, _i1.AWSBaseHttpResponse response) =>
-      ComplexError((b) {
-        if (payload.nested != null) {
-          b.nested.replace(payload.nested!);
-        }
-        b.topLevel = payload.topLevel;
-        if (response.headers['X-Header'] != null) {
-          b.header = response.headers['X-Header']!;
-        }
-        b.headers = response.headers;
-      });
+      ComplexErrorPayload payload, _i1.AWSBaseHttpResponse response) {
+    final builder = ComplexErrorBuilder();
+    if (payload.nested != null) {
+      builder.nested.replace(payload.nested!);
+    }
+    builder.topLevel = payload.topLevel;
+    if (response.headers['X-Header'] != null) {
+      builder.header = response.headers['X-Header']!;
+    }
+    builder.headers = response.headers;
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _ComplexErrorRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ComplexErrorBuilder b) {}
   String? get header;
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;

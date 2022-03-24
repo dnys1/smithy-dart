@@ -16,9 +16,9 @@ abstract class PostPlayerActionInput
         _i1.HttpInput<PostPlayerActionInput>,
         _i2.AWSEquatable<PostPlayerActionInput>
     implements Built<PostPlayerActionInput, PostPlayerActionInputBuilder> {
-  factory PostPlayerActionInput(
-          [void Function(PostPlayerActionInputBuilder) updates]) =
-      _$PostPlayerActionInput;
+  factory PostPlayerActionInput({_i3.PlayerAction? action}) {
+    return _$PostPlayerActionInput._(action: action);
+  }
 
   const PostPlayerActionInput._();
 
@@ -31,8 +31,6 @@ abstract class PostPlayerActionInput
     _PostPlayerActionInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(PostPlayerActionInputBuilder b) {}
   _i3.PlayerAction? get action;
   @override
   PostPlayerActionInput getPayload() => this;

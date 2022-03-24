@@ -218,9 +218,7 @@ class XmlListsInputOutputBuilder
   set timestampList(_i3.ListBuilder<DateTime>? timestampList) =>
       _$this._timestampList = timestampList;
 
-  XmlListsInputOutputBuilder() {
-    XmlListsInputOutput._init(this);
-  }
+  XmlListsInputOutputBuilder();
 
   XmlListsInputOutputBuilder get _$this {
     final $v = _$v;

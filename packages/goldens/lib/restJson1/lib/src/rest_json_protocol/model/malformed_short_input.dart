@@ -18,33 +18,41 @@ abstract class MalformedShortInput
         Built<MalformedShortInput, MalformedShortInputBuilder>,
         _i1.HasPayload<MalformedShortInputPayload> {
   factory MalformedShortInput(
-          [void Function(MalformedShortInputBuilder) updates]) =
-      _$MalformedShortInput;
+      {int? shortInBody,
+      int? shortInHeader,
+      required int shortInPath,
+      int? shortInQuery}) {
+    return _$MalformedShortInput._(
+        shortInBody: shortInBody,
+        shortInHeader: shortInHeader,
+        shortInPath: shortInPath,
+        shortInQuery: shortInQuery);
+  }
 
   const MalformedShortInput._();
 
   factory MalformedShortInput.fromRequest(
-          MalformedShortInputPayload payload, _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      MalformedShortInput((b) {
-        b.shortInBody = payload.shortInBody;
-        if (request.headers['shortInHeader'] != null) {
-          b.shortInHeader = int.parse(request.headers['shortInHeader']!);
-        }
-        if (request.queryParameters['shortInQuery'] != null) {
-          b.shortInQuery = int.parse(request.queryParameters['shortInQuery']!);
-        }
-        if (labels['shortInPath'] != null) {
-          b.shortInPath = int.parse(labels['shortInPath']!);
-        }
-      });
+      MalformedShortInputPayload payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = MalformedShortInputBuilder();
+    builder.shortInBody = payload.shortInBody;
+    if (request.headers['shortInHeader'] != null) {
+      builder.shortInHeader = int.parse(request.headers['shortInHeader']!);
+    }
+    if (request.queryParameters['shortInQuery'] != null) {
+      builder.shortInQuery =
+          int.parse(request.queryParameters['shortInQuery']!);
+    }
+    if (labels['shortInPath'] != null) {
+      builder.shortInPath = int.parse(labels['shortInPath']!);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedShortInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedShortInputBuilder b) {}
   int? get shortInBody;
   int? get shortInHeader;
   int get shortInPath;

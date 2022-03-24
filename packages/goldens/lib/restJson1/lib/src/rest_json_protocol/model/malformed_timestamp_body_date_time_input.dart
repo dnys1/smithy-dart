@@ -16,9 +16,9 @@ abstract class MalformedTimestampBodyDateTimeInput
     implements
         Built<MalformedTimestampBodyDateTimeInput,
             MalformedTimestampBodyDateTimeInputBuilder> {
-  factory MalformedTimestampBodyDateTimeInput(
-          [void Function(MalformedTimestampBodyDateTimeInputBuilder) updates]) =
-      _$MalformedTimestampBodyDateTimeInput;
+  factory MalformedTimestampBodyDateTimeInput({required DateTime timestamp}) {
+    return _$MalformedTimestampBodyDateTimeInput._(timestamp: timestamp);
+  }
 
   const MalformedTimestampBodyDateTimeInput._();
 
@@ -32,8 +32,6 @@ abstract class MalformedTimestampBodyDateTimeInput
     _MalformedTimestampBodyDateTimeInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedTimestampBodyDateTimeInputBuilder b) {}
   DateTime get timestamp;
   @override
   MalformedTimestampBodyDateTimeInput getPayload() => this;

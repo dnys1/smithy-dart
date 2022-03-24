@@ -60,9 +60,7 @@ class ValidationExceptionFieldBuilder
   String? get path => _$this._path;
   set path(String? path) => _$this._path = path;
 
-  ValidationExceptionFieldBuilder() {
-    ValidationExceptionField._init(this);
-  }
+  ValidationExceptionFieldBuilder();
 
   ValidationExceptionFieldBuilder get _$this {
     final $v = _$v;

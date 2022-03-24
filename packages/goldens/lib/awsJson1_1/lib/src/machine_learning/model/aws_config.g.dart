@@ -10,7 +10,7 @@ class _$AwsConfig extends AwsConfig {
   @override
   final DateTime? clockTime;
   @override
-  final _i3.ScopedConfig? scopedConfig;
+  final _i2.ScopedConfig? scopedConfig;
 
   factory _$AwsConfig([void Function(AwsConfigBuilder)? updates]) =>
       (new AwsConfigBuilder()..update(updates)).build();
@@ -45,15 +45,13 @@ class AwsConfigBuilder implements Builder<AwsConfig, AwsConfigBuilder> {
   DateTime? get clockTime => _$this._clockTime;
   set clockTime(DateTime? clockTime) => _$this._clockTime = clockTime;
 
-  _i3.ScopedConfigBuilder? _scopedConfig;
-  _i3.ScopedConfigBuilder get scopedConfig =>
-      _$this._scopedConfig ??= new _i3.ScopedConfigBuilder();
-  set scopedConfig(_i3.ScopedConfigBuilder? scopedConfig) =>
+  _i2.ScopedConfigBuilder? _scopedConfig;
+  _i2.ScopedConfigBuilder get scopedConfig =>
+      _$this._scopedConfig ??= new _i2.ScopedConfigBuilder();
+  set scopedConfig(_i2.ScopedConfigBuilder? scopedConfig) =>
       _$this._scopedConfig = scopedConfig;
 
-  AwsConfigBuilder() {
-    AwsConfig._init(this);
-  }
+  AwsConfigBuilder();
 
   AwsConfigBuilder get _$this {
     final $v = _$v;

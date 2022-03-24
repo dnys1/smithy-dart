@@ -17,8 +17,10 @@ abstract class MissingParameterValueException
             MissingParameterValueExceptionBuilder>,
         _i2.SmithyHttpException {
   factory MissingParameterValueException(
-          [void Function(MissingParameterValueExceptionBuilder) updates]) =
-      _$MissingParameterValueException;
+      {String? code, String? message, String? type}) {
+    return _$MissingParameterValueException._(
+        code: code, message: message, type: type);
+  }
 
   const MissingParameterValueException._();
 
@@ -33,8 +35,6 @@ abstract class MissingParameterValueException
     _MissingParameterValueExceptionRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MissingParameterValueExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

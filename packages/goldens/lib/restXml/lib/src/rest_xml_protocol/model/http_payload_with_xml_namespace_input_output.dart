@@ -20,35 +20,35 @@ abstract class HttpPayloadWithXmlNamespaceInputOutput
             HttpPayloadWithXmlNamespaceInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlNamespace> {
   factory HttpPayloadWithXmlNamespaceInputOutput(
-      [void Function(HttpPayloadWithXmlNamespaceInputOutputBuilder)
-          updates]) = _$HttpPayloadWithXmlNamespaceInputOutput;
+      {_i2.PayloadWithXmlNamespace? nested}) {
+    return _$HttpPayloadWithXmlNamespaceInputOutput._(nested: nested);
+  }
 
   const HttpPayloadWithXmlNamespaceInputOutput._();
 
   factory HttpPayloadWithXmlNamespaceInputOutput.fromRequest(
-          _i2.PayloadWithXmlNamespace? payload, _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithXmlNamespaceInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i2.PayloadWithXmlNamespace? payload, _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HttpPayloadWithXmlNamespaceInputOutputBuilder();
+    if (payload != null) {
+      builder.nested.replace(payload);
+    }
+    return builder.build();
+  }
 
   factory HttpPayloadWithXmlNamespaceInputOutput.fromResponse(
-          _i2.PayloadWithXmlNamespace? payload,
-          _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithXmlNamespaceInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i2.PayloadWithXmlNamespace? payload, _i3.AWSBaseHttpResponse response) {
+    final builder = HttpPayloadWithXmlNamespaceInputOutputBuilder();
+    if (payload != null) {
+      builder.nested.replace(payload);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPayloadWithXmlNamespaceInputOutputBuilder b) {}
   _i2.PayloadWithXmlNamespace? get nested;
   @override
   _i2.PayloadWithXmlNamespace? getPayload() =>

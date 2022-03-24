@@ -14,24 +14,23 @@ abstract class GetBucketLocationOutput
     with _i1.AWSEquatable<GetBucketLocationOutput>
     implements Built<GetBucketLocationOutput, GetBucketLocationOutputBuilder> {
   factory GetBucketLocationOutput(
-          [void Function(GetBucketLocationOutputBuilder) updates]) =
-      _$GetBucketLocationOutput;
+      {_i2.BucketLocationConstraint? locationConstraint}) {
+    return _$GetBucketLocationOutput._(locationConstraint: locationConstraint);
+  }
 
   const GetBucketLocationOutput._();
 
   factory GetBucketLocationOutput.fromResponse(
-          _i2.BucketLocationConstraint? payload,
-          _i1.AWSBaseHttpResponse response) =>
-      GetBucketLocationOutput((b) {
-        b.locationConstraint = payload;
-      });
+      _i2.BucketLocationConstraint? payload, _i1.AWSBaseHttpResponse response) {
+    final builder = GetBucketLocationOutputBuilder();
+    builder.locationConstraint = payload;
+    return builder.build();
+  }
 
   static const List<_i3.SmithySerializer> serializers = [
     _GetBucketLocationOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(GetBucketLocationOutputBuilder b) {}
   _i2.BucketLocationConstraint? get locationConstraint;
   @override
   List<Object?> get props => [locationConstraint];

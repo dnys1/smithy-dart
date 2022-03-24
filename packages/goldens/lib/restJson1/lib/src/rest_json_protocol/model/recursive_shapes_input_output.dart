@@ -18,8 +18,9 @@ abstract class RecursiveShapesInputOutput
     implements
         Built<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder> {
   factory RecursiveShapesInputOutput(
-          [void Function(RecursiveShapesInputOutputBuilder) updates]) =
-      _$RecursiveShapesInputOutput;
+      {_i3.RecursiveShapesInputOutputNested1? nested}) {
+    return _$RecursiveShapesInputOutput._(nested: nested);
+  }
 
   const RecursiveShapesInputOutput._();
 
@@ -37,8 +38,6 @@ abstract class RecursiveShapesInputOutput
     _RecursiveShapesInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(RecursiveShapesInputOutputBuilder b) {}
   _i3.RecursiveShapesInputOutputNested1? get nested;
   @override
   RecursiveShapesInputOutput getPayload() => this;

@@ -74,9 +74,7 @@ class XmlTimestampsInputOutputBuilder
   DateTime? get normal => _$this._normal;
   set normal(DateTime? normal) => _$this._normal = normal;
 
-  XmlTimestampsInputOutputBuilder() {
-    XmlTimestampsInputOutput._init(this);
-  }
+  XmlTimestampsInputOutputBuilder();
 
   XmlTimestampsInputOutputBuilder get _$this {
     final $v = _$v;

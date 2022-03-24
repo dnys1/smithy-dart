@@ -16,9 +16,9 @@ abstract class XmlAttributesInputOutput
         _i2.AWSEquatable<XmlAttributesInputOutput>
     implements
         Built<XmlAttributesInputOutput, XmlAttributesInputOutputBuilder> {
-  factory XmlAttributesInputOutput(
-          [void Function(XmlAttributesInputOutputBuilder) updates]) =
-      _$XmlAttributesInputOutput;
+  factory XmlAttributesInputOutput({String? attr, String? foo}) {
+    return _$XmlAttributesInputOutput._(attr: attr, foo: foo);
+  }
 
   const XmlAttributesInputOutput._();
 
@@ -35,8 +35,6 @@ abstract class XmlAttributesInputOutput
     _XmlAttributesInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlAttributesInputOutputBuilder b) {}
   String? get attr;
   String? get foo;
   @override

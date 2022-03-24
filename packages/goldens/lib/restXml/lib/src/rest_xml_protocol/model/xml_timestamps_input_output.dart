@@ -16,8 +16,16 @@ abstract class XmlTimestampsInputOutput
     implements
         Built<XmlTimestampsInputOutput, XmlTimestampsInputOutputBuilder> {
   factory XmlTimestampsInputOutput(
-          [void Function(XmlTimestampsInputOutputBuilder) updates]) =
-      _$XmlTimestampsInputOutput;
+      {DateTime? dateTime,
+      DateTime? epochSeconds,
+      DateTime? httpDate,
+      DateTime? normal}) {
+    return _$XmlTimestampsInputOutput._(
+        dateTime: dateTime,
+        epochSeconds: epochSeconds,
+        httpDate: httpDate,
+        normal: normal);
+  }
 
   const XmlTimestampsInputOutput._();
 
@@ -34,8 +42,6 @@ abstract class XmlTimestampsInputOutput
     _XmlTimestampsInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlTimestampsInputOutputBuilder b) {}
   DateTime? get dateTime;
   DateTime? get epochSeconds;
   DateTime? get httpDate;

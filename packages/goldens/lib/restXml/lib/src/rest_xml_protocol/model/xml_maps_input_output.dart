@@ -16,8 +16,9 @@ abstract class XmlMapsInputOutput
     with _i1.HttpInput<XmlMapsInputOutput>, _i2.AWSEquatable<XmlMapsInputOutput>
     implements Built<XmlMapsInputOutput, XmlMapsInputOutputBuilder> {
   factory XmlMapsInputOutput(
-          [void Function(XmlMapsInputOutputBuilder) updates]) =
-      _$XmlMapsInputOutput;
+      {_i3.BuiltMap<String, _i4.GreetingStruct>? myMap}) {
+    return _$XmlMapsInputOutput._(myMap: myMap);
+  }
 
   const XmlMapsInputOutput._();
 
@@ -34,8 +35,6 @@ abstract class XmlMapsInputOutput
     _XmlMapsInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlMapsInputOutputBuilder b) {}
   _i3.BuiltMap<String, _i4.GreetingStruct>? get myMap;
   @override
   XmlMapsInputOutput getPayload() => this;

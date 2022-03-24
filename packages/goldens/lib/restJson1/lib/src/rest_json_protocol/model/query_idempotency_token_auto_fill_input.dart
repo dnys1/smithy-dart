@@ -20,34 +20,31 @@ abstract class QueryIdempotencyTokenAutoFillInput
             QueryIdempotencyTokenAutoFillInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<QueryIdempotencyTokenAutoFillInputPayload> {
-  factory QueryIdempotencyTokenAutoFillInput(
-          [void Function(QueryIdempotencyTokenAutoFillInputBuilder) updates]) =
-      _$QueryIdempotencyTokenAutoFillInput;
+  factory QueryIdempotencyTokenAutoFillInput({String? token}) {
+    if (const bool.hasEnvironment('SMITHY_TEST')) {
+      token ??= '00000000-0000-4000-8000-000000000000';
+    } else {
+      token ??= const _i3.Uuid().v4();
+    }
+    return _$QueryIdempotencyTokenAutoFillInput._(token: token);
+  }
 
   const QueryIdempotencyTokenAutoFillInput._();
 
   factory QueryIdempotencyTokenAutoFillInput.fromRequest(
-          QueryIdempotencyTokenAutoFillInputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      QueryIdempotencyTokenAutoFillInput((b) {
-        if (request.queryParameters['token'] != null) {
-          b.token = request.queryParameters['token']!;
-        }
-      });
+      QueryIdempotencyTokenAutoFillInputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = QueryIdempotencyTokenAutoFillInputBuilder();
+    if (request.queryParameters['token'] != null) {
+      builder.token = request.queryParameters['token']!;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _QueryIdempotencyTokenAutoFillInputRestJson1Serializer()
   ];
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(QueryIdempotencyTokenAutoFillInputBuilder b) {
-    if (const bool.hasEnvironment('SMITHY_TEST')) {
-      b.token = '00000000-0000-4000-8000-000000000000';
-    } else {
-      b.token = const _i3.Uuid().v4();
-    }
-  }
 
   String? get token;
   @override

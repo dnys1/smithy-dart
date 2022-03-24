@@ -16,8 +16,23 @@ abstract class ErrorWithMembers
     implements
         Built<ErrorWithMembers, ErrorWithMembersBuilder>,
         _i2.SmithyHttpException {
-  factory ErrorWithMembers([void Function(ErrorWithMembersBuilder) updates]) =
-      _$ErrorWithMembers;
+  factory ErrorWithMembers(
+      {String? code,
+      _i3.KitchenSink? complexData,
+      int? integerField,
+      _i4.BuiltList<String>? listField,
+      _i4.BuiltMap<String, String>? mapField,
+      String? message,
+      String? stringField}) {
+    return _$ErrorWithMembers._(
+        code: code,
+        complexData: complexData,
+        integerField: integerField,
+        listField: listField,
+        mapField: mapField,
+        message: message,
+        stringField: stringField);
+  }
 
   const ErrorWithMembers._();
 
@@ -32,8 +47,6 @@ abstract class ErrorWithMembers
     _ErrorWithMembersAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ErrorWithMembersBuilder b) {}
   String? get code;
   _i3.KitchenSink? get complexData;
   int? get integerField;

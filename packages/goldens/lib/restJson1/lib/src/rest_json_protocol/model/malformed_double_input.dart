@@ -18,34 +18,41 @@ abstract class MalformedDoubleInput
         Built<MalformedDoubleInput, MalformedDoubleInputBuilder>,
         _i1.HasPayload<MalformedDoubleInputPayload> {
   factory MalformedDoubleInput(
-          [void Function(MalformedDoubleInputBuilder) updates]) =
-      _$MalformedDoubleInput;
+      {double? doubleInBody,
+      double? doubleInHeader,
+      required double doubleInPath,
+      double? doubleInQuery}) {
+    return _$MalformedDoubleInput._(
+        doubleInBody: doubleInBody,
+        doubleInHeader: doubleInHeader,
+        doubleInPath: doubleInPath,
+        doubleInQuery: doubleInQuery);
+  }
 
   const MalformedDoubleInput._();
 
   factory MalformedDoubleInput.fromRequest(
-          MalformedDoubleInputPayload payload, _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      MalformedDoubleInput((b) {
-        b.doubleInBody = payload.doubleInBody;
-        if (request.headers['doubleInHeader'] != null) {
-          b.doubleInHeader = double.parse(request.headers['doubleInHeader']!);
-        }
-        if (request.queryParameters['doubleInQuery'] != null) {
-          b.doubleInQuery =
-              double.parse(request.queryParameters['doubleInQuery']!);
-        }
-        if (labels['doubleInPath'] != null) {
-          b.doubleInPath = double.parse(labels['doubleInPath']!);
-        }
-      });
+      MalformedDoubleInputPayload payload, _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = MalformedDoubleInputBuilder();
+    builder.doubleInBody = payload.doubleInBody;
+    if (request.headers['doubleInHeader'] != null) {
+      builder.doubleInHeader = double.parse(request.headers['doubleInHeader']!);
+    }
+    if (request.queryParameters['doubleInQuery'] != null) {
+      builder.doubleInQuery =
+          double.parse(request.queryParameters['doubleInQuery']!);
+    }
+    if (labels['doubleInPath'] != null) {
+      builder.doubleInPath = double.parse(labels['doubleInPath']!);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedDoubleInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedDoubleInputBuilder b) {}
   double? get doubleInBody;
   double? get doubleInHeader;
   double get doubleInPath;

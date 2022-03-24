@@ -20,61 +20,74 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithLabelsAndTimestampFormatInputPayload> {
   factory HttpRequestWithLabelsAndTimestampFormatInput(
-      [void Function(HttpRequestWithLabelsAndTimestampFormatInputBuilder)
-          updates]) = _$HttpRequestWithLabelsAndTimestampFormatInput;
+      {required DateTime defaultFormat,
+      required DateTime memberDateTime,
+      required DateTime memberEpochSeconds,
+      required DateTime memberHttpDate,
+      required DateTime targetDateTime,
+      required DateTime targetEpochSeconds,
+      required DateTime targetHttpDate}) {
+    return _$HttpRequestWithLabelsAndTimestampFormatInput._(
+        defaultFormat: defaultFormat,
+        memberDateTime: memberDateTime,
+        memberEpochSeconds: memberEpochSeconds,
+        memberHttpDate: memberHttpDate,
+        targetDateTime: targetDateTime,
+        targetEpochSeconds: targetEpochSeconds,
+        targetHttpDate: targetHttpDate);
+  }
 
   const HttpRequestWithLabelsAndTimestampFormatInput._();
 
   factory HttpRequestWithLabelsAndTimestampFormatInput.fromRequest(
-          HttpRequestWithLabelsAndTimestampFormatInputPayload payload,
-          _i2.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HttpRequestWithLabelsAndTimestampFormatInput((b) {
-        if (labels['memberEpochSeconds'] != null) {
-          b.memberEpochSeconds = _i1.Timestamp.parse(
-                  int.parse(labels['memberEpochSeconds']!),
-                  format: _i1.TimestampFormat.epochSeconds)
-              .asDateTime;
-        }
-        if (labels['memberHttpDate'] != null) {
-          b.memberHttpDate = _i1.Timestamp.parse(labels['memberHttpDate']!,
-                  format: _i1.TimestampFormat.httpDate)
-              .asDateTime;
-        }
-        if (labels['memberDateTime'] != null) {
-          b.memberDateTime = _i1.Timestamp.parse(labels['memberDateTime']!,
-                  format: _i1.TimestampFormat.dateTime)
-              .asDateTime;
-        }
-        if (labels['defaultFormat'] != null) {
-          b.defaultFormat = _i1.Timestamp.parse(labels['defaultFormat']!,
-                  format: _i1.TimestampFormat.dateTime)
-              .asDateTime;
-        }
-        if (labels['targetEpochSeconds'] != null) {
-          b.targetEpochSeconds = _i1.Timestamp.parse(
-                  int.parse(labels['targetEpochSeconds']!),
-                  format: _i1.TimestampFormat.epochSeconds)
-              .asDateTime;
-        }
-        if (labels['targetHttpDate'] != null) {
-          b.targetHttpDate = _i1.Timestamp.parse(labels['targetHttpDate']!,
-                  format: _i1.TimestampFormat.httpDate)
-              .asDateTime;
-        }
-        if (labels['targetDateTime'] != null) {
-          b.targetDateTime = _i1.Timestamp.parse(labels['targetDateTime']!,
-                  format: _i1.TimestampFormat.dateTime)
-              .asDateTime;
-        }
-      });
+      HttpRequestWithLabelsAndTimestampFormatInputPayload payload,
+      _i2.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HttpRequestWithLabelsAndTimestampFormatInputBuilder();
+    if (labels['memberEpochSeconds'] != null) {
+      builder.memberEpochSeconds = _i1.Timestamp.parse(
+              int.parse(labels['memberEpochSeconds']!),
+              format: _i1.TimestampFormat.epochSeconds)
+          .asDateTime;
+    }
+    if (labels['memberHttpDate'] != null) {
+      builder.memberHttpDate = _i1.Timestamp.parse(labels['memberHttpDate']!,
+              format: _i1.TimestampFormat.httpDate)
+          .asDateTime;
+    }
+    if (labels['memberDateTime'] != null) {
+      builder.memberDateTime = _i1.Timestamp.parse(labels['memberDateTime']!,
+              format: _i1.TimestampFormat.dateTime)
+          .asDateTime;
+    }
+    if (labels['defaultFormat'] != null) {
+      builder.defaultFormat = _i1.Timestamp.parse(labels['defaultFormat']!,
+              format: _i1.TimestampFormat.dateTime)
+          .asDateTime;
+    }
+    if (labels['targetEpochSeconds'] != null) {
+      builder.targetEpochSeconds = _i1.Timestamp.parse(
+              int.parse(labels['targetEpochSeconds']!),
+              format: _i1.TimestampFormat.epochSeconds)
+          .asDateTime;
+    }
+    if (labels['targetHttpDate'] != null) {
+      builder.targetHttpDate = _i1.Timestamp.parse(labels['targetHttpDate']!,
+              format: _i1.TimestampFormat.httpDate)
+          .asDateTime;
+    }
+    if (labels['targetDateTime'] != null) {
+      builder.targetDateTime = _i1.Timestamp.parse(labels['targetDateTime']!,
+              format: _i1.TimestampFormat.dateTime)
+          .asDateTime;
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithLabelsAndTimestampFormatInputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpRequestWithLabelsAndTimestampFormatInputBuilder b) {}
   DateTime get defaultFormat;
   DateTime get memberDateTime;
   DateTime get memberEpochSeconds;

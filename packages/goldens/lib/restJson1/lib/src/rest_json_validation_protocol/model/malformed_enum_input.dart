@@ -18,8 +18,13 @@ abstract class MalformedEnumInput
     with _i1.HttpInput<MalformedEnumInput>, _i2.AWSEquatable<MalformedEnumInput>
     implements Built<MalformedEnumInput, MalformedEnumInputBuilder> {
   factory MalformedEnumInput(
-          [void Function(MalformedEnumInputBuilder) updates]) =
-      _$MalformedEnumInput;
+      {_i3.BuiltList<_i4.EnumString>? list,
+      _i3.BuiltMap<_i4.EnumString, _i4.EnumString>? map,
+      _i4.EnumString? string,
+      _i5.EnumUnion? union}) {
+    return _$MalformedEnumInput._(
+        list: list, map: map, string: string, union: union);
+  }
 
   const MalformedEnumInput._();
 
@@ -32,8 +37,6 @@ abstract class MalformedEnumInput
     _MalformedEnumInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedEnumInputBuilder b) {}
   _i3.BuiltList<_i4.EnumString>? get list;
   _i3.BuiltMap<_i4.EnumString, _i4.EnumString>? get map;
   _i4.EnumString? get string;

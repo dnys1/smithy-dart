@@ -12,9 +12,9 @@ part 'complex_nested_error_data.g.dart';
 abstract class ComplexNestedErrorData
     with _i1.AWSEquatable<ComplexNestedErrorData>
     implements Built<ComplexNestedErrorData, ComplexNestedErrorDataBuilder> {
-  factory ComplexNestedErrorData(
-          [void Function(ComplexNestedErrorDataBuilder) updates]) =
-      _$ComplexNestedErrorData;
+  factory ComplexNestedErrorData({String? foo}) {
+    return _$ComplexNestedErrorData._(foo: foo);
+  }
 
   const ComplexNestedErrorData._();
 
@@ -22,8 +22,6 @@ abstract class ComplexNestedErrorData
     _ComplexNestedErrorDataRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(ComplexNestedErrorDataBuilder b) {}
   String? get foo;
   @override
   List<Object?> get props => [foo];

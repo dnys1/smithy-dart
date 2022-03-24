@@ -17,9 +17,9 @@ abstract class XmlNamespacesInputOutput
         _i2.AWSEquatable<XmlNamespacesInputOutput>
     implements
         Built<XmlNamespacesInputOutput, XmlNamespacesInputOutputBuilder> {
-  factory XmlNamespacesInputOutput(
-          [void Function(XmlNamespacesInputOutputBuilder) updates]) =
-      _$XmlNamespacesInputOutput;
+  factory XmlNamespacesInputOutput({_i3.XmlNamespaceNested? nested}) {
+    return _$XmlNamespacesInputOutput._(nested: nested);
+  }
 
   const XmlNamespacesInputOutput._();
 
@@ -36,8 +36,6 @@ abstract class XmlNamespacesInputOutput
     _XmlNamespacesInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(XmlNamespacesInputOutputBuilder b) {}
   _i3.XmlNamespaceNested? get nested;
   @override
   XmlNamespacesInputOutput getPayload() => this;

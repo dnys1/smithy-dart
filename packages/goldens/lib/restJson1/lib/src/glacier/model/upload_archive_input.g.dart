@@ -91,9 +91,7 @@ class UploadArchiveInputBuilder
   String? get vaultName => _$this._vaultName;
   set vaultName(String? vaultName) => _$this._vaultName = vaultName;
 
-  UploadArchiveInputBuilder() {
-    UploadArchiveInput._init(this);
-  }
+  UploadArchiveInputBuilder();
 
   UploadArchiveInputBuilder get _$this {
     final $v = _$v;

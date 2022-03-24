@@ -110,9 +110,7 @@ class MalformedRangeOverrideInputBuilder
   double? get minFloat => _$this._minFloat;
   set minFloat(double? minFloat) => _$this._minFloat = minFloat;
 
-  MalformedRangeOverrideInputBuilder() {
-    MalformedRangeOverrideInput._init(this);
-  }
+  MalformedRangeOverrideInputBuilder();
 
   MalformedRangeOverrideInputBuilder get _$this {
     final $v = _$v;

@@ -20,36 +20,37 @@ abstract class HttpPayloadWithXmlNamespaceAndPrefixInputOutput
             HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlNamespaceAndPrefix> {
   factory HttpPayloadWithXmlNamespaceAndPrefixInputOutput(
-      [void Function(HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder)
-          updates]) = _$HttpPayloadWithXmlNamespaceAndPrefixInputOutput;
+      {_i2.PayloadWithXmlNamespaceAndPrefix? nested}) {
+    return _$HttpPayloadWithXmlNamespaceAndPrefixInputOutput._(nested: nested);
+  }
 
   const HttpPayloadWithXmlNamespaceAndPrefixInputOutput._();
 
   factory HttpPayloadWithXmlNamespaceAndPrefixInputOutput.fromRequest(
-          _i2.PayloadWithXmlNamespaceAndPrefix? payload,
-          _i3.AWSBaseHttpRequest request,
-          {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithXmlNamespaceAndPrefixInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i2.PayloadWithXmlNamespaceAndPrefix? payload,
+      _i3.AWSBaseHttpRequest request,
+      {Map<String, String> labels = const {}}) {
+    final builder = HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder();
+    if (payload != null) {
+      builder.nested.replace(payload);
+    }
+    return builder.build();
+  }
 
   factory HttpPayloadWithXmlNamespaceAndPrefixInputOutput.fromResponse(
-          _i2.PayloadWithXmlNamespaceAndPrefix? payload,
-          _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithXmlNamespaceAndPrefixInputOutput((b) {
-        if (payload != null) {
-          b.nested.replace(payload);
-        }
-      });
+      _i2.PayloadWithXmlNamespaceAndPrefix? payload,
+      _i3.AWSBaseHttpResponse response) {
+    final builder = HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder();
+    if (payload != null) {
+      builder.nested.replace(payload);
+    }
+    return builder.build();
+  }
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadWithXmlNamespaceAndPrefixInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder b) {}
   _i2.PayloadWithXmlNamespaceAndPrefix? get nested;
   @override
   _i2.PayloadWithXmlNamespaceAndPrefix? getPayload() =>

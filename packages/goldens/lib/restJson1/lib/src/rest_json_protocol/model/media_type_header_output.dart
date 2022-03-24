@@ -19,28 +19,26 @@ abstract class MediaTypeHeaderOutput
         Built<MediaTypeHeaderOutput, MediaTypeHeaderOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<MediaTypeHeaderOutputPayload> {
-  factory MediaTypeHeaderOutput(
-          [void Function(MediaTypeHeaderOutputBuilder) updates]) =
-      _$MediaTypeHeaderOutput;
+  factory MediaTypeHeaderOutput({_i3.JsonObject? json}) {
+    return _$MediaTypeHeaderOutput._(json: json);
+  }
 
   const MediaTypeHeaderOutput._();
 
   factory MediaTypeHeaderOutput.fromResponse(
-          MediaTypeHeaderOutputPayload payload,
-          _i1.AWSBaseHttpResponse response) =>
-      MediaTypeHeaderOutput((b) {
-        if (response.headers['X-Json'] != null) {
-          b.json = _i3.JsonObject(_i4.jsonDecode(
-              _i4.utf8.decode(_i4.base64Decode(response.headers['X-Json']!))));
-        }
-      });
+      MediaTypeHeaderOutputPayload payload, _i1.AWSBaseHttpResponse response) {
+    final builder = MediaTypeHeaderOutputBuilder();
+    if (response.headers['X-Json'] != null) {
+      builder.json = _i3.JsonObject(_i4.jsonDecode(
+          _i4.utf8.decode(_i4.base64Decode(response.headers['X-Json']!))));
+    }
+    return builder.build();
+  }
 
   static const List<_i2.SmithySerializer> serializers = [
     _MediaTypeHeaderOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MediaTypeHeaderOutputBuilder b) {}
   _i3.JsonObject? get json;
   @override
   MediaTypeHeaderOutputPayload getPayload() => MediaTypeHeaderOutputPayload();

@@ -75,9 +75,7 @@ class MalformedPatternOverrideInputBuilder
   _i4.PatternUnionOverride? get union => _$this._union;
   set union(_i4.PatternUnionOverride? union) => _$this._union = union;
 
-  MalformedPatternOverrideInputBuilder() {
-    MalformedPatternOverrideInput._init(this);
-  }
+  MalformedPatternOverrideInputBuilder();
 
   MalformedPatternOverrideInputBuilder get _$this {
     final $v = _$v;

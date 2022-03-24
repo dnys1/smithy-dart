@@ -17,9 +17,9 @@ abstract class EmptyInputAndEmptyOutputInput
         Built<EmptyInputAndEmptyOutputInput,
             EmptyInputAndEmptyOutputInputBuilder>,
         _i1.EmptyPayload {
-  factory EmptyInputAndEmptyOutputInput(
-          [void Function(EmptyInputAndEmptyOutputInputBuilder) updates]) =
-      _$EmptyInputAndEmptyOutputInput;
+  factory EmptyInputAndEmptyOutputInput() {
+    return _$EmptyInputAndEmptyOutputInput._();
+  }
 
   const EmptyInputAndEmptyOutputInput._();
 
@@ -32,8 +32,6 @@ abstract class EmptyInputAndEmptyOutputInput
     _EmptyInputAndEmptyOutputInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(EmptyInputAndEmptyOutputInputBuilder b) {}
   @override
   EmptyInputAndEmptyOutputInput getPayload() => this;
   @override

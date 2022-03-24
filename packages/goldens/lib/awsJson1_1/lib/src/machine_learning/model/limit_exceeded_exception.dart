@@ -14,9 +14,9 @@ abstract class LimitExceededException
     implements
         Built<LimitExceededException, LimitExceededExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory LimitExceededException(
-          [void Function(LimitExceededExceptionBuilder) updates]) =
-      _$LimitExceededException;
+  factory LimitExceededException({int? code, String? message}) {
+    return _$LimitExceededException._(code: code, message: message);
+  }
 
   const LimitExceededException._();
 
@@ -30,8 +30,6 @@ abstract class LimitExceededException
     _LimitExceededExceptionAwsJson11Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(LimitExceededExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

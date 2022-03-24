@@ -48,9 +48,7 @@ class XmlMapsXmlNameInputOutputBuilder
   set myMap(_i3.MapBuilder<String, _i4.GreetingStruct>? myMap) =>
       _$this._myMap = myMap;
 
-  XmlMapsXmlNameInputOutputBuilder() {
-    XmlMapsXmlNameInputOutput._init(this);
-  }
+  XmlMapsXmlNameInputOutputBuilder();
 
   XmlMapsXmlNameInputOutputBuilder get _$this {
     final $v = _$v;

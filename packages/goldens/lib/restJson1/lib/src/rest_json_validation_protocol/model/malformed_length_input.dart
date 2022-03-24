@@ -18,8 +18,20 @@ abstract class MalformedLengthInput
         _i2.AWSEquatable<MalformedLengthInput>
     implements Built<MalformedLengthInput, MalformedLengthInputBuilder> {
   factory MalformedLengthInput(
-          [void Function(MalformedLengthInputBuilder) updates]) =
-      _$MalformedLengthInput;
+      {_i3.Uint8List? blob,
+      _i4.BuiltList<String>? list,
+      _i4.BuiltListMultimap<String, String>? map,
+      String? maxString,
+      String? minString,
+      String? string}) {
+    return _$MalformedLengthInput._(
+        blob: blob,
+        list: list,
+        map: map,
+        maxString: maxString,
+        minString: minString,
+        string: string);
+  }
 
   const MalformedLengthInput._();
 
@@ -32,8 +44,6 @@ abstract class MalformedLengthInput
     _MalformedLengthInputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(MalformedLengthInputBuilder b) {}
   _i3.Uint8List? get blob;
   _i4.BuiltList<String>? get list;
   _i4.BuiltListMultimap<String, String>? get map;

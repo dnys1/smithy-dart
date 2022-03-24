@@ -101,9 +101,7 @@ class JsonEnumsInputOutputBuilder
   set fooEnumSet(_i4.SetBuilder<_i3.FooEnum>? fooEnumSet) =>
       _$this._fooEnumSet = fooEnumSet;
 
-  JsonEnumsInputOutputBuilder() {
-    JsonEnumsInputOutput._init(this);
-  }
+  JsonEnumsInputOutputBuilder();
 
   JsonEnumsInputOutputBuilder get _$this {
     final $v = _$v;

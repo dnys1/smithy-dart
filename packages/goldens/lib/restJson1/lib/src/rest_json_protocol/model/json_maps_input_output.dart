@@ -18,8 +18,28 @@ abstract class JsonMapsInputOutput
         _i2.AWSEquatable<JsonMapsInputOutput>
     implements Built<JsonMapsInputOutput, JsonMapsInputOutputBuilder> {
   factory JsonMapsInputOutput(
-          [void Function(JsonMapsInputOutputBuilder) updates]) =
-      _$JsonMapsInputOutput;
+      {_i3.BuiltMap<String, bool>? denseBooleanMap,
+      _i3.BuiltMap<String, int>? denseNumberMap,
+      _i3.BuiltSetMultimap<String, String>? denseSetMap,
+      _i3.BuiltMap<String, String>? denseStringMap,
+      _i3.BuiltMap<String, _i4.GreetingStruct>? denseStructMap,
+      _i3.BuiltMap<String, bool?>? sparseBooleanMap,
+      _i3.BuiltMap<String, int?>? sparseNumberMap,
+      _i3.BuiltSetMultimap<String, String>? sparseSetMap,
+      _i3.BuiltMap<String, String?>? sparseStringMap,
+      _i3.BuiltMap<String, _i4.GreetingStruct?>? sparseStructMap}) {
+    return _$JsonMapsInputOutput._(
+        denseBooleanMap: denseBooleanMap,
+        denseNumberMap: denseNumberMap,
+        denseSetMap: denseSetMap,
+        denseStringMap: denseStringMap,
+        denseStructMap: denseStructMap,
+        sparseBooleanMap: sparseBooleanMap,
+        sparseNumberMap: sparseNumberMap,
+        sparseSetMap: sparseSetMap,
+        sparseStringMap: sparseStringMap,
+        sparseStructMap: sparseStructMap);
+  }
 
   const JsonMapsInputOutput._();
 
@@ -36,8 +56,6 @@ abstract class JsonMapsInputOutput
     _JsonMapsInputOutputRestJson1Serializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(JsonMapsInputOutputBuilder b) {}
   _i3.BuiltMap<String, bool>? get denseBooleanMap;
   _i3.BuiltMap<String, int>? get denseNumberMap;
   _i3.BuiltSetMultimap<String, String>? get denseSetMap;

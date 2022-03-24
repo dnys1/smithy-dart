@@ -17,9 +17,9 @@ abstract class BodyWithXmlNameInputOutput
         _i2.AWSEquatable<BodyWithXmlNameInputOutput>
     implements
         Built<BodyWithXmlNameInputOutput, BodyWithXmlNameInputOutputBuilder> {
-  factory BodyWithXmlNameInputOutput(
-          [void Function(BodyWithXmlNameInputOutputBuilder) updates]) =
-      _$BodyWithXmlNameInputOutput;
+  factory BodyWithXmlNameInputOutput({_i3.PayloadWithXmlName? nested}) {
+    return _$BodyWithXmlNameInputOutput._(nested: nested);
+  }
 
   const BodyWithXmlNameInputOutput._();
 
@@ -37,8 +37,6 @@ abstract class BodyWithXmlNameInputOutput
     _BodyWithXmlNameInputOutputRestXmlSerializer()
   ];
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _init(BodyWithXmlNameInputOutputBuilder b) {}
   _i3.PayloadWithXmlName? get nested;
   @override
   BodyWithXmlNameInputOutput getPayload() => this;

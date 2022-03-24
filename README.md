@@ -7,10 +7,10 @@ Code generator and runtime packages for Smithy models in pure Dart. Check out th
 | Folder | Description |
 | ------ | ----------- |
 | **[codegen](codegen/)** | Smithy codegen plugin, written in Kotlin |
+| **[example](example/)** | Example Smithy service |
 | **[packages](packages/)** | Dart packages |
 | [smithy](packages/smithy/) | Smithy Dart runtime |
 | [smithy_aws](packages/smithy_aws/) | Smithy Dart runtime for AWS clients |
-| [smithy_ast](packages/smithy_ast/) | Smithy AST model with shape and trait definitions |
 | [smithy_codegen](packages/smithy_codegen/) | Smithy Dart code generator |
 | [goldens](packages/goldens/) | Smithy Dart code generator golden files |
 | **[playground](playground/)** | Online playground for exploring the Dart code generator |

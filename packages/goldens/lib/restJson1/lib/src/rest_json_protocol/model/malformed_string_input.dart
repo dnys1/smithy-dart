@@ -21,22 +21,21 @@ abstract class MalformedStringInput
         Built<MalformedStringInput, MalformedStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedStringInputPayload> {
-  factory MalformedStringInput({_i3.JsonObject? blob}) {
-    return _$MalformedStringInput._(blob: blob);
-  }
+  factory MalformedStringInput(
+          [void Function(MalformedStringInputBuilder) updates]) =
+      _$MalformedStringInput;
 
   const MalformedStringInput._();
 
   factory MalformedStringInput.fromRequest(
-      MalformedStringInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedStringInputBuilder();
-    if (request.headers['amz-media-typed-header'] != null) {
-      builder.blob = _i3.JsonObject(_i4.jsonDecode(_i4.utf8.decode(
-          _i4.base64Decode(request.headers['amz-media-typed-header']!))));
-    }
-    return builder.build();
-  }
+          MalformedStringInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedStringInput((b) {
+        if (request.headers['amz-media-typed-header'] != null) {
+          b.blob = _i3.JsonObject(_i4.jsonDecode(_i4.utf8.decode(
+              _i4.base64Decode(request.headers['amz-media-typed-header']!))));
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedStringInputRestJson1Serializer()

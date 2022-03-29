@@ -16,9 +16,9 @@ abstract class JsonBlobsInputOutput
         _i1.HttpInput<JsonBlobsInputOutput>,
         _i2.AWSEquatable<JsonBlobsInputOutput>
     implements Built<JsonBlobsInputOutput, JsonBlobsInputOutputBuilder> {
-  factory JsonBlobsInputOutput({_i3.Uint8List? data}) {
-    return _$JsonBlobsInputOutput._(data: data);
-  }
+  factory JsonBlobsInputOutput(
+          [void Function(JsonBlobsInputOutputBuilder) updates]) =
+      _$JsonBlobsInputOutput;
 
   const JsonBlobsInputOutput._();
 

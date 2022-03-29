@@ -13,9 +13,9 @@ part 'malformed_list_input.g.dart';
 abstract class MalformedListInput
     with _i1.HttpInput<MalformedListInput>, _i2.AWSEquatable<MalformedListInput>
     implements Built<MalformedListInput, MalformedListInputBuilder> {
-  factory MalformedListInput({_i3.BuiltList<String>? bodyList}) {
-    return _$MalformedListInput._(bodyList: bodyList);
-  }
+  factory MalformedListInput(
+          [void Function(MalformedListInputBuilder) updates]) =
+      _$MalformedListInput;
 
   const MalformedListInput._();
 

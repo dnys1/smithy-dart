@@ -12,9 +12,8 @@ part 'host_label_input.g.dart';
 abstract class HostLabelInput
     with _i1.HttpInput<HostLabelInput>, _i2.AWSEquatable<HostLabelInput>
     implements Built<HostLabelInput, HostLabelInputBuilder> {
-  factory HostLabelInput({required String label}) {
-    return _$HostLabelInput._(label: label);
-  }
+  factory HostLabelInput([void Function(HostLabelInputBuilder) updates]) =
+      _$HostLabelInput;
 
   const HostLabelInput._();
 

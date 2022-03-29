@@ -20,59 +20,43 @@ abstract class HttpRequestWithLabelsInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithLabelsInputPayload> {
   factory HttpRequestWithLabelsInput(
-      {required bool boolean,
-      required double double_,
-      required double float,
-      required int integer,
-      required _i3.Int64 long,
-      required int short,
-      required String string,
-      required DateTime timestamp}) {
-    return _$HttpRequestWithLabelsInput._(
-        boolean: boolean,
-        double_: double_,
-        float: float,
-        integer: integer,
-        long: long,
-        short: short,
-        string: string,
-        timestamp: timestamp);
-  }
+          [void Function(HttpRequestWithLabelsInputBuilder) updates]) =
+      _$HttpRequestWithLabelsInput;
 
   const HttpRequestWithLabelsInput._();
 
   factory HttpRequestWithLabelsInput.fromRequest(
-      HttpRequestWithLabelsInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = HttpRequestWithLabelsInputBuilder();
-    if (labels['string'] != null) {
-      builder.string = labels['string']!;
-    }
-    if (labels['short'] != null) {
-      builder.short = int.parse(labels['short']!);
-    }
-    if (labels['integer'] != null) {
-      builder.integer = int.parse(labels['integer']!);
-    }
-    if (labels['long'] != null) {
-      builder.long = _i3.Int64.parseInt(labels['long']!);
-    }
-    if (labels['float'] != null) {
-      builder.float = double.parse(labels['float']!);
-    }
-    if (labels['double_'] != null) {
-      builder.double_ = double.parse(labels['double_']!);
-    }
-    if (labels['boolean'] != null) {
-      builder.boolean = labels['boolean']! == 'true';
-    }
-    if (labels['timestamp'] != null) {
-      builder.timestamp = _i1.Timestamp.parse(labels['timestamp']!,
-              format: _i1.TimestampFormat.dateTime)
-          .asDateTime;
-    }
-    return builder.build();
-  }
+          HttpRequestWithLabelsInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpRequestWithLabelsInput((b) {
+        if (labels['string'] != null) {
+          b.string = labels['string']!;
+        }
+        if (labels['short'] != null) {
+          b.short = int.parse(labels['short']!);
+        }
+        if (labels['integer'] != null) {
+          b.integer = int.parse(labels['integer']!);
+        }
+        if (labels['long'] != null) {
+          b.long = _i3.Int64.parseInt(labels['long']!);
+        }
+        if (labels['float'] != null) {
+          b.float = double.parse(labels['float']!);
+        }
+        if (labels['double_'] != null) {
+          b.double_ = double.parse(labels['double_']!);
+        }
+        if (labels['boolean'] != null) {
+          b.boolean = labels['boolean']! == 'true';
+        }
+        if (labels['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(labels['timestamp']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithLabelsInputRestXmlSerializer()

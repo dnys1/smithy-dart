@@ -21,30 +21,28 @@ abstract class XmlAttributesOnPayloadInputOutput
             XmlAttributesOnPayloadInputOutputBuilder>,
         _i1.HasPayload<_i2.XmlAttributesInputOutput> {
   factory XmlAttributesOnPayloadInputOutput(
-      {_i2.XmlAttributesInputOutput? payload}) {
-    return _$XmlAttributesOnPayloadInputOutput._(payload: payload);
-  }
+          [void Function(XmlAttributesOnPayloadInputOutputBuilder) updates]) =
+      _$XmlAttributesOnPayloadInputOutput;
 
   const XmlAttributesOnPayloadInputOutput._();
 
   factory XmlAttributesOnPayloadInputOutput.fromRequest(
-      _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = XmlAttributesOnPayloadInputOutputBuilder();
-    if (payload != null) {
-      builder.payload.replace(payload);
-    }
-    return builder.build();
-  }
+          _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      XmlAttributesOnPayloadInputOutput((b) {
+        if (payload != null) {
+          b.payload.replace(payload);
+        }
+      });
 
   factory XmlAttributesOnPayloadInputOutput.fromResponse(
-      _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = XmlAttributesOnPayloadInputOutputBuilder();
-    if (payload != null) {
-      builder.payload.replace(payload);
-    }
-    return builder.build();
-  }
+          _i2.XmlAttributesInputOutput? payload,
+          _i3.AWSBaseHttpResponse response) =>
+      XmlAttributesOnPayloadInputOutput((b) {
+        if (payload != null) {
+          b.payload.replace(payload);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _XmlAttributesOnPayloadInputOutputRestXmlSerializer()

@@ -19,25 +19,24 @@ abstract class MalformedTimestampQueryHttpDateInput
             MalformedTimestampQueryHttpDateInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedTimestampQueryHttpDateInputPayload> {
-  factory MalformedTimestampQueryHttpDateInput({required DateTime timestamp}) {
-    return _$MalformedTimestampQueryHttpDateInput._(timestamp: timestamp);
-  }
+  factory MalformedTimestampQueryHttpDateInput(
+      [void Function(MalformedTimestampQueryHttpDateInputBuilder)
+          updates]) = _$MalformedTimestampQueryHttpDateInput;
 
   const MalformedTimestampQueryHttpDateInput._();
 
   factory MalformedTimestampQueryHttpDateInput.fromRequest(
-      MalformedTimestampQueryHttpDateInputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedTimestampQueryHttpDateInputBuilder();
-    if (request.queryParameters['timestamp'] != null) {
-      builder.timestamp = _i1.Timestamp.parse(
-              request.queryParameters['timestamp']!,
-              format: _i1.TimestampFormat.httpDate)
-          .asDateTime;
-    }
-    return builder.build();
-  }
+          MalformedTimestampQueryHttpDateInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedTimestampQueryHttpDateInput((b) {
+        if (request.queryParameters['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(
+                  request.queryParameters['timestamp']!,
+                  format: _i1.TimestampFormat.httpDate)
+              .asDateTime;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampQueryHttpDateInputRestJson1Serializer()

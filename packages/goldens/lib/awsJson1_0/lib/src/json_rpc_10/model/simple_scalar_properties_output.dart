@@ -16,10 +16,8 @@ abstract class SimpleScalarPropertiesOutput
         Built<SimpleScalarPropertiesOutput,
             SimpleScalarPropertiesOutputBuilder> {
   factory SimpleScalarPropertiesOutput(
-      {double? doubleValue, double? floatValue}) {
-    return _$SimpleScalarPropertiesOutput._(
-        doubleValue: doubleValue, floatValue: floatValue);
-  }
+          [void Function(SimpleScalarPropertiesOutputBuilder) updates]) =
+      _$SimpleScalarPropertiesOutput;
 
   const SimpleScalarPropertiesOutput._();
 

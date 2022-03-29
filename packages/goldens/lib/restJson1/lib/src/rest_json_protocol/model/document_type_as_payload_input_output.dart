@@ -18,26 +18,24 @@ abstract class DocumentTypeAsPayloadInputOutput
         Built<DocumentTypeAsPayloadInputOutput,
             DocumentTypeAsPayloadInputOutputBuilder>,
         _i1.HasPayload<_i2.JsonObject> {
-  factory DocumentTypeAsPayloadInputOutput({_i2.JsonObject? documentValue}) {
-    return _$DocumentTypeAsPayloadInputOutput._(documentValue: documentValue);
-  }
+  factory DocumentTypeAsPayloadInputOutput(
+          [void Function(DocumentTypeAsPayloadInputOutputBuilder) updates]) =
+      _$DocumentTypeAsPayloadInputOutput;
 
   const DocumentTypeAsPayloadInputOutput._();
 
   factory DocumentTypeAsPayloadInputOutput.fromRequest(
-      _i2.JsonObject? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = DocumentTypeAsPayloadInputOutputBuilder();
-    builder.documentValue = payload;
-    return builder.build();
-  }
+          _i2.JsonObject? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      DocumentTypeAsPayloadInputOutput((b) {
+        b.documentValue = payload;
+      });
 
   factory DocumentTypeAsPayloadInputOutput.fromResponse(
-      _i2.JsonObject? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = DocumentTypeAsPayloadInputOutputBuilder();
-    builder.documentValue = payload;
-    return builder.build();
-  }
+          _i2.JsonObject? payload, _i3.AWSBaseHttpResponse response) =>
+      DocumentTypeAsPayloadInputOutput((b) {
+        b.documentValue = payload;
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _DocumentTypeAsPayloadInputOutputRestJson1Serializer()

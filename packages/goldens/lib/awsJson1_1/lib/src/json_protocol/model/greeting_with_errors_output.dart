@@ -13,9 +13,9 @@ abstract class GreetingWithErrorsOutput
     with _i1.AWSEquatable<GreetingWithErrorsOutput>
     implements
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder> {
-  factory GreetingWithErrorsOutput({String? greeting}) {
-    return _$GreetingWithErrorsOutput._(greeting: greeting);
-  }
+  factory GreetingWithErrorsOutput(
+          [void Function(GreetingWithErrorsOutputBuilder) updates]) =
+      _$GreetingWithErrorsOutput;
 
   const GreetingWithErrorsOutput._();
 

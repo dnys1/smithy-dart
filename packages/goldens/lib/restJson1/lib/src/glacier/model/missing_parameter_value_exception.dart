@@ -17,10 +17,8 @@ abstract class MissingParameterValueException
             MissingParameterValueExceptionBuilder>,
         _i2.SmithyHttpException {
   factory MissingParameterValueException(
-      {String? code, String? message, String? type}) {
-    return _$MissingParameterValueException._(
-        code: code, message: message, type: type);
-  }
+          [void Function(MissingParameterValueExceptionBuilder) updates]) =
+      _$MissingParameterValueException;
 
   const MissingParameterValueException._();
 

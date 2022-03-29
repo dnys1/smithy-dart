@@ -12,9 +12,8 @@ part 'renamed_greeting.g.dart';
 abstract class RenamedGreeting
     with _i1.AWSEquatable<RenamedGreeting>
     implements Built<RenamedGreeting, RenamedGreetingBuilder> {
-  factory RenamedGreeting({String? salutation}) {
-    return _$RenamedGreeting._(salutation: salutation);
-  }
+  factory RenamedGreeting([void Function(RenamedGreetingBuilder) updates]) =
+      _$RenamedGreeting;
 
   const RenamedGreeting._();
 

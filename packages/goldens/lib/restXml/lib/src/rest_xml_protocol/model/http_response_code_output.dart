@@ -16,18 +16,18 @@ abstract class HttpResponseCodeOutput
         Built<HttpResponseCodeOutput, HttpResponseCodeOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<HttpResponseCodeOutputPayload> {
-  factory HttpResponseCodeOutput({int? status}) {
-    return _$HttpResponseCodeOutput._(status: status);
-  }
+  factory HttpResponseCodeOutput(
+          [void Function(HttpResponseCodeOutputBuilder) updates]) =
+      _$HttpResponseCodeOutput;
 
   const HttpResponseCodeOutput._();
 
   factory HttpResponseCodeOutput.fromResponse(
-      HttpResponseCodeOutputPayload payload, _i1.AWSBaseHttpResponse response) {
-    final builder = HttpResponseCodeOutputBuilder();
-    builder.status = response.statusCode;
-    return builder.build();
-  }
+          HttpResponseCodeOutputPayload payload,
+          _i1.AWSBaseHttpResponse response) =>
+      HttpResponseCodeOutput((b) {
+        b.status = response.statusCode;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _HttpResponseCodeOutputRestXmlSerializer()

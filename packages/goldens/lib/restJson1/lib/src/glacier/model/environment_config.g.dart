@@ -14,7 +14,7 @@ class _$EnvironmentConfig extends EnvironmentConfig {
   @override
   final String? awsProfile;
   @override
-  final _i2.RetryMode? awsRetryMode;
+  final _i3.RetryMode? awsRetryMode;
   @override
   final String? awsSecretAccessKey;
   @override
@@ -86,9 +86,9 @@ class EnvironmentConfigBuilder
   String? get awsProfile => _$this._awsProfile;
   set awsProfile(String? awsProfile) => _$this._awsProfile = awsProfile;
 
-  _i2.RetryMode? _awsRetryMode;
-  _i2.RetryMode? get awsRetryMode => _$this._awsRetryMode;
-  set awsRetryMode(_i2.RetryMode? awsRetryMode) =>
+  _i3.RetryMode? _awsRetryMode;
+  _i3.RetryMode? get awsRetryMode => _$this._awsRetryMode;
+  set awsRetryMode(_i3.RetryMode? awsRetryMode) =>
       _$this._awsRetryMode = awsRetryMode;
 
   String? _awsSecretAccessKey;

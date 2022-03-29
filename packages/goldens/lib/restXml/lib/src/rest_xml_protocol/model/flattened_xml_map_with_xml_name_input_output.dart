@@ -18,9 +18,8 @@ abstract class FlattenedXmlMapWithXmlNameInputOutput
         Built<FlattenedXmlMapWithXmlNameInputOutput,
             FlattenedXmlMapWithXmlNameInputOutputBuilder> {
   factory FlattenedXmlMapWithXmlNameInputOutput(
-      {_i3.BuiltMap<String, String>? myMap}) {
-    return _$FlattenedXmlMapWithXmlNameInputOutput._(myMap: myMap);
-  }
+      [void Function(FlattenedXmlMapWithXmlNameInputOutputBuilder)
+          updates]) = _$FlattenedXmlMapWithXmlNameInputOutput;
 
   const FlattenedXmlMapWithXmlNameInputOutput._();
 

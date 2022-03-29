@@ -3,10 +3,10 @@
 library aws_json1_1.json_protocol.model.retry_config;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_1/src/json_protocol/model/retry_mode.dart' as _i2;
+import 'package:aws_json1_1/src/json_protocol/model/retry_mode.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'retry_config.g.dart';
 
@@ -14,20 +14,19 @@ part 'retry_config.g.dart';
 abstract class RetryConfig
     with _i1.AWSEquatable<RetryConfig>
     implements Built<RetryConfig, RetryConfigBuilder> {
-  factory RetryConfig({int? maxAttempts, _i2.RetryMode? mode}) {
-    return _$RetryConfig._(maxAttempts: maxAttempts, mode: mode);
-  }
+  factory RetryConfig([void Function(RetryConfigBuilder) updates]) =
+      _$RetryConfig;
 
   const RetryConfig._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _RetryConfigAwsJson11Serializer()
   ];
 
   int? get maxAttempts;
 
   /// Controls the strategy used for retries.
-  _i2.RetryMode? get mode;
+  _i3.RetryMode? get mode;
   @override
   List<Object?> get props => [maxAttempts, mode];
   @override
@@ -40,14 +39,14 @@ abstract class RetryConfig
 }
 
 class _RetryConfigAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<RetryConfig> {
+    extends _i2.StructuredSmithySerializer<RetryConfig> {
   const _RetryConfigAwsJson11Serializer() : super('RetryConfig');
 
   @override
   Iterable<Type> get types => const [RetryConfig, _$RetryConfig];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols =>
-      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   RetryConfig deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
@@ -67,7 +66,7 @@ class _RetryConfigAwsJson11Serializer
         case 'mode':
           if (value != null) {
             result.mode = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.RetryMode)) as _i2.RetryMode);
+                specifiedType: const FullType(_i3.RetryMode)) as _i3.RetryMode);
           }
           break;
       }
@@ -91,7 +90,7 @@ class _RetryConfigAwsJson11Serializer
       result
         ..add('mode')
         ..add(serializers.serialize(payload.mode!,
-            specifiedType: const FullType(_i2.RetryMode)));
+            specifiedType: const FullType(_i3.RetryMode)));
     }
     return result;
   }

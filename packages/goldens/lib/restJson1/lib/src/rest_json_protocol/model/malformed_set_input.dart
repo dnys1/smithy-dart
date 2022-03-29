@@ -15,10 +15,8 @@ part 'malformed_set_input.g.dart';
 abstract class MalformedSetInput
     with _i1.HttpInput<MalformedSetInput>, _i2.AWSEquatable<MalformedSetInput>
     implements Built<MalformedSetInput, MalformedSetInputBuilder> {
-  factory MalformedSetInput(
-      {_i3.BuiltSet<_i4.Uint8List>? blobSet, _i3.BuiltSet<String>? set}) {
-    return _$MalformedSetInput._(blobSet: blobSet, set: set);
-  }
+  factory MalformedSetInput([void Function(MalformedSetInputBuilder) updates]) =
+      _$MalformedSetInput;
 
   const MalformedSetInput._();
 

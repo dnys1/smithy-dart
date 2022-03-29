@@ -80,6 +80,7 @@ Future<void> _generateFor(FileSystemEntity modelEnt) async {
       ShapeId(namespace: 'aws.protocoltests.config', shape: 'AwsConfig'),
     ],
     generateServer: true,
+    useBuilders: true,
   );
 
   final Set<String> dependencies = {};

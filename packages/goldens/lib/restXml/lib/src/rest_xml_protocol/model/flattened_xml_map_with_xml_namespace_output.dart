@@ -3,10 +3,10 @@
 library rest_xml.rest_xml_protocol.model.flattened_xml_map_with_xml_namespace_output;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'flattened_xml_map_with_xml_namespace_output.g.dart';
 
@@ -17,9 +17,8 @@ abstract class FlattenedXmlMapWithXmlNamespaceOutput
         Built<FlattenedXmlMapWithXmlNamespaceOutput,
             FlattenedXmlMapWithXmlNamespaceOutputBuilder> {
   factory FlattenedXmlMapWithXmlNamespaceOutput(
-      {_i2.BuiltMap<String, String>? myMap}) {
-    return _$FlattenedXmlMapWithXmlNamespaceOutput._(myMap: myMap);
-  }
+      [void Function(FlattenedXmlMapWithXmlNamespaceOutputBuilder)
+          updates]) = _$FlattenedXmlMapWithXmlNamespaceOutput;
 
   const FlattenedXmlMapWithXmlNamespaceOutput._();
 
@@ -28,11 +27,11 @@ abstract class FlattenedXmlMapWithXmlNamespaceOutput
           _i1.AWSBaseHttpResponse response) =>
       payload;
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer()
   ];
 
-  _i2.BuiltMap<String, String>? get myMap;
+  _i3.BuiltMap<String, String>? get myMap;
   @override
   List<Object?> get props => [myMap];
   @override
@@ -44,7 +43,7 @@ abstract class FlattenedXmlMapWithXmlNamespaceOutput
   }
 }
 
-class _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer extends _i3
+class _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer extends _i2
     .StructuredSmithySerializer<FlattenedXmlMapWithXmlNamespaceOutput> {
   const _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer()
       : super('FlattenedXmlMapWithXmlNamespaceOutput');
@@ -55,8 +54,8 @@ class _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer extends _i3
         _$FlattenedXmlMapWithXmlNamespaceOutput
       ];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols =>
-      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
   @override
   FlattenedXmlMapWithXmlNamespaceOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -70,11 +69,11 @@ class _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer extends _i3
       switch (key as String) {
         case 'KVP':
           if (value != null) {
-            result.myMap.addAll(const _i3.XmlBuiltMapSerializer(
+            result.myMap.addAll(const _i2.XmlBuiltMapSerializer(
                     keyName: 'K', valueName: 'V', flattenedKey: 'KVP')
                 .deserialize(serializers, (value as Iterable<Object?>),
                     specifiedType: const FullType(
-                        _i2.BuiltMap, [FullType(String), FullType(String)]))
+                        _i3.BuiltMap, [FullType(String), FullType(String)]))
                 .toMap()
                 .cast());
           }
@@ -90,14 +89,14 @@ class _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer extends _i3
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as FlattenedXmlMapWithXmlNamespaceOutput);
     final result = <Object?>[
-      _i3.XmlElementName('FlattenedXmlMapWithXmlNamespaceOutput')
+      _i2.XmlElementName('FlattenedXmlMapWithXmlNamespaceOutput')
     ];
     if (payload.myMap != null) {
-      result.addAll(const _i3.XmlBuiltMapSerializer(
+      result.addAll(const _i2.XmlBuiltMapSerializer(
               keyName: 'K', valueName: 'V', flattenedKey: 'KVP')
           .serialize(serializers, payload.myMap!,
               specifiedType: const FullType.nullable(
-                  _i2.BuiltMap, [FullType(String), FullType(String)])));
+                  _i3.BuiltMap, [FullType(String), FullType(String)])));
     }
     return result;
   }

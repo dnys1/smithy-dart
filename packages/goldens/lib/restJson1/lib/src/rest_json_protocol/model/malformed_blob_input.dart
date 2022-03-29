@@ -14,9 +14,9 @@ part 'malformed_blob_input.g.dart';
 abstract class MalformedBlobInput
     with _i1.HttpInput<MalformedBlobInput>, _i2.AWSEquatable<MalformedBlobInput>
     implements Built<MalformedBlobInput, MalformedBlobInputBuilder> {
-  factory MalformedBlobInput({_i3.Uint8List? blob}) {
-    return _$MalformedBlobInput._(blob: blob);
-  }
+  factory MalformedBlobInput(
+          [void Function(MalformedBlobInputBuilder) updates]) =
+      _$MalformedBlobInput;
 
   const MalformedBlobInput._();
 

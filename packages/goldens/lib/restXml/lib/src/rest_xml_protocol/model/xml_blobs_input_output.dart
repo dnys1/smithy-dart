@@ -16,9 +16,9 @@ abstract class XmlBlobsInputOutput
         _i1.HttpInput<XmlBlobsInputOutput>,
         _i2.AWSEquatable<XmlBlobsInputOutput>
     implements Built<XmlBlobsInputOutput, XmlBlobsInputOutputBuilder> {
-  factory XmlBlobsInputOutput({_i3.Uint8List? data}) {
-    return _$XmlBlobsInputOutput._(data: data);
-  }
+  factory XmlBlobsInputOutput(
+          [void Function(XmlBlobsInputOutputBuilder) updates]) =
+      _$XmlBlobsInputOutput;
 
   const XmlBlobsInputOutput._();
 

@@ -20,30 +20,27 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
             HttpPayloadWithMemberXmlNameInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlName> {
   factory HttpPayloadWithMemberXmlNameInputOutput(
-      {_i2.PayloadWithXmlName? nested}) {
-    return _$HttpPayloadWithMemberXmlNameInputOutput._(nested: nested);
-  }
+      [void Function(HttpPayloadWithMemberXmlNameInputOutputBuilder)
+          updates]) = _$HttpPayloadWithMemberXmlNameInputOutput;
 
   const HttpPayloadWithMemberXmlNameInputOutput._();
 
   factory HttpPayloadWithMemberXmlNameInputOutput.fromRequest(
-      _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = HttpPayloadWithMemberXmlNameInputOutputBuilder();
-    if (payload != null) {
-      builder.nested.replace(payload);
-    }
-    return builder.build();
-  }
+          _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadWithMemberXmlNameInputOutput((b) {
+        if (payload != null) {
+          b.nested.replace(payload);
+        }
+      });
 
   factory HttpPayloadWithMemberXmlNameInputOutput.fromResponse(
-      _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = HttpPayloadWithMemberXmlNameInputOutputBuilder();
-    if (payload != null) {
-      builder.nested.replace(payload);
-    }
-    return builder.build();
-  }
+          _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) =>
+      HttpPayloadWithMemberXmlNameInputOutput((b) {
+        if (payload != null) {
+          b.nested.replace(payload);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadWithMemberXmlNameInputOutputRestXmlSerializer()

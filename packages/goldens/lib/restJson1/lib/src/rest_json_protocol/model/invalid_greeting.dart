@@ -15,9 +15,8 @@ abstract class InvalidGreeting
     implements
         Built<InvalidGreeting, InvalidGreetingBuilder>,
         _i2.SmithyHttpException {
-  factory InvalidGreeting({String? message}) {
-    return _$InvalidGreeting._(message: message);
-  }
+  factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
+      _$InvalidGreeting;
 
   const InvalidGreeting._();
 

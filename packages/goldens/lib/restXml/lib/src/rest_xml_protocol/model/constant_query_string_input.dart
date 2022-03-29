@@ -18,21 +18,21 @@ abstract class ConstantQueryStringInput
         Built<ConstantQueryStringInput, ConstantQueryStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<ConstantQueryStringInputPayload> {
-  factory ConstantQueryStringInput({required String hello}) {
-    return _$ConstantQueryStringInput._(hello: hello);
-  }
+  factory ConstantQueryStringInput(
+          [void Function(ConstantQueryStringInputBuilder) updates]) =
+      _$ConstantQueryStringInput;
 
   const ConstantQueryStringInput._();
 
   factory ConstantQueryStringInput.fromRequest(
-      ConstantQueryStringInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = ConstantQueryStringInputBuilder();
-    if (labels['hello'] != null) {
-      builder.hello = labels['hello']!;
-    }
-    return builder.build();
-  }
+          ConstantQueryStringInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      ConstantQueryStringInput((b) {
+        if (labels['hello'] != null) {
+          b.hello = labels['hello']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _ConstantQueryStringInputRestXmlSerializer()

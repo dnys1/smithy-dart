@@ -16,9 +16,9 @@ abstract class EndpointWithHostLabelOperationInput
     implements
         Built<EndpointWithHostLabelOperationInput,
             EndpointWithHostLabelOperationInputBuilder> {
-  factory EndpointWithHostLabelOperationInput({required String label}) {
-    return _$EndpointWithHostLabelOperationInput._(label: label);
-  }
+  factory EndpointWithHostLabelOperationInput(
+          [void Function(EndpointWithHostLabelOperationInputBuilder) updates]) =
+      _$EndpointWithHostLabelOperationInput;
 
   const EndpointWithHostLabelOperationInput._();
 

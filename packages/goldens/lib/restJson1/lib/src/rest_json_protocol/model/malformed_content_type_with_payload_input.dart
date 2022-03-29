@@ -19,19 +19,18 @@ abstract class MalformedContentTypeWithPayloadInput
         Built<MalformedContentTypeWithPayloadInput,
             MalformedContentTypeWithPayloadInputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
-  factory MalformedContentTypeWithPayloadInput({_i2.Uint8List? payload}) {
-    return _$MalformedContentTypeWithPayloadInput._(payload: payload);
-  }
+  factory MalformedContentTypeWithPayloadInput(
+      [void Function(MalformedContentTypeWithPayloadInputBuilder)
+          updates]) = _$MalformedContentTypeWithPayloadInput;
 
   const MalformedContentTypeWithPayloadInput._();
 
   factory MalformedContentTypeWithPayloadInput.fromRequest(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedContentTypeWithPayloadInputBuilder();
-    builder.payload = payload;
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedContentTypeWithPayloadInput((b) {
+        b.payload = payload;
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedContentTypeWithPayloadInputRestJson1Serializer()

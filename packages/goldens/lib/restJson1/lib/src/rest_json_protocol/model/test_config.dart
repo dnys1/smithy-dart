@@ -12,9 +12,7 @@ part 'test_config.g.dart';
 abstract class TestConfig
     with _i1.AWSEquatable<TestConfig>
     implements Built<TestConfig, TestConfigBuilder> {
-  factory TestConfig({int? timeout}) {
-    return _$TestConfig._(timeout: timeout);
-  }
+  factory TestConfig([void Function(TestConfigBuilder) updates]) = _$TestConfig;
 
   const TestConfig._();
 

@@ -18,9 +18,9 @@ class _$FileConfigSettings extends FileConfigSettings {
   @override
   final String? region;
   @override
-  final _i2.RetryMode? retryMode;
+  final _i3.RetryMode? retryMode;
   @override
-  final _i3.S3Config? s3;
+  final _i4.S3Config? s3;
 
   factory _$FileConfigSettings(
           [void Function(FileConfigSettingsBuilder)? updates]) =>
@@ -102,13 +102,13 @@ class FileConfigSettingsBuilder
   String? get region => _$this._region;
   set region(String? region) => _$this._region = region;
 
-  _i2.RetryMode? _retryMode;
-  _i2.RetryMode? get retryMode => _$this._retryMode;
-  set retryMode(_i2.RetryMode? retryMode) => _$this._retryMode = retryMode;
+  _i3.RetryMode? _retryMode;
+  _i3.RetryMode? get retryMode => _$this._retryMode;
+  set retryMode(_i3.RetryMode? retryMode) => _$this._retryMode = retryMode;
 
-  _i3.S3ConfigBuilder? _s3;
-  _i3.S3ConfigBuilder get s3 => _$this._s3 ??= new _i3.S3ConfigBuilder();
-  set s3(_i3.S3ConfigBuilder? s3) => _$this._s3 = s3;
+  _i4.S3ConfigBuilder? _s3;
+  _i4.S3ConfigBuilder get s3 => _$this._s3 ??= new _i4.S3ConfigBuilder();
+  set s3(_i4.S3ConfigBuilder? s3) => _$this._s3 = s3;
 
   FileConfigSettingsBuilder();
 

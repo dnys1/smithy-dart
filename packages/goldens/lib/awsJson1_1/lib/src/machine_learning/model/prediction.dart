@@ -4,38 +4,28 @@ library aws_json1_1.machine_learning.model.prediction;
 
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:aws_json1_1/src/machine_learning/model/details_attributes.dart'
-    as _i3;
-import 'package:built_collection/built_collection.dart' as _i2;
+    as _i4;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'prediction.g.dart';
 
 abstract class Prediction
     with _i1.AWSEquatable<Prediction>
     implements Built<Prediction, PredictionBuilder> {
-  factory Prediction(
-      {_i2.BuiltMap<_i3.DetailsAttributes, String>? details,
-      String? predictedLabel,
-      _i2.BuiltMap<String, double>? predictedScores,
-      double? predictedValue}) {
-    return _$Prediction._(
-        details: details,
-        predictedLabel: predictedLabel,
-        predictedScores: predictedScores,
-        predictedValue: predictedValue);
-  }
+  factory Prediction([void Function(PredictionBuilder) updates]) = _$Prediction;
 
   const Prediction._();
 
-  static const List<_i4.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _PredictionAwsJson11Serializer()
   ];
 
-  _i2.BuiltMap<_i3.DetailsAttributes, String>? get details;
+  _i3.BuiltMap<_i4.DetailsAttributes, String>? get details;
   String? get predictedLabel;
-  _i2.BuiltMap<String, double>? get predictedScores;
+  _i3.BuiltMap<String, double>? get predictedScores;
   double? get predictedValue;
   @override
   List<Object?> get props =>
@@ -52,14 +42,14 @@ abstract class Prediction
 }
 
 class _PredictionAwsJson11Serializer
-    extends _i4.StructuredSmithySerializer<Prediction> {
+    extends _i2.StructuredSmithySerializer<Prediction> {
   const _PredictionAwsJson11Serializer() : super('Prediction');
 
   @override
   Iterable<Type> get types => const [Prediction, _$Prediction];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols =>
-      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   Prediction deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
@@ -73,10 +63,10 @@ class _PredictionAwsJson11Serializer
         case 'details':
           if (value != null) {
             result.details.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i2.BuiltMap, [
-                  FullType(_i3.DetailsAttributes),
+                specifiedType: const FullType(_i3.BuiltMap, [
+                  FullType(_i4.DetailsAttributes),
                   FullType(String)
-                ])) as _i2.BuiltMap<_i3.DetailsAttributes, String>));
+                ])) as _i3.BuiltMap<_i4.DetailsAttributes, String>));
           }
           break;
         case 'predictedLabel':
@@ -89,8 +79,8 @@ class _PredictionAwsJson11Serializer
           if (value != null) {
             result.predictedScores.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i2.BuiltMap, [FullType(String), FullType(double)]))
-                as _i2.BuiltMap<String, double>));
+                        _i3.BuiltMap, [FullType(String), FullType(double)]))
+                as _i3.BuiltMap<String, double>));
           }
           break;
         case 'predictedValue':
@@ -114,8 +104,8 @@ class _PredictionAwsJson11Serializer
       result
         ..add('details')
         ..add(serializers.serialize(payload.details!,
-            specifiedType: const FullType(_i2.BuiltMap,
-                [FullType(_i3.DetailsAttributes), FullType(String)])));
+            specifiedType: const FullType(_i3.BuiltMap,
+                [FullType(_i4.DetailsAttributes), FullType(String)])));
     }
     if (payload.predictedLabel != null) {
       result
@@ -128,7 +118,7 @@ class _PredictionAwsJson11Serializer
         ..add('predictedScores')
         ..add(serializers.serialize(payload.predictedScores!,
             specifiedType: const FullType(
-                _i2.BuiltMap, [FullType(String), FullType(double)])));
+                _i3.BuiltMap, [FullType(String), FullType(double)])));
     }
     if (payload.predictedValue != null) {
       result

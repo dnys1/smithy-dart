@@ -3,10 +3,10 @@
 library aws_json1_0.json_rpc_10.model.operation_config;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_0/src/json_rpc_10/model/s3_config.dart' as _i2;
+import 'package:aws_json1_0/src/json_rpc_10/model/s3_config.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'operation_config.g.dart';
 
@@ -14,18 +14,17 @@ part 'operation_config.g.dart';
 abstract class OperationConfig
     with _i1.AWSEquatable<OperationConfig>
     implements Built<OperationConfig, OperationConfigBuilder> {
-  factory OperationConfig({_i2.S3Config? s3}) {
-    return _$OperationConfig._(s3: s3);
-  }
+  factory OperationConfig([void Function(OperationConfigBuilder) updates]) =
+      _$OperationConfig;
 
   const OperationConfig._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _OperationConfigAwsJson10Serializer()
   ];
 
   /// Configuration specific to S3.
-  _i2.S3Config? get s3;
+  _i3.S3Config? get s3;
   @override
   List<Object?> get props => [s3];
   @override
@@ -37,14 +36,14 @@ abstract class OperationConfig
 }
 
 class _OperationConfigAwsJson10Serializer
-    extends _i3.StructuredSmithySerializer<OperationConfig> {
+    extends _i2.StructuredSmithySerializer<OperationConfig> {
   const _OperationConfigAwsJson10Serializer() : super('OperationConfig');
 
   @override
   Iterable<Type> get types => const [OperationConfig, _$OperationConfig];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols =>
-      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   OperationConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -59,7 +58,7 @@ class _OperationConfigAwsJson10Serializer
         case 's3':
           if (value != null) {
             result.s3.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i2.S3Config)) as _i2.S3Config));
+                specifiedType: const FullType(_i3.S3Config)) as _i3.S3Config));
           }
           break;
       }
@@ -77,7 +76,7 @@ class _OperationConfigAwsJson10Serializer
       result
         ..add('s3')
         ..add(serializers.serialize(payload.s3!,
-            specifiedType: const FullType(_i2.S3Config)));
+            specifiedType: const FullType(_i3.S3Config)));
     }
     return result;
   }

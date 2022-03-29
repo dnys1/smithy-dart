@@ -19,26 +19,24 @@ abstract class ConstantAndVariableQueryStringInput
             ConstantAndVariableQueryStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<ConstantAndVariableQueryStringInputPayload> {
-  factory ConstantAndVariableQueryStringInput({String? baz, String? maybeSet}) {
-    return _$ConstantAndVariableQueryStringInput._(
-        baz: baz, maybeSet: maybeSet);
-  }
+  factory ConstantAndVariableQueryStringInput(
+          [void Function(ConstantAndVariableQueryStringInputBuilder) updates]) =
+      _$ConstantAndVariableQueryStringInput;
 
   const ConstantAndVariableQueryStringInput._();
 
   factory ConstantAndVariableQueryStringInput.fromRequest(
-      ConstantAndVariableQueryStringInputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = ConstantAndVariableQueryStringInputBuilder();
-    if (request.queryParameters['baz'] != null) {
-      builder.baz = request.queryParameters['baz']!;
-    }
-    if (request.queryParameters['maybeSet'] != null) {
-      builder.maybeSet = request.queryParameters['maybeSet']!;
-    }
-    return builder.build();
-  }
+          ConstantAndVariableQueryStringInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      ConstantAndVariableQueryStringInput((b) {
+        if (request.queryParameters['baz'] != null) {
+          b.baz = request.queryParameters['baz']!;
+        }
+        if (request.queryParameters['maybeSet'] != null) {
+          b.maybeSet = request.queryParameters['maybeSet']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _ConstantAndVariableQueryStringInputRestJson1Serializer()

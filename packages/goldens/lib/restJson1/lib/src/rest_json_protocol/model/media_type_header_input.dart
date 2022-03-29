@@ -21,22 +21,21 @@ abstract class MediaTypeHeaderInput
         Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MediaTypeHeaderInputPayload> {
-  factory MediaTypeHeaderInput({_i3.JsonObject? json}) {
-    return _$MediaTypeHeaderInput._(json: json);
-  }
+  factory MediaTypeHeaderInput(
+          [void Function(MediaTypeHeaderInputBuilder) updates]) =
+      _$MediaTypeHeaderInput;
 
   const MediaTypeHeaderInput._();
 
   factory MediaTypeHeaderInput.fromRequest(
-      MediaTypeHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MediaTypeHeaderInputBuilder();
-    if (request.headers['X-Json'] != null) {
-      builder.json = _i3.JsonObject(_i4.jsonDecode(
-          _i4.utf8.decode(_i4.base64Decode(request.headers['X-Json']!))));
-    }
-    return builder.build();
-  }
+          MediaTypeHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MediaTypeHeaderInput((b) {
+        if (request.headers['X-Json'] != null) {
+          b.json = _i3.JsonObject(_i4.jsonDecode(
+              _i4.utf8.decode(_i4.base64Decode(request.headers['X-Json']!))));
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MediaTypeHeaderInputRestJson1Serializer()

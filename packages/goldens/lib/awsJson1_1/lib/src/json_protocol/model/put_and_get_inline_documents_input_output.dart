@@ -18,10 +18,8 @@ abstract class PutAndGetInlineDocumentsInputOutput
         Built<PutAndGetInlineDocumentsInputOutput,
             PutAndGetInlineDocumentsInputOutputBuilder> {
   factory PutAndGetInlineDocumentsInputOutput(
-      {_i3.JsonObject? inlineDocument}) {
-    return _$PutAndGetInlineDocumentsInputOutput._(
-        inlineDocument: inlineDocument);
-  }
+          [void Function(PutAndGetInlineDocumentsInputOutputBuilder) updates]) =
+      _$PutAndGetInlineDocumentsInputOutput;
 
   const PutAndGetInlineDocumentsInputOutput._();
 

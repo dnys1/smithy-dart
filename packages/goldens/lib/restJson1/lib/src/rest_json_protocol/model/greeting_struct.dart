@@ -12,9 +12,8 @@ part 'greeting_struct.g.dart';
 abstract class GreetingStruct
     with _i1.HttpInput<GreetingStruct>, _i2.AWSEquatable<GreetingStruct>
     implements Built<GreetingStruct, GreetingStructBuilder> {
-  factory GreetingStruct({String? hi}) {
-    return _$GreetingStruct._(hi: hi);
-  }
+  factory GreetingStruct([void Function(GreetingStructBuilder) updates]) =
+      _$GreetingStruct;
 
   const GreetingStruct._();
 

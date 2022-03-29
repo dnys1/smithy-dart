@@ -14,9 +14,9 @@ abstract class InternalServerException
     implements
         Built<InternalServerException, InternalServerExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory InternalServerException({int? code, String? message}) {
-    return _$InternalServerException._(code: code, message: message);
-  }
+  factory InternalServerException(
+          [void Function(InternalServerExceptionBuilder) updates]) =
+      _$InternalServerException;
 
   const InternalServerException._();
 

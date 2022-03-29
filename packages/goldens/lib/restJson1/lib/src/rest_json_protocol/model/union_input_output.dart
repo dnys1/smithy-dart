@@ -14,9 +14,8 @@ part 'union_input_output.g.dart';
 abstract class UnionInputOutput
     with _i1.HttpInput<UnionInputOutput>, _i2.AWSEquatable<UnionInputOutput>
     implements Built<UnionInputOutput, UnionInputOutputBuilder> {
-  factory UnionInputOutput({_i3.MyUnion? contents}) {
-    return _$UnionInputOutput._(contents: contents);
-  }
+  factory UnionInputOutput([void Function(UnionInputOutputBuilder) updates]) =
+      _$UnionInputOutput;
 
   const UnionInputOutput._();
 

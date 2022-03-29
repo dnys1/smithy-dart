@@ -4,10 +4,10 @@ library aws_json1_1.machine_learning.model.s3_config;
 
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:aws_json1_1/src/machine_learning/model/s3_addressing_style.dart'
-    as _i2;
+    as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 's3_config.g.dart';
 
@@ -15,24 +15,16 @@ part 's3_config.g.dart';
 abstract class S3Config
     with _i1.AWSEquatable<S3Config>
     implements Built<S3Config, S3ConfigBuilder> {
-  factory S3Config(
-      {_i2.S3AddressingStyle? addressingStyle,
-      bool? useAccelerateEndpoint,
-      bool? useDualstackEndpoint}) {
-    return _$S3Config._(
-        addressingStyle: addressingStyle,
-        useAccelerateEndpoint: useAccelerateEndpoint,
-        useDualstackEndpoint: useDualstackEndpoint);
-  }
+  factory S3Config([void Function(S3ConfigBuilder) updates]) = _$S3Config;
 
   const S3Config._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _S3ConfigAwsJson11Serializer()
   ];
 
   /// Controls the S3 addressing bucket style.
-  _i2.S3AddressingStyle? get addressingStyle;
+  _i3.S3AddressingStyle? get addressingStyle;
   bool? get useAccelerateEndpoint;
   bool? get useDualstackEndpoint;
   @override
@@ -49,14 +41,14 @@ abstract class S3Config
 }
 
 class _S3ConfigAwsJson11Serializer
-    extends _i3.StructuredSmithySerializer<S3Config> {
+    extends _i2.StructuredSmithySerializer<S3Config> {
   const _S3ConfigAwsJson11Serializer() : super('S3Config');
 
   @override
   Iterable<Type> get types => const [S3Config, _$S3Config];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols =>
-      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   S3Config deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
@@ -70,8 +62,8 @@ class _S3ConfigAwsJson11Serializer
         case 'addressing_style':
           if (value != null) {
             result.addressingStyle = (serializers.deserialize(value,
-                    specifiedType: const FullType(_i2.S3AddressingStyle))
-                as _i2.S3AddressingStyle);
+                    specifiedType: const FullType(_i3.S3AddressingStyle))
+                as _i3.S3AddressingStyle);
           }
           break;
         case 'use_accelerate_endpoint':
@@ -101,7 +93,7 @@ class _S3ConfigAwsJson11Serializer
       result
         ..add('addressing_style')
         ..add(serializers.serialize(payload.addressingStyle!,
-            specifiedType: const FullType(_i2.S3AddressingStyle)));
+            specifiedType: const FullType(_i3.S3AddressingStyle)));
     }
     if (payload.useAccelerateEndpoint != null) {
       result

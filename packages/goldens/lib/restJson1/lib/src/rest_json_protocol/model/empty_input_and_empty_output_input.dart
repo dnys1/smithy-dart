@@ -17,9 +17,9 @@ abstract class EmptyInputAndEmptyOutputInput
         Built<EmptyInputAndEmptyOutputInput,
             EmptyInputAndEmptyOutputInputBuilder>,
         _i1.EmptyPayload {
-  factory EmptyInputAndEmptyOutputInput() {
-    return _$EmptyInputAndEmptyOutputInput._();
-  }
+  factory EmptyInputAndEmptyOutputInput(
+          [void Function(EmptyInputAndEmptyOutputInputBuilder) updates]) =
+      _$EmptyInputAndEmptyOutputInput;
 
   const EmptyInputAndEmptyOutputInput._();
 

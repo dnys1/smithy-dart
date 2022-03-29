@@ -13,9 +13,9 @@ part 'nested_with_namespace.g.dart';
 abstract class NestedWithNamespace
     with _i1.AWSEquatable<NestedWithNamespace>
     implements Built<NestedWithNamespace, NestedWithNamespaceBuilder> {
-  factory NestedWithNamespace({String? attrField}) {
-    return _$NestedWithNamespace._(attrField: attrField);
-  }
+  factory NestedWithNamespace(
+          [void Function(NestedWithNamespaceBuilder) updates]) =
+      _$NestedWithNamespace;
 
   const NestedWithNamespace._();
 

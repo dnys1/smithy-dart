@@ -14,9 +14,9 @@ abstract class BadRequestException
     implements
         Built<BadRequestException, BadRequestExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory BadRequestException({String? message}) {
-    return _$BadRequestException._(message: message);
-  }
+  factory BadRequestException(
+          [void Function(BadRequestExceptionBuilder) updates]) =
+      _$BadRequestException;
 
   const BadRequestException._();
 

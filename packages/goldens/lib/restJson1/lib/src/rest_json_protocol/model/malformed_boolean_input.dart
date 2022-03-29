@@ -18,36 +18,27 @@ abstract class MalformedBooleanInput
         Built<MalformedBooleanInput, MalformedBooleanInputBuilder>,
         _i1.HasPayload<MalformedBooleanInputPayload> {
   factory MalformedBooleanInput(
-      {bool? booleanInBody,
-      bool? booleanInHeader,
-      required bool booleanInPath,
-      bool? booleanInQuery}) {
-    return _$MalformedBooleanInput._(
-        booleanInBody: booleanInBody,
-        booleanInHeader: booleanInHeader,
-        booleanInPath: booleanInPath,
-        booleanInQuery: booleanInQuery);
-  }
+          [void Function(MalformedBooleanInputBuilder) updates]) =
+      _$MalformedBooleanInput;
 
   const MalformedBooleanInput._();
 
   factory MalformedBooleanInput.fromRequest(
-      MalformedBooleanInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedBooleanInputBuilder();
-    builder.booleanInBody = payload.booleanInBody;
-    if (request.headers['booleanInHeader'] != null) {
-      builder.booleanInHeader = request.headers['booleanInHeader']! == 'true';
-    }
-    if (request.queryParameters['booleanInQuery'] != null) {
-      builder.booleanInQuery =
-          request.queryParameters['booleanInQuery']! == 'true';
-    }
-    if (labels['booleanInPath'] != null) {
-      builder.booleanInPath = labels['booleanInPath']! == 'true';
-    }
-    return builder.build();
-  }
+          MalformedBooleanInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedBooleanInput((b) {
+        b.booleanInBody = payload.booleanInBody;
+        if (request.headers['booleanInHeader'] != null) {
+          b.booleanInHeader = request.headers['booleanInHeader']! == 'true';
+        }
+        if (request.queryParameters['booleanInQuery'] != null) {
+          b.booleanInQuery =
+              request.queryParameters['booleanInQuery']! == 'true';
+        }
+        if (labels['booleanInPath'] != null) {
+          b.booleanInPath = labels['booleanInPath']! == 'true';
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedBooleanInputRestJson1Serializer()

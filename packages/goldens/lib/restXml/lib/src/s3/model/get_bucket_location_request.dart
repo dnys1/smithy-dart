@@ -18,21 +18,21 @@ abstract class GetBucketLocationRequest
         Built<GetBucketLocationRequest, GetBucketLocationRequestBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<GetBucketLocationRequestPayload> {
-  factory GetBucketLocationRequest({required String bucket}) {
-    return _$GetBucketLocationRequest._(bucket: bucket);
-  }
+  factory GetBucketLocationRequest(
+          [void Function(GetBucketLocationRequestBuilder) updates]) =
+      _$GetBucketLocationRequest;
 
   const GetBucketLocationRequest._();
 
   factory GetBucketLocationRequest.fromRequest(
-      GetBucketLocationRequestPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = GetBucketLocationRequestBuilder();
-    if (labels['bucket'] != null) {
-      builder.bucket = labels['bucket']!;
-    }
-    return builder.build();
-  }
+          GetBucketLocationRequestPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      GetBucketLocationRequest((b) {
+        if (labels['bucket'] != null) {
+          b.bucket = labels['bucket']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _GetBucketLocationRequestRestXmlSerializer()

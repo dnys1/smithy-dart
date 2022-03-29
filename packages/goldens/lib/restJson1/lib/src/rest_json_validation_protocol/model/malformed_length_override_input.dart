@@ -20,20 +20,8 @@ abstract class MalformedLengthOverrideInput
         Built<MalformedLengthOverrideInput,
             MalformedLengthOverrideInputBuilder> {
   factory MalformedLengthOverrideInput(
-      {_i3.Uint8List? blob,
-      _i4.BuiltList<String>? list,
-      _i4.BuiltListMultimap<String, String>? map,
-      String? maxString,
-      String? minString,
-      String? string}) {
-    return _$MalformedLengthOverrideInput._(
-        blob: blob,
-        list: list,
-        map: map,
-        maxString: maxString,
-        minString: minString,
-        string: string);
-  }
+          [void Function(MalformedLengthOverrideInputBuilder) updates]) =
+      _$MalformedLengthOverrideInput;
 
   const MalformedLengthOverrideInput._();
 

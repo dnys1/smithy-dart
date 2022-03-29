@@ -20,32 +20,29 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
             HttpPayloadTraitsWithMediaTypeInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory HttpPayloadTraitsWithMediaTypeInputOutput(
-      {_i2.Uint8List? blob, String? foo}) {
-    return _$HttpPayloadTraitsWithMediaTypeInputOutput._(blob: blob, foo: foo);
-  }
+      [void Function(HttpPayloadTraitsWithMediaTypeInputOutputBuilder)
+          updates]) = _$HttpPayloadTraitsWithMediaTypeInputOutput;
 
   const HttpPayloadTraitsWithMediaTypeInputOutput._();
 
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromRequest(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = HttpPayloadTraitsWithMediaTypeInputOutputBuilder();
-    builder.blob = payload;
-    if (request.headers['X-Foo'] != null) {
-      builder.foo = request.headers['X-Foo']!;
-    }
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
+        b.blob = payload;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
 
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromResponse(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = HttpPayloadTraitsWithMediaTypeInputOutputBuilder();
-    builder.blob = payload;
-    if (response.headers['X-Foo'] != null) {
-      builder.foo = response.headers['X-Foo']!;
-    }
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
+      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
+        b.blob = payload;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadTraitsWithMediaTypeInputOutputRestJson1Serializer()

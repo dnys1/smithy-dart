@@ -10,7 +10,7 @@ class _$RetryConfig extends RetryConfig {
   @override
   final int? maxAttempts;
   @override
-  final _i2.RetryMode? mode;
+  final _i3.RetryMode? mode;
 
   factory _$RetryConfig([void Function(RetryConfigBuilder)? updates]) =>
       (new RetryConfigBuilder()..update(updates)).build();
@@ -45,9 +45,9 @@ class RetryConfigBuilder implements Builder<RetryConfig, RetryConfigBuilder> {
   int? get maxAttempts => _$this._maxAttempts;
   set maxAttempts(int? maxAttempts) => _$this._maxAttempts = maxAttempts;
 
-  _i2.RetryMode? _mode;
-  _i2.RetryMode? get mode => _$this._mode;
-  set mode(_i2.RetryMode? mode) => _$this._mode = mode;
+  _i3.RetryMode? _mode;
+  _i3.RetryMode? get mode => _$this._mode;
+  set mode(_i3.RetryMode? mode) => _$this._mode = mode;
 
   RetryConfigBuilder();
 

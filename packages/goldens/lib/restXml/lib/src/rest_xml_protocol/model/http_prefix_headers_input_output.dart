@@ -21,38 +21,37 @@ abstract class HttpPrefixHeadersInputOutput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpPrefixHeadersInputOutputPayload> {
   factory HttpPrefixHeadersInputOutput(
-      {String? foo, _i3.BuiltMap<String, String>? fooMap}) {
-    return _$HttpPrefixHeadersInputOutput._(foo: foo, fooMap: fooMap);
-  }
+          [void Function(HttpPrefixHeadersInputOutputBuilder) updates]) =
+      _$HttpPrefixHeadersInputOutput;
 
   const HttpPrefixHeadersInputOutput._();
 
   factory HttpPrefixHeadersInputOutput.fromRequest(
-      HttpPrefixHeadersInputOutputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = HttpPrefixHeadersInputOutputBuilder();
-    if (request.headers['X-Foo'] != null) {
-      builder.foo = request.headers['X-Foo']!;
-    }
-    builder.fooMap.addEntries(request.headers.entries
-        .where((el) => el.key.startsWith('X-Foo-'))
-        .map((el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
-    return builder.build();
-  }
+          HttpPrefixHeadersInputOutputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPrefixHeadersInputOutput((b) {
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+        b.fooMap.addEntries(request.headers.entries
+            .where((el) => el.key.startsWith('X-Foo-'))
+            .map(
+                (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
+      });
 
   factory HttpPrefixHeadersInputOutput.fromResponse(
-      HttpPrefixHeadersInputOutputPayload payload,
-      _i2.AWSBaseHttpResponse response) {
-    final builder = HttpPrefixHeadersInputOutputBuilder();
-    if (response.headers['X-Foo'] != null) {
-      builder.foo = response.headers['X-Foo']!;
-    }
-    builder.fooMap.addEntries(response.headers.entries
-        .where((el) => el.key.startsWith('X-Foo-'))
-        .map((el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
-    return builder.build();
-  }
+          HttpPrefixHeadersInputOutputPayload payload,
+          _i2.AWSBaseHttpResponse response) =>
+      HttpPrefixHeadersInputOutput((b) {
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+        b.fooMap.addEntries(response.headers.entries
+            .where((el) => el.key.startsWith('X-Foo-'))
+            .map(
+                (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPrefixHeadersInputOutputRestXmlSerializer()

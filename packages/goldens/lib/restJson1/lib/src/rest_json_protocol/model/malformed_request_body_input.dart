@@ -15,9 +15,9 @@ abstract class MalformedRequestBodyInput
         _i2.AWSEquatable<MalformedRequestBodyInput>
     implements
         Built<MalformedRequestBodyInput, MalformedRequestBodyInputBuilder> {
-  factory MalformedRequestBodyInput({double? float, int? int_}) {
-    return _$MalformedRequestBodyInput._(float: float, int_: int_);
-  }
+  factory MalformedRequestBodyInput(
+          [void Function(MalformedRequestBodyInputBuilder) updates]) =
+      _$MalformedRequestBodyInput;
 
   const MalformedRequestBodyInput._();
 

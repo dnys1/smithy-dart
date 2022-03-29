@@ -17,9 +17,9 @@ abstract class BodyWithXmlNameInputOutput
         _i2.AWSEquatable<BodyWithXmlNameInputOutput>
     implements
         Built<BodyWithXmlNameInputOutput, BodyWithXmlNameInputOutputBuilder> {
-  factory BodyWithXmlNameInputOutput({_i3.PayloadWithXmlName? nested}) {
-    return _$BodyWithXmlNameInputOutput._(nested: nested);
-  }
+  factory BodyWithXmlNameInputOutput(
+          [void Function(BodyWithXmlNameInputOutputBuilder) updates]) =
+      _$BodyWithXmlNameInputOutput;
 
   const BodyWithXmlNameInputOutput._();
 

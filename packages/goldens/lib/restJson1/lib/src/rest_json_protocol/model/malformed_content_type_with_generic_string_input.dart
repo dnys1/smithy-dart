@@ -17,19 +17,18 @@ abstract class MalformedContentTypeWithGenericStringInput
         Built<MalformedContentTypeWithGenericStringInput,
             MalformedContentTypeWithGenericStringInputBuilder>,
         _i1.HasPayload<String> {
-  factory MalformedContentTypeWithGenericStringInput({String? payload}) {
-    return _$MalformedContentTypeWithGenericStringInput._(payload: payload);
-  }
+  factory MalformedContentTypeWithGenericStringInput(
+      [void Function(MalformedContentTypeWithGenericStringInputBuilder)
+          updates]) = _$MalformedContentTypeWithGenericStringInput;
 
   const MalformedContentTypeWithGenericStringInput._();
 
   factory MalformedContentTypeWithGenericStringInput.fromRequest(
-      String? payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedContentTypeWithGenericStringInputBuilder();
-    builder.payload = payload;
-    return builder.build();
-  }
+          String? payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedContentTypeWithGenericStringInput((b) {
+        b.payload = payload;
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedContentTypeWithGenericStringInputRestJson1Serializer()

@@ -16,10 +16,8 @@ abstract class SimpleScalarPropertiesInput
     implements
         Built<SimpleScalarPropertiesInput, SimpleScalarPropertiesInputBuilder> {
   factory SimpleScalarPropertiesInput(
-      {double? doubleValue, double? floatValue}) {
-    return _$SimpleScalarPropertiesInput._(
-        doubleValue: doubleValue, floatValue: floatValue);
-  }
+          [void Function(SimpleScalarPropertiesInputBuilder) updates]) =
+      _$SimpleScalarPropertiesInput;
 
   const SimpleScalarPropertiesInput._();
 

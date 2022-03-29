@@ -19,9 +19,8 @@ abstract class XmlMapsXmlNameInputOutput
     implements
         Built<XmlMapsXmlNameInputOutput, XmlMapsXmlNameInputOutputBuilder> {
   factory XmlMapsXmlNameInputOutput(
-      {_i3.BuiltMap<String, _i4.GreetingStruct>? myMap}) {
-    return _$XmlMapsXmlNameInputOutput._(myMap: myMap);
-  }
+          [void Function(XmlMapsXmlNameInputOutputBuilder) updates]) =
+      _$XmlMapsXmlNameInputOutput;
 
   const XmlMapsXmlNameInputOutput._();
 

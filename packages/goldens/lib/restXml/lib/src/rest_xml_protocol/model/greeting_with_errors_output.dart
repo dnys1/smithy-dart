@@ -16,21 +16,20 @@ abstract class GreetingWithErrorsOutput
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<GreetingWithErrorsOutputPayload> {
-  factory GreetingWithErrorsOutput({String? greeting}) {
-    return _$GreetingWithErrorsOutput._(greeting: greeting);
-  }
+  factory GreetingWithErrorsOutput(
+          [void Function(GreetingWithErrorsOutputBuilder) updates]) =
+      _$GreetingWithErrorsOutput;
 
   const GreetingWithErrorsOutput._();
 
   factory GreetingWithErrorsOutput.fromResponse(
-      GreetingWithErrorsOutputPayload payload,
-      _i1.AWSBaseHttpResponse response) {
-    final builder = GreetingWithErrorsOutputBuilder();
-    if (response.headers['X-Greeting'] != null) {
-      builder.greeting = response.headers['X-Greeting']!;
-    }
-    return builder.build();
-  }
+          GreetingWithErrorsOutputPayload payload,
+          _i1.AWSBaseHttpResponse response) =>
+      GreetingWithErrorsOutput((b) {
+        if (response.headers['X-Greeting'] != null) {
+          b.greeting = response.headers['X-Greeting']!;
+        }
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _GreetingWithErrorsOutputRestXmlSerializer()

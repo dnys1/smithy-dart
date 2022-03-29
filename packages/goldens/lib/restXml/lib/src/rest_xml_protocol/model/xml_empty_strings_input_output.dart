@@ -15,9 +15,9 @@ abstract class XmlEmptyStringsInputOutput
         _i2.AWSEquatable<XmlEmptyStringsInputOutput>
     implements
         Built<XmlEmptyStringsInputOutput, XmlEmptyStringsInputOutputBuilder> {
-  factory XmlEmptyStringsInputOutput({String? emptyString}) {
-    return _$XmlEmptyStringsInputOutput._(emptyString: emptyString);
-  }
+  factory XmlEmptyStringsInputOutput(
+          [void Function(XmlEmptyStringsInputOutputBuilder) updates]) =
+      _$XmlEmptyStringsInputOutput;
 
   const XmlEmptyStringsInputOutput._();
 

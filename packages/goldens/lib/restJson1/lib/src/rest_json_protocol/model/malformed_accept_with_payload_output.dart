@@ -18,18 +18,17 @@ abstract class MalformedAcceptWithPayloadOutput
         Built<MalformedAcceptWithPayloadOutput,
             MalformedAcceptWithPayloadOutputBuilder>,
         _i2.HasPayload<_i3.Uint8List> {
-  factory MalformedAcceptWithPayloadOutput({_i3.Uint8List? payload}) {
-    return _$MalformedAcceptWithPayloadOutput._(payload: payload);
-  }
+  factory MalformedAcceptWithPayloadOutput(
+          [void Function(MalformedAcceptWithPayloadOutputBuilder) updates]) =
+      _$MalformedAcceptWithPayloadOutput;
 
   const MalformedAcceptWithPayloadOutput._();
 
   factory MalformedAcceptWithPayloadOutput.fromResponse(
-      _i3.Uint8List? payload, _i1.AWSBaseHttpResponse response) {
-    final builder = MalformedAcceptWithPayloadOutputBuilder();
-    builder.payload = payload;
-    return builder.build();
-  }
+          _i3.Uint8List? payload, _i1.AWSBaseHttpResponse response) =>
+      MalformedAcceptWithPayloadOutput((b) {
+        b.payload = payload;
+      });
 
   static const List<_i2.SmithySerializer> serializers = [
     _MalformedAcceptWithPayloadOutputRestJson1Serializer()

@@ -18,9 +18,8 @@ abstract class RecursiveShapesInputOutput
     implements
         Built<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder> {
   factory RecursiveShapesInputOutput(
-      {_i3.RecursiveShapesInputOutputNested1? nested}) {
-    return _$RecursiveShapesInputOutput._(nested: nested);
-  }
+          [void Function(RecursiveShapesInputOutputBuilder) updates]) =
+      _$RecursiveShapesInputOutput;
 
   const RecursiveShapesInputOutput._();
 

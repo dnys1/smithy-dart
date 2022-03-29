@@ -16,9 +16,9 @@ abstract class PredictorNotMountedException
         Built<PredictorNotMountedException,
             PredictorNotMountedExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory PredictorNotMountedException({String? message}) {
-    return _$PredictorNotMountedException._(message: message);
-  }
+  factory PredictorNotMountedException(
+          [void Function(PredictorNotMountedExceptionBuilder) updates]) =
+      _$PredictorNotMountedException;
 
   const PredictorNotMountedException._();
 

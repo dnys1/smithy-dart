@@ -13,9 +13,8 @@ part 'json_unions_input.g.dart';
 abstract class JsonUnionsInput
     with _i1.HttpInput<JsonUnionsInput>, _i2.AWSEquatable<JsonUnionsInput>
     implements Built<JsonUnionsInput, JsonUnionsInputBuilder> {
-  factory JsonUnionsInput({_i3.MyUnion? contents}) {
-    return _$JsonUnionsInput._(contents: contents);
-  }
+  factory JsonUnionsInput([void Function(JsonUnionsInputBuilder) updates]) =
+      _$JsonUnionsInput;
 
   const JsonUnionsInput._();
 

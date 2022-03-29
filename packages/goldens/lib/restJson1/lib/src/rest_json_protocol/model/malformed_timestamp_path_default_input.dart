@@ -19,24 +19,23 @@ abstract class MalformedTimestampPathDefaultInput
             MalformedTimestampPathDefaultInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedTimestampPathDefaultInputPayload> {
-  factory MalformedTimestampPathDefaultInput({required DateTime timestamp}) {
-    return _$MalformedTimestampPathDefaultInput._(timestamp: timestamp);
-  }
+  factory MalformedTimestampPathDefaultInput(
+          [void Function(MalformedTimestampPathDefaultInputBuilder) updates]) =
+      _$MalformedTimestampPathDefaultInput;
 
   const MalformedTimestampPathDefaultInput._();
 
   factory MalformedTimestampPathDefaultInput.fromRequest(
-      MalformedTimestampPathDefaultInputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedTimestampPathDefaultInputBuilder();
-    if (labels['timestamp'] != null) {
-      builder.timestamp = _i1.Timestamp.parse(labels['timestamp']!,
-              format: _i1.TimestampFormat.dateTime)
-          .asDateTime;
-    }
-    return builder.build();
-  }
+          MalformedTimestampPathDefaultInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedTimestampPathDefaultInput((b) {
+        if (labels['timestamp'] != null) {
+          b.timestamp = _i1.Timestamp.parse(labels['timestamp']!,
+                  format: _i1.TimestampFormat.dateTime)
+              .asDateTime;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedTimestampPathDefaultInputRestJson1Serializer()

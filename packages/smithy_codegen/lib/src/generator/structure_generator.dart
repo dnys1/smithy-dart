@@ -79,10 +79,10 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             DartTypes.awsCommon.awsEquatable(symbol),
           ])
           ..constructors.addAll([
-            _factoryConstructor,
+            factoryConstructor,
             _privateConstructor,
             if (shape.isInputShape) _fromRequestConstructor,
-            if (shape.isOutputShape || shape.isError) _fromResponseConstructor,
+            if (shape.isOutputShape || shape.isError) fromResponseConstructor,
           ])
           ..methods.addAll([
             ..._fieldGetters(isPayload: false),
@@ -139,13 +139,16 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       );
 
   /// The parameter-based factory constructor.
-  Constructor get _factoryConstructor {
+  Constructor get factoryConstructor {
     if (context.useBuilders) {
       return Constructor(
         (c) => c
           ..factory = true
           ..annotations.addAll([
             if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
+          ])
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
           ])
           ..optionalParameters.add(Parameter(
             (p) => p
@@ -180,6 +183,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ..factory = true
         ..annotations.addAll([
           if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
+        ])
+        ..docs.addAll([
+          if (shape.hasDocs(context)) shape.formattedDocs(context),
         ])
         ..optionalParameters.addAll(sortedMembers.map(_memberParameter))
         ..body = body,
@@ -265,7 +271,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
   }
 
   /// The builder/factory constructor.
-  Constructor get _fromResponseConstructor {
+  Constructor get fromResponseConstructor {
     final Code output;
     if (payloadSymbol == symbol) {
       if (httpErrorTraits == null) {
@@ -296,6 +302,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
       (c) => c
         ..factory = true
         ..name = 'fromResponse'
+        ..docs.add(
+          '/// Constructs a [$className] from a [payload] and [response].',
+        )
         ..requiredParameters.addAll([
           Parameter((p) => p
             ..name = 'payload'

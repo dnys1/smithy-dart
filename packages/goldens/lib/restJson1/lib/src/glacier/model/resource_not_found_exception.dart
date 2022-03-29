@@ -20,6 +20,7 @@ abstract class ResourceNotFoundException
 
   const ResourceNotFoundException._();
 
+  /// Constructs a [ResourceNotFoundException] from a [payload] and [response].
   factory ResourceNotFoundException.fromResponse(
           ResourceNotFoundException payload,
           _i1.AWSBaseHttpResponse response) =>

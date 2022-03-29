@@ -41,6 +41,7 @@ abstract class NullAndEmptyHeadersIo
         }
       });
 
+  /// Constructs a [NullAndEmptyHeadersIo] from a [payload] and [response].
   factory NullAndEmptyHeadersIo.fromResponse(
           NullAndEmptyHeadersIoPayload payload,
           _i2.AWSBaseHttpResponse response) =>

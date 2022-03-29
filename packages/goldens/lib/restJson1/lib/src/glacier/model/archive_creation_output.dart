@@ -22,6 +22,7 @@ abstract class ArchiveCreationOutput
 
   const ArchiveCreationOutput._();
 
+  /// Constructs a [ArchiveCreationOutput] from a [payload] and [response].
   factory ArchiveCreationOutput.fromResponse(
           ArchiveCreationOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>

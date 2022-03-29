@@ -20,6 +20,7 @@ abstract class PostPlayerActionOutput
 
   const PostPlayerActionOutput._();
 
+  /// Constructs a [PostPlayerActionOutput] from a [payload] and [response].
   factory PostPlayerActionOutput.fromResponse(
           PostPlayerActionOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;

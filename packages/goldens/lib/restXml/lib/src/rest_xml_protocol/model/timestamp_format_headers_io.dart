@@ -73,6 +73,7 @@ abstract class TimestampFormatHeadersIo
         }
       });
 
+  /// Constructs a [TimestampFormatHeadersIo] from a [payload] and [response].
   factory TimestampFormatHeadersIo.fromResponse(
           TimestampFormatHeadersIoPayload payload,
           _i2.AWSBaseHttpResponse response) =>

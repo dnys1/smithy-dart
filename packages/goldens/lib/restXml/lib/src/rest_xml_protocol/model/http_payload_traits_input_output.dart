@@ -35,6 +35,7 @@ abstract class HttpPayloadTraitsInputOutput
         }
       });
 
+  /// Constructs a [HttpPayloadTraitsInputOutput] from a [payload] and [response].
   factory HttpPayloadTraitsInputOutput.fromResponse(
           _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadTraitsInputOutput((b) {

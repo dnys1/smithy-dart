@@ -34,6 +34,7 @@ abstract class HttpPayloadWithXmlNamespaceInputOutput
         }
       });
 
+  /// Constructs a [HttpPayloadWithXmlNamespaceInputOutput] from a [payload] and [response].
   factory HttpPayloadWithXmlNamespaceInputOutput.fromResponse(
           _i2.PayloadWithXmlNamespace? payload,
           _i3.AWSBaseHttpResponse response) =>

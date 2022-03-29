@@ -27,6 +27,7 @@ abstract class StringPayloadInput
         b.payload = payload;
       });
 
+  /// Constructs a [StringPayloadInput] from a [payload] and [response].
   factory StringPayloadInput.fromResponse(
           String? payload, _i2.AWSBaseHttpResponse response) =>
       StringPayloadInput((b) {

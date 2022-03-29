@@ -23,6 +23,7 @@ abstract class HttpPrefixHeadersOutput
 
   const HttpPrefixHeadersOutput._();
 
+  /// Constructs a [HttpPrefixHeadersOutput] from a [payload] and [response].
   factory HttpPrefixHeadersOutput.fromResponse(
           HttpPrefixHeadersOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>

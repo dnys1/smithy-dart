@@ -27,6 +27,7 @@ abstract class XmlUnionsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlUnionsInputOutput] from a [payload] and [response].
   factory XmlUnionsInputOutput.fromResponse(
           XmlUnionsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

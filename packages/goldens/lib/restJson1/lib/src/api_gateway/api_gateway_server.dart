@@ -20,17 +20,21 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'api_gateway_server.g.dart';
-
 abstract class ApiGatewayServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestJson1Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
+  late final Router _router = () {
+    final service = _ApiGatewayServer(this);
+    final router = Router();
+    router.add('GET', r'/restapis', service.getRestApis);
+    return router;
+  }();
+
   _i4.Future<_i5.RestApis> getRestApis(
       _i6.GetRestApisRequest input, _i1.Context context);
-  _i4.Future<_i7.Response> call(_i7.Request request) =>
-      _$_ApiGatewayServerRouter(_ApiGatewayServer(this))(request);
+  _i4.Future<_i7.Response> call(_i7.Request request) => _router(request);
 }
 
 class _ApiGatewayServer extends _i1.HttpServer<ApiGatewayServerBase> {
@@ -44,7 +48,6 @@ class _ApiGatewayServer extends _i1.HttpServer<ApiGatewayServerBase> {
       _getRestApisProtocol = _i2.RestJson1Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.get('/restapis')
   _i4.Future<_i7.Response> getRestApis(_i7.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

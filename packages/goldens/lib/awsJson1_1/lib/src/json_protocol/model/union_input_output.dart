@@ -14,6 +14,7 @@ part 'union_input_output.g.dart';
 abstract class UnionInputOutput
     with _i1.HttpInput<UnionInputOutput>, _i2.AWSEquatable<UnionInputOutput>
     implements Built<UnionInputOutput, UnionInputOutputBuilder> {
+  /// A shared structure that contains a single union member.
   factory UnionInputOutput([void Function(UnionInputOutputBuilder) updates]) =
       _$UnionInputOutput;
 
@@ -24,6 +25,7 @@ abstract class UnionInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [UnionInputOutput] from a [payload] and [response].
   factory UnionInputOutput.fromResponse(
           UnionInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

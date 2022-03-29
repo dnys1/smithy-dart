@@ -35,6 +35,7 @@ abstract class StreamingTraitsRequireLengthInputOutput
         }
       });
 
+  /// Constructs a [StreamingTraitsRequireLengthInputOutput] from a [payload] and [response].
   factory StreamingTraitsRequireLengthInputOutput.fromResponse(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
       StreamingTraitsRequireLengthInputOutput((b) {

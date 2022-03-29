@@ -27,6 +27,7 @@ abstract class XmlBlobsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlBlobsInputOutput] from a [payload] and [response].
   factory XmlBlobsInputOutput.fromResponse(
           XmlBlobsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

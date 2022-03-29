@@ -97,6 +97,7 @@ abstract class InputAndOutputWithHeadersIo
         }
       });
 
+  /// Constructs a [InputAndOutputWithHeadersIo] from a [payload] and [response].
   factory InputAndOutputWithHeadersIo.fromResponse(
           InputAndOutputWithHeadersIoPayload payload,
           _i2.AWSBaseHttpResponse response) =>

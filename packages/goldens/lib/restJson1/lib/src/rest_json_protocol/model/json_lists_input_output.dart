@@ -29,6 +29,7 @@ abstract class JsonListsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [JsonListsInputOutput] from a [payload] and [response].
   factory JsonListsInputOutput.fromResponse(
           JsonListsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

@@ -29,6 +29,7 @@ abstract class XmlMapsXmlNameInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlMapsXmlNameInputOutput] from a [payload] and [response].
   factory XmlMapsXmlNameInputOutput.fromResponse(
           XmlMapsXmlNameInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

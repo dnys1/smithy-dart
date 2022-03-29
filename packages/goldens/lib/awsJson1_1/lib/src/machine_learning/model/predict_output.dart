@@ -18,6 +18,7 @@ abstract class PredictOutput
 
   const PredictOutput._();
 
+  /// Constructs a [PredictOutput] from a [payload] and [response].
   factory PredictOutput.fromResponse(
           PredictOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;

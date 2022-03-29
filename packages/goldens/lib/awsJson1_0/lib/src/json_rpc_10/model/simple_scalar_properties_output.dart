@@ -21,6 +21,7 @@ abstract class SimpleScalarPropertiesOutput
 
   const SimpleScalarPropertiesOutput._();
 
+  /// Constructs a [SimpleScalarPropertiesOutput] from a [payload] and [response].
   factory SimpleScalarPropertiesOutput.fromResponse(
           SimpleScalarPropertiesOutput payload,
           _i1.AWSBaseHttpResponse response) =>

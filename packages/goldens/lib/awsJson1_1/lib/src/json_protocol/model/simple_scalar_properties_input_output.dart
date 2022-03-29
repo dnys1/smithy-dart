@@ -28,6 +28,7 @@ abstract class SimpleScalarPropertiesInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [SimpleScalarPropertiesInputOutput] from a [payload] and [response].
   factory SimpleScalarPropertiesInputOutput.fromResponse(
           SimpleScalarPropertiesInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

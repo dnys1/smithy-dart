@@ -14,6 +14,7 @@ abstract class ValidationExceptionField
     with _i1.AWSEquatable<ValidationExceptionField>
     implements
         Built<ValidationExceptionField, ValidationExceptionFieldBuilder> {
+  /// Describes one specific validation failure for an input member.
   factory ValidationExceptionField(
           [void Function(ValidationExceptionFieldBuilder) updates]) =
       _$ValidationExceptionField;

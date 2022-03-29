@@ -36,12 +36,31 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'rest_json_validation_protocol_server.g.dart';
-
 abstract class RestJsonValidationProtocolServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestJson1Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
+
+  late final Router _router = () {
+    final service = _RestJsonValidationProtocolServer(this);
+    final router = Router();
+    router.add('POST', r'/MalformedEnum', service.malformedEnum);
+    router.add('POST', r'/MalformedLength', service.malformedLength);
+    router.add(
+        'POST', r'/MalformedLengthOverride', service.malformedLengthOverride);
+    router.add('POST', r'/MalformedLengthQueryString',
+        service.malformedLengthQueryString);
+    router.add('POST', r'/MalformedPattern', service.malformedPattern);
+    router.add(
+        'POST', r'/MalformedPatternOverride', service.malformedPatternOverride);
+    router.add('POST', r'/MalformedRange', service.malformedRange);
+    router.add(
+        'POST', r'/MalformedRangeOverride', service.malformedRangeOverride);
+    router.add('POST', r'/MalformedRequired', service.malformedRequired);
+    router.add('POST', r'/RecursiveStructures', service.recursiveStructures);
+    router.add('POST', r'/SensitiveValidation', service.sensitiveValidation);
+    return router;
+  }();
 
   _i4.Future<_i1.Unit> malformedEnum(
       _i5.MalformedEnumInput input, _i1.Context context);
@@ -65,9 +84,7 @@ abstract class RestJsonValidationProtocolServerBase extends _i1.HttpServerBase {
       _i14.RecursiveStructuresInput input, _i1.Context context);
   _i4.Future<_i1.Unit> sensitiveValidation(
       _i15.SensitiveValidationInput input, _i1.Context context);
-  _i4.Future<_i16.Response> call(_i16.Request request) =>
-      _$_RestJsonValidationProtocolServerRouter(
-          _RestJsonValidationProtocolServer(this))(request);
+  _i4.Future<_i16.Response> call(_i16.Request request) => _router(request);
 }
 
 class _RestJsonValidationProtocolServer
@@ -132,7 +149,6 @@ class _RestJsonValidationProtocolServer
       _sensitiveValidationProtocol = _i2.RestJson1Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.post('/MalformedEnum')
   _i4.Future<_i16.Response> malformedEnum(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -162,7 +178,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedLength')
   _i4.Future<_i16.Response> malformedLength(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -192,7 +207,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedLengthOverride')
   _i4.Future<_i16.Response> malformedLengthOverride(
       _i16.Request request) async {
     final awsRequest = request.awsRequest;
@@ -224,7 +238,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedLengthQueryString')
   _i4.Future<_i16.Response> malformedLengthQueryString(
       _i16.Request request) async {
     final awsRequest = request.awsRequest;
@@ -257,7 +270,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedPattern')
   _i4.Future<_i16.Response> malformedPattern(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -287,7 +299,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedPatternOverride')
   _i4.Future<_i16.Response> malformedPatternOverride(
       _i16.Request request) async {
     final awsRequest = request.awsRequest;
@@ -319,7 +330,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedRange')
   _i4.Future<_i16.Response> malformedRange(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -349,7 +359,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedRangeOverride')
   _i4.Future<_i16.Response> malformedRangeOverride(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -380,7 +389,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/MalformedRequired')
   _i4.Future<_i16.Response> malformedRequired(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -410,7 +418,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/RecursiveStructures')
   _i4.Future<_i16.Response> recursiveStructures(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -441,7 +448,6 @@ class _RestJsonValidationProtocolServer
     }
   }
 
-  @Route.post('/SensitiveValidation')
   _i4.Future<_i16.Response> sensitiveValidation(_i16.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

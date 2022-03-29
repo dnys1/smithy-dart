@@ -26,6 +26,7 @@ abstract class XmlTimestampsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlTimestampsInputOutput] from a [payload] and [response].
   factory XmlTimestampsInputOutput.fromResponse(
           XmlTimestampsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

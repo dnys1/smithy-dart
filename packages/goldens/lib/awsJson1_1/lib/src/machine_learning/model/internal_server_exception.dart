@@ -20,6 +20,7 @@ abstract class InternalServerException
 
   const InternalServerException._();
 
+  /// Constructs a [InternalServerException] from a [payload] and [response].
   factory InternalServerException.fromResponse(
           InternalServerException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

@@ -28,19 +28,28 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'glacier_server.g.dart';
-
 abstract class GlacierServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestJson1Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
+  late final Router _router = () {
+    final service = _GlacierServer(this);
+    final router = Router();
+    router.add('POST', r'/<accountId>/vaults/<vaultName>/archives',
+        service.uploadArchive);
+    router.add(
+        'PUT',
+        r'/<accountId>/vaults/<vaultName>/multipart-uploads/<uploadId>',
+        service.uploadMultipartPart);
+    return router;
+  }();
+
   _i4.Future<_i5.ArchiveCreationOutput> uploadArchive(
       _i6.UploadArchiveInput input, _i1.Context context);
   _i4.Future<_i7.UploadMultipartPartOutput> uploadMultipartPart(
       _i8.UploadMultipartPartInput input, _i1.Context context);
-  _i4.Future<_i9.Response> call(_i9.Request request) =>
-      _$_GlacierServerRouter(_GlacierServer(this))(request);
+  _i4.Future<_i9.Response> call(_i9.Request request) => _router(request);
 }
 
 class _GlacierServer extends _i1.HttpServer<GlacierServerBase> {
@@ -62,7 +71,6 @@ class _GlacierServer extends _i1.HttpServer<GlacierServerBase> {
       _i2.RestJson1Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.post('/<accountId>/vaults/<vaultName>/archives')
   _i4.Future<_i9.Response> uploadArchive(
       _i9.Request request, String accountId, String vaultName) async {
     final awsRequest = request.awsRequest;
@@ -118,7 +126,6 @@ class _GlacierServer extends _i1.HttpServer<GlacierServerBase> {
     }
   }
 
-  @Route.put('/<accountId>/vaults/<vaultName>/multipart-uploads/<uploadId>')
   _i4.Future<_i9.Response> uploadMultipartPart(_i9.Request request,
       String accountId, String vaultName, String uploadId) async {
     final awsRequest = request.awsRequest;

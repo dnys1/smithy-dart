@@ -27,6 +27,7 @@ abstract class JsonBlobsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [JsonBlobsInputOutput] from a [payload] and [response].
   factory JsonBlobsInputOutput.fromResponse(
           JsonBlobsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

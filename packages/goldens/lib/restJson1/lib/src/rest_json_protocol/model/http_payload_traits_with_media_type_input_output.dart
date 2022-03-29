@@ -35,6 +35,7 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
         }
       });
 
+  /// Constructs a [HttpPayloadTraitsWithMediaTypeInputOutput] from a [payload] and [response].
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromResponse(
           _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadTraitsWithMediaTypeInputOutput((b) {

@@ -22,6 +22,7 @@ abstract class HttpResponseCodeOutput
 
   const HttpResponseCodeOutput._();
 
+  /// Constructs a [HttpResponseCodeOutput] from a [payload] and [response].
   factory HttpResponseCodeOutput.fromResponse(
           HttpResponseCodeOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>

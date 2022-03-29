@@ -24,6 +24,7 @@ abstract class MalformedAcceptWithPayloadOutput
 
   const MalformedAcceptWithPayloadOutput._();
 
+  /// Constructs a [MalformedAcceptWithPayloadOutput] from a [payload] and [response].
   factory MalformedAcceptWithPayloadOutput.fromResponse(
           _i3.Uint8List? payload, _i1.AWSBaseHttpResponse response) =>
       MalformedAcceptWithPayloadOutput((b) {

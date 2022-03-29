@@ -26,6 +26,7 @@ abstract class JsonTimestampsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [JsonTimestampsInputOutput] from a [payload] and [response].
   factory JsonTimestampsInputOutput.fromResponse(
           JsonTimestampsInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

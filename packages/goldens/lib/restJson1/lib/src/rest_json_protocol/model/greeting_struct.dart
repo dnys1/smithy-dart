@@ -22,6 +22,7 @@ abstract class GreetingStruct
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [GreetingStruct] from a [payload] and [response].
   factory GreetingStruct.fromResponse(
           GreetingStruct payload, _i2.AWSBaseHttpResponse response) =>
       payload;

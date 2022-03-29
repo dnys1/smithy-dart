@@ -28,6 +28,7 @@ abstract class HttpChecksumRequiredInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [HttpChecksumRequiredInputOutput] from a [payload] and [response].
   factory HttpChecksumRequiredInputOutput.fromResponse(
           HttpChecksumRequiredInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

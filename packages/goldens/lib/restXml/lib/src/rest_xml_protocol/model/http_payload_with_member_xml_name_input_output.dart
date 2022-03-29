@@ -34,6 +34,7 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
         }
       });
 
+  /// Constructs a [HttpPayloadWithMemberXmlNameInputOutput] from a [payload] and [response].
   factory HttpPayloadWithMemberXmlNameInputOutput.fromResponse(
           _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadWithMemberXmlNameInputOutput((b) {

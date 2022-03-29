@@ -25,6 +25,7 @@ abstract class MediaTypeHeaderOutput
 
   const MediaTypeHeaderOutput._();
 
+  /// Constructs a [MediaTypeHeaderOutput] from a [payload] and [response].
   factory MediaTypeHeaderOutput.fromResponse(
           MediaTypeHeaderOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>

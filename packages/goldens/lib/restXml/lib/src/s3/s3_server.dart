@@ -17,19 +17,24 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 's3_server.g.dart';
-
 abstract class S3ServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestXmlProtocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
+  late final Router _router = () {
+    final service = _S3Server(this);
+    final router = Router();
+    router.add('GET', r'/<Bucket>?location', service.getBucketLocation);
+    router.add('GET', r'/<Bucket>?list-type=2', service.listObjectsV2);
+    return router;
+  }();
+
   _i4.Future<_i5.GetBucketLocationOutput> getBucketLocation(
       _i6.GetBucketLocationRequest input, _i1.Context context);
   _i4.Future<_i7.ListObjectsV2Output> listObjectsV2(
       _i8.ListObjectsV2Request input, _i1.Context context);
-  _i4.Future<_i9.Response> call(_i9.Request request) =>
-      _$_S3ServerRouter(_S3Server(this))(request);
+  _i4.Future<_i9.Response> call(_i9.Request request) => _router(request);
 }
 
 class _S3Server extends _i1.HttpServer<S3ServerBase> {
@@ -58,7 +63,6 @@ class _S3Server extends _i1.HttpServer<S3ServerBase> {
           builderFactories: _i3.builderFactories,
           noErrorWrapping: true);
 
-  @Route.get('/<Bucket>?location')
   _i4.Future<_i9.Response> getBucketLocation(
       _i9.Request request, String Bucket) async {
     final awsRequest = request.awsRequest;
@@ -85,7 +89,6 @@ class _S3Server extends _i1.HttpServer<S3ServerBase> {
     }
   }
 
-  @Route.get('/<Bucket>?list-type=2')
   _i4.Future<_i9.Response> listObjectsV2(
       _i9.Request request, String Bucket) async {
     final awsRequest = request.awsRequest;

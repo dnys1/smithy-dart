@@ -28,6 +28,7 @@ abstract class EnumPayloadInput
         b.payload = payload;
       });
 
+  /// Constructs a [EnumPayloadInput] from a [payload] and [response].
   factory EnumPayloadInput.fromResponse(
           _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) =>
       EnumPayloadInput((b) {

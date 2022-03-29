@@ -22,6 +22,7 @@ abstract class EmptyInputAndEmptyOutputOutput
 
   const EmptyInputAndEmptyOutputOutput._();
 
+  /// Constructs a [EmptyInputAndEmptyOutputOutput] from a [payload] and [response].
   factory EmptyInputAndEmptyOutputOutput.fromResponse(
           EmptyInputAndEmptyOutputOutput payload,
           _i1.AWSBaseHttpResponse response) =>

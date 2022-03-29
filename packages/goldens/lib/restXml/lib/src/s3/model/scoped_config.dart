@@ -19,6 +19,8 @@ part 'scoped_config.g.dart';
 abstract class ScopedConfig
     with _i1.AWSEquatable<ScopedConfig>
     implements Built<ScopedConfig, ScopedConfigBuilder> {
+  /// Config settings that are scoped to different sources, such as environment
+  /// variables or the AWS config file.
   factory ScopedConfig([void Function(ScopedConfigBuilder) updates]) =
       _$ScopedConfig;
 

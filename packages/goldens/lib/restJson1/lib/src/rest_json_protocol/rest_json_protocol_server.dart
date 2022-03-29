@@ -193,12 +193,153 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'rest_json_protocol_server.g.dart';
-
 abstract class RestJsonProtocolServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestJson1Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
+
+  late final Router _router = () {
+    final service = _RestJsonProtocolServer(this);
+    final router = Router();
+    router.add(
+        'GET', r'/AllQueryStringTypesInput', service.allQueryStringTypes);
+    router.add('GET', r'/ConstantAndVariableQueryString?foo=bar',
+        service.constantAndVariableQueryString);
+    router.add('GET', r'/ConstantQueryString/<hello>?foo=bar&hello',
+        service.constantQueryString);
+    router.add('PUT', r'/DocumentType', service.documentType);
+    router.add('PUT', r'/DocumentTypeAsPayload', service.documentTypeAsPayload);
+    router.add(
+        'POST', r'/EmptyInputAndEmptyOutput', service.emptyInputAndEmptyOutput);
+    router.add('POST', r'/EndpointOperation', service.endpointOperation);
+    router.add('POST', r'/EndpointWithHostLabelOperation',
+        service.endpointWithHostLabelOperation);
+    router.add('PUT', r'/GreetingWithErrors', service.greetingWithErrors);
+    router.add('GET', r'/HostWithPathOperation', service.hostWithPathOperation);
+    router.add('POST', r'/HttpChecksumRequired', service.httpChecksumRequired);
+    router.add('POST', r'/EnumPayload', service.httpEnumPayload);
+    router.add('POST', r'/HttpPayloadTraits', service.httpPayloadTraits);
+    router.add('POST', r'/HttpPayloadTraitsWithMediaType',
+        service.httpPayloadTraitsWithMediaType);
+    router.add(
+        'PUT', r'/HttpPayloadWithStructure', service.httpPayloadWithStructure);
+    router.add('GET', r'/HttpPrefixHeaders', service.httpPrefixHeaders);
+    router.add('GET', r'/HttpPrefixHeadersResponse',
+        service.httpPrefixHeadersInResponse);
+    router.add('GET', r'/FloatHttpLabels/<float>/<double>',
+        service.httpRequestWithFloatLabels);
+    router.add('GET', r'/HttpRequestWithGreedyLabelInPath/foo/<foo>/baz/<baz>',
+        service.httpRequestWithGreedyLabelInPath);
+    router.add(
+        'GET',
+        r'/HttpRequestWithLabels/<string>/<short>/<integer>/<long>/<float>/<double>/<boolean>/<timestamp>',
+        service.httpRequestWithLabels);
+    router.add(
+        'GET',
+        r'/HttpRequestWithLabelsAndTimestampFormat/<memberEpochSeconds>/<memberHttpDate>/<memberDateTime>/<defaultFormat>/<targetEpochSeconds>/<targetHttpDate>/<targetDateTime>',
+        service.httpRequestWithLabelsAndTimestampFormat);
+    router.add('GET', r'/ReDosLiteral/<str>/(a+)+',
+        service.httpRequestWithRegexLiteral);
+    router.add('PUT', r'/HttpResponseCode', service.httpResponseCode);
+    router.add('POST', r'/StringPayload', service.httpStringPayload);
+    router.add('GET', r'/IgnoreQueryParamsInResponse',
+        service.ignoreQueryParamsInResponse);
+    router.add('POST', r'/InputAndOutputWithHeaders',
+        service.inputAndOutputWithHeaders);
+    router.add('POST', r'/JsonBlobs', service.jsonBlobs);
+    router.add('PUT', r'/JsonEnums', service.jsonEnums);
+    router.add('PUT', r'/JsonLists', service.jsonLists);
+    router.add('POST', r'/JsonMaps', service.jsonMaps);
+    router.add('POST', r'/JsonTimestamps', service.jsonTimestamps);
+    router.add('PUT', r'/JsonUnions', service.jsonUnions);
+    router.add(
+        'POST', r'/MalformedAcceptWithBody', service.malformedAcceptWithBody);
+    router.add('POST', r'/MalformedAcceptWithGenericString',
+        service.malformedAcceptWithGenericString);
+    router.add('POST', r'/MalformedAcceptWithPayload',
+        service.malformedAcceptWithPayload);
+    router.add('POST', r'/MalformedBlob', service.malformedBlob);
+    router.add(
+        'POST', r'/MalformedBoolean/<booleanInPath>', service.malformedBoolean);
+    router.add('POST', r'/MalformedByte/<byteInPath>', service.malformedByte);
+    router.add('POST', r'/MalformedContentTypeWithBody',
+        service.malformedContentTypeWithBody);
+    router.add('POST', r'/MalformedContentTypeWithGenericString',
+        service.malformedContentTypeWithGenericString);
+    router.add('POST', r'/MalformedContentTypeWithPayload',
+        service.malformedContentTypeWithPayload);
+    router.add('POST', r'/MalformedContentTypeWithoutBody',
+        service.malformedContentTypeWithoutBody);
+    router.add(
+        'POST', r'/MalformedDouble/<doubleInPath>', service.malformedDouble);
+    router.add(
+        'POST', r'/MalformedFloat/<floatInPath>', service.malformedFloat);
+    router.add(
+        'POST', r'/MalformedInteger/<integerInPath>', service.malformedInteger);
+    router.add('POST', r'/MalformedList', service.malformedList);
+    router.add('POST', r'/MalformedLong/<longInPath>', service.malformedLong);
+    router.add('POST', r'/MalformedMap', service.malformedMap);
+    router.add('POST', r'/MalformedRequestBody', service.malformedRequestBody);
+    router.add('POST', r'/MalformedSet', service.malformedSet);
+    router.add(
+        'POST', r'/MalformedShort/<shortInPath>', service.malformedShort);
+    router.add('POST', r'/MalformedString', service.malformedString);
+    router.add('POST', r'/MalformedTimestampBodyDateTime',
+        service.malformedTimestampBodyDateTime);
+    router.add('POST', r'/MalformedTimestampBodyDefault',
+        service.malformedTimestampBodyDefault);
+    router.add('POST', r'/MalformedTimestampBodyHttpDate',
+        service.malformedTimestampBodyHttpDate);
+    router.add('POST', r'/MalformedTimestampHeaderDateTime',
+        service.malformedTimestampHeaderDateTime);
+    router.add('POST', r'/MalformedTimestampHeaderDefault',
+        service.malformedTimestampHeaderDefault);
+    router.add('POST', r'/MalformedTimestampHeaderEpoch',
+        service.malformedTimestampHeaderEpoch);
+    router.add('POST', r'/MalformedTimestampPathDefault/<timestamp>',
+        service.malformedTimestampPathDefault);
+    router.add('POST', r'/MalformedTimestampPathEpoch/<timestamp>',
+        service.malformedTimestampPathEpoch);
+    router.add('POST', r'/MalformedTimestampPathHttpDate/<timestamp>',
+        service.malformedTimestampPathHttpDate);
+    router.add('POST', r'/MalformedTimestampQueryDefault',
+        service.malformedTimestampQueryDefault);
+    router.add('POST', r'/MalformedTimestampQueryEpoch',
+        service.malformedTimestampQueryEpoch);
+    router.add('POST', r'/MalformedTimestampQueryHttpDate',
+        service.malformedTimestampQueryHttpDate);
+    router.add('POST', r'/MalformedUnion', service.malformedUnion);
+    router.add('GET', r'/MediaTypeHeader', service.mediaTypeHeader);
+    router.add('POST', r'/NoInputAndNoOutput', service.noInputAndNoOutput);
+    router.add('POST', r'/NoInputAndOutputOutput', service.noInputAndOutput);
+    router.add('GET', r'/NullAndEmptyHeadersClient',
+        service.nullAndEmptyHeadersClient);
+    router.add('GET', r'/NullAndEmptyHeadersServer',
+        service.nullAndEmptyHeadersServer);
+    router.add('GET', r'/OmitsNullSerializesEmptyString',
+        service.omitsNullSerializesEmptyString);
+    router.add('POST', r'/PostPlayerAction', service.postPlayerAction);
+    router.add('POST', r'/QueryIdempotencyTokenAutoFill',
+        service.queryIdempotencyTokenAutoFill);
+    router.add('POST', r'/StringListMap', service.queryParamsAsStringListMap);
+    router.add('POST', r'/Precedence', service.queryPrecedence);
+    router.add('PUT', r'/RecursiveShapes', service.recursiveShapes);
+    router.add(
+        'PUT', r'/SimpleScalarProperties', service.simpleScalarProperties);
+    router.add('POST', r'/StreamingTraits', service.streamingTraits);
+    router.add('POST', r'/StreamingTraitsRequireLength',
+        service.streamingTraitsRequireLength);
+    router.add('POST', r'/StreamingTraitsWithMediaType',
+        service.streamingTraitsWithMediaType);
+    router.add('POST', r'/body', service.testBodyStructure);
+    router.add('GET', r'/no_payload', service.testNoPayload);
+    router.add('POST', r'/blob_payload', service.testPayloadBlob);
+    router.add('POST', r'/payload', service.testPayloadStructure);
+    router.add(
+        'POST', r'/TimestampFormatHeaders', service.timestampFormatHeaders);
+    router.add('POST', r'/UnitInputAndOutput', service.unitInputAndOutput);
+    return router;
+  }();
 
   _i4.Future<_i1.Unit> allQueryStringTypes(
       _i5.AllQueryStringTypesInput input, _i1.Context context);
@@ -378,8 +519,7 @@ abstract class RestJsonProtocolServerBase extends _i1.HttpServerBase {
   _i4.Future<_i88.TimestampFormatHeadersIo> timestampFormatHeaders(
       _i88.TimestampFormatHeadersIo input, _i1.Context context);
   _i4.Future<_i1.Unit> unitInputAndOutput(_i1.Unit input, _i1.Context context);
-  _i4.Future<_i89.Response> call(_i89.Request request) =>
-      _$_RestJsonProtocolServerRouter(_RestJsonProtocolServer(this))(request);
+  _i4.Future<_i89.Response> call(_i89.Request request) => _router(request);
 }
 
 class _RestJsonProtocolServer
@@ -907,7 +1047,6 @@ class _RestJsonProtocolServer
       _unitInputAndOutputProtocol = _i2.RestJson1Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.get('/AllQueryStringTypesInput')
   _i4.Future<_i89.Response> allQueryStringTypes(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -933,7 +1072,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/ConstantAndVariableQueryString?foo=bar')
   _i4.Future<_i89.Response> constantAndVariableQueryString(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -961,7 +1099,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/ConstantQueryString/<hello>?foo=bar&hello')
   _i4.Future<_i89.Response> constantQueryString(
       _i89.Request request, String hello) async {
     final awsRequest = request.awsRequest;
@@ -988,7 +1125,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/DocumentType')
   _i4.Future<_i89.Response> documentType(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1012,7 +1148,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/DocumentTypeAsPayload')
   _i4.Future<_i89.Response> documentTypeAsPayload(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1037,7 +1172,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/EmptyInputAndEmptyOutput')
   _i4.Future<_i89.Response> emptyInputAndEmptyOutput(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1063,7 +1197,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/EndpointOperation')
   _i4.Future<_i89.Response> endpointOperation(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1085,7 +1218,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/EndpointWithHostLabelOperation')
   _i4.Future<_i89.Response> endpointWithHostLabelOperation(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1111,7 +1243,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/GreetingWithErrors')
   _i4.Future<_i89.Response> greetingWithErrors(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1151,7 +1282,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/HostWithPathOperation')
   _i4.Future<_i89.Response> hostWithPathOperation(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1173,7 +1303,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/HttpChecksumRequired')
   _i4.Future<_i89.Response> httpChecksumRequired(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1199,7 +1328,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/EnumPayload')
   _i4.Future<_i89.Response> httpEnumPayload(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1223,7 +1351,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/HttpPayloadTraits')
   _i4.Future<_i89.Response> httpPayloadTraits(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1251,7 +1378,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/HttpPayloadTraitsWithMediaType')
   _i4.Future<_i89.Response> httpPayloadTraitsWithMediaType(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1282,7 +1408,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/HttpPayloadWithStructure')
   _i4.Future<_i89.Response> httpPayloadWithStructure(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1309,7 +1434,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/HttpPrefixHeaders')
   _i4.Future<_i89.Response> httpPrefixHeaders(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1333,7 +1457,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/HttpPrefixHeadersResponse')
   _i4.Future<_i89.Response> httpPrefixHeadersInResponse(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1361,7 +1484,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/FloatHttpLabels/<float>/<double>')
   _i4.Future<_i89.Response> httpRequestWithFloatLabels(
       _i89.Request request, String float, String double) async {
     final awsRequest = request.awsRequest;
@@ -1388,7 +1510,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/HttpRequestWithGreedyLabelInPath/foo/<foo>/baz/<baz>')
   _i4.Future<_i89.Response> httpRequestWithGreedyLabelInPath(
       _i89.Request request, String foo, String baz) async {
     final awsRequest = request.awsRequest;
@@ -1416,8 +1537,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get(
-      '/HttpRequestWithLabels/<string>/<short>/<integer>/<long>/<float>/<double>/<boolean>/<timestamp>')
   _i4.Future<_i89.Response> httpRequestWithLabels(
       _i89.Request request,
       String string,
@@ -1461,8 +1580,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get(
-      '/HttpRequestWithLabelsAndTimestampFormat/<memberEpochSeconds>/<memberHttpDate>/<memberDateTime>/<defaultFormat>/<targetEpochSeconds>/<targetHttpDate>/<targetDateTime>')
   _i4.Future<_i89.Response> httpRequestWithLabelsAndTimestampFormat(
       _i89.Request request,
       String memberEpochSeconds,
@@ -1506,7 +1623,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/ReDosLiteral/<str>/(a+)+')
   _i4.Future<_i89.Response> httpRequestWithRegexLiteral(
       _i89.Request request, String str) async {
     final awsRequest = request.awsRequest;
@@ -1533,7 +1649,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/HttpResponseCode')
   _i4.Future<_i89.Response> httpResponseCode(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1555,7 +1670,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/StringPayload')
   _i4.Future<_i89.Response> httpStringPayload(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1578,7 +1692,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/IgnoreQueryParamsInResponse')
   _i4.Future<_i89.Response> ignoreQueryParamsInResponse(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1602,7 +1715,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/InputAndOutputWithHeaders')
   _i4.Future<_i89.Response> inputAndOutputWithHeaders(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1699,7 +1811,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/JsonBlobs')
   _i4.Future<_i89.Response> jsonBlobs(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1721,7 +1832,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/JsonEnums')
   _i4.Future<_i89.Response> jsonEnums(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1743,7 +1853,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/JsonLists')
   _i4.Future<_i89.Response> jsonLists(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1765,7 +1874,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/JsonMaps')
   _i4.Future<_i89.Response> jsonMaps(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1787,7 +1895,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/JsonTimestamps')
   _i4.Future<_i89.Response> jsonTimestamps(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1812,7 +1919,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/JsonUnions')
   _i4.Future<_i89.Response> jsonUnions(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1834,7 +1940,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedAcceptWithBody')
   _i4.Future<_i89.Response> malformedAcceptWithBody(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1857,7 +1962,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedAcceptWithGenericString')
   _i4.Future<_i89.Response> malformedAcceptWithGenericString(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1884,7 +1988,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedAcceptWithPayload')
   _i4.Future<_i89.Response> malformedAcceptWithPayload(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1907,7 +2010,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedBlob')
   _i4.Future<_i89.Response> malformedBlob(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1931,7 +2033,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedBoolean/<booleanInPath>')
   _i4.Future<_i89.Response> malformedBoolean(
       _i89.Request request, String booleanInPath) async {
     final awsRequest = request.awsRequest;
@@ -1956,7 +2057,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedByte/<byteInPath>')
   _i4.Future<_i89.Response> malformedByte(
       _i89.Request request, String byteInPath) async {
     final awsRequest = request.awsRequest;
@@ -1981,7 +2081,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedContentTypeWithBody')
   _i4.Future<_i89.Response> malformedContentTypeWithBody(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2006,7 +2105,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedContentTypeWithGenericString')
   _i4.Future<_i89.Response> malformedContentTypeWithGenericString(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2032,7 +2130,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedContentTypeWithPayload')
   _i4.Future<_i89.Response> malformedContentTypeWithPayload(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2059,7 +2156,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedContentTypeWithoutBody')
   _i4.Future<_i89.Response> malformedContentTypeWithoutBody(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2083,7 +2179,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedDouble/<doubleInPath>')
   _i4.Future<_i89.Response> malformedDouble(
       _i89.Request request, String doubleInPath) async {
     final awsRequest = request.awsRequest;
@@ -2108,7 +2203,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedFloat/<floatInPath>')
   _i4.Future<_i89.Response> malformedFloat(
       _i89.Request request, String floatInPath) async {
     final awsRequest = request.awsRequest;
@@ -2133,7 +2227,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedInteger/<integerInPath>')
   _i4.Future<_i89.Response> malformedInteger(
       _i89.Request request, String integerInPath) async {
     final awsRequest = request.awsRequest;
@@ -2158,7 +2251,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedList')
   _i4.Future<_i89.Response> malformedList(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2182,7 +2274,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedLong/<longInPath>')
   _i4.Future<_i89.Response> malformedLong(
       _i89.Request request, String longInPath) async {
     final awsRequest = request.awsRequest;
@@ -2207,7 +2298,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedMap')
   _i4.Future<_i89.Response> malformedMap(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2231,7 +2321,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedRequestBody')
   _i4.Future<_i89.Response> malformedRequestBody(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2256,7 +2345,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedSet')
   _i4.Future<_i89.Response> malformedSet(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2280,7 +2368,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedShort/<shortInPath>')
   _i4.Future<_i89.Response> malformedShort(
       _i89.Request request, String shortInPath) async {
     final awsRequest = request.awsRequest;
@@ -2305,7 +2392,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedString')
   _i4.Future<_i89.Response> malformedString(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2329,7 +2415,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampBodyDateTime')
   _i4.Future<_i89.Response> malformedTimestampBodyDateTime(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2357,7 +2442,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampBodyDefault')
   _i4.Future<_i89.Response> malformedTimestampBodyDefault(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2385,7 +2469,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampBodyHttpDate')
   _i4.Future<_i89.Response> malformedTimestampBodyHttpDate(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2413,7 +2496,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampHeaderDateTime')
   _i4.Future<_i89.Response> malformedTimestampHeaderDateTime(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2441,7 +2523,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampHeaderDefault')
   _i4.Future<_i89.Response> malformedTimestampHeaderDefault(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2469,7 +2550,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampHeaderEpoch')
   _i4.Future<_i89.Response> malformedTimestampHeaderEpoch(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2497,7 +2577,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampPathDefault/<timestamp>')
   _i4.Future<_i89.Response> malformedTimestampPathDefault(
       _i89.Request request, String timestamp) async {
     final awsRequest = request.awsRequest;
@@ -2525,7 +2604,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampPathEpoch/<timestamp>')
   _i4.Future<_i89.Response> malformedTimestampPathEpoch(
       _i89.Request request, String timestamp) async {
     final awsRequest = request.awsRequest;
@@ -2552,7 +2630,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampPathHttpDate/<timestamp>')
   _i4.Future<_i89.Response> malformedTimestampPathHttpDate(
       _i89.Request request, String timestamp) async {
     final awsRequest = request.awsRequest;
@@ -2580,7 +2657,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampQueryDefault')
   _i4.Future<_i89.Response> malformedTimestampQueryDefault(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2608,7 +2684,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampQueryEpoch')
   _i4.Future<_i89.Response> malformedTimestampQueryEpoch(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2635,7 +2710,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedTimestampQueryHttpDate')
   _i4.Future<_i89.Response> malformedTimestampQueryHttpDate(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2663,7 +2737,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/MalformedUnion')
   _i4.Future<_i89.Response> malformedUnion(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2687,7 +2760,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/MediaTypeHeader')
   _i4.Future<_i89.Response> mediaTypeHeader(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2711,7 +2783,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/NoInputAndNoOutput')
   _i4.Future<_i89.Response> noInputAndNoOutput(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2733,7 +2804,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/NoInputAndOutputOutput')
   _i4.Future<_i89.Response> noInputAndOutput(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2755,7 +2825,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/NullAndEmptyHeadersClient')
   _i4.Future<_i89.Response> nullAndEmptyHeadersClient(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2790,7 +2859,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/NullAndEmptyHeadersServer')
   _i4.Future<_i89.Response> nullAndEmptyHeadersServer(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2825,7 +2893,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/OmitsNullSerializesEmptyString')
   _i4.Future<_i89.Response> omitsNullSerializesEmptyString(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2853,7 +2920,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/PostPlayerAction')
   _i4.Future<_i89.Response> postPlayerAction(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2877,7 +2943,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/QueryIdempotencyTokenAutoFill')
   _i4.Future<_i89.Response> queryIdempotencyTokenAutoFill(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2905,7 +2970,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/StringListMap')
   _i4.Future<_i89.Response> queryParamsAsStringListMap(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -2932,7 +2996,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/Precedence')
   _i4.Future<_i89.Response> queryPrecedence(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2956,7 +3019,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/RecursiveShapes')
   _i4.Future<_i89.Response> recursiveShapes(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2981,7 +3043,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.put('/SimpleScalarProperties')
   _i4.Future<_i89.Response> simpleScalarProperties(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3011,7 +3072,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/StreamingTraits')
   _i4.Future<_i89.Response> streamingTraits(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3040,7 +3100,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/StreamingTraitsRequireLength')
   _i4.Future<_i89.Response> streamingTraitsRequireLength(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -3071,7 +3130,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/StreamingTraitsWithMediaType')
   _i4.Future<_i89.Response> streamingTraitsWithMediaType(
       _i89.Request request) async {
     final awsRequest = request.awsRequest;
@@ -3102,7 +3160,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/body')
   _i4.Future<_i89.Response> testBodyStructure(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3131,7 +3188,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.get('/no_payload')
   _i4.Future<_i89.Response> testNoPayload(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3160,7 +3216,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/blob_payload')
   _i4.Future<_i89.Response> testPayloadBlob(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3188,7 +3243,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/payload')
   _i4.Future<_i89.Response> testPayloadStructure(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3216,7 +3270,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/TimestampFormatHeaders')
   _i4.Future<_i89.Response> timestampFormatHeaders(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -3284,7 +3337,6 @@ class _RestJsonProtocolServer
     }
   }
 
-  @Route.post('/UnitInputAndOutput')
   _i4.Future<_i89.Response> unitInputAndOutput(_i89.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

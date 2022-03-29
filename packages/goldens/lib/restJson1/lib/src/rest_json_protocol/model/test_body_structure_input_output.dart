@@ -39,6 +39,7 @@ abstract class TestBodyStructureInputOutput
         }
       });
 
+  /// Constructs a [TestBodyStructureInputOutput] from a [payload] and [response].
   factory TestBodyStructureInputOutput.fromResponse(
           TestBodyStructureInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>

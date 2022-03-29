@@ -28,6 +28,7 @@ abstract class BodyWithXmlNameInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [BodyWithXmlNameInputOutput] from a [payload] and [response].
   factory BodyWithXmlNameInputOutput.fromResponse(
           BodyWithXmlNameInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

@@ -22,6 +22,7 @@ abstract class ListObjectsV2Output
 
   const ListObjectsV2Output._();
 
+  /// Constructs a [ListObjectsV2Output] from a [payload] and [response].
   factory ListObjectsV2Output.fromResponse(
           ListObjectsV2Output payload, _i1.AWSBaseHttpResponse response) =>
       payload;

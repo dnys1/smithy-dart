@@ -34,6 +34,7 @@ abstract class StreamingTraitsInputOutput
         }
       });
 
+  /// Constructs a [StreamingTraitsInputOutput] from a [payload] and [response].
   factory StreamingTraitsInputOutput.fromResponse(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
       StreamingTraitsInputOutput((b) {

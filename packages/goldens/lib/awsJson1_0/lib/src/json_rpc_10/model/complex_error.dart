@@ -17,11 +17,13 @@ abstract class ComplexError
     implements
         Built<ComplexError, ComplexErrorBuilder>,
         _i2.SmithyHttpException {
+  /// This error is thrown when a request is invalid.
   factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
   const ComplexError._();
 
+  /// Constructs a [ComplexError] from a [payload] and [response].
   factory ComplexError.fromResponse(
           ComplexError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

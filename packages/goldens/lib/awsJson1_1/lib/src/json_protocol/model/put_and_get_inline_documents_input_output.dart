@@ -29,6 +29,7 @@ abstract class PutAndGetInlineDocumentsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [PutAndGetInlineDocumentsInputOutput] from a [payload] and [response].
   factory PutAndGetInlineDocumentsInputOutput.fromResponse(
           PutAndGetInlineDocumentsInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

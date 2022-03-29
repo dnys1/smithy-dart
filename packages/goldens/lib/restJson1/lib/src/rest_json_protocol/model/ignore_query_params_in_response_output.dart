@@ -21,6 +21,7 @@ abstract class IgnoreQueryParamsInResponseOutput
 
   const IgnoreQueryParamsInResponseOutput._();
 
+  /// Constructs a [IgnoreQueryParamsInResponseOutput] from a [payload] and [response].
   factory IgnoreQueryParamsInResponseOutput.fromResponse(
           IgnoreQueryParamsInResponseOutput payload,
           _i1.AWSBaseHttpResponse response) =>

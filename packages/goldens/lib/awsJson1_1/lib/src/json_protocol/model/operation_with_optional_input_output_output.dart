@@ -21,6 +21,7 @@ abstract class OperationWithOptionalInputOutputOutput
 
   const OperationWithOptionalInputOutputOutput._();
 
+  /// Constructs a [OperationWithOptionalInputOutputOutput] from a [payload] and [response].
   factory OperationWithOptionalInputOutputOutput.fromResponse(
           OperationWithOptionalInputOutputOutput payload,
           _i1.AWSBaseHttpResponse response) =>

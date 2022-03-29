@@ -20,6 +20,7 @@ abstract class ServiceUnavailableException
 
   const ServiceUnavailableException._();
 
+  /// Constructs a [ServiceUnavailableException] from a [payload] and [response].
   factory ServiceUnavailableException.fromResponse(
           ServiceUnavailableException payload,
           _i1.AWSBaseHttpResponse response) =>

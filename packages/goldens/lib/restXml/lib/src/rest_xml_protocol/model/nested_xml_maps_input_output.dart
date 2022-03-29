@@ -28,6 +28,7 @@ abstract class NestedXmlMapsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [NestedXmlMapsInputOutput] from a [payload] and [response].
   factory NestedXmlMapsInputOutput.fromResponse(
           NestedXmlMapsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

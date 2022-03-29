@@ -19,6 +19,7 @@ abstract class GetBucketLocationOutput
 
   const GetBucketLocationOutput._();
 
+  /// Constructs a [GetBucketLocationOutput] from a [payload] and [response].
   factory GetBucketLocationOutput.fromResponse(
           _i2.BucketLocationConstraint? payload,
           _i1.AWSBaseHttpResponse response) =>

@@ -18,6 +18,7 @@ abstract class JsonUnionsOutput
 
   const JsonUnionsOutput._();
 
+  /// Constructs a [JsonUnionsOutput] from a [payload] and [response].
   factory JsonUnionsOutput.fromResponse(
           JsonUnionsOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;

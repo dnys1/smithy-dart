@@ -22,6 +22,7 @@ abstract class MissingParameterValueException
 
   const MissingParameterValueException._();
 
+  /// Constructs a [MissingParameterValueException] from a [payload] and [response].
   factory MissingParameterValueException.fromResponse(
           MissingParameterValueException payload,
           _i1.AWSBaseHttpResponse response) =>

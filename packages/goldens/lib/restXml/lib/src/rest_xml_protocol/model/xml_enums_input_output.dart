@@ -27,6 +27,7 @@ abstract class XmlEnumsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlEnumsInputOutput] from a [payload] and [response].
   factory XmlEnumsInputOutput.fromResponse(
           XmlEnumsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

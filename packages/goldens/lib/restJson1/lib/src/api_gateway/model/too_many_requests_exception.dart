@@ -22,6 +22,7 @@ abstract class TooManyRequestsException
 
   const TooManyRequestsException._();
 
+  /// Constructs a [TooManyRequestsException] from a [payload] and [response].
   factory TooManyRequestsException.fromResponse(
           TooManyRequestsExceptionPayload payload,
           _i1.AWSBaseHttpResponse response) =>

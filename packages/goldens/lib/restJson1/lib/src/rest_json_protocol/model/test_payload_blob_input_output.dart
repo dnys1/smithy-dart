@@ -34,6 +34,7 @@ abstract class TestPayloadBlobInputOutput
         }
       });
 
+  /// Constructs a [TestPayloadBlobInputOutput] from a [payload] and [response].
   factory TestPayloadBlobInputOutput.fromResponse(
           _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
       TestPayloadBlobInputOutput((b) {

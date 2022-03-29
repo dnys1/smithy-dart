@@ -34,6 +34,7 @@ abstract class TestNoPayloadInputOutput
         }
       });
 
+  /// Constructs a [TestNoPayloadInputOutput] from a [payload] and [response].
   factory TestNoPayloadInputOutput.fromResponse(
           TestNoPayloadInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>

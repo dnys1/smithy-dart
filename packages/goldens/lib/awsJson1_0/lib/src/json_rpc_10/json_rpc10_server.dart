@@ -35,12 +35,32 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'json_rpc10_server.g.dart';
-
 abstract class JsonRpc10ServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.AwsJson1_0Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
+
+  late final Router _router = () {
+    final service = _JsonRpc10Server(this);
+    final router = Router();
+    router.add(
+        'POST',
+        '/',
+        _i1.RpcRouter('X-Amz-Target', {
+          'JsonRpc10.EmptyInputAndEmptyOutput':
+              service.emptyInputAndEmptyOutput,
+          'JsonRpc10.EndpointOperation': service.endpointOperation,
+          'JsonRpc10.EndpointWithHostLabelOperation':
+              service.endpointWithHostLabelOperation,
+          'JsonRpc10.GreetingWithErrors': service.greetingWithErrors,
+          'JsonRpc10.HostWithPathOperation': service.hostWithPathOperation,
+          'JsonRpc10.JsonUnions': service.jsonUnions,
+          'JsonRpc10.NoInputAndNoOutput': service.noInputAndNoOutput,
+          'JsonRpc10.NoInputAndOutput': service.noInputAndOutput,
+          'JsonRpc10.SimpleScalarProperties': service.simpleScalarProperties
+        }));
+    return router;
+  }();
 
   _i4.Future<_i5.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
       _i6.EmptyInputAndEmptyOutputInput input, _i1.Context context);
@@ -58,8 +78,7 @@ abstract class JsonRpc10ServerBase extends _i1.HttpServerBase {
       _i1.Unit input, _i1.Context context);
   _i4.Future<_i13.SimpleScalarPropertiesOutput> simpleScalarProperties(
       _i14.SimpleScalarPropertiesInput input, _i1.Context context);
-  _i4.Future<_i15.Response> call(_i15.Request request) =>
-      _$_JsonRpc10ServerRouter(_JsonRpc10Server(this))(request);
+  _i4.Future<_i15.Response> call(_i15.Request request) => _router(request);
 }
 
 class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
@@ -119,7 +138,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       _i2.AwsJson1_0Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.post('/')
   _i4.Future<_i15.Response> emptyInputAndEmptyOutput(
       _i15.Request request) async {
     final awsRequest = request.awsRequest;
@@ -145,7 +163,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> endpointOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -167,7 +184,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> endpointWithHostLabelOperation(
       _i15.Request request) async {
     final awsRequest = request.awsRequest;
@@ -195,7 +211,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> greetingWithErrors(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -237,7 +252,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> hostWithPathOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -259,7 +273,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> jsonUnions(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -281,7 +294,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> noInputAndNoOutput(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -303,7 +315,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> noInputAndOutput(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -325,7 +336,6 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> simpleScalarProperties(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

@@ -27,6 +27,7 @@ abstract class JsonEnumsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [JsonEnumsInputOutput] from a [payload] and [response].
   factory JsonEnumsInputOutput.fromResponse(
           JsonEnumsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

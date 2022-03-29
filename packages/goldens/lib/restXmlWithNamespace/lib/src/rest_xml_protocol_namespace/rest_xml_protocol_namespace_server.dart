@@ -14,18 +14,22 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'rest_xml_protocol_namespace_server.g.dart';
-
 abstract class RestXmlProtocolNamespaceServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestXmlProtocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
+  late final Router _router = () {
+    final service = _RestXmlProtocolNamespaceServer(this);
+    final router = Router();
+    router.add(
+        'PUT', r'/SimpleScalarProperties', service.simpleScalarProperties);
+    return router;
+  }();
+
   _i4.Future<_i5.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
       _i5.SimpleScalarPropertiesInputOutput input, _i1.Context context);
-  _i4.Future<_i6.Response> call(_i6.Request request) =>
-      _$_RestXmlProtocolNamespaceServerRouter(
-          _RestXmlProtocolNamespaceServer(this))(request);
+  _i4.Future<_i6.Response> call(_i6.Request request) => _router(request);
 }
 
 class _RestXmlProtocolNamespaceServer
@@ -45,7 +49,6 @@ class _RestXmlProtocolNamespaceServer
           builderFactories: _i3.builderFactories,
           noErrorWrapping: false);
 
-  @Route.put('/SimpleScalarProperties')
   _i4.Future<_i6.Response> simpleScalarProperties(_i6.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

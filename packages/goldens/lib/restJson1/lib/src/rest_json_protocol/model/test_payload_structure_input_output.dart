@@ -37,6 +37,7 @@ abstract class TestPayloadStructureInputOutput
         }
       });
 
+  /// Constructs a [TestPayloadStructureInputOutput] from a [payload] and [response].
   factory TestPayloadStructureInputOutput.fromResponse(
           _i2.PayloadConfig? payload, _i3.AWSBaseHttpResponse response) =>
       TestPayloadStructureInputOutput((b) {

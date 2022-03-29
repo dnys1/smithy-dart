@@ -4,6 +4,7 @@ import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/model/route_style.dart';
 import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
@@ -51,10 +52,7 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
         ..body.addAll([
           _baseClass,
           _serviceClass,
-        ])
-        ..directives.add(Directive.part(
-          '${context.serviceServerLibrary.filename.snakeCase}.g.dart',
-        ));
+        ]);
     }
     return builder.build();
   }
@@ -83,7 +81,6 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
           return uri.indexOf(a.memberName).compareTo(uri.indexOf(b.memberName));
         });
       yield Method((m) => m
-        ..annotations.add(shape.routeAnnotation(context))
         ..returns = DartTypes.async.future(DartTypes.shelf.response)
         ..name = shape.methodName
         ..requiredParameters.addAll([
@@ -311,7 +308,7 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
     ..abstract = true
     ..extend = DartTypes.smithy.httpServerBase
     ..methods.addAll(_baseMethods)
-    ..fields.add(_baseProtocol));
+    ..fields.addAll([_baseProtocol, _router]));
 
   Iterable<Method> get _baseMethods sync* {
     for (final operation in _httpOperations) {
@@ -339,9 +336,69 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
       ..requiredParameters.add(Parameter((p) => p
         ..type = DartTypes.shelf.request
         ..name = 'request'))
-      ..body = refer('_\$_${className}Router').call([
-        refer('_$className').newInstance([refer('this')])
-      ]).call([refer('request')]).code);
+      ..body = refer('_router').call([refer('request')]).code);
+  }
+
+  /// Builds the router for integration with shelf.
+  Field get _router {
+    final buildRouter = BlockBuilder();
+
+    buildRouter.addExpression(
+      refer('_$className').newInstance([refer('this')]).assignFinal('service'),
+    );
+    final service = refer('service');
+
+    buildRouter.addExpression(
+      DartTypes.shelfRouter.router.newInstance([]).assignFinal('router'),
+    );
+    final router = refer('router');
+
+    switch (protocol.routeConfiguration) {
+      case RouteConfiguration.rest:
+        for (final operation in _httpOperations) {
+          final parameters = operation.shelfParameters(context);
+          buildRouter.addExpression(
+            router.property('add').call([
+              literalString(parameters.method),
+              literalString(parameters.path, raw: true),
+              service.property(operation.methodName),
+            ]),
+          );
+        }
+        break;
+      case RouteConfiguration.rpc:
+        final Map<Expression, Expression> routes = {};
+        for (final operation in _httpOperations) {
+          final rpcEndpoint = literalString([
+            shape.shapeId.shape,
+            operation.shapeId.shape,
+          ].join('.'));
+          routes[rpcEndpoint] = service.property(operation.methodName);
+        }
+        buildRouter.addExpression(
+          router.property('add').call([
+            literalString('POST'),
+            literalString('/'),
+            DartTypes.smithy.rpcRouter.newInstance([
+              literalString('X-Amz-Target'),
+              literalMap(routes),
+            ]),
+          ]),
+        );
+        break;
+    }
+
+    buildRouter.addExpression(router.returned);
+
+    return Field(
+      (f) => f
+        ..late = true
+        ..modifier = FieldModifier.final$
+        ..type = DartTypes.shelfRouter.router
+        ..name = '_router'
+        ..assignment =
+            Method((m) => m..body = buildRouter.build()).closure.call([]).code,
+    );
   }
 
   /// The `protocol` override
@@ -359,6 +416,13 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
       );
 }
 
+class _ShelfParameters {
+  const _ShelfParameters(this.method, this.path);
+
+  final String method;
+  final String path;
+}
+
 extension on OperationShape {
   String get methodName => shapeId.shape.camelCase;
 
@@ -367,15 +431,13 @@ extension on OperationShape {
   BuiltSet<MemberShape> inputLabels(CodegenContext context) =>
       inputShape(context).httpInputTraits(context)?.httpLabels ?? BuiltSet();
 
-  Expression routeAnnotation(CodegenContext context) {
+  _ShelfParameters shelfParameters(CodegenContext context) {
     final httpTrait = this.httpTrait(context)!;
-    final method = httpTrait.method.toLowerCase();
+    final method = httpTrait.method.toUpperCase();
     final path = httpTrait.uri
         .replaceAll('{', '<')
         .replaceAll('+}', '>')
         .replaceAll('}', '>');
-    return DartTypes.shelfRouter.route.newInstanceNamed(method, [
-      literalString(path),
-    ]);
+    return _ShelfParameters(method, path);
   }
 }

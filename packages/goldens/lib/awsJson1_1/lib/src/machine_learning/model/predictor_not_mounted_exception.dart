@@ -34,6 +34,8 @@ abstract class PredictorNotMountedException
     _PredictorNotMountedExceptionAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(PredictorNotMountedExceptionBuilder b) {}
   @override
   String? get message;
   @override

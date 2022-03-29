@@ -172,6 +172,8 @@ abstract class InputAndOutputWithHeadersIo
     _InputAndOutputWithHeadersIoRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InputAndOutputWithHeadersIoBuilder b) {}
   _i5.BuiltList<bool>? get headerBooleanList;
   int? get headerByte;
   double? get headerDouble;

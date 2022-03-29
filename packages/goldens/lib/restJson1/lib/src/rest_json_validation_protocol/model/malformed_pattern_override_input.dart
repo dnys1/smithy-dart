@@ -34,6 +34,8 @@ abstract class MalformedPatternOverrideInput
     _MalformedPatternOverrideInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedPatternOverrideInputBuilder b) {}
   _i3.BuiltList<String>? get list;
   _i3.BuiltMap<String, String>? get map;
   String? get string;

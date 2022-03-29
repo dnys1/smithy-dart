@@ -25,6 +25,8 @@ abstract class PayloadWithXmlNamespaceAndPrefix
     _PayloadWithXmlNamespaceAndPrefixRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(PayloadWithXmlNamespaceAndPrefixBuilder b) {}
   String? get name;
   @override
   List<Object?> get props => [name];

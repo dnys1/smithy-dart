@@ -38,6 +38,8 @@ abstract class QueryPrecedenceInput
     _QueryPrecedenceInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryPrecedenceInputBuilder b) {}
   _i3.BuiltMap<String, String>? get baz;
   String? get foo;
   @override

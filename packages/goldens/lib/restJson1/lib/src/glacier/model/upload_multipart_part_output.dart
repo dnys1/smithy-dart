@@ -36,6 +36,8 @@ abstract class UploadMultipartPartOutput
     _UploadMultipartPartOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(UploadMultipartPartOutputBuilder b) {}
   String? get checksum;
   @override
   UploadMultipartPartOutputPayload getPayload() =>

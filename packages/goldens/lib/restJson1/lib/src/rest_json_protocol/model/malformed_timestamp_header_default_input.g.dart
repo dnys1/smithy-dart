@@ -55,7 +55,9 @@ class MalformedTimestampHeaderDefaultInputBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
-  MalformedTimestampHeaderDefaultInputBuilder();
+  MalformedTimestampHeaderDefaultInputBuilder() {
+    MalformedTimestampHeaderDefaultInput._init(this);
+  }
 
   MalformedTimestampHeaderDefaultInputBuilder get _$this {
     final $v = _$v;

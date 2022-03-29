@@ -22,6 +22,8 @@ abstract class StructureListMember
     _StructureListMemberRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(StructureListMemberBuilder b) {}
   String? get a;
   String? get b;
   @override

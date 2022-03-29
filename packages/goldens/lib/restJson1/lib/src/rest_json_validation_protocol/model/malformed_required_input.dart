@@ -40,6 +40,8 @@ abstract class MalformedRequiredInput
     _MalformedRequiredInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedRequiredInputBuilder b) {}
   String get string;
   String get stringInHeader;
   String get stringInQuery;

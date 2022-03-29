@@ -53,6 +53,8 @@ abstract class TestPayloadStructureInputOutput
     _TestPayloadStructureInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestPayloadStructureInputOutputBuilder b) {}
   _i2.PayloadConfig? get payloadConfig;
   String? get testId;
   @override

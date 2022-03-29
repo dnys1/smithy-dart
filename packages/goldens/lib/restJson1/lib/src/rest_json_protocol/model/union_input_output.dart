@@ -34,6 +34,9 @@ abstract class UnionInputOutput
     _UnionInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(UnionInputOutputBuilder b) {}
+
   /// A union with a representative set of types for members.
   _i3.MyUnion? get contents;
   @override

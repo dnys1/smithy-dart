@@ -27,6 +27,8 @@ abstract class MalformedMapInput
     _MalformedMapInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedMapInputBuilder b) {}
   _i3.BuiltMap<String, String>? get bodyMap;
   @override
   MalformedMapInput getPayload() => this;

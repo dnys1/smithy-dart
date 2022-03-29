@@ -54,7 +54,9 @@ class TestPayloadBlobInputOutputBuilder
   _i2.Uint8List? get data => _$this._data;
   set data(_i2.Uint8List? data) => _$this._data = data;
 
-  TestPayloadBlobInputOutputBuilder();
+  TestPayloadBlobInputOutputBuilder() {
+    TestPayloadBlobInputOutput._init(this);
+  }
 
   TestPayloadBlobInputOutputBuilder get _$this {
     final $v = _$v;

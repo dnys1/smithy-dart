@@ -29,6 +29,8 @@ abstract class MalformedBlobInput
     _MalformedBlobInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedBlobInputBuilder b) {}
   _i3.Uint8List? get blob;
   @override
   MalformedBlobInput getPayload() => this;

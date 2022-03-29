@@ -56,7 +56,9 @@ class DocumentTypeInputOutputBuilder
   String? get stringValue => _$this._stringValue;
   set stringValue(String? stringValue) => _$this._stringValue = stringValue;
 
-  DocumentTypeInputOutputBuilder();
+  DocumentTypeInputOutputBuilder() {
+    DocumentTypeInputOutput._init(this);
+  }
 
   DocumentTypeInputOutputBuilder get _$this {
     final $v = _$v;

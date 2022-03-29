@@ -34,7 +34,9 @@ class _$EmptyStruct extends EmptyStruct {
 class EmptyStructBuilder implements Builder<EmptyStruct, EmptyStructBuilder> {
   _$EmptyStruct? _$v;
 
-  EmptyStructBuilder();
+  EmptyStructBuilder() {
+    EmptyStruct._init(this);
+  }
 
   @override
   void replace(EmptyStruct other) {

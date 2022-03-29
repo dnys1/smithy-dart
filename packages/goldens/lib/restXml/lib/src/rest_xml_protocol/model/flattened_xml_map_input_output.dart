@@ -38,6 +38,8 @@ abstract class FlattenedXmlMapInputOutput
     _FlattenedXmlMapInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FlattenedXmlMapInputOutputBuilder b) {}
   _i3.BuiltMap<String, _i4.FooEnum>? get myMap;
   @override
   FlattenedXmlMapInputOutput getPayload() => this;

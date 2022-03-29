@@ -29,6 +29,8 @@ abstract class NoInputAndOutputOutput
     _NoInputAndOutputOutputAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NoInputAndOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
   @override

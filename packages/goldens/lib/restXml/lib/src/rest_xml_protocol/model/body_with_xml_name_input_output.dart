@@ -38,6 +38,8 @@ abstract class BodyWithXmlNameInputOutput
     _BodyWithXmlNameInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(BodyWithXmlNameInputOutputBuilder b) {}
   _i3.PayloadWithXmlName? get nested;
   @override
   BodyWithXmlNameInputOutput getPayload() => this;

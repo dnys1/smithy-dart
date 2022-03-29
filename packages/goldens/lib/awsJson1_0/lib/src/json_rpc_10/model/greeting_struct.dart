@@ -21,6 +21,8 @@ abstract class GreetingStruct
     _GreetingStructAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GreetingStructBuilder b) {}
   String? get hi;
   @override
   List<Object?> get props => [hi];

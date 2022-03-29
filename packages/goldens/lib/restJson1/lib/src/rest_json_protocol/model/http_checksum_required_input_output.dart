@@ -38,6 +38,8 @@ abstract class HttpChecksumRequiredInputOutput
     _HttpChecksumRequiredInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpChecksumRequiredInputOutputBuilder b) {}
   String? get foo;
   @override
   HttpChecksumRequiredInputOutput getPayload() => this;

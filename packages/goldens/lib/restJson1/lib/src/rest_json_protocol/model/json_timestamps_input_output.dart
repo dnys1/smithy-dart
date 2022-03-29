@@ -36,6 +36,8 @@ abstract class JsonTimestampsInputOutput
     _JsonTimestampsInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(JsonTimestampsInputOutputBuilder b) {}
   DateTime? get dateTime;
   DateTime? get epochSeconds;
   DateTime? get httpDate;

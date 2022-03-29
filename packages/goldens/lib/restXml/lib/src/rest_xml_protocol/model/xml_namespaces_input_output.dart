@@ -37,6 +37,8 @@ abstract class XmlNamespacesInputOutput
     _XmlNamespacesInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlNamespacesInputOutputBuilder b) {}
   _i3.XmlNamespaceNested? get nested;
   @override
   XmlNamespacesInputOutput getPayload() => this;

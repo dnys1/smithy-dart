@@ -50,7 +50,9 @@ class NestedPayloadBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  NestedPayloadBuilder();
+  NestedPayloadBuilder() {
+    NestedPayload._init(this);
+  }
 
   NestedPayloadBuilder get _$this {
     final $v = _$v;

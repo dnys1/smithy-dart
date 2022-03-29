@@ -38,6 +38,8 @@ abstract class ConstantQueryStringInput
     _ConstantQueryStringInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ConstantQueryStringInputBuilder b) {}
   String get hello;
   @override
   String labelFor(String key) {

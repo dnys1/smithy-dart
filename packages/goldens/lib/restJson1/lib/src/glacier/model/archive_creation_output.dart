@@ -42,6 +42,8 @@ abstract class ArchiveCreationOutput
     _ArchiveCreationOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ArchiveCreationOutputBuilder b) {}
   String? get archiveId;
   String? get checksum;
   String? get location;

@@ -73,7 +73,9 @@ class MalformedEnumInputBuilder
   _i5.EnumUnion? get union => _$this._union;
   set union(_i5.EnumUnion? union) => _$this._union = union;
 
-  MalformedEnumInputBuilder();
+  MalformedEnumInputBuilder() {
+    MalformedEnumInput._init(this);
+  }
 
   MalformedEnumInputBuilder get _$this {
     final $v = _$v;

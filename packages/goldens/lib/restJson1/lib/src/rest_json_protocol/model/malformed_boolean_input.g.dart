@@ -82,7 +82,9 @@ class MalformedBooleanInputBuilder
   set booleanInQuery(bool? booleanInQuery) =>
       _$this._booleanInQuery = booleanInQuery;
 
-  MalformedBooleanInputBuilder();
+  MalformedBooleanInputBuilder() {
+    MalformedBooleanInput._init(this);
+  }
 
   MalformedBooleanInputBuilder get _$this {
     final $v = _$v;

@@ -29,6 +29,8 @@ abstract class PostPlayerActionOutput
     _PostPlayerActionOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(PostPlayerActionOutputBuilder b) {}
   _i3.PlayerAction get action;
   @override
   List<Object?> get props => [action];

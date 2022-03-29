@@ -220,7 +220,9 @@ class InputAndOutputWithHeadersIoBuilder
   set headerTrueBool(bool? headerTrueBool) =>
       _$this._headerTrueBool = headerTrueBool;
 
-  InputAndOutputWithHeadersIoBuilder();
+  InputAndOutputWithHeadersIoBuilder() {
+    InputAndOutputWithHeadersIo._init(this);
+  }
 
   InputAndOutputWithHeadersIoBuilder get _$this {
     final $v = _$v;

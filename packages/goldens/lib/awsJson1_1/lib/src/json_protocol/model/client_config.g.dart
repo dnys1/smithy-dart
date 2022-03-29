@@ -109,7 +109,9 @@ class ClientConfigBuilder
   _i4.S3ConfigBuilder get s3 => _$this._s3 ??= new _i4.S3ConfigBuilder();
   set s3(_i4.S3ConfigBuilder? s3) => _$this._s3 = s3;
 
-  ClientConfigBuilder();
+  ClientConfigBuilder() {
+    ClientConfig._init(this);
+  }
 
   ClientConfigBuilder get _$this {
     final $v = _$v;

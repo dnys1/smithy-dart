@@ -35,6 +35,8 @@ abstract class ComplexError
     _ComplexErrorAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ComplexErrorBuilder b) {}
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;
   @override

@@ -48,7 +48,9 @@ class PayloadWithXmlNamespaceAndPrefixBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  PayloadWithXmlNamespaceAndPrefixBuilder();
+  PayloadWithXmlNamespaceAndPrefixBuilder() {
+    PayloadWithXmlNamespaceAndPrefix._init(this);
+  }
 
   PayloadWithXmlNamespaceAndPrefixBuilder get _$this {
     final $v = _$v;

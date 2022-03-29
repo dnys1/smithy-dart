@@ -39,6 +39,8 @@ abstract class FlattenedXmlMapWithXmlNameInputOutput
     _FlattenedXmlMapWithXmlNameInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FlattenedXmlMapWithXmlNameInputOutputBuilder b) {}
   _i3.BuiltMap<String, String>? get myMap;
   @override
   FlattenedXmlMapWithXmlNameInputOutput getPayload() => this;

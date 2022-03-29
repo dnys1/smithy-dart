@@ -25,6 +25,9 @@ abstract class ValidationExceptionField
     _ValidationExceptionFieldRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ValidationExceptionFieldBuilder b) {}
+
   /// A detailed description of the validation failure.
   String get message;
 

@@ -31,6 +31,8 @@ abstract class GetBucketLocationOutput
     _GetBucketLocationOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetBucketLocationOutputBuilder b) {}
   _i2.BucketLocationConstraint? get locationConstraint;
   @override
   List<Object?> get props => [locationConstraint];

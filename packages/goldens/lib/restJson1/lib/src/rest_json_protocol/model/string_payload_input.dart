@@ -38,6 +38,8 @@ abstract class StringPayloadInput
     _StringPayloadInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(StringPayloadInputBuilder b) {}
   String? get payload;
   @override
   String? getPayload() => payload;

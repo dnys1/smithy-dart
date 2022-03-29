@@ -48,7 +48,9 @@ class PostPlayerActionOutputBuilder
   _i3.PlayerAction? get action => _$this._action;
   set action(_i3.PlayerAction? action) => _$this._action = action;
 
-  PostPlayerActionOutputBuilder();
+  PostPlayerActionOutputBuilder() {
+    PostPlayerActionOutput._init(this);
+  }
 
   PostPlayerActionOutputBuilder get _$this {
     final $v = _$v;

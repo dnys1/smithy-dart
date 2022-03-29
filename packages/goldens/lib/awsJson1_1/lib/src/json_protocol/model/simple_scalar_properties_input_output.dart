@@ -38,6 +38,8 @@ abstract class SimpleScalarPropertiesInputOutput
     _SimpleScalarPropertiesInputOutputAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
   double? get doubleValue;
   double? get floatValue;
   @override

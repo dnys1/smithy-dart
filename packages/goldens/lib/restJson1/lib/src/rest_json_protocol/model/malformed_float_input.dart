@@ -44,6 +44,8 @@ abstract class MalformedFloatInput
     _MalformedFloatInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedFloatInputBuilder b) {}
   double? get floatInBody;
   double? get floatInHeader;
   double get floatInPath;

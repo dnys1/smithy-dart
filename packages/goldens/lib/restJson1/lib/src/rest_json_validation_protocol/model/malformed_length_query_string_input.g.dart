@@ -48,7 +48,9 @@ class MalformedLengthQueryStringInputBuilder
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  MalformedLengthQueryStringInputBuilder();
+  MalformedLengthQueryStringInputBuilder() {
+    MalformedLengthQueryStringInput._init(this);
+  }
 
   MalformedLengthQueryStringInputBuilder get _$this {
     final $v = _$v;

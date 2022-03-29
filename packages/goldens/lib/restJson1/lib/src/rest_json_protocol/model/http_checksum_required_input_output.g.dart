@@ -48,7 +48,9 @@ class HttpChecksumRequiredInputOutputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  HttpChecksumRequiredInputOutputBuilder();
+  HttpChecksumRequiredInputOutputBuilder() {
+    HttpChecksumRequiredInputOutput._init(this);
+  }
 
   HttpChecksumRequiredInputOutputBuilder get _$this {
     final $v = _$v;

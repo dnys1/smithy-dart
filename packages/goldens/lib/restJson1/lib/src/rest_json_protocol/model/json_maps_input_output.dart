@@ -37,6 +37,8 @@ abstract class JsonMapsInputOutput
     _JsonMapsInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(JsonMapsInputOutputBuilder b) {}
   _i3.BuiltMap<String, bool>? get denseBooleanMap;
   _i3.BuiltMap<String, int>? get denseNumberMap;
   _i3.BuiltSetMultimap<String, String>? get denseSetMap;

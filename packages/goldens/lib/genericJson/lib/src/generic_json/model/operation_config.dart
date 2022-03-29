@@ -24,6 +24,9 @@ abstract class OperationConfig
     _OperationConfigSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(OperationConfigBuilder b) {}
+
   /// Configuration specific to S3.
   _i3.S3Config? get s3;
   @override

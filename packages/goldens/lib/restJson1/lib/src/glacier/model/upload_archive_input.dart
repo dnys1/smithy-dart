@@ -47,6 +47,8 @@ abstract class UploadArchiveInput
     _UploadArchiveInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(UploadArchiveInputBuilder b) {}
   String get accountId;
   String? get archiveDescription;
   _i2.Stream<List<int>>? get body;

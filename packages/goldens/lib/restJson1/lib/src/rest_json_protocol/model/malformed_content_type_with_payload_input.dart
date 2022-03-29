@@ -36,6 +36,8 @@ abstract class MalformedContentTypeWithPayloadInput
     _MalformedContentTypeWithPayloadInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedContentTypeWithPayloadInputBuilder b) {}
   _i2.Uint8List? get payload;
   @override
   _i2.Uint8List? getPayload() => payload;

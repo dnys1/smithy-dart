@@ -36,6 +36,8 @@ abstract class MalformedAcceptWithGenericStringInput
     _MalformedAcceptWithGenericStringInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedAcceptWithGenericStringInputBuilder b) {}
   _i2.Uint8List? get payload;
   @override
   _i2.Uint8List? getPayload() => payload;

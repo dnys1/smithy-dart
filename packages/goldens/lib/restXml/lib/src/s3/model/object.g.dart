@@ -93,7 +93,9 @@ class S3ObjectBuilder implements Builder<S3Object, S3ObjectBuilder> {
   set storageClass(_i4.ObjectStorageClass? storageClass) =>
       _$this._storageClass = storageClass;
 
-  S3ObjectBuilder();
+  S3ObjectBuilder() {
+    S3Object._init(this);
+  }
 
   S3ObjectBuilder get _$this {
     final $v = _$v;

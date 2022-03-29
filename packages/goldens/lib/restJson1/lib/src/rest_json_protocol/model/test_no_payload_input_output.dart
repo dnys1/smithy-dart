@@ -48,6 +48,8 @@ abstract class TestNoPayloadInputOutput
     _TestNoPayloadInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestNoPayloadInputOutputBuilder b) {}
   String? get testId;
   @override
   TestNoPayloadInputOutputPayload getPayload() =>

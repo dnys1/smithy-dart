@@ -49,7 +49,9 @@ class MalformedAcceptWithPayloadOutputBuilder
   _i3.Uint8List? get payload => _$this._payload;
   set payload(_i3.Uint8List? payload) => _$this._payload = payload;
 
-  MalformedAcceptWithPayloadOutputBuilder();
+  MalformedAcceptWithPayloadOutputBuilder() {
+    MalformedAcceptWithPayloadOutput._init(this);
+  }
 
   MalformedAcceptWithPayloadOutputBuilder get _$this {
     final $v = _$v;

@@ -40,7 +40,9 @@ class EmptyInputAndEmptyOutputInputBuilder
             EmptyInputAndEmptyOutputInputBuilder> {
   _$EmptyInputAndEmptyOutputInput? _$v;
 
-  EmptyInputAndEmptyOutputInputBuilder();
+  EmptyInputAndEmptyOutputInputBuilder() {
+    EmptyInputAndEmptyOutputInput._init(this);
+  }
 
   @override
   void replace(EmptyInputAndEmptyOutputInput other) {

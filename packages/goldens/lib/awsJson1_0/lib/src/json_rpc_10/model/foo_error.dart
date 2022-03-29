@@ -35,6 +35,8 @@ abstract class FooError
     _FooErrorAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FooErrorBuilder b) {}
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
       namespace: 'aws.protocoltests.json10', shape: 'FooError');

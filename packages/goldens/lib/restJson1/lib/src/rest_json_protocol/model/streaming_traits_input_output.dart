@@ -48,6 +48,8 @@ abstract class StreamingTraitsInputOutput
     _StreamingTraitsInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(StreamingTraitsInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
   @override

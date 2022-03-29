@@ -46,7 +46,9 @@ class XmlUnionsInputOutputBuilder
   set unionValue(_i3.XmlUnionShape? unionValue) =>
       _$this._unionValue = unionValue;
 
-  XmlUnionsInputOutputBuilder();
+  XmlUnionsInputOutputBuilder() {
+    XmlUnionsInputOutput._init(this);
+  }
 
   XmlUnionsInputOutputBuilder get _$this {
     final $v = _$v;

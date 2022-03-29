@@ -32,6 +32,8 @@ abstract class FlattenedXmlMapWithXmlNamespaceOutput
     _FlattenedXmlMapWithXmlNamespaceOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FlattenedXmlMapWithXmlNamespaceOutputBuilder b) {}
   _i3.BuiltMap<String, String>? get myMap;
   @override
   List<Object?> get props => [myMap];

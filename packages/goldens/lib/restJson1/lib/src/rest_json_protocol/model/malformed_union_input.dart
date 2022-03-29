@@ -31,6 +31,8 @@ abstract class MalformedUnionInput
     _MalformedUnionInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedUnionInputBuilder b) {}
   _i3.SimpleUnion? get union;
   @override
   MalformedUnionInput getPayload() => this;

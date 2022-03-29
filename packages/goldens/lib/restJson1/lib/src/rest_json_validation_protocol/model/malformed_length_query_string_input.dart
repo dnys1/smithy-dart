@@ -39,6 +39,8 @@ abstract class MalformedLengthQueryStringInput
     _MalformedLengthQueryStringInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedLengthQueryStringInputBuilder b) {}
   String? get string;
   @override
   MalformedLengthQueryStringInputPayload getPayload() =>

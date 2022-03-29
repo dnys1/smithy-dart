@@ -34,6 +34,8 @@ abstract class HttpResponseCodeOutput
     _HttpResponseCodeOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpResponseCodeOutputBuilder b) {}
   int? get status;
   @override
   HttpResponseCodeOutputPayload getPayload() => HttpResponseCodeOutputPayload();

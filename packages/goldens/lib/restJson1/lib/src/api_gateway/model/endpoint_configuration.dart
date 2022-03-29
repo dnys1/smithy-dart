@@ -24,6 +24,8 @@ abstract class EndpointConfiguration
     _EndpointConfigurationRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(EndpointConfigurationBuilder b) {}
   _i3.BuiltList<_i4.EndpointType>? get types;
   _i3.BuiltList<String>? get vpcEndpointIds;
   @override

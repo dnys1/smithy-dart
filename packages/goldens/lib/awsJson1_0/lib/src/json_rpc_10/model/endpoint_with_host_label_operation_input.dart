@@ -32,6 +32,8 @@ abstract class EndpointWithHostLabelOperationInput
     _EndpointWithHostLabelOperationInputAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(EndpointWithHostLabelOperationInputBuilder b) {}
   String get label;
   @override
   String labelFor(String key) {

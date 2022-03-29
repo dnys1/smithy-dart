@@ -77,7 +77,9 @@ class PredictionBuilder implements Builder<Prediction, PredictionBuilder> {
   set predictedValue(double? predictedValue) =>
       _$this._predictedValue = predictedValue;
 
-  PredictionBuilder();
+  PredictionBuilder() {
+    Prediction._init(this);
+  }
 
   PredictionBuilder get _$this {
     final $v = _$v;

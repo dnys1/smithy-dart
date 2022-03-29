@@ -37,6 +37,8 @@ abstract class HttpPrefixHeadersInResponseOutput
     _HttpPrefixHeadersInResponseOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPrefixHeadersInResponseOutputBuilder b) {}
   _i3.BuiltMap<String, String>? get prefixHeaders;
   @override
   HttpPrefixHeadersInResponseOutputPayload getPayload() =>

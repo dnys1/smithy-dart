@@ -50,7 +50,9 @@ class RestApisBuilder implements Builder<RestApis, RestApisBuilder> {
   String? get position => _$this._position;
   set position(String? position) => _$this._position = position;
 
-  RestApisBuilder();
+  RestApisBuilder() {
+    RestApis._init(this);
+  }
 
   RestApisBuilder get _$this {
     final $v = _$v;

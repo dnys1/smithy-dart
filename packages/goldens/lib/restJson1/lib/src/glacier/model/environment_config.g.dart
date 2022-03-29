@@ -101,7 +101,9 @@ class EnvironmentConfigBuilder
   set awsSessionToken(String? awsSessionToken) =>
       _$this._awsSessionToken = awsSessionToken;
 
-  EnvironmentConfigBuilder();
+  EnvironmentConfigBuilder() {
+    EnvironmentConfig._init(this);
+  }
 
   EnvironmentConfigBuilder get _$this {
     final $v = _$v;

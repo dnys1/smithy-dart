@@ -85,6 +85,11 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             if (shape.isOutputShape || shape.isError) fromResponseConstructor,
           ])
           ..methods.addAll([
+            if (context.useBuilders)
+              defaultValues(
+                members: sortedMembers,
+                builderSymbol: builderSymbol,
+              ),
             ..._fieldGetters(isPayload: false),
             ..._httpInputOverrides,
             if (shape.isInputShape || hasPayload) _getPayload,

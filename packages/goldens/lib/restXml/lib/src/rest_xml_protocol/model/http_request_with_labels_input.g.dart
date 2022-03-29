@@ -133,7 +133,9 @@ class HttpRequestWithLabelsInputBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
-  HttpRequestWithLabelsInputBuilder();
+  HttpRequestWithLabelsInputBuilder() {
+    HttpRequestWithLabelsInput._init(this);
+  }
 
   HttpRequestWithLabelsInputBuilder get _$this {
     final $v = _$v;

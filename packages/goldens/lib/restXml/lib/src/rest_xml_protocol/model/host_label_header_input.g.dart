@@ -48,7 +48,9 @@ class HostLabelHeaderInputBuilder
   String? get accountId => _$this._accountId;
   set accountId(String? accountId) => _$this._accountId = accountId;
 
-  HostLabelHeaderInputBuilder();
+  HostLabelHeaderInputBuilder() {
+    HostLabelHeaderInput._init(this);
+  }
 
   HostLabelHeaderInputBuilder get _$this {
     final $v = _$v;

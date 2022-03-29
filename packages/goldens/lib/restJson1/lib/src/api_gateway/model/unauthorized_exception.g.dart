@@ -51,7 +51,9 @@ class UnauthorizedExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  UnauthorizedExceptionBuilder();
+  UnauthorizedExceptionBuilder() {
+    UnauthorizedException._init(this);
+  }
 
   UnauthorizedExceptionBuilder get _$this {
     final $v = _$v;

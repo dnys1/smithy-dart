@@ -34,6 +34,8 @@ abstract class FooError
     _FooErrorRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(FooErrorBuilder b) {}
   @override
   _i2.ShapeId get shapeId => const _i2.ShapeId(
       namespace: 'aws.protocoltests.restjson', shape: 'FooError');

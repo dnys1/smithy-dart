@@ -44,6 +44,8 @@ abstract class MalformedIntegerInput
     _MalformedIntegerInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedIntegerInputBuilder b) {}
   int? get integerInBody;
   int? get integerInHeader;
   int get integerInPath;

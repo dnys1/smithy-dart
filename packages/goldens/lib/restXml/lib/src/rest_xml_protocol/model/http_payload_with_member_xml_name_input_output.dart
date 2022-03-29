@@ -47,6 +47,8 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
     _HttpPayloadWithMemberXmlNameInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadWithMemberXmlNameInputOutputBuilder b) {}
   _i2.PayloadWithXmlName? get nested;
   @override
   _i2.PayloadWithXmlName? getPayload() => nested ?? _i2.PayloadWithXmlName();

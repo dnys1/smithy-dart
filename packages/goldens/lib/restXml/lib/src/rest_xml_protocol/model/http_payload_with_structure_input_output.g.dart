@@ -52,7 +52,9 @@ class HttpPayloadWithStructureInputOutputBuilder
       _$this._nested ??= new _i2.NestedPayloadBuilder();
   set nested(_i2.NestedPayloadBuilder? nested) => _$this._nested = nested;
 
-  HttpPayloadWithStructureInputOutputBuilder();
+  HttpPayloadWithStructureInputOutputBuilder() {
+    HttpPayloadWithStructureInputOutput._init(this);
+  }
 
   HttpPayloadWithStructureInputOutputBuilder get _$this {
     final $v = _$v;

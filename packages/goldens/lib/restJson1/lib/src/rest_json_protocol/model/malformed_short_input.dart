@@ -43,6 +43,8 @@ abstract class MalformedShortInput
     _MalformedShortInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedShortInputBuilder b) {}
   int? get shortInBody;
   int? get shortInHeader;
   int get shortInPath;

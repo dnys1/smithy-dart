@@ -70,7 +70,9 @@ class ResourceNotFoundExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ResourceNotFoundExceptionBuilder();
+  ResourceNotFoundExceptionBuilder() {
+    ResourceNotFoundException._init(this);
+  }
 
   ResourceNotFoundExceptionBuilder get _$this {
     final $v = _$v;

@@ -22,6 +22,9 @@ abstract class S3Config
 
   static const List<_i2.SmithySerializer> serializers = [_S3ConfigSerializer()];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(S3ConfigBuilder b) {}
+
   /// Controls the S3 addressing bucket style.
   _i3.S3AddressingStyle? get addressingStyle;
   bool? get useAccelerateEndpoint;

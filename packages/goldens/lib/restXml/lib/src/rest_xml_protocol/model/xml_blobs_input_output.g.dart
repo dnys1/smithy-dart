@@ -45,7 +45,9 @@ class XmlBlobsInputOutputBuilder
   _i3.Uint8List? get data => _$this._data;
   set data(_i3.Uint8List? data) => _$this._data = data;
 
-  XmlBlobsInputOutputBuilder();
+  XmlBlobsInputOutputBuilder() {
+    XmlBlobsInputOutput._init(this);
+  }
 
   XmlBlobsInputOutputBuilder get _$this {
     final $v = _$v;

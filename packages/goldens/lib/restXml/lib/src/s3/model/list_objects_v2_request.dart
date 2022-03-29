@@ -69,6 +69,8 @@ abstract class ListObjectsV2Request
     _ListObjectsV2RequestRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ListObjectsV2RequestBuilder b) {}
   String get bucket;
   String? get continuationToken;
   String? get delimiter;

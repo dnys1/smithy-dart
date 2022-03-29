@@ -103,7 +103,9 @@ class UploadMultipartPartInputBuilder
   String? get vaultName => _$this._vaultName;
   set vaultName(String? vaultName) => _$this._vaultName = vaultName;
 
-  UploadMultipartPartInputBuilder();
+  UploadMultipartPartInputBuilder() {
+    UploadMultipartPartInput._init(this);
+  }
 
   UploadMultipartPartInputBuilder get _$this {
     final $v = _$v;

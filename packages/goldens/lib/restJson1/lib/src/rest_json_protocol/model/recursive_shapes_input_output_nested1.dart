@@ -27,6 +27,8 @@ abstract class RecursiveShapesInputOutputNested1
     _RecursiveShapesInputOutputNested1RestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RecursiveShapesInputOutputNested1Builder b) {}
   String? get foo;
   _i3.RecursiveShapesInputOutputNested2? get nested;
   @override

@@ -44,7 +44,9 @@ class PredictOutputBuilder
   set prediction(_i3.PredictionBuilder? prediction) =>
       _$this._prediction = prediction;
 
-  PredictOutputBuilder();
+  PredictOutputBuilder() {
+    PredictOutput._init(this);
+  }
 
   PredictOutputBuilder get _$this {
     final $v = _$v;

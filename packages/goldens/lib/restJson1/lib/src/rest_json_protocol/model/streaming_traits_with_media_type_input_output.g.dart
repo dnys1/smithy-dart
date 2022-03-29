@@ -60,7 +60,9 @@ class StreamingTraitsWithMediaTypeInputOutputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  StreamingTraitsWithMediaTypeInputOutputBuilder();
+  StreamingTraitsWithMediaTypeInputOutputBuilder() {
+    StreamingTraitsWithMediaTypeInputOutput._init(this);
+  }
 
   StreamingTraitsWithMediaTypeInputOutputBuilder get _$this {
     final $v = _$v;

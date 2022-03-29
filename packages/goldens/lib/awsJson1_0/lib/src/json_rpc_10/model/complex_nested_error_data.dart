@@ -22,6 +22,8 @@ abstract class ComplexNestedErrorData
     _ComplexNestedErrorDataAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ComplexNestedErrorDataBuilder b) {}
   String? get foo;
   @override
   List<Object?> get props => [foo];

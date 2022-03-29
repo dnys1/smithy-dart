@@ -27,6 +27,8 @@ abstract class RestApis
     _RestApisRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RestApisBuilder b) {}
   _i3.BuiltList<_i4.RestApi>? get items;
   String? get position;
   @override

@@ -45,7 +45,9 @@ class HostLabelInputBuilder
   String? get label => _$this._label;
   set label(String? label) => _$this._label = label;
 
-  HostLabelInputBuilder();
+  HostLabelInputBuilder() {
+    HostLabelInput._init(this);
+  }
 
   HostLabelInputBuilder get _$this {
     final $v = _$v;

@@ -110,7 +110,9 @@ class FileConfigSettingsBuilder
   _i4.S3ConfigBuilder get s3 => _$this._s3 ??= new _i4.S3ConfigBuilder();
   set s3(_i4.S3ConfigBuilder? s3) => _$this._s3 = s3;
 
-  FileConfigSettingsBuilder();
+  FileConfigSettingsBuilder() {
+    FileConfigSettings._init(this);
+  }
 
   FileConfigSettingsBuilder get _$this {
     final $v = _$v;

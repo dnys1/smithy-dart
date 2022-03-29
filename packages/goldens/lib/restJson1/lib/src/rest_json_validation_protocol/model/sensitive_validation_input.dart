@@ -30,6 +30,8 @@ abstract class SensitiveValidationInput
     _SensitiveValidationInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SensitiveValidationInputBuilder b) {}
   String? get string;
   @override
   SensitiveValidationInput getPayload() => this;

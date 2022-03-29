@@ -60,7 +60,9 @@ class HttpPayloadTraitsWithMediaTypeInputOutputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  HttpPayloadTraitsWithMediaTypeInputOutputBuilder();
+  HttpPayloadTraitsWithMediaTypeInputOutputBuilder() {
+    HttpPayloadTraitsWithMediaTypeInputOutput._init(this);
+  }
 
   HttpPayloadTraitsWithMediaTypeInputOutputBuilder get _$this {
     final $v = _$v;

@@ -45,7 +45,9 @@ class HttpResponseCodeOutputBuilder
   int? get status => _$this._status;
   set status(int? status) => _$this._status = status;
 
-  HttpResponseCodeOutputBuilder();
+  HttpResponseCodeOutputBuilder() {
+    HttpResponseCodeOutput._init(this);
+  }
 
   HttpResponseCodeOutputBuilder get _$this {
     final $v = _$v;

@@ -42,6 +42,8 @@ abstract class HttpRequestWithFloatLabelsInput
     _HttpRequestWithFloatLabelsInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithFloatLabelsInputBuilder b) {}
   double get double_;
   double get float;
   @override

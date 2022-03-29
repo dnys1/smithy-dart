@@ -32,6 +32,8 @@ abstract class EmptyInputAndEmptyOutputOutput
     _EmptyInputAndEmptyOutputOutputAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(EmptyInputAndEmptyOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
   @override

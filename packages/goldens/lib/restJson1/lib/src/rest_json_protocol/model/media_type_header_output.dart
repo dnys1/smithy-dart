@@ -40,6 +40,8 @@ abstract class MediaTypeHeaderOutput
     _MediaTypeHeaderOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MediaTypeHeaderOutputBuilder b) {}
   _i3.JsonObject? get json;
   @override
   MediaTypeHeaderOutputPayload getPayload() => MediaTypeHeaderOutputPayload();

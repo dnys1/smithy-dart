@@ -24,6 +24,9 @@ abstract class S3Config
     _S3ConfigAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(S3ConfigBuilder b) {}
+
   /// Controls the S3 addressing bucket style.
   _i3.S3AddressingStyle? get addressingStyle;
   bool? get useAccelerateEndpoint;

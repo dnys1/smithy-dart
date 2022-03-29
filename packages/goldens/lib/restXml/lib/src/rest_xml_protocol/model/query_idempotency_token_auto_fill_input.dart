@@ -5,8 +5,9 @@ library rest_xml.rest_xml_protocol.model.query_idempotency_token_auto_fill_input
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i3;
+import 'package:meta/meta.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
+import 'package:uuid/uuid.dart' as _i3;
 
 part 'query_idempotency_token_auto_fill_input.g.dart';
 
@@ -39,6 +40,15 @@ abstract class QueryIdempotencyTokenAutoFillInput
     _QueryIdempotencyTokenAutoFillInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryIdempotencyTokenAutoFillInputBuilder b) {
+    if (const bool.hasEnvironment('SMITHY_TEST')) {
+      b.token = '00000000-0000-4000-8000-000000000000';
+    } else {
+      b.token = const _i3.Uuid().v4();
+    }
+  }
+
   String? get token;
   @override
   QueryIdempotencyTokenAutoFillInputPayload getPayload() =>
@@ -54,7 +64,7 @@ abstract class QueryIdempotencyTokenAutoFillInput
   }
 }
 
-@_i3.internal
+@_i4.internal
 abstract class QueryIdempotencyTokenAutoFillInputPayload
     with
         _i2.AWSEquatable<QueryIdempotencyTokenAutoFillInputPayload>

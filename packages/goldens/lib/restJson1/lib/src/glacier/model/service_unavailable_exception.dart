@@ -32,6 +32,8 @@ abstract class ServiceUnavailableException
     _ServiceUnavailableExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ServiceUnavailableExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

@@ -48,7 +48,9 @@ class IgnoreQueryParamsInResponseOutputBuilder
   String? get baz => _$this._baz;
   set baz(String? baz) => _$this._baz = baz;
 
-  IgnoreQueryParamsInResponseOutputBuilder();
+  IgnoreQueryParamsInResponseOutputBuilder() {
+    IgnoreQueryParamsInResponseOutput._init(this);
+  }
 
   IgnoreQueryParamsInResponseOutputBuilder get _$this {
     final $v = _$v;

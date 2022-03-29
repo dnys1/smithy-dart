@@ -33,6 +33,8 @@ abstract class HttpPrefixHeadersInResponseInput
     _HttpPrefixHeadersInResponseInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPrefixHeadersInResponseInputBuilder b) {}
   @override
   HttpPrefixHeadersInResponseInput getPayload() => this;
   @override

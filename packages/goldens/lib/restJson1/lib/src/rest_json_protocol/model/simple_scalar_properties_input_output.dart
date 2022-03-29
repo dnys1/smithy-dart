@@ -67,6 +67,8 @@ abstract class SimpleScalarPropertiesInputOutput
     _SimpleScalarPropertiesInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
   int? get byteValue;
   double? get doubleValue;
   bool? get falseBooleanValue;

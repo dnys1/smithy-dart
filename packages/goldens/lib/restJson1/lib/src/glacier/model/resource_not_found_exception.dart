@@ -32,6 +32,8 @@ abstract class ResourceNotFoundException
     _ResourceNotFoundExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ResourceNotFoundExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

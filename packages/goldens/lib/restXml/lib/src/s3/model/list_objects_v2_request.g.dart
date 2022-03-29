@@ -144,7 +144,9 @@ class ListObjectsV2RequestBuilder
   String? get startAfter => _$this._startAfter;
   set startAfter(String? startAfter) => _$this._startAfter = startAfter;
 
-  ListObjectsV2RequestBuilder();
+  ListObjectsV2RequestBuilder() {
+    ListObjectsV2Request._init(this);
+  }
 
   ListObjectsV2RequestBuilder get _$this {
     final $v = _$v;

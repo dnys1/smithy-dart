@@ -136,7 +136,9 @@ class HttpRequestWithLabelsAndTimestampFormatInputBuilder
   set targetHttpDate(DateTime? targetHttpDate) =>
       _$this._targetHttpDate = targetHttpDate;
 
-  HttpRequestWithLabelsAndTimestampFormatInputBuilder();
+  HttpRequestWithLabelsAndTimestampFormatInputBuilder() {
+    HttpRequestWithLabelsAndTimestampFormatInput._init(this);
+  }
 
   HttpRequestWithLabelsAndTimestampFormatInputBuilder get _$this {
     final $v = _$v;

@@ -49,6 +49,8 @@ abstract class HttpPayloadTraitsInputOutput
     _HttpPayloadTraitsInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadTraitsInputOutputBuilder b) {}
   _i2.Uint8List? get blob;
   String? get foo;
   @override

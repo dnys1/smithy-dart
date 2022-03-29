@@ -34,6 +34,8 @@ abstract class MissingParameterValueException
     _MissingParameterValueExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MissingParameterValueExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

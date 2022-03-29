@@ -30,6 +30,8 @@ abstract class MalformedRequestBodyInput
     _MalformedRequestBodyInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedRequestBodyInputBuilder b) {}
   double? get float;
   int? get int_;
   @override

@@ -38,6 +38,8 @@ abstract class GetBucketLocationRequest
     _GetBucketLocationRequestRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetBucketLocationRequestBuilder b) {}
   String get bucket;
   @override
   String labelFor(String key) {

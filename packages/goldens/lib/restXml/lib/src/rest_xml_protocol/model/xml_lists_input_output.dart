@@ -38,6 +38,8 @@ abstract class XmlListsInputOutput
     _XmlListsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlListsInputOutputBuilder b) {}
   _i3.BuiltList<bool>? get booleanList;
   _i3.BuiltList<_i4.FooEnum>? get enumList;
   _i3.BuiltList<String>? get flattenedList;

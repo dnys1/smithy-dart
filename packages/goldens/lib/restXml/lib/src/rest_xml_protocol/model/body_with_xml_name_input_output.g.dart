@@ -47,7 +47,9 @@ class BodyWithXmlNameInputOutputBuilder
       _$this._nested ??= new _i3.PayloadWithXmlNameBuilder();
   set nested(_i3.PayloadWithXmlNameBuilder? nested) => _$this._nested = nested;
 
-  BodyWithXmlNameInputOutputBuilder();
+  BodyWithXmlNameInputOutputBuilder() {
+    BodyWithXmlNameInputOutput._init(this);
+  }
 
   BodyWithXmlNameInputOutputBuilder get _$this {
     final $v = _$v;

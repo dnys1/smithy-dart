@@ -47,7 +47,9 @@ class XmlEmptyStringsInputOutputBuilder
   String? get emptyString => _$this._emptyString;
   set emptyString(String? emptyString) => _$this._emptyString = emptyString;
 
-  XmlEmptyStringsInputOutputBuilder();
+  XmlEmptyStringsInputOutputBuilder() {
+    XmlEmptyStringsInputOutput._init(this);
+  }
 
   XmlEmptyStringsInputOutputBuilder get _$this {
     final $v = _$v;

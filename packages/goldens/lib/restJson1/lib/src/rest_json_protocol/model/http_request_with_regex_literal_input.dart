@@ -39,6 +39,8 @@ abstract class HttpRequestWithRegexLiteralInput
     _HttpRequestWithRegexLiteralInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithRegexLiteralInputBuilder b) {}
   String get str;
   @override
   String labelFor(String key) {

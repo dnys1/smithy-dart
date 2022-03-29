@@ -47,7 +47,9 @@ class FooErrorBuilder implements Builder<FooError, FooErrorBuilder> {
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  FooErrorBuilder();
+  FooErrorBuilder() {
+    FooError._init(this);
+  }
 
   FooErrorBuilder get _$this {
     final $v = _$v;

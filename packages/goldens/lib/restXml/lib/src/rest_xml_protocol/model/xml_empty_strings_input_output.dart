@@ -36,6 +36,8 @@ abstract class XmlEmptyStringsInputOutput
     _XmlEmptyStringsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlEmptyStringsInputOutputBuilder b) {}
   String? get emptyString;
   @override
   XmlEmptyStringsInputOutput getPayload() => this;

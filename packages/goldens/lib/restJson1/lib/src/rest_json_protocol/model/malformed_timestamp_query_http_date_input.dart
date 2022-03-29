@@ -42,6 +42,8 @@ abstract class MalformedTimestampQueryHttpDateInput
     _MalformedTimestampQueryHttpDateInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedTimestampQueryHttpDateInputBuilder b) {}
   DateTime get timestamp;
   @override
   MalformedTimestampQueryHttpDateInputPayload getPayload() =>

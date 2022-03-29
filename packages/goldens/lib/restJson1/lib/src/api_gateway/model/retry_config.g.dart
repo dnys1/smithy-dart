@@ -49,7 +49,9 @@ class RetryConfigBuilder implements Builder<RetryConfig, RetryConfigBuilder> {
   _i3.RetryMode? get mode => _$this._mode;
   set mode(_i3.RetryMode? mode) => _$this._mode = mode;
 
-  RetryConfigBuilder();
+  RetryConfigBuilder() {
+    RetryConfig._init(this);
+  }
 
   RetryConfigBuilder get _$this {
     final $v = _$v;

@@ -34,6 +34,8 @@ abstract class InvalidParameterValueException
     _InvalidParameterValueExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InvalidParameterValueExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

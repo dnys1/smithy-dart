@@ -31,6 +31,8 @@ abstract class ListObjectsV2Output
     _ListObjectsV2OutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ListObjectsV2OutputBuilder b) {}
   _i3.BuiltList<_i4.CommonPrefix>? get commonPrefixes;
   _i3.BuiltList<_i5.S3Object>? get contents;
   String? get continuationToken;

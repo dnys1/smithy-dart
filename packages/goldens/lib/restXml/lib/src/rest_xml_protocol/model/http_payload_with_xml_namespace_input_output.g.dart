@@ -54,7 +54,9 @@ class HttpPayloadWithXmlNamespaceInputOutputBuilder
   set nested(_i2.PayloadWithXmlNamespaceBuilder? nested) =>
       _$this._nested = nested;
 
-  HttpPayloadWithXmlNamespaceInputOutputBuilder();
+  HttpPayloadWithXmlNamespaceInputOutputBuilder() {
+    HttpPayloadWithXmlNamespaceInputOutput._init(this);
+  }
 
   HttpPayloadWithXmlNamespaceInputOutputBuilder get _$this {
     final $v = _$v;

@@ -38,6 +38,8 @@ abstract class TooManyRequestsException
     _TooManyRequestsExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TooManyRequestsExceptionBuilder b) {}
   @override
   String? get message;
   String? get retryAfterSeconds;

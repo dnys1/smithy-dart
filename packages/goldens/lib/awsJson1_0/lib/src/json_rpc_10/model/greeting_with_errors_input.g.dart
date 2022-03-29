@@ -46,7 +46,9 @@ class GreetingWithErrorsInputBuilder
   String? get greeting => _$this._greeting;
   set greeting(String? greeting) => _$this._greeting = greeting;
 
-  GreetingWithErrorsInputBuilder();
+  GreetingWithErrorsInputBuilder() {
+    GreetingWithErrorsInput._init(this);
+  }
 
   GreetingWithErrorsInputBuilder get _$this {
     final $v = _$v;

@@ -140,14 +140,31 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// The parameter-based factory constructor.
   Constructor get _factoryConstructor {
+    if (context.useBuilders) {
+      return Constructor(
+        (c) => c
+          ..factory = true
+          ..annotations.addAll([
+            if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
+          ])
+          ..optionalParameters.add(Parameter(
+            (p) => p
+              ..name = 'updates'
+              ..type = FunctionType(
+                (t) => t
+                  ..returnType = DartTypes.core.void$
+                  ..requiredParameters.add(builderSymbol),
+              ),
+          ))
+          ..redirect = builtSymbol,
+      );
+    }
     final body = Block((b) {
       final memberNames = <String>[];
       for (final member in sortedMembers) {
         final propertyName = member.dartName(ShapeType.structure);
         memberNames.add(propertyName);
-        final defaultValue = _defaultValue(
-          member,
-        );
+        final defaultValue = _defaultValue(member);
         if (defaultValue != null) {
           b.statements.add(defaultValue);
         }
@@ -211,6 +228,15 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final Code output;
     if (payloadSymbol == symbol) {
       output = refer('payload').code;
+    } else if (context.useBuilders) {
+      output = symbol.newInstance([
+        Method(
+          (m) => m
+            ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+            ..lambda = false
+            ..body = Block.of(_outputBuilder(refer('request'))),
+        ).closure,
+      ]).code;
     } else {
       output = Block.of(_outputBuilder(refer('request')));
     }
@@ -254,6 +280,15 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ).closure,
         ]).code;
       }
+    } else if (context.useBuilders) {
+      output = symbol.newInstance([
+        Method(
+          (m) => m
+            ..requiredParameters.add(Parameter((p) => p..name = 'b'))
+            ..lambda = false
+            ..body = Block.of(_outputBuilder(refer('response'))),
+        ).closure,
+      ]).code;
     } else {
       output = Block.of(_outputBuilder(refer('response')));
     }
@@ -607,11 +642,13 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// The statements of the output builder.
   Iterable<Code> _outputBuilder(Expression httpObj) sync* {
-    final builder = refer('builder');
+    final builder = refer('b');
     final payload = refer('payload');
     final payloadShape = payloadMember;
 
-    yield builderSymbol.newInstance([]).assignFinal('builder').statement;
+    if (!context.useBuilders) {
+      yield builderSymbol.newInstance([]).assignFinal('b').statement;
+    }
 
     // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {
@@ -764,7 +801,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           .statement;
     }
 
-    yield builder.property('build').call([]).returned.statement;
+    if (!context.useBuilders) {
+      yield builder.property('build').call([]).returned.statement;
+    }
   }
 
   Iterable<Code> get _rebuildOutput sync* {

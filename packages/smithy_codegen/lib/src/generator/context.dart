@@ -2,8 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy/ast.dart';
-// ignore: implementation_imports
-import 'package:smithy/src/protocol/generic_json_protocol.dart';
+import 'package:smithy/smithy.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
 
@@ -21,6 +20,7 @@ class CodegenContext {
     Iterable<ShapeId> includeShapes = const {},
     Iterable<ShapeId> additionalShapes = const {},
     this.generateServer = false,
+    this.useBuilders = false,
   })  : _shapes = shapes,
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
@@ -188,4 +188,7 @@ class CodegenContext {
     filename: serviceName,
     basePath: basePath,
   );
+
+  /// Whether to use builders for generated constructors.
+  final bool useBuilders;
 }

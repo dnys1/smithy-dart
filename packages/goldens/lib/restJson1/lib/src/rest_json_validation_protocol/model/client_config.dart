@@ -17,6 +17,7 @@ part 'client_config.g.dart';
 abstract class ClientConfig
     with _i1.AWSEquatable<ClientConfig>
     implements Built<ClientConfig, ClientConfigBuilder> {
+  /// Configuration that is set on the constructed client.
   factory ClientConfig([void Function(ClientConfigBuilder) updates]) =
       _$ClientConfig;
 

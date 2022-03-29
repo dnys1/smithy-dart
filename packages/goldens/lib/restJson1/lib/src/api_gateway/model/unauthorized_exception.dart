@@ -20,6 +20,7 @@ abstract class UnauthorizedException
 
   const UnauthorizedException._();
 
+  /// Constructs a [UnauthorizedException] from a [payload] and [response].
   factory UnauthorizedException.fromResponse(
           UnauthorizedException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

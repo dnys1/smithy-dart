@@ -20,6 +20,7 @@ abstract class NoInputAndOutputOutput
 
   const NoInputAndOutputOutput._();
 
+  /// Constructs a [NoInputAndOutputOutput] from a [payload] and [response].
   factory NoInputAndOutputOutput.fromResponse(
           NoInputAndOutputOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;

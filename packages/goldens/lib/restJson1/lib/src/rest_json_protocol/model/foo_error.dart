@@ -17,10 +17,13 @@ abstract class FooError
         Built<FooError, FooErrorBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
+  /// This error has test cases that test some of the dark corners of Amazon service
+  /// framework history. It should only be implemented by clients.
   factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();
 
+  /// Constructs a [FooError] from a [payload] and [response].
   factory FooError.fromResponse(
           FooError payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

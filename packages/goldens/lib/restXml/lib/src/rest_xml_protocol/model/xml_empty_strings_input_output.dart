@@ -26,6 +26,7 @@ abstract class XmlEmptyStringsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlEmptyStringsInputOutput] from a [payload] and [response].
   factory XmlEmptyStringsInputOutput.fromResponse(
           XmlEmptyStringsInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

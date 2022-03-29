@@ -6,6 +6,7 @@ import 'package:smithy_codegen/src/generator/serialization/serializer_config.dar
 import 'package:smithy_codegen/src/generator/serialization/structure_rest_xml_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/model/route_style.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 extension ProtocolUtils on ProtocolDefinitionTrait {
@@ -222,5 +223,18 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
     }
 
     return parameters;
+  }
+
+  RouteConfiguration get routeConfiguration {
+    switch (runtimeType) {
+      case RestJson1Trait:
+      case RestXmlTrait:
+      case GenericJsonProtocolDefinitionTrait:
+        return RouteConfiguration.rest;
+      case AwsJson1_0Trait:
+      case AwsJson1_1Trait:
+        return RouteConfiguration.rpc;
+    }
+    throw StateError('Unknown type: $runtimeType');
   }
 }

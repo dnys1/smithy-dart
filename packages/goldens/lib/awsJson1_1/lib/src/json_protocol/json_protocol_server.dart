@@ -38,12 +38,36 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'json_protocol_server.g.dart';
-
 abstract class JsonProtocolServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.AwsJson1_1Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
+
+  late final Router _router = () {
+    final service = _JsonProtocolServer(this);
+    final router = Router();
+    router.add(
+        'POST',
+        '/',
+        _i1.RpcRouter('X-Amz-Target', {
+          'JsonProtocol.EmptyOperation': service.emptyOperation,
+          'JsonProtocol.EndpointOperation': service.endpointOperation,
+          'JsonProtocol.EndpointWithHostLabelOperation':
+              service.endpointWithHostLabelOperation,
+          'JsonProtocol.GreetingWithErrors': service.greetingWithErrors,
+          'JsonProtocol.HostWithPathOperation': service.hostWithPathOperation,
+          'JsonProtocol.JsonEnums': service.jsonEnums,
+          'JsonProtocol.JsonUnions': service.jsonUnions,
+          'JsonProtocol.KitchenSinkOperation': service.kitchenSinkOperation,
+          'JsonProtocol.NullOperation': service.nullOperation,
+          'JsonProtocol.OperationWithOptionalInputOutput':
+              service.operationWithOptionalInputOutput,
+          'JsonProtocol.PutAndGetInlineDocuments':
+              service.putAndGetInlineDocuments,
+          'JsonProtocol.SimpleScalarProperties': service.simpleScalarProperties
+        }));
+    return router;
+  }();
 
   _i4.Future<_i1.Unit> emptyOperation(_i1.Unit input, _i1.Context context);
   _i4.Future<_i1.Unit> endpointOperation(_i1.Unit input, _i1.Context context);
@@ -69,8 +93,7 @@ abstract class JsonProtocolServerBase extends _i1.HttpServerBase {
       _i13.PutAndGetInlineDocumentsInputOutput input, _i1.Context context);
   _i4.Future<_i14.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
       _i14.SimpleScalarPropertiesInputOutput input, _i1.Context context);
-  _i4.Future<_i15.Response> call(_i15.Request request) =>
-      _$_JsonProtocolServerRouter(_JsonProtocolServer(this))(request);
+  _i4.Future<_i15.Response> call(_i15.Request request) => _router(request);
 }
 
 class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
@@ -151,7 +174,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       _simpleScalarPropertiesProtocol = _i2.AwsJson1_1Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.post('/')
   _i4.Future<_i15.Response> emptyOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -173,7 +195,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> endpointOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -195,7 +216,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> endpointWithHostLabelOperation(
       _i15.Request request) async {
     final awsRequest = request.awsRequest;
@@ -221,7 +241,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> greetingWithErrors(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -261,7 +280,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> hostWithPathOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -283,7 +301,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> jsonEnums(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -305,7 +322,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> jsonUnions(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -327,7 +343,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> kitchenSinkOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -362,7 +377,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> nullOperation(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -387,7 +401,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> operationWithOptionalInputOutput(
       _i15.Request request) async {
     final awsRequest = request.awsRequest;
@@ -416,7 +429,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> putAndGetInlineDocuments(
       _i15.Request request) async {
     final awsRequest = request.awsRequest;
@@ -444,7 +456,6 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
     }
   }
 
-  @Route.post('/')
   _i4.Future<_i15.Response> simpleScalarProperties(_i15.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

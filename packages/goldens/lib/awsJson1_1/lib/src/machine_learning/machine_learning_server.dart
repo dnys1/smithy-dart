@@ -26,17 +26,25 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'machine_learning_server.g.dart';
-
 abstract class MachineLearningServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.AwsJson1_1Protocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
+  late final Router _router = () {
+    final service = _MachineLearningServer(this);
+    final router = Router();
+    router.add(
+        'POST',
+        '/',
+        _i1.RpcRouter(
+            'X-Amz-Target', {'AmazonML_20141212.Predict': service.predict}));
+    return router;
+  }();
+
   _i4.Future<_i5.PredictOutput> predict(
       _i6.PredictInput input, _i1.Context context);
-  _i4.Future<_i7.Response> call(_i7.Request request) =>
-      _$_MachineLearningServerRouter(_MachineLearningServer(this))(request);
+  _i4.Future<_i7.Response> call(_i7.Request request) => _router(request);
 }
 
 class _MachineLearningServer extends _i1.HttpServer<MachineLearningServerBase> {
@@ -50,7 +58,6 @@ class _MachineLearningServer extends _i1.HttpServer<MachineLearningServerBase> {
       _i2.AwsJson1_1Protocol(
           serializers: _i3.serializers, builderFactories: _i3.builderFactories);
 
-  @Route.post('/')
   _i4.Future<_i7.Response> predict(_i7.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

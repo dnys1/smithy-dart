@@ -15,11 +15,13 @@ abstract class InvalidGreeting
     implements
         Built<InvalidGreeting, InvalidGreetingBuilder>,
         _i2.SmithyHttpException {
+  /// This error is thrown when an invalid greeting value is provided.
   factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
       _$InvalidGreeting;
 
   const InvalidGreeting._();
 
+  /// Constructs a [InvalidGreeting] from a [payload] and [response].
   factory InvalidGreeting.fromResponse(
           InvalidGreeting payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

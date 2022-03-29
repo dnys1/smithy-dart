@@ -20,6 +20,7 @@ abstract class NoSuchBucket
 
   const NoSuchBucket._();
 
+  /// Constructs a [NoSuchBucket] from a [payload] and [response].
   factory NoSuchBucket.fromResponse(
           NoSuchBucket payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

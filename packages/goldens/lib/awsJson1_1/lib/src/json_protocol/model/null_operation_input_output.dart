@@ -27,6 +27,7 @@ abstract class NullOperationInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [NullOperationInputOutput] from a [payload] and [response].
   factory NullOperationInputOutput.fromResponse(
           NullOperationInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

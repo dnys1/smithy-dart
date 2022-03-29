@@ -120,12 +120,100 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
 
-part 'rest_xml_protocol_server.g.dart';
-
 abstract class RestXmlProtocolServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i2.RestXmlProtocol(
       serializers: _i3.serializers, builderFactories: _i3.builderFactories);
+
+  late final Router _router = () {
+    final service = _RestXmlProtocolServer(this);
+    final router = Router();
+    router.add(
+        'GET', r'/AllQueryStringTypesInput', service.allQueryStringTypes);
+    router.add('PUT', r'/BodyWithXmlName', service.bodyWithXmlName);
+    router.add('GET', r'/ConstantAndVariableQueryString?foo=bar',
+        service.constantAndVariableQueryString);
+    router.add('GET', r'/ConstantQueryString/<hello>?foo=bar&hello',
+        service.constantQueryString);
+    router.add(
+        'POST', r'/EmptyInputAndEmptyOutput', service.emptyInputAndEmptyOutput);
+    router.add('POST', r'/EndpointOperation', service.endpointOperation);
+    router.add('POST', r'/EndpointWithHostLabelHeaderOperation',
+        service.endpointWithHostLabelHeaderOperation);
+    router.add('POST', r'/EndpointWithHostLabelOperation',
+        service.endpointWithHostLabelOperation);
+    router.add('POST', r'/FlattenedXmlMap', service.flattenedXmlMap);
+    router.add('POST', r'/FlattenedXmlMapWithXmlName',
+        service.flattenedXmlMapWithXmlName);
+    router.add('POST', r'/FlattenedXmlMapWithXmlNamespace',
+        service.flattenedXmlMapWithXmlNamespace);
+    router.add('PUT', r'/GreetingWithErrors', service.greetingWithErrors);
+    router.add('POST', r'/HttpPayloadTraits', service.httpPayloadTraits);
+    router.add('POST', r'/HttpPayloadTraitsWithMediaType',
+        service.httpPayloadTraitsWithMediaType);
+    router.add('PUT', r'/HttpPayloadWithMemberXmlName',
+        service.httpPayloadWithMemberXmlName);
+    router.add(
+        'PUT', r'/HttpPayloadWithStructure', service.httpPayloadWithStructure);
+    router.add(
+        'PUT', r'/HttpPayloadWithXmlName', service.httpPayloadWithXmlName);
+    router.add('PUT', r'/HttpPayloadWithXmlNamespace',
+        service.httpPayloadWithXmlNamespace);
+    router.add('PUT', r'/HttpPayloadWithXmlNamespaceAndPrefix',
+        service.httpPayloadWithXmlNamespaceAndPrefix);
+    router.add('GET', r'/HttpPrefixHeaders', service.httpPrefixHeaders);
+    router.add('GET', r'/FloatHttpLabels/<float>/<double>',
+        service.httpRequestWithFloatLabels);
+    router.add('GET', r'/HttpRequestWithGreedyLabelInPath/foo/<foo>/baz/<baz>',
+        service.httpRequestWithGreedyLabelInPath);
+    router.add(
+        'GET',
+        r'/HttpRequestWithLabels/<string>/<short>/<integer>/<long>/<float>/<double>/<boolean>/<timestamp>',
+        service.httpRequestWithLabels);
+    router.add(
+        'GET',
+        r'/HttpRequestWithLabelsAndTimestampFormat/<memberEpochSeconds>/<memberHttpDate>/<memberDateTime>/<defaultFormat>/<targetEpochSeconds>/<targetHttpDate>/<targetDateTime>',
+        service.httpRequestWithLabelsAndTimestampFormat);
+    router.add('PUT', r'/HttpResponseCode', service.httpResponseCode);
+    router.add('GET', r'/IgnoreQueryParamsInResponse',
+        service.ignoreQueryParamsInResponse);
+    router.add('POST', r'/InputAndOutputWithHeaders',
+        service.inputAndOutputWithHeaders);
+    router.add('POST', r'/NestedXmlMaps', service.nestedXmlMaps);
+    router.add('POST', r'/NoInputAndNoOutput', service.noInputAndNoOutput);
+    router.add('POST', r'/NoInputAndOutputOutput', service.noInputAndOutput);
+    router.add('GET', r'/NullAndEmptyHeadersClient',
+        service.nullAndEmptyHeadersClient);
+    router.add('GET', r'/NullAndEmptyHeadersServer',
+        service.nullAndEmptyHeadersServer);
+    router.add('GET', r'/OmitsNullSerializesEmptyString',
+        service.omitsNullSerializesEmptyString);
+    router.add('POST', r'/QueryIdempotencyTokenAutoFill',
+        service.queryIdempotencyTokenAutoFill);
+    router.add('POST', r'/StringListMap', service.queryParamsAsStringListMap);
+    router.add('POST', r'/Precedence', service.queryPrecedence);
+    router.add('PUT', r'/RecursiveShapes', service.recursiveShapes);
+    router.add(
+        'PUT', r'/SimpleScalarProperties', service.simpleScalarProperties);
+    router.add(
+        'POST', r'/TimestampFormatHeaders', service.timestampFormatHeaders);
+    router.add('PUT', r'/XmlAttributes', service.xmlAttributes);
+    router.add(
+        'PUT', r'/XmlAttributesOnPayload', service.xmlAttributesOnPayload);
+    router.add('POST', r'/XmlBlobs', service.xmlBlobs);
+    router.add('POST', r'/XmlEmptyBlobs', service.xmlEmptyBlobs);
+    router.add('PUT', r'/XmlEmptyLists', service.xmlEmptyLists);
+    router.add('POST', r'/XmlEmptyMaps', service.xmlEmptyMaps);
+    router.add('PUT', r'/XmlEmptyStrings', service.xmlEmptyStrings);
+    router.add('PUT', r'/XmlEnums', service.xmlEnums);
+    router.add('PUT', r'/XmlLists', service.xmlLists);
+    router.add('POST', r'/XmlMaps', service.xmlMaps);
+    router.add('POST', r'/XmlMapsXmlName', service.xmlMapsXmlName);
+    router.add('POST', r'/XmlNamespaces', service.xmlNamespaces);
+    router.add('POST', r'/XmlTimestamps', service.xmlTimestamps);
+    router.add('PUT', r'/XmlUnions', service.xmlUnions);
+    return router;
+  }();
 
   _i4.Future<_i1.Unit> allQueryStringTypes(
       _i5.AllQueryStringTypesInput input, _i1.Context context);
@@ -242,8 +330,7 @@ abstract class RestXmlProtocolServerBase extends _i1.HttpServerBase {
       _i51.XmlTimestampsInputOutput input, _i1.Context context);
   _i4.Future<_i52.XmlUnionsInputOutput> xmlUnions(
       _i52.XmlUnionsInputOutput input, _i1.Context context);
-  _i4.Future<_i53.Response> call(_i53.Request request) =>
-      _$_RestXmlProtocolServerRouter(_RestXmlProtocolServer(this))(request);
+  _i4.Future<_i53.Response> call(_i53.Request request) => _router(request);
 }
 
 class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
@@ -721,7 +808,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           builderFactories: _i3.builderFactories,
           noErrorWrapping: false);
 
-  @Route.get('/AllQueryStringTypesInput')
   _i4.Future<_i53.Response> allQueryStringTypes(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -747,7 +833,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/BodyWithXmlName')
   _i4.Future<_i53.Response> bodyWithXmlName(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -772,7 +857,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/ConstantAndVariableQueryString?foo=bar')
   _i4.Future<_i53.Response> constantAndVariableQueryString(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -800,7 +884,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/ConstantQueryString/<hello>?foo=bar&hello')
   _i4.Future<_i53.Response> constantQueryString(
       _i53.Request request, String hello) async {
     final awsRequest = request.awsRequest;
@@ -827,7 +910,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/EmptyInputAndEmptyOutput')
   _i4.Future<_i53.Response> emptyInputAndEmptyOutput(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -853,7 +935,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/EndpointOperation')
   _i4.Future<_i53.Response> endpointOperation(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -875,7 +956,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/EndpointWithHostLabelHeaderOperation')
   _i4.Future<_i53.Response> endpointWithHostLabelHeaderOperation(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -902,7 +982,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/EndpointWithHostLabelOperation')
   _i4.Future<_i53.Response> endpointWithHostLabelOperation(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -928,7 +1007,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/FlattenedXmlMap')
   _i4.Future<_i53.Response> flattenedXmlMap(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -953,7 +1031,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/FlattenedXmlMapWithXmlName')
   _i4.Future<_i53.Response> flattenedXmlMapWithXmlName(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -981,7 +1058,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/FlattenedXmlMapWithXmlNamespace')
   _i4.Future<_i53.Response> flattenedXmlMapWithXmlNamespace(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1006,7 +1082,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/GreetingWithErrors')
   _i4.Future<_i53.Response> greetingWithErrors(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1040,7 +1115,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/HttpPayloadTraits')
   _i4.Future<_i53.Response> httpPayloadTraits(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1068,7 +1142,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/HttpPayloadTraitsWithMediaType')
   _i4.Future<_i53.Response> httpPayloadTraitsWithMediaType(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1099,7 +1172,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/HttpPayloadWithMemberXmlName')
   _i4.Future<_i53.Response> httpPayloadWithMemberXmlName(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1126,7 +1198,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/HttpPayloadWithStructure')
   _i4.Future<_i53.Response> httpPayloadWithStructure(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1153,7 +1224,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/HttpPayloadWithXmlName')
   _i4.Future<_i53.Response> httpPayloadWithXmlName(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1179,7 +1249,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/HttpPayloadWithXmlNamespace')
   _i4.Future<_i53.Response> httpPayloadWithXmlNamespace(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1207,7 +1276,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/HttpPayloadWithXmlNamespaceAndPrefix')
   _i4.Future<_i53.Response> httpPayloadWithXmlNamespaceAndPrefix(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1238,7 +1306,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/HttpPrefixHeaders')
   _i4.Future<_i53.Response> httpPrefixHeaders(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1267,7 +1334,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/FloatHttpLabels/<float>/<double>')
   _i4.Future<_i53.Response> httpRequestWithFloatLabels(
       _i53.Request request, String float, String double) async {
     final awsRequest = request.awsRequest;
@@ -1294,7 +1360,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/HttpRequestWithGreedyLabelInPath/foo/<foo>/baz/<baz>')
   _i4.Future<_i53.Response> httpRequestWithGreedyLabelInPath(
       _i53.Request request, String foo, String baz) async {
     final awsRequest = request.awsRequest;
@@ -1322,8 +1387,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get(
-      '/HttpRequestWithLabels/<string>/<short>/<integer>/<long>/<float>/<double>/<boolean>/<timestamp>')
   _i4.Future<_i53.Response> httpRequestWithLabels(
       _i53.Request request,
       String string,
@@ -1367,8 +1430,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get(
-      '/HttpRequestWithLabelsAndTimestampFormat/<memberEpochSeconds>/<memberHttpDate>/<memberDateTime>/<defaultFormat>/<targetEpochSeconds>/<targetHttpDate>/<targetDateTime>')
   _i4.Future<_i53.Response> httpRequestWithLabelsAndTimestampFormat(
       _i53.Request request,
       String memberEpochSeconds,
@@ -1412,7 +1473,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/HttpResponseCode')
   _i4.Future<_i53.Response> httpResponseCode(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1434,7 +1494,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/IgnoreQueryParamsInResponse')
   _i4.Future<_i53.Response> ignoreQueryParamsInResponse(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1458,7 +1517,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/InputAndOutputWithHeaders')
   _i4.Future<_i53.Response> inputAndOutputWithHeaders(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1555,7 +1613,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/NestedXmlMaps')
   _i4.Future<_i53.Response> nestedXmlMaps(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1580,7 +1637,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/NoInputAndNoOutput')
   _i4.Future<_i53.Response> noInputAndNoOutput(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1602,7 +1658,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/NoInputAndOutputOutput')
   _i4.Future<_i53.Response> noInputAndOutput(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1624,7 +1679,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/NullAndEmptyHeadersClient')
   _i4.Future<_i53.Response> nullAndEmptyHeadersClient(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1659,7 +1713,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/NullAndEmptyHeadersServer')
   _i4.Future<_i53.Response> nullAndEmptyHeadersServer(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1694,7 +1747,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.get('/OmitsNullSerializesEmptyString')
   _i4.Future<_i53.Response> omitsNullSerializesEmptyString(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1722,7 +1774,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/QueryIdempotencyTokenAutoFill')
   _i4.Future<_i53.Response> queryIdempotencyTokenAutoFill(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1750,7 +1801,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/StringListMap')
   _i4.Future<_i53.Response> queryParamsAsStringListMap(
       _i53.Request request) async {
     final awsRequest = request.awsRequest;
@@ -1777,7 +1827,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/Precedence')
   _i4.Future<_i53.Response> queryPrecedence(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1801,7 +1850,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/RecursiveShapes')
   _i4.Future<_i53.Response> recursiveShapes(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1826,7 +1874,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/SimpleScalarProperties')
   _i4.Future<_i53.Response> simpleScalarProperties(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1856,7 +1903,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/TimestampFormatHeaders')
   _i4.Future<_i53.Response> timestampFormatHeaders(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1924,7 +1970,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlAttributes')
   _i4.Future<_i53.Response> xmlAttributes(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1949,7 +1994,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlAttributesOnPayload')
   _i4.Future<_i53.Response> xmlAttributesOnPayload(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1976,7 +2020,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlBlobs')
   _i4.Future<_i53.Response> xmlBlobs(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -1998,7 +2041,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlEmptyBlobs')
   _i4.Future<_i53.Response> xmlEmptyBlobs(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2022,7 +2064,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlEmptyLists')
   _i4.Future<_i53.Response> xmlEmptyLists(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2046,7 +2087,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlEmptyMaps')
   _i4.Future<_i53.Response> xmlEmptyMaps(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2070,7 +2110,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlEmptyStrings')
   _i4.Future<_i53.Response> xmlEmptyStrings(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2095,7 +2134,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlEnums')
   _i4.Future<_i53.Response> xmlEnums(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2117,7 +2155,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlLists')
   _i4.Future<_i53.Response> xmlLists(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2139,7 +2176,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlMaps')
   _i4.Future<_i53.Response> xmlMaps(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2161,7 +2197,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlMapsXmlName')
   _i4.Future<_i53.Response> xmlMapsXmlName(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2186,7 +2221,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlNamespaces')
   _i4.Future<_i53.Response> xmlNamespaces(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2211,7 +2245,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.post('/XmlTimestamps')
   _i4.Future<_i53.Response> xmlTimestamps(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);
@@ -2236,7 +2269,6 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
     }
   }
 
-  @Route.put('/XmlUnions')
   _i4.Future<_i53.Response> xmlUnions(_i53.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

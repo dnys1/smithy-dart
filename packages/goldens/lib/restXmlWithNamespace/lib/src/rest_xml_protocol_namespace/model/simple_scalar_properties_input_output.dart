@@ -49,6 +49,7 @@ abstract class SimpleScalarPropertiesInputOutput
         }
       });
 
+  /// Constructs a [SimpleScalarPropertiesInputOutput] from a [payload] and [response].
   factory SimpleScalarPropertiesInputOutput.fromResponse(
           SimpleScalarPropertiesInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>

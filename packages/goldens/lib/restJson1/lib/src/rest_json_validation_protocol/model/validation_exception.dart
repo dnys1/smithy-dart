@@ -20,12 +20,16 @@ abstract class ValidationException
     implements
         Built<ValidationException, ValidationExceptionBuilder>,
         _i2.SmithyHttpException {
+  /// A standard error for input validation failures.
+  /// This should be thrown by services when a member of the input structure
+  /// falls outside of the modeled or documented constraints.
   factory ValidationException(
           [void Function(ValidationExceptionBuilder) updates]) =
       _$ValidationException;
 
   const ValidationException._();
 
+  /// Constructs a [ValidationException] from a [payload] and [response].
   factory ValidationException.fromResponse(
           ValidationException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

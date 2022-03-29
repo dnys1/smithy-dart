@@ -28,6 +28,7 @@ abstract class JsonMapsInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [JsonMapsInputOutput] from a [payload] and [response].
   factory JsonMapsInputOutput.fromResponse(
           JsonMapsInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

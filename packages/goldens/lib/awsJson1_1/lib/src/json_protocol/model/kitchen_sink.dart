@@ -31,6 +31,7 @@ abstract class KitchenSink
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [KitchenSink] from a [payload] and [response].
   factory KitchenSink.fromResponse(
           KitchenSink payload, _i2.AWSBaseHttpResponse response) =>
       payload;

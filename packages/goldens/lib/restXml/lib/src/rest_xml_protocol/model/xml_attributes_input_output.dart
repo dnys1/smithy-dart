@@ -27,6 +27,7 @@ abstract class XmlAttributesInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlAttributesInputOutput] from a [payload] and [response].
   factory XmlAttributesInputOutput.fromResponse(
           XmlAttributesInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

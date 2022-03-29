@@ -26,6 +26,7 @@ abstract class DocumentTypeInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [DocumentTypeInputOutput] from a [payload] and [response].
   factory DocumentTypeInputOutput.fromResponse(
           DocumentTypeInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

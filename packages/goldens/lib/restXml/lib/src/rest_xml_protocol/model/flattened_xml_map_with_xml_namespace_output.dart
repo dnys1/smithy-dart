@@ -22,6 +22,7 @@ abstract class FlattenedXmlMapWithXmlNamespaceOutput
 
   const FlattenedXmlMapWithXmlNamespaceOutput._();
 
+  /// Constructs a [FlattenedXmlMapWithXmlNamespaceOutput] from a [payload] and [response].
   factory FlattenedXmlMapWithXmlNamespaceOutput.fromResponse(
           FlattenedXmlMapWithXmlNamespaceOutput payload,
           _i1.AWSBaseHttpResponse response) =>

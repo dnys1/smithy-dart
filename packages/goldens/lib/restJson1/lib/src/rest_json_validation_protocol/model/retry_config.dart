@@ -15,6 +15,7 @@ part 'retry_config.g.dart';
 abstract class RetryConfig
     with _i1.AWSEquatable<RetryConfig>
     implements Built<RetryConfig, RetryConfigBuilder> {
+  /// Configuration specific to retries.
   factory RetryConfig([void Function(RetryConfigBuilder) updates]) =
       _$RetryConfig;
 

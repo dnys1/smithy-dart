@@ -35,6 +35,7 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
         }
       });
 
+  /// Constructs a [StreamingTraitsWithMediaTypeInputOutput] from a [payload] and [response].
   factory StreamingTraitsWithMediaTypeInputOutput.fromResponse(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
       StreamingTraitsWithMediaTypeInputOutput((b) {

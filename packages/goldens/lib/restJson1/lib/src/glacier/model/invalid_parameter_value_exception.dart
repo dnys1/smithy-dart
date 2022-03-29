@@ -22,6 +22,7 @@ abstract class InvalidParameterValueException
 
   const InvalidParameterValueException._();
 
+  /// Constructs a [InvalidParameterValueException] from a [payload] and [response].
   factory InvalidParameterValueException.fromResponse(
           InvalidParameterValueException payload,
           _i1.AWSBaseHttpResponse response) =>

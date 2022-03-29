@@ -169,16 +169,17 @@ class CodegenContext {
     basePath: basePath,
   );
 
-  late final String serviceServerName = serviceName.pascalCase + 'Server';
+  // For backwards compatibility reasons, some services will include
+  // "service" or "API" as a suffix. New SDK major versions SHOULD strip
+  // service and api suffixes from sdkId when generating a client name.
+  //
+  // https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#using-sdk-service-id-for-client-naming
+  late final String _serviceCommonName =
+      serviceName.replaceAll(RegExp(r'(API|Client|Service)$'), '').pascalCase;
 
-  late final String serviceClientName =
-      // For backwards compatibility reasons, some services will include
-      // "service" or "API" as a suffix. New SDK major versions SHOULD strip
-      // service and api suffixes from sdkId when generating a client name.
-      //
-      // https://awslabs.github.io/smithy/1.0/spec/aws/aws-core.html#using-sdk-service-id-for-client-naming
-      serviceName.replaceAll(RegExp(r'(API|Client|Service)$'), '').pascalCase +
-          'Client';
+  late final String serviceServerName = '${_serviceCommonName}Server';
+
+  late final String serviceClientName = '${_serviceCommonName}Client';
 
   /// The top-level service library.
   late final SmithyLibrary serviceLibrary = SmithyLibraryX.create(

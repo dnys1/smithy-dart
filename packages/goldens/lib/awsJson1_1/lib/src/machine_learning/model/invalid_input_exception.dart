@@ -20,6 +20,7 @@ abstract class InvalidInputException
 
   const InvalidInputException._();
 
+  /// Constructs a [InvalidInputException] from a [payload] and [response].
   factory InvalidInputException.fromResponse(
           InvalidInputException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

@@ -14,6 +14,7 @@ part 'environment_config.g.dart';
 abstract class EnvironmentConfig
     with _i1.AWSEquatable<EnvironmentConfig>
     implements Built<EnvironmentConfig, EnvironmentConfigBuilder> {
+  /// Config settings that can be set as environment variables.
   factory EnvironmentConfig([void Function(EnvironmentConfigBuilder) updates]) =
       _$EnvironmentConfig;
 

@@ -28,6 +28,7 @@ abstract class FlattenedXmlMapInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [FlattenedXmlMapInputOutput] from a [payload] and [response].
   factory FlattenedXmlMapInputOutput.fromResponse(
           FlattenedXmlMapInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

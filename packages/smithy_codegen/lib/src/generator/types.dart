@@ -502,6 +502,9 @@ class ShelfRouter {
 
   /// Creates a [shelf_router.Route] reference.
   Reference get route => const Reference('Route', url);
+
+  /// Creates a [shelf_router.Router] reference.
+  Reference get router => const Reference('Router', url);
 }
 
 /// `package:smithy` types
@@ -665,6 +668,9 @@ class _Smithy {
             if (ref != null) ref,
           ]),
       );
+
+  /// Creates a [smithy.RpcRouter] reference.
+  Reference get rpcRouter => const Reference('RpcRouter', _url);
 
   /// Creates a [smithy.RetryConfig] reference.
   Reference get retryConfig => const Reference('RetryConfig', _url);

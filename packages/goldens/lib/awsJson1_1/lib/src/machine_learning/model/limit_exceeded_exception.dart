@@ -20,6 +20,7 @@ abstract class LimitExceededException
 
   const LimitExceededException._();
 
+  /// Constructs a [LimitExceededException] from a [payload] and [response].
   factory LimitExceededException.fromResponse(
           LimitExceededException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

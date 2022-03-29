@@ -19,6 +19,7 @@ abstract class GreetingWithErrorsOutput
 
   const GreetingWithErrorsOutput._();
 
+  /// Constructs a [GreetingWithErrorsOutput] from a [payload] and [response].
   factory GreetingWithErrorsOutput.fromResponse(
           GreetingWithErrorsOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;

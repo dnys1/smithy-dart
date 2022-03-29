@@ -31,6 +31,7 @@ abstract class DocumentTypeAsPayloadInputOutput
         b.documentValue = payload;
       });
 
+  /// Constructs a [DocumentTypeAsPayloadInputOutput] from a [payload] and [response].
   factory DocumentTypeAsPayloadInputOutput.fromResponse(
           _i2.JsonObject? payload, _i3.AWSBaseHttpResponse response) =>
       DocumentTypeAsPayloadInputOutput((b) {

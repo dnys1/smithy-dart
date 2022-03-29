@@ -16,6 +16,8 @@ part 'file_config_settings.g.dart';
 abstract class FileConfigSettings
     with _i1.AWSEquatable<FileConfigSettings>
     implements Built<FileConfigSettings, FileConfigSettingsBuilder> {
+  /// Config settings that can be set in the AWS config / credentials file as
+  /// part of a profile.
   factory FileConfigSettings(
           [void Function(FileConfigSettingsBuilder) updates]) =
       _$FileConfigSettings;

@@ -20,6 +20,7 @@ abstract class RequestTimeoutException
 
   const RequestTimeoutException._();
 
+  /// Constructs a [RequestTimeoutException] from a [payload] and [response].
   factory RequestTimeoutException.fromResponse(
           RequestTimeoutException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

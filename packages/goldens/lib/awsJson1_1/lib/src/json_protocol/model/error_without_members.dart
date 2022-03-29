@@ -21,6 +21,7 @@ abstract class ErrorWithoutMembers
 
   const ErrorWithoutMembers._();
 
+  /// Constructs a [ErrorWithoutMembers] from a [payload] and [response].
   factory ErrorWithoutMembers.fromResponse(
           ErrorWithoutMembers payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

@@ -22,6 +22,7 @@ abstract class UploadMultipartPartOutput
 
   const UploadMultipartPartOutput._();
 
+  /// Constructs a [UploadMultipartPartOutput] from a [payload] and [response].
   factory UploadMultipartPartOutput.fromResponse(
           UploadMultipartPartOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>

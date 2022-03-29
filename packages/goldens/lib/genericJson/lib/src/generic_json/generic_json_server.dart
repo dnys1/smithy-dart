@@ -10,16 +10,20 @@ import 'package:shelf/shelf.dart' as _i4;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:smithy/smithy.dart' as _i1;
 
-part 'generic_json_server.g.dart';
-
 abstract class GenericJsonServerBase extends _i1.HttpServerBase {
   @override
   late final _i1.HttpProtocol protocol = _i1.GenericJsonProtocol(
       serializers: _i2.serializers, builderFactories: _i2.builderFactories);
 
+  late final Router _router = () {
+    final service = _GenericJsonServer(this);
+    final router = Router();
+    router.add('POST', r'/UnitInputAndOutput', service.unitInputAndOutput);
+    return router;
+  }();
+
   _i3.Future<_i1.Unit> unitInputAndOutput(_i1.Unit input, _i1.Context context);
-  _i3.Future<_i4.Response> call(_i4.Request request) =>
-      _$_GenericJsonServerRouter(_GenericJsonServer(this))(request);
+  _i3.Future<_i4.Response> call(_i4.Request request) => _router(request);
 }
 
 class _GenericJsonServer extends _i1.HttpServer<GenericJsonServerBase> {
@@ -32,7 +36,6 @@ class _GenericJsonServer extends _i1.HttpServer<GenericJsonServerBase> {
       _unitInputAndOutputProtocol = _i1.GenericJsonProtocol(
           serializers: _i2.serializers, builderFactories: _i2.builderFactories);
 
-  @Route.post('/UnitInputAndOutput')
   _i3.Future<_i4.Response> unitInputAndOutput(_i4.Request request) async {
     final awsRequest = request.awsRequest;
     final context = _i1.Context(awsRequest);

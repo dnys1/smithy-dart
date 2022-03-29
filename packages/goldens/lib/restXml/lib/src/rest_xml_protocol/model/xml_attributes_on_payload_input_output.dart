@@ -35,6 +35,7 @@ abstract class XmlAttributesOnPayloadInputOutput
         }
       });
 
+  /// Constructs a [XmlAttributesOnPayloadInputOutput] from a [payload] and [response].
   factory XmlAttributesOnPayloadInputOutput.fromResponse(
           _i2.XmlAttributesInputOutput? payload,
           _i3.AWSBaseHttpResponse response) =>

@@ -34,6 +34,7 @@ abstract class HttpPayloadWithStructureInputOutput
         }
       });
 
+  /// Constructs a [HttpPayloadWithStructureInputOutput] from a [payload] and [response].
   factory HttpPayloadWithStructureInputOutput.fromResponse(
           _i2.NestedPayload? payload, _i3.AWSBaseHttpResponse response) =>
       HttpPayloadWithStructureInputOutput((b) {

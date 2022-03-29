@@ -14,6 +14,7 @@ part 'operation_config.g.dart';
 abstract class OperationConfig
     with _i1.AWSEquatable<OperationConfig>
     implements Built<OperationConfig, OperationConfigBuilder> {
+  /// Configuration that is set for the scope of a single operation.
   factory OperationConfig([void Function(OperationConfigBuilder) updates]) =
       _$OperationConfig;
 

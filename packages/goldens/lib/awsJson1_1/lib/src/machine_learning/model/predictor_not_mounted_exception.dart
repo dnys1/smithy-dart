@@ -22,6 +22,7 @@ abstract class PredictorNotMountedException
 
   const PredictorNotMountedException._();
 
+  /// Constructs a [PredictorNotMountedException] from a [payload] and [response].
   factory PredictorNotMountedException.fromResponse(
           PredictorNotMountedException payload,
           _i1.AWSBaseHttpResponse response) =>

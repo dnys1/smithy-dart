@@ -14,6 +14,7 @@ part 's3_config.g.dart';
 abstract class S3Config
     with _i1.AWSEquatable<S3Config>
     implements Built<S3Config, S3ConfigBuilder> {
+  /// Configuration specific to S3.
   factory S3Config([void Function(S3ConfigBuilder) updates]) = _$S3Config;
 
   const S3Config._();

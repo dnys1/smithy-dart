@@ -18,6 +18,7 @@ abstract class RestApis
 
   const RestApis._();
 
+  /// Constructs a [RestApis] from a [payload] and [response].
   factory RestApis.fromResponse(
           RestApis payload, _i1.AWSBaseHttpResponse response) =>
       payload;

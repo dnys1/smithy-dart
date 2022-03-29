@@ -28,6 +28,7 @@ abstract class XmlNamespacesInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [XmlNamespacesInputOutput] from a [payload] and [response].
   factory XmlNamespacesInputOutput.fromResponse(
           XmlNamespacesInputOutput payload, _i2.AWSBaseHttpResponse response) =>
       payload;

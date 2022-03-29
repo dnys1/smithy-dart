@@ -28,6 +28,7 @@ abstract class RecursiveShapesInputOutput
           {Map<String, String> labels = const {}}) =>
       payload;
 
+  /// Constructs a [RecursiveShapesInputOutput] from a [payload] and [response].
   factory RecursiveShapesInputOutput.fromResponse(
           RecursiveShapesInputOutput payload,
           _i2.AWSBaseHttpResponse response) =>

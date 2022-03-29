@@ -20,6 +20,7 @@ abstract class BadRequestException
 
   const BadRequestException._();
 
+  /// Constructs a [BadRequestException] from a [payload] and [response].
   factory BadRequestException.fromResponse(
           BadRequestException payload, _i1.AWSBaseHttpResponse response) =>
       payload.rebuild((b) {

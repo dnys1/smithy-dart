@@ -40,6 +40,7 @@ abstract class HttpPrefixHeadersInputOutput
                 (el) => MapEntry(el.key.replaceFirst('X-Foo-', ''), el.value)));
       });
 
+  /// Constructs a [HttpPrefixHeadersInputOutput] from a [payload] and [response].
   factory HttpPrefixHeadersInputOutput.fromResponse(
           HttpPrefixHeadersInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>

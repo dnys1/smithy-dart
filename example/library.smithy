@@ -7,13 +7,29 @@ service LibraryService {
 
 @http(method: "POST", uri: "/books/{id}")
 operation CreateBook {
-  input: CreateBookInputOutput,
-  output: CreateBookInputOutput,
+  input: CreateBookInput,
+  output: CreateBookOutput,
   errors: [BookAlreadyDefinedError]
 }
 
-structure CreateBookInputOutput {
+@input
+structure CreateBookInput {
   @httpLabel
+  @required
+  id: String,
+
+  @required
+  title: String,
+
+  @required
+  author: Author,
+
+  isbn: String,
+  datePublished: Timestamp
+}
+
+@output
+structure CreateBookOutput {
   @required
   id: String,
 

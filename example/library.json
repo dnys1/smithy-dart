@@ -67,10 +67,10 @@
         "org.publiclibrary#CreateBook": {
             "type": "operation",
             "input": {
-                "target": "org.publiclibrary#CreateBookInputOutput"
+                "target": "org.publiclibrary#CreateBookInput"
             },
             "output": {
-                "target": "org.publiclibrary#CreateBookInputOutput"
+                "target": "org.publiclibrary#CreateBookOutput"
             },
             "errors": [
                 {
@@ -84,7 +84,7 @@
                 }
             }
         },
-        "org.publiclibrary#CreateBookInputOutput": {
+        "org.publiclibrary#CreateBookInput": {
             "type": "structure",
             "members": {
                 "id": {
@@ -112,6 +112,41 @@
                 "datePublished": {
                     "target": "smithy.api#Timestamp"
                 }
+            },
+            "traits": {
+                "smithy.api#input": {}
+            }
+        },
+        "org.publiclibrary#CreateBookOutput": {
+            "type": "structure",
+            "members": {
+                "id": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                },
+                "title": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                },
+                "author": {
+                    "target": "org.publiclibrary#Author",
+                    "traits": {
+                        "smithy.api#required": {}
+                    }
+                },
+                "isbn": {
+                    "target": "smithy.api#String"
+                },
+                "datePublished": {
+                    "target": "smithy.api#Timestamp"
+                }
+            },
+            "traits": {
+                "smithy.api#output": {}
             }
         },
         "org.publiclibrary#LibraryService": {

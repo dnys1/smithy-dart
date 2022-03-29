@@ -19,41 +19,29 @@ abstract class UploadArchiveInput
         Built<UploadArchiveInput, UploadArchiveInputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory UploadArchiveInput(
-      {required String accountId,
-      String? archiveDescription,
-      _i2.Stream<List<int>>? body,
-      String? checksum,
-      required String vaultName}) {
-    return _$UploadArchiveInput._(
-        accountId: accountId,
-        archiveDescription: archiveDescription,
-        body: body,
-        checksum: checksum,
-        vaultName: vaultName);
-  }
+          [void Function(UploadArchiveInputBuilder) updates]) =
+      _$UploadArchiveInput;
 
   const UploadArchiveInput._();
 
   factory UploadArchiveInput.fromRequest(
-      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = UploadArchiveInputBuilder();
-    builder.body = payload;
-    if (request.headers['x-amz-archive-description'] != null) {
-      builder.archiveDescription =
-          request.headers['x-amz-archive-description']!;
-    }
-    if (request.headers['x-amz-sha256-tree-hash'] != null) {
-      builder.checksum = request.headers['x-amz-sha256-tree-hash']!;
-    }
-    if (labels['vaultName'] != null) {
-      builder.vaultName = labels['vaultName']!;
-    }
-    if (labels['accountId'] != null) {
-      builder.accountId = labels['accountId']!;
-    }
-    return builder.build();
-  }
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      UploadArchiveInput((b) {
+        b.body = payload;
+        if (request.headers['x-amz-archive-description'] != null) {
+          b.archiveDescription = request.headers['x-amz-archive-description']!;
+        }
+        if (request.headers['x-amz-sha256-tree-hash'] != null) {
+          b.checksum = request.headers['x-amz-sha256-tree-hash']!;
+        }
+        if (labels['vaultName'] != null) {
+          b.vaultName = labels['vaultName']!;
+        }
+        if (labels['accountId'] != null) {
+          b.accountId = labels['accountId']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _UploadArchiveInputRestJson1Serializer()

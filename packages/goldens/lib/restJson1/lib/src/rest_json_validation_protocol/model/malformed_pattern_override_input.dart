@@ -20,13 +20,8 @@ abstract class MalformedPatternOverrideInput
         Built<MalformedPatternOverrideInput,
             MalformedPatternOverrideInputBuilder> {
   factory MalformedPatternOverrideInput(
-      {_i3.BuiltList<String>? list,
-      _i3.BuiltMap<String, String>? map,
-      String? string,
-      _i4.PatternUnionOverride? union}) {
-    return _$MalformedPatternOverrideInput._(
-        list: list, map: map, string: string, union: union);
-  }
+          [void Function(MalformedPatternOverrideInputBuilder) updates]) =
+      _$MalformedPatternOverrideInput;
 
   const MalformedPatternOverrideInput._();
 

@@ -15,9 +15,8 @@ abstract class ValidationExceptionField
     implements
         Built<ValidationExceptionField, ValidationExceptionFieldBuilder> {
   factory ValidationExceptionField(
-      {required String message, required String path}) {
-    return _$ValidationExceptionField._(message: message, path: path);
-  }
+          [void Function(ValidationExceptionFieldBuilder) updates]) =
+      _$ValidationExceptionField;
 
   const ValidationExceptionField._();
 

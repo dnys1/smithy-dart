@@ -16,26 +16,23 @@ abstract class EnumPayloadInput
     implements
         Built<EnumPayloadInput, EnumPayloadInputBuilder>,
         _i1.HasPayload<_i2.StringEnum> {
-  factory EnumPayloadInput({_i2.StringEnum? payload}) {
-    return _$EnumPayloadInput._(payload: payload);
-  }
+  factory EnumPayloadInput([void Function(EnumPayloadInputBuilder) updates]) =
+      _$EnumPayloadInput;
 
   const EnumPayloadInput._();
 
   factory EnumPayloadInput.fromRequest(
-      _i2.StringEnum? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = EnumPayloadInputBuilder();
-    builder.payload = payload;
-    return builder.build();
-  }
+          _i2.StringEnum? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      EnumPayloadInput((b) {
+        b.payload = payload;
+      });
 
   factory EnumPayloadInput.fromResponse(
-      _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = EnumPayloadInputBuilder();
-    builder.payload = payload;
-    return builder.build();
-  }
+          _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) =>
+      EnumPayloadInput((b) {
+        b.payload = payload;
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _EnumPayloadInputRestJson1Serializer()

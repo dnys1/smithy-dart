@@ -16,16 +16,8 @@ abstract class XmlTimestampsInputOutput
     implements
         Built<XmlTimestampsInputOutput, XmlTimestampsInputOutputBuilder> {
   factory XmlTimestampsInputOutput(
-      {DateTime? dateTime,
-      DateTime? epochSeconds,
-      DateTime? httpDate,
-      DateTime? normal}) {
-    return _$XmlTimestampsInputOutput._(
-        dateTime: dateTime,
-        epochSeconds: epochSeconds,
-        httpDate: httpDate,
-        normal: normal);
-  }
+          [void Function(XmlTimestampsInputOutputBuilder) updates]) =
+      _$XmlTimestampsInputOutput;
 
   const XmlTimestampsInputOutput._();
 

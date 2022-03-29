@@ -3,28 +3,28 @@
 library rest_xml.rest_xml_protocol.model.xml_namespace_nested;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'xml_namespace_nested.g.dart';
 
 abstract class XmlNamespaceNested
     with _i1.AWSEquatable<XmlNamespaceNested>
     implements Built<XmlNamespaceNested, XmlNamespaceNestedBuilder> {
-  factory XmlNamespaceNested({String? foo, _i2.BuiltList<String>? values}) {
-    return _$XmlNamespaceNested._(foo: foo, values: values);
-  }
+  factory XmlNamespaceNested(
+          [void Function(XmlNamespaceNestedBuilder) updates]) =
+      _$XmlNamespaceNested;
 
   const XmlNamespaceNested._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _XmlNamespaceNestedRestXmlSerializer()
   ];
 
   String? get foo;
-  _i2.BuiltList<String>? get values;
+  _i3.BuiltList<String>? get values;
   @override
   List<Object?> get props => [foo, values];
   @override
@@ -37,14 +37,14 @@ abstract class XmlNamespaceNested
 }
 
 class _XmlNamespaceNestedRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<XmlNamespaceNested> {
+    extends _i2.StructuredSmithySerializer<XmlNamespaceNested> {
   const _XmlNamespaceNestedRestXmlSerializer() : super('XmlNamespaceNested');
 
   @override
   Iterable<Type> get types => const [XmlNamespaceNested, _$XmlNamespaceNested];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols =>
-      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
   @override
   XmlNamespaceNested deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -64,12 +64,12 @@ class _XmlNamespaceNestedRestXmlSerializer
           break;
         case 'values':
           if (value != null) {
-            result.values.replace((const _i3.XmlBuiltListSerializer(
-                        memberNamespace: _i3.XmlNamespace('http://bux.com'))
+            result.values.replace((const _i2.XmlBuiltListSerializer(
+                        memberNamespace: _i2.XmlNamespace('http://bux.com'))
                     .deserialize(serializers, (value as Iterable<Object?>),
                         specifiedType:
-                            const FullType(_i2.BuiltList, [FullType(String)]))
-                as _i2.BuiltList<String>));
+                            const FullType(_i3.BuiltList, [FullType(String)]))
+                as _i3.BuiltList<String>));
           }
           break;
       }
@@ -83,25 +83,25 @@ class _XmlNamespaceNestedRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlNamespaceNested);
     final result = <Object?>[
-      _i3.XmlElementName(
-          'XmlNamespaceNested', const _i3.XmlNamespace('http://foo.com'))
+      _i2.XmlElementName(
+          'XmlNamespaceNested', const _i2.XmlNamespace('http://foo.com'))
     ];
     if (payload.foo != null) {
       result
-        ..add(const _i3.XmlElementName(
-            'foo', _i3.XmlNamespace('http://baz.com', 'baz')))
+        ..add(const _i2.XmlElementName(
+            'foo', _i2.XmlNamespace('http://baz.com', 'baz')))
         ..add(serializers.serialize(payload.foo!,
             specifiedType: const FullType(String)));
     }
     if (payload.values != null) {
       result
-        ..add(const _i3.XmlElementName(
-            'values', _i3.XmlNamespace('http://qux.com')))
-        ..add(const _i3.XmlBuiltListSerializer(
-                memberNamespace: _i3.XmlNamespace('http://bux.com'))
+        ..add(const _i2.XmlElementName(
+            'values', _i2.XmlNamespace('http://qux.com')))
+        ..add(const _i2.XmlBuiltListSerializer(
+                memberNamespace: _i2.XmlNamespace('http://bux.com'))
             .serialize(serializers, payload.values!,
                 specifiedType: const FullType.nullable(
-                    _i2.BuiltList, [FullType(String)])));
+                    _i3.BuiltList, [FullType(String)])));
     }
     return result;
   }

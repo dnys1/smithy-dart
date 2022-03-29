@@ -12,9 +12,9 @@ part 'complex_nested_error_data.g.dart';
 abstract class ComplexNestedErrorData
     with _i1.AWSEquatable<ComplexNestedErrorData>
     implements Built<ComplexNestedErrorData, ComplexNestedErrorDataBuilder> {
-  factory ComplexNestedErrorData({String? foo}) {
-    return _$ComplexNestedErrorData._(foo: foo);
-  }
+  factory ComplexNestedErrorData(
+          [void Function(ComplexNestedErrorDataBuilder) updates]) =
+      _$ComplexNestedErrorData;
 
   const ComplexNestedErrorData._();
 

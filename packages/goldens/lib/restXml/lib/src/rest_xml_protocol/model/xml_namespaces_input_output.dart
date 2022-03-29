@@ -17,9 +17,9 @@ abstract class XmlNamespacesInputOutput
         _i2.AWSEquatable<XmlNamespacesInputOutput>
     implements
         Built<XmlNamespacesInputOutput, XmlNamespacesInputOutputBuilder> {
-  factory XmlNamespacesInputOutput({_i3.XmlNamespaceNested? nested}) {
-    return _$XmlNamespacesInputOutput._(nested: nested);
-  }
+  factory XmlNamespacesInputOutput(
+          [void Function(XmlNamespacesInputOutputBuilder) updates]) =
+      _$XmlNamespacesInputOutput;
 
   const XmlNamespacesInputOutput._();
 

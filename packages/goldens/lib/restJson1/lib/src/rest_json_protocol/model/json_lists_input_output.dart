@@ -19,26 +19,8 @@ abstract class JsonListsInputOutput
         _i2.AWSEquatable<JsonListsInputOutput>
     implements Built<JsonListsInputOutput, JsonListsInputOutputBuilder> {
   factory JsonListsInputOutput(
-      {_i3.BuiltList<bool>? booleanList,
-      _i3.BuiltList<_i4.FooEnum>? enumList,
-      _i3.BuiltList<int>? integerList,
-      _i3.BuiltList<_i3.BuiltList<String>>? nestedStringList,
-      _i3.BuiltList<String?>? sparseStringList,
-      _i3.BuiltList<String>? stringList,
-      _i3.BuiltSet<String>? stringSet,
-      _i3.BuiltList<_i5.StructureListMember>? structureList,
-      _i3.BuiltList<DateTime>? timestampList}) {
-    return _$JsonListsInputOutput._(
-        booleanList: booleanList,
-        enumList: enumList,
-        integerList: integerList,
-        nestedStringList: nestedStringList,
-        sparseStringList: sparseStringList,
-        stringList: stringList,
-        stringSet: stringSet,
-        structureList: structureList,
-        timestampList: timestampList);
-  }
+          [void Function(JsonListsInputOutputBuilder) updates]) =
+      _$JsonListsInputOutput;
 
   const JsonListsInputOutput._();
 

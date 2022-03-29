@@ -18,36 +18,27 @@ abstract class MalformedIntegerInput
         Built<MalformedIntegerInput, MalformedIntegerInputBuilder>,
         _i1.HasPayload<MalformedIntegerInputPayload> {
   factory MalformedIntegerInput(
-      {int? integerInBody,
-      int? integerInHeader,
-      required int integerInPath,
-      int? integerInQuery}) {
-    return _$MalformedIntegerInput._(
-        integerInBody: integerInBody,
-        integerInHeader: integerInHeader,
-        integerInPath: integerInPath,
-        integerInQuery: integerInQuery);
-  }
+          [void Function(MalformedIntegerInputBuilder) updates]) =
+      _$MalformedIntegerInput;
 
   const MalformedIntegerInput._();
 
   factory MalformedIntegerInput.fromRequest(
-      MalformedIntegerInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedIntegerInputBuilder();
-    builder.integerInBody = payload.integerInBody;
-    if (request.headers['integerInHeader'] != null) {
-      builder.integerInHeader = int.parse(request.headers['integerInHeader']!);
-    }
-    if (request.queryParameters['integerInQuery'] != null) {
-      builder.integerInQuery =
-          int.parse(request.queryParameters['integerInQuery']!);
-    }
-    if (labels['integerInPath'] != null) {
-      builder.integerInPath = int.parse(labels['integerInPath']!);
-    }
-    return builder.build();
-  }
+          MalformedIntegerInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedIntegerInput((b) {
+        b.integerInBody = payload.integerInBody;
+        if (request.headers['integerInHeader'] != null) {
+          b.integerInHeader = int.parse(request.headers['integerInHeader']!);
+        }
+        if (request.queryParameters['integerInQuery'] != null) {
+          b.integerInQuery =
+              int.parse(request.queryParameters['integerInQuery']!);
+        }
+        if (labels['integerInPath'] != null) {
+          b.integerInPath = int.parse(labels['integerInPath']!);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedIntegerInputRestJson1Serializer()

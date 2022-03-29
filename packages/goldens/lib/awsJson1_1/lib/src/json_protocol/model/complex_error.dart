@@ -17,9 +17,8 @@ abstract class ComplexError
     implements
         Built<ComplexError, ComplexErrorBuilder>,
         _i2.SmithyHttpException {
-  factory ComplexError({_i3.ComplexNestedErrorData? nested, String? topLevel}) {
-    return _$ComplexError._(nested: nested, topLevel: topLevel);
-  }
+  factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
+      _$ComplexError;
 
   const ComplexError._();
 

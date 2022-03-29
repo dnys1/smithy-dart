@@ -20,44 +20,42 @@ abstract class NullAndEmptyHeadersIo
         _i1.EmptyPayload,
         _i1.HasPayload<NullAndEmptyHeadersIoPayload> {
   factory NullAndEmptyHeadersIo(
-      {String? a, String? b, _i3.BuiltList<String>? c}) {
-    return _$NullAndEmptyHeadersIo._(a: a, b: b, c: c);
-  }
+          [void Function(NullAndEmptyHeadersIoBuilder) updates]) =
+      _$NullAndEmptyHeadersIo;
 
   const NullAndEmptyHeadersIo._();
 
   factory NullAndEmptyHeadersIo.fromRequest(
-      NullAndEmptyHeadersIoPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = NullAndEmptyHeadersIoBuilder();
-    if (request.headers['X-A'] != null) {
-      builder.a = request.headers['X-A']!;
-    }
-    if (request.headers['X-B'] != null) {
-      builder.b = request.headers['X-B']!;
-    }
-    if (request.headers['X-C'] != null) {
-      builder.c.addAll(
-          _i1.parseHeader(request.headers['X-C']!).map((el) => el.trim()));
-    }
-    return builder.build();
-  }
+          NullAndEmptyHeadersIoPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      NullAndEmptyHeadersIo((b) {
+        if (request.headers['X-A'] != null) {
+          b.a = request.headers['X-A']!;
+        }
+        if (request.headers['X-B'] != null) {
+          b.b = request.headers['X-B']!;
+        }
+        if (request.headers['X-C'] != null) {
+          b.c.addAll(
+              _i1.parseHeader(request.headers['X-C']!).map((el) => el.trim()));
+        }
+      });
 
   factory NullAndEmptyHeadersIo.fromResponse(
-      NullAndEmptyHeadersIoPayload payload, _i2.AWSBaseHttpResponse response) {
-    final builder = NullAndEmptyHeadersIoBuilder();
-    if (response.headers['X-A'] != null) {
-      builder.a = response.headers['X-A']!;
-    }
-    if (response.headers['X-B'] != null) {
-      builder.b = response.headers['X-B']!;
-    }
-    if (response.headers['X-C'] != null) {
-      builder.c.addAll(
-          _i1.parseHeader(response.headers['X-C']!).map((el) => el.trim()));
-    }
-    return builder.build();
-  }
+          NullAndEmptyHeadersIoPayload payload,
+          _i2.AWSBaseHttpResponse response) =>
+      NullAndEmptyHeadersIo((b) {
+        if (response.headers['X-A'] != null) {
+          b.a = response.headers['X-A']!;
+        }
+        if (response.headers['X-B'] != null) {
+          b.b = response.headers['X-B']!;
+        }
+        if (response.headers['X-C'] != null) {
+          b.c.addAll(
+              _i1.parseHeader(response.headers['X-C']!).map((el) => el.trim()));
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _NullAndEmptyHeadersIoRestJson1Serializer()

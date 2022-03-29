@@ -17,9 +17,7 @@ abstract class FooError
         Built<FooError, FooErrorBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory FooError() {
-    return _$FooError._();
-  }
+  factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();
 

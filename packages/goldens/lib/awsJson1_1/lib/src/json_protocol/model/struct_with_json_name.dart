@@ -12,9 +12,9 @@ part 'struct_with_json_name.g.dart';
 abstract class StructWithJsonName
     with _i1.AWSEquatable<StructWithJsonName>
     implements Built<StructWithJsonName, StructWithJsonNameBuilder> {
-  factory StructWithJsonName({String? value}) {
-    return _$StructWithJsonName._(value: value);
-  }
+  factory StructWithJsonName(
+          [void Function(StructWithJsonNameBuilder) updates]) =
+      _$StructWithJsonName;
 
   const StructWithJsonName._();
 

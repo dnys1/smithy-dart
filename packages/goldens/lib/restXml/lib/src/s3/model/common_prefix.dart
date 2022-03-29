@@ -12,9 +12,8 @@ part 'common_prefix.g.dart';
 abstract class CommonPrefix
     with _i1.AWSEquatable<CommonPrefix>
     implements Built<CommonPrefix, CommonPrefixBuilder> {
-  factory CommonPrefix({String? prefix}) {
-    return _$CommonPrefix._(prefix: prefix);
-  }
+  factory CommonPrefix([void Function(CommonPrefixBuilder) updates]) =
+      _$CommonPrefix;
 
   const CommonPrefix._();
 

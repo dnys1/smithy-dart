@@ -15,9 +15,9 @@ abstract class PayloadWithXmlNamespaceAndPrefix
     implements
         Built<PayloadWithXmlNamespaceAndPrefix,
             PayloadWithXmlNamespaceAndPrefixBuilder> {
-  factory PayloadWithXmlNamespaceAndPrefix({String? name}) {
-    return _$PayloadWithXmlNamespaceAndPrefix._(name: name);
-  }
+  factory PayloadWithXmlNamespaceAndPrefix(
+          [void Function(PayloadWithXmlNamespaceAndPrefixBuilder) updates]) =
+      _$PayloadWithXmlNamespaceAndPrefix;
 
   const PayloadWithXmlNamespaceAndPrefix._();
 

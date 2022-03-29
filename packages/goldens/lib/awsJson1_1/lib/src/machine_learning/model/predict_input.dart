@@ -13,13 +13,8 @@ part 'predict_input.g.dart';
 abstract class PredictInput
     with _i1.HttpInput<PredictInput>, _i2.AWSEquatable<PredictInput>
     implements Built<PredictInput, PredictInputBuilder> {
-  factory PredictInput(
-      {required String mlModelId,
-      required String predictEndpoint,
-      required _i3.BuiltMap<String, String> record}) {
-    return _$PredictInput._(
-        mlModelId: mlModelId, predictEndpoint: predictEndpoint, record: record);
-  }
+  factory PredictInput([void Function(PredictInputBuilder) updates]) =
+      _$PredictInput;
 
   const PredictInput._();
 

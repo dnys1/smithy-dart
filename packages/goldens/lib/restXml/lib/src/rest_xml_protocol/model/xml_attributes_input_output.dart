@@ -16,9 +16,9 @@ abstract class XmlAttributesInputOutput
         _i2.AWSEquatable<XmlAttributesInputOutput>
     implements
         Built<XmlAttributesInputOutput, XmlAttributesInputOutputBuilder> {
-  factory XmlAttributesInputOutput({String? attr, String? foo}) {
-    return _$XmlAttributesInputOutput._(attr: attr, foo: foo);
-  }
+  factory XmlAttributesInputOutput(
+          [void Function(XmlAttributesInputOutputBuilder) updates]) =
+      _$XmlAttributesInputOutput;
 
   const XmlAttributesInputOutput._();
 

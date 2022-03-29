@@ -20,25 +20,23 @@ abstract class HttpRequestWithFloatLabelsInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithFloatLabelsInputPayload> {
   factory HttpRequestWithFloatLabelsInput(
-      {required double double_, required double float}) {
-    return _$HttpRequestWithFloatLabelsInput._(double_: double_, float: float);
-  }
+          [void Function(HttpRequestWithFloatLabelsInputBuilder) updates]) =
+      _$HttpRequestWithFloatLabelsInput;
 
   const HttpRequestWithFloatLabelsInput._();
 
   factory HttpRequestWithFloatLabelsInput.fromRequest(
-      HttpRequestWithFloatLabelsInputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = HttpRequestWithFloatLabelsInputBuilder();
-    if (labels['float'] != null) {
-      builder.float = double.parse(labels['float']!);
-    }
-    if (labels['double_'] != null) {
-      builder.double_ = double.parse(labels['double_']!);
-    }
-    return builder.build();
-  }
+          HttpRequestWithFloatLabelsInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpRequestWithFloatLabelsInput((b) {
+        if (labels['float'] != null) {
+          b.float = double.parse(labels['float']!);
+        }
+        if (labels['double_'] != null) {
+          b.double_ = double.parse(labels['double_']!);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpRequestWithFloatLabelsInputRestJson1Serializer()

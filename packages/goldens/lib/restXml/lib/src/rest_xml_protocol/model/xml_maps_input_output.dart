@@ -16,9 +16,8 @@ abstract class XmlMapsInputOutput
     with _i1.HttpInput<XmlMapsInputOutput>, _i2.AWSEquatable<XmlMapsInputOutput>
     implements Built<XmlMapsInputOutput, XmlMapsInputOutputBuilder> {
   factory XmlMapsInputOutput(
-      {_i3.BuiltMap<String, _i4.GreetingStruct>? myMap}) {
-    return _$XmlMapsInputOutput._(myMap: myMap);
-  }
+          [void Function(XmlMapsInputOutputBuilder) updates]) =
+      _$XmlMapsInputOutput;
 
   const XmlMapsInputOutput._();
 

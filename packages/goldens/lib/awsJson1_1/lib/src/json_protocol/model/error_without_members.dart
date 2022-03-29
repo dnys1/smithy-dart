@@ -15,9 +15,9 @@ abstract class ErrorWithoutMembers
         Built<ErrorWithoutMembers, ErrorWithoutMembersBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory ErrorWithoutMembers() {
-    return _$ErrorWithoutMembers._();
-  }
+  factory ErrorWithoutMembers(
+          [void Function(ErrorWithoutMembersBuilder) updates]) =
+      _$ErrorWithoutMembers;
 
   const ErrorWithoutMembers._();
 

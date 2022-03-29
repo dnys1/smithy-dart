@@ -15,10 +15,8 @@ abstract class RequestTimeoutException
         Built<RequestTimeoutException, RequestTimeoutExceptionBuilder>,
         _i2.SmithyHttpException {
   factory RequestTimeoutException(
-      {String? code, String? message, String? type}) {
-    return _$RequestTimeoutException._(
-        code: code, message: message, type: type);
-  }
+          [void Function(RequestTimeoutExceptionBuilder) updates]) =
+      _$RequestTimeoutException;
 
   const RequestTimeoutException._();
 

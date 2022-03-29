@@ -16,9 +16,9 @@ abstract class HttpChecksumRequiredInputOutput
     implements
         Built<HttpChecksumRequiredInputOutput,
             HttpChecksumRequiredInputOutputBuilder> {
-  factory HttpChecksumRequiredInputOutput({String? foo}) {
-    return _$HttpChecksumRequiredInputOutput._(foo: foo);
-  }
+  factory HttpChecksumRequiredInputOutput(
+          [void Function(HttpChecksumRequiredInputOutputBuilder) updates]) =
+      _$HttpChecksumRequiredInputOutput;
 
   const HttpChecksumRequiredInputOutput._();
 

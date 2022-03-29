@@ -15,9 +15,8 @@ abstract class NoSuchBucket
         Built<NoSuchBucket, NoSuchBucketBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory NoSuchBucket() {
-    return _$NoSuchBucket._();
-  }
+  factory NoSuchBucket([void Function(NoSuchBucketBuilder) updates]) =
+      _$NoSuchBucket;
 
   const NoSuchBucket._();
 

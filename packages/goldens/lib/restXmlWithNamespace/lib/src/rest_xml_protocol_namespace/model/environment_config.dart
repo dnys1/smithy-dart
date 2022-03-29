@@ -6,8 +6,8 @@ import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml_with_namespace/src/rest_xml_protocol_namespace/model/retry_mode.dart'
-    as _i2;
-import 'package:smithy/smithy.dart' as _i3;
+    as _i3;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'environment_config.g.dart';
 
@@ -15,25 +15,12 @@ part 'environment_config.g.dart';
 abstract class EnvironmentConfig
     with _i1.AWSEquatable<EnvironmentConfig>
     implements Built<EnvironmentConfig, EnvironmentConfigBuilder> {
-  factory EnvironmentConfig(
-      {String? awsAccessKeyId,
-      String? awsDefaultRegion,
-      String? awsProfile,
-      _i2.RetryMode? awsRetryMode,
-      String? awsSecretAccessKey,
-      String? awsSessionToken}) {
-    return _$EnvironmentConfig._(
-        awsAccessKeyId: awsAccessKeyId,
-        awsDefaultRegion: awsDefaultRegion,
-        awsProfile: awsProfile,
-        awsRetryMode: awsRetryMode,
-        awsSecretAccessKey: awsSecretAccessKey,
-        awsSessionToken: awsSessionToken);
-  }
+  factory EnvironmentConfig([void Function(EnvironmentConfigBuilder) updates]) =
+      _$EnvironmentConfig;
 
   const EnvironmentConfig._();
 
-  static const List<_i3.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _EnvironmentConfigRestXmlSerializer()
   ];
 
@@ -42,7 +29,7 @@ abstract class EnvironmentConfig
   String? get awsProfile;
 
   /// Controls the strategy used for retries.
-  _i2.RetryMode? get awsRetryMode;
+  _i3.RetryMode? get awsRetryMode;
   String? get awsSecretAccessKey;
   String? get awsSessionToken;
   @override
@@ -68,14 +55,14 @@ abstract class EnvironmentConfig
 }
 
 class _EnvironmentConfigRestXmlSerializer
-    extends _i3.StructuredSmithySerializer<EnvironmentConfig> {
+    extends _i2.StructuredSmithySerializer<EnvironmentConfig> {
   const _EnvironmentConfigRestXmlSerializer() : super('EnvironmentConfig');
 
   @override
   Iterable<Type> get types => const [EnvironmentConfig, _$EnvironmentConfig];
   @override
-  Iterable<_i3.ShapeId> get supportedProtocols =>
-      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restXml')];
   @override
   EnvironmentConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -108,7 +95,7 @@ class _EnvironmentConfigRestXmlSerializer
         case 'AWS_RETRY_MODE':
           if (value != null) {
             result.awsRetryMode = (serializers.deserialize(value,
-                specifiedType: const FullType(_i2.RetryMode)) as _i2.RetryMode);
+                specifiedType: const FullType(_i3.RetryMode)) as _i3.RetryMode);
           }
           break;
         case 'AWS_SECRET_ACCESS_KEY':
@@ -134,42 +121,42 @@ class _EnvironmentConfigRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as EnvironmentConfig);
     final result = <Object?>[
-      _i3.XmlElementName(
-          'EnvironmentConfig', const _i3.XmlNamespace('https://example.com'))
+      _i2.XmlElementName(
+          'EnvironmentConfig', const _i2.XmlNamespace('https://example.com'))
     ];
     if (payload.awsAccessKeyId != null) {
       result
-        ..add(const _i3.XmlElementName('AWS_ACCESS_KEY_ID'))
+        ..add(const _i2.XmlElementName('AWS_ACCESS_KEY_ID'))
         ..add(serializers.serialize(payload.awsAccessKeyId!,
             specifiedType: const FullType(String)));
     }
     if (payload.awsDefaultRegion != null) {
       result
-        ..add(const _i3.XmlElementName('AWS_DEFAULT_REGION'))
+        ..add(const _i2.XmlElementName('AWS_DEFAULT_REGION'))
         ..add(serializers.serialize(payload.awsDefaultRegion!,
             specifiedType: const FullType(String)));
     }
     if (payload.awsProfile != null) {
       result
-        ..add(const _i3.XmlElementName('AWS_PROFILE'))
+        ..add(const _i2.XmlElementName('AWS_PROFILE'))
         ..add(serializers.serialize(payload.awsProfile!,
             specifiedType: const FullType(String)));
     }
     if (payload.awsRetryMode != null) {
       result
-        ..add(const _i3.XmlElementName('AWS_RETRY_MODE'))
+        ..add(const _i2.XmlElementName('AWS_RETRY_MODE'))
         ..add(serializers.serialize(payload.awsRetryMode!,
-            specifiedType: const FullType.nullable(_i2.RetryMode)));
+            specifiedType: const FullType.nullable(_i3.RetryMode)));
     }
     if (payload.awsSecretAccessKey != null) {
       result
-        ..add(const _i3.XmlElementName('AWS_SECRET_ACCESS_KEY'))
+        ..add(const _i2.XmlElementName('AWS_SECRET_ACCESS_KEY'))
         ..add(serializers.serialize(payload.awsSecretAccessKey!,
             specifiedType: const FullType(String)));
     }
     if (payload.awsSessionToken != null) {
       result
-        ..add(const _i3.XmlElementName('AWS_SESSION_TOKEN'))
+        ..add(const _i2.XmlElementName('AWS_SESSION_TOKEN'))
         ..add(serializers.serialize(payload.awsSessionToken!,
             specifiedType: const FullType(String)));
     }

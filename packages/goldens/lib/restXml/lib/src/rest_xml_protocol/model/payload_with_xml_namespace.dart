@@ -12,9 +12,9 @@ part 'payload_with_xml_namespace.g.dart';
 abstract class PayloadWithXmlNamespace
     with _i1.AWSEquatable<PayloadWithXmlNamespace>
     implements Built<PayloadWithXmlNamespace, PayloadWithXmlNamespaceBuilder> {
-  factory PayloadWithXmlNamespace({String? name}) {
-    return _$PayloadWithXmlNamespace._(name: name);
-  }
+  factory PayloadWithXmlNamespace(
+          [void Function(PayloadWithXmlNamespaceBuilder) updates]) =
+      _$PayloadWithXmlNamespace;
 
   const PayloadWithXmlNamespace._();
 

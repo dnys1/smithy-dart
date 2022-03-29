@@ -16,6 +16,7 @@ class CodegenConfig {
     this.packageName,
     required this.server,
     required this.client,
+    required this.useBuilders,
   });
 
   @CliOption(
@@ -55,6 +56,13 @@ class CodegenConfig {
     negatable: true,
   )
   final bool client;
+
+  @CliOption(
+    defaultsTo: false,
+    help: 'Whether to use builders for generated constructors.',
+    negatable: false,
+  )
+  final bool useBuilders;
 }
 
 extension ConfigOptions on CodegenConfig {

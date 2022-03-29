@@ -21,22 +21,20 @@ abstract class QueryParamsAsStringListMapInput
         _i1.EmptyPayload,
         _i1.HasPayload<QueryParamsAsStringListMapInputPayload> {
   factory QueryParamsAsStringListMapInput(
-      {_i3.BuiltListMultimap<String, String>? foo, String? qux}) {
-    return _$QueryParamsAsStringListMapInput._(foo: foo, qux: qux);
-  }
+          [void Function(QueryParamsAsStringListMapInputBuilder) updates]) =
+      _$QueryParamsAsStringListMapInput;
 
   const QueryParamsAsStringListMapInput._();
 
   factory QueryParamsAsStringListMapInput.fromRequest(
-      QueryParamsAsStringListMapInputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = QueryParamsAsStringListMapInputBuilder();
-    if (request.queryParameters['corge'] != null) {
-      builder.qux = request.queryParameters['corge']!;
-    }
-    return builder.build();
-  }
+          QueryParamsAsStringListMapInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      QueryParamsAsStringListMapInput((b) {
+        if (request.queryParameters['corge'] != null) {
+          b.qux = request.queryParameters['corge']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _QueryParamsAsStringListMapInputRestJson1Serializer()

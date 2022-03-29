@@ -18,11 +18,8 @@ abstract class NestedXmlMapsInputOutput
     implements
         Built<NestedXmlMapsInputOutput, NestedXmlMapsInputOutputBuilder> {
   factory NestedXmlMapsInputOutput(
-      {_i3.BuiltMap<String, _i3.BuiltMap<String, _i4.FooEnum>>? flatNestedMap,
-      _i3.BuiltMap<String, _i3.BuiltMap<String, _i4.FooEnum>>? nestedMap}) {
-    return _$NestedXmlMapsInputOutput._(
-        flatNestedMap: flatNestedMap, nestedMap: nestedMap);
-  }
+          [void Function(NestedXmlMapsInputOutputBuilder) updates]) =
+      _$NestedXmlMapsInputOutput;
 
   const NestedXmlMapsInputOutput._();
 

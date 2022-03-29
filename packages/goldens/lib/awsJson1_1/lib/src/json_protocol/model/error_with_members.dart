@@ -16,23 +16,8 @@ abstract class ErrorWithMembers
     implements
         Built<ErrorWithMembers, ErrorWithMembersBuilder>,
         _i2.SmithyHttpException {
-  factory ErrorWithMembers(
-      {String? code,
-      _i3.KitchenSink? complexData,
-      int? integerField,
-      _i4.BuiltList<String>? listField,
-      _i4.BuiltMap<String, String>? mapField,
-      String? message,
-      String? stringField}) {
-    return _$ErrorWithMembers._(
-        code: code,
-        complexData: complexData,
-        integerField: integerField,
-        listField: listField,
-        mapField: mapField,
-        message: message,
-        stringField: stringField);
-  }
+  factory ErrorWithMembers([void Function(ErrorWithMembersBuilder) updates]) =
+      _$ErrorWithMembers;
 
   const ErrorWithMembers._();
 

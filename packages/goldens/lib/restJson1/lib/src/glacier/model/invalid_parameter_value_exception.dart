@@ -17,10 +17,8 @@ abstract class InvalidParameterValueException
             InvalidParameterValueExceptionBuilder>,
         _i2.SmithyHttpException {
   factory InvalidParameterValueException(
-      {String? code, String? message, String? type}) {
-    return _$InvalidParameterValueException._(
-        code: code, message: message, type: type);
-  }
+          [void Function(InvalidParameterValueExceptionBuilder) updates]) =
+      _$InvalidParameterValueException;
 
   const InvalidParameterValueException._();
 

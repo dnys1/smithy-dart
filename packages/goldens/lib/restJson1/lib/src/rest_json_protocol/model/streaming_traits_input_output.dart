@@ -19,32 +19,29 @@ abstract class StreamingTraitsInputOutput
         Built<StreamingTraitsInputOutput, StreamingTraitsInputOutputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory StreamingTraitsInputOutput(
-      {_i2.Stream<List<int>>? blob, String? foo}) {
-    return _$StreamingTraitsInputOutput._(blob: blob, foo: foo);
-  }
+          [void Function(StreamingTraitsInputOutputBuilder) updates]) =
+      _$StreamingTraitsInputOutput;
 
   const StreamingTraitsInputOutput._();
 
   factory StreamingTraitsInputOutput.fromRequest(
-      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = StreamingTraitsInputOutputBuilder();
-    builder.blob = payload;
-    if (request.headers['X-Foo'] != null) {
-      builder.foo = request.headers['X-Foo']!;
-    }
-    return builder.build();
-  }
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      StreamingTraitsInputOutput((b) {
+        b.blob = payload;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
 
   factory StreamingTraitsInputOutput.fromResponse(
-      _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = StreamingTraitsInputOutputBuilder();
-    builder.blob = payload;
-    if (response.headers['X-Foo'] != null) {
-      builder.foo = response.headers['X-Foo']!;
-    }
-    return builder.build();
-  }
+          _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
+      StreamingTraitsInputOutput((b) {
+        b.blob = payload;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _StreamingTraitsInputOutputRestJson1Serializer()

@@ -18,36 +18,27 @@ abstract class MalformedFloatInput
         Built<MalformedFloatInput, MalformedFloatInputBuilder>,
         _i1.HasPayload<MalformedFloatInputPayload> {
   factory MalformedFloatInput(
-      {double? floatInBody,
-      double? floatInHeader,
-      required double floatInPath,
-      double? floatInQuery}) {
-    return _$MalformedFloatInput._(
-        floatInBody: floatInBody,
-        floatInHeader: floatInHeader,
-        floatInPath: floatInPath,
-        floatInQuery: floatInQuery);
-  }
+          [void Function(MalformedFloatInputBuilder) updates]) =
+      _$MalformedFloatInput;
 
   const MalformedFloatInput._();
 
   factory MalformedFloatInput.fromRequest(
-      MalformedFloatInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedFloatInputBuilder();
-    builder.floatInBody = payload.floatInBody;
-    if (request.headers['floatInHeader'] != null) {
-      builder.floatInHeader = double.parse(request.headers['floatInHeader']!);
-    }
-    if (request.queryParameters['floatInQuery'] != null) {
-      builder.floatInQuery =
-          double.parse(request.queryParameters['floatInQuery']!);
-    }
-    if (labels['floatInPath'] != null) {
-      builder.floatInPath = double.parse(labels['floatInPath']!);
-    }
-    return builder.build();
-  }
+          MalformedFloatInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedFloatInput((b) {
+        b.floatInBody = payload.floatInBody;
+        if (request.headers['floatInHeader'] != null) {
+          b.floatInHeader = double.parse(request.headers['floatInHeader']!);
+        }
+        if (request.queryParameters['floatInQuery'] != null) {
+          b.floatInQuery =
+              double.parse(request.queryParameters['floatInQuery']!);
+        }
+        if (labels['floatInPath'] != null) {
+          b.floatInPath = double.parse(labels['floatInPath']!);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedFloatInputRestJson1Serializer()

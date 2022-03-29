@@ -18,9 +18,8 @@ abstract class FlattenedXmlMapInputOutput
     implements
         Built<FlattenedXmlMapInputOutput, FlattenedXmlMapInputOutputBuilder> {
   factory FlattenedXmlMapInputOutput(
-      {_i3.BuiltMap<String, _i4.FooEnum>? myMap}) {
-    return _$FlattenedXmlMapInputOutput._(myMap: myMap);
-  }
+          [void Function(FlattenedXmlMapInputOutputBuilder) updates]) =
+      _$FlattenedXmlMapInputOutput;
 
   const FlattenedXmlMapInputOutput._();
 

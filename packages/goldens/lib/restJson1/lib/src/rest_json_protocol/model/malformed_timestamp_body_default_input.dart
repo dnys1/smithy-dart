@@ -16,9 +16,9 @@ abstract class MalformedTimestampBodyDefaultInput
     implements
         Built<MalformedTimestampBodyDefaultInput,
             MalformedTimestampBodyDefaultInputBuilder> {
-  factory MalformedTimestampBodyDefaultInput({required DateTime timestamp}) {
-    return _$MalformedTimestampBodyDefaultInput._(timestamp: timestamp);
-  }
+  factory MalformedTimestampBodyDefaultInput(
+          [void Function(MalformedTimestampBodyDefaultInputBuilder) updates]) =
+      _$MalformedTimestampBodyDefaultInput;
 
   const MalformedTimestampBodyDefaultInput._();
 

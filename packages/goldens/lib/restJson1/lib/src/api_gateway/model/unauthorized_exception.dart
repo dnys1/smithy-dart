@@ -14,9 +14,9 @@ abstract class UnauthorizedException
     implements
         Built<UnauthorizedException, UnauthorizedExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory UnauthorizedException({String? message}) {
-    return _$UnauthorizedException._(message: message);
-  }
+  factory UnauthorizedException(
+          [void Function(UnauthorizedExceptionBuilder) updates]) =
+      _$UnauthorizedException;
 
   const UnauthorizedException._();
 

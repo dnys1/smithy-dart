@@ -16,9 +16,9 @@ abstract class OperationWithOptionalInputOutputInput
     implements
         Built<OperationWithOptionalInputOutputInput,
             OperationWithOptionalInputOutputInputBuilder> {
-  factory OperationWithOptionalInputOutputInput({String? value}) {
-    return _$OperationWithOptionalInputOutputInput._(value: value);
-  }
+  factory OperationWithOptionalInputOutputInput(
+      [void Function(OperationWithOptionalInputOutputInputBuilder)
+          updates]) = _$OperationWithOptionalInputOutputInput;
 
   const OperationWithOptionalInputOutputInput._();
 

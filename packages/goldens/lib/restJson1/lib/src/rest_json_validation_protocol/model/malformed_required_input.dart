@@ -18,30 +18,23 @@ abstract class MalformedRequiredInput
         Built<MalformedRequiredInput, MalformedRequiredInputBuilder>,
         _i1.HasPayload<MalformedRequiredInputPayload> {
   factory MalformedRequiredInput(
-      {required String string,
-      required String stringInHeader,
-      required String stringInQuery}) {
-    return _$MalformedRequiredInput._(
-        string: string,
-        stringInHeader: stringInHeader,
-        stringInQuery: stringInQuery);
-  }
+          [void Function(MalformedRequiredInputBuilder) updates]) =
+      _$MalformedRequiredInput;
 
   const MalformedRequiredInput._();
 
   factory MalformedRequiredInput.fromRequest(
-      MalformedRequiredInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedRequiredInputBuilder();
-    builder.string = payload.string;
-    if (request.headers['string-in-headers'] != null) {
-      builder.stringInHeader = request.headers['string-in-headers']!;
-    }
-    if (request.queryParameters['stringInQuery'] != null) {
-      builder.stringInQuery = request.queryParameters['stringInQuery']!;
-    }
-    return builder.build();
-  }
+          MalformedRequiredInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedRequiredInput((b) {
+        b.string = payload.string;
+        if (request.headers['string-in-headers'] != null) {
+          b.stringInHeader = request.headers['string-in-headers']!;
+        }
+        if (request.queryParameters['stringInQuery'] != null) {
+          b.stringInQuery = request.queryParameters['stringInQuery']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedRequiredInputRestJson1Serializer()

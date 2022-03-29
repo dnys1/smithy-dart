@@ -19,32 +19,29 @@ abstract class TestPayloadBlobInputOutput
         Built<TestPayloadBlobInputOutput, TestPayloadBlobInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory TestPayloadBlobInputOutput(
-      {String? contentType, _i2.Uint8List? data}) {
-    return _$TestPayloadBlobInputOutput._(contentType: contentType, data: data);
-  }
+          [void Function(TestPayloadBlobInputOutputBuilder) updates]) =
+      _$TestPayloadBlobInputOutput;
 
   const TestPayloadBlobInputOutput._();
 
   factory TestPayloadBlobInputOutput.fromRequest(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = TestPayloadBlobInputOutputBuilder();
-    builder.data = payload;
-    if (request.headers['Content-Type'] != null) {
-      builder.contentType = request.headers['Content-Type']!;
-    }
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      TestPayloadBlobInputOutput((b) {
+        b.data = payload;
+        if (request.headers['Content-Type'] != null) {
+          b.contentType = request.headers['Content-Type']!;
+        }
+      });
 
   factory TestPayloadBlobInputOutput.fromResponse(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = TestPayloadBlobInputOutputBuilder();
-    builder.data = payload;
-    if (response.headers['Content-Type'] != null) {
-      builder.contentType = response.headers['Content-Type']!;
-    }
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
+      TestPayloadBlobInputOutput((b) {
+        b.data = payload;
+        if (response.headers['Content-Type'] != null) {
+          b.contentType = response.headers['Content-Type']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _TestPayloadBlobInputOutputRestJson1Serializer()

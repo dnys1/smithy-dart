@@ -15,9 +15,9 @@ abstract class IgnoreQueryParamsInResponseOutput
     implements
         Built<IgnoreQueryParamsInResponseOutput,
             IgnoreQueryParamsInResponseOutputBuilder> {
-  factory IgnoreQueryParamsInResponseOutput({String? baz}) {
-    return _$IgnoreQueryParamsInResponseOutput._(baz: baz);
-  }
+  factory IgnoreQueryParamsInResponseOutput(
+          [void Function(IgnoreQueryParamsInResponseOutputBuilder) updates]) =
+      _$IgnoreQueryParamsInResponseOutput;
 
   const IgnoreQueryParamsInResponseOutput._();
 

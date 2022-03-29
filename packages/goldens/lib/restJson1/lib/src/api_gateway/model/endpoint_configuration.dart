@@ -3,11 +3,11 @@
 library rest_json1.api_gateway.model.endpoint_configuration;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:built_collection/built_collection.dart' as _i2;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1/src/api_gateway/model/endpoint_type.dart' as _i3;
-import 'package:smithy/smithy.dart' as _i4;
+import 'package:rest_json1/src/api_gateway/model/endpoint_type.dart' as _i4;
+import 'package:smithy/smithy.dart' as _i2;
 
 part 'endpoint_configuration.g.dart';
 
@@ -15,20 +15,17 @@ abstract class EndpointConfiguration
     with _i1.AWSEquatable<EndpointConfiguration>
     implements Built<EndpointConfiguration, EndpointConfigurationBuilder> {
   factory EndpointConfiguration(
-      {_i2.BuiltList<_i3.EndpointType>? types,
-      _i2.BuiltList<String>? vpcEndpointIds}) {
-    return _$EndpointConfiguration._(
-        types: types, vpcEndpointIds: vpcEndpointIds);
-  }
+          [void Function(EndpointConfigurationBuilder) updates]) =
+      _$EndpointConfiguration;
 
   const EndpointConfiguration._();
 
-  static const List<_i4.SmithySerializer> serializers = [
+  static const List<_i2.SmithySerializer> serializers = [
     _EndpointConfigurationRestJson1Serializer()
   ];
 
-  _i2.BuiltList<_i3.EndpointType>? get types;
-  _i2.BuiltList<String>? get vpcEndpointIds;
+  _i3.BuiltList<_i4.EndpointType>? get types;
+  _i3.BuiltList<String>? get vpcEndpointIds;
   @override
   List<Object?> get props => [types, vpcEndpointIds];
   @override
@@ -41,7 +38,7 @@ abstract class EndpointConfiguration
 }
 
 class _EndpointConfigurationRestJson1Serializer
-    extends _i4.StructuredSmithySerializer<EndpointConfiguration> {
+    extends _i2.StructuredSmithySerializer<EndpointConfiguration> {
   const _EndpointConfigurationRestJson1Serializer()
       : super('EndpointConfiguration');
 
@@ -49,8 +46,8 @@ class _EndpointConfigurationRestJson1Serializer
   Iterable<Type> get types =>
       const [EndpointConfiguration, _$EndpointConfiguration];
   @override
-  Iterable<_i4.ShapeId> get supportedProtocols =>
-      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i2.ShapeId> get supportedProtocols =>
+      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   EndpointConfiguration deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -66,16 +63,16 @@ class _EndpointConfigurationRestJson1Serializer
           if (value != null) {
             result.types.replace((serializers.deserialize(value,
                     specifiedType: const FullType(
-                        _i2.BuiltList, [FullType(_i3.EndpointType)]))
-                as _i2.BuiltList<_i3.EndpointType>));
+                        _i3.BuiltList, [FullType(_i4.EndpointType)]))
+                as _i3.BuiltList<_i4.EndpointType>));
           }
           break;
         case 'vpcEndpointIds':
           if (value != null) {
             result.vpcEndpointIds.replace((serializers.deserialize(value,
                     specifiedType:
-                        const FullType(_i2.BuiltList, [FullType(String)]))
-                as _i2.BuiltList<String>));
+                        const FullType(_i3.BuiltList, [FullType(String)]))
+                as _i3.BuiltList<String>));
           }
           break;
       }
@@ -94,13 +91,13 @@ class _EndpointConfigurationRestJson1Serializer
         ..add('types')
         ..add(serializers.serialize(payload.types!,
             specifiedType:
-                const FullType(_i2.BuiltList, [FullType(_i3.EndpointType)])));
+                const FullType(_i3.BuiltList, [FullType(_i4.EndpointType)])));
     }
     if (payload.vpcEndpointIds != null) {
       result
         ..add('vpcEndpointIds')
         ..add(serializers.serialize(payload.vpcEndpointIds!,
-            specifiedType: const FullType(_i2.BuiltList, [FullType(String)])));
+            specifiedType: const FullType(_i3.BuiltList, [FullType(String)])));
     }
     return result;
   }

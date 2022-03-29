@@ -19,32 +19,30 @@ abstract class HttpPayloadTraitsInputOutput
         Built<HttpPayloadTraitsInputOutput,
             HttpPayloadTraitsInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
-  factory HttpPayloadTraitsInputOutput({_i2.Uint8List? blob, String? foo}) {
-    return _$HttpPayloadTraitsInputOutput._(blob: blob, foo: foo);
-  }
+  factory HttpPayloadTraitsInputOutput(
+          [void Function(HttpPayloadTraitsInputOutputBuilder) updates]) =
+      _$HttpPayloadTraitsInputOutput;
 
   const HttpPayloadTraitsInputOutput._();
 
   factory HttpPayloadTraitsInputOutput.fromRequest(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = HttpPayloadTraitsInputOutputBuilder();
-    builder.blob = payload;
-    if (request.headers['X-Foo'] != null) {
-      builder.foo = request.headers['X-Foo']!;
-    }
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      HttpPayloadTraitsInputOutput((b) {
+        b.blob = payload;
+        if (request.headers['X-Foo'] != null) {
+          b.foo = request.headers['X-Foo']!;
+        }
+      });
 
   factory HttpPayloadTraitsInputOutput.fromResponse(
-      _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) {
-    final builder = HttpPayloadTraitsInputOutputBuilder();
-    builder.blob = payload;
-    if (response.headers['X-Foo'] != null) {
-      builder.foo = response.headers['X-Foo']!;
-    }
-    return builder.build();
-  }
+          _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
+      HttpPayloadTraitsInputOutput((b) {
+        b.blob = payload;
+        if (response.headers['X-Foo'] != null) {
+          b.foo = response.headers['X-Foo']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _HttpPayloadTraitsInputOutputRestJson1Serializer()

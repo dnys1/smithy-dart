@@ -16,9 +16,9 @@ abstract class XmlUnionsInputOutput
         _i1.HttpInput<XmlUnionsInputOutput>,
         _i2.AWSEquatable<XmlUnionsInputOutput>
     implements Built<XmlUnionsInputOutput, XmlUnionsInputOutputBuilder> {
-  factory XmlUnionsInputOutput({_i3.XmlUnionShape? unionValue}) {
-    return _$XmlUnionsInputOutput._(unionValue: unionValue);
-  }
+  factory XmlUnionsInputOutput(
+          [void Function(XmlUnionsInputOutputBuilder) updates]) =
+      _$XmlUnionsInputOutput;
 
   const XmlUnionsInputOutput._();
 

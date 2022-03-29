@@ -8,7 +8,7 @@ part of aws_json1_1.machine_learning.model.operation_config;
 
 class _$OperationConfig extends OperationConfig {
   @override
-  final _i2.S3Config? s3;
+  final _i3.S3Config? s3;
 
   factory _$OperationConfig([void Function(OperationConfigBuilder)? updates]) =>
       (new OperationConfigBuilder()..update(updates)).build();
@@ -39,9 +39,9 @@ class OperationConfigBuilder
     implements Builder<OperationConfig, OperationConfigBuilder> {
   _$OperationConfig? _$v;
 
-  _i2.S3ConfigBuilder? _s3;
-  _i2.S3ConfigBuilder get s3 => _$this._s3 ??= new _i2.S3ConfigBuilder();
-  set s3(_i2.S3ConfigBuilder? s3) => _$this._s3 = s3;
+  _i3.S3ConfigBuilder? _s3;
+  _i3.S3ConfigBuilder get s3 => _$this._s3 ??= new _i3.S3ConfigBuilder();
+  set s3(_i3.S3ConfigBuilder? s3) => _$this._s3 = s3;
 
   OperationConfigBuilder();
 

@@ -5,9 +5,8 @@ library rest_json1.rest_json_protocol.model.query_idempotency_token_auto_fill_in
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:uuid/uuid.dart' as _i3;
 
 part 'query_idempotency_token_auto_fill_input.g.dart';
 
@@ -20,27 +19,21 @@ abstract class QueryIdempotencyTokenAutoFillInput
             QueryIdempotencyTokenAutoFillInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<QueryIdempotencyTokenAutoFillInputPayload> {
-  factory QueryIdempotencyTokenAutoFillInput({String? token}) {
-    if (const bool.hasEnvironment('SMITHY_TEST')) {
-      token ??= '00000000-0000-4000-8000-000000000000';
-    } else {
-      token ??= const _i3.Uuid().v4();
-    }
-    return _$QueryIdempotencyTokenAutoFillInput._(token: token);
-  }
+  factory QueryIdempotencyTokenAutoFillInput(
+          [void Function(QueryIdempotencyTokenAutoFillInputBuilder) updates]) =
+      _$QueryIdempotencyTokenAutoFillInput;
 
   const QueryIdempotencyTokenAutoFillInput._();
 
   factory QueryIdempotencyTokenAutoFillInput.fromRequest(
-      QueryIdempotencyTokenAutoFillInputPayload payload,
-      _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = QueryIdempotencyTokenAutoFillInputBuilder();
-    if (request.queryParameters['token'] != null) {
-      builder.token = request.queryParameters['token']!;
-    }
-    return builder.build();
-  }
+          QueryIdempotencyTokenAutoFillInputPayload payload,
+          _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      QueryIdempotencyTokenAutoFillInput((b) {
+        if (request.queryParameters['token'] != null) {
+          b.token = request.queryParameters['token']!;
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _QueryIdempotencyTokenAutoFillInputRestJson1Serializer()
@@ -61,7 +54,7 @@ abstract class QueryIdempotencyTokenAutoFillInput
   }
 }
 
-@_i4.internal
+@_i3.internal
 abstract class QueryIdempotencyTokenAutoFillInputPayload
     with
         _i2.AWSEquatable<QueryIdempotencyTokenAutoFillInputPayload>

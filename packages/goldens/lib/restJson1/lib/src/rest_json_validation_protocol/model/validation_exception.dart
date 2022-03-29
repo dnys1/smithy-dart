@@ -21,10 +21,8 @@ abstract class ValidationException
         Built<ValidationException, ValidationExceptionBuilder>,
         _i2.SmithyHttpException {
   factory ValidationException(
-      {_i3.BuiltList<_i4.ValidationExceptionField>? fieldList,
-      required String message}) {
-    return _$ValidationException._(fieldList: fieldList, message: message);
-  }
+          [void Function(ValidationExceptionBuilder) updates]) =
+      _$ValidationException;
 
   const ValidationException._();
 

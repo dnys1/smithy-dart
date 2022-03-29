@@ -18,35 +18,26 @@ abstract class MalformedByteInput
         Built<MalformedByteInput, MalformedByteInputBuilder>,
         _i1.HasPayload<MalformedByteInputPayload> {
   factory MalformedByteInput(
-      {int? byteInBody,
-      int? byteInHeader,
-      required int byteInPath,
-      int? byteInQuery}) {
-    return _$MalformedByteInput._(
-        byteInBody: byteInBody,
-        byteInHeader: byteInHeader,
-        byteInPath: byteInPath,
-        byteInQuery: byteInQuery);
-  }
+          [void Function(MalformedByteInputBuilder) updates]) =
+      _$MalformedByteInput;
 
   const MalformedByteInput._();
 
   factory MalformedByteInput.fromRequest(
-      MalformedByteInputPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = MalformedByteInputBuilder();
-    builder.byteInBody = payload.byteInBody;
-    if (request.headers['byteInHeader'] != null) {
-      builder.byteInHeader = int.parse(request.headers['byteInHeader']!);
-    }
-    if (request.queryParameters['byteInQuery'] != null) {
-      builder.byteInQuery = int.parse(request.queryParameters['byteInQuery']!);
-    }
-    if (labels['byteInPath'] != null) {
-      builder.byteInPath = int.parse(labels['byteInPath']!);
-    }
-    return builder.build();
-  }
+          MalformedByteInputPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      MalformedByteInput((b) {
+        b.byteInBody = payload.byteInBody;
+        if (request.headers['byteInHeader'] != null) {
+          b.byteInHeader = int.parse(request.headers['byteInHeader']!);
+        }
+        if (request.queryParameters['byteInQuery'] != null) {
+          b.byteInQuery = int.parse(request.queryParameters['byteInQuery']!);
+        }
+        if (labels['byteInPath'] != null) {
+          b.byteInPath = int.parse(labels['byteInPath']!);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _MalformedByteInputRestJson1Serializer()

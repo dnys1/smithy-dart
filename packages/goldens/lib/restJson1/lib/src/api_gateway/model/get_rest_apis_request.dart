@@ -18,24 +18,23 @@ abstract class GetRestApisRequest
         Built<GetRestApisRequest, GetRestApisRequestBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<GetRestApisRequestPayload> {
-  factory GetRestApisRequest({int? limit, String? position}) {
-    return _$GetRestApisRequest._(limit: limit, position: position);
-  }
+  factory GetRestApisRequest(
+          [void Function(GetRestApisRequestBuilder) updates]) =
+      _$GetRestApisRequest;
 
   const GetRestApisRequest._();
 
   factory GetRestApisRequest.fromRequest(
-      GetRestApisRequestPayload payload, _i2.AWSBaseHttpRequest request,
-      {Map<String, String> labels = const {}}) {
-    final builder = GetRestApisRequestBuilder();
-    if (request.queryParameters['position'] != null) {
-      builder.position = request.queryParameters['position']!;
-    }
-    if (request.queryParameters['limit'] != null) {
-      builder.limit = int.parse(request.queryParameters['limit']!);
-    }
-    return builder.build();
-  }
+          GetRestApisRequestPayload payload, _i2.AWSBaseHttpRequest request,
+          {Map<String, String> labels = const {}}) =>
+      GetRestApisRequest((b) {
+        if (request.queryParameters['position'] != null) {
+          b.position = request.queryParameters['position']!;
+        }
+        if (request.queryParameters['limit'] != null) {
+          b.limit = int.parse(request.queryParameters['limit']!);
+        }
+      });
 
   static const List<_i1.SmithySerializer> serializers = [
     _GetRestApisRequestRestJson1Serializer()

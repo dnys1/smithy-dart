@@ -14,11 +14,11 @@ class _$S3Object extends S3Object {
   @override
   final DateTime? lastModified;
   @override
-  final _i2.Owner? owner;
+  final _i3.Owner? owner;
   @override
   final int? size;
   @override
-  final _i3.ObjectStorageClass? storageClass;
+  final _i4.ObjectStorageClass? storageClass;
 
   factory _$S3Object([void Function(S3ObjectBuilder)? updates]) =>
       (new S3ObjectBuilder()..update(updates)).build();
@@ -80,17 +80,17 @@ class S3ObjectBuilder implements Builder<S3Object, S3ObjectBuilder> {
   set lastModified(DateTime? lastModified) =>
       _$this._lastModified = lastModified;
 
-  _i2.OwnerBuilder? _owner;
-  _i2.OwnerBuilder get owner => _$this._owner ??= new _i2.OwnerBuilder();
-  set owner(_i2.OwnerBuilder? owner) => _$this._owner = owner;
+  _i3.OwnerBuilder? _owner;
+  _i3.OwnerBuilder get owner => _$this._owner ??= new _i3.OwnerBuilder();
+  set owner(_i3.OwnerBuilder? owner) => _$this._owner = owner;
 
   int? _size;
   int? get size => _$this._size;
   set size(int? size) => _$this._size = size;
 
-  _i3.ObjectStorageClass? _storageClass;
-  _i3.ObjectStorageClass? get storageClass => _$this._storageClass;
-  set storageClass(_i3.ObjectStorageClass? storageClass) =>
+  _i4.ObjectStorageClass? _storageClass;
+  _i4.ObjectStorageClass? get storageClass => _$this._storageClass;
+  set storageClass(_i4.ObjectStorageClass? storageClass) =>
       _$this._storageClass = storageClass;
 
   S3ObjectBuilder();

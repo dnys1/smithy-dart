@@ -12,9 +12,8 @@ part 'payload_config.g.dart';
 abstract class PayloadConfig
     with _i1.AWSEquatable<PayloadConfig>
     implements Built<PayloadConfig, PayloadConfigBuilder> {
-  factory PayloadConfig({int? data}) {
-    return _$PayloadConfig._(data: data);
-  }
+  factory PayloadConfig([void Function(PayloadConfigBuilder) updates]) =
+      _$PayloadConfig;
 
   const PayloadConfig._();
 

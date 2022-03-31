@@ -33,6 +33,8 @@ abstract class ErrorWithMembers
     _ErrorWithMembersAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ErrorWithMembersBuilder b) {}
   String? get code;
   _i3.KitchenSink? get complexData;
   int? get integerField;

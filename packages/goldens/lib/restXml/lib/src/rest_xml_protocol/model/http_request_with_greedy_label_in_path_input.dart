@@ -42,6 +42,8 @@ abstract class HttpRequestWithGreedyLabelInPathInput
     _HttpRequestWithGreedyLabelInPathInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithGreedyLabelInPathInputBuilder b) {}
   String get baz;
   String get foo;
   @override

@@ -44,6 +44,8 @@ abstract class MalformedDoubleInput
     _MalformedDoubleInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedDoubleInputBuilder b) {}
   double? get doubleInBody;
   double? get doubleInHeader;
   double get doubleInPath;

@@ -53,7 +53,9 @@ class EndpointWithHostLabelOperationInputBuilder
   String? get label => _$this._label;
   set label(String? label) => _$this._label = label;
 
-  EndpointWithHostLabelOperationInputBuilder();
+  EndpointWithHostLabelOperationInputBuilder() {
+    EndpointWithHostLabelOperationInput._init(this);
+  }
 
   EndpointWithHostLabelOperationInputBuilder get _$this {
     final $v = _$v;

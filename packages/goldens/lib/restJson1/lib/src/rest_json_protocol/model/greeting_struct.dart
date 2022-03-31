@@ -31,6 +31,8 @@ abstract class GreetingStruct
     _GreetingStructRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GreetingStructBuilder b) {}
   String? get hi;
   @override
   GreetingStruct getPayload() => this;

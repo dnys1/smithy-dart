@@ -36,6 +36,8 @@ abstract class NullOperationInputOutput
     _NullOperationInputOutputAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NullOperationInputOutputBuilder b) {}
   _i3.BuiltList<String?>? get sparseStringList;
   _i3.BuiltMap<String, String?>? get sparseStringMap;
   String? get string;

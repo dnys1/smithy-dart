@@ -45,7 +45,9 @@ class MalformedUnionInputBuilder
   _i3.SimpleUnion? get union => _$this._union;
   set union(_i3.SimpleUnion? union) => _$this._union = union;
 
-  MalformedUnionInputBuilder();
+  MalformedUnionInputBuilder() {
+    MalformedUnionInput._init(this);
+  }
 
   MalformedUnionInputBuilder get _$this {
     final $v = _$v;

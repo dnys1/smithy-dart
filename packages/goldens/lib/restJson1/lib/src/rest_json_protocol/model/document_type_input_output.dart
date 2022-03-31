@@ -35,6 +35,8 @@ abstract class DocumentTypeInputOutput
     _DocumentTypeInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(DocumentTypeInputOutputBuilder b) {}
   _i3.JsonObject? get documentValue;
   String? get stringValue;
   @override

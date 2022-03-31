@@ -35,6 +35,8 @@ abstract class XmlTimestampsInputOutput
     _XmlTimestampsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlTimestampsInputOutputBuilder b) {}
   DateTime? get dateTime;
   DateTime? get epochSeconds;
   DateTime? get httpDate;

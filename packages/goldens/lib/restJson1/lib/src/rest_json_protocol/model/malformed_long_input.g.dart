@@ -79,7 +79,9 @@ class MalformedLongInputBuilder
   _i3.Int64? get longInQuery => _$this._longInQuery;
   set longInQuery(_i3.Int64? longInQuery) => _$this._longInQuery = longInQuery;
 
-  MalformedLongInputBuilder();
+  MalformedLongInputBuilder() {
+    MalformedLongInput._init(this);
+  }
 
   MalformedLongInputBuilder get _$this {
     final $v = _$v;

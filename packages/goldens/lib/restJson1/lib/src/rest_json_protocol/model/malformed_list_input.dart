@@ -28,6 +28,8 @@ abstract class MalformedListInput
     _MalformedListInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedListInputBuilder b) {}
   _i3.BuiltList<String>? get bodyList;
   @override
   MalformedListInput getPayload() => this;

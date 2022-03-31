@@ -50,6 +50,8 @@ abstract class UploadMultipartPartInput
     _UploadMultipartPartInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(UploadMultipartPartInputBuilder b) {}
   String get accountId;
   _i2.Stream<List<int>>? get body;
   String? get checksum;

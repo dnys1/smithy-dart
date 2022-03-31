@@ -97,7 +97,9 @@ class MalformedLengthOverrideInputBuilder
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  MalformedLengthOverrideInputBuilder();
+  MalformedLengthOverrideInputBuilder() {
+    MalformedLengthOverrideInput._init(this);
+  }
 
   MalformedLengthOverrideInputBuilder get _$this {
     final $v = _$v;

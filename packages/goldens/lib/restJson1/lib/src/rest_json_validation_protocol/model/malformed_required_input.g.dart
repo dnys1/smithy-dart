@@ -74,7 +74,9 @@ class MalformedRequiredInputBuilder
   set stringInQuery(String? stringInQuery) =>
       _$this._stringInQuery = stringInQuery;
 
-  MalformedRequiredInputBuilder();
+  MalformedRequiredInputBuilder() {
+    MalformedRequiredInput._init(this);
+  }
 
   MalformedRequiredInputBuilder get _$this {
     final $v = _$v;

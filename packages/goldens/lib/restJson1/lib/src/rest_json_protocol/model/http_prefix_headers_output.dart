@@ -41,6 +41,8 @@ abstract class HttpPrefixHeadersOutput
     _HttpPrefixHeadersOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPrefixHeadersOutputBuilder b) {}
   String? get foo;
   _i3.BuiltMap<String, String>? get fooMap;
   @override

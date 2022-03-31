@@ -51,7 +51,9 @@ class StructureListMemberBuilder
   String? get b => _$this._b;
   set b(String? b) => _$this._b = b;
 
-  StructureListMemberBuilder();
+  StructureListMemberBuilder() {
+    StructureListMember._init(this);
+  }
 
   StructureListMemberBuilder get _$this {
     final $v = _$v;

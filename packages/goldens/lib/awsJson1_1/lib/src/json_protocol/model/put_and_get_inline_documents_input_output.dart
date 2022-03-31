@@ -39,6 +39,8 @@ abstract class PutAndGetInlineDocumentsInputOutput
     _PutAndGetInlineDocumentsInputOutputAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(PutAndGetInlineDocumentsInputOutputBuilder b) {}
   _i3.JsonObject? get inlineDocument;
   @override
   PutAndGetInlineDocumentsInputOutput getPayload() => this;

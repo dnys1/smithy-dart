@@ -35,6 +35,8 @@ abstract class XmlMapsInputOutput
     _XmlMapsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlMapsInputOutputBuilder b) {}
   _i3.BuiltMap<String, _i4.GreetingStruct>? get myMap;
   @override
   XmlMapsInputOutput getPayload() => this;

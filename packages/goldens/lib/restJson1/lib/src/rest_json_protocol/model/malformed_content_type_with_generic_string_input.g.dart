@@ -52,7 +52,9 @@ class MalformedContentTypeWithGenericStringInputBuilder
   String? get payload => _$this._payload;
   set payload(String? payload) => _$this._payload = payload;
 
-  MalformedContentTypeWithGenericStringInputBuilder();
+  MalformedContentTypeWithGenericStringInputBuilder() {
+    MalformedContentTypeWithGenericStringInput._init(this);
+  }
 
   MalformedContentTypeWithGenericStringInputBuilder get _$this {
     final $v = _$v;

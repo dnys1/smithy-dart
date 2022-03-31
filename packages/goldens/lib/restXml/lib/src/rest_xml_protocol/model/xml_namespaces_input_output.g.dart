@@ -47,7 +47,9 @@ class XmlNamespacesInputOutputBuilder
       _$this._nested ??= new _i3.XmlNamespaceNestedBuilder();
   set nested(_i3.XmlNamespaceNestedBuilder? nested) => _$this._nested = nested;
 
-  XmlNamespacesInputOutputBuilder();
+  XmlNamespacesInputOutputBuilder() {
+    XmlNamespacesInputOutput._init(this);
+  }
 
   XmlNamespacesInputOutputBuilder get _$this {
     final $v = _$v;

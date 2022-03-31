@@ -21,6 +21,9 @@ abstract class AwsConfig
     _AwsConfigRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(AwsConfigBuilder b) {}
+
   /// This is the time that should be set during the course of the test.
   /// This is important for things like signing where the clock time impacts
   /// the result.

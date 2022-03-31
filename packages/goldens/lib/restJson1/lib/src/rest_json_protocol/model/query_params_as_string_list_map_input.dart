@@ -40,6 +40,8 @@ abstract class QueryParamsAsStringListMapInput
     _QueryParamsAsStringListMapInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(QueryParamsAsStringListMapInputBuilder b) {}
   _i3.BuiltListMultimap<String, String>? get foo;
   String? get qux;
   @override

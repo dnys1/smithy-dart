@@ -44,6 +44,8 @@ abstract class MalformedBooleanInput
     _MalformedBooleanInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedBooleanInputBuilder b) {}
   bool? get booleanInBody;
   bool? get booleanInHeader;
   bool get booleanInPath;

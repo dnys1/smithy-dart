@@ -43,6 +43,8 @@ abstract class ComplexError
     _ComplexErrorRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ComplexErrorBuilder b) {}
   String? get header;
   _i3.ComplexNestedErrorData? get nested;
   String? get topLevel;

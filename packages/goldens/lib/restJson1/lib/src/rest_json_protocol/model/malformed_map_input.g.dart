@@ -46,7 +46,9 @@ class MalformedMapInputBuilder
   set bodyMap(_i3.MapBuilder<String, String>? bodyMap) =>
       _$this._bodyMap = bodyMap;
 
-  MalformedMapInputBuilder();
+  MalformedMapInputBuilder() {
+    MalformedMapInput._init(this);
+  }
 
   MalformedMapInputBuilder get _$this {
     final $v = _$v;

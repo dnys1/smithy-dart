@@ -60,7 +60,9 @@ class StreamingTraitsRequireLengthInputOutputBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  StreamingTraitsRequireLengthInputOutputBuilder();
+  StreamingTraitsRequireLengthInputOutputBuilder() {
+    StreamingTraitsRequireLengthInputOutput._init(this);
+  }
 
   StreamingTraitsRequireLengthInputOutputBuilder get _$this {
     final $v = _$v;

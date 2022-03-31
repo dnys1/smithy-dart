@@ -31,6 +31,8 @@ abstract class InternalServerException
     _InternalServerExceptionAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(InternalServerExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

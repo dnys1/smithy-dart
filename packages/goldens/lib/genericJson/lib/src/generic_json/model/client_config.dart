@@ -25,6 +25,8 @@ abstract class ClientConfig
     _ClientConfigSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ClientConfigBuilder b) {}
   String? get awsAccessKeyId;
   String? get awsProfile;
   String? get awsSecretAccessKey;

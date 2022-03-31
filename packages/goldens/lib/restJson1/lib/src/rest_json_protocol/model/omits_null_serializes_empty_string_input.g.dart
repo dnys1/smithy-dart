@@ -59,7 +59,9 @@ class OmitsNullSerializesEmptyStringInputBuilder
   String? get nullValue => _$this._nullValue;
   set nullValue(String? nullValue) => _$this._nullValue = nullValue;
 
-  OmitsNullSerializesEmptyStringInputBuilder();
+  OmitsNullSerializesEmptyStringInputBuilder() {
+    OmitsNullSerializesEmptyStringInput._init(this);
+  }
 
   OmitsNullSerializesEmptyStringInputBuilder get _$this {
     final $v = _$v;

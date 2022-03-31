@@ -29,6 +29,8 @@ abstract class NoInputAndOutputOutput
     _NoInputAndOutputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NoInputAndOutputOutputBuilder b) {}
   @override
   List<Object?> get props => [];
   @override

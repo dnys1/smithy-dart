@@ -25,6 +25,8 @@ abstract class RetryConfig
     _RetryConfigRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RetryConfigBuilder b) {}
   int? get maxAttempts;
 
   /// Controls the strategy used for retries.

@@ -31,6 +31,8 @@ abstract class IgnoreQueryParamsInResponseOutput
     _IgnoreQueryParamsInResponseOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(IgnoreQueryParamsInResponseOutputBuilder b) {}
   String? get baz;
   @override
   List<Object?> get props => [baz];

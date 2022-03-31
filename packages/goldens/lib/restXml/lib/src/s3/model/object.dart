@@ -22,6 +22,8 @@ abstract class S3Object
     _ObjectRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(S3ObjectBuilder b) {}
   String? get eTag;
   String? get key;
   DateTime? get lastModified;

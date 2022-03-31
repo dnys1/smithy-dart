@@ -32,6 +32,8 @@ abstract class EmptyInputAndEmptyOutputInput
     _EmptyInputAndEmptyOutputInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(EmptyInputAndEmptyOutputInputBuilder b) {}
   @override
   EmptyInputAndEmptyOutputInput getPayload() => this;
   @override

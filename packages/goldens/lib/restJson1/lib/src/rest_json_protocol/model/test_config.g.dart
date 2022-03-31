@@ -41,7 +41,9 @@ class TestConfigBuilder implements Builder<TestConfig, TestConfigBuilder> {
   int? get timeout => _$this._timeout;
   set timeout(int? timeout) => _$this._timeout = timeout;
 
-  TestConfigBuilder();
+  TestConfigBuilder() {
+    TestConfig._init(this);
+  }
 
   TestConfigBuilder get _$this {
     final $v = _$v;

@@ -46,7 +46,9 @@ class RecursiveStructuresInputBuilder
   _i3.RecursiveUnionOne? get union => _$this._union;
   set union(_i3.RecursiveUnionOne? union) => _$this._union = union;
 
-  RecursiveStructuresInputBuilder();
+  RecursiveStructuresInputBuilder() {
+    RecursiveStructuresInput._init(this);
+  }
 
   RecursiveStructuresInputBuilder get _$this {
     final $v = _$v;

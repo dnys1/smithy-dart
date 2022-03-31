@@ -32,6 +32,8 @@ abstract class NoSuchBucket
     _NoSuchBucketRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NoSuchBucketBuilder b) {}
   @override
   _i2.ShapeId get shapeId =>
       const _i2.ShapeId(namespace: 'com.amazonaws.s3', shape: 'NoSuchBucket');

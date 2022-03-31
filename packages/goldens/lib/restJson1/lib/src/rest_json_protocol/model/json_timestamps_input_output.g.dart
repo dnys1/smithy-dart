@@ -74,7 +74,9 @@ class JsonTimestampsInputOutputBuilder
   DateTime? get normal => _$this._normal;
   set normal(DateTime? normal) => _$this._normal = normal;
 
-  JsonTimestampsInputOutputBuilder();
+  JsonTimestampsInputOutputBuilder() {
+    JsonTimestampsInputOutput._init(this);
+  }
 
   JsonTimestampsInputOutputBuilder get _$this {
     final $v = _$v;

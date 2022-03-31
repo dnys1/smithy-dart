@@ -49,6 +49,8 @@ abstract class XmlAttributesOnPayloadInputOutput
     _XmlAttributesOnPayloadInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlAttributesOnPayloadInputOutputBuilder b) {}
   _i2.XmlAttributesInputOutput? get payload;
   @override
   _i2.XmlAttributesInputOutput? getPayload() =>

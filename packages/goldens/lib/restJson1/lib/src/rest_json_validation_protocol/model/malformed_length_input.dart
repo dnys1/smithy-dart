@@ -32,6 +32,8 @@ abstract class MalformedLengthInput
     _MalformedLengthInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedLengthInputBuilder b) {}
   _i3.Uint8List? get blob;
   _i4.BuiltList<String>? get list;
   _i4.BuiltListMultimap<String, String>? get map;

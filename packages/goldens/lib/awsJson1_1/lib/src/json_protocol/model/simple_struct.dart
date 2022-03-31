@@ -21,6 +21,8 @@ abstract class SimpleStruct
     _SimpleStructAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SimpleStructBuilder b) {}
   String? get value;
   @override
   List<Object?> get props => [value];

@@ -117,7 +117,9 @@ class XmlNestedUnionStructBuilder
   String? get stringValue => _$this._stringValue;
   set stringValue(String? stringValue) => _$this._stringValue = stringValue;
 
-  XmlNestedUnionStructBuilder();
+  XmlNestedUnionStructBuilder() {
+    XmlNestedUnionStruct._init(this);
+  }
 
   XmlNestedUnionStructBuilder get _$this {
     final $v = _$v;

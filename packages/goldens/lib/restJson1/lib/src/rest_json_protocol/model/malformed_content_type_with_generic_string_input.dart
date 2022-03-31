@@ -34,6 +34,8 @@ abstract class MalformedContentTypeWithGenericStringInput
     _MalformedContentTypeWithGenericStringInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedContentTypeWithGenericStringInputBuilder b) {}
   String? get payload;
   @override
   String? getPayload() => payload;

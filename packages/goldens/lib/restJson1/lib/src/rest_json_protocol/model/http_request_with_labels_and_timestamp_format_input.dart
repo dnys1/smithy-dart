@@ -73,6 +73,8 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
     _HttpRequestWithLabelsAndTimestampFormatInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithLabelsAndTimestampFormatInputBuilder b) {}
   DateTime get defaultFormat;
   DateTime get memberDateTime;
   DateTime get memberEpochSeconds;

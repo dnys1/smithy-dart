@@ -79,7 +79,9 @@ class MalformedShortInputBuilder
   int? get shortInQuery => _$this._shortInQuery;
   set shortInQuery(int? shortInQuery) => _$this._shortInQuery = shortInQuery;
 
-  MalformedShortInputBuilder();
+  MalformedShortInputBuilder() {
+    MalformedShortInput._init(this);
+  }
 
   MalformedShortInputBuilder get _$this {
     final $v = _$v;

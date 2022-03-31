@@ -71,7 +71,9 @@ class ServiceUnavailableExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  ServiceUnavailableExceptionBuilder();
+  ServiceUnavailableExceptionBuilder() {
+    ServiceUnavailableException._init(this);
+  }
 
   ServiceUnavailableExceptionBuilder get _$this {
     final $v = _$v;

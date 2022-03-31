@@ -146,7 +146,9 @@ class JsonListsInputOutputBuilder
   set timestampList(_i3.ListBuilder<DateTime>? timestampList) =>
       _$this._timestampList = timestampList;
 
-  JsonListsInputOutputBuilder();
+  JsonListsInputOutputBuilder() {
+    JsonListsInputOutput._init(this);
+  }
 
   JsonListsInputOutputBuilder get _$this {
     final $v = _$v;

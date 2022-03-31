@@ -49,6 +49,8 @@ abstract class HttpPayloadWithXmlNamespaceAndPrefixInputOutput
     _HttpPayloadWithXmlNamespaceAndPrefixInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder b) {}
   _i2.PayloadWithXmlNamespaceAndPrefix? get nested;
   @override
   _i2.PayloadWithXmlNamespaceAndPrefix? getPayload() =>

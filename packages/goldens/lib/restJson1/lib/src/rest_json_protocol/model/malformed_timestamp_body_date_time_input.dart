@@ -32,6 +32,8 @@ abstract class MalformedTimestampBodyDateTimeInput
     _MalformedTimestampBodyDateTimeInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedTimestampBodyDateTimeInputBuilder b) {}
   DateTime get timestamp;
   @override
   MalformedTimestampBodyDateTimeInput getPayload() => this;

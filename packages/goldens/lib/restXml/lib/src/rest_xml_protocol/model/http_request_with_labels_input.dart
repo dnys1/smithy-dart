@@ -62,6 +62,9 @@ abstract class HttpRequestWithLabelsInput
     _HttpRequestWithLabelsInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpRequestWithLabelsInputBuilder b) {}
+
   /// Serialized in the path as true or false.
   bool get boolean;
   double get double_;

@@ -45,7 +45,9 @@ class NestedWithNamespaceBuilder
   String? get attrField => _$this._attrField;
   set attrField(String? attrField) => _$this._attrField = attrField;
 
-  NestedWithNamespaceBuilder();
+  NestedWithNamespaceBuilder() {
+    NestedWithNamespace._init(this);
+  }
 
   NestedWithNamespaceBuilder get _$this {
     final $v = _$v;

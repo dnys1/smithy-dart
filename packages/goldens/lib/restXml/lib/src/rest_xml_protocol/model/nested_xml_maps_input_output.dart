@@ -37,6 +37,8 @@ abstract class NestedXmlMapsInputOutput
     _NestedXmlMapsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NestedXmlMapsInputOutputBuilder b) {}
   _i3.BuiltMap<String, _i3.BuiltMap<String, _i4.FooEnum>>? get flatNestedMap;
   _i3.BuiltMap<String, _i3.BuiltMap<String, _i4.FooEnum>>? get nestedMap;
   @override

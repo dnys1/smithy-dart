@@ -31,6 +31,8 @@ abstract class RequestTimeoutException
     _RequestTimeoutExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RequestTimeoutExceptionBuilder b) {}
   String? get code;
   @override
   String? get message;

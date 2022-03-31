@@ -37,6 +37,8 @@ abstract class HostLabelHeaderInput
     _HostLabelHeaderInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HostLabelHeaderInputBuilder b) {}
   String get accountId;
   @override
   String labelFor(String key) {

@@ -61,7 +61,9 @@ class InternalServerExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InternalServerExceptionBuilder();
+  InternalServerExceptionBuilder() {
+    InternalServerException._init(this);
+  }
 
   InternalServerExceptionBuilder get _$this {
     final $v = _$v;

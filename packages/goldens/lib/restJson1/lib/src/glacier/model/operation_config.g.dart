@@ -43,7 +43,9 @@ class OperationConfigBuilder
   _i3.S3ConfigBuilder get s3 => _$this._s3 ??= new _i3.S3ConfigBuilder();
   set s3(_i3.S3ConfigBuilder? s3) => _$this._s3 = s3;
 
-  OperationConfigBuilder();
+  OperationConfigBuilder() {
+    OperationConfig._init(this);
+  }
 
   OperationConfigBuilder get _$this {
     final $v = _$v;

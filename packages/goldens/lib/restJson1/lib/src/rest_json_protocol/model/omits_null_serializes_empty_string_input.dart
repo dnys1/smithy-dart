@@ -42,6 +42,8 @@ abstract class OmitsNullSerializesEmptyStringInput
     _OmitsNullSerializesEmptyStringInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(OmitsNullSerializesEmptyStringInputBuilder b) {}
   String? get emptyString;
   String? get nullValue;
   @override

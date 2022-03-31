@@ -42,6 +42,8 @@ abstract class ConstantAndVariableQueryStringInput
     _ConstantAndVariableQueryStringInputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ConstantAndVariableQueryStringInputBuilder b) {}
   String? get baz;
   String? get maybeSet;
   @override

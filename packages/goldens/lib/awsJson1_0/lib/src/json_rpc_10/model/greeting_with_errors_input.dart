@@ -29,6 +29,8 @@ abstract class GreetingWithErrorsInput
     _GreetingWithErrorsInputAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GreetingWithErrorsInputBuilder b) {}
   String? get greeting;
   @override
   GreetingWithErrorsInput getPayload() => this;

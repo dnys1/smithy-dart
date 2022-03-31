@@ -28,6 +28,8 @@ abstract class GreetingWithErrorsOutput
     _GreetingWithErrorsOutputAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
   @override
   List<Object?> get props => [greeting];

@@ -42,7 +42,9 @@ class SimpleStructBuilder
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
 
-  SimpleStructBuilder();
+  SimpleStructBuilder() {
+    SimpleStruct._init(this);
+  }
 
   SimpleStructBuilder get _$this {
     final $v = _$v;

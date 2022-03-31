@@ -38,6 +38,8 @@ abstract class RecursiveShapesInputOutput
     _RecursiveShapesInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RecursiveShapesInputOutputBuilder b) {}
   _i3.RecursiveShapesInputOutputNested1? get nested;
   @override
   RecursiveShapesInputOutput getPayload() => this;

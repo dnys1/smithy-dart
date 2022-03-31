@@ -48,6 +48,8 @@ abstract class TestPayloadBlobInputOutput
     _TestPayloadBlobInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestPayloadBlobInputOutputBuilder b) {}
   String? get contentType;
   _i2.Uint8List? get data;
   @override

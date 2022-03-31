@@ -40,6 +40,8 @@ abstract class GetRestApisRequest
     _GetRestApisRequestRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GetRestApisRequestBuilder b) {}
   int? get limit;
   String? get position;
   @override

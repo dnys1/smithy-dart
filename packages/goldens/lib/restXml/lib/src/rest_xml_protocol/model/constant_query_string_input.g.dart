@@ -49,7 +49,9 @@ class ConstantQueryStringInputBuilder
   String? get hello => _$this._hello;
   set hello(String? hello) => _$this._hello = hello;
 
-  ConstantQueryStringInputBuilder();
+  ConstantQueryStringInputBuilder() {
+    ConstantQueryStringInput._init(this);
+  }
 
   ConstantQueryStringInputBuilder get _$this {
     final $v = _$v;

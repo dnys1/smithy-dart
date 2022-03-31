@@ -31,6 +31,8 @@ abstract class LimitExceededException
     _LimitExceededExceptionAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(LimitExceededExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

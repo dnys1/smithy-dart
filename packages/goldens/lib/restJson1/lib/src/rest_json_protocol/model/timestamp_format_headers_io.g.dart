@@ -115,7 +115,9 @@ class TimestampFormatHeadersIoBuilder
   set targetHttpDate(DateTime? targetHttpDate) =>
       _$this._targetHttpDate = targetHttpDate;
 
-  TimestampFormatHeadersIoBuilder();
+  TimestampFormatHeadersIoBuilder() {
+    TimestampFormatHeadersIo._init(this);
+  }
 
   TimestampFormatHeadersIoBuilder get _$this {
     final $v = _$v;

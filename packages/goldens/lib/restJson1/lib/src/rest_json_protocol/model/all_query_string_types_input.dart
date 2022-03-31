@@ -115,6 +115,8 @@ abstract class AllQueryStringTypesInput
     _AllQueryStringTypesInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(AllQueryStringTypesInputBuilder b) {}
   bool? get queryBoolean;
   _i5.BuiltList<bool>? get queryBooleanList;
   int? get queryByte;

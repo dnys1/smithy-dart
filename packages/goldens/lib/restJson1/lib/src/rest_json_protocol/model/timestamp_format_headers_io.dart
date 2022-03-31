@@ -126,6 +126,8 @@ abstract class TimestampFormatHeadersIo
     _TimestampFormatHeadersIoRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TimestampFormatHeadersIoBuilder b) {}
   DateTime? get defaultFormat;
   DateTime? get memberDateTime;
   DateTime? get memberEpochSeconds;

@@ -56,6 +56,8 @@ abstract class TestBodyStructureInputOutput
     _TestBodyStructureInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(TestBodyStructureInputOutputBuilder b) {}
   _i3.TestConfig? get testConfig;
   String? get testId;
   @override

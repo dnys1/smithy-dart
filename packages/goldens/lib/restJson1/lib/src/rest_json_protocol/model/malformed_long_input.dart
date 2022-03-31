@@ -45,6 +45,8 @@ abstract class MalformedLongInput
     _MalformedLongInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedLongInputBuilder b) {}
   _i3.Int64? get longInBody;
   _i3.Int64? get longInHeader;
   _i3.Int64 get longInPath;

@@ -176,7 +176,9 @@ class RestApiBuilder implements Builder<RestApi, RestApiBuilder> {
   set warnings(_i4.ListBuilder<String>? warnings) =>
       _$this._warnings = warnings;
 
-  RestApiBuilder();
+  RestApiBuilder() {
+    RestApi._init(this);
+  }
 
   RestApiBuilder get _$this {
     final $v = _$v;

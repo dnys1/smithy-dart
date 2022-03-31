@@ -32,6 +32,8 @@ abstract class ResourceNotFoundException
     _ResourceNotFoundExceptionAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ResourceNotFoundExceptionBuilder b) {}
   int? get code;
   @override
   String? get message;

@@ -23,6 +23,8 @@ abstract class Prediction
     _PredictionAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(PredictionBuilder b) {}
   _i3.BuiltMap<_i4.DetailsAttributes, String>? get details;
   String? get predictedLabel;
   _i3.BuiltMap<String, double>? get predictedScores;

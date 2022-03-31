@@ -60,7 +60,9 @@ class NullAndEmptyHeadersIoBuilder
   _i3.ListBuilder<String> get c => _$this._c ??= new _i3.ListBuilder<String>();
   set c(_i3.ListBuilder<String>? c) => _$this._c = c;
 
-  NullAndEmptyHeadersIoBuilder();
+  NullAndEmptyHeadersIoBuilder() {
+    NullAndEmptyHeadersIo._init(this);
+  }
 
   NullAndEmptyHeadersIoBuilder get _$this {
     final $v = _$v;

@@ -36,6 +36,8 @@ abstract class XmlAttributesInputOutput
     _XmlAttributesInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlAttributesInputOutputBuilder b) {}
   String? get attr;
   String? get foo;
   @override

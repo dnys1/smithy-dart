@@ -63,7 +63,9 @@ class HttpRequestWithFloatLabelsInputBuilder
   double? get float => _$this._float;
   set float(double? float) => _$this._float = float;
 
-  HttpRequestWithFloatLabelsInputBuilder();
+  HttpRequestWithFloatLabelsInputBuilder() {
+    HttpRequestWithFloatLabelsInput._init(this);
+  }
 
   HttpRequestWithFloatLabelsInputBuilder get _$this {
     final $v = _$v;

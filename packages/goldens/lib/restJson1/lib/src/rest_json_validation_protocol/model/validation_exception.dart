@@ -41,6 +41,9 @@ abstract class ValidationException
     _ValidationExceptionRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ValidationExceptionBuilder b) {}
+
   /// A list of specific failures encountered while validating the input.
   /// A member can appear in this list more than once if it failed to satisfy multiple constraints.
   _i3.BuiltList<_i4.ValidationExceptionField>? get fieldList;

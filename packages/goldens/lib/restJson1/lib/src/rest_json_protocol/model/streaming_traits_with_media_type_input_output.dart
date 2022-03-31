@@ -49,6 +49,8 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
     _StreamingTraitsWithMediaTypeInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(StreamingTraitsWithMediaTypeInputOutputBuilder b) {}
   _i2.Stream<List<int>>? get blob;
   String? get foo;
   @override

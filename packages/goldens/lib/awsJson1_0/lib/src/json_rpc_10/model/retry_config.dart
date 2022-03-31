@@ -24,6 +24,8 @@ abstract class RetryConfig
     _RetryConfigAwsJson10Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RetryConfigBuilder b) {}
   int? get maxAttempts;
 
   /// Controls the strategy used for retries.

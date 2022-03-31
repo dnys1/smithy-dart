@@ -69,7 +69,9 @@ class NullOperationInputOutputBuilder
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  NullOperationInputOutputBuilder();
+  NullOperationInputOutputBuilder() {
+    NullOperationInputOutput._init(this);
+  }
 
   NullOperationInputOutputBuilder get _$this {
     final $v = _$v;

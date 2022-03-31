@@ -25,6 +25,8 @@ abstract class RestApi
     _RestApiRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RestApiBuilder b) {}
   _i3.ApiKeySourceType? get apiKeySource;
   _i4.BuiltList<String>? get binaryMediaTypes;
   DateTime? get createdDate;

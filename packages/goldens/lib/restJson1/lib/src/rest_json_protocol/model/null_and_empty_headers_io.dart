@@ -62,6 +62,8 @@ abstract class NullAndEmptyHeadersIo
     _NullAndEmptyHeadersIoRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(NullAndEmptyHeadersIoBuilder b) {}
   String? get a;
   String? get b;
   _i3.BuiltList<String>? get c;

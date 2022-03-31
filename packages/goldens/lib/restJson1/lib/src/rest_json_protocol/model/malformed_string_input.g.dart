@@ -45,7 +45,9 @@ class MalformedStringInputBuilder
   _i3.JsonObject? get blob => _$this._blob;
   set blob(_i3.JsonObject? blob) => _$this._blob = blob;
 
-  MalformedStringInputBuilder();
+  MalformedStringInputBuilder() {
+    MalformedStringInput._init(this);
+  }
 
   MalformedStringInputBuilder get _$this {
     final $v = _$v;

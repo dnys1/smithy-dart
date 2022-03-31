@@ -47,6 +47,8 @@ abstract class HttpPayloadWithStructureInputOutput
     _HttpPayloadWithStructureInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(HttpPayloadWithStructureInputOutputBuilder b) {}
   _i2.NestedPayload? get nested;
   @override
   _i2.NestedPayload? getPayload() => nested ?? _i2.NestedPayload();

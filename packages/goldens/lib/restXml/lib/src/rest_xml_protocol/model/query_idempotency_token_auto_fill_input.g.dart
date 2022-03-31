@@ -50,7 +50,9 @@ class QueryIdempotencyTokenAutoFillInputBuilder
   String? get token => _$this._token;
   set token(String? token) => _$this._token = token;
 
-  QueryIdempotencyTokenAutoFillInputBuilder();
+  QueryIdempotencyTokenAutoFillInputBuilder() {
+    QueryIdempotencyTokenAutoFillInput._init(this);
+  }
 
   QueryIdempotencyTokenAutoFillInputBuilder get _$this {
     final $v = _$v;

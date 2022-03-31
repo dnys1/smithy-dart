@@ -258,7 +258,9 @@ class AllQueryStringTypesInputBuilder
   set queryTimestampList(_i5.ListBuilder<DateTime>? queryTimestampList) =>
       _$this._queryTimestampList = queryTimestampList;
 
-  AllQueryStringTypesInputBuilder();
+  AllQueryStringTypesInputBuilder() {
+    AllQueryStringTypesInput._init(this);
+  }
 
   AllQueryStringTypesInputBuilder get _$this {
     final $v = _$v;

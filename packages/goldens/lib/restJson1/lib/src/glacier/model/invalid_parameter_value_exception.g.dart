@@ -71,7 +71,9 @@ class InvalidParameterValueExceptionBuilder
   Map<String, String>? get headers => _$this._headers;
   set headers(Map<String, String>? headers) => _$this._headers = headers;
 
-  InvalidParameterValueExceptionBuilder();
+  InvalidParameterValueExceptionBuilder() {
+    InvalidParameterValueException._init(this);
+  }
 
   InvalidParameterValueExceptionBuilder get _$this {
     final $v = _$v;

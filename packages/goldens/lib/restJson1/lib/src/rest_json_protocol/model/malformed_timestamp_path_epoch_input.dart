@@ -41,6 +41,8 @@ abstract class MalformedTimestampPathEpochInput
     _MalformedTimestampPathEpochInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedTimestampPathEpochInputBuilder b) {}
   DateTime get timestamp;
   @override
   String labelFor(String key) {

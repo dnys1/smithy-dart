@@ -57,7 +57,9 @@ class QueryParamsAsStringListMapInputBuilder
   String? get qux => _$this._qux;
   set qux(String? qux) => _$this._qux = qux;
 
-  QueryParamsAsStringListMapInputBuilder();
+  QueryParamsAsStringListMapInputBuilder() {
+    QueryParamsAsStringListMapInput._init(this);
+  }
 
   QueryParamsAsStringListMapInputBuilder get _$this {
     final $v = _$v;

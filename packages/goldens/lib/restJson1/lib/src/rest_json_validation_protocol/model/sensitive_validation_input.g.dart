@@ -46,7 +46,9 @@ class SensitiveValidationInputBuilder
   String? get string => _$this._string;
   set string(String? string) => _$this._string = string;
 
-  SensitiveValidationInputBuilder();
+  SensitiveValidationInputBuilder() {
+    SensitiveValidationInput._init(this);
+  }
 
   SensitiveValidationInputBuilder get _$this {
     final $v = _$v;

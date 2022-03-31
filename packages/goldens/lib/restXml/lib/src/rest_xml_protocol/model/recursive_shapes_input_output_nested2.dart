@@ -27,6 +27,8 @@ abstract class RecursiveShapesInputOutputNested2
     _RecursiveShapesInputOutputNested2RestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(RecursiveShapesInputOutputNested2Builder b) {}
   String? get bar;
   _i3.RecursiveShapesInputOutputNested1? get recursiveMember;
   @override

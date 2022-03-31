@@ -29,6 +29,8 @@ abstract class MalformedSetInput
     _MalformedSetInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedSetInputBuilder b) {}
   _i3.BuiltSet<_i4.Uint8List>? get blobSet;
   _i3.BuiltSet<String>? get set;
   @override

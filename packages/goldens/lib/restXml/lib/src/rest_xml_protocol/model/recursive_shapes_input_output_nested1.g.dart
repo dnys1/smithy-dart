@@ -58,7 +58,9 @@ class RecursiveShapesInputOutputNested1Builder
   set nested(_i3.RecursiveShapesInputOutputNested2Builder? nested) =>
       _$this._nested = nested;
 
-  RecursiveShapesInputOutputNested1Builder();
+  RecursiveShapesInputOutputNested1Builder() {
+    RecursiveShapesInputOutputNested1._init(this);
+  }
 
   RecursiveShapesInputOutputNested1Builder get _$this {
     final $v = _$v;

@@ -59,7 +59,9 @@ class TestPayloadStructureInputOutputBuilder
   String? get testId => _$this._testId;
   set testId(String? testId) => _$this._testId = testId;
 
-  TestPayloadStructureInputOutputBuilder();
+  TestPayloadStructureInputOutputBuilder() {
+    TestPayloadStructureInputOutput._init(this);
+  }
 
   TestPayloadStructureInputOutputBuilder get _$this {
     final $v = _$v;

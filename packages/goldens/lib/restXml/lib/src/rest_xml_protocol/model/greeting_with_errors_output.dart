@@ -36,6 +36,8 @@ abstract class GreetingWithErrorsOutput
     _GreetingWithErrorsOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(GreetingWithErrorsOutputBuilder b) {}
   String? get greeting;
   @override
   GreetingWithErrorsOutputPayload getPayload() =>

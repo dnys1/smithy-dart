@@ -38,6 +38,8 @@ abstract class JsonListsInputOutput
     _JsonListsInputOutputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(JsonListsInputOutputBuilder b) {}
   _i3.BuiltList<bool>? get booleanList;
   _i3.BuiltList<_i4.FooEnum>? get enumList;
   _i3.BuiltList<int>? get integerList;

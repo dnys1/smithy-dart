@@ -43,6 +43,8 @@ abstract class MalformedByteInput
     _MalformedByteInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(MalformedByteInputBuilder b) {}
   int? get byteInBody;
   int? get byteInHeader;
   int get byteInPath;

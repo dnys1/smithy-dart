@@ -45,7 +45,9 @@ class MediaTypeHeaderOutputBuilder
   _i3.JsonObject? get json => _$this._json;
   set json(_i3.JsonObject? json) => _$this._json = json;
 
-  MediaTypeHeaderOutputBuilder();
+  MediaTypeHeaderOutputBuilder() {
+    MediaTypeHeaderOutput._init(this);
+  }
 
   MediaTypeHeaderOutputBuilder get _$this {
     final $v = _$v;

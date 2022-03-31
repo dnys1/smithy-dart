@@ -54,7 +54,9 @@ class MalformedRequestBodyInputBuilder
   int? get int_ => _$this._int_;
   set int_(int? int_) => _$this._int_ = int_;
 
-  MalformedRequestBodyInputBuilder();
+  MalformedRequestBodyInputBuilder() {
+    MalformedRequestBodyInput._init(this);
+  }
 
   MalformedRequestBodyInputBuilder get _$this {
     final $v = _$v;

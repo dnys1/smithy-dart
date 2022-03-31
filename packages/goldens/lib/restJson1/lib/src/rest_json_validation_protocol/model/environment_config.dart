@@ -25,6 +25,8 @@ abstract class EnvironmentConfig
     _EnvironmentConfigRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(EnvironmentConfigBuilder b) {}
   String? get awsAccessKeyId;
   String? get awsDefaultRegion;
   String? get awsProfile;

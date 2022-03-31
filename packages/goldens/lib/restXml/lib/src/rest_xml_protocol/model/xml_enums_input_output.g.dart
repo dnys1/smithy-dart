@@ -101,7 +101,9 @@ class XmlEnumsInputOutputBuilder
   set fooEnumSet(_i4.SetBuilder<_i3.FooEnum>? fooEnumSet) =>
       _$this._fooEnumSet = fooEnumSet;
 
-  XmlEnumsInputOutputBuilder();
+  XmlEnumsInputOutputBuilder() {
+    XmlEnumsInputOutput._init(this);
+  }
 
   XmlEnumsInputOutputBuilder get _$this {
     final $v = _$v;

@@ -36,6 +36,8 @@ abstract class XmlBlobsInputOutput
     _XmlBlobsInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(XmlBlobsInputOutputBuilder b) {}
   _i3.Uint8List? get data;
   @override
   XmlBlobsInputOutput getPayload() => this;

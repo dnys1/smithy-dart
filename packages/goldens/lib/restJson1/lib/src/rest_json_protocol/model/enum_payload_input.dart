@@ -39,6 +39,8 @@ abstract class EnumPayloadInput
     _EnumPayloadInputRestJson1Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(EnumPayloadInputBuilder b) {}
   _i2.StringEnum? get payload;
   @override
   _i2.StringEnum? getPayload() => payload;

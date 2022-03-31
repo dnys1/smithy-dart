@@ -33,6 +33,9 @@ abstract class ScopedConfig
     _ScopedConfigAwsJson11Serializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(ScopedConfigBuilder b) {}
+
   /// Configuration that is set on the constructed client.
   _i3.ClientConfig? get client;
 

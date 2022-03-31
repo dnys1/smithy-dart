@@ -75,6 +75,8 @@ abstract class SimpleScalarPropertiesInputOutput
     _SimpleScalarPropertiesInputOutputRestXmlSerializer()
   ];
 
+  @BuiltValueHook(initializeBuilder: true)
+  static void _init(SimpleScalarPropertiesInputOutputBuilder b) {}
   int? get byteValue;
   double? get doubleValue;
   bool? get falseBooleanValue;

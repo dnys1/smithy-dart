@@ -23,14 +23,17 @@ export 'src/client.dart';
 export 'src/operation.dart';
 
 // HTTP
+export 'src/http/stream_connection.dart';
 export 'src/http/exceptions.dart';
 export 'src/http/http_client.dart';
-export 'src/http/http_operation.dart';
+export 'src/http/http_operation.dart' hide HttpOperationBase;
 export 'src/http/http_protocol.dart';
 export 'src/http/http_request.dart';
 export 'src/http/http_server.dart';
 export 'src/http/interceptors/interceptor.dart';
 export 'src/http/interceptors/checksum.dart';
+export 'src/http/web_socket_connection.dart';
+export 'src/http/web_socket_operation.dart';
 
 // Protocol
 export 'src/protocol/generic_json_protocol.dart';

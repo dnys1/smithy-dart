@@ -127,3 +127,14 @@ abstract class PaginatedTraits
   String? get itemsPath;
   PaginationItem? get items;
 }
+
+abstract class StreamingTraits
+    implements Built<StreamingTraits, StreamingTraitsBuilder> {
+  factory StreamingTraits([void Function(StreamingTraitsBuilder) updates]) =
+      _$StreamingTraits;
+  StreamingTraits._();
+
+  BuiltSet<MemberShape> get eventHeaders;
+  MemberShape get eventPayload;
+  bool get isEventStream;
+}

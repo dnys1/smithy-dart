@@ -7,51 +7,83 @@ import 'package:meta/meta.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 
-/// Defines an operation which uses HTTP.
+/// Regex for label placeholders.
+final _labelRegex = RegExp(r'{(\w+)}');
+
+/// Reserved characters defined in section 2.2 of RFC3986 and the % itself
+/// MUST be percent-encoded (that is, `:/?#[]@!$&'()*+,;=%`).
 ///
-/// See: https://awslabs.github.io/smithy/1.0/spec/core/http-traits.html
-abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
-    extends Operation<Input, Output> {
-  /// Regex for label placeholders.
-  static final _labelRegex = RegExp(r'{(\w+)}');
+/// Since [Uri.encodeQueryComponent] does not encode `+`, we must handle that
+/// separately as well.
+String _escapeLabel(String label) =>
+    Uri.encodeQueryComponent(label).replaceAll('+', '%20');
 
-  /// Reserved characters defined in section 2.2 of RFC3986 and the % itself
-  /// MUST be percent-encoded (that is, `:/?#[]@!$&'()*+,;=%`).
+/// Expands labels in [template] using [labelFor].
+String expandLabels(
+  String template,
+  String Function(String) labelFor,
+) {
+  final pattern = UriPattern.parse(template);
+  return pattern.segments.map((segment) {
+    switch (segment.type) {
+      case SegmentType.literal:
+        return segment.content;
+      case SegmentType.label:
+        return _escapeLabel(labelFor(segment.content));
+      case SegmentType.greedyLabel:
+        return labelFor(segment.content).split('/').map(_escapeLabel).join('/');
+    }
+  }).join('/');
+}
+
+/// Expands hostname labels in [template] using [labelFor].
+String expandHostLabel(
+  String template,
+  String Function(String) labelFor,
+) {
+  return template.replaceAllMapped(_labelRegex, (match) {
+    final key = match.group(1)!;
+    return Uri.encodeQueryComponent(labelFor(key)).replaceAll('+', '%20');
+  });
+}
+
+@internal
+abstract class HttpOperationBase<InputPayload, Input, OutputPayload, Output,
+    Result extends Object> extends Operation<Input, Output, Result> {
+  @override
+  Iterable<HttpProtocol<InputPayload, Input, OutputPayload, Output>>
+      get protocols;
+
+  /// The success code for the operation.
   ///
-  /// Since [Uri.encodeQueryComponent] does not encode `+`, we must handle that
-  /// separately as well.
-  static String _escapeLabel(String label) =>
-      Uri.encodeQueryComponent(label).replaceAll('+', '%20');
+  /// Accepts the operation output since some output types embed the success
+  /// code to allow for dynamic success codes.
+  int successCode([Output? output]);
 
-  /// Expands labels in [template] using [labelFor].
-  static String expandLabels(
-    String template,
-    String Function(String) labelFor,
-  ) {
-    final pattern = UriPattern.parse(template);
-    return pattern.segments.map((segment) {
-      switch (segment.type) {
-        case SegmentType.literal:
-          return segment.content;
-        case SegmentType.label:
-          return _escapeLabel(labelFor(segment.content));
-        case SegmentType.greedyLabel:
-          return labelFor(segment.content)
-              .split('/')
-              .map(_escapeLabel)
-              .join('/');
-      }
-    }).join('/');
-  }
+  /// The base URI for the operation.
+  Uri get baseUri;
 
-  static String expandHostLabel(
-    String template,
-    String Function(String) labelFor,
-  ) {
-    return template.replaceAllMapped(_labelRegex, (match) {
-      final key = match.group(1)!;
-      return _escapeLabel(labelFor(key));
-    });
+  /// The endpoint for the operation.
+  Endpoint get endpoint => Endpoint(uri: baseUri);
+
+  /// The retry handler for the operation.
+  Retryer get retryer => const Retryer();
+
+  /// The number of times the operation has been retried.
+  @visibleForTesting
+  int debugNumRetries = 0;
+
+  @protected
+  @visibleForTesting
+  HttpProtocol<InputPayload, Input, OutputPayload, Output> resolveProtocol({
+    ShapeId? useProtocol,
+  }) {
+    return useProtocol == null
+        ? protocols.first
+        : protocols.firstWhere(
+            (el) => el.protocolId == useProtocol,
+            orElse: () => protocols.first,
+          );
   }
 
   /// Builds the HTTP request for the given [input].
@@ -67,45 +99,7 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     AWSStreamedHttpResponse response,
   );
 
-  /// The protocols used by this operation for all serialization/deserialization
-  /// of wire formats.
-  Iterable<HttpProtocol<InputPayload, Input, OutputPayload, Output>>
-      get protocols;
-
-  @override
-  List<SmithyError> get errorTypes;
-
-  /// The success code for the operation.
-  ///
-  /// Accepts the operation output since some output types embed the success
-  /// code to allow for dynamic success codes.
-  int successCode([Output? output]);
-
-  /// The number of times the operation has been retried.
-  @visibleForTesting
-  int debugNumRetries = 0;
-
-  /// The base URI for the operation.
-  Uri get baseUri;
-
-  /// The endpoint for the operation.
-  Endpoint get endpoint => Endpoint(uri: baseUri);
-
-  /// The retry handler for the operation.
-  Retryer get retryer => const Retryer();
-
-  @visibleForTesting
-  HttpProtocol<InputPayload, Input, OutputPayload, Output> resolveProtocol({
-    ShapeId? useProtocol,
-  }) {
-    return useProtocol == null
-        ? protocols.first
-        : protocols.firstWhere(
-            (el) => el.protocolId == useProtocol,
-            orElse: () => protocols.first,
-          );
-  }
-
+  @protected
   @visibleForTesting
   Future<AWSStreamedHttpRequest> createRequest(
     HttpRequest request,
@@ -217,6 +211,7 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     );
   }
 
+  @protected
   @visibleForTesting
   Future<Output> deserializeOutput({
     required HttpProtocol<InputPayload, Input, OutputPayload, Output> protocol,
@@ -269,7 +264,15 @@ abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
     final SmithyException smithyException = builder(errorPayload, response);
     throw smithyException;
   }
+}
 
+/// Defines an operation which uses HTTP.
+///
+/// See: https://awslabs.github.io/smithy/1.0/spec/core/http-traits.html
+abstract class HttpOperation<InputPayload, Input, OutputPayload, Output>
+    extends HttpOperationBase<InputPayload, Input, OutputPayload, Output,
+        Future<Output>> {
+  /// Runs the operation with the given [input] and optional [client] override.
   @override
   Future<Output> run(
     Input input, {

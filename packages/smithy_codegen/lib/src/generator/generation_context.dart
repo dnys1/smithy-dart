@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
+import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
@@ -134,10 +135,16 @@ mixin StructureGenerationContext<U> on ShapeGenerator<StructureShape, U>
 
   /// The operation this shape belongs to, if any.
   late final OperationShape? operationShape = shape.operationShape(context);
+
+  /// The streaming traits for this structure, if any.
+  late final StreamingTraits? streamingTraits = shape.streamingTraits(context);
 }
 
 /// Useful properties when generating operation shapes.
-mixin OperationGenerationContext<U> on ShapeGenerator<OperationShape, U> {
+mixin OperationGenerationContextMixin {
+  OperationShape get shape;
+  CodegenContext get context;
+
   late final inputShape = shape.inputShape(context);
   late final inputSymbol = shape.inputSymbol(context);
   late final inputPayload = inputShape.httpPayload(context);
@@ -163,4 +170,28 @@ mixin OperationGenerationContext<U> on ShapeGenerator<OperationShape, U> {
     overrideTrait: true,
   )!;
   late final PaginatedTraits? paginatedTraits = shape.paginatedTraits(context);
+
+  /// Whether the operation is an event stream.
+  late final bool isEventStreamOperation = () {
+    var isEventStream = false;
+    final inputTraits = inputShape.streamingTraits(context);
+    if (inputTraits != null && inputTraits.isEventStream) {
+      isEventStream = true;
+    }
+    final outputTraits = outputShape.streamingTraits(context);
+    if (outputTraits != null && outputTraits.isEventStream) {
+      isEventStream = true;
+    }
+    return isEventStream;
+  }();
+}
+
+class OperationGenerationContext with OperationGenerationContextMixin {
+  OperationGenerationContext(this.context, this.shape);
+
+  @override
+  final CodegenContext context;
+
+  @override
+  final OperationShape shape;
 }

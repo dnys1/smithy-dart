@@ -18,6 +18,7 @@ import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf_router/shelf_router.dart' as shelf_router;
 import 'package:smithy/smithy.dart' as smithy;
 import 'package:smithy_aws/smithy_aws.dart' as smithy_aws;
+import 'package:stream_channel/stream_channel.dart' as stream_channel;
 import 'package:xml/xml.dart' as xml;
 
 /// Common type references used throughout code generation.
@@ -62,6 +63,9 @@ abstract class DartTypes {
 
   /// `package:smithy_aws` types.
   static const smithyAws = _SmithyAws();
+
+  /// `package:stream_channel` types.
+  static const streamChannel = _StreamChannel();
 
   /// `package:test` types.
   static const test = _Test();
@@ -755,6 +759,13 @@ class _Smithy {
           ]),
       );
 
+  /// Creates a [smithy.StreamConnection] reference for [input] and [output].
+  Reference streamConnection(Reference input, Reference output) =>
+      TypeReference((t) => t
+        ..symbol = 'StreamConnection'
+        ..url = _url
+        ..types.addAll([input, output]));
+
   /// Creates a [smithy.StructuredSmithySerializer] reference for [ref], the
   /// class being serialized.
   Reference structuredSmithySerializer([Reference? ref]) => TypeReference(
@@ -788,6 +799,22 @@ class _Smithy {
           ..symbol = 'Waiter'
           ..types.addAll([inputType, outputType])
           ..url = _url,
+  );
+  
+  /// Creates a [smithy.WebSocketOperation] reference for an operation with
+  /// input payload type [inputPayload], input type [input], and output type
+  /// [output].
+  Reference webSocketOperation(
+    Reference inputPayload,
+    Reference input,
+    Reference outputPayload,
+    Reference output,
+  ) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'WebSocketOperation'
+          ..url = _url
+          ..types.addAll([inputPayload, input, outputPayload, output]),
       );
 
   /// Creates a [smithy.WithChecksum] reference.
@@ -912,6 +939,19 @@ class _SmithyTest {
 
   /// Creates an `testSerializers` reference.
   Reference get testSerializers => const Reference('testSerializers', _url);
+}
+
+/// `package:stream_channel` types.
+class _StreamChannel {
+  const _StreamChannel();
+
+  static const _url = 'package:stream_channel/stream_channel.dart';
+
+  /// Creates a `[stream_channel.StreamChannel] reference.
+  Reference streamChannel(Reference element) => TypeReference((t) => t
+    ..symbol = 'StreamChannel'
+    ..url = _url
+    ..types.add(element));
 }
 
 /// `package:test` types

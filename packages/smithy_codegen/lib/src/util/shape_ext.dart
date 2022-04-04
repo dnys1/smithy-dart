@@ -764,8 +764,19 @@ extension StructureShapeUtil on StructureShape {
     final payloadShape = this.payloadShape(context);
     return hasPayload(context) &&
         payloadShape != null &&
-        (payloadShape.isStreaming ||
-            context.shapeFor(payloadShape.target).isStreaming);
+        context.shapeFor(payloadShape.target).isStreaming;
+  }
+
+  /// The streaming traits for this shape.
+  StreamingTraits? streamingTraits(CodegenContext context) {
+    if (!hasStreamingPayload(context)) {
+      return null;
+    }
+    return StreamingTraits((b) {
+      final payloadShape = this.payloadShape(context)!;
+      b.eventPayload.replace(payloadShape);
+      b.isEventStream = context.shapeFor(payloadShape.target) is UnionShape;
+    });
   }
 }
 

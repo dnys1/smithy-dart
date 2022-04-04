@@ -10,7 +10,7 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class OperationGenerator extends LibraryGenerator<OperationShape>
-    with OperationGenerationContext {
+    with OperationGenerationContextMixin {
   OperationGenerator(
     OperationShape shape,
     CodegenContext context, {
@@ -30,42 +30,57 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   }
 
   /// The operation's implementation class.
-  Class get _operationClass => Class(
-        (c) => c
-          ..docs.addAll([
-            if (shape.hasDocs(context)) shape.formattedDocs(context),
-          ])
-          ..name = className
-          ..extend = paginatedTraits == null
-              ? DartTypes.smithy.httpOperation(
-                  inputPayload.symbol.unboxed,
-                  inputSymbol,
-                  outputPayload.symbol.unboxed,
-                  outputSymbol,
-                )
-              : DartTypes.smithy.paginatedHttpOperation(
-                  inputPayload.symbol.unboxed,
-                  inputSymbol,
-                  outputPayload.symbol.unboxed,
-                  outputSymbol,
-                  paginatedTraits!.inputToken?.symbol.unboxed ??
-                      DartTypes.core.void$,
-                  paginatedTraits!.pageSize?.symbol.unboxed ??
-                      DartTypes.core.void$,
-                  paginatedTraits!.items?.symbol.unboxed ??
-                      DartTypes.core.void$,
-                )
-          ..constructors.add(_constructor)
-          ..fields.addAll([
-            _protocolsGetter,
-            ..._httpOverrides.whereType<Field>(),
-            ...shape.protocolFields(context),
-          ])
-          ..methods.addAll([
-            ..._httpOverrides.whereType<Method>(),
-            ..._paginatedMethods,
-          ]),
+  Class get _operationClass {
+    final Reference baseClass;
+    if (paginatedTraits == null) {
+      final streamingTraits = inputShape.streamingTraits(context) ??
+          outputShape.streamingTraits(context);
+      // TODO: h/2
+      if (streamingTraits == null) {
+        baseClass = DartTypes.smithy.httpOperation(
+          inputPayload.symbol.unboxed,
+          inputSymbol,
+          outputPayload.symbol.unboxed,
+          outputSymbol,
+        );
+      } else {
+        baseClass = DartTypes.smithy.webSocketOperation(
+          inputPayload.symbol.unboxed,
+          inputSymbol,
+          outputPayload.symbol.unboxed,
+          outputSymbol,
+        );
+      }
+    } else {
+      baseClass = DartTypes.smithy.paginatedHttpOperation(
+        inputPayload.symbol.unboxed,
+        inputSymbol,
+        outputPayload.symbol.unboxed,
+        outputSymbol,
+        paginatedTraits!.inputToken?.symbol.unboxed ?? DartTypes.core.void$,
+        paginatedTraits!.pageSize?.symbol.unboxed ?? DartTypes.core.void$,
+        paginatedTraits!.items?.symbol.unboxed ?? DartTypes.core.void$,
       );
+    }
+    return Class(
+      (c) => c
+        ..docs.addAll([
+          if (shape.hasDocs(context)) shape.formattedDocs(context),
+        ])
+        ..name = className
+        ..extend = baseClass
+        ..constructors.add(_constructor)
+        ..fields.addAll([
+          _protocolsGetter,
+          ..._httpOverrides.whereType<Field>(),
+          ...shape.protocolFields(context),
+        ])
+        ..methods.addAll([
+          ..._httpOverrides.whereType<Method>(),
+          ..._paginatedMethods,
+        ]),
+    );
+  }
 
   Constructor get _constructor => Constructor(
         (ctor) => ctor

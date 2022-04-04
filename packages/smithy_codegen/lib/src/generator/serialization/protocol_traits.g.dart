@@ -1264,4 +1264,136 @@ class PaginatedTraitsBuilder
   }
 }
 
+class _$StreamingTraits extends StreamingTraits {
+  @override
+  final BuiltSet<MemberShape> eventHeaders;
+  @override
+  final MemberShape eventPayload;
+  @override
+  final bool isEventStream;
+
+  factory _$StreamingTraits([void Function(StreamingTraitsBuilder)? updates]) =>
+      (new StreamingTraitsBuilder()..update(updates))._build();
+
+  _$StreamingTraits._(
+      {required this.eventHeaders,
+      required this.eventPayload,
+      required this.isEventStream})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        eventHeaders, r'StreamingTraits', 'eventHeaders');
+    BuiltValueNullFieldError.checkNotNull(
+        eventPayload, r'StreamingTraits', 'eventPayload');
+    BuiltValueNullFieldError.checkNotNull(
+        isEventStream, r'StreamingTraits', 'isEventStream');
+  }
+
+  @override
+  StreamingTraits rebuild(void Function(StreamingTraitsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  StreamingTraitsBuilder toBuilder() =>
+      new StreamingTraitsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is StreamingTraits &&
+        eventHeaders == other.eventHeaders &&
+        eventPayload == other.eventPayload &&
+        isEventStream == other.isEventStream;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc($jc(0, eventHeaders.hashCode), eventPayload.hashCode),
+        isEventStream.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'StreamingTraits')
+          ..add('eventHeaders', eventHeaders)
+          ..add('eventPayload', eventPayload)
+          ..add('isEventStream', isEventStream))
+        .toString();
+  }
+}
+
+class StreamingTraitsBuilder
+    implements Builder<StreamingTraits, StreamingTraitsBuilder> {
+  _$StreamingTraits? _$v;
+
+  SetBuilder<MemberShape>? _eventHeaders;
+  SetBuilder<MemberShape> get eventHeaders =>
+      _$this._eventHeaders ??= new SetBuilder<MemberShape>();
+  set eventHeaders(SetBuilder<MemberShape>? eventHeaders) =>
+      _$this._eventHeaders = eventHeaders;
+
+  MemberShapeBuilder? _eventPayload;
+  MemberShapeBuilder get eventPayload =>
+      _$this._eventPayload ??= new MemberShapeBuilder();
+  set eventPayload(MemberShapeBuilder? eventPayload) =>
+      _$this._eventPayload = eventPayload;
+
+  bool? _isEventStream;
+  bool? get isEventStream => _$this._isEventStream;
+  set isEventStream(bool? isEventStream) =>
+      _$this._isEventStream = isEventStream;
+
+  StreamingTraitsBuilder();
+
+  StreamingTraitsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _eventHeaders = $v.eventHeaders.toBuilder();
+      _eventPayload = $v.eventPayload.toBuilder();
+      _isEventStream = $v.isEventStream;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(StreamingTraits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$StreamingTraits;
+  }
+
+  @override
+  void update(void Function(StreamingTraitsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  StreamingTraits build() => _build();
+
+  _$StreamingTraits _build() {
+    _$StreamingTraits _$result;
+    try {
+      _$result = _$v ??
+          new _$StreamingTraits._(
+              eventHeaders: eventHeaders.build(),
+              eventPayload: eventPayload.build(),
+              isEventStream: BuiltValueNullFieldError.checkNotNull(
+                  isEventStream, r'StreamingTraits', 'isEventStream'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'eventHeaders';
+        eventHeaders.build();
+        _$failedField = 'eventPayload';
+        eventPayload.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'StreamingTraits', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

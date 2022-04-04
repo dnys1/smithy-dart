@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/generator/generation_context.dart';
 import 'package:smithy_codegen/src/generator/generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/util/config_parameter.dart';
@@ -104,27 +105,38 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
       if (httpTrait == null) {
         continue;
       }
-      final operationInput = operation.inputSymbol(context);
-      var operationOutput = operation.outputSymbol(context);
+      final operationContext = OperationGenerationContext(context, operation);
+      final operationInput = operationContext.inputSymbol;
+      var operationOutput = operationContext.outputSymbol;
       // Replace Unit with void for nicer DX
       if (operationOutput == DartTypes.smithy.unit) {
         operationOutput = DartTypes.core.void$;
       }
-      final paginatedTraits = operation.paginatedTraits(context);
+      final Reference returnType;
+      final paginatedTraits = operationContext.paginatedTraits;
       final isPaginated = paginatedTraits != null;
+      if (isPaginated) {
+        returnType = DartTypes.async.future(DartTypes.smithy.paginatedResult(
+          paginatedTraits.items?.symbol.unboxed ?? DartTypes.core.void$,
+          paginatedTraits.pageSize?.symbol.unboxed ?? DartTypes.core.void$,
+        ));
+      } else {
+        if (operationContext.isEventStreamOperation) {
+          returnType = DartTypes.smithy.streamConnection(
+            operationInput,
+            operationOutput,
+          );
+        } else {
+          returnType = DartTypes.async.future(operationOutput);
+        }
+      }
       String _public(String s) => s.startsWith('_') ? s.substring(1) : s;
       yield Method(
         (m) => m
           ..docs.addAll([
             if (operation.hasDocs(context)) operation.formattedDocs(context),
           ])
-          ..returns = isPaginated
-              ? DartTypes.async.future(DartTypes.smithy.paginatedResult(
-                  paginatedTraits.items?.symbol.unboxed ?? DartTypes.core.void$,
-                  paginatedTraits.pageSize?.symbol.unboxed ??
-                      DartTypes.core.void$,
-                ))
-              : DartTypes.async.future(operationOutput)
+          ..returns = returnType
           ..name = operation.shapeId.shape.camelCase
           ..lambda = false
           ..requiredParameters.addAll([

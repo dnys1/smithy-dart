@@ -17,7 +17,7 @@ enum TestType { request, response, error }
 
 /// Generates test classes for shapes with HTTP tests.
 class OperationTestGenerator extends LibraryGenerator<OperationShape>
-    with OperationGenerationContext {
+    with OperationGenerationContextMixin {
   OperationTestGenerator(
     OperationShape shape,
     CodegenContext context, {

@@ -33,6 +33,7 @@ final dependencyVersions = {
   'meta': Dependency('^1.7.0'),
   'shelf': Dependency('^1.1.0'),
   'shelf_router': Dependency('^1.1.0'),
+  'stream_channel': Dependency('^2.1.0'),
   'xml': Dependency('^5.3.1'),
 
   // Dev Dependencies

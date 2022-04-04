@@ -2,12 +2,16 @@
 
 library generic_json.generic_json.common.serializers;
 
-import 'package:built_collection/built_collection.dart' as _i12;
+import 'package:built_collection/built_collection.dart' as _i15;
 import 'package:built_value/serializer.dart';
 import 'package:generic_json/src/generic_json/model/aws_config.dart' as _i11;
 import 'package:generic_json/src/generic_json/model/client_config.dart' as _i8;
 import 'package:generic_json/src/generic_json/model/environment_config.dart'
     as _i3;
+import 'package:generic_json/src/generic_json/model/event.dart' as _i12;
+import 'package:generic_json/src/generic_json/model/event_message.dart' as _i13;
+import 'package:generic_json/src/generic_json/model/event_stream_input_output.dart'
+    as _i14;
 import 'package:generic_json/src/generic_json/model/file_config_settings.dart'
     as _i6;
 import 'package:generic_json/src/generic_json/model/operation_config.dart'
@@ -30,10 +34,13 @@ const List<_i1.SmithySerializer> serializers = [
   ..._i8.ClientConfig.serializers,
   ..._i9.OperationConfig.serializers,
   ..._i10.ScopedConfig.serializers,
-  ..._i11.AwsConfig.serializers
+  ..._i11.AwsConfig.serializers,
+  ..._i12.Event.serializers,
+  ..._i13.EventMessage.serializers,
+  ..._i14.EventStreamInputOutput.serializers
 ];
 final Map<FullType, Function> builderFactories = {
   const FullType(
-          _i12.BuiltMap, [FullType(String), FullType(_i6.FileConfigSettings)]):
-      _i12.MapBuilder<String, _i6.FileConfigSettings>.new
+          _i15.BuiltMap, [FullType(String), FullType(_i6.FileConfigSettings)]):
+      _i15.MapBuilder<String, _i6.FileConfigSettings>.new
 };

@@ -12,3 +12,24 @@ operation UnitInputAndOutput {
     input: Unit,
     output: Unit
 }
+
+@http(method: "POST", uri: "/ws")
+operation EventStream {
+    input: EventStreamInputOutput,
+    output: EventStreamInputOutput
+}
+
+structure EventStreamInputOutput {
+    @httpPayload
+    event: Event
+}
+
+@streaming
+union Event {
+    message: EventMessage
+}
+
+structure EventMessage {
+    @required
+    message: String
+}

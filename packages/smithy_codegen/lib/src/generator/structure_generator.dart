@@ -206,7 +206,9 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     // must construct an instance in the body.
     final defaultValue =
         member.defaultValue ?? context.shapeFor(member.target).defaultValue;
-    final isNullable = symbol.typeRef.isNullable! || defaultValue != null;
+    final isNullable = symbol.typeRef.isNullable! ||
+        defaultValue != null ||
+        _defaultValue(member) != null;
 
     return Parameter((p) => p
       ..annotations.addAll([

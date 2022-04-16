@@ -66,9 +66,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     ].map(context.shapeFor).cast<StructureShape>();
 
     for (final child in shapes) {
-      if (!context.shapes.keys.contains(child.shapeId)) {
-        yield* structureShape(child);
-      }
+      yield* structureShape(child);
     }
   }
 
@@ -117,7 +115,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     final docs = StringBuffer();
     final title = shape.getTrait<TitleTrait>()?.value;
     if (title != null) {
-      docs.writeln('/// $title');
+      docs.writeln('/// # $title');
     }
     if (shape.hasDocs(context)) {
       if (docs.isNotEmpty) docs.writeln('///');
@@ -144,12 +142,17 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
 
   @override
   Iterable<GeneratedLibrary> listShape(ListShape shape, [Shape? parent]) {
-    return _foreignMembers([shape.member]);
+    return _foreignMembers([shape.member.target]);
+  }
+
+  @override
+  Iterable<GeneratedLibrary> mapShape(MapShape shape, [Shape? parent]) {
+    return _foreignMembers([shape.key.target, shape.value.target]);
   }
 
   @override
   Iterable<GeneratedLibrary> setShape(SetShape shape, [Shape? parent]) {
-    return _foreignMembers([shape.member]);
+    return _foreignMembers([shape.member.target]);
   }
 
   @override
@@ -158,7 +161,7 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
     if (Shape.preludeShapes.keys.contains(shape.shapeId)) {
       return;
     }
-    yield* _foreignMembers(shape.members.values);
+    yield* _foreignMembers(shape.members.values.map((member) => member.target));
     yield _buildLibrary(
       shape,
       StructureGenerator(shape, context).generate(),
@@ -168,22 +171,18 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   @override
   Iterable<GeneratedLibrary> unionShape(UnionShape shape,
       [Shape? parent]) sync* {
-    yield* _foreignMembers(shape.members.values);
+    yield* _foreignMembers(shape.members.values.map((member) => member.target));
     yield _buildLibrary(shape, UnionGenerator(shape, context).generate());
   }
 
-  Iterable<GeneratedLibrary> _foreignMembers(Iterable<MemberShape> members) {
-    return members
-        .map((shape) => context.shapeFor(shape.target))
-        .expand((shape) {
-          if (shape is CollectionShape) {
-            return [context.shapeFor(shape.member.target)];
-          } else if (shape is MapShape) {
-            return [shape.key.target, shape.value.target].map(context.shapeFor);
-          }
-          return [shape];
-        })
-        .where((target) => !context.shapes.keys.contains(target.shapeId))
-        .expand((shape) => shape.accept(this) ?? const Iterable.empty());
+  Iterable<GeneratedLibrary> _foreignMembers(Iterable<ShapeId> shapeIds) {
+    return shapeIds.map(context.shapeFor).expand((shape) {
+      if (shape is CollectionShape) {
+        return [context.shapeFor(shape.member.target)];
+      } else if (shape is MapShape) {
+        return [shape.key.target, shape.value.target].map(context.shapeFor);
+      }
+      return [shape];
+    }).expand((shape) => shape.accept(this) ?? const []);
   }
 }

@@ -179,7 +179,7 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
     final namespace = this.namespace;
     builder.addExpression(
       literalList([
-        DartTypes.smithy.xmlElementName.newInstance([
+        DartTypes.smithy.xmlElementName.constInstance([
           literalString(payloadWireName),
           if (namespace != null) namespace.constructedInstance
         ])

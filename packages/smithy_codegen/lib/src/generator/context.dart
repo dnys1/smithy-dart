@@ -59,7 +59,7 @@ class CodegenContext {
   /// Tracks the service's generated types and the private symbols to hide.
   ///
   /// Used for creating common `serializers` definition.
-  final Map<Reference, List<String>> generatedTypes = {};
+  final Map<Reference, Set<String>> generatedTypes = {};
 
   /// Tracks the service's needed builder factories.
   final Map<Reference, Expression> builderFactories = {};

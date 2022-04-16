@@ -40,25 +40,19 @@ List<GeneratedLibrary> generateForAst(
     serviceShapes = [serviceShapes.first];
   }
 
-  final List<GeneratedLibrary> libraries = [];
+  final Set<GeneratedLibrary> libraries = {};
 
   for (final serviceShape in serviceShapes) {
     // Builds a service closure with just one service shape. All the other
     // shapes can remain - they will not be generated for services which do
     // not reference them due to how LibraryVisitor works.
     final serviceClosureShapes = ast.shapes.entries.where((el) {
-      if (el.value is ServiceShape) {
-        return false;
-      }
       if (el.value is OperationShape) {
         return includeShapes.isEmpty || includeShapes.contains(el.key);
       }
       return true;
     });
-    final serviceClosure = ShapeMap({
-      for (final entry in serviceClosureShapes) entry.key: entry.value,
-      serviceShape.shapeId: serviceShape,
-    });
+    final serviceClosure = ShapeMap(Map.fromEntries(serviceClosureShapes));
 
     final context = CodegenContext(
       smithyVersion: ast.version,
@@ -76,13 +70,11 @@ List<GeneratedLibrary> generateForAst(
     // Generate libraries for relevant shape types.
     //
     // Build service shapes last, since they aggregate generated types.
-    final shapes = context.shapes.values.where((s) => s is! ServiceShape);
-    libraries.addAll([...shapes, serviceShape].expand(
-      (shape) =>
-          shape.accept(LibraryVisitor(context)) ??
-          const Iterable<GeneratedLibrary>.empty(),
+    final operations = context.shapes.values.whereType<OperationShape>();
+    libraries.addAll([...operations, serviceShape].expand(
+      (shape) => shape.accept(LibraryVisitor(context)) ?? const [],
     ));
   }
 
-  return libraries;
+  return libraries.toList();
 }

@@ -37,7 +37,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         .add(Directive.part('${shape.className(context)!.snakeCase}.g.dart'));
 
     // Hide the payload symbol if there is one
-    (context.generatedTypes[symbol] ??= []).addAll([
+    (context.generatedTypes[symbol] ??= {}).addAll([
       if (hasBuiltPayload) payloadSymbol.symbol!,
     ]);
 

@@ -40,11 +40,11 @@ dependencies:
   yaml_edit: ^2.0.1
 
 # REMOVE FOR PUBLISHING
-# dependency_overrides:
-#   smithy:
-#     path: ../smithy
-#   smithy_aws:
-#     path: ../smithy_aws
+dependency_overrides:
+  smithy:
+    path: ../smithy
+  smithy_aws:
+    path: ../smithy_aws
 
 dev_dependencies:
   amplify_lints: ^1.0.0

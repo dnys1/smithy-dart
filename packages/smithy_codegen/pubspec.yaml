@@ -1,6 +1,6 @@
 name: smithy_codegen
 description: Smithy model generator from AST representation
-version: 0.3.3
+version: 0.3.4
 homepage: https://github.com/dnys1/smithy-dart
 publish_to: https://pub.dillonnys.com
 
@@ -25,6 +25,7 @@ dependencies:
   grpc: ^3.0.2
   html2md: ^1.2.5
   http: ^0.13.4
+  jmespath: ^2.0.0
   json_annotation: ">=4.4.0 <4.5.0"
   meta: ^1.7.0
   path: ^1.8.0
@@ -45,11 +46,11 @@ dependencies:
   yaml_edit: ^2.0.1
 
 # REMOVE FOR PUBLISHING
-# dependency_overrides:
-#   smithy:
-#     path: ../smithy
-#   smithy_aws:
-#     path: ../smithy_aws
+dependency_overrides:
+  smithy:
+    path: ../smithy
+  smithy_aws:
+    path: ../smithy_aws
 
 dev_dependencies:
   amplify_lints: ^1.0.0

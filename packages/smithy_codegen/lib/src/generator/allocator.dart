@@ -23,8 +23,8 @@ class SmithyAllocator implements Allocator {
   /// generator will simply not work).
   static const _doNotPrefix = [
     'dart:core',
-    BuiltValue.mainUrl,
-    BuiltValue.serializerUrl,
+    BuiltValueType.mainUrl,
+    BuiltValueType.serializerUrl,
     ShelfRouter.url,
   ];
 

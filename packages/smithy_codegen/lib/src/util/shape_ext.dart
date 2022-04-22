@@ -328,6 +328,39 @@ extension ShapeUtils on Shape {
   }
 }
 
+extension NamedMembersShapeUtil on NamedMembersShape {
+  PaginationItem parsePathToExpression(CodegenContext context, String p) {
+    NamedMembersShape shape = this;
+    final path = p.split('.');
+    final List<Expression Function(Expression)> exps = [];
+    bool isNullable = false;
+    late MemberShape member;
+    late Reference symbol;
+    while (path.isNotEmpty) {
+      final memberName = path.removeAt(0);
+      member = shape.members[memberName]!;
+      final dartName = member.dartName(shape.getType());
+      final _isNullable = isNullable; // local copy for capture
+      exps.add((exp) => exp.nullableProperty(dartName, _isNullable));
+      isNullable = member.isNullable(context, shape);
+      symbol = context.symbolFor(member.target, shape);
+      final targetShape = context.shapeFor(member.target);
+      if (path.isNotEmpty) {
+        shape = targetShape as NamedMembersShape;
+      }
+    }
+    Expression buildExpression(Expression exp) =>
+        exps.fold(exp, (exp, el) => el(exp));
+    return PaginationItem(
+      (b) => b
+        ..member.replace(member)
+        ..buildExpression = buildExpression
+        ..symbol = symbol
+        ..isNullable = isNullable,
+    );
+  }
+}
+
 extension OperationShapeUtil on OperationShape {
   /// The name of this operation as a Dart class.
   String get dartName {
@@ -375,60 +408,30 @@ extension OperationShapeUtil on OperationShape {
         b.pageSizePath = operationTraits!.pageSizePath;
       }
 
-      PaginationItem _parsePath(NamedMembersShape shape, String p) {
-        final path = p.split('.');
-        final List<Expression Function(Expression)> exps = [];
-        bool isNullable = false;
-        late MemberShape member;
-        late Reference symbol;
-        while (path.isNotEmpty) {
-          final memberName = path.removeAt(0);
-          member = shape.members[memberName]!;
-          final dartName = member.dartName(shape.getType());
-          final _isNullable = isNullable; // local copy for capture
-          exps.add((exp) => exp.nullableProperty(dartName, _isNullable));
-          isNullable = member.isNullable(context, shape);
-          symbol = context.symbolFor(member.target, shape);
-          final targetShape = context.shapeFor(member.target);
-          if (path.isNotEmpty) {
-            shape = targetShape as NamedMembersShape;
-          }
-        }
-        Expression buildExpression(Expression exp) =>
-            exps.fold(exp, (exp, el) => el(exp));
-        return PaginationItem(
-          (b) => b
-            ..member.replace(member)
-            ..buildExpression = buildExpression
-            ..symbol = symbol
-            ..isNullable = isNullable,
-        );
-      }
-
       if (b.inputTokenPath != null) {
-        b.inputToken.replace(_parsePath(
-          inputShape(context),
+        b.inputToken.replace(inputShape(context).parsePathToExpression(
+          context,
           b.inputTokenPath!,
         ));
       }
 
       if (b.outputTokenPath != null) {
-        b.outputToken.replace(_parsePath(
-          outputShape(context),
+        b.outputToken.replace(outputShape(context).parsePathToExpression(
+          context,
           b.outputTokenPath!,
         ));
       }
 
       if (b.itemsPath != null) {
-        b.items.replace(_parsePath(
-          outputShape(context),
+        b.items.replace(outputShape(context).parsePathToExpression(
+          context,
           b.itemsPath!,
         ));
       }
 
       if (b.pageSizePath != null) {
-        b.pageSize.replace(_parsePath(
-          inputShape(context),
+        b.pageSize.replace(inputShape(context).parsePathToExpression(
+          context,
           b.pageSizePath!,
         ));
       }
@@ -542,21 +545,26 @@ extension OperationShapeUtil on OperationShape {
 
   /// Constructor parameters which should be generated for the operation and its
   /// service client based off the traits attached to this shape's service.
-  Iterable<Parameter> constructorParameters(CodegenContext context) sync* {
+  Iterable<Parameter> constructorParameters(
+    CodegenContext context, {
+    bool Function(ConfigParameter) toThis = _defaultToThis,
+  }) sync* {
     for (final parameter in operationParameters(context)
         .where((p) => p.location.inConstructor)) {
       yield Parameter((p) {
-        final toThis = parameter.isOverride;
+        final pToThis = toThis(parameter);
         p
-          ..toThis = toThis
+          ..toThis = pToThis
           ..required = parameter.required && parameter.defaultTo == null
-          ..type = toThis ? null : parameter.type
+          ..type = pToThis ? null : parameter.type
           ..name = parameter.name
           ..named = true
           ..defaultTo = parameter.defaultTo;
       });
     }
   }
+
+  static bool _defaultToThis(ConfigParameter p) => p.isOverride;
 }
 
 extension StructureShapeUtil on StructureShape {

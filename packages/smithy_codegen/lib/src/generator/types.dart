@@ -38,7 +38,7 @@ abstract class DartTypes {
   static const awsSigV4 = _AwsSigV4();
 
   /// `package:built_value` types.
-  static const builtValue = BuiltValue._();
+  static const builtValue = BuiltValueType._();
 
   /// `dart:convert` types.
   static const convert = _Convert();
@@ -100,6 +100,12 @@ class _Core {
 
   /// Creates a [core.double] reference.
   Reference get double => const Reference('double', _url);
+
+  /// Creates a [core.Duration] reference.
+  Reference get duration => const Reference('Duration', _url);
+
+  /// Creates a [core.Exception] reference.
+  Reference get exception => const Reference('Exception', _url);
 
   /// Creates a [core.Function] reference.
   Reference get function => const Reference('Function', _url);
@@ -261,8 +267,8 @@ class _AwsSigV4 {
 }
 
 /// `package:built_value` types
-class BuiltValue {
-  const BuiltValue._();
+class BuiltValueType {
+  const BuiltValueType._();
 
   static const mainUrl = 'package:built_value/built_value.dart';
   static const serializerUrl = 'package:built_value/serializer.dart';
@@ -513,6 +519,17 @@ class _Smithy {
 
   static const _url = 'package:smithy/smithy.dart';
 
+  /// Creates a [smithy.Acceptor] reference.
+  Reference acceptor(Reference input, Reference output) => TypeReference(
+        (t) => t
+          ..symbol = 'Acceptor'
+          ..types.addAll([input, output])
+          ..url = _url,
+      );
+
+  /// Creates a [smithy.AcceptorState] reference.
+  Reference get acceptorState => const Reference('AcceptorState', _url);
+
   /// Creates a [smithy.BlobSerializer] reference.
   Reference get blobSerializer => const Reference('BlobSerializer', _url);
 
@@ -619,6 +636,14 @@ class _Smithy {
   /// Creates a [smithy.MissingLabelException] reference.
   Reference get missingLabelException =>
       const Reference('MissingLabelException', _url);
+
+  /// Creates a [smithy.Operation] reference.
+  Reference operation(Reference input, Reference output) => TypeReference(
+        (t) => t
+          ..symbol = 'Operation'
+          ..url = _url
+          ..types.addAll([input, output]),
+      );
 
   /// Creates a [smithy.PaginatedHttpOperation] reference for an operation with input
   /// payload type [inputPayload], input type [input], and output type [output].
@@ -748,6 +773,14 @@ class _Smithy {
 
   /// Creates a [smithy.ValidateChecksum] reference.
   Reference get validateChecksum => const Reference('ValidateChecksum', _url);
+
+  /// Creates a [smithy.Waiter] reference.
+  Reference waiter(Reference inputType, Reference outputType) => TypeReference(
+        (t) => t
+          ..symbol = 'Waiter'
+          ..types.addAll([inputType, outputType])
+          ..url = _url,
+      );
 
   /// Creates a [smithy.WithChecksum] reference.
   Reference get withChecksum => const Reference('WithChecksum', _url);

@@ -22,6 +22,7 @@ message SmithyLibrary {
         COMMON = 4;
         TEST = 5;
         SERVER = 6;
+        WAITERS = 7;
     }
     LibraryType libraryType = 3;
 

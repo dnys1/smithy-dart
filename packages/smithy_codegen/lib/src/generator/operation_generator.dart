@@ -373,21 +373,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ..name = 'errorTypes'
         ..lambda = true
         ..body = literalConstList([
-          for (var error in errorSymbols)
-            DartTypes.smithy.smithyError.constInstance([
-              error.shapeId.constructed,
-              DartTypes.smithy.errorKind.property(error.kind.name),
-              error.symbol,
-            ], {
-              if (error.statusCode != null)
-                'statusCode': literalNum(error.statusCode!),
-              if (error.retryConfig != null)
-                'retryConfig': DartTypes.smithy.retryConfig.constInstance([], {
-                  'isThrottlingError':
-                      literalBool(error.retryConfig!.isThrottlingError),
-                }),
-              'builder': error.symbol.property('fromResponse'),
-            })
+          for (var error in errorSymbols) error.constInstance,
         ]).code,
     );
 

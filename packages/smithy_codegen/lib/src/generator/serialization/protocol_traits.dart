@@ -3,6 +3,8 @@ import 'package:built_value/built_value.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy/ast.dart';
+import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 part 'protocol_traits.g.dart';
 
@@ -78,6 +80,21 @@ abstract class HttpErrorTraits
   Reference get symbol;
   RetryConfig? get retryConfig;
   int? get statusCode;
+
+  Expression get constInstance {
+    return DartTypes.smithy.smithyError.constInstance([
+      shapeId.constructed,
+      DartTypes.smithy.errorKind.property(kind.name),
+      symbol,
+    ], {
+      if (statusCode != null) 'statusCode': literalNum(statusCode!),
+      if (retryConfig != null)
+        'retryConfig': DartTypes.smithy.retryConfig.constInstance([], {
+          'isThrottlingError': literalBool(retryConfig!.isThrottlingError),
+        }),
+      'builder': symbol.property('fromResponse'),
+    });
+  }
 }
 
 abstract class PaginationItem

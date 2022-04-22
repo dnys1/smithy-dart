@@ -59,13 +59,18 @@ extension SmithyLibraryX on SmithyLibrary {
           basePath: basePath,
         );
       case 4:
-        final libraryType = SmithyLibrary_LibraryType.values
+        var libraryType = SmithyLibrary_LibraryType.values
             .firstWhere((el) => _sanitize(el.name) == _sanitize(parts[2]));
+        final filename = _sanitizeFilename(libraryType, parts[3]);
+        if (libraryType == SmithyLibrary_LibraryType.OPERATION &&
+            filename.contains('waiters')) {
+          libraryType = SmithyLibrary_LibraryType.WAITERS;
+        }
         return SmithyLibrary(
           packageName: _sanitize(parts[0]),
           serviceName: _sanitize(parts[1]),
           libraryType: libraryType,
-          filename: _sanitizeFilename(libraryType, parts[3]),
+          filename: filename,
           basePath: basePath,
         );
       default:
@@ -152,6 +157,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return '${basePath}src/$serviceName/model/$filename.dart';
       case SmithyLibrary_LibraryType.OPERATION:
         return '${basePath}src/$serviceName/operation/$filename.dart';
+      case SmithyLibrary_LibraryType.WAITERS:
+        return '${basePath}src/$serviceName/operation/${filename}_waiters.dart';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$basePath$filename.dart';
       case SmithyLibrary_LibraryType.COMMON:
@@ -172,6 +179,7 @@ extension SmithyLibraryX on SmithyLibrary {
       case SmithyLibrary_LibraryType.OPERATION:
       case SmithyLibrary_LibraryType.SERVICE:
       case SmithyLibrary_LibraryType.COMMON:
+      case SmithyLibrary_LibraryType.WAITERS:
         return 'lib/$libRelativePath';
       case SmithyLibrary_LibraryType.TEST:
         return 'test/$serviceName/$filename.dart';
@@ -192,6 +200,8 @@ extension SmithyLibraryX on SmithyLibrary {
         return '$packageName.$serviceName.model.$filename';
       case SmithyLibrary_LibraryType.OPERATION:
         return '$packageName.$serviceName.operation.$filename';
+      case SmithyLibrary_LibraryType.WAITERS:
+        return '$packageName.$serviceName.operation.${filename}_waiters';
       case SmithyLibrary_LibraryType.SERVICE:
         return '$packageName.$serviceName';
       case SmithyLibrary_LibraryType.COMMON:

@@ -12,15 +12,8 @@ import 'package:smithy_codegen/src/generator/service_server_generator.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_codegen/src/generator/union_generator.dart';
 import 'package:smithy_codegen/src/generator/visitors/default_visitor.dart';
+import 'package:smithy_codegen/src/generator/waiter_generator.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
-
-/// Wrapper over [Library] with context for its creation.
-class ShapeLibrary {
-  const ShapeLibrary(this.shape, this.library);
-
-  final Shape shape;
-  final Library library;
-}
 
 /// Visits shapes to create libraries as needed. Only certain shape types are
 /// given their own library file.
@@ -36,7 +29,26 @@ class LibraryVisitor extends DefaultVisitor<Iterable<GeneratedLibrary>> {
   Iterable<GeneratedLibrary> operationShape(OperationShape shape,
       [Shape? parent]) sync* {
     // Build the operation class.
-    yield _buildLibrary(shape, OperationGenerator(shape, context).generate());
+    final operationLibrary = _buildLibrary(
+      shape,
+      OperationGenerator(shape, context).generate(),
+    );
+    yield operationLibrary;
+
+    // Build the waiters, if any
+    if (shape.hasTrait<WaitableTrait>()) {
+      final library = SmithyLibraryX.create(
+        packageName: context.packageName,
+        serviceName: context.serviceName,
+        libraryType: SmithyLibrary_LibraryType.WAITERS,
+        filename: operationLibrary.smithyLibrary.filename,
+        basePath: context.basePath,
+      );
+      yield GeneratedLibrary(
+        library,
+        WaiterGenerator(shape, context).generate(),
+      );
+    }
 
     // Build the operation tests.
     final testLibrary = SmithyLibraryX.create(

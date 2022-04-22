@@ -17,6 +17,7 @@ class CodegenConfig {
     required this.server,
     required this.client,
     required this.useBuilders,
+    this.smithyPath,
   });
 
   @CliOption(
@@ -63,6 +64,11 @@ class CodegenConfig {
     negatable: false,
   )
   final bool useBuilders;
+
+  @CliOption(
+    help: 'The path to the smithy package',
+  )
+  final String? smithyPath;
 }
 
 extension ConfigOptions on CodegenConfig {

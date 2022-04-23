@@ -45,7 +45,7 @@ class SerializersGenerator extends Generator<Library> {
           ..name = 'builderFactories'
           ..assignment = literalMap({
             for (final entry in context.builderFactories.entries)
-              entry.key.fullType: entry.value,
+              entry.key.fullType(): entry.value,
           }).code,
       );
 }

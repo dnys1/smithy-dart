@@ -126,7 +126,7 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
         .call([
           awsRequest.property('split').call([]),
         ], {
-          'specifiedType': payloadSymbol.fullType,
+          'specifiedType': payloadSymbol.fullType(),
         })
         .awaited
         .asA(payloadSymbol);
@@ -184,12 +184,15 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
           .assignConst('statusCode')
           .statement;
     }
+
     yield refer(operation.protocolField)
         .property('serialize')
         .call([
           refer('output')
         ], {
-          'specifiedType': operation.outputSymbol(context).fullType,
+          'specifiedType': operation.outputSymbol(context).fullType([
+            operation.outputShape(context).httpPayload(context).symbol,
+          ]),
         })
         .assignFinal('body')
         .statement;
@@ -225,7 +228,9 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
           .call([
             refer('e')
           ], {
-            'specifiedType': errorSymbol.fullType,
+            'specifiedType': errorSymbol.fullType([
+              errorShape.httpPayload(context).symbol,
+            ]),
           })
           .assignFinal('body')
           .statement;

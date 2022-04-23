@@ -223,6 +223,13 @@ class ServiceServerGenerator extends LibraryGenerator<ServiceShape> {
 
       yield Code.scope((allocate) => 'on ${allocate(errorSymbol)} catch (e) {');
 
+      final addError = protocol.addErrorTo(
+        refer('context').property('response').property('headers'),
+        errorTrait,
+      );
+      if (addError != null) {
+        yield addError.statement;
+      }
       yield refer(operation.protocolField)
           .property('serialize')
           .call([

@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:smithy/ast.dart';
+import 'package:smithy/ast.dart' hide Matcher;
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:test/test.dart';
 

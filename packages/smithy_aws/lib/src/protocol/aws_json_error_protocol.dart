@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:aws_common/aws_common.dart';
-import 'package:http/http.dart';
 import 'package:smithy_aws/src/protocol/aws_http_protocol.dart';
 
 /// Provides common error handling to the JSON-based AWS protocols:
@@ -24,8 +23,8 @@ mixin AWSJsonErrorProtocol<InputPayload, Input, OutputPayload, Output>
       return _sanitizeError(header);
     }
 
-    final body = await ByteStream(response.split()).toBytes();
-    final json = jsonDecode(utf8.decode(body)) as Map;
+    final body = await utf8.decodeStream(response.split());
+    final json = jsonDecode(body) as Map;
     final code = json['code'] as String?;
     if (code != null) {
       return _sanitizeError(code);

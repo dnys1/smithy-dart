@@ -8,12 +8,7 @@ import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_test/smithy_test.dart';
 
-final _dummyHttpRequest = AWSStreamedHttpRequest(
-  method: HttpMethod.get,
-  host: '',
-  path: '',
-  body: const Stream.empty(),
-);
+final _dummyHttpRequest = AWSStreamedHttpRequest.get(Uri());
 
 /// Performs an HTTP response test for [operation] for a test case from an
 /// [HttpResponseTestsTrait].

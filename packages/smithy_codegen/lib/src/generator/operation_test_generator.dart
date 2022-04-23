@@ -378,7 +378,7 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
             .call([
               literalMap(testCase.vendorParams)
             ], {
-              'specifiedType': vendorParamsSymbol.fullType,
+              'specifiedType': vendorParamsSymbol.fullType(),
             })
             .asA(vendorParamsSymbol)
             .assignFinal('config'),

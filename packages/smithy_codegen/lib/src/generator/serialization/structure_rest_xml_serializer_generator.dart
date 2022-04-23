@@ -132,7 +132,7 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
         refer('serializers'),
         memberRef,
       ], {
-        'specifiedType': memberSymbol.fullType,
+        'specifiedType': memberSymbol.fullType(),
       });
     }
     return super.serializerFor(
@@ -279,7 +279,7 @@ class StructureRestXmlSerializerGenerator extends StructureSerializerGenerator {
         refer('serializers'),
         value.asA(DartTypes.core.iterable(DartTypes.core.object.boxed)),
       ], {
-        'specifiedType': memberSymbol.fullType,
+        'specifiedType': memberSymbol.fullType(),
       });
       if (targetShape is ListShape || targetShape is SetShape) {
         return deserialized.asA(memberSymbol);

@@ -159,7 +159,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     return refer('serializers').property('serialize').call([
       memberRef,
     ], {
-      'specifiedType': memberSymbol.fullType,
+      'specifiedType': memberSymbol.fullType(),
     });
   }
 
@@ -204,7 +204,7 @@ abstract class SerializerGenerator<S extends NamedMembersShape>
     return refer('serializers').property('deserialize').call([
       value,
     ], {
-      'specifiedType': memberSymbol.fullType,
+      'specifiedType': memberSymbol.fullType(),
     }).asA(memberSymbol);
   }
 }

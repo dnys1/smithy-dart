@@ -68,18 +68,21 @@ extension ReferenceHelpers on Reference {
   }
 
   /// Constructs a `built_value` FullType reference for this.
-  Expression get fullType {
+  Expression fullType([Iterable<Reference>? parameters]) {
     final typeRef = this.typeRef;
     final ctor = typeRef.isNullable ?? false
         ? (args) =>
             DartTypes.builtValue.fullType.constInstanceNamed('nullable', args)
         : DartTypes.builtValue.fullType.constInstance;
-    if (typeRef.types.isEmpty) {
+    if (typeRef.types.isEmpty && (parameters == null || parameters.isEmpty)) {
       return ctor([typeRef.unboxed]);
     }
     return ctor([
       typeRef.rebuild((t) => t.types.clear()).unboxed,
-      literalList(typeRef.types.map((t) => t.fullType)),
+      literalList(
+        parameters?.map((param) => param.fullType()) ??
+            typeRef.types.map((t) => t.fullType()),
+      ),
     ]);
   }
 }

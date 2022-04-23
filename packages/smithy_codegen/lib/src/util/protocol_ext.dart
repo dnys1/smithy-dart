@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
+import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/serialization/structure_rest_xml_serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/serialization/structure_serializer_generator.dart';
@@ -236,5 +237,21 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         return RouteConfiguration.rpc;
     }
     throw StateError('Unknown type: $runtimeType');
+  }
+
+  Expression? addErrorTo(
+    Expression headersMap,
+    HttpErrorTraits error,
+  ) {
+    switch (runtimeType) {
+      case RestJson1Trait:
+      case RestXmlTrait:
+      case GenericJsonProtocolDefinitionTrait:
+        return headersMap.index(literalString('X-Amzn-Errortype')).assign(
+              literalString(error.shapeId.shape),
+            );
+      default:
+        return null;
+    }
   }
 }

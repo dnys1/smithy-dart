@@ -16,7 +16,6 @@ class CodegenConfig {
     this.packageName,
     required this.server,
     required this.client,
-    required this.useBuilders,
     this.smithyPath,
   });
 
@@ -57,13 +56,6 @@ class CodegenConfig {
     negatable: true,
   )
   final bool client;
-
-  @CliOption(
-    defaultsTo: false,
-    help: 'Whether to use builders for generated constructors.',
-    negatable: false,
-  )
-  final bool useBuilders;
 
   @CliOption(
     help: 'The path to the smithy package',

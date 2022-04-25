@@ -13,7 +13,6 @@ CodegenConfig _$parseCodegenConfigResult(ArgResults result) => CodegenConfig(
       packageName: result['package-name'] as String?,
       server: result['server'] as bool,
       client: result['client'] as bool,
-      useBuilders: result['use-builders'] as bool,
       smithyPath: result['smithy-path'] as String?,
     );
 
@@ -47,11 +46,6 @@ ArgParser _$populateCodegenConfigParser(ArgParser parser) => parser
     'client',
     help: 'Whether to generate client-side code.',
     defaultsTo: true,
-  )
-  ..addFlag(
-    'use-builders',
-    help: 'Whether to use builders for generated constructors.',
-    negatable: false,
   )
   ..addOption(
     'smithy-path',

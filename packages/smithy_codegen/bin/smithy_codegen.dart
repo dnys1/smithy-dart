@@ -57,7 +57,6 @@ void main(List<String> args) async {
     ast,
     packageName: packageName,
     generateServer: config.server,
-    useBuilders: config.useBuilders,
   );
   final Set<String> dependencies = {};
   for (final library in libraries) {

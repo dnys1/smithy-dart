@@ -80,16 +80,16 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ])
           ..constructors.addAll([
             factoryConstructor,
+            builderConstructor,
             _privateConstructor,
             if (shape.isInputShape) _fromRequestConstructor,
             if (shape.isOutputShape || shape.isError) fromResponseConstructor,
           ])
           ..methods.addAll([
-            if (context.useBuilders)
-              defaultValues(
-                members: sortedMembers,
-                builderSymbol: builderSymbol,
-              ),
+            defaultValues(
+              members: sortedMembers,
+              builderSymbol: builderSymbol,
+            ),
             ..._fieldGetters(isPayload: false),
             ..._httpInputOverrides,
             if (shape.isInputShape || hasPayload) _getPayload,
@@ -145,28 +145,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
   /// The parameter-based factory constructor.
   Constructor get factoryConstructor {
-    if (context.useBuilders) {
-      return Constructor(
-        (c) => c
-          ..factory = true
-          ..annotations.addAll([
-            if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
-          ])
-          ..docs.addAll([
-            if (shape.hasDocs(context)) shape.formattedDocs(context),
-          ])
-          ..optionalParameters.add(Parameter(
-            (p) => p
-              ..name = 'updates'
-              ..type = FunctionType(
-                (t) => t
-                  ..returnType = DartTypes.core.void$
-                  ..requiredParameters.add(builderSymbol),
-              ),
-          ))
-          ..redirect = builtSymbol,
-      );
-    }
     final body = Block((b) {
       final memberNames = <String>[];
       for (final member in sortedMembers) {
@@ -196,6 +174,29 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ..body = body,
     );
   }
+
+  /// The builder constructor, using built_value closure style.
+  Constructor get builderConstructor => Constructor(
+        (c) => c
+          ..factory = true
+          ..name = 'build'
+          ..annotations.addAll([
+            if (shape.deprecatedAnnotation != null) shape.deprecatedAnnotation!,
+          ])
+          ..docs.addAll([
+            if (shape.hasDocs(context)) shape.formattedDocs(context),
+          ])
+          ..optionalParameters.add(Parameter(
+            (p) => p
+              ..name = 'updates'
+              ..type = FunctionType(
+                (t) => t
+                  ..returnType = DartTypes.core.void$
+                  ..requiredParameters.add(builderSymbol),
+              ),
+          ))
+          ..redirect = builtSymbol,
+      );
 
   /// Creates a constructor [Parameter] for [member].
   Parameter _memberParameter(MemberShape member) {
@@ -241,8 +242,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final Code output;
     if (payloadSymbol == symbol) {
       output = refer('payload').code;
-    } else if (context.useBuilders) {
-      output = symbol.newInstance([
+    } else {
+      output = symbol.newInstanceNamed('build', [
         Method(
           (m) => m
             ..requiredParameters.add(Parameter((p) => p..name = 'b'))
@@ -250,8 +251,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             ..body = Block.of(_outputBuilder(refer('request'))),
         ).closure,
       ]).code;
-    } else {
-      output = Block.of(_outputBuilder(refer('request')));
     }
     return Constructor(
       (c) => c
@@ -293,8 +292,8 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ).closure,
         ]).code;
       }
-    } else if (context.useBuilders) {
-      output = symbol.newInstance([
+    } else {
+      output = symbol.newInstanceNamed('build', [
         Method(
           (m) => m
             ..requiredParameters.add(Parameter((p) => p..name = 'b'))
@@ -302,8 +301,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             ..body = Block.of(_outputBuilder(refer('response'))),
         ).closure,
       ]).code;
-    } else {
-      output = Block.of(_outputBuilder(refer('response')));
     }
     return Constructor(
       (c) => c
@@ -662,10 +659,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
     final payload = refer('payload');
     final payloadShape = payloadMember;
 
-    if (!context.useBuilders) {
-      yield builderSymbol.newInstance([]).assignFinal('b').statement;
-    }
-
     // Adds a shape from the payload to the output.
     Code _putShape(MemberShape member, Expression payloadProp) {
       final targetShapeType = context.shapeFor(member.target).getType();
@@ -815,10 +808,6 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           .property('headers')
           .assign(httpObj.property('headers'))
           .statement;
-    }
-
-    if (!context.useBuilders) {
-      yield builder.property('build').call([]).returned.statement;
     }
   }
 

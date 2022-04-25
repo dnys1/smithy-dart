@@ -2,9 +2,11 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/generation_context.dart';
+import 'package:smithy_codegen/src/generator/serialization/protocol_traits.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_config.dart';
 import 'package:smithy_codegen/src/generator/serialization/serializer_generator.dart';
 import 'package:smithy_codegen/src/generator/types.dart';
+import 'package:smithy_codegen/src/util/protocol_ext.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
@@ -40,6 +42,24 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     );
   }
 
+  /// Metadata about [shape] in the context of [protocol], including renames and
+  /// other protocol-specific traits.
+  late final ProtocolTraits protocolTraits = () {
+    final builder = ProtocolTraitsBuilder();
+
+    // JSON traits
+    if (protocol.supportsTrait(JsonNameTrait.id)) {
+      for (final member in members) {
+        final jsonName = member.getTrait<JsonNameTrait>()?.value;
+        if (jsonName != null) {
+          builder.memberWireNames[member] = jsonName;
+        }
+      }
+    }
+
+    return builder.build();
+  }();
+
   /// The `types` getter.
   Method get _typesGetter => Method(
         (m) => m
@@ -64,8 +84,10 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
     '''));
 
     for (final member in sortedMembers) {
+      final memberWireName =
+          protocolTraits.memberWireNames[member] ?? member.memberName;
       builder.statements.addAll([
-        Code("case '${member.memberName}':"),
+        Code("case '$memberWireName':"),
         symbol
             .newInstanceNamed(variantName(member), [
               deserializerFor(
@@ -113,10 +135,25 @@ class UnionSerializerGenerator extends SerializerGenerator<UnionShape>
           ).code,
       ).closure;
     }
+    var hasRenames = false;
+    if (protocolTraits.memberWireNames.isNotEmpty) {
+      hasRenames = true;
+      builder.addExpression(
+        literalConstMap({
+          for (final entry in protocolTraits.memberWireNames.entries)
+            entry.key.memberName: entry.value,
+        }).assignConst('renames'),
+      );
+    }
     builder.statements.addAll([
       object.asA(symbol).statement,
       literalList([
-        object.property('name'),
+        if (hasRenames)
+          refer('renames')
+              .index(object.property('name'))
+              .ifNullThen(object.property('name'))
+        else
+          object.property('name'),
         object.property('when').call([], {
           ...branches,
 

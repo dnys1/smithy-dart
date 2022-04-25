@@ -71,9 +71,12 @@ List<GeneratedLibrary> generateForAst(
     //
     // Build service shapes last, since they aggregate generated types.
     final operations = context.shapes.values.whereType<OperationShape>();
-    libraries.addAll([...operations, serviceShape].expand(
-      (shape) => shape.accept(LibraryVisitor(context)) ?? const [],
-    ));
+    final visitor = LibraryVisitor(context);
+    libraries.addAll([
+      ...operations,
+      ...additionalShapes.map(context.shapeFor),
+      serviceShape
+    ].expand((shape) => shape.accept(visitor) ?? const []));
   }
 
   return libraries.toList();

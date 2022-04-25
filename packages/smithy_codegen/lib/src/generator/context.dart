@@ -20,7 +20,6 @@ class CodegenContext {
     Iterable<ShapeId> includeShapes = const {},
     Iterable<ShapeId> additionalShapes = const {},
     this.generateServer = false,
-    this.useBuilders = false,
   })  : _shapes = shapes,
         _serviceName = serviceName,
         serviceShapeId = serviceShapeId ??
@@ -189,7 +188,4 @@ class CodegenContext {
     filename: serviceName,
     basePath: basePath,
   );
-
-  /// Whether to use builders for generated constructors.
-  final bool useBuilders;
 }

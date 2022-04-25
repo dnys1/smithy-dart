@@ -122,6 +122,8 @@ export 'package:rest_json1/src/rest_json_protocol/model/payload_config.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/player_action.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/post_player_action_input.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/post_player_action_output.dart';
+export 'package:rest_json1/src/rest_json_protocol/model/post_union_with_json_name_input.dart';
+export 'package:rest_json1/src/rest_json_protocol/model/post_union_with_json_name_output.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/query_idempotency_token_auto_fill_input.dart'
     hide QueryIdempotencyTokenAutoFillInputPayload;
 export 'package:rest_json1/src/rest_json_protocol/model/query_params_as_string_list_map_input.dart'
@@ -141,7 +143,7 @@ export 'package:rest_json1/src/rest_json_protocol/model/simple_scalar_properties
     hide SimpleScalarPropertiesInputOutputPayload;
 export 'package:rest_json1/src/rest_json_protocol/model/simple_union.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_input_output.dart';
-export 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input_output.dart';
+export 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_with_media_type_input_output.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/string_enum.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/string_payload_input.dart';
@@ -156,5 +158,6 @@ export 'package:rest_json1/src/rest_json_protocol/model/test_payload_structure_i
 export 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers_io.dart'
     hide TimestampFormatHeadersIoPayload;
 export 'package:rest_json1/src/rest_json_protocol/model/union_input_output.dart';
+export 'package:rest_json1/src/rest_json_protocol/model/union_with_json_name.dart';
 export 'package:rest_json1/src/rest_json_protocol/rest_json_protocol_client.dart';
 export 'package:rest_json1/src/rest_json_protocol/rest_json_protocol_server.dart';

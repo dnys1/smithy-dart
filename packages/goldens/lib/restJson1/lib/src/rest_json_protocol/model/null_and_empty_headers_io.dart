@@ -20,6 +20,11 @@ abstract class NullAndEmptyHeadersIo
         _i1.EmptyPayload,
         _i1.HasPayload<NullAndEmptyHeadersIoPayload> {
   factory NullAndEmptyHeadersIo(
+      {String? a, String? b, _i3.BuiltList<String>? c}) {
+    return _$NullAndEmptyHeadersIo._(a: a, b: b, c: c);
+  }
+
+  factory NullAndEmptyHeadersIo.build(
           [void Function(NullAndEmptyHeadersIoBuilder) updates]) =
       _$NullAndEmptyHeadersIo;
 
@@ -28,7 +33,7 @@ abstract class NullAndEmptyHeadersIo
   factory NullAndEmptyHeadersIo.fromRequest(
           NullAndEmptyHeadersIoPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      NullAndEmptyHeadersIo((b) {
+      NullAndEmptyHeadersIo.build((b) {
         if (request.headers['X-A'] != null) {
           b.a = request.headers['X-A']!;
         }
@@ -45,7 +50,7 @@ abstract class NullAndEmptyHeadersIo
   factory NullAndEmptyHeadersIo.fromResponse(
           NullAndEmptyHeadersIoPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      NullAndEmptyHeadersIo((b) {
+      NullAndEmptyHeadersIo.build((b) {
         if (response.headers['X-A'] != null) {
           b.a = response.headers['X-A']!;
         }

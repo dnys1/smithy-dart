@@ -19,7 +19,11 @@ abstract class MalformedLengthQueryStringInput
             MalformedLengthQueryStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedLengthQueryStringInputPayload> {
-  factory MalformedLengthQueryStringInput(
+  factory MalformedLengthQueryStringInput({String? string}) {
+    return _$MalformedLengthQueryStringInput._(string: string);
+  }
+
+  factory MalformedLengthQueryStringInput.build(
           [void Function(MalformedLengthQueryStringInputBuilder) updates]) =
       _$MalformedLengthQueryStringInput;
 
@@ -29,7 +33,7 @@ abstract class MalformedLengthQueryStringInput
           MalformedLengthQueryStringInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedLengthQueryStringInput((b) {
+      MalformedLengthQueryStringInput.build((b) {
         if (request.queryParameters['string'] != null) {
           b.string = request.queryParameters['string']!;
         }

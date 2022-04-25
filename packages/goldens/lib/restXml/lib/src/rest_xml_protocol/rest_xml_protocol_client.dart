@@ -226,8 +226,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// The following example serializes a body that uses an XML name,
-  /// changing the wrapper name.
+  /// The following example serializes a body that uses an XML name, changing the wrapper name.
   _i1.Future<_i5.BodyWithXmlNameInputOutput> bodyWithXmlName(
       _i5.BodyWithXmlNameInputOutput input,
       {_i3.HttpClient? client}) {
@@ -235,9 +234,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// This example uses fixed query string params and variable query string params.
-  /// The fixed query string parameters and variable parameters must both be
-  /// serialized (implementations may need to merge them together).
+  /// This example uses fixed query string params and variable query string params. The fixed query string parameters and variable parameters must both be serialized (implementations may need to merge them together).
   _i1.Future<void> constantAndVariableQueryString(
       _i7.ConstantAndVariableQueryStringInput input,
       {_i3.HttpClient? client}) {
@@ -246,20 +243,14 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// This example uses a constant query string parameters and a label.
-  /// This simply tests that labels and query string parameters are
-  /// compatible. The fixed query string parameter named "hello" should
-  /// in no way conflict with the label, `{hello}`.
+  /// This example uses a constant query string parameters and a label. This simply tests that labels and query string parameters are compatible. The fixed query string parameter named "hello" should in no way conflict with the label, `{hello}`.
   _i1.Future<void> constantQueryString(_i9.ConstantQueryStringInput input,
       {_i3.HttpClient? client}) {
     return _i10.ConstantQueryStringOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has an empty input
-  /// and empty output structure that reuses the same shape. While this should
-  /// be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has an empty input and empty output structure that reuses the same shape. While this should be rare, code generators must support this.
   _i1.Future<_i11.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
       _i12.EmptyInputAndEmptyOutputInput input,
       {_i3.HttpClient? client}) {
@@ -314,25 +305,14 @@ class RestXmlProtocolClient {
         .run(const _i3.Unit(), client: client);
   }
 
-  /// This operation has three possible return values:
-  ///
-  /// 1. A successful response in the form of GreetingWithErrorsOutput
-  /// 2. An InvalidGreeting error.
-  /// 3. A BadRequest error.
-  ///
-  /// Implementations must be able to successfully take a response and
-  /// properly (de)serialize successful and error responses based on the
-  /// the presence of the
+  /// This operation has three possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A BadRequest error. Implementations must be able to successfully take a response and properly (de)serialize successful and error responses based on the the presence of the
   _i1.Future<_i25.GreetingWithErrorsOutput> greetingWithErrors(
       {_i3.HttpClient? client}) {
     return _i26.GreetingWithErrorsOperation(region: _region, baseUri: _baseUri)
         .run(const _i3.Unit(), client: client);
   }
 
-  /// This examples serializes a blob shape in the payload.
-  ///
-  /// In this example, no XML document is synthesized because the payload is
-  /// not a structure or a union type.
+  /// This examples serializes a blob shape in the payload. In this example, no XML document is synthesized because the payload is not a structure or a union type.
   _i1.Future<_i27.HttpPayloadTraitsInputOutput> httpPayloadTraits(
       _i27.HttpPayloadTraitsInputOutput input,
       {_i3.HttpClient? client}) {
@@ -340,8 +320,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// This examples uses a `@mediaType` trait on the payload to force a custom
-  /// content-type to be serialized.
+  /// This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
   _i1.Future<_i29.HttpPayloadTraitsWithMediaTypeInputOutput>
       httpPayloadTraitsWithMediaType(
           _i29.HttpPayloadTraitsWithMediaTypeInputOutput input,
@@ -351,8 +330,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// The following example serializes a payload that uses an XML name
-  /// on the member, changing the wrapper name.
+  /// The following example serializes a payload that uses an XML name on the member, changing the wrapper name.
   _i1.Future<_i31.HttpPayloadWithMemberXmlNameInputOutput>
       httpPayloadWithMemberXmlName(
           _i31.HttpPayloadWithMemberXmlNameInputOutput input,
@@ -362,10 +340,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// This examples serializes a structure in the payload.
-  ///
-  /// Note that serializing a structure changes the wrapper element name
-  /// to match the targeted structure.
+  /// This examples serializes a structure in the payload. Note that serializing a structure changes the wrapper element name to match the targeted structure.
   _i1.Future<_i33.HttpPayloadWithStructureInputOutput> httpPayloadWithStructure(
       _i33.HttpPayloadWithStructureInputOutput input,
       {_i3.HttpClient? client}) {
@@ -374,8 +349,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// The following example serializes a payload that uses an XML name,
-  /// changing the wrapper name.
+  /// The following example serializes a payload that uses an XML name, changing the wrapper name.
   _i1.Future<_i35.HttpPayloadWithXmlNameInputOutput> httpPayloadWithXmlName(
       _i35.HttpPayloadWithXmlNameInputOutput input,
       {_i3.HttpClient? client}) {
@@ -431,8 +405,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests are serialized when there's no input
-  /// payload but there are HTTP labels.
+  /// The example tests how requests are serialized when there's no input payload but there are HTTP labels.
   _i1.Future<void> httpRequestWithLabels(_i47.HttpRequestWithLabelsInput input,
       {_i3.HttpClient? client}) {
     return _i48.HttpRequestWithLabelsOperation(
@@ -440,8 +413,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests serialize different timestamp formats in the
-  /// URI path.
+  /// The example tests how requests serialize different timestamp formats in the URI path.
   _i1.Future<void> httpRequestWithLabelsAndTimestampFormat(
       _i49.HttpRequestWithLabelsAndTimestampFormatInput input,
       {_i3.HttpClient? client}) {
@@ -456,9 +428,7 @@ class RestXmlProtocolClient {
         .run(const _i3.Unit(), client: client);
   }
 
-  /// This example ensures that query string bound request parameters are
-  /// serialized in the body of responses if the structure is used in both
-  /// the request and response.
+  /// This example ensures that query string bound request parameters are serialized in the body of responses if the structure is used in both the request and response.
   _i1.Future<_i53.IgnoreQueryParamsInResponseOutput>
       ignoreQueryParamsInResponse({_i3.HttpClient? client}) {
     return _i54.IgnoreQueryParamsInResponseOperation(
@@ -466,8 +436,7 @@ class RestXmlProtocolClient {
         .run(const _i3.Unit(), client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there is
-  /// no input or output payload but there are HTTP header bindings.
+  /// The example tests how requests and responses are serialized when there is no input or output payload but there are HTTP header bindings.
   _i1.Future<_i55.InputAndOutputWithHeadersIo> inputAndOutputWithHeaders(
       _i55.InputAndOutputWithHeadersIo input,
       {_i3.HttpClient? client}) {
@@ -483,18 +452,13 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has no input or output.
-  /// While this should be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input or output. While this should be rare, code generators must support this.
   _i1.Future<void> noInputAndNoOutput({_i3.HttpClient? client}) {
     return _i59.NoInputAndNoOutputOperation(region: _region, baseUri: _baseUri)
         .run(const _i3.Unit(), client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has no input and the
-  /// output is empty. While this should be rare, code generators must support
-  /// this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input and the output is empty. While this should be rare, code generators must support this.
   _i1.Future<_i60.NoInputAndOutputOutput> noInputAndOutput(
       {_i3.HttpClient? client}) {
     return _i61.NoInputAndOutputOperation(region: _region, baseUri: _baseUri)
@@ -636,18 +600,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// This test case serializes XML lists for the following cases for both
-  /// input and output:
-  ///
-  /// 1. Normal XML lists.
-  /// 2. Normal XML sets.
-  /// 3. XML lists of lists.
-  /// 4. XML lists with @xmlName on its members
-  /// 5. Flattened XML lists.
-  /// 6. Flattened XML lists with @xmlName.
-  /// 7. Flattened XML lists with @xmlNamespace.
-  /// 8. Lists of structures.
-  /// 9. Flattened XML list of structures
+  /// This test case serializes XML lists for the following cases for both input and output: 1. Normal XML lists. 2. Normal XML sets. 3. XML lists of lists. 4. XML lists with @xmlName on its members 5. Flattened XML lists. 6. Flattened XML lists with @xmlName. 7. Flattened XML lists with @xmlNamespace. 8. Lists of structures. 9. Flattened XML list of structures
   _i1.Future<_i86.XmlListsInputOutput> xmlLists(_i86.XmlListsInputOutput input,
       {_i3.HttpClient? client}) {
     return _i94.XmlListsOperation(region: _region, baseUri: _baseUri)
@@ -675,9 +628,7 @@ class RestXmlProtocolClient {
         .run(input, client: client);
   }
 
-  /// This tests how timestamps are serialized, including using the
-  /// default format of date-time and various @timestampFormat trait
-  /// values.
+  /// This tests how timestamps are serialized, including using the default format of date-time and various @timestampFormat trait values.
   _i1.Future<_i100.XmlTimestampsInputOutput> xmlTimestamps(
       _i100.XmlTimestampsInputOutput input,
       {_i3.HttpClient? client}) {

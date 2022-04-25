@@ -20,28 +20,10 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i11;
 
-/// This operation has four possible return values:
-///
-/// 1. A successful response in the form of GreetingWithErrorsOutput
-/// 2. An InvalidGreeting error.
-/// 3. A BadRequest error.
-/// 4. A FooError.
-///
-/// Implementations must be able to successfully take a response and
-/// properly (de)serialize successful and error responses based on the
-/// the presence of the
+/// This operation has four possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A BadRequest error. 4. A FooError. Implementations must be able to successfully take a response and properly (de)serialize successful and error responses based on the the presence of the
 class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
     _i2.GreetingWithErrorsOutputPayload, _i2.GreetingWithErrorsOutput> {
-  /// This operation has four possible return values:
-  ///
-  /// 1. A successful response in the form of GreetingWithErrorsOutput
-  /// 2. An InvalidGreeting error.
-  /// 3. A BadRequest error.
-  /// 4. A FooError.
-  ///
-  /// Implementations must be able to successfully take a response and
-  /// properly (de)serialize successful and error responses based on the
-  /// the presence of the
+  /// This operation has four possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A BadRequest error. 4. A FooError. Implementations must be able to successfully take a response and properly (de)serialize successful and error responses based on the the presence of the
   GreetingWithErrorsOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

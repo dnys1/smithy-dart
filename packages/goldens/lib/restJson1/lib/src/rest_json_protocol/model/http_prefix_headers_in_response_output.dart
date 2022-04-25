@@ -20,6 +20,11 @@ abstract class HttpPrefixHeadersInResponseOutput
         _i2.EmptyPayload,
         _i2.HasPayload<HttpPrefixHeadersInResponseOutputPayload> {
   factory HttpPrefixHeadersInResponseOutput(
+      {_i3.BuiltMap<String, String>? prefixHeaders}) {
+    return _$HttpPrefixHeadersInResponseOutput._(prefixHeaders: prefixHeaders);
+  }
+
+  factory HttpPrefixHeadersInResponseOutput.build(
           [void Function(HttpPrefixHeadersInResponseOutputBuilder) updates]) =
       _$HttpPrefixHeadersInResponseOutput;
 
@@ -29,7 +34,7 @@ abstract class HttpPrefixHeadersInResponseOutput
   factory HttpPrefixHeadersInResponseOutput.fromResponse(
           HttpPrefixHeadersInResponseOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      HttpPrefixHeadersInResponseOutput((b) {
+      HttpPrefixHeadersInResponseOutput.build((b) {
         b.prefixHeaders.addEntries(response.headers.entries);
       });
 

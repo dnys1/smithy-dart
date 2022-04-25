@@ -15,8 +15,13 @@ abstract class UnionInputOutput
     with _i1.HttpInput<UnionInputOutput>, _i2.AWSEquatable<UnionInputOutput>
     implements Built<UnionInputOutput, UnionInputOutputBuilder> {
   /// A shared structure that contains a single union member.
-  factory UnionInputOutput([void Function(UnionInputOutputBuilder) updates]) =
-      _$UnionInputOutput;
+  factory UnionInputOutput({_i3.MyUnion? contents}) {
+    return _$UnionInputOutput._(contents: contents);
+  }
+
+  /// A shared structure that contains a single union member.
+  factory UnionInputOutput.build(
+      [void Function(UnionInputOutputBuilder) updates]) = _$UnionInputOutput;
 
   const UnionInputOutput._();
 

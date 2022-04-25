@@ -20,6 +20,26 @@ abstract class HttpRequestWithLabelsInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithLabelsInputPayload> {
   factory HttpRequestWithLabelsInput(
+      {required bool boolean,
+      required double double_,
+      required double float,
+      required int integer,
+      required _i3.Int64 long,
+      required int short,
+      required String string,
+      required DateTime timestamp}) {
+    return _$HttpRequestWithLabelsInput._(
+        boolean: boolean,
+        double_: double_,
+        float: float,
+        integer: integer,
+        long: long,
+        short: short,
+        string: string,
+        timestamp: timestamp);
+  }
+
+  factory HttpRequestWithLabelsInput.build(
           [void Function(HttpRequestWithLabelsInputBuilder) updates]) =
       _$HttpRequestWithLabelsInput;
 
@@ -29,7 +49,7 @@ abstract class HttpRequestWithLabelsInput
           HttpRequestWithLabelsInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpRequestWithLabelsInput((b) {
+      HttpRequestWithLabelsInput.build((b) {
         if (labels['string'] != null) {
           b.string = labels['string']!;
         }
@@ -173,7 +193,9 @@ class _HttpRequestWithLabelsInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[_i1.XmlElementName('HttpRequestWithLabelsInput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('HttpRequestWithLabelsInput')
+    ];
     return result;
   }
 }

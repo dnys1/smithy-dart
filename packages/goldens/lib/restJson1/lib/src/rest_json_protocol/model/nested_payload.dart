@@ -12,7 +12,11 @@ part 'nested_payload.g.dart';
 abstract class NestedPayload
     with _i1.AWSEquatable<NestedPayload>
     implements Built<NestedPayload, NestedPayloadBuilder> {
-  factory NestedPayload([void Function(NestedPayloadBuilder) updates]) =
+  factory NestedPayload({String? greeting, String? name}) {
+    return _$NestedPayload._(greeting: greeting, name: name);
+  }
+
+  factory NestedPayload.build([void Function(NestedPayloadBuilder) updates]) =
       _$NestedPayload;
 
   const NestedPayload._();

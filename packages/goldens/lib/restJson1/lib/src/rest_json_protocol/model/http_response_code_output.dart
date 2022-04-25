@@ -16,7 +16,11 @@ abstract class HttpResponseCodeOutput
         Built<HttpResponseCodeOutput, HttpResponseCodeOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<HttpResponseCodeOutputPayload> {
-  factory HttpResponseCodeOutput(
+  factory HttpResponseCodeOutput({int? status}) {
+    return _$HttpResponseCodeOutput._(status: status);
+  }
+
+  factory HttpResponseCodeOutput.build(
           [void Function(HttpResponseCodeOutputBuilder) updates]) =
       _$HttpResponseCodeOutput;
 
@@ -26,7 +30,7 @@ abstract class HttpResponseCodeOutput
   factory HttpResponseCodeOutput.fromResponse(
           HttpResponseCodeOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      HttpResponseCodeOutput((b) {
+      HttpResponseCodeOutput.build((b) {
         b.status = response.statusCode;
       });
 

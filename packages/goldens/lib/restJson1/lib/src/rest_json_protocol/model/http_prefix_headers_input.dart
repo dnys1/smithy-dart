@@ -20,6 +20,11 @@ abstract class HttpPrefixHeadersInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpPrefixHeadersInputPayload> {
   factory HttpPrefixHeadersInput(
+      {String? foo, _i3.BuiltMap<String, String>? fooMap}) {
+    return _$HttpPrefixHeadersInput._(foo: foo, fooMap: fooMap);
+  }
+
+  factory HttpPrefixHeadersInput.build(
           [void Function(HttpPrefixHeadersInputBuilder) updates]) =
       _$HttpPrefixHeadersInput;
 
@@ -28,7 +33,7 @@ abstract class HttpPrefixHeadersInput
   factory HttpPrefixHeadersInput.fromRequest(
           HttpPrefixHeadersInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPrefixHeadersInput((b) {
+      HttpPrefixHeadersInput.build((b) {
         if (request.headers['X-Foo'] != null) {
           b.foo = request.headers['X-Foo']!;
         }

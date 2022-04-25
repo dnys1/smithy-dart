@@ -18,7 +18,11 @@ abstract class HostLabelHeaderInput
         Built<HostLabelHeaderInput, HostLabelHeaderInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<HostLabelHeaderInputPayload> {
-  factory HostLabelHeaderInput(
+  factory HostLabelHeaderInput({required String accountId}) {
+    return _$HostLabelHeaderInput._(accountId: accountId);
+  }
+
+  factory HostLabelHeaderInput.build(
           [void Function(HostLabelHeaderInputBuilder) updates]) =
       _$HostLabelHeaderInput;
 
@@ -27,7 +31,7 @@ abstract class HostLabelHeaderInput
   factory HostLabelHeaderInput.fromRequest(
           HostLabelHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HostLabelHeaderInput((b) {
+      HostLabelHeaderInput.build((b) {
         if (request.headers['X-Amz-Account-Id'] != null) {
           b.accountId = request.headers['X-Amz-Account-Id']!;
         }
@@ -109,7 +113,7 @@ class _HostLabelHeaderInputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[_i1.XmlElementName('HostLabelHeaderInput')];
+    final result = <Object?>[const _i1.XmlElementName('HostLabelHeaderInput')];
     return result;
   }
 }

@@ -18,7 +18,11 @@ abstract class DocumentTypeAsPayloadInputOutput
         Built<DocumentTypeAsPayloadInputOutput,
             DocumentTypeAsPayloadInputOutputBuilder>,
         _i1.HasPayload<_i2.JsonObject> {
-  factory DocumentTypeAsPayloadInputOutput(
+  factory DocumentTypeAsPayloadInputOutput({_i2.JsonObject? documentValue}) {
+    return _$DocumentTypeAsPayloadInputOutput._(documentValue: documentValue);
+  }
+
+  factory DocumentTypeAsPayloadInputOutput.build(
           [void Function(DocumentTypeAsPayloadInputOutputBuilder) updates]) =
       _$DocumentTypeAsPayloadInputOutput;
 
@@ -27,14 +31,14 @@ abstract class DocumentTypeAsPayloadInputOutput
   factory DocumentTypeAsPayloadInputOutput.fromRequest(
           _i2.JsonObject? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      DocumentTypeAsPayloadInputOutput((b) {
+      DocumentTypeAsPayloadInputOutput.build((b) {
         b.documentValue = payload;
       });
 
   /// Constructs a [DocumentTypeAsPayloadInputOutput] from a [payload] and [response].
   factory DocumentTypeAsPayloadInputOutput.fromResponse(
           _i2.JsonObject? payload, _i3.AWSBaseHttpResponse response) =>
-      DocumentTypeAsPayloadInputOutput((b) {
+      DocumentTypeAsPayloadInputOutput.build((b) {
         b.documentValue = payload;
       });
 

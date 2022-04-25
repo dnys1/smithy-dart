@@ -19,6 +19,24 @@ abstract class TimestampFormatHeadersIo
         _i1.EmptyPayload,
         _i1.HasPayload<TimestampFormatHeadersIoPayload> {
   factory TimestampFormatHeadersIo(
+      {DateTime? defaultFormat,
+      DateTime? memberDateTime,
+      DateTime? memberEpochSeconds,
+      DateTime? memberHttpDate,
+      DateTime? targetDateTime,
+      DateTime? targetEpochSeconds,
+      DateTime? targetHttpDate}) {
+    return _$TimestampFormatHeadersIo._(
+        defaultFormat: defaultFormat,
+        memberDateTime: memberDateTime,
+        memberEpochSeconds: memberEpochSeconds,
+        memberHttpDate: memberHttpDate,
+        targetDateTime: targetDateTime,
+        targetEpochSeconds: targetEpochSeconds,
+        targetHttpDate: targetHttpDate);
+  }
+
+  factory TimestampFormatHeadersIo.build(
           [void Function(TimestampFormatHeadersIoBuilder) updates]) =
       _$TimestampFormatHeadersIo;
 
@@ -28,7 +46,7 @@ abstract class TimestampFormatHeadersIo
           TimestampFormatHeadersIoPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      TimestampFormatHeadersIo((b) {
+      TimestampFormatHeadersIo.build((b) {
         if (request.headers['X-memberEpochSeconds'] != null) {
           b.memberEpochSeconds = _i1.Timestamp.parse(
                   int.parse(request.headers['X-memberEpochSeconds']!),
@@ -77,7 +95,7 @@ abstract class TimestampFormatHeadersIo
   factory TimestampFormatHeadersIo.fromResponse(
           TimestampFormatHeadersIoPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      TimestampFormatHeadersIo((b) {
+      TimestampFormatHeadersIo.build((b) {
         if (response.headers['X-memberEpochSeconds'] != null) {
           b.memberEpochSeconds = _i1.Timestamp.parse(
                   int.parse(response.headers['X-memberEpochSeconds']!),

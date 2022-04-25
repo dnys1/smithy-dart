@@ -20,6 +20,12 @@ abstract class TestPayloadStructureInputOutput
             TestPayloadStructureInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadConfig> {
   factory TestPayloadStructureInputOutput(
+      {_i2.PayloadConfig? payloadConfig, String? testId}) {
+    return _$TestPayloadStructureInputOutput._(
+        payloadConfig: payloadConfig, testId: testId);
+  }
+
+  factory TestPayloadStructureInputOutput.build(
           [void Function(TestPayloadStructureInputOutputBuilder) updates]) =
       _$TestPayloadStructureInputOutput;
 
@@ -28,7 +34,7 @@ abstract class TestPayloadStructureInputOutput
   factory TestPayloadStructureInputOutput.fromRequest(
           _i2.PayloadConfig? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      TestPayloadStructureInputOutput((b) {
+      TestPayloadStructureInputOutput.build((b) {
         if (payload != null) {
           b.payloadConfig.replace(payload);
         }
@@ -40,7 +46,7 @@ abstract class TestPayloadStructureInputOutput
   /// Constructs a [TestPayloadStructureInputOutput] from a [payload] and [response].
   factory TestPayloadStructureInputOutput.fromResponse(
           _i2.PayloadConfig? payload, _i3.AWSBaseHttpResponse response) =>
-      TestPayloadStructureInputOutput((b) {
+      TestPayloadStructureInputOutput.build((b) {
         if (payload != null) {
           b.payloadConfig.replace(payload);
         }

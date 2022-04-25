@@ -17,19 +17,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i9;
 
-/// This examples serializes a structure in the payload.
-///
-/// Note that serializing a structure changes the wrapper element name
-/// to match the targeted structure.
+/// This examples serializes a structure in the payload. Note that serializing a structure changes the wrapper element name to match the targeted structure.
 class HttpPayloadWithStructureOperation extends _i1.HttpOperation<
     _i2.NestedPayload,
     _i3.HttpPayloadWithStructureInputOutput,
     _i2.NestedPayload,
     _i3.HttpPayloadWithStructureInputOutput> {
-  /// This examples serializes a structure in the payload.
-  ///
-  /// Note that serializing a structure changes the wrapper element name
-  /// to match the targeted structure.
+  /// This examples serializes a structure in the payload. Note that serializing a structure changes the wrapper element name to match the targeted structure.
   HttpPayloadWithStructureOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

@@ -19,6 +19,22 @@ abstract class UploadMultipartPartInput
         Built<UploadMultipartPartInput, UploadMultipartPartInputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory UploadMultipartPartInput(
+      {required String accountId,
+      _i2.Stream<List<int>>? body,
+      String? checksum,
+      String? range,
+      required String uploadId,
+      required String vaultName}) {
+    return _$UploadMultipartPartInput._(
+        accountId: accountId,
+        body: body,
+        checksum: checksum,
+        range: range,
+        uploadId: uploadId,
+        vaultName: vaultName);
+  }
+
+  factory UploadMultipartPartInput.build(
           [void Function(UploadMultipartPartInputBuilder) updates]) =
       _$UploadMultipartPartInput;
 
@@ -27,7 +43,7 @@ abstract class UploadMultipartPartInput
   factory UploadMultipartPartInput.fromRequest(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      UploadMultipartPartInput((b) {
+      UploadMultipartPartInput.build((b) {
         b.body = payload;
         if (request.headers['x-amz-sha256-tree-hash'] != null) {
           b.checksum = request.headers['x-amz-sha256-tree-hash']!;

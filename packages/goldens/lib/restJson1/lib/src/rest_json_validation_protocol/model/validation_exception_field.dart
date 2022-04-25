@@ -16,6 +16,12 @@ abstract class ValidationExceptionField
         Built<ValidationExceptionField, ValidationExceptionFieldBuilder> {
   /// Describes one specific validation failure for an input member.
   factory ValidationExceptionField(
+      {required String message, required String path}) {
+    return _$ValidationExceptionField._(message: message, path: path);
+  }
+
+  /// Describes one specific validation failure for an input member.
+  factory ValidationExceptionField.build(
           [void Function(ValidationExceptionFieldBuilder) updates]) =
       _$ValidationExceptionField;
 

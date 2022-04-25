@@ -20,6 +20,11 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
             HttpPayloadTraitsWithMediaTypeInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory HttpPayloadTraitsWithMediaTypeInputOutput(
+      {_i2.Uint8List? blob, String? foo}) {
+    return _$HttpPayloadTraitsWithMediaTypeInputOutput._(blob: blob, foo: foo);
+  }
+
+  factory HttpPayloadTraitsWithMediaTypeInputOutput.build(
       [void Function(HttpPayloadTraitsWithMediaTypeInputOutputBuilder)
           updates]) = _$HttpPayloadTraitsWithMediaTypeInputOutput;
 
@@ -28,7 +33,7 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromRequest(
           _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
+      HttpPayloadTraitsWithMediaTypeInputOutput.build((b) {
         b.blob = payload;
         if (request.headers['X-Foo'] != null) {
           b.foo = request.headers['X-Foo']!;
@@ -38,7 +43,7 @@ abstract class HttpPayloadTraitsWithMediaTypeInputOutput
   /// Constructs a [HttpPayloadTraitsWithMediaTypeInputOutput] from a [payload] and [response].
   factory HttpPayloadTraitsWithMediaTypeInputOutput.fromResponse(
           _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadTraitsWithMediaTypeInputOutput((b) {
+      HttpPayloadTraitsWithMediaTypeInputOutput.build((b) {
         b.blob = payload;
         if (response.headers['X-Foo'] != null) {
           b.foo = response.headers['X-Foo']!;
@@ -91,7 +96,7 @@ class _HttpPayloadTraitsWithMediaTypeInputOutputRestXmlSerializer
   Object serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('HttpPayloadTraitsWithMediaTypeInputOutput')
+      const _i1.XmlElementName('HttpPayloadTraitsWithMediaTypeInputOutput')
     ];
     return result;
   }

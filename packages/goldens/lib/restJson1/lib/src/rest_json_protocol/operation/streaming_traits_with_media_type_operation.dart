@@ -15,19 +15,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This examples serializes a streaming media-typed blob shape in the request body.
-///
-/// This examples uses a `@mediaType` trait on the payload to force a custom
-/// content-type to be serialized.
+/// This examples serializes a streaming media-typed blob shape in the request body. This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
 class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsWithMediaTypeInputOutput,
     _i2.Stream<List<int>>,
     _i3.StreamingTraitsWithMediaTypeInputOutput> {
-  /// This examples serializes a streaming media-typed blob shape in the request body.
-  ///
-  /// This examples uses a `@mediaType` trait on the payload to force a custom
-  /// content-type to be serialized.
+  /// This examples serializes a streaming media-typed blob shape in the request body. This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
   StreamingTraitsWithMediaTypeOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

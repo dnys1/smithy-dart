@@ -19,7 +19,11 @@ abstract class MalformedTimestampHeaderDefaultInput
             MalformedTimestampHeaderDefaultInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedTimestampHeaderDefaultInputPayload> {
-  factory MalformedTimestampHeaderDefaultInput(
+  factory MalformedTimestampHeaderDefaultInput({required DateTime timestamp}) {
+    return _$MalformedTimestampHeaderDefaultInput._(timestamp: timestamp);
+  }
+
+  factory MalformedTimestampHeaderDefaultInput.build(
       [void Function(MalformedTimestampHeaderDefaultInputBuilder)
           updates]) = _$MalformedTimestampHeaderDefaultInput;
 
@@ -29,7 +33,7 @@ abstract class MalformedTimestampHeaderDefaultInput
           MalformedTimestampHeaderDefaultInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedTimestampHeaderDefaultInput((b) {
+      MalformedTimestampHeaderDefaultInput.build((b) {
         if (request.headers['timestamp'] != null) {
           b.timestamp = _i1.Timestamp.parse(request.headers['timestamp']!,
                   format: _i1.TimestampFormat.httpDate)

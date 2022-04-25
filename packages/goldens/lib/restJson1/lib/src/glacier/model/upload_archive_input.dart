@@ -19,6 +19,20 @@ abstract class UploadArchiveInput
         Built<UploadArchiveInput, UploadArchiveInputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory UploadArchiveInput(
+      {required String accountId,
+      String? archiveDescription,
+      _i2.Stream<List<int>>? body,
+      String? checksum,
+      required String vaultName}) {
+    return _$UploadArchiveInput._(
+        accountId: accountId,
+        archiveDescription: archiveDescription,
+        body: body,
+        checksum: checksum,
+        vaultName: vaultName);
+  }
+
+  factory UploadArchiveInput.build(
           [void Function(UploadArchiveInputBuilder) updates]) =
       _$UploadArchiveInput;
 
@@ -27,7 +41,7 @@ abstract class UploadArchiveInput
   factory UploadArchiveInput.fromRequest(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      UploadArchiveInput((b) {
+      UploadArchiveInput.build((b) {
         b.body = payload;
         if (request.headers['x-amz-archive-description'] != null) {
           b.archiveDescription = request.headers['x-amz-archive-description']!;

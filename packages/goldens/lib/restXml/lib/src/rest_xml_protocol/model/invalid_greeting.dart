@@ -16,8 +16,13 @@ abstract class InvalidGreeting
         Built<InvalidGreeting, InvalidGreetingBuilder>,
         _i2.SmithyHttpException {
   /// This error is thrown when an invalid greeting value is provided.
-  factory InvalidGreeting([void Function(InvalidGreetingBuilder) updates]) =
-      _$InvalidGreeting;
+  factory InvalidGreeting({String? message}) {
+    return _$InvalidGreeting._(message: message);
+  }
+
+  /// This error is thrown when an invalid greeting value is provided.
+  factory InvalidGreeting.build(
+      [void Function(InvalidGreetingBuilder) updates]) = _$InvalidGreeting;
 
   const InvalidGreeting._();
 
@@ -101,7 +106,7 @@ class _InvalidGreetingRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as InvalidGreeting);
-    final result = <Object?>[_i2.XmlElementName('InvalidGreeting')];
+    final result = <Object?>[const _i2.XmlElementName('InvalidGreeting')];
     if (payload.message != null) {
       result
         ..add(const _i2.XmlElementName('Message'))

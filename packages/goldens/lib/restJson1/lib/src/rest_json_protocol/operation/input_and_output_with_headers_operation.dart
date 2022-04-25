@@ -15,15 +15,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// The example tests how requests and responses are serialized when there is
-/// no input or output payload but there are HTTP header bindings.
+/// The example tests how requests and responses are serialized when there is no input or output payload but there are HTTP header bindings.
 class InputAndOutputWithHeadersOperation extends _i1.HttpOperation<
     _i2.InputAndOutputWithHeadersIoPayload,
     _i2.InputAndOutputWithHeadersIo,
     _i2.InputAndOutputWithHeadersIoPayload,
     _i2.InputAndOutputWithHeadersIo> {
-  /// The example tests how requests and responses are serialized when there is
-  /// no input or output payload but there are HTTP header bindings.
+  /// The example tests how requests and responses are serialized when there is no input or output payload but there are HTTP header bindings.
   InputAndOutputWithHeadersOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

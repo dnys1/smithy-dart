@@ -14,19 +14,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This example uses a constant query string parameters and a label.
-/// This simply tests that labels and query string parameters are
-/// compatible. The fixed query string parameter named "hello" should
-/// in no way conflict with the label, `{hello}`.
+/// This example uses a constant query string parameters and a label. This simply tests that labels and query string parameters are compatible. The fixed query string parameter named "hello" should in no way conflict with the label, `{hello}`.
 class ConstantQueryStringOperation extends _i1.HttpOperation<
     _i2.ConstantQueryStringInputPayload,
     _i2.ConstantQueryStringInput,
     _i1.Unit,
     _i1.Unit> {
-  /// This example uses a constant query string parameters and a label.
-  /// This simply tests that labels and query string parameters are
-  /// compatible. The fixed query string parameter named "hello" should
-  /// in no way conflict with the label, `{hello}`.
+  /// This example uses a constant query string parameters and a label. This simply tests that labels and query string parameters are compatible. The fixed query string parameter named "hello" should in no way conflict with the label, `{hello}`.
   ConstantQueryStringOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

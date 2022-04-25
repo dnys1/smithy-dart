@@ -10,7 +10,7 @@ class _$XmlNamespaceNested extends XmlNamespaceNested {
   @override
   final String? foo;
   @override
-  final _i3.BuiltList<String>? values;
+  final _i2.BuiltList<String>? values;
 
   factory _$XmlNamespaceNested(
           [void Function(XmlNamespaceNestedBuilder)? updates]) =>
@@ -49,10 +49,10 @@ class XmlNamespaceNestedBuilder
   String? get foo => _$this._foo;
   set foo(String? foo) => _$this._foo = foo;
 
-  _i3.ListBuilder<String>? _values;
-  _i3.ListBuilder<String> get values =>
-      _$this._values ??= new _i3.ListBuilder<String>();
-  set values(_i3.ListBuilder<String>? values) => _$this._values = values;
+  _i2.ListBuilder<String>? _values;
+  _i2.ListBuilder<String> get values =>
+      _$this._values ??= new _i2.ListBuilder<String>();
+  set values(_i2.ListBuilder<String>? values) => _$this._values = values;
 
   XmlNamespaceNestedBuilder() {
     XmlNamespaceNested._init(this);

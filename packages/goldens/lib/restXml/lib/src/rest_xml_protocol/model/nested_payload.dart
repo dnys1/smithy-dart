@@ -12,7 +12,11 @@ part 'nested_payload.g.dart';
 abstract class NestedPayload
     with _i1.AWSEquatable<NestedPayload>
     implements Built<NestedPayload, NestedPayloadBuilder> {
-  factory NestedPayload([void Function(NestedPayloadBuilder) updates]) =
+  factory NestedPayload({String? greeting, String? name}) {
+    return _$NestedPayload._(greeting: greeting, name: name);
+  }
+
+  factory NestedPayload.build([void Function(NestedPayloadBuilder) updates]) =
       _$NestedPayload;
 
   const NestedPayload._();
@@ -78,7 +82,7 @@ class _NestedPayloadRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as NestedPayload);
-    final result = <Object?>[_i2.XmlElementName('NestedPayload')];
+    final result = <Object?>[const _i2.XmlElementName('NestedPayload')];
     if (payload.greeting != null) {
       result
         ..add(const _i2.XmlElementName('greeting'))

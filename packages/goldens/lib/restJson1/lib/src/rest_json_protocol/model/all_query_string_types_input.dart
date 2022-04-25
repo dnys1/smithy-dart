@@ -3,10 +3,10 @@
 library rest_json1.rest_json_protocol.model.all_query_string_types_input;
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i5;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i3;
+import 'package:fixnum/fixnum.dart' as _i5;
 import 'package:meta/meta.dart' as _i6;
 import 'package:rest_json1/src/rest_json_protocol/model/foo_enum.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
@@ -22,6 +22,48 @@ abstract class AllQueryStringTypesInput
         _i1.EmptyPayload,
         _i1.HasPayload<AllQueryStringTypesInputPayload> {
   factory AllQueryStringTypesInput(
+      {bool? queryBoolean,
+      _i3.BuiltList<bool>? queryBooleanList,
+      int? queryByte,
+      double? queryDouble,
+      _i3.BuiltList<double>? queryDoubleList,
+      _i4.FooEnum? queryEnum,
+      _i3.BuiltList<_i4.FooEnum>? queryEnumList,
+      double? queryFloat,
+      int? queryInteger,
+      _i3.BuiltList<int>? queryIntegerList,
+      _i3.BuiltSet<int>? queryIntegerSet,
+      _i5.Int64? queryLong,
+      _i3.BuiltListMultimap<String, String>? queryParamsMapOfStringList,
+      int? queryShort,
+      String? queryString,
+      _i3.BuiltList<String>? queryStringList,
+      _i3.BuiltSet<String>? queryStringSet,
+      DateTime? queryTimestamp,
+      _i3.BuiltList<DateTime>? queryTimestampList}) {
+    return _$AllQueryStringTypesInput._(
+        queryBoolean: queryBoolean,
+        queryBooleanList: queryBooleanList,
+        queryByte: queryByte,
+        queryDouble: queryDouble,
+        queryDoubleList: queryDoubleList,
+        queryEnum: queryEnum,
+        queryEnumList: queryEnumList,
+        queryFloat: queryFloat,
+        queryInteger: queryInteger,
+        queryIntegerList: queryIntegerList,
+        queryIntegerSet: queryIntegerSet,
+        queryLong: queryLong,
+        queryParamsMapOfStringList: queryParamsMapOfStringList,
+        queryShort: queryShort,
+        queryString: queryString,
+        queryStringList: queryStringList,
+        queryStringSet: queryStringSet,
+        queryTimestamp: queryTimestamp,
+        queryTimestampList: queryTimestampList);
+  }
+
+  factory AllQueryStringTypesInput.build(
           [void Function(AllQueryStringTypesInputBuilder) updates]) =
       _$AllQueryStringTypesInput;
 
@@ -31,7 +73,7 @@ abstract class AllQueryStringTypesInput
           AllQueryStringTypesInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      AllQueryStringTypesInput((b) {
+      AllQueryStringTypesInput.build((b) {
         if (request.queryParameters['String'] != null) {
           b.queryString = request.queryParameters['String']!;
         }
@@ -65,7 +107,7 @@ abstract class AllQueryStringTypesInput
               .map((el) => int.parse(el.trim())));
         }
         if (request.queryParameters['Long'] != null) {
-          b.queryLong = _i3.Int64.parseInt(request.queryParameters['Long']!);
+          b.queryLong = _i5.Int64.parseInt(request.queryParameters['Long']!);
         }
         if (request.queryParameters['Float'] != null) {
           b.queryFloat = double.parse(request.queryParameters['Float']!);
@@ -118,24 +160,24 @@ abstract class AllQueryStringTypesInput
   @BuiltValueHook(initializeBuilder: true)
   static void _init(AllQueryStringTypesInputBuilder b) {}
   bool? get queryBoolean;
-  _i5.BuiltList<bool>? get queryBooleanList;
+  _i3.BuiltList<bool>? get queryBooleanList;
   int? get queryByte;
   double? get queryDouble;
-  _i5.BuiltList<double>? get queryDoubleList;
+  _i3.BuiltList<double>? get queryDoubleList;
   _i4.FooEnum? get queryEnum;
-  _i5.BuiltList<_i4.FooEnum>? get queryEnumList;
+  _i3.BuiltList<_i4.FooEnum>? get queryEnumList;
   double? get queryFloat;
   int? get queryInteger;
-  _i5.BuiltList<int>? get queryIntegerList;
-  _i5.BuiltSet<int>? get queryIntegerSet;
-  _i3.Int64? get queryLong;
-  _i5.BuiltListMultimap<String, String>? get queryParamsMapOfStringList;
+  _i3.BuiltList<int>? get queryIntegerList;
+  _i3.BuiltSet<int>? get queryIntegerSet;
+  _i5.Int64? get queryLong;
+  _i3.BuiltListMultimap<String, String>? get queryParamsMapOfStringList;
   int? get queryShort;
   String? get queryString;
-  _i5.BuiltList<String>? get queryStringList;
-  _i5.BuiltSet<String>? get queryStringSet;
+  _i3.BuiltList<String>? get queryStringList;
+  _i3.BuiltSet<String>? get queryStringSet;
   DateTime? get queryTimestamp;
-  _i5.BuiltList<DateTime>? get queryTimestampList;
+  _i3.BuiltList<DateTime>? get queryTimestampList;
   @override
   AllQueryStringTypesInputPayload getPayload() =>
       AllQueryStringTypesInputPayload();

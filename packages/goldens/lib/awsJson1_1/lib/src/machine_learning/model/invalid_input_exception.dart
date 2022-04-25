@@ -14,7 +14,11 @@ abstract class InvalidInputException
     implements
         Built<InvalidInputException, InvalidInputExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory InvalidInputException(
+  factory InvalidInputException({int? code, String? message}) {
+    return _$InvalidInputException._(code: code, message: message);
+  }
+
+  factory InvalidInputException.build(
           [void Function(InvalidInputExceptionBuilder) updates]) =
       _$InvalidInputException;
 

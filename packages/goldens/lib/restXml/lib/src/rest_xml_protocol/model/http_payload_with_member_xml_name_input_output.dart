@@ -20,6 +20,11 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
             HttpPayloadWithMemberXmlNameInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlName> {
   factory HttpPayloadWithMemberXmlNameInputOutput(
+      {_i2.PayloadWithXmlName? nested}) {
+    return _$HttpPayloadWithMemberXmlNameInputOutput._(nested: nested);
+  }
+
+  factory HttpPayloadWithMemberXmlNameInputOutput.build(
       [void Function(HttpPayloadWithMemberXmlNameInputOutputBuilder)
           updates]) = _$HttpPayloadWithMemberXmlNameInputOutput;
 
@@ -28,7 +33,7 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
   factory HttpPayloadWithMemberXmlNameInputOutput.fromRequest(
           _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithMemberXmlNameInputOutput((b) {
+      HttpPayloadWithMemberXmlNameInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -37,7 +42,7 @@ abstract class HttpPayloadWithMemberXmlNameInputOutput
   /// Constructs a [HttpPayloadWithMemberXmlNameInputOutput] from a [payload] and [response].
   factory HttpPayloadWithMemberXmlNameInputOutput.fromResponse(
           _i2.PayloadWithXmlName? payload, _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithMemberXmlNameInputOutput((b) {
+      HttpPayloadWithMemberXmlNameInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -105,7 +110,7 @@ class _HttpPayloadWithMemberXmlNameInputOutputRestXmlSerializer
     final payload = object is HttpPayloadWithMemberXmlNameInputOutput
         ? object.getPayload()
         : (object as _i2.PayloadWithXmlName?);
-    final result = <Object?>[_i1.XmlElementName('Hola')];
+    final result = <Object?>[const _i1.XmlElementName('Hola')];
     if (payload == null) {
       return result;
     }

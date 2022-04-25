@@ -14,7 +14,11 @@ abstract class StringPayloadInput
     implements
         Built<StringPayloadInput, StringPayloadInputBuilder>,
         _i1.HasPayload<String> {
-  factory StringPayloadInput(
+  factory StringPayloadInput({String? payload}) {
+    return _$StringPayloadInput._(payload: payload);
+  }
+
+  factory StringPayloadInput.build(
           [void Function(StringPayloadInputBuilder) updates]) =
       _$StringPayloadInput;
 
@@ -23,14 +27,14 @@ abstract class StringPayloadInput
   factory StringPayloadInput.fromRequest(
           String? payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      StringPayloadInput((b) {
+      StringPayloadInput.build((b) {
         b.payload = payload;
       });
 
   /// Constructs a [StringPayloadInput] from a [payload] and [response].
   factory StringPayloadInput.fromResponse(
           String? payload, _i2.AWSBaseHttpResponse response) =>
-      StringPayloadInput((b) {
+      StringPayloadInput.build((b) {
         b.payload = payload;
       });
 

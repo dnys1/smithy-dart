@@ -12,7 +12,11 @@ part 'structure_list_member.g.dart';
 abstract class StructureListMember
     with _i1.AWSEquatable<StructureListMember>
     implements Built<StructureListMember, StructureListMemberBuilder> {
-  factory StructureListMember(
+  factory StructureListMember({String? a, String? b}) {
+    return _$StructureListMember._(a: a, b: b);
+  }
+
+  factory StructureListMember.build(
           [void Function(StructureListMemberBuilder) updates]) =
       _$StructureListMember;
 
@@ -80,7 +84,7 @@ class _StructureListMemberRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as StructureListMember);
-    final result = <Object?>[_i2.XmlElementName('StructureListMember')];
+    final result = <Object?>[const _i2.XmlElementName('StructureListMember')];
     if (payload.a != null) {
       result
         ..add(const _i2.XmlElementName('value'))

@@ -3,35 +3,37 @@
 library aws_json1_0.json_rpc_10.model.aws_config;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_0/src/json_rpc_10/model/scoped_config.dart' as _i3;
+import 'package:aws_json1_0/src/json_rpc_10/model/scoped_config.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'aws_config.g.dart';
 
 abstract class AwsConfig
     with _i1.AWSEquatable<AwsConfig>
     implements Built<AwsConfig, AwsConfigBuilder> {
-  factory AwsConfig([void Function(AwsConfigBuilder) updates]) = _$AwsConfig;
+  factory AwsConfig({DateTime? clockTime, _i2.ScopedConfig? scopedConfig}) {
+    return _$AwsConfig._(clockTime: clockTime, scopedConfig: scopedConfig);
+  }
+
+  factory AwsConfig.build([void Function(AwsConfigBuilder) updates]) =
+      _$AwsConfig;
 
   const AwsConfig._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     _AwsConfigAwsJson10Serializer()
   ];
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(AwsConfigBuilder b) {}
 
-  /// This is the time that should be set during the course of the test.
-  /// This is important for things like signing where the clock time impacts
-  /// the result.
+  /// This is the time that should be set during the course of the test. This is important for things like signing where the clock time impacts the result.
   DateTime? get clockTime;
 
-  /// Config settings that are scoped to different sources, such as environment
-  /// variables or the AWS config file.
-  _i3.ScopedConfig? get scopedConfig;
+  /// Config settings that are scoped to different sources, such as environment variables or the AWS config file.
+  _i2.ScopedConfig? get scopedConfig;
   @override
   List<Object?> get props => [clockTime, scopedConfig];
   @override
@@ -44,14 +46,14 @@ abstract class AwsConfig
 }
 
 class _AwsConfigAwsJson10Serializer
-    extends _i2.StructuredSmithySerializer<AwsConfig> {
+    extends _i3.StructuredSmithySerializer<AwsConfig> {
   const _AwsConfigAwsJson10Serializer() : super('AwsConfig');
 
   @override
   Iterable<Type> get types => const [AwsConfig, _$AwsConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i3.ShapeId> get supportedProtocols =>
+      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   AwsConfig deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
@@ -71,8 +73,8 @@ class _AwsConfigAwsJson10Serializer
         case 'scopedConfig':
           if (value != null) {
             result.scopedConfig.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i3.ScopedConfig))
-                as _i3.ScopedConfig));
+                    specifiedType: const FullType(_i2.ScopedConfig))
+                as _i2.ScopedConfig));
           }
           break;
       }
@@ -96,7 +98,7 @@ class _AwsConfigAwsJson10Serializer
       result
         ..add('scopedConfig')
         ..add(serializers.serialize(payload.scopedConfig!,
-            specifiedType: const FullType(_i3.ScopedConfig)));
+            specifiedType: const FullType(_i2.ScopedConfig)));
     }
     return result;
   }

@@ -18,6 +18,13 @@ abstract class NestedXmlMapsInputOutput
     implements
         Built<NestedXmlMapsInputOutput, NestedXmlMapsInputOutputBuilder> {
   factory NestedXmlMapsInputOutput(
+      {_i3.BuiltMap<String, _i3.BuiltMap<String, _i4.FooEnum>>? flatNestedMap,
+      _i3.BuiltMap<String, _i3.BuiltMap<String, _i4.FooEnum>>? nestedMap}) {
+    return _$NestedXmlMapsInputOutput._(
+        flatNestedMap: flatNestedMap, nestedMap: nestedMap);
+  }
+
+  factory NestedXmlMapsInputOutput.build(
           [void Function(NestedXmlMapsInputOutputBuilder) updates]) =
       _$NestedXmlMapsInputOutput;
 
@@ -111,7 +118,9 @@ class _NestedXmlMapsInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as NestedXmlMapsInputOutput);
-    final result = <Object?>[_i1.XmlElementName('NestedXmlMapsInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('NestedXmlMapsInputOutput')
+    ];
     if (payload.flatNestedMap != null) {
       result.addAll(
           const _i1.XmlBuiltMapSerializer(flattenedKey: 'flatNestedMap')

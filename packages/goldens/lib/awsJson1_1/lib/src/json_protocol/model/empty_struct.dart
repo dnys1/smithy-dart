@@ -12,7 +12,11 @@ part 'empty_struct.g.dart';
 abstract class EmptyStruct
     with _i1.AWSEquatable<EmptyStruct>
     implements Built<EmptyStruct, EmptyStructBuilder>, _i2.EmptyPayload {
-  factory EmptyStruct([void Function(EmptyStructBuilder) updates]) =
+  factory EmptyStruct() {
+    return _$EmptyStruct._();
+  }
+
+  factory EmptyStruct.build([void Function(EmptyStructBuilder) updates]) =
       _$EmptyStruct;
 
   const EmptyStruct._();

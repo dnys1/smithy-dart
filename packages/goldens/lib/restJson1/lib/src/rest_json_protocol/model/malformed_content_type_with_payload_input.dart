@@ -19,7 +19,11 @@ abstract class MalformedContentTypeWithPayloadInput
         Built<MalformedContentTypeWithPayloadInput,
             MalformedContentTypeWithPayloadInputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
-  factory MalformedContentTypeWithPayloadInput(
+  factory MalformedContentTypeWithPayloadInput({_i2.Uint8List? payload}) {
+    return _$MalformedContentTypeWithPayloadInput._(payload: payload);
+  }
+
+  factory MalformedContentTypeWithPayloadInput.build(
       [void Function(MalformedContentTypeWithPayloadInputBuilder)
           updates]) = _$MalformedContentTypeWithPayloadInput;
 
@@ -28,7 +32,7 @@ abstract class MalformedContentTypeWithPayloadInput
   factory MalformedContentTypeWithPayloadInput.fromRequest(
           _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedContentTypeWithPayloadInput((b) {
+      MalformedContentTypeWithPayloadInput.build((b) {
         b.payload = payload;
       });
 

@@ -12,7 +12,11 @@ part 'owner.g.dart';
 abstract class Owner
     with _i1.AWSEquatable<Owner>
     implements Built<Owner, OwnerBuilder> {
-  factory Owner([void Function(OwnerBuilder) updates]) = _$Owner;
+  factory Owner({String? displayName, String? id}) {
+    return _$Owner._(displayName: displayName, id: id);
+  }
+
+  factory Owner.build([void Function(OwnerBuilder) updates]) = _$Owner;
 
   const Owner._();
 
@@ -76,8 +80,8 @@ class _OwnerRestXmlSerializer extends _i2.StructuredSmithySerializer<Owner> {
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as Owner);
     final result = <Object?>[
-      _i2.XmlElementName('Owner',
-          const _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
+      const _i2.XmlElementName(
+          'Owner', _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
     ];
     if (payload.displayName != null) {
       result

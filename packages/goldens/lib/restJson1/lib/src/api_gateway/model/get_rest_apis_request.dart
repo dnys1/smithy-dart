@@ -18,7 +18,11 @@ abstract class GetRestApisRequest
         Built<GetRestApisRequest, GetRestApisRequestBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<GetRestApisRequestPayload> {
-  factory GetRestApisRequest(
+  factory GetRestApisRequest({int? limit, String? position}) {
+    return _$GetRestApisRequest._(limit: limit, position: position);
+  }
+
+  factory GetRestApisRequest.build(
           [void Function(GetRestApisRequestBuilder) updates]) =
       _$GetRestApisRequest;
 
@@ -27,7 +31,7 @@ abstract class GetRestApisRequest
   factory GetRestApisRequest.fromRequest(
           GetRestApisRequestPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      GetRestApisRequest((b) {
+      GetRestApisRequest.build((b) {
         if (request.queryParameters['position'] != null) {
           b.position = request.queryParameters['position']!;
         }

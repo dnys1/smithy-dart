@@ -12,7 +12,11 @@ part 'payload_with_xml_name.g.dart';
 abstract class PayloadWithXmlName
     with _i1.AWSEquatable<PayloadWithXmlName>
     implements Built<PayloadWithXmlName, PayloadWithXmlNameBuilder> {
-  factory PayloadWithXmlName(
+  factory PayloadWithXmlName({String? name}) {
+    return _$PayloadWithXmlName._(name: name);
+  }
+
+  factory PayloadWithXmlName.build(
           [void Function(PayloadWithXmlNameBuilder) updates]) =
       _$PayloadWithXmlName;
 
@@ -71,7 +75,7 @@ class _PayloadWithXmlNameRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as PayloadWithXmlName);
-    final result = <Object?>[_i2.XmlElementName('Hello')];
+    final result = <Object?>[const _i2.XmlElementName('Hello')];
     if (payload.name != null) {
       result
         ..add(const _i2.XmlElementName('name'))

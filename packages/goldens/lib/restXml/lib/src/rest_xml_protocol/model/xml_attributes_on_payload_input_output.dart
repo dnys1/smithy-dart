@@ -21,6 +21,11 @@ abstract class XmlAttributesOnPayloadInputOutput
             XmlAttributesOnPayloadInputOutputBuilder>,
         _i1.HasPayload<_i2.XmlAttributesInputOutput> {
   factory XmlAttributesOnPayloadInputOutput(
+      {_i2.XmlAttributesInputOutput? payload}) {
+    return _$XmlAttributesOnPayloadInputOutput._(payload: payload);
+  }
+
+  factory XmlAttributesOnPayloadInputOutput.build(
           [void Function(XmlAttributesOnPayloadInputOutputBuilder) updates]) =
       _$XmlAttributesOnPayloadInputOutput;
 
@@ -29,7 +34,7 @@ abstract class XmlAttributesOnPayloadInputOutput
   factory XmlAttributesOnPayloadInputOutput.fromRequest(
           _i2.XmlAttributesInputOutput? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      XmlAttributesOnPayloadInputOutput((b) {
+      XmlAttributesOnPayloadInputOutput.build((b) {
         if (payload != null) {
           b.payload.replace(payload);
         }
@@ -39,7 +44,7 @@ abstract class XmlAttributesOnPayloadInputOutput
   factory XmlAttributesOnPayloadInputOutput.fromResponse(
           _i2.XmlAttributesInputOutput? payload,
           _i3.AWSBaseHttpResponse response) =>
-      XmlAttributesOnPayloadInputOutput((b) {
+      XmlAttributesOnPayloadInputOutput.build((b) {
         if (payload != null) {
           b.payload.replace(payload);
         }
@@ -114,7 +119,9 @@ class _XmlAttributesOnPayloadInputOutputRestXmlSerializer
     final payload = object is XmlAttributesOnPayloadInputOutput
         ? object.getPayload()
         : (object as _i2.XmlAttributesInputOutput?);
-    final result = <Object?>[_i1.XmlElementName('XmlAttributesInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('XmlAttributesInputOutput')
+    ];
     if (payload == null) {
       return result;
     }

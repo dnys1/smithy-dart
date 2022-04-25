@@ -17,7 +17,11 @@ abstract class XmlNamespacesInputOutput
         _i2.AWSEquatable<XmlNamespacesInputOutput>
     implements
         Built<XmlNamespacesInputOutput, XmlNamespacesInputOutputBuilder> {
-  factory XmlNamespacesInputOutput(
+  factory XmlNamespacesInputOutput({_i3.XmlNamespaceNested? nested}) {
+    return _$XmlNamespacesInputOutput._(nested: nested);
+  }
+
+  factory XmlNamespacesInputOutput.build(
           [void Function(XmlNamespacesInputOutputBuilder) updates]) =
       _$XmlNamespacesInputOutput;
 
@@ -92,8 +96,8 @@ class _XmlNamespacesInputOutputRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlNamespacesInputOutput);
     final result = <Object?>[
-      _i1.XmlElementName(
-          'XmlNamespacesInputOutput', const _i1.XmlNamespace('http://foo.com'))
+      const _i1.XmlElementName(
+          'XmlNamespacesInputOutput', _i1.XmlNamespace('http://foo.com'))
     ];
     if (payload.nested != null) {
       result

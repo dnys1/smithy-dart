@@ -17,6 +17,22 @@ abstract class JsonEnumsInputOutput
         _i2.AWSEquatable<JsonEnumsInputOutput>
     implements Built<JsonEnumsInputOutput, JsonEnumsInputOutputBuilder> {
   factory JsonEnumsInputOutput(
+      {_i3.FooEnum? fooEnum1,
+      _i3.FooEnum? fooEnum2,
+      _i3.FooEnum? fooEnum3,
+      _i4.BuiltList<_i3.FooEnum>? fooEnumList,
+      _i4.BuiltMap<String, _i3.FooEnum>? fooEnumMap,
+      _i4.BuiltSet<_i3.FooEnum>? fooEnumSet}) {
+    return _$JsonEnumsInputOutput._(
+        fooEnum1: fooEnum1,
+        fooEnum2: fooEnum2,
+        fooEnum3: fooEnum3,
+        fooEnumList: fooEnumList,
+        fooEnumMap: fooEnumMap,
+        fooEnumSet: fooEnumSet);
+  }
+
+  factory JsonEnumsInputOutput.build(
           [void Function(JsonEnumsInputOutputBuilder) updates]) =
       _$JsonEnumsInputOutput;
 

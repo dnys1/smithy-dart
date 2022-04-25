@@ -62,24 +62,31 @@ class _ApiGatewayServer extends _i1.HttpServer<ApiGatewayServerBase> {
       final output = await service.getRestApis(input, context);
       const statusCode = 200;
       final body = _getRestApisProtocol.serialize(output,
-          specifiedType: const FullType(_i5.RestApis));
+          specifiedType:
+              const FullType(_i5.RestApis, [FullType(_i5.RestApis)]));
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i8.BadRequestException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'BadRequestException';
       final body = _getRestApisProtocol.serialize(e,
-          specifiedType: const FullType(_i8.BadRequestException));
+          specifiedType: const FullType(
+              _i8.BadRequestException, [FullType(_i8.BadRequestException)]));
       const statusCode = 400;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i9.TooManyRequestsException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'TooManyRequestsException';
       final body = _getRestApisProtocol.serialize(e,
-          specifiedType: const FullType(_i9.TooManyRequestsException));
+          specifiedType: const FullType(_i9.TooManyRequestsException,
+              [FullType(_i9.TooManyRequestsExceptionPayload)]));
       const statusCode = 429;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i10.UnauthorizedException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'UnauthorizedException';
       final body = _getRestApisProtocol.serialize(e,
-          specifiedType: const FullType(_i10.UnauthorizedException));
+          specifiedType: const FullType(_i10.UnauthorizedException,
+              [FullType(_i10.UnauthorizedException)]));
       const statusCode = 401;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());

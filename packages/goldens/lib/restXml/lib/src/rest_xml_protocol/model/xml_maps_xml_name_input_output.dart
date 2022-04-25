@@ -19,6 +19,11 @@ abstract class XmlMapsXmlNameInputOutput
     implements
         Built<XmlMapsXmlNameInputOutput, XmlMapsXmlNameInputOutputBuilder> {
   factory XmlMapsXmlNameInputOutput(
+      {_i3.BuiltMap<String, _i4.GreetingStruct>? myMap}) {
+    return _$XmlMapsXmlNameInputOutput._(myMap: myMap);
+  }
+
+  factory XmlMapsXmlNameInputOutput.build(
           [void Function(XmlMapsXmlNameInputOutputBuilder) updates]) =
       _$XmlMapsXmlNameInputOutput;
 
@@ -95,7 +100,9 @@ class _XmlMapsXmlNameInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlMapsXmlNameInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlMapsXmlNameInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('XmlMapsXmlNameInputOutput')
+    ];
     if (payload.myMap != null) {
       result
         ..add(const _i1.XmlElementName('myMap'))

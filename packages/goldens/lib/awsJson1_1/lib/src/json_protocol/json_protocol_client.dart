@@ -90,14 +90,7 @@ class JsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This operation has three possible return values:
-  ///
-  /// 1. A successful response in the form of GreetingWithErrorsOutput
-  /// 2. An InvalidGreeting error.
-  /// 3. A ComplexError error.
-  ///
-  /// Implementations must be able to successfully take a response and
-  /// properly deserialize successful and error responses.
+  /// This operation has three possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A ComplexError error. Implementations must be able to successfully take a response and properly deserialize successful and error responses.
   _i2.Future<_i8.GreetingWithErrorsOutput> greetingWithErrors(
       {_i3.HttpClient? client}) {
     return _i9.GreetingWithErrorsOperation(

@@ -12,7 +12,11 @@ part 'host_label_input.g.dart';
 abstract class HostLabelInput
     with _i1.HttpInput<HostLabelInput>, _i2.AWSEquatable<HostLabelInput>
     implements Built<HostLabelInput, HostLabelInputBuilder> {
-  factory HostLabelInput([void Function(HostLabelInputBuilder) updates]) =
+  factory HostLabelInput({required String label}) {
+    return _$HostLabelInput._(label: label);
+  }
+
+  factory HostLabelInput.build([void Function(HostLabelInputBuilder) updates]) =
       _$HostLabelInput;
 
   const HostLabelInput._();
@@ -84,7 +88,7 @@ class _HostLabelInputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as HostLabelInput);
-    final result = <Object?>[_i1.XmlElementName('HostLabelInput')];
+    final result = <Object?>[const _i1.XmlElementName('HostLabelInput')];
     result
       ..add(const _i1.XmlElementName('label'))
       ..add(serializers.serialize(payload.label,

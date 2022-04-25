@@ -21,6 +21,11 @@ abstract class QueryParamsAsStringListMapInput
         _i1.EmptyPayload,
         _i1.HasPayload<QueryParamsAsStringListMapInputPayload> {
   factory QueryParamsAsStringListMapInput(
+      {_i3.BuiltListMultimap<String, String>? foo, String? qux}) {
+    return _$QueryParamsAsStringListMapInput._(foo: foo, qux: qux);
+  }
+
+  factory QueryParamsAsStringListMapInput.build(
           [void Function(QueryParamsAsStringListMapInputBuilder) updates]) =
       _$QueryParamsAsStringListMapInput;
 
@@ -30,7 +35,7 @@ abstract class QueryParamsAsStringListMapInput
           QueryParamsAsStringListMapInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      QueryParamsAsStringListMapInput((b) {
+      QueryParamsAsStringListMapInput.build((b) {
         if (request.queryParameters['corge'] != null) {
           b.qux = request.queryParameters['corge']!;
         }
@@ -111,7 +116,7 @@ class _QueryParamsAsStringListMapInputRestXmlSerializer extends _i1
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('QueryParamsAsStringListMapInput')
+      const _i1.XmlElementName('QueryParamsAsStringListMapInput')
     ];
     return result;
   }

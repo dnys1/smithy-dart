@@ -18,6 +18,18 @@ abstract class MalformedShortInput
         Built<MalformedShortInput, MalformedShortInputBuilder>,
         _i1.HasPayload<MalformedShortInputPayload> {
   factory MalformedShortInput(
+      {int? shortInBody,
+      int? shortInHeader,
+      required int shortInPath,
+      int? shortInQuery}) {
+    return _$MalformedShortInput._(
+        shortInBody: shortInBody,
+        shortInHeader: shortInHeader,
+        shortInPath: shortInPath,
+        shortInQuery: shortInQuery);
+  }
+
+  factory MalformedShortInput.build(
           [void Function(MalformedShortInputBuilder) updates]) =
       _$MalformedShortInput;
 
@@ -26,7 +38,7 @@ abstract class MalformedShortInput
   factory MalformedShortInput.fromRequest(
           MalformedShortInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedShortInput((b) {
+      MalformedShortInput.build((b) {
         b.shortInBody = payload.shortInBody;
         if (request.headers['shortInHeader'] != null) {
           b.shortInHeader = int.parse(request.headers['shortInHeader']!);

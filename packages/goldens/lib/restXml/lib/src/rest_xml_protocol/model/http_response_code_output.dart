@@ -16,7 +16,11 @@ abstract class HttpResponseCodeOutput
         Built<HttpResponseCodeOutput, HttpResponseCodeOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<HttpResponseCodeOutputPayload> {
-  factory HttpResponseCodeOutput(
+  factory HttpResponseCodeOutput({int? status}) {
+    return _$HttpResponseCodeOutput._(status: status);
+  }
+
+  factory HttpResponseCodeOutput.build(
           [void Function(HttpResponseCodeOutputBuilder) updates]) =
       _$HttpResponseCodeOutput;
 
@@ -26,7 +30,7 @@ abstract class HttpResponseCodeOutput
   factory HttpResponseCodeOutput.fromResponse(
           HttpResponseCodeOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      HttpResponseCodeOutput((b) {
+      HttpResponseCodeOutput.build((b) {
         b.status = response.statusCode;
       });
 
@@ -99,7 +103,9 @@ class _HttpResponseCodeOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[_i2.XmlElementName('HttpResponseCodeOutput')];
+    final result = <Object?>[
+      const _i2.XmlElementName('HttpResponseCodeOutput')
+    ];
     return result;
   }
 }

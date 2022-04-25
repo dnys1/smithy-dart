@@ -5,8 +5,8 @@ library rest_json1.api_gateway.model.environment_config;
 import 'package:aws_common/aws_common.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:rest_json1/src/api_gateway/model/retry_mode.dart' as _i3;
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:rest_json1/src/api_gateway/model/retry_mode.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'environment_config.g.dart';
 
@@ -15,12 +15,29 @@ abstract class EnvironmentConfig
     with _i1.AWSEquatable<EnvironmentConfig>
     implements Built<EnvironmentConfig, EnvironmentConfigBuilder> {
   /// Config settings that can be set as environment variables.
-  factory EnvironmentConfig([void Function(EnvironmentConfigBuilder) updates]) =
-      _$EnvironmentConfig;
+  factory EnvironmentConfig(
+      {String? awsAccessKeyId,
+      String? awsDefaultRegion,
+      String? awsProfile,
+      _i2.RetryMode? awsRetryMode,
+      String? awsSecretAccessKey,
+      String? awsSessionToken}) {
+    return _$EnvironmentConfig._(
+        awsAccessKeyId: awsAccessKeyId,
+        awsDefaultRegion: awsDefaultRegion,
+        awsProfile: awsProfile,
+        awsRetryMode: awsRetryMode,
+        awsSecretAccessKey: awsSecretAccessKey,
+        awsSessionToken: awsSessionToken);
+  }
+
+  /// Config settings that can be set as environment variables.
+  factory EnvironmentConfig.build(
+      [void Function(EnvironmentConfigBuilder) updates]) = _$EnvironmentConfig;
 
   const EnvironmentConfig._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     _EnvironmentConfigRestJson1Serializer()
   ];
 
@@ -31,7 +48,7 @@ abstract class EnvironmentConfig
   String? get awsProfile;
 
   /// Controls the strategy used for retries.
-  _i3.RetryMode? get awsRetryMode;
+  _i2.RetryMode? get awsRetryMode;
   String? get awsSecretAccessKey;
   String? get awsSessionToken;
   @override
@@ -57,14 +74,14 @@ abstract class EnvironmentConfig
 }
 
 class _EnvironmentConfigRestJson1Serializer
-    extends _i2.StructuredSmithySerializer<EnvironmentConfig> {
+    extends _i3.StructuredSmithySerializer<EnvironmentConfig> {
   const _EnvironmentConfigRestJson1Serializer() : super('EnvironmentConfig');
 
   @override
   Iterable<Type> get types => const [EnvironmentConfig, _$EnvironmentConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
+  Iterable<_i3.ShapeId> get supportedProtocols =>
+      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
   EnvironmentConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -97,7 +114,7 @@ class _EnvironmentConfigRestJson1Serializer
         case 'AWS_RETRY_MODE':
           if (value != null) {
             result.awsRetryMode = (serializers.deserialize(value,
-                specifiedType: const FullType(_i3.RetryMode)) as _i3.RetryMode);
+                specifiedType: const FullType(_i2.RetryMode)) as _i2.RetryMode);
           }
           break;
         case 'AWS_SECRET_ACCESS_KEY':
@@ -145,7 +162,7 @@ class _EnvironmentConfigRestJson1Serializer
       result
         ..add('AWS_RETRY_MODE')
         ..add(serializers.serialize(payload.awsRetryMode!,
-            specifiedType: const FullType(_i3.RetryMode)));
+            specifiedType: const FullType(_i2.RetryMode)));
     }
     if (payload.awsSecretAccessKey != null) {
       result

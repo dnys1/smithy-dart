@@ -17,7 +17,11 @@ abstract class MalformedContentTypeWithGenericStringInput
         Built<MalformedContentTypeWithGenericStringInput,
             MalformedContentTypeWithGenericStringInputBuilder>,
         _i1.HasPayload<String> {
-  factory MalformedContentTypeWithGenericStringInput(
+  factory MalformedContentTypeWithGenericStringInput({String? payload}) {
+    return _$MalformedContentTypeWithGenericStringInput._(payload: payload);
+  }
+
+  factory MalformedContentTypeWithGenericStringInput.build(
       [void Function(MalformedContentTypeWithGenericStringInputBuilder)
           updates]) = _$MalformedContentTypeWithGenericStringInput;
 
@@ -26,7 +30,7 @@ abstract class MalformedContentTypeWithGenericStringInput
   factory MalformedContentTypeWithGenericStringInput.fromRequest(
           String? payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedContentTypeWithGenericStringInput((b) {
+      MalformedContentTypeWithGenericStringInput.build((b) {
         b.payload = payload;
       });
 

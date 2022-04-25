@@ -16,6 +16,12 @@ abstract class DocumentTypeInputOutput
         _i2.AWSEquatable<DocumentTypeInputOutput>
     implements Built<DocumentTypeInputOutput, DocumentTypeInputOutputBuilder> {
   factory DocumentTypeInputOutput(
+      {_i3.JsonObject? documentValue, String? stringValue}) {
+    return _$DocumentTypeInputOutput._(
+        documentValue: documentValue, stringValue: stringValue);
+  }
+
+  factory DocumentTypeInputOutput.build(
           [void Function(DocumentTypeInputOutputBuilder) updates]) =
       _$DocumentTypeInputOutput;
 

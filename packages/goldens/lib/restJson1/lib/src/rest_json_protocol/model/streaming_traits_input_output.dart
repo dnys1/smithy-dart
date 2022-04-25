@@ -19,6 +19,11 @@ abstract class StreamingTraitsInputOutput
         Built<StreamingTraitsInputOutput, StreamingTraitsInputOutputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory StreamingTraitsInputOutput(
+      {_i2.Stream<List<int>>? blob, String? foo}) {
+    return _$StreamingTraitsInputOutput._(blob: blob, foo: foo);
+  }
+
+  factory StreamingTraitsInputOutput.build(
           [void Function(StreamingTraitsInputOutputBuilder) updates]) =
       _$StreamingTraitsInputOutput;
 
@@ -27,7 +32,7 @@ abstract class StreamingTraitsInputOutput
   factory StreamingTraitsInputOutput.fromRequest(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      StreamingTraitsInputOutput((b) {
+      StreamingTraitsInputOutput.build((b) {
         b.blob = payload;
         if (request.headers['X-Foo'] != null) {
           b.foo = request.headers['X-Foo']!;
@@ -37,7 +42,7 @@ abstract class StreamingTraitsInputOutput
   /// Constructs a [StreamingTraitsInputOutput] from a [payload] and [response].
   factory StreamingTraitsInputOutput.fromResponse(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
-      StreamingTraitsInputOutput((b) {
+      StreamingTraitsInputOutput.build((b) {
         b.blob = payload;
         if (response.headers['X-Foo'] != null) {
           b.foo = response.headers['X-Foo']!;

@@ -16,25 +16,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i9;
 
-/// This example operation serializes a payload targeting a blob.
-///
-/// The Blob shape is not structured content and we cannot
-/// make assumptions about what data will be sent. This test ensures
-/// only a generic "Content-Type: application/octet-stream" header
-/// is used, and that we are not treating an empty body as an
-/// empty JSON document.
+/// This example operation serializes a payload targeting a blob. The Blob shape is not structured content and we cannot make assumptions about what data will be sent. This test ensures only a generic "Content-Type: application/octet-stream" header is used, and that we are not treating an empty body as an empty JSON document.
 class TestPayloadBlobOperation extends _i1.HttpOperation<
     _i2.Uint8List,
     _i3.TestPayloadBlobInputOutput,
     _i2.Uint8List,
     _i3.TestPayloadBlobInputOutput> {
-  /// This example operation serializes a payload targeting a blob.
-  ///
-  /// The Blob shape is not structured content and we cannot
-  /// make assumptions about what data will be sent. This test ensures
-  /// only a generic "Content-Type: application/octet-stream" header
-  /// is used, and that we are not treating an empty body as an
-  /// empty JSON document.
+  /// This example operation serializes a payload targeting a blob. The Blob shape is not structured content and we cannot make assumptions about what data will be sent. This test ensures only a generic "Content-Type: application/octet-stream" header is used, and that we are not treating an empty body as an empty JSON document.
   TestPayloadBlobOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

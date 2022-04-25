@@ -12,7 +12,11 @@ part 'complex_nested_error_data.g.dart';
 abstract class ComplexNestedErrorData
     with _i1.AWSEquatable<ComplexNestedErrorData>
     implements Built<ComplexNestedErrorData, ComplexNestedErrorDataBuilder> {
-  factory ComplexNestedErrorData(
+  factory ComplexNestedErrorData({String? foo}) {
+    return _$ComplexNestedErrorData._(foo: foo);
+  }
+
+  factory ComplexNestedErrorData.build(
           [void Function(ComplexNestedErrorDataBuilder) updates]) =
       _$ComplexNestedErrorData;
 
@@ -73,7 +77,9 @@ class _ComplexNestedErrorDataRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as ComplexNestedErrorData);
-    final result = <Object?>[_i2.XmlElementName('ComplexNestedErrorData')];
+    final result = <Object?>[
+      const _i2.XmlElementName('ComplexNestedErrorData')
+    ];
     if (payload.foo != null) {
       result
         ..add(const _i2.XmlElementName('Foo'))

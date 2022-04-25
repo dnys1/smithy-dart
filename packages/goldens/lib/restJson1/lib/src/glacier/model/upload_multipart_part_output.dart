@@ -16,7 +16,11 @@ abstract class UploadMultipartPartOutput
         Built<UploadMultipartPartOutput, UploadMultipartPartOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<UploadMultipartPartOutputPayload> {
-  factory UploadMultipartPartOutput(
+  factory UploadMultipartPartOutput({String? checksum}) {
+    return _$UploadMultipartPartOutput._(checksum: checksum);
+  }
+
+  factory UploadMultipartPartOutput.build(
           [void Function(UploadMultipartPartOutputBuilder) updates]) =
       _$UploadMultipartPartOutput;
 
@@ -26,7 +30,7 @@ abstract class UploadMultipartPartOutput
   factory UploadMultipartPartOutput.fromResponse(
           UploadMultipartPartOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      UploadMultipartPartOutput((b) {
+      UploadMultipartPartOutput.build((b) {
         if (response.headers['x-amz-sha256-tree-hash'] != null) {
           b.checksum = response.headers['x-amz-sha256-tree-hash']!;
         }

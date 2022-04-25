@@ -21,6 +21,11 @@ abstract class HttpPrefixHeadersInputOutput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpPrefixHeadersInputOutputPayload> {
   factory HttpPrefixHeadersInputOutput(
+      {String? foo, _i3.BuiltMap<String, String>? fooMap}) {
+    return _$HttpPrefixHeadersInputOutput._(foo: foo, fooMap: fooMap);
+  }
+
+  factory HttpPrefixHeadersInputOutput.build(
           [void Function(HttpPrefixHeadersInputOutputBuilder) updates]) =
       _$HttpPrefixHeadersInputOutput;
 
@@ -30,7 +35,7 @@ abstract class HttpPrefixHeadersInputOutput
           HttpPrefixHeadersInputOutputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPrefixHeadersInputOutput((b) {
+      HttpPrefixHeadersInputOutput.build((b) {
         if (request.headers['X-Foo'] != null) {
           b.foo = request.headers['X-Foo']!;
         }
@@ -44,7 +49,7 @@ abstract class HttpPrefixHeadersInputOutput
   factory HttpPrefixHeadersInputOutput.fromResponse(
           HttpPrefixHeadersInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      HttpPrefixHeadersInputOutput((b) {
+      HttpPrefixHeadersInputOutput.build((b) {
         if (response.headers['X-Foo'] != null) {
           b.foo = response.headers['X-Foo']!;
         }
@@ -128,7 +133,7 @@ class _HttpPrefixHeadersInputOutputRestXmlSerializer extends _i1
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('HttpPrefixHeadersInputOutput')
+      const _i1.XmlElementName('HttpPrefixHeadersInputOutput')
     ];
     return result;
   }

@@ -20,7 +20,16 @@ abstract class QueryIdempotencyTokenAutoFillInput
             QueryIdempotencyTokenAutoFillInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<QueryIdempotencyTokenAutoFillInputPayload> {
-  factory QueryIdempotencyTokenAutoFillInput(
+  factory QueryIdempotencyTokenAutoFillInput({String? token}) {
+    if (const bool.hasEnvironment('SMITHY_TEST')) {
+      token ??= '00000000-0000-4000-8000-000000000000';
+    } else {
+      token ??= const _i3.Uuid().v4();
+    }
+    return _$QueryIdempotencyTokenAutoFillInput._(token: token);
+  }
+
+  factory QueryIdempotencyTokenAutoFillInput.build(
           [void Function(QueryIdempotencyTokenAutoFillInputBuilder) updates]) =
       _$QueryIdempotencyTokenAutoFillInput;
 
@@ -30,7 +39,7 @@ abstract class QueryIdempotencyTokenAutoFillInput
           QueryIdempotencyTokenAutoFillInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      QueryIdempotencyTokenAutoFillInput((b) {
+      QueryIdempotencyTokenAutoFillInput.build((b) {
         if (request.queryParameters['token'] != null) {
           b.token = request.queryParameters['token']!;
         }
@@ -116,7 +125,7 @@ class _QueryIdempotencyTokenAutoFillInputRestXmlSerializer extends _i1
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('QueryIdempotencyTokenAutoFillInput')
+      const _i1.XmlElementName('QueryIdempotencyTokenAutoFillInput')
     ];
     return result;
   }

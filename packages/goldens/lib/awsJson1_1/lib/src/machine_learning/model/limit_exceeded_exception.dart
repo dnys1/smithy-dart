@@ -14,7 +14,11 @@ abstract class LimitExceededException
     implements
         Built<LimitExceededException, LimitExceededExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory LimitExceededException(
+  factory LimitExceededException({int? code, String? message}) {
+    return _$LimitExceededException._(code: code, message: message);
+  }
+
+  factory LimitExceededException.build(
           [void Function(LimitExceededExceptionBuilder) updates]) =
       _$LimitExceededException;
 

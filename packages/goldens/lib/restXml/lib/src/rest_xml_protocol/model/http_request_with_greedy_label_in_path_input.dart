@@ -20,6 +20,11 @@ abstract class HttpRequestWithGreedyLabelInPathInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithGreedyLabelInPathInputPayload> {
   factory HttpRequestWithGreedyLabelInPathInput(
+      {required String baz, required String foo}) {
+    return _$HttpRequestWithGreedyLabelInPathInput._(baz: baz, foo: foo);
+  }
+
+  factory HttpRequestWithGreedyLabelInPathInput.build(
       [void Function(HttpRequestWithGreedyLabelInPathInputBuilder)
           updates]) = _$HttpRequestWithGreedyLabelInPathInput;
 
@@ -29,7 +34,7 @@ abstract class HttpRequestWithGreedyLabelInPathInput
           HttpRequestWithGreedyLabelInPathInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpRequestWithGreedyLabelInPathInput((b) {
+      HttpRequestWithGreedyLabelInPathInput.build((b) {
         if (labels['foo'] != null) {
           b.foo = labels['foo']!;
         }
@@ -124,7 +129,7 @@ class _HttpRequestWithGreedyLabelInPathInputRestXmlSerializer extends _i1
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('HttpRequestWithGreedyLabelInPathInput')
+      const _i1.XmlElementName('HttpRequestWithGreedyLabelInPathInput')
     ];
     return result;
   }

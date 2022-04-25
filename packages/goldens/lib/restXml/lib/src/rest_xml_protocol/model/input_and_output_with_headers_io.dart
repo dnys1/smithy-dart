@@ -3,10 +3,10 @@
 library rest_xml.rest_xml_protocol.model.input_and_output_with_headers_io;
 
 import 'package:aws_common/aws_common.dart' as _i2;
-import 'package:built_collection/built_collection.dart' as _i5;
+import 'package:built_collection/built_collection.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:fixnum/fixnum.dart' as _i3;
+import 'package:fixnum/fixnum.dart' as _i5;
 import 'package:meta/meta.dart' as _i6;
 import 'package:rest_xml/src/rest_xml_protocol/model/foo_enum.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
@@ -22,6 +22,42 @@ abstract class InputAndOutputWithHeadersIo
         _i1.EmptyPayload,
         _i1.HasPayload<InputAndOutputWithHeadersIoPayload> {
   factory InputAndOutputWithHeadersIo(
+      {_i3.BuiltList<bool>? headerBooleanList,
+      int? headerByte,
+      double? headerDouble,
+      _i4.FooEnum? headerEnum,
+      _i3.BuiltList<_i4.FooEnum>? headerEnumList,
+      bool? headerFalseBool,
+      double? headerFloat,
+      int? headerInteger,
+      _i3.BuiltList<int>? headerIntegerList,
+      _i5.Int64? headerLong,
+      int? headerShort,
+      String? headerString,
+      _i3.BuiltList<String>? headerStringList,
+      _i3.BuiltSet<String>? headerStringSet,
+      _i3.BuiltList<DateTime>? headerTimestampList,
+      bool? headerTrueBool}) {
+    return _$InputAndOutputWithHeadersIo._(
+        headerBooleanList: headerBooleanList,
+        headerByte: headerByte,
+        headerDouble: headerDouble,
+        headerEnum: headerEnum,
+        headerEnumList: headerEnumList,
+        headerFalseBool: headerFalseBool,
+        headerFloat: headerFloat,
+        headerInteger: headerInteger,
+        headerIntegerList: headerIntegerList,
+        headerLong: headerLong,
+        headerShort: headerShort,
+        headerString: headerString,
+        headerStringList: headerStringList,
+        headerStringSet: headerStringSet,
+        headerTimestampList: headerTimestampList,
+        headerTrueBool: headerTrueBool);
+  }
+
+  factory InputAndOutputWithHeadersIo.build(
           [void Function(InputAndOutputWithHeadersIoBuilder) updates]) =
       _$InputAndOutputWithHeadersIo;
 
@@ -31,7 +67,7 @@ abstract class InputAndOutputWithHeadersIo
           InputAndOutputWithHeadersIoPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      InputAndOutputWithHeadersIo((b) {
+      InputAndOutputWithHeadersIo.build((b) {
         if (request.headers['X-String'] != null) {
           b.headerString = request.headers['X-String']!;
         }
@@ -45,7 +81,7 @@ abstract class InputAndOutputWithHeadersIo
           b.headerInteger = int.parse(request.headers['X-Integer']!);
         }
         if (request.headers['X-Long'] != null) {
-          b.headerLong = _i3.Int64.parseInt(request.headers['X-Long']!);
+          b.headerLong = _i5.Int64.parseInt(request.headers['X-Long']!);
         }
         if (request.headers['X-Float'] != null) {
           b.headerFloat = double.parse(request.headers['X-Float']!);
@@ -101,7 +137,7 @@ abstract class InputAndOutputWithHeadersIo
   factory InputAndOutputWithHeadersIo.fromResponse(
           InputAndOutputWithHeadersIoPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      InputAndOutputWithHeadersIo((b) {
+      InputAndOutputWithHeadersIo.build((b) {
         if (response.headers['X-String'] != null) {
           b.headerString = response.headers['X-String']!;
         }
@@ -115,7 +151,7 @@ abstract class InputAndOutputWithHeadersIo
           b.headerInteger = int.parse(response.headers['X-Integer']!);
         }
         if (response.headers['X-Long'] != null) {
-          b.headerLong = _i3.Int64.parseInt(response.headers['X-Long']!);
+          b.headerLong = _i5.Int64.parseInt(response.headers['X-Long']!);
         }
         if (response.headers['X-Float'] != null) {
           b.headerFloat = double.parse(response.headers['X-Float']!);
@@ -174,21 +210,21 @@ abstract class InputAndOutputWithHeadersIo
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(InputAndOutputWithHeadersIoBuilder b) {}
-  _i5.BuiltList<bool>? get headerBooleanList;
+  _i3.BuiltList<bool>? get headerBooleanList;
   int? get headerByte;
   double? get headerDouble;
   _i4.FooEnum? get headerEnum;
-  _i5.BuiltList<_i4.FooEnum>? get headerEnumList;
+  _i3.BuiltList<_i4.FooEnum>? get headerEnumList;
   bool? get headerFalseBool;
   double? get headerFloat;
   int? get headerInteger;
-  _i5.BuiltList<int>? get headerIntegerList;
-  _i3.Int64? get headerLong;
+  _i3.BuiltList<int>? get headerIntegerList;
+  _i5.Int64? get headerLong;
   int? get headerShort;
   String? get headerString;
-  _i5.BuiltList<String>? get headerStringList;
-  _i5.BuiltSet<String>? get headerStringSet;
-  _i5.BuiltList<DateTime>? get headerTimestampList;
+  _i3.BuiltList<String>? get headerStringList;
+  _i3.BuiltSet<String>? get headerStringSet;
+  _i3.BuiltList<DateTime>? get headerTimestampList;
   bool? get headerTrueBool;
   @override
   InputAndOutputWithHeadersIoPayload getPayload() =>
@@ -286,7 +322,9 @@ class _InputAndOutputWithHeadersIoRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[_i1.XmlElementName('InputAndOutputWithHeadersIo')];
+    final result = <Object?>[
+      const _i1.XmlElementName('InputAndOutputWithHeadersIo')
+    ];
     return result;
   }
 }

@@ -20,6 +20,11 @@ abstract class HttpPayloadWithXmlNamespaceInputOutput
             HttpPayloadWithXmlNamespaceInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlNamespace> {
   factory HttpPayloadWithXmlNamespaceInputOutput(
+      {_i2.PayloadWithXmlNamespace? nested}) {
+    return _$HttpPayloadWithXmlNamespaceInputOutput._(nested: nested);
+  }
+
+  factory HttpPayloadWithXmlNamespaceInputOutput.build(
       [void Function(HttpPayloadWithXmlNamespaceInputOutputBuilder)
           updates]) = _$HttpPayloadWithXmlNamespaceInputOutput;
 
@@ -28,7 +33,7 @@ abstract class HttpPayloadWithXmlNamespaceInputOutput
   factory HttpPayloadWithXmlNamespaceInputOutput.fromRequest(
           _i2.PayloadWithXmlNamespace? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithXmlNamespaceInputOutput((b) {
+      HttpPayloadWithXmlNamespaceInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -38,7 +43,7 @@ abstract class HttpPayloadWithXmlNamespaceInputOutput
   factory HttpPayloadWithXmlNamespaceInputOutput.fromResponse(
           _i2.PayloadWithXmlNamespace? payload,
           _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithXmlNamespaceInputOutput((b) {
+      HttpPayloadWithXmlNamespaceInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -108,8 +113,8 @@ class _HttpPayloadWithXmlNamespaceInputOutputRestXmlSerializer
         ? object.getPayload()
         : (object as _i2.PayloadWithXmlNamespace?);
     final result = <Object?>[
-      _i1.XmlElementName(
-          'PayloadWithXmlNamespace', const _i1.XmlNamespace('http://foo.com'))
+      const _i1.XmlElementName(
+          'PayloadWithXmlNamespace', _i1.XmlNamespace('http://foo.com'))
     ];
     if (payload == null) {
       return result;

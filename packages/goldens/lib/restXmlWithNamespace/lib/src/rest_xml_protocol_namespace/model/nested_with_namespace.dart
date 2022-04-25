@@ -13,7 +13,11 @@ part 'nested_with_namespace.g.dart';
 abstract class NestedWithNamespace
     with _i1.AWSEquatable<NestedWithNamespace>
     implements Built<NestedWithNamespace, NestedWithNamespaceBuilder> {
-  factory NestedWithNamespace(
+  factory NestedWithNamespace({String? attrField}) {
+    return _$NestedWithNamespace._(attrField: attrField);
+  }
+
+  factory NestedWithNamespace.build(
           [void Function(NestedWithNamespaceBuilder) updates]) =
       _$NestedWithNamespace;
 
@@ -74,8 +78,8 @@ class _NestedWithNamespaceRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as NestedWithNamespace);
     final result = <Object?>[
-      _i2.XmlElementName(
-          'NestedWithNamespace', const _i2.XmlNamespace('https://example.com'))
+      const _i2.XmlElementName(
+          'NestedWithNamespace', _i2.XmlNamespace('https://example.com'))
     ];
     if (payload.attrField != null) {
       result.add(_i3.XmlAttribute(

@@ -187,7 +187,7 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.emptyOperation(input, context);
       const statusCode = 200;
       final body = _emptyOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -208,7 +208,7 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.endpointOperation(input, context);
       const statusCode = 200;
       final body = _endpointOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -233,7 +233,7 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
           await service.endpointWithHostLabelOperation(input, context);
       const statusCode = 200;
       final body = _endpointWithHostLabelOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -254,24 +254,28 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.greetingWithErrors(input, context);
       const statusCode = 200;
       final body = _greetingWithErrorsProtocol.serialize(output,
-          specifiedType: const FullType(_i6.GreetingWithErrorsOutput));
+          specifiedType: const FullType(_i6.GreetingWithErrorsOutput,
+              [FullType(_i6.GreetingWithErrorsOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i16.ComplexError catch (e) {
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i16.ComplexError));
+          specifiedType:
+              const FullType(_i16.ComplexError, [FullType(_i16.ComplexError)]));
       const statusCode = 400;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.FooError catch (e) {
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i17.FooError));
+          specifiedType:
+              const FullType(_i17.FooError, [FullType(_i17.FooError)]));
       const statusCode = 500;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i18.InvalidGreeting catch (e) {
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i18.InvalidGreeting));
+          specifiedType: const FullType(
+              _i18.InvalidGreeting, [FullType(_i18.InvalidGreeting)]));
       const statusCode = 400;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -293,7 +297,7 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.hostWithPathOperation(input, context);
       const statusCode = 200;
       final body = _hostWithPathOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -314,7 +318,8 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.jsonEnums(input, context);
       const statusCode = 200;
       final body = _jsonEnumsProtocol.serialize(output,
-          specifiedType: const FullType(_i7.JsonEnumsInputOutput));
+          specifiedType: const FullType(
+              _i7.JsonEnumsInputOutput, [FullType(_i7.JsonEnumsInputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -335,7 +340,8 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.jsonUnions(input, context);
       const statusCode = 200;
       final body = _jsonUnionsProtocol.serialize(output,
-          specifiedType: const FullType(_i8.UnionInputOutput));
+          specifiedType: const FullType(
+              _i8.UnionInputOutput, [FullType(_i8.UnionInputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -357,18 +363,21 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.kitchenSinkOperation(input, context);
       const statusCode = 200;
       final body = _kitchenSinkOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i9.KitchenSink));
+          specifiedType:
+              const FullType(_i9.KitchenSink, [FullType(_i9.KitchenSink)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i19.ErrorWithMembers catch (e) {
       final body = _kitchenSinkOperationProtocol.serialize(e,
-          specifiedType: const FullType(_i19.ErrorWithMembers));
+          specifiedType: const FullType(
+              _i19.ErrorWithMembers, [FullType(_i19.ErrorWithMembers)]));
       const statusCode = 400;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i20.ErrorWithoutMembers catch (e) {
       final body = _kitchenSinkOperationProtocol.serialize(e,
-          specifiedType: const FullType(_i20.ErrorWithoutMembers));
+          specifiedType: const FullType(
+              _i20.ErrorWithoutMembers, [FullType(_i20.ErrorWithoutMembers)]));
       const statusCode = 500;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -393,7 +402,8 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.nullOperation(input, context);
       const statusCode = 200;
       final body = _nullOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i10.NullOperationInputOutput));
+          specifiedType: const FullType(_i10.NullOperationInputOutput,
+              [FullType(_i10.NullOperationInputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -420,8 +430,9 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
           await service.operationWithOptionalInputOutput(input, context);
       const statusCode = 200;
       final body = _operationWithOptionalInputOutputProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i11.OperationWithOptionalInputOutputOutput));
+          specifiedType: const FullType(
+              _i11.OperationWithOptionalInputOutputOutput,
+              [FullType(_i11.OperationWithOptionalInputOutputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -447,8 +458,9 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.putAndGetInlineDocuments(input, context);
       const statusCode = 200;
       final body = _putAndGetInlineDocumentsProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i13.PutAndGetInlineDocumentsInputOutput));
+          specifiedType: const FullType(
+              _i13.PutAndGetInlineDocumentsInputOutput,
+              [FullType(_i13.PutAndGetInlineDocumentsInputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -473,8 +485,8 @@ class _JsonProtocolServer extends _i1.HttpServer<JsonProtocolServerBase> {
       final output = await service.simpleScalarProperties(input, context);
       const statusCode = 200;
       final body = _simpleScalarPropertiesProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i14.SimpleScalarPropertiesInputOutput));
+          specifiedType: const FullType(_i14.SimpleScalarPropertiesInputOutput,
+              [FullType(_i14.SimpleScalarPropertiesInputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {

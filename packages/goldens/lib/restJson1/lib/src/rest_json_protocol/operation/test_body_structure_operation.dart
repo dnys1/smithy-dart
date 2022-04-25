@@ -15,21 +15,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This example operation serializes a structure in the HTTP body.
-///
-/// It should ensure Content-Type: application/json is
-/// used in all requests and that an "empty" body is
-/// an empty JSON document ({}).
+/// This example operation serializes a structure in the HTTP body. It should ensure Content-Type: application/json is used in all requests and that an "empty" body is an empty JSON document ({}).
 class TestBodyStructureOperation extends _i1.HttpOperation<
     _i2.TestBodyStructureInputOutputPayload,
     _i2.TestBodyStructureInputOutput,
     _i2.TestBodyStructureInputOutputPayload,
     _i2.TestBodyStructureInputOutput> {
-  /// This example operation serializes a structure in the HTTP body.
-  ///
-  /// It should ensure Content-Type: application/json is
-  /// used in all requests and that an "empty" body is
-  /// an empty JSON document ({}).
+  /// This example operation serializes a structure in the HTTP body. It should ensure Content-Type: application/json is used in all requests and that an "empty" body is an empty JSON document ({}).
   TestBodyStructureOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

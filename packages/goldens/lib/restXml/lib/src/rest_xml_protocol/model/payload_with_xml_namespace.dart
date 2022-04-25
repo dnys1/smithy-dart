@@ -12,7 +12,11 @@ part 'payload_with_xml_namespace.g.dart';
 abstract class PayloadWithXmlNamespace
     with _i1.AWSEquatable<PayloadWithXmlNamespace>
     implements Built<PayloadWithXmlNamespace, PayloadWithXmlNamespaceBuilder> {
-  factory PayloadWithXmlNamespace(
+  factory PayloadWithXmlNamespace({String? name}) {
+    return _$PayloadWithXmlNamespace._(name: name);
+  }
+
+  factory PayloadWithXmlNamespace.build(
           [void Function(PayloadWithXmlNamespaceBuilder) updates]) =
       _$PayloadWithXmlNamespace;
 
@@ -74,8 +78,8 @@ class _PayloadWithXmlNamespaceRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as PayloadWithXmlNamespace);
     final result = <Object?>[
-      _i2.XmlElementName(
-          'PayloadWithXmlNamespace', const _i2.XmlNamespace('http://foo.com'))
+      const _i2.XmlElementName(
+          'PayloadWithXmlNamespace', _i2.XmlNamespace('http://foo.com'))
     ];
     if (payload.name != null) {
       result

@@ -20,6 +20,11 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
             StreamingTraitsWithMediaTypeInputOutputBuilder>,
         _i1.HasPayload<_i2.Stream<List<int>>> {
   factory StreamingTraitsWithMediaTypeInputOutput(
+      {_i2.Stream<List<int>>? blob, String? foo}) {
+    return _$StreamingTraitsWithMediaTypeInputOutput._(blob: blob, foo: foo);
+  }
+
+  factory StreamingTraitsWithMediaTypeInputOutput.build(
       [void Function(StreamingTraitsWithMediaTypeInputOutputBuilder)
           updates]) = _$StreamingTraitsWithMediaTypeInputOutput;
 
@@ -28,7 +33,7 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
   factory StreamingTraitsWithMediaTypeInputOutput.fromRequest(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      StreamingTraitsWithMediaTypeInputOutput((b) {
+      StreamingTraitsWithMediaTypeInputOutput.build((b) {
         b.blob = payload;
         if (request.headers['X-Foo'] != null) {
           b.foo = request.headers['X-Foo']!;
@@ -38,7 +43,7 @@ abstract class StreamingTraitsWithMediaTypeInputOutput
   /// Constructs a [StreamingTraitsWithMediaTypeInputOutput] from a [payload] and [response].
   factory StreamingTraitsWithMediaTypeInputOutput.fromResponse(
           _i2.Stream<List<int>>? payload, _i3.AWSBaseHttpResponse response) =>
-      StreamingTraitsWithMediaTypeInputOutput((b) {
+      StreamingTraitsWithMediaTypeInputOutput.build((b) {
         b.blob = payload;
         if (response.headers['X-Foo'] != null) {
           b.foo = response.headers['X-Foo']!;

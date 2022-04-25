@@ -18,6 +18,22 @@ abstract class MalformedLengthInput
         _i2.AWSEquatable<MalformedLengthInput>
     implements Built<MalformedLengthInput, MalformedLengthInputBuilder> {
   factory MalformedLengthInput(
+      {_i3.Uint8List? blob,
+      _i4.BuiltList<String>? list,
+      _i4.BuiltListMultimap<String, String>? map,
+      String? maxString,
+      String? minString,
+      String? string}) {
+    return _$MalformedLengthInput._(
+        blob: blob,
+        list: list,
+        map: map,
+        maxString: maxString,
+        minString: minString,
+        string: string);
+  }
+
+  factory MalformedLengthInput.build(
           [void Function(MalformedLengthInputBuilder) updates]) =
       _$MalformedLengthInput;
 

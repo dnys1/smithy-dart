@@ -18,6 +18,18 @@ abstract class MalformedByteInput
         Built<MalformedByteInput, MalformedByteInputBuilder>,
         _i1.HasPayload<MalformedByteInputPayload> {
   factory MalformedByteInput(
+      {int? byteInBody,
+      int? byteInHeader,
+      required int byteInPath,
+      int? byteInQuery}) {
+    return _$MalformedByteInput._(
+        byteInBody: byteInBody,
+        byteInHeader: byteInHeader,
+        byteInPath: byteInPath,
+        byteInQuery: byteInQuery);
+  }
+
+  factory MalformedByteInput.build(
           [void Function(MalformedByteInputBuilder) updates]) =
       _$MalformedByteInput;
 
@@ -26,7 +38,7 @@ abstract class MalformedByteInput
   factory MalformedByteInput.fromRequest(
           MalformedByteInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedByteInput((b) {
+      MalformedByteInput.build((b) {
         b.byteInBody = payload.byteInBody;
         if (request.headers['byteInHeader'] != null) {
           b.byteInHeader = int.parse(request.headers['byteInHeader']!);

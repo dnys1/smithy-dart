@@ -69,7 +69,8 @@ class _RestXmlProtocolNamespaceServer
       }
       const statusCode = 200;
       final body = _simpleScalarPropertiesProtocol.serialize(output,
-          specifiedType: const FullType(_i5.SimpleScalarPropertiesInputOutput));
+          specifiedType: const FullType(_i5.SimpleScalarPropertiesInputOutput,
+              [FullType(_i5.SimpleScalarPropertiesInputOutputPayload)]));
       return _i6.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {

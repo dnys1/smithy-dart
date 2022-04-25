@@ -21,7 +21,11 @@ abstract class MalformedStringInput
         Built<MalformedStringInput, MalformedStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedStringInputPayload> {
-  factory MalformedStringInput(
+  factory MalformedStringInput({_i3.JsonObject? blob}) {
+    return _$MalformedStringInput._(blob: blob);
+  }
+
+  factory MalformedStringInput.build(
           [void Function(MalformedStringInputBuilder) updates]) =
       _$MalformedStringInput;
 
@@ -30,7 +34,7 @@ abstract class MalformedStringInput
   factory MalformedStringInput.fromRequest(
           MalformedStringInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedStringInput((b) {
+      MalformedStringInput.build((b) {
         if (request.headers['amz-media-typed-header'] != null) {
           b.blob = _i3.JsonObject(_i4.jsonDecode(_i4.utf8.decode(
               _i4.base64Decode(request.headers['amz-media-typed-header']!))));

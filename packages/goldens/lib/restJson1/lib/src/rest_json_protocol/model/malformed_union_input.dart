@@ -16,7 +16,11 @@ abstract class MalformedUnionInput
         _i1.HttpInput<MalformedUnionInput>,
         _i2.AWSEquatable<MalformedUnionInput>
     implements Built<MalformedUnionInput, MalformedUnionInputBuilder> {
-  factory MalformedUnionInput(
+  factory MalformedUnionInput({_i3.SimpleUnion? union}) {
+    return _$MalformedUnionInput._(union: union);
+  }
+
+  factory MalformedUnionInput.build(
           [void Function(MalformedUnionInputBuilder) updates]) =
       _$MalformedUnionInput;
 

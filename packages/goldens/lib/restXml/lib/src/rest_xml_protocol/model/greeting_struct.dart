@@ -12,7 +12,11 @@ part 'greeting_struct.g.dart';
 abstract class GreetingStruct
     with _i1.AWSEquatable<GreetingStruct>
     implements Built<GreetingStruct, GreetingStructBuilder> {
-  factory GreetingStruct([void Function(GreetingStructBuilder) updates]) =
+  factory GreetingStruct({String? hi}) {
+    return _$GreetingStruct._(hi: hi);
+  }
+
+  factory GreetingStruct.build([void Function(GreetingStructBuilder) updates]) =
       _$GreetingStruct;
 
   const GreetingStruct._();
@@ -70,7 +74,7 @@ class _GreetingStructRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as GreetingStruct);
-    final result = <Object?>[_i2.XmlElementName('GreetingStruct')];
+    final result = <Object?>[const _i2.XmlElementName('GreetingStruct')];
     if (payload.hi != null) {
       result
         ..add(const _i2.XmlElementName('hi'))

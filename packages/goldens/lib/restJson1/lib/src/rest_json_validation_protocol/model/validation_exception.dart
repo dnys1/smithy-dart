@@ -12,18 +12,21 @@ import 'package:smithy/smithy.dart' as _i2;
 
 part 'validation_exception.g.dart';
 
-/// A standard error for input validation failures.
-/// This should be thrown by services when a member of the input structure
-/// falls outside of the modeled or documented constraints.
+/// A standard error for input validation failures. This should be thrown by services when a member of the input structure falls outside of the modeled or documented constraints.
 abstract class ValidationException
     with _i1.AWSEquatable<ValidationException>
     implements
         Built<ValidationException, ValidationExceptionBuilder>,
         _i2.SmithyHttpException {
-  /// A standard error for input validation failures.
-  /// This should be thrown by services when a member of the input structure
-  /// falls outside of the modeled or documented constraints.
+  /// A standard error for input validation failures. This should be thrown by services when a member of the input structure falls outside of the modeled or documented constraints.
   factory ValidationException(
+      {_i3.BuiltList<_i4.ValidationExceptionField>? fieldList,
+      required String message}) {
+    return _$ValidationException._(fieldList: fieldList, message: message);
+  }
+
+  /// A standard error for input validation failures. This should be thrown by services when a member of the input structure falls outside of the modeled or documented constraints.
+  factory ValidationException.build(
           [void Function(ValidationExceptionBuilder) updates]) =
       _$ValidationException;
 
@@ -44,8 +47,7 @@ abstract class ValidationException
   @BuiltValueHook(initializeBuilder: true)
   static void _init(ValidationExceptionBuilder b) {}
 
-  /// A list of specific failures encountered while validating the input.
-  /// A member can appear in this list more than once if it failed to satisfy multiple constraints.
+  /// A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
   _i3.BuiltList<_i4.ValidationExceptionField>? get fieldList;
 
   /// A summary of the validation failure.

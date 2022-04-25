@@ -18,6 +18,11 @@ abstract class RecursiveShapesInputOutput
     implements
         Built<RecursiveShapesInputOutput, RecursiveShapesInputOutputBuilder> {
   factory RecursiveShapesInputOutput(
+      {_i3.RecursiveShapesInputOutputNested1? nested}) {
+    return _$RecursiveShapesInputOutput._(nested: nested);
+  }
+
+  factory RecursiveShapesInputOutput.build(
           [void Function(RecursiveShapesInputOutputBuilder) updates]) =
       _$RecursiveShapesInputOutput;
 
@@ -93,7 +98,9 @@ class _RecursiveShapesInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as RecursiveShapesInputOutput);
-    final result = <Object?>[_i1.XmlElementName('RecursiveShapesInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('RecursiveShapesInputOutput')
+    ];
     if (payload.nested != null) {
       result
         ..add(const _i1.XmlElementName('nested'))

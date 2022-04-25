@@ -12,7 +12,11 @@ part 'simple_struct.g.dart';
 abstract class SimpleStruct
     with _i1.AWSEquatable<SimpleStruct>
     implements Built<SimpleStruct, SimpleStructBuilder> {
-  factory SimpleStruct([void Function(SimpleStructBuilder) updates]) =
+  factory SimpleStruct({String? value}) {
+    return _$SimpleStruct._(value: value);
+  }
+
+  factory SimpleStruct.build([void Function(SimpleStructBuilder) updates]) =
       _$SimpleStruct;
 
   const SimpleStruct._();

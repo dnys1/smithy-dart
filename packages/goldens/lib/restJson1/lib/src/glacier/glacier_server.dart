@@ -88,36 +88,51 @@ class _GlacierServer extends _i1.HttpServer<GlacierServerBase> {
       final output = await service.uploadArchive(input, context);
       const statusCode = 201;
       final body = _uploadArchiveProtocol.serialize(output,
-          specifiedType: const FullType(_i5.ArchiveCreationOutput));
+          specifiedType: const FullType(_i5.ArchiveCreationOutput,
+              [FullType(_i5.ArchiveCreationOutputPayload)]));
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i10.InvalidParameterValueException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'InvalidParameterValueException';
       final body = _uploadArchiveProtocol.serialize(e,
-          specifiedType: const FullType(_i10.InvalidParameterValueException));
+          specifiedType: const FullType(_i10.InvalidParameterValueException,
+              [FullType(_i10.InvalidParameterValueException)]));
       const statusCode = 400;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i11.MissingParameterValueException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'MissingParameterValueException';
       final body = _uploadArchiveProtocol.serialize(e,
-          specifiedType: const FullType(_i11.MissingParameterValueException));
+          specifiedType: const FullType(_i11.MissingParameterValueException,
+              [FullType(_i11.MissingParameterValueException)]));
       const statusCode = 400;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i12.RequestTimeoutException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'RequestTimeoutException';
       final body = _uploadArchiveProtocol.serialize(e,
-          specifiedType: const FullType(_i12.RequestTimeoutException));
+          specifiedType: const FullType(_i12.RequestTimeoutException,
+              [FullType(_i12.RequestTimeoutException)]));
       const statusCode = 408;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i13.ResourceNotFoundException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'ResourceNotFoundException';
       final body = _uploadArchiveProtocol.serialize(e,
-          specifiedType: const FullType(_i13.ResourceNotFoundException));
+          specifiedType: const FullType(_i13.ResourceNotFoundException,
+              [FullType(_i13.ResourceNotFoundException)]));
       const statusCode = 404;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i14.ServiceUnavailableException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'ServiceUnavailableException';
       final body = _uploadArchiveProtocol.serialize(e,
-          specifiedType: const FullType(_i14.ServiceUnavailableException));
+          specifiedType: const FullType(_i14.ServiceUnavailableException,
+              [FullType(_i14.ServiceUnavailableException)]));
       const statusCode = 500;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -147,36 +162,51 @@ class _GlacierServer extends _i1.HttpServer<GlacierServerBase> {
       final output = await service.uploadMultipartPart(input, context);
       const statusCode = 204;
       final body = _uploadMultipartPartProtocol.serialize(output,
-          specifiedType: const FullType(_i7.UploadMultipartPartOutput));
+          specifiedType: const FullType(_i7.UploadMultipartPartOutput,
+              [FullType(_i7.UploadMultipartPartOutputPayload)]));
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i10.InvalidParameterValueException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'InvalidParameterValueException';
       final body = _uploadMultipartPartProtocol.serialize(e,
-          specifiedType: const FullType(_i10.InvalidParameterValueException));
+          specifiedType: const FullType(_i10.InvalidParameterValueException,
+              [FullType(_i10.InvalidParameterValueException)]));
       const statusCode = 400;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i11.MissingParameterValueException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'MissingParameterValueException';
       final body = _uploadMultipartPartProtocol.serialize(e,
-          specifiedType: const FullType(_i11.MissingParameterValueException));
+          specifiedType: const FullType(_i11.MissingParameterValueException,
+              [FullType(_i11.MissingParameterValueException)]));
       const statusCode = 400;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i12.RequestTimeoutException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'RequestTimeoutException';
       final body = _uploadMultipartPartProtocol.serialize(e,
-          specifiedType: const FullType(_i12.RequestTimeoutException));
+          specifiedType: const FullType(_i12.RequestTimeoutException,
+              [FullType(_i12.RequestTimeoutException)]));
       const statusCode = 408;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i13.ResourceNotFoundException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'ResourceNotFoundException';
       final body = _uploadMultipartPartProtocol.serialize(e,
-          specifiedType: const FullType(_i13.ResourceNotFoundException));
+          specifiedType: const FullType(_i13.ResourceNotFoundException,
+              [FullType(_i13.ResourceNotFoundException)]));
       const statusCode = 404;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i14.ServiceUnavailableException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] =
+          'ServiceUnavailableException';
       final body = _uploadMultipartPartProtocol.serialize(e,
-          specifiedType: const FullType(_i14.ServiceUnavailableException));
+          specifiedType: const FullType(_i14.ServiceUnavailableException,
+              [FullType(_i14.ServiceUnavailableException)]));
       const statusCode = 500;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());

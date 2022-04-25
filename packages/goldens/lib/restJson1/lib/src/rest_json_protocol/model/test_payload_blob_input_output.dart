@@ -19,6 +19,11 @@ abstract class TestPayloadBlobInputOutput
         Built<TestPayloadBlobInputOutput, TestPayloadBlobInputOutputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
   factory TestPayloadBlobInputOutput(
+      {String? contentType, _i2.Uint8List? data}) {
+    return _$TestPayloadBlobInputOutput._(contentType: contentType, data: data);
+  }
+
+  factory TestPayloadBlobInputOutput.build(
           [void Function(TestPayloadBlobInputOutputBuilder) updates]) =
       _$TestPayloadBlobInputOutput;
 
@@ -27,7 +32,7 @@ abstract class TestPayloadBlobInputOutput
   factory TestPayloadBlobInputOutput.fromRequest(
           _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      TestPayloadBlobInputOutput((b) {
+      TestPayloadBlobInputOutput.build((b) {
         b.data = payload;
         if (request.headers['Content-Type'] != null) {
           b.contentType = request.headers['Content-Type']!;
@@ -37,7 +42,7 @@ abstract class TestPayloadBlobInputOutput
   /// Constructs a [TestPayloadBlobInputOutput] from a [payload] and [response].
   factory TestPayloadBlobInputOutput.fromResponse(
           _i2.Uint8List? payload, _i3.AWSBaseHttpResponse response) =>
-      TestPayloadBlobInputOutput((b) {
+      TestPayloadBlobInputOutput.build((b) {
         b.data = payload;
         if (response.headers['Content-Type'] != null) {
           b.contentType = response.headers['Content-Type']!;

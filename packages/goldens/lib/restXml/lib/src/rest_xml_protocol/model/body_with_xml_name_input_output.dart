@@ -17,7 +17,11 @@ abstract class BodyWithXmlNameInputOutput
         _i2.AWSEquatable<BodyWithXmlNameInputOutput>
     implements
         Built<BodyWithXmlNameInputOutput, BodyWithXmlNameInputOutputBuilder> {
-  factory BodyWithXmlNameInputOutput(
+  factory BodyWithXmlNameInputOutput({_i3.PayloadWithXmlName? nested}) {
+    return _$BodyWithXmlNameInputOutput._(nested: nested);
+  }
+
+  factory BodyWithXmlNameInputOutput.build(
           [void Function(BodyWithXmlNameInputOutputBuilder) updates]) =
       _$BodyWithXmlNameInputOutput;
 
@@ -92,7 +96,7 @@ class _BodyWithXmlNameInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as BodyWithXmlNameInputOutput);
-    final result = <Object?>[_i1.XmlElementName('Ahoy')];
+    final result = <Object?>[const _i1.XmlElementName('Ahoy')];
     if (payload.nested != null) {
       result
         ..add(const _i1.XmlElementName('nested'))

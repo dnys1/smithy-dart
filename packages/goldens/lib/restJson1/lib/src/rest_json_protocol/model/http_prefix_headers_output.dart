@@ -18,6 +18,11 @@ abstract class HttpPrefixHeadersOutput
         _i2.EmptyPayload,
         _i2.HasPayload<HttpPrefixHeadersOutputPayload> {
   factory HttpPrefixHeadersOutput(
+      {String? foo, _i3.BuiltMap<String, String>? fooMap}) {
+    return _$HttpPrefixHeadersOutput._(foo: foo, fooMap: fooMap);
+  }
+
+  factory HttpPrefixHeadersOutput.build(
           [void Function(HttpPrefixHeadersOutputBuilder) updates]) =
       _$HttpPrefixHeadersOutput;
 
@@ -27,7 +32,7 @@ abstract class HttpPrefixHeadersOutput
   factory HttpPrefixHeadersOutput.fromResponse(
           HttpPrefixHeadersOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      HttpPrefixHeadersOutput((b) {
+      HttpPrefixHeadersOutput.build((b) {
         if (response.headers['X-Foo'] != null) {
           b.foo = response.headers['X-Foo']!;
         }

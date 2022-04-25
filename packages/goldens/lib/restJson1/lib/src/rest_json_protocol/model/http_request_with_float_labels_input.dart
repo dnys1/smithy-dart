@@ -20,6 +20,11 @@ abstract class HttpRequestWithFloatLabelsInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithFloatLabelsInputPayload> {
   factory HttpRequestWithFloatLabelsInput(
+      {required double double_, required double float}) {
+    return _$HttpRequestWithFloatLabelsInput._(double_: double_, float: float);
+  }
+
+  factory HttpRequestWithFloatLabelsInput.build(
           [void Function(HttpRequestWithFloatLabelsInputBuilder) updates]) =
       _$HttpRequestWithFloatLabelsInput;
 
@@ -29,7 +34,7 @@ abstract class HttpRequestWithFloatLabelsInput
           HttpRequestWithFloatLabelsInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpRequestWithFloatLabelsInput((b) {
+      HttpRequestWithFloatLabelsInput.build((b) {
         if (labels['float'] != null) {
           b.float = double.parse(labels['float']!);
         }

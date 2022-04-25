@@ -18,6 +18,18 @@ abstract class MalformedBooleanInput
         Built<MalformedBooleanInput, MalformedBooleanInputBuilder>,
         _i1.HasPayload<MalformedBooleanInputPayload> {
   factory MalformedBooleanInput(
+      {bool? booleanInBody,
+      bool? booleanInHeader,
+      required bool booleanInPath,
+      bool? booleanInQuery}) {
+    return _$MalformedBooleanInput._(
+        booleanInBody: booleanInBody,
+        booleanInHeader: booleanInHeader,
+        booleanInPath: booleanInPath,
+        booleanInQuery: booleanInQuery);
+  }
+
+  factory MalformedBooleanInput.build(
           [void Function(MalformedBooleanInputBuilder) updates]) =
       _$MalformedBooleanInput;
 
@@ -26,7 +38,7 @@ abstract class MalformedBooleanInput
   factory MalformedBooleanInput.fromRequest(
           MalformedBooleanInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedBooleanInput((b) {
+      MalformedBooleanInput.build((b) {
         b.booleanInBody = payload.booleanInBody;
         if (request.headers['booleanInHeader'] != null) {
           b.booleanInHeader = request.headers['booleanInHeader']! == 'true';

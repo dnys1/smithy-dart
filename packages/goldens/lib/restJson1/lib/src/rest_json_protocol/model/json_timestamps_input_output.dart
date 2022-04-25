@@ -16,6 +16,18 @@ abstract class JsonTimestampsInputOutput
     implements
         Built<JsonTimestampsInputOutput, JsonTimestampsInputOutputBuilder> {
   factory JsonTimestampsInputOutput(
+      {DateTime? dateTime,
+      DateTime? epochSeconds,
+      DateTime? httpDate,
+      DateTime? normal}) {
+    return _$JsonTimestampsInputOutput._(
+        dateTime: dateTime,
+        epochSeconds: epochSeconds,
+        httpDate: httpDate,
+        normal: normal);
+  }
+
+  factory JsonTimestampsInputOutput.build(
           [void Function(JsonTimestampsInputOutputBuilder) updates]) =
       _$JsonTimestampsInputOutput;
 

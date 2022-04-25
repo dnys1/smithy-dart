@@ -16,7 +16,11 @@ abstract class GreetingWithErrorsOutput
         Built<GreetingWithErrorsOutput, GreetingWithErrorsOutputBuilder>,
         _i2.EmptyPayload,
         _i2.HasPayload<GreetingWithErrorsOutputPayload> {
-  factory GreetingWithErrorsOutput(
+  factory GreetingWithErrorsOutput({String? greeting}) {
+    return _$GreetingWithErrorsOutput._(greeting: greeting);
+  }
+
+  factory GreetingWithErrorsOutput.build(
           [void Function(GreetingWithErrorsOutputBuilder) updates]) =
       _$GreetingWithErrorsOutput;
 
@@ -26,7 +30,7 @@ abstract class GreetingWithErrorsOutput
   factory GreetingWithErrorsOutput.fromResponse(
           GreetingWithErrorsOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      GreetingWithErrorsOutput((b) {
+      GreetingWithErrorsOutput.build((b) {
         if (response.headers['X-Greeting'] != null) {
           b.greeting = response.headers['X-Greeting']!;
         }
@@ -103,7 +107,9 @@ class _GreetingWithErrorsOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[_i2.XmlElementName('GreetingWithErrorsOutput')];
+    final result = <Object?>[
+      const _i2.XmlElementName('GreetingWithErrorsOutput')
+    ];
     return result;
   }
 }

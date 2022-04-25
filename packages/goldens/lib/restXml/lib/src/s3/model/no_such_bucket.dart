@@ -15,7 +15,11 @@ abstract class NoSuchBucket
         Built<NoSuchBucket, NoSuchBucketBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  factory NoSuchBucket([void Function(NoSuchBucketBuilder) updates]) =
+  factory NoSuchBucket() {
+    return _$NoSuchBucket._();
+  }
+
+  factory NoSuchBucket.build([void Function(NoSuchBucketBuilder) updates]) =
       _$NoSuchBucket;
 
   const NoSuchBucket._();
@@ -76,8 +80,8 @@ class _NoSuchBucketRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i2.XmlElementName('NoSuchBucket',
-          const _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
+      const _i2.XmlElementName('NoSuchBucket',
+          _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
     ];
     return result;
   }

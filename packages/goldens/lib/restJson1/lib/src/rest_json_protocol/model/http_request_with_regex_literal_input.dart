@@ -19,7 +19,11 @@ abstract class HttpRequestWithRegexLiteralInput
             HttpRequestWithRegexLiteralInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithRegexLiteralInputPayload> {
-  factory HttpRequestWithRegexLiteralInput(
+  factory HttpRequestWithRegexLiteralInput({required String str}) {
+    return _$HttpRequestWithRegexLiteralInput._(str: str);
+  }
+
+  factory HttpRequestWithRegexLiteralInput.build(
           [void Function(HttpRequestWithRegexLiteralInputBuilder) updates]) =
       _$HttpRequestWithRegexLiteralInput;
 
@@ -29,7 +33,7 @@ abstract class HttpRequestWithRegexLiteralInput
           HttpRequestWithRegexLiteralInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpRequestWithRegexLiteralInput((b) {
+      HttpRequestWithRegexLiteralInput.build((b) {
         if (labels['str'] != null) {
           b.str = labels['str']!;
         }

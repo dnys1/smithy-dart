@@ -20,7 +20,13 @@ abstract class ComplexError
         _i2.HasPayload<ComplexErrorPayload>,
         _i2.SmithyHttpException {
   /// This error is thrown when a request is invalid.
-  factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
+  factory ComplexError(
+      {String? header, _i3.ComplexNestedErrorData? nested, String? topLevel}) {
+    return _$ComplexError._(header: header, nested: nested, topLevel: topLevel);
+  }
+
+  /// This error is thrown when a request is invalid.
+  factory ComplexError.build([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
   const ComplexError._();
@@ -28,7 +34,7 @@ abstract class ComplexError
   /// Constructs a [ComplexError] from a [payload] and [response].
   factory ComplexError.fromResponse(
           ComplexErrorPayload payload, _i1.AWSBaseHttpResponse response) =>
-      ComplexError((b) {
+      ComplexError.build((b) {
         if (payload.nested != null) {
           b.nested.replace(payload.nested!);
         }
@@ -163,7 +169,7 @@ class _ComplexErrorRestXmlSerializer
     final payload = object is ComplexError
         ? object.getPayload()
         : (object as ComplexErrorPayload);
-    final result = <Object?>[_i2.XmlElementName('ComplexError')];
+    final result = <Object?>[const _i2.XmlElementName('ComplexError')];
     if (payload.nested != null) {
       result
         ..add(const _i2.XmlElementName('Nested'))

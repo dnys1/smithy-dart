@@ -17,7 +17,11 @@ abstract class HttpPrefixHeadersInResponseInput
         Built<HttpPrefixHeadersInResponseInput,
             HttpPrefixHeadersInResponseInputBuilder>,
         _i1.EmptyPayload {
-  factory HttpPrefixHeadersInResponseInput(
+  factory HttpPrefixHeadersInResponseInput() {
+    return _$HttpPrefixHeadersInResponseInput._();
+  }
+
+  factory HttpPrefixHeadersInResponseInput.build(
           [void Function(HttpPrefixHeadersInResponseInputBuilder) updates]) =
       _$HttpPrefixHeadersInResponseInput;
 

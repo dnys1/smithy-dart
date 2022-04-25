@@ -70,36 +70,42 @@ class _MachineLearningServer extends _i1.HttpServer<MachineLearningServerBase> {
       final output = await service.predict(input, context);
       const statusCode = 200;
       final body = _predictProtocol.serialize(output,
-          specifiedType: const FullType(_i5.PredictOutput));
+          specifiedType:
+              const FullType(_i5.PredictOutput, [FullType(_i5.PredictOutput)]));
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i8.InternalServerException catch (e) {
       final body = _predictProtocol.serialize(e,
-          specifiedType: const FullType(_i8.InternalServerException));
+          specifiedType: const FullType(_i8.InternalServerException,
+              [FullType(_i8.InternalServerException)]));
       const statusCode = 500;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i9.InvalidInputException catch (e) {
       final body = _predictProtocol.serialize(e,
-          specifiedType: const FullType(_i9.InvalidInputException));
+          specifiedType: const FullType(_i9.InvalidInputException,
+              [FullType(_i9.InvalidInputException)]));
       const statusCode = 400;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i10.LimitExceededException catch (e) {
       final body = _predictProtocol.serialize(e,
-          specifiedType: const FullType(_i10.LimitExceededException));
+          specifiedType: const FullType(_i10.LimitExceededException,
+              [FullType(_i10.LimitExceededException)]));
       const statusCode = 417;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i11.PredictorNotMountedException catch (e) {
       final body = _predictProtocol.serialize(e,
-          specifiedType: const FullType(_i11.PredictorNotMountedException));
+          specifiedType: const FullType(_i11.PredictorNotMountedException,
+              [FullType(_i11.PredictorNotMountedException)]));
       const statusCode = 400;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i12.ResourceNotFoundException catch (e) {
       final body = _predictProtocol.serialize(e,
-          specifiedType: const FullType(_i12.ResourceNotFoundException));
+          specifiedType: const FullType(_i12.ResourceNotFoundException,
+              [FullType(_i12.ResourceNotFoundException)]));
       const statusCode = 404;
       return _i7.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());

@@ -9,17 +9,20 @@ import 'package:smithy/smithy.dart' as _i2;
 
 part 'foo_error.g.dart';
 
-/// This error has test cases that test some of the dark corners of Amazon service
-/// framework history. It should only be implemented by clients.
+/// This error has test cases that test some of the dark corners of Amazon service framework history. It should only be implemented by clients.
 abstract class FooError
     with _i1.AWSEquatable<FooError>
     implements
         Built<FooError, FooErrorBuilder>,
         _i2.EmptyPayload,
         _i2.SmithyHttpException {
-  /// This error has test cases that test some of the dark corners of Amazon service
-  /// framework history. It should only be implemented by clients.
-  factory FooError([void Function(FooErrorBuilder) updates]) = _$FooError;
+  /// This error has test cases that test some of the dark corners of Amazon service framework history. It should only be implemented by clients.
+  factory FooError() {
+    return _$FooError._();
+  }
+
+  /// This error has test cases that test some of the dark corners of Amazon service framework history. It should only be implemented by clients.
+  factory FooError.build([void Function(FooErrorBuilder) updates]) = _$FooError;
 
   const FooError._();
 

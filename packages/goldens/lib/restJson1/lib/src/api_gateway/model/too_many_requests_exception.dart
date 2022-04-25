@@ -17,6 +17,12 @@ abstract class TooManyRequestsException
         _i2.HasPayload<TooManyRequestsExceptionPayload>,
         _i2.SmithyHttpException {
   factory TooManyRequestsException(
+      {String? message, String? retryAfterSeconds}) {
+    return _$TooManyRequestsException._(
+        message: message, retryAfterSeconds: retryAfterSeconds);
+  }
+
+  factory TooManyRequestsException.build(
           [void Function(TooManyRequestsExceptionBuilder) updates]) =
       _$TooManyRequestsException;
 
@@ -26,7 +32,7 @@ abstract class TooManyRequestsException
   factory TooManyRequestsException.fromResponse(
           TooManyRequestsExceptionPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      TooManyRequestsException((b) {
+      TooManyRequestsException.build((b) {
         b.message = payload.message;
         if (response.headers['Retry-After'] != null) {
           b.retryAfterSeconds = response.headers['Retry-After']!;

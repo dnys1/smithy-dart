@@ -18,6 +18,16 @@ abstract class MalformedRequiredInput
         Built<MalformedRequiredInput, MalformedRequiredInputBuilder>,
         _i1.HasPayload<MalformedRequiredInputPayload> {
   factory MalformedRequiredInput(
+      {required String string,
+      required String stringInHeader,
+      required String stringInQuery}) {
+    return _$MalformedRequiredInput._(
+        string: string,
+        stringInHeader: stringInHeader,
+        stringInQuery: stringInQuery);
+  }
+
+  factory MalformedRequiredInput.build(
           [void Function(MalformedRequiredInputBuilder) updates]) =
       _$MalformedRequiredInput;
 
@@ -26,7 +36,7 @@ abstract class MalformedRequiredInput
   factory MalformedRequiredInput.fromRequest(
           MalformedRequiredInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedRequiredInput((b) {
+      MalformedRequiredInput.build((b) {
         b.string = payload.string;
         if (request.headers['string-in-headers'] != null) {
           b.stringInHeader = request.headers['string-in-headers']!;

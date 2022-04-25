@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-/// Amazon Simple Storage Service
+/// # Amazon Simple Storage Service
 library rest_xml.s3;
 
 export 'package:rest_xml/src/s3/model/aws_config.dart';

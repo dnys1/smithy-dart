@@ -142,34 +142,38 @@ import 'package:rest_json1/src/rest_json_protocol/model/post_player_action_input
     as _i144;
 import 'package:rest_json1/src/rest_json_protocol/model/post_player_action_output.dart'
     as _i143;
-import 'package:rest_json1/src/rest_json_protocol/model/query_idempotency_token_auto_fill_input.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/post_union_with_json_name_input.dart'
+    as _i147;
+import 'package:rest_json1/src/rest_json_protocol/model/post_union_with_json_name_output.dart'
     as _i146;
+import 'package:rest_json1/src/rest_json_protocol/model/query_idempotency_token_auto_fill_input.dart'
+    as _i149;
 import 'package:rest_json1/src/rest_json_protocol/model/query_params_as_string_list_map_input.dart'
-    as _i148;
+    as _i151;
 import 'package:rest_json1/src/rest_json_protocol/model/query_precedence_input.dart'
-    as _i150;
+    as _i153;
 import 'package:rest_json1/src/rest_json_protocol/model/recursive_shapes_input_output.dart'
-    as _i152;
+    as _i155;
 import 'package:rest_json1/src/rest_json_protocol/model/simple_scalar_properties_input_output.dart'
-    as _i154;
+    as _i157;
 import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_input_output.dart'
-    as _i156;
-import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input_output.dart'
-    as _i158;
+    as _i159;
+import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input.dart'
+    as _i161;
 import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_with_media_type_input_output.dart'
-    as _i160;
+    as _i163;
 import 'package:rest_json1/src/rest_json_protocol/model/string_payload_input.dart'
     as _i50;
 import 'package:rest_json1/src/rest_json_protocol/model/test_body_structure_input_output.dart'
-    as _i162;
+    as _i165;
 import 'package:rest_json1/src/rest_json_protocol/model/test_no_payload_input_output.dart'
-    as _i164;
+    as _i167;
 import 'package:rest_json1/src/rest_json_protocol/model/test_payload_blob_input_output.dart'
-    as _i166;
+    as _i169;
 import 'package:rest_json1/src/rest_json_protocol/model/test_payload_structure_input_output.dart'
-    as _i168;
+    as _i171;
 import 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers_io.dart'
-    as _i170;
+    as _i173;
 import 'package:rest_json1/src/rest_json_protocol/model/union_input_output.dart'
     as _i66;
 import 'package:rest_json1/src/rest_json_protocol/operation/all_query_string_types_operation.dart'
@@ -316,34 +320,36 @@ import 'package:rest_json1/src/rest_json_protocol/operation/omits_null_serialize
     as _i142;
 import 'package:rest_json1/src/rest_json_protocol/operation/post_player_action_operation.dart'
     as _i145;
+import 'package:rest_json1/src/rest_json_protocol/operation/post_union_with_json_name_operation.dart'
+    as _i148;
 import 'package:rest_json1/src/rest_json_protocol/operation/query_idempotency_token_auto_fill_operation.dart'
-    as _i147;
+    as _i150;
 import 'package:rest_json1/src/rest_json_protocol/operation/query_params_as_string_list_map_operation.dart'
-    as _i149;
+    as _i152;
 import 'package:rest_json1/src/rest_json_protocol/operation/query_precedence_operation.dart'
-    as _i151;
+    as _i154;
 import 'package:rest_json1/src/rest_json_protocol/operation/recursive_shapes_operation.dart'
-    as _i153;
+    as _i156;
 import 'package:rest_json1/src/rest_json_protocol/operation/simple_scalar_properties_operation.dart'
-    as _i155;
+    as _i158;
 import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_operation.dart'
-    as _i157;
+    as _i160;
 import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_require_length_operation.dart'
-    as _i159;
+    as _i162;
 import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_with_media_type_operation.dart'
-    as _i161;
+    as _i164;
 import 'package:rest_json1/src/rest_json_protocol/operation/test_body_structure_operation.dart'
-    as _i163;
+    as _i166;
 import 'package:rest_json1/src/rest_json_protocol/operation/test_no_payload_operation.dart'
-    as _i165;
+    as _i168;
 import 'package:rest_json1/src/rest_json_protocol/operation/test_payload_blob_operation.dart'
-    as _i167;
+    as _i170;
 import 'package:rest_json1/src/rest_json_protocol/operation/test_payload_structure_operation.dart'
-    as _i169;
-import 'package:rest_json1/src/rest_json_protocol/operation/timestamp_format_headers_operation.dart'
-    as _i171;
-import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_output_operation.dart'
     as _i172;
+import 'package:rest_json1/src/rest_json_protocol/operation/timestamp_format_headers_operation.dart'
+    as _i174;
+import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_output_operation.dart'
+    as _i175;
 import 'package:smithy/smithy.dart' as _i3;
 
 /// A REST JSON service that sends JSON requests and responses.
@@ -364,9 +370,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This example uses fixed query string params and variable query string params.
-  /// The fixed query string parameters and variable parameters must both be
-  /// serialized (implementations may need to merge them together).
+  /// This example uses fixed query string params and variable query string params. The fixed query string parameters and variable parameters must both be serialized (implementations may need to merge them together).
   _i1.Future<void> constantAndVariableQueryString(
       _i5.ConstantAndVariableQueryStringInput input,
       {_i3.HttpClient? client}) {
@@ -375,10 +379,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This example uses a constant query string parameters and a label.
-  /// This simply tests that labels and query string parameters are
-  /// compatible. The fixed query string parameter named "hello" should
-  /// in no way conflict with the label, `{hello}`.
+  /// This example uses a constant query string parameters and a label. This simply tests that labels and query string parameters are compatible. The fixed query string parameter named "hello" should in no way conflict with the label, `{hello}`.
   _i1.Future<void> constantQueryString(_i7.ConstantQueryStringInput input,
       {_i3.HttpClient? client}) {
     return _i8.ConstantQueryStringOperation(region: _region, baseUri: _baseUri)
@@ -402,10 +403,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has an empty input
-  /// and empty output structure that reuses the same shape. While this should
-  /// be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has an empty input and empty output structure that reuses the same shape. While this should be rare, code generators must support this.
   _i1.Future<_i13.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
       _i14.EmptyInputAndEmptyOutputInput input,
       {_i3.HttpClient? client}) {
@@ -426,16 +424,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This operation has four possible return values:
-  ///
-  /// 1. A successful response in the form of GreetingWithErrorsOutput
-  /// 2. An InvalidGreeting error.
-  /// 3. A BadRequest error.
-  /// 4. A FooError.
-  ///
-  /// Implementations must be able to successfully take a response and
-  /// properly (de)serialize successful and error responses based on the
-  /// the presence of the
+  /// This operation has four possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A BadRequest error. 4. A FooError. Implementations must be able to successfully take a response and properly (de)serialize successful and error responses based on the the presence of the
   _i1.Future<_i19.GreetingWithErrorsOutput> greetingWithErrors(
       {_i3.HttpClient? client}) {
     return _i20.GreetingWithErrorsOperation(region: _region, baseUri: _baseUri)
@@ -462,10 +451,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This examples serializes a blob shape in the payload.
-  ///
-  /// In this example, no JSON document is synthesized because the payload is
-  /// not a structure or a union type.
+  /// This examples serializes a blob shape in the payload. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
   _i1.Future<_i26.HttpPayloadTraitsInputOutput> httpPayloadTraits(
       _i26.HttpPayloadTraitsInputOutput input,
       {_i3.HttpClient? client}) {
@@ -473,8 +459,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This examples uses a `@mediaType` trait on the payload to force a custom
-  /// content-type to be serialized.
+  /// This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
   _i1.Future<_i28.HttpPayloadTraitsWithMediaTypeInputOutput>
       httpPayloadTraitsWithMediaType(
           _i28.HttpPayloadTraitsWithMediaTypeInputOutput input,
@@ -484,10 +469,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This examples serializes a structure in the payload.
-  ///
-  /// Note that serializing a structure changes the wrapper element name
-  /// to match the targeted structure.
+  /// This examples serializes a structure in the payload. Note that serializing a structure changes the wrapper element name to match the targeted structure.
   _i1.Future<_i30.HttpPayloadWithStructureInputOutput> httpPayloadWithStructure(
       _i30.HttpPayloadWithStructureInputOutput input,
       {_i3.HttpClient? client}) {
@@ -532,8 +514,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests are serialized when there's no input
-  /// payload but there are HTTP labels.
+  /// The example tests how requests are serialized when there's no input payload but there are HTTP labels.
   _i1.Future<void> httpRequestWithLabels(_i42.HttpRequestWithLabelsInput input,
       {_i3.HttpClient? client}) {
     return _i43.HttpRequestWithLabelsOperation(
@@ -541,8 +522,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests serialize different timestamp formats in the
-  /// URI path.
+  /// The example tests how requests serialize different timestamp formats in the URI path.
   _i1.Future<void> httpRequestWithLabelsAndTimestampFormat(
       _i44.HttpRequestWithLabelsAndTimestampFormatInput input,
       {_i3.HttpClient? client}) {
@@ -572,9 +552,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This example ensures that query string bound request parameters are
-  /// serialized in the body of responses if the structure is used in both
-  /// the request and response.
+  /// This example ensures that query string bound request parameters are serialized in the body of responses if the structure is used in both the request and response.
   _i1.Future<_i52.IgnoreQueryParamsInResponseOutput>
       ignoreQueryParamsInResponse({_i3.HttpClient? client}) {
     return _i53.IgnoreQueryParamsInResponseOperation(
@@ -582,8 +560,7 @@ class RestJsonProtocolClient {
         .run(const _i3.Unit(), client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there is
-  /// no input or output payload but there are HTTP header bindings.
+  /// The example tests how requests and responses are serialized when there is no input or output payload but there are HTTP header bindings.
   _i1.Future<_i54.InputAndOutputWithHeadersIo> inputAndOutputWithHeaders(
       _i54.InputAndOutputWithHeadersIo input,
       {_i3.HttpClient? client}) {
@@ -608,13 +585,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This test case serializes JSON lists for the following cases for both
-  /// input and output:
-  ///
-  /// 1. Normal JSON lists.
-  /// 2. Normal JSON sets.
-  /// 3. JSON lists of lists.
-  /// 4. Lists of structures.
+  /// This test case serializes JSON lists for the following cases for both input and output: 1. Normal JSON lists. 2. Normal JSON sets. 3. JSON lists of lists. 4. Lists of structures.
   _i1.Future<_i60.JsonListsInputOutput> jsonLists(
       _i60.JsonListsInputOutput input,
       {_i3.HttpClient? client}) {
@@ -629,9 +600,7 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// This tests how timestamps are serialized, including using the
-  /// default format of date-time and various @timestampFormat trait
-  /// values.
+  /// This tests how timestamps are serialized, including using the default format of date-time and various @timestampFormat trait values.
   _i1.Future<_i64.JsonTimestampsInputOutput> jsonTimestamps(
       _i64.JsonTimestampsInputOutput input,
       {_i3.HttpClient? client}) {
@@ -886,18 +855,13 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has no input or output.
-  /// While this should be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input or output. While this should be rare, code generators must support this.
   _i1.Future<void> noInputAndNoOutput({_i3.HttpClient? client}) {
     return _i135.NoInputAndNoOutputOperation(region: _region, baseUri: _baseUri)
         .run(const _i3.Unit(), client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has no input and the
-  /// output is empty. While this should be rare, code generators must support
-  /// this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input and the output is empty. While this should be rare, code generators must support this.
   _i1.Future<_i136.NoInputAndOutputOutput> noInputAndOutput(
       {_i3.HttpClient? client}) {
     return _i137.NoInputAndOutputOperation(region: _region, baseUri: _baseUri)
@@ -939,145 +903,126 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
+  /// This operation defines a union that uses jsonName on some members.
+  _i1.Future<_i146.PostUnionWithJsonNameOutput> postUnionWithJsonName(
+      _i147.PostUnionWithJsonNameInput input,
+      {_i3.HttpClient? client}) {
+    return _i148.PostUnionWithJsonNameOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
+  }
+
   /// Automatically adds idempotency tokens.
   _i1.Future<void> queryIdempotencyTokenAutoFill(
-      _i146.QueryIdempotencyTokenAutoFillInput input,
+      _i149.QueryIdempotencyTokenAutoFillInput input,
       {_i3.HttpClient? client}) {
-    return _i147.QueryIdempotencyTokenAutoFillOperation(
+    return _i150.QueryIdempotencyTokenAutoFillOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   _i1.Future<void> queryParamsAsStringListMap(
-      _i148.QueryParamsAsStringListMapInput input,
+      _i151.QueryParamsAsStringListMapInput input,
       {_i3.HttpClient? client}) {
-    return _i149.QueryParamsAsStringListMapOperation(
+    return _i152.QueryParamsAsStringListMapOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  _i1.Future<void> queryPrecedence(_i150.QueryPrecedenceInput input,
+  _i1.Future<void> queryPrecedence(_i153.QueryPrecedenceInput input,
       {_i3.HttpClient? client}) {
-    return _i151.QueryPrecedenceOperation(region: _region, baseUri: _baseUri)
+    return _i154.QueryPrecedenceOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// Recursive shapes
-  _i1.Future<_i152.RecursiveShapesInputOutput> recursiveShapes(
-      _i152.RecursiveShapesInputOutput input,
+  _i1.Future<_i155.RecursiveShapesInputOutput> recursiveShapes(
+      _i155.RecursiveShapesInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i153.RecursiveShapesOperation(region: _region, baseUri: _baseUri)
+    return _i156.RecursiveShapesOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  _i1.Future<_i154.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
-      _i154.SimpleScalarPropertiesInputOutput input,
+  _i1.Future<_i157.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
+      _i157.SimpleScalarPropertiesInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i155.SimpleScalarPropertiesOperation(
+    return _i158.SimpleScalarPropertiesOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This examples serializes a streaming blob shape in the request body.
-  ///
-  /// In this example, no JSON document is synthesized because the payload is
-  /// not a structure or a union type.
-  _i1.Future<_i156.StreamingTraitsInputOutput> streamingTraits(
-      _i156.StreamingTraitsInputOutput input,
+  /// This examples serializes a streaming blob shape in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+  _i1.Future<_i159.StreamingTraitsInputOutput> streamingTraits(
+      _i159.StreamingTraitsInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i157.StreamingTraitsOperation(region: _region, baseUri: _baseUri)
+    return _i160.StreamingTraitsOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This examples serializes a streaming blob shape with a required content
-  /// length in the request body.
-  ///
-  /// In this example, no JSON document is synthesized because the payload is
-  /// not a structure or a union type.
-  _i1.Future<_i158.StreamingTraitsRequireLengthInputOutput>
-      streamingTraitsRequireLength(
-          _i158.StreamingTraitsRequireLengthInputOutput input,
-          {_i3.HttpClient? client}) {
-    return _i159.StreamingTraitsRequireLengthOperation(
+  /// This examples serializes a streaming blob shape with a required content length in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
+  _i1.Future<void> streamingTraitsRequireLength(
+      _i161.StreamingTraitsRequireLengthInput input,
+      {_i3.HttpClient? client}) {
+    return _i162.StreamingTraitsRequireLengthOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This examples serializes a streaming media-typed blob shape in the request body.
-  ///
-  /// This examples uses a `@mediaType` trait on the payload to force a custom
-  /// content-type to be serialized.
-  _i1.Future<_i160.StreamingTraitsWithMediaTypeInputOutput>
+  /// This examples serializes a streaming media-typed blob shape in the request body. This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
+  _i1.Future<_i163.StreamingTraitsWithMediaTypeInputOutput>
       streamingTraitsWithMediaType(
-          _i160.StreamingTraitsWithMediaTypeInputOutput input,
+          _i163.StreamingTraitsWithMediaTypeInputOutput input,
           {_i3.HttpClient? client}) {
-    return _i161.StreamingTraitsWithMediaTypeOperation(
+    return _i164.StreamingTraitsWithMediaTypeOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This example operation serializes a structure in the HTTP body.
-  ///
-  /// It should ensure Content-Type: application/json is
-  /// used in all requests and that an "empty" body is
-  /// an empty JSON document ({}).
-  _i1.Future<_i162.TestBodyStructureInputOutput> testBodyStructure(
-      _i162.TestBodyStructureInputOutput input,
+  /// This example operation serializes a structure in the HTTP body. It should ensure Content-Type: application/json is used in all requests and that an "empty" body is an empty JSON document ({}).
+  _i1.Future<_i165.TestBodyStructureInputOutput> testBodyStructure(
+      _i165.TestBodyStructureInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i163.TestBodyStructureOperation(region: _region, baseUri: _baseUri)
+    return _i166.TestBodyStructureOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This example operation serializes a request without an HTTP body.
-  ///
-  /// These tests are to ensure we do not attach a body or related headers
-  /// (Content-Length, Content-Type) to operations that semantically
-  /// cannot produce an HTTP body.
-  _i1.Future<_i164.TestNoPayloadInputOutput> testNoPayload(
-      _i164.TestNoPayloadInputOutput input,
+  /// This example operation serializes a request without an HTTP body. These tests are to ensure we do not attach a body or related headers (Content-Length, Content-Type) to operations that semantically cannot produce an HTTP body.
+  _i1.Future<_i167.TestNoPayloadInputOutput> testNoPayload(
+      _i167.TestNoPayloadInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i165.TestNoPayloadOperation(region: _region, baseUri: _baseUri)
+    return _i168.TestNoPayloadOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This example operation serializes a payload targeting a blob.
-  ///
-  /// The Blob shape is not structured content and we cannot
-  /// make assumptions about what data will be sent. This test ensures
-  /// only a generic "Content-Type: application/octet-stream" header
-  /// is used, and that we are not treating an empty body as an
-  /// empty JSON document.
-  _i1.Future<_i166.TestPayloadBlobInputOutput> testPayloadBlob(
-      _i166.TestPayloadBlobInputOutput input,
+  /// This example operation serializes a payload targeting a blob. The Blob shape is not structured content and we cannot make assumptions about what data will be sent. This test ensures only a generic "Content-Type: application/octet-stream" header is used, and that we are not treating an empty body as an empty JSON document.
+  _i1.Future<_i169.TestPayloadBlobInputOutput> testPayloadBlob(
+      _i169.TestPayloadBlobInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i167.TestPayloadBlobOperation(region: _region, baseUri: _baseUri)
+    return _i170.TestPayloadBlobOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
-  /// This example operation serializes a payload targeting a structure.
-  ///
-  /// This enforces the same requirements as TestBodyStructure
-  /// but with the body specified by the @httpPayload trait.
-  _i1.Future<_i168.TestPayloadStructureInputOutput> testPayloadStructure(
-      _i168.TestPayloadStructureInputOutput input,
+  /// This example operation serializes a payload targeting a structure. This enforces the same requirements as TestBodyStructure but with the body specified by the @httpPayload trait.
+  _i1.Future<_i171.TestPayloadStructureInputOutput> testPayloadStructure(
+      _i171.TestPayloadStructureInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i169.TestPayloadStructureOperation(
+    return _i172.TestPayloadStructureOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This example tests how timestamp request and response headers are serialized.
-  _i1.Future<_i170.TimestampFormatHeadersIo> timestampFormatHeaders(
-      _i170.TimestampFormatHeadersIo input,
+  _i1.Future<_i173.TimestampFormatHeadersIo> timestampFormatHeaders(
+      _i173.TimestampFormatHeadersIo input,
       {_i3.HttpClient? client}) {
-    return _i171.TimestampFormatHeadersOperation(
+    return _i174.TimestampFormatHeadersOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
   _i1.Future<void> unitInputAndOutput({_i3.HttpClient? client}) {
-    return _i172.UnitInputAndOutputOperation(region: _region, baseUri: _baseUri)
+    return _i175.UnitInputAndOutputOperation(region: _region, baseUri: _baseUri)
         .run(const _i3.Unit(), client: client);
   }
 }

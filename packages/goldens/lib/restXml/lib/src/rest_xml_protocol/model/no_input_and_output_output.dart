@@ -14,7 +14,11 @@ abstract class NoInputAndOutputOutput
     implements
         Built<NoInputAndOutputOutput, NoInputAndOutputOutputBuilder>,
         _i2.EmptyPayload {
-  factory NoInputAndOutputOutput(
+  factory NoInputAndOutputOutput() {
+    return _$NoInputAndOutputOutput._();
+  }
+
+  factory NoInputAndOutputOutput.build(
           [void Function(NoInputAndOutputOutputBuilder) updates]) =
       _$NoInputAndOutputOutput;
 
@@ -61,7 +65,9 @@ class _NoInputAndOutputOutputRestXmlSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[_i2.XmlElementName('NoInputAndOutputOutput')];
+    final result = <Object?>[
+      const _i2.XmlElementName('NoInputAndOutputOutput')
+    ];
     return result;
   }
 }

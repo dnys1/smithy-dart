@@ -825,7 +825,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.allQueryStringTypes(input, context);
       const statusCode = 200;
       final body = _allQueryStringTypesProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -849,7 +849,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.bodyWithXmlName(input, context);
       const statusCode = 200;
       final body = _bodyWithXmlNameProtocol.serialize(output,
-          specifiedType: const FullType(_i6.BodyWithXmlNameInputOutput));
+          specifiedType: const FullType(_i6.BodyWithXmlNameInputOutput,
+              [FullType(_i6.BodyWithXmlNameInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -876,7 +877,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           await service.constantAndVariableQueryString(input, context);
       const statusCode = 200;
       final body = _constantAndVariableQueryStringProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -902,7 +903,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.constantQueryString(input, context);
       const statusCode = 200;
       final body = _constantQueryStringProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -927,7 +928,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.emptyInputAndEmptyOutput(input, context);
       const statusCode = 200;
       final body = _emptyInputAndEmptyOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i9.EmptyInputAndEmptyOutputOutput));
+          specifiedType: const FullType(_i9.EmptyInputAndEmptyOutputOutput,
+              [FullType(_i9.EmptyInputAndEmptyOutputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -948,7 +950,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.endpointOperation(input, context);
       const statusCode = 200;
       final body = _endpointOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -973,8 +975,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output =
           await service.endpointWithHostLabelHeaderOperation(input, context);
       const statusCode = 200;
-      final body = _endpointWithHostLabelHeaderOperationProtocol
-          .serialize(output, specifiedType: const FullType(_i1.Unit));
+      final body = _endpointWithHostLabelHeaderOperationProtocol.serialize(
+          output,
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -999,7 +1002,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           await service.endpointWithHostLabelOperation(input, context);
       const statusCode = 200;
       final body = _endpointWithHostLabelOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1023,7 +1026,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.flattenedXmlMap(input, context);
       const statusCode = 200;
       final body = _flattenedXmlMapProtocol.serialize(output,
-          specifiedType: const FullType(_i13.FlattenedXmlMapInputOutput));
+          specifiedType: const FullType(_i13.FlattenedXmlMapInputOutput,
+              [FullType(_i13.FlattenedXmlMapInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1049,8 +1053,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.flattenedXmlMapWithXmlName(input, context);
       const statusCode = 200;
       final body = _flattenedXmlMapWithXmlNameProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i14.FlattenedXmlMapWithXmlNameInputOutput));
+          specifiedType: const FullType(
+              _i14.FlattenedXmlMapWithXmlNameInputOutput,
+              [FullType(_i14.FlattenedXmlMapWithXmlNameInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1073,8 +1078,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           await service.flattenedXmlMapWithXmlNamespace(input, context);
       const statusCode = 200;
       final body = _flattenedXmlMapWithXmlNamespaceProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i15.FlattenedXmlMapWithXmlNamespaceOutput));
+          specifiedType: const FullType(
+              _i15.FlattenedXmlMapWithXmlNamespaceOutput,
+              [FullType(_i15.FlattenedXmlMapWithXmlNamespaceOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1095,18 +1101,23 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.greetingWithErrors(input, context);
       const statusCode = 200;
       final body = _greetingWithErrorsProtocol.serialize(output,
-          specifiedType: const FullType(_i16.GreetingWithErrorsOutput));
+          specifiedType: const FullType(_i16.GreetingWithErrorsOutput,
+              [FullType(_i16.GreetingWithErrorsOutputPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i59.ComplexError catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ComplexError';
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i59.ComplexError));
+          specifiedType: const FullType(
+              _i59.ComplexError, [FullType(_i59.ComplexErrorPayload)]));
       const statusCode = 403;
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i60.InvalidGreeting catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'InvalidGreeting';
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i60.InvalidGreeting));
+          specifiedType: const FullType(
+              _i60.InvalidGreeting, [FullType(_i60.InvalidGreeting)]));
       const statusCode = 400;
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -1134,7 +1145,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _httpPayloadTraitsProtocol.serialize(output,
-          specifiedType: const FullType(_i17.HttpPayloadTraitsInputOutput));
+          specifiedType: const FullType(_i17.HttpPayloadTraitsInputOutput,
+              [FullType.nullable(_i54.Uint8List)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1163,8 +1175,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _httpPayloadTraitsWithMediaTypeProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i18.HttpPayloadTraitsWithMediaTypeInputOutput));
+          specifiedType: const FullType(
+              _i18.HttpPayloadTraitsWithMediaTypeInputOutput,
+              [FullType.nullable(_i54.Uint8List)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1189,8 +1202,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpPayloadWithMemberXmlName(input, context);
       const statusCode = 200;
       final body = _httpPayloadWithMemberXmlNameProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i19.HttpPayloadWithMemberXmlNameInputOutput));
+          specifiedType: const FullType(
+              _i19.HttpPayloadWithMemberXmlNameInputOutput,
+              [FullType.nullable(_i55.PayloadWithXmlName)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1215,8 +1229,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpPayloadWithStructure(input, context);
       const statusCode = 200;
       final body = _httpPayloadWithStructureProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i20.HttpPayloadWithStructureInputOutput));
+          specifiedType: const FullType(
+              _i20.HttpPayloadWithStructureInputOutput,
+              [FullType.nullable(_i56.NestedPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1240,8 +1255,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpPayloadWithXmlName(input, context);
       const statusCode = 200;
       final body = _httpPayloadWithXmlNameProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i21.HttpPayloadWithXmlNameInputOutput));
+          specifiedType: const FullType(_i21.HttpPayloadWithXmlNameInputOutput,
+              [FullType.nullable(_i55.PayloadWithXmlName)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1267,8 +1282,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpPayloadWithXmlNamespace(input, context);
       const statusCode = 200;
       final body = _httpPayloadWithXmlNamespaceProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i22.HttpPayloadWithXmlNamespaceInputOutput));
+          specifiedType: const FullType(
+              _i22.HttpPayloadWithXmlNamespaceInputOutput,
+              [FullType.nullable(_i57.PayloadWithXmlNamespace)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1298,7 +1314,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final body = _httpPayloadWithXmlNamespaceAndPrefixProtocol.serialize(
           output,
           specifiedType: const FullType(
-              _i23.HttpPayloadWithXmlNamespaceAndPrefixInputOutput));
+              _i23.HttpPayloadWithXmlNamespaceAndPrefixInputOutput,
+              [FullType.nullable(_i58.PayloadWithXmlNamespaceAndPrefix)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1326,7 +1343,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _httpPrefixHeadersProtocol.serialize(output,
-          specifiedType: const FullType(_i24.HttpPrefixHeadersInputOutput));
+          specifiedType: const FullType(_i24.HttpPrefixHeadersInputOutput,
+              [FullType(_i24.HttpPrefixHeadersInputOutputPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1352,7 +1370,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpRequestWithFloatLabels(input, context);
       const statusCode = 200;
       final body = _httpRequestWithFloatLabelsProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1379,7 +1397,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           await service.httpRequestWithGreedyLabelInPath(input, context);
       const statusCode = 200;
       final body = _httpRequestWithGreedyLabelInPathProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1422,7 +1440,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpRequestWithLabels(input, context);
       const statusCode = 200;
       final body = _httpRequestWithLabelsProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1464,8 +1482,9 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output =
           await service.httpRequestWithLabelsAndTimestampFormat(input, context);
       const statusCode = 200;
-      final body = _httpRequestWithLabelsAndTimestampFormatProtocol
-          .serialize(output, specifiedType: const FullType(_i1.Unit));
+      final body = _httpRequestWithLabelsAndTimestampFormatProtocol.serialize(
+          output,
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1486,7 +1505,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.httpResponseCode(input, context);
       const statusCode = 200;
       final body = _httpResponseCodeProtocol.serialize(output,
-          specifiedType: const FullType(_i29.HttpResponseCodeOutput));
+          specifiedType: const FullType(_i29.HttpResponseCodeOutput,
+              [FullType(_i29.HttpResponseCodeOutputPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1508,8 +1528,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.ignoreQueryParamsInResponse(input, context);
       const statusCode = 200;
       final body = _ignoreQueryParamsInResponseProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i30.IgnoreQueryParamsInResponseOutput));
+          specifiedType: const FullType(_i30.IgnoreQueryParamsInResponseOutput,
+              [FullType(_i30.IgnoreQueryParamsInResponseOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1605,7 +1625,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _inputAndOutputWithHeadersProtocol.serialize(output,
-          specifiedType: const FullType(_i31.InputAndOutputWithHeadersIo));
+          specifiedType: const FullType(_i31.InputAndOutputWithHeadersIo,
+              [FullType(_i31.InputAndOutputWithHeadersIoPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1629,7 +1650,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.nestedXmlMaps(input, context);
       const statusCode = 200;
       final body = _nestedXmlMapsProtocol.serialize(output,
-          specifiedType: const FullType(_i32.NestedXmlMapsInputOutput));
+          specifiedType: const FullType(_i32.NestedXmlMapsInputOutput,
+              [FullType(_i32.NestedXmlMapsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1650,7 +1672,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.noInputAndNoOutput(input, context);
       const statusCode = 200;
       final body = _noInputAndNoOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1671,7 +1693,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.noInputAndOutput(input, context);
       const statusCode = 200;
       final body = _noInputAndOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i33.NoInputAndOutputOutput));
+          specifiedType: const FullType(_i33.NoInputAndOutputOutput,
+              [FullType(_i33.NoInputAndOutputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1705,7 +1728,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _nullAndEmptyHeadersClientProtocol.serialize(output,
-          specifiedType: const FullType(_i34.NullAndEmptyHeadersIo));
+          specifiedType: const FullType(_i34.NullAndEmptyHeadersIo,
+              [FullType(_i34.NullAndEmptyHeadersIoPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1739,7 +1763,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _nullAndEmptyHeadersServerProtocol.serialize(output,
-          specifiedType: const FullType(_i34.NullAndEmptyHeadersIo));
+          specifiedType: const FullType(_i34.NullAndEmptyHeadersIo,
+              [FullType(_i34.NullAndEmptyHeadersIoPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1766,7 +1791,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           await service.omitsNullSerializesEmptyString(input, context);
       const statusCode = 200;
       final body = _omitsNullSerializesEmptyStringProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1793,7 +1818,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
           await service.queryIdempotencyTokenAutoFill(input, context);
       const statusCode = 200;
       final body = _queryIdempotencyTokenAutoFillProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1819,7 +1844,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.queryParamsAsStringListMap(input, context);
       const statusCode = 200;
       final body = _queryParamsAsStringListMapProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1842,7 +1867,7 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.queryPrecedence(input, context);
       const statusCode = 200;
       final body = _queryPrecedenceProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1866,7 +1891,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.recursiveShapes(input, context);
       const statusCode = 200;
       final body = _recursiveShapesProtocol.serialize(output,
-          specifiedType: const FullType(_i39.RecursiveShapesInputOutput));
+          specifiedType: const FullType(_i39.RecursiveShapesInputOutput,
+              [FullType(_i39.RecursiveShapesInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1894,8 +1920,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _simpleScalarPropertiesProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i40.SimpleScalarPropertiesInputOutput));
+          specifiedType: const FullType(_i40.SimpleScalarPropertiesInputOutput,
+              [FullType(_i40.SimpleScalarPropertiesInputOutputPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1962,7 +1988,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       }
       const statusCode = 200;
       final body = _timestampFormatHeadersProtocol.serialize(output,
-          specifiedType: const FullType(_i41.TimestampFormatHeadersIo));
+          specifiedType: const FullType(_i41.TimestampFormatHeadersIo,
+              [FullType(_i41.TimestampFormatHeadersIoPayload)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -1986,7 +2013,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlAttributes(input, context);
       const statusCode = 200;
       final body = _xmlAttributesProtocol.serialize(output,
-          specifiedType: const FullType(_i42.XmlAttributesInputOutput));
+          specifiedType: const FullType(_i42.XmlAttributesInputOutput,
+              [FullType(_i42.XmlAttributesInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2011,8 +2039,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlAttributesOnPayload(input, context);
       const statusCode = 200;
       final body = _xmlAttributesOnPayloadProtocol.serialize(output,
-          specifiedType:
-              const FullType(_i43.XmlAttributesOnPayloadInputOutput));
+          specifiedType: const FullType(_i43.XmlAttributesOnPayloadInputOutput,
+              [FullType.nullable(_i42.XmlAttributesInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2033,7 +2061,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlBlobs(input, context);
       const statusCode = 200;
       final body = _xmlBlobsProtocol.serialize(output,
-          specifiedType: const FullType(_i44.XmlBlobsInputOutput));
+          specifiedType: const FullType(
+              _i44.XmlBlobsInputOutput, [FullType(_i44.XmlBlobsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2056,7 +2085,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlEmptyBlobs(input, context);
       const statusCode = 200;
       final body = _xmlEmptyBlobsProtocol.serialize(output,
-          specifiedType: const FullType(_i44.XmlBlobsInputOutput));
+          specifiedType: const FullType(
+              _i44.XmlBlobsInputOutput, [FullType(_i44.XmlBlobsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2079,7 +2109,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlEmptyLists(input, context);
       const statusCode = 200;
       final body = _xmlEmptyListsProtocol.serialize(output,
-          specifiedType: const FullType(_i45.XmlListsInputOutput));
+          specifiedType: const FullType(
+              _i45.XmlListsInputOutput, [FullType(_i45.XmlListsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2102,7 +2133,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlEmptyMaps(input, context);
       const statusCode = 200;
       final body = _xmlEmptyMapsProtocol.serialize(output,
-          specifiedType: const FullType(_i46.XmlMapsInputOutput));
+          specifiedType: const FullType(
+              _i46.XmlMapsInputOutput, [FullType(_i46.XmlMapsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2126,7 +2158,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlEmptyStrings(input, context);
       const statusCode = 200;
       final body = _xmlEmptyStringsProtocol.serialize(output,
-          specifiedType: const FullType(_i47.XmlEmptyStringsInputOutput));
+          specifiedType: const FullType(_i47.XmlEmptyStringsInputOutput,
+              [FullType(_i47.XmlEmptyStringsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2147,7 +2180,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlEnums(input, context);
       const statusCode = 200;
       final body = _xmlEnumsProtocol.serialize(output,
-          specifiedType: const FullType(_i48.XmlEnumsInputOutput));
+          specifiedType: const FullType(
+              _i48.XmlEnumsInputOutput, [FullType(_i48.XmlEnumsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2168,7 +2202,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlLists(input, context);
       const statusCode = 200;
       final body = _xmlListsProtocol.serialize(output,
-          specifiedType: const FullType(_i45.XmlListsInputOutput));
+          specifiedType: const FullType(
+              _i45.XmlListsInputOutput, [FullType(_i45.XmlListsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2189,7 +2224,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlMaps(input, context);
       const statusCode = 200;
       final body = _xmlMapsProtocol.serialize(output,
-          specifiedType: const FullType(_i46.XmlMapsInputOutput));
+          specifiedType: const FullType(
+              _i46.XmlMapsInputOutput, [FullType(_i46.XmlMapsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2213,7 +2249,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlMapsXmlName(input, context);
       const statusCode = 200;
       final body = _xmlMapsXmlNameProtocol.serialize(output,
-          specifiedType: const FullType(_i49.XmlMapsXmlNameInputOutput));
+          specifiedType: const FullType(_i49.XmlMapsXmlNameInputOutput,
+              [FullType(_i49.XmlMapsXmlNameInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2237,7 +2274,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlNamespaces(input, context);
       const statusCode = 200;
       final body = _xmlNamespacesProtocol.serialize(output,
-          specifiedType: const FullType(_i50.XmlNamespacesInputOutput));
+          specifiedType: const FullType(_i50.XmlNamespacesInputOutput,
+              [FullType(_i50.XmlNamespacesInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2261,7 +2299,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlTimestamps(input, context);
       const statusCode = 200;
       final body = _xmlTimestampsProtocol.serialize(output,
-          specifiedType: const FullType(_i51.XmlTimestampsInputOutput));
+          specifiedType: const FullType(_i51.XmlTimestampsInputOutput,
+              [FullType(_i51.XmlTimestampsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -2282,7 +2321,8 @@ class _RestXmlProtocolServer extends _i1.HttpServer<RestXmlProtocolServerBase> {
       final output = await service.xmlUnions(input, context);
       const statusCode = 200;
       final body = _xmlUnionsProtocol.serialize(output,
-          specifiedType: const FullType(_i52.XmlUnionsInputOutput));
+          specifiedType: const FullType(_i52.XmlUnionsInputOutput,
+              [FullType(_i52.XmlUnionsInputOutput)]));
       return _i53.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {

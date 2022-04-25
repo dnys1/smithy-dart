@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-/// Amazon API Gateway
+/// # Amazon API Gateway
 library rest_json1.api_gateway;
 
 export 'package:rest_json1/src/api_gateway/api_gateway_client.dart';

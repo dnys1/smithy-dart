@@ -8,7 +8,7 @@ part of rest_json1.rest_json_protocol.model.post_player_action_output;
 
 class _$PostPlayerActionOutput extends PostPlayerActionOutput {
   @override
-  final _i3.PlayerAction action;
+  final _i2.PlayerAction action;
 
   factory _$PostPlayerActionOutput(
           [void Function(PostPlayerActionOutputBuilder)? updates]) =>
@@ -44,9 +44,9 @@ class PostPlayerActionOutputBuilder
     implements Builder<PostPlayerActionOutput, PostPlayerActionOutputBuilder> {
   _$PostPlayerActionOutput? _$v;
 
-  _i3.PlayerAction? _action;
-  _i3.PlayerAction? get action => _$this._action;
-  set action(_i3.PlayerAction? action) => _$this._action = action;
+  _i2.PlayerAction? _action;
+  _i2.PlayerAction? get action => _$this._action;
+  set action(_i2.PlayerAction? action) => _$this._action = action;
 
   PostPlayerActionOutputBuilder() {
     PostPlayerActionOutput._init(this);

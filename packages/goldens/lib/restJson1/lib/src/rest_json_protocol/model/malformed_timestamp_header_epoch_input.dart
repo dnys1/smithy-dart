@@ -19,7 +19,11 @@ abstract class MalformedTimestampHeaderEpochInput
             MalformedTimestampHeaderEpochInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MalformedTimestampHeaderEpochInputPayload> {
-  factory MalformedTimestampHeaderEpochInput(
+  factory MalformedTimestampHeaderEpochInput({required DateTime timestamp}) {
+    return _$MalformedTimestampHeaderEpochInput._(timestamp: timestamp);
+  }
+
+  factory MalformedTimestampHeaderEpochInput.build(
           [void Function(MalformedTimestampHeaderEpochInputBuilder) updates]) =
       _$MalformedTimestampHeaderEpochInput;
 
@@ -29,7 +33,7 @@ abstract class MalformedTimestampHeaderEpochInput
           MalformedTimestampHeaderEpochInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedTimestampHeaderEpochInput((b) {
+      MalformedTimestampHeaderEpochInput.build((b) {
         if (request.headers['timestamp'] != null) {
           b.timestamp = _i1.Timestamp.parse(
                   int.parse(request.headers['timestamp']!),

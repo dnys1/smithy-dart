@@ -18,6 +18,18 @@ abstract class MalformedFloatInput
         Built<MalformedFloatInput, MalformedFloatInputBuilder>,
         _i1.HasPayload<MalformedFloatInputPayload> {
   factory MalformedFloatInput(
+      {double? floatInBody,
+      double? floatInHeader,
+      required double floatInPath,
+      double? floatInQuery}) {
+    return _$MalformedFloatInput._(
+        floatInBody: floatInBody,
+        floatInHeader: floatInHeader,
+        floatInPath: floatInPath,
+        floatInQuery: floatInQuery);
+  }
+
+  factory MalformedFloatInput.build(
           [void Function(MalformedFloatInputBuilder) updates]) =
       _$MalformedFloatInput;
 
@@ -26,7 +38,7 @@ abstract class MalformedFloatInput
   factory MalformedFloatInput.fromRequest(
           MalformedFloatInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedFloatInput((b) {
+      MalformedFloatInput.build((b) {
         b.floatInBody = payload.floatInBody;
         if (request.headers['floatInHeader'] != null) {
           b.floatInHeader = double.parse(request.headers['floatInHeader']!);

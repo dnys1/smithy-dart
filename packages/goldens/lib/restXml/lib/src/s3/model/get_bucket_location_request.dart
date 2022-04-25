@@ -18,7 +18,11 @@ abstract class GetBucketLocationRequest
         Built<GetBucketLocationRequest, GetBucketLocationRequestBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<GetBucketLocationRequestPayload> {
-  factory GetBucketLocationRequest(
+  factory GetBucketLocationRequest({required String bucket}) {
+    return _$GetBucketLocationRequest._(bucket: bucket);
+  }
+
+  factory GetBucketLocationRequest.build(
           [void Function(GetBucketLocationRequestBuilder) updates]) =
       _$GetBucketLocationRequest;
 
@@ -28,7 +32,7 @@ abstract class GetBucketLocationRequest
           GetBucketLocationRequestPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      GetBucketLocationRequest((b) {
+      GetBucketLocationRequest.build((b) {
         if (labels['bucket'] != null) {
           b.bucket = labels['bucket']!;
         }
@@ -115,8 +119,8 @@ class _GetBucketLocationRequestRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('GetBucketLocationRequest',
-          const _i1.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
+      const _i1.XmlElementName('GetBucketLocationRequest',
+          _i1.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
     ];
     return result;
   }

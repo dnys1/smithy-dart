@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-/// Amazon Machine Learning
+/// # Amazon Machine Learning
 library aws_json1_1.machine_learning;
 
 export 'package:aws_json1_1/src/machine_learning/machine_learning_client.dart';

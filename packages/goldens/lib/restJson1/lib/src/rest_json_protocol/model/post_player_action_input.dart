@@ -16,7 +16,11 @@ abstract class PostPlayerActionInput
         _i1.HttpInput<PostPlayerActionInput>,
         _i2.AWSEquatable<PostPlayerActionInput>
     implements Built<PostPlayerActionInput, PostPlayerActionInputBuilder> {
-  factory PostPlayerActionInput(
+  factory PostPlayerActionInput({_i3.PlayerAction? action}) {
+    return _$PostPlayerActionInput._(action: action);
+  }
+
+  factory PostPlayerActionInput.build(
           [void Function(PostPlayerActionInputBuilder) updates]) =
       _$PostPlayerActionInput;
 

@@ -15,15 +15,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// The example tests how requests are serialized when there's no input
-/// payload but there are HTTP labels.
+/// The example tests how requests are serialized when there's no input payload but there are HTTP labels.
 class HttpRequestWithLabelsOperation extends _i1.HttpOperation<
     _i2.HttpRequestWithLabelsInputPayload,
     _i2.HttpRequestWithLabelsInput,
     _i1.Unit,
     _i1.Unit> {
-  /// The example tests how requests are serialized when there's no input
-  /// payload but there are HTTP labels.
+  /// The example tests how requests are serialized when there's no input payload but there are HTTP labels.
   HttpRequestWithLabelsOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

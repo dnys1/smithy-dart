@@ -19,7 +19,11 @@ abstract class MalformedAcceptWithGenericStringInput
         Built<MalformedAcceptWithGenericStringInput,
             MalformedAcceptWithGenericStringInputBuilder>,
         _i1.HasPayload<_i2.Uint8List> {
-  factory MalformedAcceptWithGenericStringInput(
+  factory MalformedAcceptWithGenericStringInput({_i2.Uint8List? payload}) {
+    return _$MalformedAcceptWithGenericStringInput._(payload: payload);
+  }
+
+  factory MalformedAcceptWithGenericStringInput.build(
       [void Function(MalformedAcceptWithGenericStringInputBuilder)
           updates]) = _$MalformedAcceptWithGenericStringInput;
 
@@ -28,7 +32,7 @@ abstract class MalformedAcceptWithGenericStringInput
   factory MalformedAcceptWithGenericStringInput.fromRequest(
           _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedAcceptWithGenericStringInput((b) {
+      MalformedAcceptWithGenericStringInput.build((b) {
         b.payload = payload;
       });
 

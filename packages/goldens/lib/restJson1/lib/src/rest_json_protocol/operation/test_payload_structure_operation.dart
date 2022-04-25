@@ -17,19 +17,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i9;
 
-/// This example operation serializes a payload targeting a structure.
-///
-/// This enforces the same requirements as TestBodyStructure
-/// but with the body specified by the @httpPayload trait.
+/// This example operation serializes a payload targeting a structure. This enforces the same requirements as TestBodyStructure but with the body specified by the @httpPayload trait.
 class TestPayloadStructureOperation extends _i1.HttpOperation<
     _i2.PayloadConfig,
     _i3.TestPayloadStructureInputOutput,
     _i2.PayloadConfig,
     _i3.TestPayloadStructureInputOutput> {
-  /// This example operation serializes a payload targeting a structure.
-  ///
-  /// This enforces the same requirements as TestBodyStructure
-  /// but with the body specified by the @httpPayload trait.
+  /// This example operation serializes a payload targeting a structure. This enforces the same requirements as TestBodyStructure but with the body specified by the @httpPayload trait.
   TestPayloadStructureOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

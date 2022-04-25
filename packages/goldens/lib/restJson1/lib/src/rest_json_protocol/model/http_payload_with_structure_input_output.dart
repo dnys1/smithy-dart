@@ -19,7 +19,11 @@ abstract class HttpPayloadWithStructureInputOutput
         Built<HttpPayloadWithStructureInputOutput,
             HttpPayloadWithStructureInputOutputBuilder>,
         _i1.HasPayload<_i2.NestedPayload> {
-  factory HttpPayloadWithStructureInputOutput(
+  factory HttpPayloadWithStructureInputOutput({_i2.NestedPayload? nested}) {
+    return _$HttpPayloadWithStructureInputOutput._(nested: nested);
+  }
+
+  factory HttpPayloadWithStructureInputOutput.build(
           [void Function(HttpPayloadWithStructureInputOutputBuilder) updates]) =
       _$HttpPayloadWithStructureInputOutput;
 
@@ -28,7 +32,7 @@ abstract class HttpPayloadWithStructureInputOutput
   factory HttpPayloadWithStructureInputOutput.fromRequest(
           _i2.NestedPayload? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithStructureInputOutput((b) {
+      HttpPayloadWithStructureInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -37,7 +41,7 @@ abstract class HttpPayloadWithStructureInputOutput
   /// Constructs a [HttpPayloadWithStructureInputOutput] from a [payload] and [response].
   factory HttpPayloadWithStructureInputOutput.fromResponse(
           _i2.NestedPayload? payload, _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithStructureInputOutput((b) {
+      HttpPayloadWithStructureInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }

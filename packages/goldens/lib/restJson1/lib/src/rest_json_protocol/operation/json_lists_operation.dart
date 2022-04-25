@@ -15,25 +15,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This test case serializes JSON lists for the following cases for both
-/// input and output:
-///
-/// 1. Normal JSON lists.
-/// 2. Normal JSON sets.
-/// 3. JSON lists of lists.
-/// 4. Lists of structures.
+/// This test case serializes JSON lists for the following cases for both input and output: 1. Normal JSON lists. 2. Normal JSON sets. 3. JSON lists of lists. 4. Lists of structures.
 class JsonListsOperation extends _i1.HttpOperation<
     _i2.JsonListsInputOutput,
     _i2.JsonListsInputOutput,
     _i2.JsonListsInputOutput,
     _i2.JsonListsInputOutput> {
-  /// This test case serializes JSON lists for the following cases for both
-  /// input and output:
-  ///
-  /// 1. Normal JSON lists.
-  /// 2. Normal JSON sets.
-  /// 3. JSON lists of lists.
-  /// 4. Lists of structures.
+  /// This test case serializes JSON lists for the following cases for both input and output: 1. Normal JSON lists. 2. Normal JSON sets. 3. JSON lists of lists. 4. Lists of structures.
   JsonListsOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

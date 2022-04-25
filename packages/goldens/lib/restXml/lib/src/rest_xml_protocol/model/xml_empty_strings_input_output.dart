@@ -15,7 +15,11 @@ abstract class XmlEmptyStringsInputOutput
         _i2.AWSEquatable<XmlEmptyStringsInputOutput>
     implements
         Built<XmlEmptyStringsInputOutput, XmlEmptyStringsInputOutputBuilder> {
-  factory XmlEmptyStringsInputOutput(
+  factory XmlEmptyStringsInputOutput({String? emptyString}) {
+    return _$XmlEmptyStringsInputOutput._(emptyString: emptyString);
+  }
+
+  factory XmlEmptyStringsInputOutput.build(
           [void Function(XmlEmptyStringsInputOutputBuilder) updates]) =
       _$XmlEmptyStringsInputOutput;
 
@@ -89,7 +93,9 @@ class _XmlEmptyStringsInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlEmptyStringsInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlEmptyStringsInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('XmlEmptyStringsInputOutput')
+    ];
     if (payload.emptyString != null) {
       result
         ..add(const _i1.XmlElementName('emptyString'))

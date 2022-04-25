@@ -20,6 +20,11 @@ abstract class HttpPayloadWithXmlNamespaceAndPrefixInputOutput
             HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder>,
         _i1.HasPayload<_i2.PayloadWithXmlNamespaceAndPrefix> {
   factory HttpPayloadWithXmlNamespaceAndPrefixInputOutput(
+      {_i2.PayloadWithXmlNamespaceAndPrefix? nested}) {
+    return _$HttpPayloadWithXmlNamespaceAndPrefixInputOutput._(nested: nested);
+  }
+
+  factory HttpPayloadWithXmlNamespaceAndPrefixInputOutput.build(
       [void Function(HttpPayloadWithXmlNamespaceAndPrefixInputOutputBuilder)
           updates]) = _$HttpPayloadWithXmlNamespaceAndPrefixInputOutput;
 
@@ -29,7 +34,7 @@ abstract class HttpPayloadWithXmlNamespaceAndPrefixInputOutput
           _i2.PayloadWithXmlNamespaceAndPrefix? payload,
           _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpPayloadWithXmlNamespaceAndPrefixInputOutput((b) {
+      HttpPayloadWithXmlNamespaceAndPrefixInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -39,7 +44,7 @@ abstract class HttpPayloadWithXmlNamespaceAndPrefixInputOutput
   factory HttpPayloadWithXmlNamespaceAndPrefixInputOutput.fromResponse(
           _i2.PayloadWithXmlNamespaceAndPrefix? payload,
           _i3.AWSBaseHttpResponse response) =>
-      HttpPayloadWithXmlNamespaceAndPrefixInputOutput((b) {
+      HttpPayloadWithXmlNamespaceAndPrefixInputOutput.build((b) {
         if (payload != null) {
           b.nested.replace(payload);
         }
@@ -110,8 +115,8 @@ class _HttpPayloadWithXmlNamespaceAndPrefixInputOutputRestXmlSerializer
         ? object.getPayload()
         : (object as _i2.PayloadWithXmlNamespaceAndPrefix?);
     final result = <Object?>[
-      _i1.XmlElementName('PayloadWithXmlNamespaceAndPrefix',
-          const _i1.XmlNamespace('http://foo.com', 'baz'))
+      const _i1.XmlElementName('PayloadWithXmlNamespaceAndPrefix',
+          _i1.XmlNamespace('http://foo.com', 'baz'))
     ];
     if (payload == null) {
       return result;

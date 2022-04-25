@@ -9,27 +9,19 @@ import 'package:rest_json1/src/rest_json_protocol/common/endpoint_resolver.dart'
     as _i6;
 import 'package:rest_json1/src/rest_json_protocol/common/serializers.dart'
     as _i5;
-import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input_output.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This examples serializes a streaming blob shape with a required content
-/// length in the request body.
-///
-/// In this example, no JSON document is synthesized because the payload is
-/// not a structure or a union type.
+/// This examples serializes a streaming blob shape with a required content length in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
 class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
     _i2.Stream<List<int>>,
-    _i3.StreamingTraitsRequireLengthInputOutput,
-    _i2.Stream<List<int>>,
-    _i3.StreamingTraitsRequireLengthInputOutput> {
-  /// This examples serializes a streaming blob shape with a required content
-  /// length in the request body.
-  ///
-  /// In this example, no JSON document is synthesized because the payload is
-  /// not a structure or a union type.
+    _i3.StreamingTraitsRequireLengthInput,
+    _i1.Unit,
+    _i1.Unit> {
+  /// This examples serializes a streaming blob shape with a required content length in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
   StreamingTraitsRequireLengthOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;
@@ -38,9 +30,9 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
   late final List<
       _i1.HttpProtocol<
           _i2.Stream<List<int>>,
-          _i3.StreamingTraitsRequireLengthInputOutput,
-          _i2.Stream<List<int>>,
-          _i3.StreamingTraitsRequireLengthInputOutput>> protocols = [
+          _i3.StreamingTraitsRequireLengthInput,
+          _i1.Unit,
+          _i1.Unit>> protocols = [
     _i4.RestJson1Protocol(
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
@@ -60,8 +52,7 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
   final Uri? _baseUri;
 
   @override
-  _i1.HttpRequest buildRequest(
-          _i3.StreamingTraitsRequireLengthInputOutput input) =>
+  _i1.HttpRequest buildRequest(_i3.StreamingTraitsRequireLengthInput input) =>
       _i1.HttpRequest((b) {
         b.method = 'POST';
         b.path = r'/StreamingTraitsRequireLength';
@@ -72,13 +63,11 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
         }
       });
   @override
-  int successCode([_i3.StreamingTraitsRequireLengthInputOutput? output]) => 200;
+  int successCode([_i1.Unit? output]) => 200;
   @override
-  _i3.StreamingTraitsRequireLengthInputOutput buildOutput(
-          _i2.Stream<List<int>>? payload,
-          _i7.AWSStreamedHttpResponse response) =>
-      _i3.StreamingTraitsRequireLengthInputOutput.fromResponse(
-          payload, response);
+  _i1.Unit buildOutput(
+          _i1.Unit payload, _i7.AWSStreamedHttpResponse response) =>
+      payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
   @override
@@ -88,10 +77,8 @@ class StreamingTraitsRequireLengthOperation extends _i1.HttpOperation<
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i2.Future<_i3.StreamingTraitsRequireLengthInputOutput> run(
-      _i3.StreamingTraitsRequireLengthInputOutput input,
-      {_i1.HttpClient? client,
-      _i1.ShapeId? useProtocol}) {
+  _i2.Future<_i1.Unit> run(_i3.StreamingTraitsRequireLengthInput input,
+      {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i2.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {

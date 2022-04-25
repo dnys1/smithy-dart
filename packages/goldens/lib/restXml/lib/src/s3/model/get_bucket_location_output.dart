@@ -14,6 +14,11 @@ abstract class GetBucketLocationOutput
     with _i1.AWSEquatable<GetBucketLocationOutput>
     implements Built<GetBucketLocationOutput, GetBucketLocationOutputBuilder> {
   factory GetBucketLocationOutput(
+      {_i2.BucketLocationConstraint? locationConstraint}) {
+    return _$GetBucketLocationOutput._(locationConstraint: locationConstraint);
+  }
+
+  factory GetBucketLocationOutput.build(
           [void Function(GetBucketLocationOutputBuilder) updates]) =
       _$GetBucketLocationOutput;
 
@@ -23,7 +28,7 @@ abstract class GetBucketLocationOutput
   factory GetBucketLocationOutput.fromResponse(
           _i2.BucketLocationConstraint? payload,
           _i1.AWSBaseHttpResponse response) =>
-      GetBucketLocationOutput((b) {
+      GetBucketLocationOutput.build((b) {
         b.locationConstraint = payload;
       });
 
@@ -68,8 +73,8 @@ class _GetBucketLocationOutputRestXmlSerializer
   Object serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i3.XmlElementName('BucketLocationConstraint',
-          const _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
+      const _i3.XmlElementName('BucketLocationConstraint',
+          _i3.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
     ];
     return result;
   }

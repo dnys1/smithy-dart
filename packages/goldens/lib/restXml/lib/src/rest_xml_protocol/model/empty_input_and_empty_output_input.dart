@@ -17,7 +17,11 @@ abstract class EmptyInputAndEmptyOutputInput
         Built<EmptyInputAndEmptyOutputInput,
             EmptyInputAndEmptyOutputInputBuilder>,
         _i1.EmptyPayload {
-  factory EmptyInputAndEmptyOutputInput(
+  factory EmptyInputAndEmptyOutputInput() {
+    return _$EmptyInputAndEmptyOutputInput._();
+  }
+
+  factory EmptyInputAndEmptyOutputInput.build(
           [void Function(EmptyInputAndEmptyOutputInputBuilder) updates]) =
       _$EmptyInputAndEmptyOutputInput;
 
@@ -67,7 +71,7 @@ class _EmptyInputAndEmptyOutputInputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('EmptyInputAndEmptyOutputInput')
+      const _i1.XmlElementName('EmptyInputAndEmptyOutputInput')
     ];
     return result;
   }

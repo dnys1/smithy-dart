@@ -15,7 +15,11 @@ abstract class SensitiveValidationInput
         _i2.AWSEquatable<SensitiveValidationInput>
     implements
         Built<SensitiveValidationInput, SensitiveValidationInputBuilder> {
-  factory SensitiveValidationInput(
+  factory SensitiveValidationInput({String? string}) {
+    return _$SensitiveValidationInput._(string: string);
+  }
+
+  factory SensitiveValidationInput.build(
           [void Function(SensitiveValidationInputBuilder) updates]) =
       _$SensitiveValidationInput;
 

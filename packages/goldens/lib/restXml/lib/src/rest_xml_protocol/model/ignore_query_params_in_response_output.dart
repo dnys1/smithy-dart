@@ -15,7 +15,11 @@ abstract class IgnoreQueryParamsInResponseOutput
     implements
         Built<IgnoreQueryParamsInResponseOutput,
             IgnoreQueryParamsInResponseOutputBuilder> {
-  factory IgnoreQueryParamsInResponseOutput(
+  factory IgnoreQueryParamsInResponseOutput({String? baz}) {
+    return _$IgnoreQueryParamsInResponseOutput._(baz: baz);
+  }
+
+  factory IgnoreQueryParamsInResponseOutput.build(
           [void Function(IgnoreQueryParamsInResponseOutputBuilder) updates]) =
       _$IgnoreQueryParamsInResponseOutput;
 
@@ -86,7 +90,7 @@ class _IgnoreQueryParamsInResponseOutputRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as IgnoreQueryParamsInResponseOutput);
     final result = <Object?>[
-      _i2.XmlElementName('IgnoreQueryParamsInResponseOutput')
+      const _i2.XmlElementName('IgnoreQueryParamsInResponseOutput')
     ];
     if (payload.baz != null) {
       result

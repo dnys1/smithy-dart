@@ -16,15 +16,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i9;
 
-/// The following example serializes a payload that uses an XML name
-/// on the member, changing the wrapper name.
+/// The following example serializes a payload that uses an XML name on the member, changing the wrapper name.
 class HttpPayloadWithMemberXmlNameOperation extends _i1.HttpOperation<
     _i2.PayloadWithXmlName,
     _i3.HttpPayloadWithMemberXmlNameInputOutput,
     _i2.PayloadWithXmlName,
     _i3.HttpPayloadWithMemberXmlNameInputOutput> {
-  /// The following example serializes a payload that uses an XML name
-  /// on the member, changing the wrapper name.
+  /// The following example serializes a payload that uses an XML name on the member, changing the wrapper name.
   HttpPayloadWithMemberXmlNameOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

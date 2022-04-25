@@ -16,19 +16,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
 import 'package:uuid/uuid.dart' as _i9;
 
-/// This examples serializes a blob shape in the payload.
-///
-/// In this example, no JSON document is synthesized because the payload is
-/// not a structure or a union type.
+/// This examples serializes a blob shape in the payload. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
 class HttpPayloadTraitsOperation extends _i1.HttpOperation<
     _i2.Uint8List,
     _i3.HttpPayloadTraitsInputOutput,
     _i2.Uint8List,
     _i3.HttpPayloadTraitsInputOutput> {
-  /// This examples serializes a blob shape in the payload.
-  ///
-  /// In this example, no JSON document is synthesized because the payload is
-  /// not a structure or a union type.
+  /// This examples serializes a blob shape in the payload. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
   HttpPayloadTraitsOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

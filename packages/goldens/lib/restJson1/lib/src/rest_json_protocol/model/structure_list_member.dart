@@ -12,7 +12,11 @@ part 'structure_list_member.g.dart';
 abstract class StructureListMember
     with _i1.AWSEquatable<StructureListMember>
     implements Built<StructureListMember, StructureListMemberBuilder> {
-  factory StructureListMember(
+  factory StructureListMember({String? a, String? b}) {
+    return _$StructureListMember._(a: a, b: b);
+  }
+
+  factory StructureListMember.build(
           [void Function(StructureListMemberBuilder) updates]) =
       _$StructureListMember;
 

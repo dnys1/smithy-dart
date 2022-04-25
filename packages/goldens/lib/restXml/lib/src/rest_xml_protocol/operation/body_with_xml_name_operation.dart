@@ -14,15 +14,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// The following example serializes a body that uses an XML name,
-/// changing the wrapper name.
+/// The following example serializes a body that uses an XML name, changing the wrapper name.
 class BodyWithXmlNameOperation extends _i1.HttpOperation<
     _i2.BodyWithXmlNameInputOutput,
     _i2.BodyWithXmlNameInputOutput,
     _i2.BodyWithXmlNameInputOutput,
     _i2.BodyWithXmlNameInputOutput> {
-  /// The following example serializes a body that uses an XML name,
-  /// changing the wrapper name.
+  /// The following example serializes a body that uses an XML name, changing the wrapper name.
   BodyWithXmlNameOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

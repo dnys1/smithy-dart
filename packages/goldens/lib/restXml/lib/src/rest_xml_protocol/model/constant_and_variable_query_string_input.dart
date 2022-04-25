@@ -19,7 +19,12 @@ abstract class ConstantAndVariableQueryStringInput
             ConstantAndVariableQueryStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<ConstantAndVariableQueryStringInputPayload> {
-  factory ConstantAndVariableQueryStringInput(
+  factory ConstantAndVariableQueryStringInput({String? baz, String? maybeSet}) {
+    return _$ConstantAndVariableQueryStringInput._(
+        baz: baz, maybeSet: maybeSet);
+  }
+
+  factory ConstantAndVariableQueryStringInput.build(
           [void Function(ConstantAndVariableQueryStringInputBuilder) updates]) =
       _$ConstantAndVariableQueryStringInput;
 
@@ -29,7 +34,7 @@ abstract class ConstantAndVariableQueryStringInput
           ConstantAndVariableQueryStringInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      ConstantAndVariableQueryStringInput((b) {
+      ConstantAndVariableQueryStringInput.build((b) {
         if (request.queryParameters['baz'] != null) {
           b.baz = request.queryParameters['baz']!;
         }
@@ -113,7 +118,7 @@ class _ConstantAndVariableQueryStringInputRestXmlSerializer extends _i1
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('ConstantAndVariableQueryStringInput')
+      const _i1.XmlElementName('ConstantAndVariableQueryStringInput')
     ];
     return result;
   }

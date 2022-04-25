@@ -18,6 +18,18 @@ abstract class MalformedIntegerInput
         Built<MalformedIntegerInput, MalformedIntegerInputBuilder>,
         _i1.HasPayload<MalformedIntegerInputPayload> {
   factory MalformedIntegerInput(
+      {int? integerInBody,
+      int? integerInHeader,
+      required int integerInPath,
+      int? integerInQuery}) {
+    return _$MalformedIntegerInput._(
+        integerInBody: integerInBody,
+        integerInHeader: integerInHeader,
+        integerInPath: integerInPath,
+        integerInQuery: integerInQuery);
+  }
+
+  factory MalformedIntegerInput.build(
           [void Function(MalformedIntegerInputBuilder) updates]) =
       _$MalformedIntegerInput;
 
@@ -26,7 +38,7 @@ abstract class MalformedIntegerInput
   factory MalformedIntegerInput.fromRequest(
           MalformedIntegerInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedIntegerInput((b) {
+      MalformedIntegerInput.build((b) {
         b.integerInBody = payload.integerInBody;
         if (request.headers['integerInHeader'] != null) {
           b.integerInHeader = int.parse(request.headers['integerInHeader']!);

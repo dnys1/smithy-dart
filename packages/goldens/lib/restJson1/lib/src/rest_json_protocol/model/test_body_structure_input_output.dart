@@ -21,6 +21,12 @@ abstract class TestBodyStructureInputOutput
             TestBodyStructureInputOutputBuilder>,
         _i1.HasPayload<TestBodyStructureInputOutputPayload> {
   factory TestBodyStructureInputOutput(
+      {_i3.TestConfig? testConfig, String? testId}) {
+    return _$TestBodyStructureInputOutput._(
+        testConfig: testConfig, testId: testId);
+  }
+
+  factory TestBodyStructureInputOutput.build(
           [void Function(TestBodyStructureInputOutputBuilder) updates]) =
       _$TestBodyStructureInputOutput;
 
@@ -30,7 +36,7 @@ abstract class TestBodyStructureInputOutput
           TestBodyStructureInputOutputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      TestBodyStructureInputOutput((b) {
+      TestBodyStructureInputOutput.build((b) {
         if (payload.testConfig != null) {
           b.testConfig.replace(payload.testConfig!);
         }
@@ -43,7 +49,7 @@ abstract class TestBodyStructureInputOutput
   factory TestBodyStructureInputOutput.fromResponse(
           TestBodyStructureInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      TestBodyStructureInputOutput((b) {
+      TestBodyStructureInputOutput.build((b) {
         if (payload.testConfig != null) {
           b.testConfig.replace(payload.testConfig!);
         }

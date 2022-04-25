@@ -20,6 +20,12 @@ abstract class OmitsNullSerializesEmptyStringInput
         _i1.EmptyPayload,
         _i1.HasPayload<OmitsNullSerializesEmptyStringInputPayload> {
   factory OmitsNullSerializesEmptyStringInput(
+      {String? emptyString, String? nullValue}) {
+    return _$OmitsNullSerializesEmptyStringInput._(
+        emptyString: emptyString, nullValue: nullValue);
+  }
+
+  factory OmitsNullSerializesEmptyStringInput.build(
           [void Function(OmitsNullSerializesEmptyStringInputBuilder) updates]) =
       _$OmitsNullSerializesEmptyStringInput;
 
@@ -29,7 +35,7 @@ abstract class OmitsNullSerializesEmptyStringInput
           OmitsNullSerializesEmptyStringInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      OmitsNullSerializesEmptyStringInput((b) {
+      OmitsNullSerializesEmptyStringInput.build((b) {
         if (request.queryParameters['Null'] != null) {
           b.nullValue = request.queryParameters['Null']!;
         }
@@ -113,7 +119,7 @@ class _OmitsNullSerializesEmptyStringInputRestXmlSerializer extends _i1
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('OmitsNullSerializesEmptyStringInput')
+      const _i1.XmlElementName('OmitsNullSerializesEmptyStringInput')
     ];
     return result;
   }

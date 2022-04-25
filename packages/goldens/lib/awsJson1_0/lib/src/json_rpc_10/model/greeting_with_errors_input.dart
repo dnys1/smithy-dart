@@ -14,7 +14,11 @@ abstract class GreetingWithErrorsInput
         _i1.HttpInput<GreetingWithErrorsInput>,
         _i2.AWSEquatable<GreetingWithErrorsInput>
     implements Built<GreetingWithErrorsInput, GreetingWithErrorsInputBuilder> {
-  factory GreetingWithErrorsInput(
+  factory GreetingWithErrorsInput({String? greeting}) {
+    return _$GreetingWithErrorsInput._(greeting: greeting);
+  }
+
+  factory GreetingWithErrorsInput.build(
           [void Function(GreetingWithErrorsInputBuilder) updates]) =
       _$GreetingWithErrorsInput;
 

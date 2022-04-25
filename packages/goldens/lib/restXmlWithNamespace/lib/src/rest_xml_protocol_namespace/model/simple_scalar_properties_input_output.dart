@@ -22,6 +22,32 @@ abstract class SimpleScalarPropertiesInputOutput
             SimpleScalarPropertiesInputOutputBuilder>,
         _i1.HasPayload<SimpleScalarPropertiesInputOutputPayload> {
   factory SimpleScalarPropertiesInputOutput(
+      {int? byteValue,
+      double? doubleValue,
+      bool? falseBooleanValue,
+      double? floatValue,
+      String? foo,
+      int? integerValue,
+      _i3.Int64? longValue,
+      _i4.NestedWithNamespace? nested,
+      int? shortValue,
+      String? stringValue,
+      bool? trueBooleanValue}) {
+    return _$SimpleScalarPropertiesInputOutput._(
+        byteValue: byteValue,
+        doubleValue: doubleValue,
+        falseBooleanValue: falseBooleanValue,
+        floatValue: floatValue,
+        foo: foo,
+        integerValue: integerValue,
+        longValue: longValue,
+        nested: nested,
+        shortValue: shortValue,
+        stringValue: stringValue,
+        trueBooleanValue: trueBooleanValue);
+  }
+
+  factory SimpleScalarPropertiesInputOutput.build(
           [void Function(SimpleScalarPropertiesInputOutputBuilder) updates]) =
       _$SimpleScalarPropertiesInputOutput;
 
@@ -31,7 +57,7 @@ abstract class SimpleScalarPropertiesInputOutput
           SimpleScalarPropertiesInputOutputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      SimpleScalarPropertiesInputOutput((b) {
+      SimpleScalarPropertiesInputOutput.build((b) {
         b.byteValue = payload.byteValue;
         b.doubleValue = payload.doubleValue;
         b.falseBooleanValue = payload.falseBooleanValue;
@@ -53,7 +79,7 @@ abstract class SimpleScalarPropertiesInputOutput
   factory SimpleScalarPropertiesInputOutput.fromResponse(
           SimpleScalarPropertiesInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      SimpleScalarPropertiesInputOutput((b) {
+      SimpleScalarPropertiesInputOutput.build((b) {
         b.byteValue = payload.byteValue;
         b.doubleValue = payload.doubleValue;
         b.falseBooleanValue = payload.falseBooleanValue;
@@ -293,8 +319,8 @@ class _SimpleScalarPropertiesInputOutputRestXmlSerializer extends _i1
         ? object.getPayload()
         : (object as SimpleScalarPropertiesInputOutputPayload);
     final result = <Object?>[
-      _i1.XmlElementName('SimpleScalarPropertiesInputOutput',
-          const _i1.XmlNamespace('https://example.com'))
+      const _i1.XmlElementName('SimpleScalarPropertiesInputOutput',
+          _i1.XmlNamespace('https://example.com'))
     ];
     if (payload.byteValue != null) {
       result

@@ -53,10 +53,7 @@ class JsonRpc10Client {
 
   final Uri? _baseUri;
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has an empty input
-  /// and empty output structure that reuses the same shape. While this should
-  /// be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has an empty input and empty output structure that reuses the same shape. While this should be rare, code generators must support this.
   _i1.Future<_i2.EmptyInputAndEmptyOutputOutput> emptyInputAndEmptyOutput(
       _i3.EmptyInputAndEmptyOutputInput input,
       {_i4.HttpClient? client}) {
@@ -78,14 +75,7 @@ class JsonRpc10Client {
         .run(input, client: client);
   }
 
-  /// This operation has three possible return values:
-  ///
-  /// 1. A successful response in the form of GreetingWithErrorsOutput
-  /// 2. An InvalidGreeting error.
-  /// 3. A ComplexError error.
-  ///
-  /// Implementations must be able to successfully take a response and
-  /// properly deserialize successful and error responses.
+  /// This operation has three possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A ComplexError error. Implementations must be able to successfully take a response and properly deserialize successful and error responses.
   _i1.Future<_i9.GreetingWithErrorsOutput> greetingWithErrors(
       _i10.GreetingWithErrorsInput input,
       {_i4.HttpClient? client}) {
@@ -105,18 +95,13 @@ class JsonRpc10Client {
         .run(input, client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has no input or output.
-  /// While this should be rare, code generators must support this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input or output. While this should be rare, code generators must support this.
   _i1.Future<void> noInputAndNoOutput({_i4.HttpClient? client}) {
     return _i16.NoInputAndNoOutputOperation(region: _region, baseUri: _baseUri)
         .run(const _i4.Unit(), client: client);
   }
 
-  /// The example tests how requests and responses are serialized when there's
-  /// no request or response payload because the operation has no input and the
-  /// output is empty. While this should be rare, code generators must support
-  /// this.
+  /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input and the output is empty. While this should be rare, code generators must support this.
   _i1.Future<_i17.NoInputAndOutputOutput> noInputAndOutput(
       {_i4.HttpClient? client}) {
     return _i18.NoInputAndOutputOperation(region: _region, baseUri: _baseUri)

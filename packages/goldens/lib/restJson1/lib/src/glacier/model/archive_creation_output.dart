@@ -17,6 +17,12 @@ abstract class ArchiveCreationOutput
         _i2.EmptyPayload,
         _i2.HasPayload<ArchiveCreationOutputPayload> {
   factory ArchiveCreationOutput(
+      {String? archiveId, String? checksum, String? location}) {
+    return _$ArchiveCreationOutput._(
+        archiveId: archiveId, checksum: checksum, location: location);
+  }
+
+  factory ArchiveCreationOutput.build(
           [void Function(ArchiveCreationOutputBuilder) updates]) =
       _$ArchiveCreationOutput;
 
@@ -26,7 +32,7 @@ abstract class ArchiveCreationOutput
   factory ArchiveCreationOutput.fromResponse(
           ArchiveCreationOutputPayload payload,
           _i1.AWSBaseHttpResponse response) =>
-      ArchiveCreationOutput((b) {
+      ArchiveCreationOutput.build((b) {
         if (response.headers['Location'] != null) {
           b.location = response.headers['Location']!;
         }

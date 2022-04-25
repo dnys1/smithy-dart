@@ -21,7 +21,11 @@ abstract class MediaTypeHeaderInput
         Built<MediaTypeHeaderInput, MediaTypeHeaderInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<MediaTypeHeaderInputPayload> {
-  factory MediaTypeHeaderInput(
+  factory MediaTypeHeaderInput({_i3.JsonObject? json}) {
+    return _$MediaTypeHeaderInput._(json: json);
+  }
+
+  factory MediaTypeHeaderInput.build(
           [void Function(MediaTypeHeaderInputBuilder) updates]) =
       _$MediaTypeHeaderInput;
 
@@ -30,7 +34,7 @@ abstract class MediaTypeHeaderInput
   factory MediaTypeHeaderInput.fromRequest(
           MediaTypeHeaderInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MediaTypeHeaderInput((b) {
+      MediaTypeHeaderInput.build((b) {
         if (request.headers['X-Json'] != null) {
           b.json = _i3.JsonObject(_i4.jsonDecode(
               _i4.utf8.decode(_i4.base64Decode(request.headers['X-Json']!))));

@@ -81,7 +81,8 @@ class _S3Server extends _i1.HttpServer<S3ServerBase> {
       final output = await service.getBucketLocation(input, context);
       const statusCode = 200;
       final body = _getBucketLocationProtocol.serialize(output,
-          specifiedType: const FullType(_i5.GetBucketLocationOutput));
+          specifiedType: const FullType(_i5.GetBucketLocationOutput,
+              [FullType.nullable(_i10.BucketLocationConstraint)]));
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -105,12 +106,15 @@ class _S3Server extends _i1.HttpServer<S3ServerBase> {
       final output = await service.listObjectsV2(input, context);
       const statusCode = 200;
       final body = _listObjectsV2Protocol.serialize(output,
-          specifiedType: const FullType(_i7.ListObjectsV2Output));
+          specifiedType: const FullType(
+              _i7.ListObjectsV2Output, [FullType(_i7.ListObjectsV2Output)]));
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i11.NoSuchBucket catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'NoSuchBucket';
       final body = _listObjectsV2Protocol.serialize(e,
-          specifiedType: const FullType(_i11.NoSuchBucket));
+          specifiedType:
+              const FullType(_i11.NoSuchBucket, [FullType(_i11.NoSuchBucket)]));
       const statusCode = 400;
       return _i9.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());

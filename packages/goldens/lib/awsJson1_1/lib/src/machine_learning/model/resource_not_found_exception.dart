@@ -14,7 +14,11 @@ abstract class ResourceNotFoundException
     implements
         Built<ResourceNotFoundException, ResourceNotFoundExceptionBuilder>,
         _i2.SmithyHttpException {
-  factory ResourceNotFoundException(
+  factory ResourceNotFoundException({int? code, String? message}) {
+    return _$ResourceNotFoundException._(code: code, message: message);
+  }
+
+  factory ResourceNotFoundException.build(
           [void Function(ResourceNotFoundExceptionBuilder) updates]) =
       _$ResourceNotFoundException;
 

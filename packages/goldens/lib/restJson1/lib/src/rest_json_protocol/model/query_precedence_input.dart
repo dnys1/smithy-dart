@@ -20,6 +20,11 @@ abstract class QueryPrecedenceInput
         _i1.EmptyPayload,
         _i1.HasPayload<QueryPrecedenceInputPayload> {
   factory QueryPrecedenceInput(
+      {_i3.BuiltMap<String, String>? baz, String? foo}) {
+    return _$QueryPrecedenceInput._(baz: baz, foo: foo);
+  }
+
+  factory QueryPrecedenceInput.build(
           [void Function(QueryPrecedenceInputBuilder) updates]) =
       _$QueryPrecedenceInput;
 
@@ -28,7 +33,7 @@ abstract class QueryPrecedenceInput
   factory QueryPrecedenceInput.fromRequest(
           QueryPrecedenceInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      QueryPrecedenceInput((b) {
+      QueryPrecedenceInput.build((b) {
         if (request.queryParameters['bar'] != null) {
           b.foo = request.queryParameters['bar']!;
         }

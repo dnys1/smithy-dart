@@ -49,7 +49,7 @@ class _GenericJsonServer extends _i1.HttpServer<GenericJsonServerBase> {
       final output = await service.unitInputAndOutput(input, context);
       const statusCode = 200;
       final body = _unitInputAndOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i4.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {

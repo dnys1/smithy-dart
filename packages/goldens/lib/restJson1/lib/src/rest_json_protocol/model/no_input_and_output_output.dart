@@ -14,7 +14,11 @@ abstract class NoInputAndOutputOutput
     implements
         Built<NoInputAndOutputOutput, NoInputAndOutputOutputBuilder>,
         _i2.EmptyPayload {
-  factory NoInputAndOutputOutput(
+  factory NoInputAndOutputOutput() {
+    return _$NoInputAndOutputOutput._();
+  }
+
+  factory NoInputAndOutputOutput.build(
           [void Function(NoInputAndOutputOutputBuilder) updates]) =
       _$NoInputAndOutputOutput;
 

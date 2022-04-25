@@ -3,11 +3,11 @@
 library aws_json1_0.json_rpc_10.model.client_config;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_0/src/json_rpc_10/model/retry_config.dart' as _i3;
-import 'package:aws_json1_0/src/json_rpc_10/model/s3_config.dart' as _i4;
+import 'package:aws_json1_0/src/json_rpc_10/model/retry_config.dart' as _i2;
+import 'package:aws_json1_0/src/json_rpc_10/model/s3_config.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i4;
 
 part 'client_config.g.dart';
 
@@ -16,12 +16,31 @@ abstract class ClientConfig
     with _i1.AWSEquatable<ClientConfig>
     implements Built<ClientConfig, ClientConfigBuilder> {
   /// Configuration that is set on the constructed client.
-  factory ClientConfig([void Function(ClientConfigBuilder) updates]) =
+  factory ClientConfig(
+      {String? awsAccessKeyId,
+      String? awsProfile,
+      String? awsSecretAccessKey,
+      String? awsSessionToken,
+      String? region,
+      _i2.RetryConfig? retryConfig,
+      _i3.S3Config? s3}) {
+    return _$ClientConfig._(
+        awsAccessKeyId: awsAccessKeyId,
+        awsProfile: awsProfile,
+        awsSecretAccessKey: awsSecretAccessKey,
+        awsSessionToken: awsSessionToken,
+        region: region,
+        retryConfig: retryConfig,
+        s3: s3);
+  }
+
+  /// Configuration that is set on the constructed client.
+  factory ClientConfig.build([void Function(ClientConfigBuilder) updates]) =
       _$ClientConfig;
 
   const ClientConfig._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i4.SmithySerializer> serializers = [
     _ClientConfigAwsJson10Serializer()
   ];
 
@@ -34,10 +53,10 @@ abstract class ClientConfig
   String? get region;
 
   /// Configuration specific to retries.
-  _i3.RetryConfig? get retryConfig;
+  _i2.RetryConfig? get retryConfig;
 
   /// Configuration specific to S3.
-  _i4.S3Config? get s3;
+  _i3.S3Config? get s3;
   @override
   List<Object?> get props => [
         awsAccessKeyId,
@@ -63,14 +82,14 @@ abstract class ClientConfig
 }
 
 class _ClientConfigAwsJson10Serializer
-    extends _i2.StructuredSmithySerializer<ClientConfig> {
+    extends _i4.StructuredSmithySerializer<ClientConfig> {
   const _ClientConfigAwsJson10Serializer() : super('ClientConfig');
 
   @override
   Iterable<Type> get types => const [ClientConfig, _$ClientConfig];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   ClientConfig deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -115,14 +134,14 @@ class _ClientConfigAwsJson10Serializer
         case 'retry_config':
           if (value != null) {
             result.retryConfig.replace((serializers.deserialize(value,
-                    specifiedType: const FullType(_i3.RetryConfig))
-                as _i3.RetryConfig));
+                    specifiedType: const FullType(_i2.RetryConfig))
+                as _i2.RetryConfig));
           }
           break;
         case 's3':
           if (value != null) {
             result.s3.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i4.S3Config)) as _i4.S3Config));
+                specifiedType: const FullType(_i3.S3Config)) as _i3.S3Config));
           }
           break;
       }
@@ -170,13 +189,13 @@ class _ClientConfigAwsJson10Serializer
       result
         ..add('retry_config')
         ..add(serializers.serialize(payload.retryConfig!,
-            specifiedType: const FullType(_i3.RetryConfig)));
+            specifiedType: const FullType(_i2.RetryConfig)));
     }
     if (payload.s3 != null) {
       result
         ..add('s3')
         ..add(serializers.serialize(payload.s3!,
-            specifiedType: const FullType(_i4.S3Config)));
+            specifiedType: const FullType(_i3.S3Config)));
     }
     return result;
   }

@@ -1,6 +1,6 @@
 // Generated code. DO NOT MODIFY.
 
-/// Amazon Glacier
+/// # Amazon Glacier
 library rest_json1.glacier;
 
 export 'package:rest_json1/src/glacier/glacier_client.dart';

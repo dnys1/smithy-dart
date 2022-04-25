@@ -16,7 +16,11 @@ abstract class XmlAttributesInputOutput
         _i2.AWSEquatable<XmlAttributesInputOutput>
     implements
         Built<XmlAttributesInputOutput, XmlAttributesInputOutputBuilder> {
-  factory XmlAttributesInputOutput(
+  factory XmlAttributesInputOutput({String? attr, String? foo}) {
+    return _$XmlAttributesInputOutput._(attr: attr, foo: foo);
+  }
+
+  factory XmlAttributesInputOutput.build(
           [void Function(XmlAttributesInputOutputBuilder) updates]) =
       _$XmlAttributesInputOutput;
 
@@ -97,7 +101,9 @@ class _XmlAttributesInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlAttributesInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlAttributesInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('XmlAttributesInputOutput')
+    ];
     if (payload.attr != null) {
       result.add(_i3.XmlAttribute(
           _i3.XmlName('test'),

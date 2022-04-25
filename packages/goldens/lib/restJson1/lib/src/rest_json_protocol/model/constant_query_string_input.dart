@@ -18,7 +18,11 @@ abstract class ConstantQueryStringInput
         Built<ConstantQueryStringInput, ConstantQueryStringInputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<ConstantQueryStringInputPayload> {
-  factory ConstantQueryStringInput(
+  factory ConstantQueryStringInput({required String hello}) {
+    return _$ConstantQueryStringInput._(hello: hello);
+  }
+
+  factory ConstantQueryStringInput.build(
           [void Function(ConstantQueryStringInputBuilder) updates]) =
       _$ConstantQueryStringInput;
 
@@ -28,7 +32,7 @@ abstract class ConstantQueryStringInput
           ConstantQueryStringInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      ConstantQueryStringInput((b) {
+      ConstantQueryStringInput.build((b) {
         if (labels['hello'] != null) {
           b.hello = labels['hello']!;
         }

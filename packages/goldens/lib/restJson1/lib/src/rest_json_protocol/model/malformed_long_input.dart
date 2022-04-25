@@ -19,6 +19,18 @@ abstract class MalformedLongInput
         Built<MalformedLongInput, MalformedLongInputBuilder>,
         _i1.HasPayload<MalformedLongInputPayload> {
   factory MalformedLongInput(
+      {_i3.Int64? longInBody,
+      _i3.Int64? longInHeader,
+      required _i3.Int64 longInPath,
+      _i3.Int64? longInQuery}) {
+    return _$MalformedLongInput._(
+        longInBody: longInBody,
+        longInHeader: longInHeader,
+        longInPath: longInPath,
+        longInQuery: longInQuery);
+  }
+
+  factory MalformedLongInput.build(
           [void Function(MalformedLongInputBuilder) updates]) =
       _$MalformedLongInput;
 
@@ -27,7 +39,7 @@ abstract class MalformedLongInput
   factory MalformedLongInput.fromRequest(
           MalformedLongInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedLongInput((b) {
+      MalformedLongInput.build((b) {
         b.longInBody = payload.longInBody;
         if (request.headers['longInHeader'] != null) {
           b.longInHeader = _i3.Int64.parseInt(request.headers['longInHeader']!);

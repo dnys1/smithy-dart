@@ -15,21 +15,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This example operation serializes a request without an HTTP body.
-///
-/// These tests are to ensure we do not attach a body or related headers
-/// (Content-Length, Content-Type) to operations that semantically
-/// cannot produce an HTTP body.
+/// This example operation serializes a request without an HTTP body. These tests are to ensure we do not attach a body or related headers (Content-Length, Content-Type) to operations that semantically cannot produce an HTTP body.
 class TestNoPayloadOperation extends _i1.HttpOperation<
     _i2.TestNoPayloadInputOutputPayload,
     _i2.TestNoPayloadInputOutput,
     _i2.TestNoPayloadInputOutputPayload,
     _i2.TestNoPayloadInputOutput> {
-  /// This example operation serializes a request without an HTTP body.
-  ///
-  /// These tests are to ensure we do not attach a body or related headers
-  /// (Content-Length, Content-Type) to operations that semantically
-  /// cannot produce an HTTP body.
+  /// This example operation serializes a request without an HTTP body. These tests are to ensure we do not attach a body or related headers (Content-Length, Content-Type) to operations that semantically cannot produce an HTTP body.
   TestNoPayloadOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

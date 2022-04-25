@@ -17,7 +17,11 @@ abstract class RecursiveStructuresInput
         _i2.AWSEquatable<RecursiveStructuresInput>
     implements
         Built<RecursiveStructuresInput, RecursiveStructuresInputBuilder> {
-  factory RecursiveStructuresInput(
+  factory RecursiveStructuresInput({_i3.RecursiveUnionOne? union}) {
+    return _$RecursiveStructuresInput._(union: union);
+  }
+
+  factory RecursiveStructuresInput.build(
           [void Function(RecursiveStructuresInputBuilder) updates]) =
       _$RecursiveStructuresInput;
 

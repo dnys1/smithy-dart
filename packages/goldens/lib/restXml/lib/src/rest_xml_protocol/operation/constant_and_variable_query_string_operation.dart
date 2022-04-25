@@ -14,17 +14,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This example uses fixed query string params and variable query string params.
-/// The fixed query string parameters and variable parameters must both be
-/// serialized (implementations may need to merge them together).
+/// This example uses fixed query string params and variable query string params. The fixed query string parameters and variable parameters must both be serialized (implementations may need to merge them together).
 class ConstantAndVariableQueryStringOperation extends _i1.HttpOperation<
     _i2.ConstantAndVariableQueryStringInputPayload,
     _i2.ConstantAndVariableQueryStringInput,
     _i1.Unit,
     _i1.Unit> {
-  /// This example uses fixed query string params and variable query string params.
-  /// The fixed query string parameters and variable parameters must both be
-  /// serialized (implementations may need to merge them together).
+  /// This example uses fixed query string params and variable query string params. The fixed query string parameters and variable parameters must both be serialized (implementations may need to merge them together).
   ConstantAndVariableQueryStringOperation(
       {required String region, Uri? baseUri})
       : _region = region,

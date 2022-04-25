@@ -20,6 +20,24 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
         _i1.EmptyPayload,
         _i1.HasPayload<HttpRequestWithLabelsAndTimestampFormatInputPayload> {
   factory HttpRequestWithLabelsAndTimestampFormatInput(
+      {required DateTime defaultFormat,
+      required DateTime memberDateTime,
+      required DateTime memberEpochSeconds,
+      required DateTime memberHttpDate,
+      required DateTime targetDateTime,
+      required DateTime targetEpochSeconds,
+      required DateTime targetHttpDate}) {
+    return _$HttpRequestWithLabelsAndTimestampFormatInput._(
+        defaultFormat: defaultFormat,
+        memberDateTime: memberDateTime,
+        memberEpochSeconds: memberEpochSeconds,
+        memberHttpDate: memberHttpDate,
+        targetDateTime: targetDateTime,
+        targetEpochSeconds: targetEpochSeconds,
+        targetHttpDate: targetHttpDate);
+  }
+
+  factory HttpRequestWithLabelsAndTimestampFormatInput.build(
       [void Function(HttpRequestWithLabelsAndTimestampFormatInputBuilder)
           updates]) = _$HttpRequestWithLabelsAndTimestampFormatInput;
 
@@ -29,7 +47,7 @@ abstract class HttpRequestWithLabelsAndTimestampFormatInput
           HttpRequestWithLabelsAndTimestampFormatInputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      HttpRequestWithLabelsAndTimestampFormatInput((b) {
+      HttpRequestWithLabelsAndTimestampFormatInput.build((b) {
         if (labels['memberEpochSeconds'] != null) {
           b.memberEpochSeconds = _i1.Timestamp.parse(
                   int.parse(labels['memberEpochSeconds']!),
@@ -199,7 +217,7 @@ class _HttpRequestWithLabelsAndTimestampFormatInputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      _i1.XmlElementName('HttpRequestWithLabelsAndTimestampFormatInput')
+      const _i1.XmlElementName('HttpRequestWithLabelsAndTimestampFormatInput')
     ];
     return result;
   }

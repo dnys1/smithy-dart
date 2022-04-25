@@ -16,6 +16,18 @@ abstract class XmlTimestampsInputOutput
     implements
         Built<XmlTimestampsInputOutput, XmlTimestampsInputOutputBuilder> {
   factory XmlTimestampsInputOutput(
+      {DateTime? dateTime,
+      DateTime? epochSeconds,
+      DateTime? httpDate,
+      DateTime? normal}) {
+    return _$XmlTimestampsInputOutput._(
+        dateTime: dateTime,
+        epochSeconds: epochSeconds,
+        httpDate: httpDate,
+        normal: normal);
+  }
+
+  factory XmlTimestampsInputOutput.build(
           [void Function(XmlTimestampsInputOutputBuilder) updates]) =
       _$XmlTimestampsInputOutput;
 
@@ -112,7 +124,9 @@ class _XmlTimestampsInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlTimestampsInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlTimestampsInputOutput')];
+    final result = <Object?>[
+      const _i1.XmlElementName('XmlTimestampsInputOutput')
+    ];
     if (payload.dateTime != null) {
       result
         ..add(const _i1.XmlElementName('dateTime'))

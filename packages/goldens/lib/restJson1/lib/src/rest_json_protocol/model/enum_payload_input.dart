@@ -16,22 +16,26 @@ abstract class EnumPayloadInput
     implements
         Built<EnumPayloadInput, EnumPayloadInputBuilder>,
         _i1.HasPayload<_i2.StringEnum> {
-  factory EnumPayloadInput([void Function(EnumPayloadInputBuilder) updates]) =
-      _$EnumPayloadInput;
+  factory EnumPayloadInput({_i2.StringEnum? payload}) {
+    return _$EnumPayloadInput._(payload: payload);
+  }
+
+  factory EnumPayloadInput.build(
+      [void Function(EnumPayloadInputBuilder) updates]) = _$EnumPayloadInput;
 
   const EnumPayloadInput._();
 
   factory EnumPayloadInput.fromRequest(
           _i2.StringEnum? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      EnumPayloadInput((b) {
+      EnumPayloadInput.build((b) {
         b.payload = payload;
       });
 
   /// Constructs a [EnumPayloadInput] from a [payload] and [response].
   factory EnumPayloadInput.fromResponse(
           _i2.StringEnum? payload, _i3.AWSBaseHttpResponse response) =>
-      EnumPayloadInput((b) {
+      EnumPayloadInput.build((b) {
         b.payload = payload;
       });
 

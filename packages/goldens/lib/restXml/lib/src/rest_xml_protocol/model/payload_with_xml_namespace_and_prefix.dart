@@ -15,7 +15,11 @@ abstract class PayloadWithXmlNamespaceAndPrefix
     implements
         Built<PayloadWithXmlNamespaceAndPrefix,
             PayloadWithXmlNamespaceAndPrefixBuilder> {
-  factory PayloadWithXmlNamespaceAndPrefix(
+  factory PayloadWithXmlNamespaceAndPrefix({String? name}) {
+    return _$PayloadWithXmlNamespaceAndPrefix._(name: name);
+  }
+
+  factory PayloadWithXmlNamespaceAndPrefix.build(
           [void Function(PayloadWithXmlNamespaceAndPrefixBuilder) updates]) =
       _$PayloadWithXmlNamespaceAndPrefix;
 
@@ -80,8 +84,8 @@ class _PayloadWithXmlNamespaceAndPrefixRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as PayloadWithXmlNamespaceAndPrefix);
     final result = <Object?>[
-      _i2.XmlElementName('PayloadWithXmlNamespaceAndPrefix',
-          const _i2.XmlNamespace('http://foo.com', 'baz'))
+      const _i2.XmlElementName('PayloadWithXmlNamespaceAndPrefix',
+          _i2.XmlNamespace('http://foo.com', 'baz'))
     ];
     if (payload.name != null) {
       result

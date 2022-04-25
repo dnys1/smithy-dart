@@ -9,7 +9,7 @@ part of rest_xml.rest_xml_protocol.model.flattened_xml_map_with_xml_namespace_ou
 class _$FlattenedXmlMapWithXmlNamespaceOutput
     extends FlattenedXmlMapWithXmlNamespaceOutput {
   @override
-  final _i3.BuiltMap<String, String>? myMap;
+  final _i2.BuiltMap<String, String>? myMap;
 
   factory _$FlattenedXmlMapWithXmlNamespaceOutput(
           [void Function(FlattenedXmlMapWithXmlNamespaceOutputBuilder)?
@@ -48,10 +48,10 @@ class FlattenedXmlMapWithXmlNamespaceOutputBuilder
             FlattenedXmlMapWithXmlNamespaceOutputBuilder> {
   _$FlattenedXmlMapWithXmlNamespaceOutput? _$v;
 
-  _i3.MapBuilder<String, String>? _myMap;
-  _i3.MapBuilder<String, String> get myMap =>
-      _$this._myMap ??= new _i3.MapBuilder<String, String>();
-  set myMap(_i3.MapBuilder<String, String>? myMap) => _$this._myMap = myMap;
+  _i2.MapBuilder<String, String>? _myMap;
+  _i2.MapBuilder<String, String> get myMap =>
+      _$this._myMap ??= new _i2.MapBuilder<String, String>();
+  set myMap(_i2.MapBuilder<String, String>? myMap) => _$this._myMap = myMap;
 
   FlattenedXmlMapWithXmlNamespaceOutputBuilder() {
     FlattenedXmlMapWithXmlNamespaceOutput._init(this);

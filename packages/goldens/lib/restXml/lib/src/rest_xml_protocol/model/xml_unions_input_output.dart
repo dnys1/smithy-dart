@@ -16,7 +16,11 @@ abstract class XmlUnionsInputOutput
         _i1.HttpInput<XmlUnionsInputOutput>,
         _i2.AWSEquatable<XmlUnionsInputOutput>
     implements Built<XmlUnionsInputOutput, XmlUnionsInputOutputBuilder> {
-  factory XmlUnionsInputOutput(
+  factory XmlUnionsInputOutput({_i3.XmlUnionShape? unionValue}) {
+    return _$XmlUnionsInputOutput._(unionValue: unionValue);
+  }
+
+  factory XmlUnionsInputOutput.build(
           [void Function(XmlUnionsInputOutputBuilder) updates]) =
       _$XmlUnionsInputOutput;
 
@@ -90,7 +94,7 @@ class _XmlUnionsInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlUnionsInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlUnionsInputOutput')];
+    final result = <Object?>[const _i1.XmlElementName('XmlUnionsInputOutput')];
     if (payload.unionValue != null) {
       result
         ..add(const _i1.XmlElementName('unionValue'))

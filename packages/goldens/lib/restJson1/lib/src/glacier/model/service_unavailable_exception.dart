@@ -15,6 +15,12 @@ abstract class ServiceUnavailableException
         Built<ServiceUnavailableException, ServiceUnavailableExceptionBuilder>,
         _i2.SmithyHttpException {
   factory ServiceUnavailableException(
+      {String? code, String? message, String? type}) {
+    return _$ServiceUnavailableException._(
+        code: code, message: message, type: type);
+  }
+
+  factory ServiceUnavailableException.build(
           [void Function(ServiceUnavailableExceptionBuilder) updates]) =
       _$ServiceUnavailableException;
 

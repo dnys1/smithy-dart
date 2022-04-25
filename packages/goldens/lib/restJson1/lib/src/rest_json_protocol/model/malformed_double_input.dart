@@ -18,6 +18,18 @@ abstract class MalformedDoubleInput
         Built<MalformedDoubleInput, MalformedDoubleInputBuilder>,
         _i1.HasPayload<MalformedDoubleInputPayload> {
   factory MalformedDoubleInput(
+      {double? doubleInBody,
+      double? doubleInHeader,
+      required double doubleInPath,
+      double? doubleInQuery}) {
+    return _$MalformedDoubleInput._(
+        doubleInBody: doubleInBody,
+        doubleInHeader: doubleInHeader,
+        doubleInPath: doubleInPath,
+        doubleInQuery: doubleInQuery);
+  }
+
+  factory MalformedDoubleInput.build(
           [void Function(MalformedDoubleInputBuilder) updates]) =
       _$MalformedDoubleInput;
 
@@ -26,7 +38,7 @@ abstract class MalformedDoubleInput
   factory MalformedDoubleInput.fromRequest(
           MalformedDoubleInputPayload payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      MalformedDoubleInput((b) {
+      MalformedDoubleInput.build((b) {
         b.doubleInBody = payload.doubleInBody;
         if (request.headers['doubleInHeader'] != null) {
           b.doubleInHeader = double.parse(request.headers['doubleInHeader']!);

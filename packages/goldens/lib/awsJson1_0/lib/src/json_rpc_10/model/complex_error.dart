@@ -18,7 +18,12 @@ abstract class ComplexError
         Built<ComplexError, ComplexErrorBuilder>,
         _i2.SmithyHttpException {
   /// This error is thrown when a request is invalid.
-  factory ComplexError([void Function(ComplexErrorBuilder) updates]) =
+  factory ComplexError({_i3.ComplexNestedErrorData? nested, String? topLevel}) {
+    return _$ComplexError._(nested: nested, topLevel: topLevel);
+  }
+
+  /// This error is thrown when a request is invalid.
+  factory ComplexError.build([void Function(ComplexErrorBuilder) updates]) =
       _$ComplexError;
 
   const ComplexError._();

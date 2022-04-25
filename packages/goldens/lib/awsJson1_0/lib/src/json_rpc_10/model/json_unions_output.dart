@@ -3,18 +3,22 @@
 library aws_json1_0.json_rpc_10.model.json_unions_output;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_0/src/json_rpc_10/model/my_union.dart' as _i3;
+import 'package:aws_json1_0/src/json_rpc_10/model/my_union.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i3;
 
 part 'json_unions_output.g.dart';
 
 abstract class JsonUnionsOutput
     with _i1.AWSEquatable<JsonUnionsOutput>
     implements Built<JsonUnionsOutput, JsonUnionsOutputBuilder> {
-  factory JsonUnionsOutput([void Function(JsonUnionsOutputBuilder) updates]) =
-      _$JsonUnionsOutput;
+  factory JsonUnionsOutput({_i2.MyUnion? contents}) {
+    return _$JsonUnionsOutput._(contents: contents);
+  }
+
+  factory JsonUnionsOutput.build(
+      [void Function(JsonUnionsOutputBuilder) updates]) = _$JsonUnionsOutput;
 
   const JsonUnionsOutput._();
 
@@ -23,7 +27,7 @@ abstract class JsonUnionsOutput
           JsonUnionsOutput payload, _i1.AWSBaseHttpResponse response) =>
       payload;
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i3.SmithySerializer> serializers = [
     _JsonUnionsOutputAwsJson10Serializer()
   ];
 
@@ -31,7 +35,7 @@ abstract class JsonUnionsOutput
   static void _init(JsonUnionsOutputBuilder b) {}
 
   /// A union with a representative set of types for members.
-  _i3.MyUnion? get contents;
+  _i2.MyUnion? get contents;
   @override
   List<Object?> get props => [contents];
   @override
@@ -43,14 +47,14 @@ abstract class JsonUnionsOutput
 }
 
 class _JsonUnionsOutputAwsJson10Serializer
-    extends _i2.StructuredSmithySerializer<JsonUnionsOutput> {
+    extends _i3.StructuredSmithySerializer<JsonUnionsOutput> {
   const _JsonUnionsOutputAwsJson10Serializer() : super('JsonUnionsOutput');
 
   @override
   Iterable<Type> get types => const [JsonUnionsOutput, _$JsonUnionsOutput];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
+  Iterable<_i3.ShapeId> get supportedProtocols =>
+      const [_i3.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_0')];
   @override
   JsonUnionsOutput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -65,7 +69,7 @@ class _JsonUnionsOutputAwsJson10Serializer
         case 'contents':
           if (value != null) {
             result.contents = (serializers.deserialize(value,
-                specifiedType: const FullType(_i3.MyUnion)) as _i3.MyUnion);
+                specifiedType: const FullType(_i2.MyUnion)) as _i2.MyUnion);
           }
           break;
       }
@@ -83,7 +87,7 @@ class _JsonUnionsOutputAwsJson10Serializer
       result
         ..add('contents')
         ..add(serializers.serialize(payload.contents!,
-            specifiedType: const FullType(_i3.MyUnion)));
+            specifiedType: const FullType(_i2.MyUnion)));
     }
     return result;
   }

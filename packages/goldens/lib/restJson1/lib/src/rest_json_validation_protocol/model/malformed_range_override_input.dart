@@ -16,6 +16,28 @@ abstract class MalformedRangeOverrideInput
     implements
         Built<MalformedRangeOverrideInput, MalformedRangeOverrideInputBuilder> {
   factory MalformedRangeOverrideInput(
+      {int? byte,
+      double? float,
+      int? maxByte,
+      double? maxFloat,
+      int? minByte,
+      double? minFloat}) {
+    byte ??= 0;
+    float ??= 0;
+    maxByte ??= 0;
+    maxFloat ??= 0;
+    minByte ??= 0;
+    minFloat ??= 0;
+    return _$MalformedRangeOverrideInput._(
+        byte: byte,
+        float: float,
+        maxByte: maxByte,
+        maxFloat: maxFloat,
+        minByte: minByte,
+        minFloat: minFloat);
+  }
+
+  factory MalformedRangeOverrideInput.build(
           [void Function(MalformedRangeOverrideInputBuilder) updates]) =
       _$MalformedRangeOverrideInput;
 

@@ -18,7 +18,11 @@ abstract class MalformedAcceptWithPayloadOutput
         Built<MalformedAcceptWithPayloadOutput,
             MalformedAcceptWithPayloadOutputBuilder>,
         _i2.HasPayload<_i3.Uint8List> {
-  factory MalformedAcceptWithPayloadOutput(
+  factory MalformedAcceptWithPayloadOutput({_i3.Uint8List? payload}) {
+    return _$MalformedAcceptWithPayloadOutput._(payload: payload);
+  }
+
+  factory MalformedAcceptWithPayloadOutput.build(
           [void Function(MalformedAcceptWithPayloadOutputBuilder) updates]) =
       _$MalformedAcceptWithPayloadOutput;
 
@@ -27,7 +31,7 @@ abstract class MalformedAcceptWithPayloadOutput
   /// Constructs a [MalformedAcceptWithPayloadOutput] from a [payload] and [response].
   factory MalformedAcceptWithPayloadOutput.fromResponse(
           _i3.Uint8List? payload, _i1.AWSBaseHttpResponse response) =>
-      MalformedAcceptWithPayloadOutput((b) {
+      MalformedAcceptWithPayloadOutput.build((b) {
         b.payload = payload;
       });
 

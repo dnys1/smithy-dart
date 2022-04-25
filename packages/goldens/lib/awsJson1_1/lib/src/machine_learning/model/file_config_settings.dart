@@ -3,28 +3,45 @@
 library aws_json1_1.machine_learning.model.file_config_settings;
 
 import 'package:aws_common/aws_common.dart' as _i1;
-import 'package:aws_json1_1/src/machine_learning/model/retry_mode.dart' as _i3;
-import 'package:aws_json1_1/src/machine_learning/model/s3_config.dart' as _i4;
+import 'package:aws_json1_1/src/machine_learning/model/retry_mode.dart' as _i2;
+import 'package:aws_json1_1/src/machine_learning/model/s3_config.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:smithy/smithy.dart' as _i2;
+import 'package:smithy/smithy.dart' as _i4;
 
 part 'file_config_settings.g.dart';
 
-/// Config settings that can be set in the AWS config / credentials file as
-/// part of a profile.
+/// Config settings that can be set in the AWS config / credentials file as part of a profile.
 abstract class FileConfigSettings
     with _i1.AWSEquatable<FileConfigSettings>
     implements Built<FileConfigSettings, FileConfigSettingsBuilder> {
-  /// Config settings that can be set in the AWS config / credentials file as
-  /// part of a profile.
+  /// Config settings that can be set in the AWS config / credentials file as part of a profile.
   factory FileConfigSettings(
+      {String? awsAccessKeyId,
+      String? awsSecretAccessKey,
+      String? awsSessionToken,
+      int? maxAttempts,
+      String? region,
+      _i2.RetryMode? retryMode,
+      _i3.S3Config? s3}) {
+    return _$FileConfigSettings._(
+        awsAccessKeyId: awsAccessKeyId,
+        awsSecretAccessKey: awsSecretAccessKey,
+        awsSessionToken: awsSessionToken,
+        maxAttempts: maxAttempts,
+        region: region,
+        retryMode: retryMode,
+        s3: s3);
+  }
+
+  /// Config settings that can be set in the AWS config / credentials file as part of a profile.
+  factory FileConfigSettings.build(
           [void Function(FileConfigSettingsBuilder) updates]) =
       _$FileConfigSettings;
 
   const FileConfigSettings._();
 
-  static const List<_i2.SmithySerializer> serializers = [
+  static const List<_i4.SmithySerializer> serializers = [
     _FileConfigSettingsAwsJson11Serializer()
   ];
 
@@ -37,10 +54,10 @@ abstract class FileConfigSettings
   String? get region;
 
   /// Controls the strategy used for retries.
-  _i3.RetryMode? get retryMode;
+  _i2.RetryMode? get retryMode;
 
   /// Configuration specific to S3.
-  _i4.S3Config? get s3;
+  _i3.S3Config? get s3;
   @override
   List<Object?> get props => [
         awsAccessKeyId,
@@ -66,14 +83,14 @@ abstract class FileConfigSettings
 }
 
 class _FileConfigSettingsAwsJson11Serializer
-    extends _i2.StructuredSmithySerializer<FileConfigSettings> {
+    extends _i4.StructuredSmithySerializer<FileConfigSettings> {
   const _FileConfigSettingsAwsJson11Serializer() : super('FileConfigSettings');
 
   @override
   Iterable<Type> get types => const [FileConfigSettings, _$FileConfigSettings];
   @override
-  Iterable<_i2.ShapeId> get supportedProtocols =>
-      const [_i2.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
+  Iterable<_i4.ShapeId> get supportedProtocols =>
+      const [_i4.ShapeId(namespace: 'aws.protocols', shape: 'awsJson1_1')];
   @override
   FileConfigSettings deserialize(
       Serializers serializers, Iterable<Object?> serialized,
@@ -118,13 +135,13 @@ class _FileConfigSettingsAwsJson11Serializer
         case 'retry_mode':
           if (value != null) {
             result.retryMode = (serializers.deserialize(value,
-                specifiedType: const FullType(_i3.RetryMode)) as _i3.RetryMode);
+                specifiedType: const FullType(_i2.RetryMode)) as _i2.RetryMode);
           }
           break;
         case 's3':
           if (value != null) {
             result.s3.replace((serializers.deserialize(value,
-                specifiedType: const FullType(_i4.S3Config)) as _i4.S3Config));
+                specifiedType: const FullType(_i3.S3Config)) as _i3.S3Config));
           }
           break;
       }
@@ -172,13 +189,13 @@ class _FileConfigSettingsAwsJson11Serializer
       result
         ..add('retry_mode')
         ..add(serializers.serialize(payload.retryMode!,
-            specifiedType: const FullType(_i3.RetryMode)));
+            specifiedType: const FullType(_i2.RetryMode)));
     }
     if (payload.s3 != null) {
       result
         ..add('s3')
         ..add(serializers.serialize(payload.s3!,
-            specifiedType: const FullType(_i4.S3Config)));
+            specifiedType: const FullType(_i3.S3Config)));
     }
     return result;
   }

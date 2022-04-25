@@ -19,6 +19,38 @@ abstract class XmlListsInputOutput
         _i2.AWSEquatable<XmlListsInputOutput>
     implements Built<XmlListsInputOutput, XmlListsInputOutputBuilder> {
   factory XmlListsInputOutput(
+      {_i3.BuiltList<bool>? booleanList,
+      _i3.BuiltList<_i4.FooEnum>? enumList,
+      _i3.BuiltList<String>? flattenedList,
+      _i3.BuiltList<String>? flattenedList2,
+      _i3.BuiltList<String>? flattenedListWithMemberNamespace,
+      _i3.BuiltList<String>? flattenedListWithNamespace,
+      _i3.BuiltList<_i5.StructureListMember>? flattenedStructureList,
+      _i3.BuiltList<int>? integerList,
+      _i3.BuiltList<_i3.BuiltList<String>>? nestedStringList,
+      _i3.BuiltList<String>? renamedListMembers,
+      _i3.BuiltList<String>? stringList,
+      _i3.BuiltSet<String>? stringSet,
+      _i3.BuiltList<_i5.StructureListMember>? structureList,
+      _i3.BuiltList<DateTime>? timestampList}) {
+    return _$XmlListsInputOutput._(
+        booleanList: booleanList,
+        enumList: enumList,
+        flattenedList: flattenedList,
+        flattenedList2: flattenedList2,
+        flattenedListWithMemberNamespace: flattenedListWithMemberNamespace,
+        flattenedListWithNamespace: flattenedListWithNamespace,
+        flattenedStructureList: flattenedStructureList,
+        integerList: integerList,
+        nestedStringList: nestedStringList,
+        renamedListMembers: renamedListMembers,
+        stringList: stringList,
+        stringSet: stringSet,
+        structureList: structureList,
+        timestampList: timestampList);
+  }
+
+  factory XmlListsInputOutput.build(
           [void Function(XmlListsInputOutputBuilder) updates]) =
       _$XmlListsInputOutput;
 
@@ -246,7 +278,7 @@ class _XmlListsInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlListsInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlListsInputOutput')];
+    final result = <Object?>[const _i1.XmlElementName('XmlListsInputOutput')];
     if (payload.booleanList != null) {
       result
         ..add(const _i1.XmlElementName('booleanList'))

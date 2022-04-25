@@ -17,6 +17,22 @@ abstract class XmlEnumsInputOutput
         _i2.AWSEquatable<XmlEnumsInputOutput>
     implements Built<XmlEnumsInputOutput, XmlEnumsInputOutputBuilder> {
   factory XmlEnumsInputOutput(
+      {_i3.FooEnum? fooEnum1,
+      _i3.FooEnum? fooEnum2,
+      _i3.FooEnum? fooEnum3,
+      _i4.BuiltList<_i3.FooEnum>? fooEnumList,
+      _i4.BuiltMap<String, _i3.FooEnum>? fooEnumMap,
+      _i4.BuiltSet<_i3.FooEnum>? fooEnumSet}) {
+    return _$XmlEnumsInputOutput._(
+        fooEnum1: fooEnum1,
+        fooEnum2: fooEnum2,
+        fooEnum3: fooEnum3,
+        fooEnumList: fooEnumList,
+        fooEnumMap: fooEnumMap,
+        fooEnumSet: fooEnumSet);
+  }
+
+  factory XmlEnumsInputOutput.build(
           [void Function(XmlEnumsInputOutputBuilder) updates]) =
       _$XmlEnumsInputOutput;
 
@@ -138,7 +154,7 @@ class _XmlEnumsInputOutputRestXmlSerializer
   Iterable<Object?> serialize(Serializers serializers, Object? object,
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as XmlEnumsInputOutput);
-    final result = <Object?>[_i1.XmlElementName('XmlEnumsInputOutput')];
+    final result = <Object?>[const _i1.XmlElementName('XmlEnumsInputOutput')];
     if (payload.fooEnum1 != null) {
       result
         ..add(const _i1.XmlElementName('fooEnum1'))

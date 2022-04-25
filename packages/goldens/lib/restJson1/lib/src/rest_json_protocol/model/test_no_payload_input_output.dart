@@ -18,7 +18,11 @@ abstract class TestNoPayloadInputOutput
         Built<TestNoPayloadInputOutput, TestNoPayloadInputOutputBuilder>,
         _i1.EmptyPayload,
         _i1.HasPayload<TestNoPayloadInputOutputPayload> {
-  factory TestNoPayloadInputOutput(
+  factory TestNoPayloadInputOutput({String? testId}) {
+    return _$TestNoPayloadInputOutput._(testId: testId);
+  }
+
+  factory TestNoPayloadInputOutput.build(
           [void Function(TestNoPayloadInputOutputBuilder) updates]) =
       _$TestNoPayloadInputOutput;
 
@@ -28,7 +32,7 @@ abstract class TestNoPayloadInputOutput
           TestNoPayloadInputOutputPayload payload,
           _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      TestNoPayloadInputOutput((b) {
+      TestNoPayloadInputOutput.build((b) {
         if (request.headers['X-Amz-Test-Id'] != null) {
           b.testId = request.headers['X-Amz-Test-Id']!;
         }
@@ -38,7 +42,7 @@ abstract class TestNoPayloadInputOutput
   factory TestNoPayloadInputOutput.fromResponse(
           TestNoPayloadInputOutputPayload payload,
           _i2.AWSBaseHttpResponse response) =>
-      TestNoPayloadInputOutput((b) {
+      TestNoPayloadInputOutput.build((b) {
         if (response.headers['X-Amz-Test-Id'] != null) {
           b.testId = response.headers['X-Amz-Test-Id']!;
         }

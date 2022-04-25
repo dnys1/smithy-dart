@@ -164,12 +164,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedEnum(input, context);
       const statusCode = 200;
       final body = _malformedEnumProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedEnumProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -193,12 +195,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedLength(input, context);
       const statusCode = 200;
       final body = _malformedLengthProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedLengthProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -224,12 +228,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedLengthOverride(input, context);
       const statusCode = 200;
       final body = _malformedLengthOverrideProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedLengthOverrideProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -256,12 +262,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedLengthQueryString(input, context);
       const statusCode = 200;
       final body = _malformedLengthQueryStringProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedLengthQueryStringProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -285,12 +293,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedPattern(input, context);
       const statusCode = 200;
       final body = _malformedPatternProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedPatternProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -316,12 +326,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedPatternOverride(input, context);
       const statusCode = 200;
       final body = _malformedPatternOverrideProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedPatternOverrideProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -345,12 +357,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedRange(input, context);
       const statusCode = 200;
       final body = _malformedRangeProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedRangeProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -375,12 +389,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedRangeOverride(input, context);
       const statusCode = 200;
       final body = _malformedRangeOverrideProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedRangeOverrideProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -404,12 +420,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.malformedRequired(input, context);
       const statusCode = 200;
       final body = _malformedRequiredProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _malformedRequiredProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -434,12 +452,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.recursiveStructures(input, context);
       const statusCode = 200;
       final body = _recursiveStructuresProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _recursiveStructuresProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -464,12 +484,14 @@ class _RestJsonValidationProtocolServer
       final output = await service.sensitiveValidation(input, context);
       const statusCode = 200;
       final body = _sensitiveValidationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.ValidationException catch (e) {
+      context.response.headers['X-Amzn-Errortype'] = 'ValidationException';
       final body = _sensitiveValidationProtocol.serialize(e,
-          specifiedType: const FullType(_i17.ValidationException));
+          specifiedType: const FullType(
+              _i17.ValidationException, [FullType(_i17.ValidationException)]));
       const statusCode = 400;
       return _i16.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());

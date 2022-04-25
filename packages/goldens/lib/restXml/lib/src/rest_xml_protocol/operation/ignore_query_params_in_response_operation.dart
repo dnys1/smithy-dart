@@ -14,17 +14,13 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This example ensures that query string bound request parameters are
-/// serialized in the body of responses if the structure is used in both
-/// the request and response.
+/// This example ensures that query string bound request parameters are serialized in the body of responses if the structure is used in both the request and response.
 class IgnoreQueryParamsInResponseOperation extends _i1.HttpOperation<
     _i1.Unit,
     _i1.Unit,
     _i2.IgnoreQueryParamsInResponseOutput,
     _i2.IgnoreQueryParamsInResponseOutput> {
-  /// This example ensures that query string bound request parameters are
-  /// serialized in the body of responses if the structure is used in both
-  /// the request and response.
+  /// This example ensures that query string bound request parameters are serialized in the body of responses if the structure is used in both the request and response.
   IgnoreQueryParamsInResponseOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

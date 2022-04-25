@@ -155,7 +155,8 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.emptyInputAndEmptyOutput(input, context);
       const statusCode = 200;
       final body = _emptyInputAndEmptyOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i5.EmptyInputAndEmptyOutputOutput));
+          specifiedType: const FullType(_i5.EmptyInputAndEmptyOutputOutput,
+              [FullType(_i5.EmptyInputAndEmptyOutputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -176,7 +177,7 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.endpointOperation(input, context);
       const statusCode = 200;
       final body = _endpointOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -203,7 +204,7 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
           await service.endpointWithHostLabelOperation(input, context);
       const statusCode = 200;
       final body = _endpointWithHostLabelOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -226,24 +227,28 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.greetingWithErrors(input, context);
       const statusCode = 200;
       final body = _greetingWithErrorsProtocol.serialize(output,
-          specifiedType: const FullType(_i8.GreetingWithErrorsOutput));
+          specifiedType: const FullType(_i8.GreetingWithErrorsOutput,
+              [FullType(_i8.GreetingWithErrorsOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i16.ComplexError catch (e) {
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i16.ComplexError));
+          specifiedType:
+              const FullType(_i16.ComplexError, [FullType(_i16.ComplexError)]));
       const statusCode = 400;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i17.FooError catch (e) {
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i17.FooError));
+          specifiedType:
+              const FullType(_i17.FooError, [FullType(_i17.FooError)]));
       const statusCode = 500;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on _i18.InvalidGreeting catch (e) {
       final body = _greetingWithErrorsProtocol.serialize(e,
-          specifiedType: const FullType(_i18.InvalidGreeting));
+          specifiedType: const FullType(
+              _i18.InvalidGreeting, [FullType(_i18.InvalidGreeting)]));
       const statusCode = 400;
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
@@ -265,7 +270,7 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.hostWithPathOperation(input, context);
       const statusCode = 200;
       final body = _hostWithPathOperationProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -286,7 +291,8 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.jsonUnions(input, context);
       const statusCode = 200;
       final body = _jsonUnionsProtocol.serialize(output,
-          specifiedType: const FullType(_i10.JsonUnionsOutput));
+          specifiedType: const FullType(
+              _i10.JsonUnionsOutput, [FullType(_i10.JsonUnionsOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -307,7 +313,7 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.noInputAndNoOutput(input, context);
       const statusCode = 200;
       final body = _noInputAndNoOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i1.Unit));
+          specifiedType: const FullType(_i1.Unit, [FullType(_i1.Unit)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -328,7 +334,8 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.noInputAndOutput(input, context);
       const statusCode = 200;
       final body = _noInputAndOutputProtocol.serialize(output,
-          specifiedType: const FullType(_i12.NoInputAndOutputOutput));
+          specifiedType: const FullType(_i12.NoInputAndOutputOutput,
+              [FullType(_i12.NoInputAndOutputOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {
@@ -352,7 +359,8 @@ class _JsonRpc10Server extends _i1.HttpServer<JsonRpc10ServerBase> {
       final output = await service.simpleScalarProperties(input, context);
       const statusCode = 200;
       final body = _simpleScalarPropertiesProtocol.serialize(output,
-          specifiedType: const FullType(_i13.SimpleScalarPropertiesOutput));
+          specifiedType: const FullType(_i13.SimpleScalarPropertiesOutput,
+              [FullType(_i13.SimpleScalarPropertiesOutput)]));
       return _i15.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {

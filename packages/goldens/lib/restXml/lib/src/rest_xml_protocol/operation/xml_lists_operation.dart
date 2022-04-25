@@ -14,32 +14,10 @@ import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 import 'package:uuid/uuid.dart' as _i8;
 
-/// This test case serializes XML lists for the following cases for both
-/// input and output:
-///
-/// 1. Normal XML lists.
-/// 2. Normal XML sets.
-/// 3. XML lists of lists.
-/// 4. XML lists with @xmlName on its members
-/// 5. Flattened XML lists.
-/// 6. Flattened XML lists with @xmlName.
-/// 7. Flattened XML lists with @xmlNamespace.
-/// 8. Lists of structures.
-/// 9. Flattened XML list of structures
+/// This test case serializes XML lists for the following cases for both input and output: 1. Normal XML lists. 2. Normal XML sets. 3. XML lists of lists. 4. XML lists with @xmlName on its members 5. Flattened XML lists. 6. Flattened XML lists with @xmlName. 7. Flattened XML lists with @xmlNamespace. 8. Lists of structures. 9. Flattened XML list of structures
 class XmlListsOperation extends _i1.HttpOperation<_i2.XmlListsInputOutput,
     _i2.XmlListsInputOutput, _i2.XmlListsInputOutput, _i2.XmlListsInputOutput> {
-  /// This test case serializes XML lists for the following cases for both
-  /// input and output:
-  ///
-  /// 1. Normal XML lists.
-  /// 2. Normal XML sets.
-  /// 3. XML lists of lists.
-  /// 4. XML lists with @xmlName on its members
-  /// 5. Flattened XML lists.
-  /// 6. Flattened XML lists with @xmlName.
-  /// 7. Flattened XML lists with @xmlNamespace.
-  /// 8. Lists of structures.
-  /// 9. Flattened XML list of structures
+  /// This test case serializes XML lists for the following cases for both input and output: 1. Normal XML lists. 2. Normal XML sets. 3. XML lists of lists. 4. XML lists with @xmlName on its members 5. Flattened XML lists. 6. Flattened XML lists with @xmlName. 7. Flattened XML lists with @xmlNamespace. 8. Lists of structures. 9. Flattened XML list of structures
   XmlListsOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;

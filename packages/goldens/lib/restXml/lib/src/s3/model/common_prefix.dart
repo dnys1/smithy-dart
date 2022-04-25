@@ -12,7 +12,11 @@ part 'common_prefix.g.dart';
 abstract class CommonPrefix
     with _i1.AWSEquatable<CommonPrefix>
     implements Built<CommonPrefix, CommonPrefixBuilder> {
-  factory CommonPrefix([void Function(CommonPrefixBuilder) updates]) =
+  factory CommonPrefix({String? prefix}) {
+    return _$CommonPrefix._(prefix: prefix);
+  }
+
+  factory CommonPrefix.build([void Function(CommonPrefixBuilder) updates]) =
       _$CommonPrefix;
 
   const CommonPrefix._();
@@ -71,8 +75,8 @@ class _CommonPrefixRestXmlSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = (object as CommonPrefix);
     final result = <Object?>[
-      _i2.XmlElementName('CommonPrefix',
-          const _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
+      const _i2.XmlElementName('CommonPrefix',
+          _i2.XmlNamespace('http://s3.amazonaws.com/doc/2006-03-01/'))
     ];
     if (payload.prefix != null) {
       result

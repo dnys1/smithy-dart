@@ -27,7 +27,6 @@ class NoInputAndNoOutputOperation
         serializers: _i3.serializers,
         builderFactories: _i3.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i2.WithSdkInvocationId(),
           const _i2.WithSdkRequest()
         ],

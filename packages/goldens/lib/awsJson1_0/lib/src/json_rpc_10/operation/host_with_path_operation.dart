@@ -25,7 +25,6 @@ class HostWithPathOperation
         serializers: _i3.serializers,
         builderFactories: _i3.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.HostWithPathOperation'),
           const _i2.WithSdkInvocationId(),

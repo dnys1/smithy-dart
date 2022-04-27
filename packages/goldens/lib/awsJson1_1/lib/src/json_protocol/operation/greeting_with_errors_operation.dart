@@ -40,7 +40,6 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.GreetingWithErrors'),
           _i4.WithSigV4(

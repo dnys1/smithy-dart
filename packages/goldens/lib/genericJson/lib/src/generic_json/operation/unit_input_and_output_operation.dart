@@ -16,7 +16,7 @@ class UnitInputAndOutputOperation
     _i1.GenericJsonProtocol(
         serializers: _i2.serializers,
         builderFactories: _i2.builderFactories,
-        requestInterceptors: [const _i1.WithContentLength()],
+        requestInterceptors: [],
         responseInterceptors: [])
   ];
 

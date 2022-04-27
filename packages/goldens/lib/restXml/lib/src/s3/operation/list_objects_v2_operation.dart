@@ -45,11 +45,11 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
         serializers: _i6.serializers,
         builderFactories: _i6.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           _i4.WithSigV4(
               region: _region,
               serviceName: 's3',
-              credentialsProvider: _credentialsProvider),
+              credentialsProvider: _credentialsProvider,
+              serviceConfiguration: _i5.S3ServiceConfiguration()),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

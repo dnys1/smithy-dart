@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
@@ -14,6 +13,41 @@ DartEmitter buildEmitter(Allocator allocator) => DartEmitter(
       useNullSafetySyntax: true,
     );
 
+/// Builds a service closure for a [ServiceShape].
+CodegenContext buildContext(
+  SmithyAst ast, {
+  required ServiceShape serviceShape,
+  required String packageName,
+  String? serviceName,
+  String? basePath,
+  Iterable<ShapeId> includeShapes = const [],
+  Iterable<ShapeId> additionalShapes = const [],
+  bool generateServer = false,
+}) {
+  // Builds a service closure with just one service shape. All the other
+  // shapes can remain - they will not be generated for services which do
+  // not reference them due to how LibraryVisitor works.
+  final serviceClosureShapes = ast.shapes.entries.where((el) {
+    if (el.value is OperationShape) {
+      return includeShapes.isEmpty || includeShapes.contains(el.key);
+    }
+    return true;
+  });
+  final serviceClosure = ShapeMap(Map.fromEntries(serviceClosureShapes));
+
+  return CodegenContext(
+    smithyVersion: ast.version,
+    metadata: ast.metadata.toMap(),
+    shapes: serviceClosure,
+    packageName: packageName,
+    basePath: basePath,
+    serviceShapeId: serviceShape.shapeId,
+    serviceName: serviceName,
+    additionalShapes: additionalShapes,
+    generateServer: generateServer,
+  );
+}
+
 /// Generates a Dart file for each of the relevant shape types in [ast].
 ///
 /// Returns a map from the library to its formatted definition file.
@@ -21,7 +55,6 @@ List<GeneratedLibrary> generateForAst(
   SmithyAst ast, {
   required String packageName,
   String? serviceName,
-  Pubspec? pubspec,
   String? basePath,
   Iterable<ShapeId> includeShapes = const [],
   Iterable<ShapeId> additionalShapes = const [],
@@ -42,25 +75,13 @@ List<GeneratedLibrary> generateForAst(
   final Set<GeneratedLibrary> libraries = {};
 
   for (final serviceShape in serviceShapes) {
-    // Builds a service closure with just one service shape. All the other
-    // shapes can remain - they will not be generated for services which do
-    // not reference them due to how LibraryVisitor works.
-    final serviceClosureShapes = ast.shapes.entries.where((el) {
-      if (el.value is OperationShape) {
-        return includeShapes.isEmpty || includeShapes.contains(el.key);
-      }
-      return true;
-    });
-    final serviceClosure = ShapeMap(Map.fromEntries(serviceClosureShapes));
-
-    final context = CodegenContext(
-      smithyVersion: ast.version,
-      metadata: ast.metadata.toMap(),
-      shapes: serviceClosure,
+    final context = buildContext(
+      ast,
+      serviceShape: serviceShape,
       packageName: packageName,
       basePath: basePath,
-      serviceShapeId: serviceShape.shapeId,
       serviceName: serviceShapes.length == 1 ? serviceName : null,
+      includeShapes: includeShapes,
       additionalShapes: additionalShapes,
       generateServer: generateServer,
     );

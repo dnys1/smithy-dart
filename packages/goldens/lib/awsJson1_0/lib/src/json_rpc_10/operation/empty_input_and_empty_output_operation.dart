@@ -38,7 +38,6 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.EmptyInputAndEmptyOutput'),
           const _i4.WithSdkInvocationId(),

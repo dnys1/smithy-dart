@@ -18,7 +18,6 @@ class CodegenService extends CodegenServiceBase {
         ast,
         packageName: pubspec.name,
         serviceName: request.serviceName,
-        pubspec: pubspec,
       );
       final response = <CodegenResponse_Library>[];
       final dependencies = <String>{};

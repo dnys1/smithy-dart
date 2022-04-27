@@ -31,7 +31,6 @@ class EmptyOperation
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.EmptyOperation'),
           _i3.WithSigV4(
               region: _region,

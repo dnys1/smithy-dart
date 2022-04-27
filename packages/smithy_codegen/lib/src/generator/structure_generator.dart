@@ -505,6 +505,18 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
 
     // The `labelFor` method
     if (labels.isNotEmpty) {
+      final labelCases = <Code>[];
+      for (var label in labels) {
+        labelCases.add(Code("case '${label.memberName}':"));
+        final labelName = label.dartName(ShapeType.structure);
+        labelCases.add(valueToString(
+          labelName == 'key'
+              ? refer('this').property(labelName)
+              : refer(labelName),
+          label,
+          isHeader: false,
+        ).returned.statement);
+      }
       yield Method(
         (m) => m
           ..annotations.add(DartTypes.core.override)
@@ -515,14 +527,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
             ..name = 'key'))
           ..body = Block.of([
             const Code('switch (key) {'),
-            for (var label in labels) ...[
-              Code("case '${label.memberName}':"),
-              valueToString(
-                refer(label.dartName(ShapeType.structure)),
-                label,
-                isHeader: false,
-              ).returned.statement,
-            ],
+            ...labelCases,
             const Code('}'),
             DartTypes.smithy.missingLabelException
                 .newInstance([refer('this'), refer('key')])

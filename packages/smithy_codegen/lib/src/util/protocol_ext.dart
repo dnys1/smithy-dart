@@ -101,7 +101,7 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
     }
     // Empty payloads should not contain `Content-Length` and `Content-Type`
     // headers.
-    if (this is RestJson1Trait && inputShape.payloadMembers(context).isEmpty) {
+    if (inputShape.payloadMembers(context).isEmpty) {
       needsContentLength = false;
     }
     if (needsContentLength) {
@@ -157,6 +157,9 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         'serviceName': literalString(sigV4),
         'credentialsProvider': refer('_credentialsProvider'),
         if (isOptionalAuth) 'isOptional': literalTrue,
+        if (sigV4 == 's3')
+          'serviceConfiguration':
+              DartTypes.awsSigV4.s3ServiceConfiguration.newInstance([]),
       });
     }
 

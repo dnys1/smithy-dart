@@ -42,11 +42,11 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
         serializers: _i7.serializers,
         builderFactories: _i7.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           _i5.WithSigV4(
               region: _region,
               serviceName: 's3',
-              credentialsProvider: _credentialsProvider),
+              credentialsProvider: _credentialsProvider,
+              serviceConfiguration: _i6.S3ServiceConfiguration()),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
         ],

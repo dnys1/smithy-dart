@@ -31,7 +31,6 @@ class EndpointOperation
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.EndpointOperation'),
           _i3.WithSigV4(

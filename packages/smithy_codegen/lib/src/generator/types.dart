@@ -264,6 +264,10 @@ class _AwsSigV4 {
   /// Creates an [aws_sig_v4.AWSCredentialsProvider] reference.
   Reference get awsCredentialsProvider =>
       const Reference('AWSCredentialsProvider', _url);
+
+  /// Creates an [aws_sig_v4.S3ServiceConfiguration] reference.
+  Reference get s3ServiceConfiguration =>
+      const Reference('S3ServiceConfiguration', _url);
 }
 
 /// `package:built_value` types

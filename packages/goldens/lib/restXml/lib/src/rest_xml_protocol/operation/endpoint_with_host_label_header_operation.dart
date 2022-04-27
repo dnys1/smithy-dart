@@ -31,7 +31,6 @@ class EndpointWithHostLabelHeaderOperation extends _i1.HttpOperation<
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

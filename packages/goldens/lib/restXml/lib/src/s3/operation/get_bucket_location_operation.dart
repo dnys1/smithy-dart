@@ -46,7 +46,8 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
               region: _region,
               serviceName: 's3',
               credentialsProvider: _credentialsProvider,
-              serviceConfiguration: _i6.S3ServiceConfiguration()),
+              serviceConfiguration: _s3ClientConfig.signerConfiguration ??
+                  _i6.S3ServiceConfiguration()),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
         ],

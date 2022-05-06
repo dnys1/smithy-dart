@@ -49,7 +49,8 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
               region: _region,
               serviceName: 's3',
               credentialsProvider: _credentialsProvider,
-              serviceConfiguration: _i5.S3ServiceConfiguration()),
+              serviceConfiguration: _s3ClientConfig.signerConfiguration ??
+                  _i5.S3ServiceConfiguration()),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

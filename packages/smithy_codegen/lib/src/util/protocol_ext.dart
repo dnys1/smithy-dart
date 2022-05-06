@@ -158,8 +158,11 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         'credentialsProvider': refer('_credentialsProvider'),
         if (isOptionalAuth) 'isOptional': literalTrue,
         if (sigV4 == 's3')
-          'serviceConfiguration':
-              DartTypes.awsSigV4.s3ServiceConfiguration.newInstance([]),
+          'serviceConfiguration': refer('_s3ClientConfig')
+              .property('signerConfiguration')
+              .ifNullThen(
+                DartTypes.awsSigV4.s3ServiceConfiguration.newInstance([]),
+              ),
       });
     }
 

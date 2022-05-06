@@ -1,3 +1,5 @@
+import 'package:aws_signature_v4/aws_signature_v4.dart';
+
 /// {@template smithy_aws.s3_client_config}
 /// Configuration options for S3 clients.
 /// {@endtemplate}
@@ -7,6 +9,7 @@ class S3ClientConfig {
     this.usePathStyle = false,
     this.useDualStack = false,
     this.useAcceleration = false,
+    this.signerConfiguration,
   });
 
   /// Allows you to enable dual-stack endpoint support for the service.
@@ -24,4 +27,9 @@ class S3ClientConfig {
   /// https://s3.amazonaws.com/BUCKET/KEY. By default, the S3 client will use virtual
   /// hosted bucket addressing when possible(https://BUCKET.s3.amazonaws.com/KEY).
   final bool usePathStyle;
+
+  /// The configuration for signing requests using [AWSSigV4Signer].
+  ///
+  /// Defaults to [S3ServiceConfiguration.new].
+  final S3ServiceConfiguration? signerConfiguration;
 }

@@ -1,14 +1,14 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_json1.api_gateway.operation.get_rest_apis_operation;
 
 import 'dart:async' as _i14;
 
-import 'package:aws_common/aws_common.dart' as _i10;
+import 'package:aws_common/aws_common.dart' as _i9;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i6;
 import 'package:built_collection/built_collection.dart' as _i4;
 import 'package:rest_json1/src/api_gateway/common/endpoint_resolver.dart'
-    as _i9;
+    as _i10;
 import 'package:rest_json1/src/api_gateway/common/serializers.dart' as _i8;
 import 'package:rest_json1/src/api_gateway/model/bad_request_exception.dart'
     as _i11;
@@ -53,7 +53,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
           const _i1.WithNoHeader('Content-Type'),
           _i7.WithSigV4(
               region: _region,
-              serviceName: 'apigateway',
+              service: _i9.AWSService.apiGateway,
               credentialsProvider: _credentialsProvider),
           const _i7.WithSdkInvocationId(),
           const _i7.WithSdkRequest(),
@@ -63,7 +63,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
   ];
 
   late final _i7.AWSEndpoint _awsEndpoint =
-      _i9.endpointResolver.resolve(_i9.sdkId, _region);
+      _i10.endpointResolver.resolve(_i10.sdkId, _region);
 
   final String _region;
 
@@ -87,7 +87,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
   int successCode([_i3.RestApis? output]) => 200;
   @override
   _i3.RestApis buildOutput(
-          _i3.RestApis payload, _i10.AWSStreamedHttpResponse response) =>
+          _i3.RestApis payload, _i9.AWSStreamedHttpResponse response) =>
       _i3.RestApis.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
@@ -129,7 +129,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i10.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+          ...{_i9.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
         });
   }
 

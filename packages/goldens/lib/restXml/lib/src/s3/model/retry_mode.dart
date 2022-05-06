@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_xml.s3.model.retry_mode;
 

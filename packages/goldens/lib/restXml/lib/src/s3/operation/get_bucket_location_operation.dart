@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_xml.s3.operation.get_bucket_location_operation;
 
 import 'dart:async' as _i10;
 
-import 'package:aws_common/aws_common.dart' as _i9;
+import 'package:aws_common/aws_common.dart' as _i8;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i6;
-import 'package:rest_xml/src/s3/common/endpoint_resolver.dart' as _i8;
+import 'package:rest_xml/src/s3/common/endpoint_resolver.dart' as _i9;
 import 'package:rest_xml/src/s3/common/serializers.dart' as _i7;
 import 'package:rest_xml/src/s3/model/bucket_location_constraint.dart' as _i3;
 import 'package:rest_xml/src/s3/model/get_bucket_location_output.dart' as _i4;
@@ -44,7 +44,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
         requestInterceptors: [
           _i5.WithSigV4(
               region: _region,
-              serviceName: 's3',
+              service: _i8.AWSService.s3,
               credentialsProvider: _credentialsProvider,
               serviceConfiguration: _s3ClientConfig.signerConfiguration ??
                   _i6.S3ServiceConfiguration()),
@@ -56,7 +56,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
   ];
 
   late final _i5.AWSEndpoint _awsEndpoint =
-      _i8.endpointResolver.resolve(_i8.sdkId, _region);
+      _i9.endpointResolver.resolve(_i9.sdkId, _region);
 
   final String _region;
 
@@ -79,7 +79,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
   int successCode([_i4.GetBucketLocationOutput? output]) => 200;
   @override
   _i4.GetBucketLocationOutput buildOutput(_i3.BucketLocationConstraint? payload,
-          _i9.AWSStreamedHttpResponse response) =>
+          _i8.AWSStreamedHttpResponse response) =>
       _i4.GetBucketLocationOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
@@ -114,7 +114,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i9.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
+          ...{_i8.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
         });
   }
 }

@@ -226,8 +226,14 @@ class _AwsCommon {
   /// Creates an [aws_common.AWSHeaders] reference.
   Reference get awsHeaders => const Reference('AWSHeaders', _url);
 
+  /// Creates an [aws_common.AWSHttpMethod] reference.
+  Reference get awsHttpMethod => const Reference('AWSHttpMethod', _url);
+
   /// Creates an [aws_common.AWSSerializable] reference.
   Reference get awsSerializable => const Reference('AWSSerializable', _url);
+
+  /// Creates an [aws_common.AWSService] reference.
+  Reference get awsService => const Reference('AWSService', _url);
 
   /// Creates an [aws_common.AWSBaseHttpRequest] reference.
   Reference get awsBaseHttpRequest =>
@@ -247,9 +253,6 @@ class _AwsCommon {
   /// Creates an [aws_common.AWSStreamedHttpResponse] reference.
   Reference get awsStreamedHttpResponse =>
       const Reference('AWSStreamedHttpResponse', _url);
-
-  /// Creates an [aws_common.HttpMethodX] reference.
-  Reference get httpMethodX => const Reference('HttpMethodX', _url);
 }
 
 /// `package:aws_signature_v4` types.

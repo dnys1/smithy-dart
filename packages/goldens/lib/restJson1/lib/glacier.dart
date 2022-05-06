@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 /// # Amazon Glacier
 library rest_json1.glacier;

@@ -577,13 +577,13 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     yield Method(
       (m) => m
         ..annotations.add(DartTypes.core.override)
-        ..returns = items?.symbol.unboxed ?? DartTypes.core.void$
+        ..returns = items?.symbol.unboxed ?? outputSymbol
         ..name = 'getItems'
         ..requiredParameters.add(Parameter((p) => p
           ..type = outputSymbol
           ..name = 'output'))
-        ..lambda = itemsBody != null
-        ..body = itemsBody?.code ?? emptyBody,
+        ..lambda = true
+        ..body = itemsBody?.code ?? const Code('output'),
     );
 
     // The `rebuildInput` method.

@@ -14,7 +14,7 @@ dependencies:
     path: ../../../smithy_aws
   aws_common:
     hosted: https://pub.dillonnys.com
-    version: ^0.1.0
+    version: ^0.2.0
   uuid: ^3.0.0
   built_value: ^8.0.0
   built_collection: ^5.0.0

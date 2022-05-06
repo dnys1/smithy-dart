@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.http_request_with_labels_and_timestamp_format_operation;
 

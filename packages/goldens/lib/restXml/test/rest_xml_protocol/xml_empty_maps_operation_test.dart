@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_xml.rest_xml_protocol.test.xml_empty_maps_operation_test_test;

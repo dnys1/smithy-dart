@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.empty_operation;
 
 import 'dart:async' as _i7;
 
-import 'package:aws_common/aws_common.dart' as _i6;
+import 'package:aws_common/aws_common.dart' as _i5;
 import 'package:aws_json1_1/src/json_protocol/common/endpoint_resolver.dart'
-    as _i5;
+    as _i6;
 import 'package:aws_json1_1/src/json_protocol/common/serializers.dart' as _i4;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
@@ -34,7 +34,7 @@ class EmptyOperation
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.EmptyOperation'),
           _i3.WithSigV4(
               region: _region,
-              serviceName: 'foo',
+              service: _i5.AWSService.iam,
               credentialsProvider: _credentialsProvider),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
@@ -43,7 +43,7 @@ class EmptyOperation
   ];
 
   late final _i3.AWSEndpoint _awsEndpoint =
-      _i5.endpointResolver.resolve(_i5.sdkId, _region);
+      _i6.endpointResolver.resolve(_i6.sdkId, _region);
 
   final String _region;
 
@@ -60,7 +60,7 @@ class EmptyOperation
   int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
-          _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>
+          _i1.Unit payload, _i5.AWSStreamedHttpResponse response) =>
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
@@ -77,7 +77,7 @@ class EmptyOperation
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i5.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
         });
   }
 }

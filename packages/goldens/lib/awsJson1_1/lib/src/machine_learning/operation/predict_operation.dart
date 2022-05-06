@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library aws_json1_1.machine_learning.operation.predict_operation;
 
 import 'dart:async' as _i14;
 
-import 'package:aws_common/aws_common.dart' as _i8;
+import 'package:aws_common/aws_common.dart' as _i7;
 import 'package:aws_json1_1/src/machine_learning/common/endpoint_resolver.dart'
-    as _i7;
+    as _i8;
 import 'package:aws_json1_1/src/machine_learning/common/serializers.dart'
     as _i6;
 import 'package:aws_json1_1/src/machine_learning/model/internal_server_exception.dart'
@@ -51,7 +51,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
           const _i1.WithHeader('X-Amz-Target', 'AmazonML_20141212.Predict'),
           _i5.WithSigV4(
               region: _region,
-              serviceName: 'machinelearning',
+              service: _i7.AWSService.machineLearning,
               credentialsProvider: _credentialsProvider),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
@@ -60,7 +60,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
   ];
 
   late final _i5.AWSEndpoint _awsEndpoint =
-      _i7.endpointResolver.resolve(_i7.sdkId, _region);
+      _i8.endpointResolver.resolve(_i8.sdkId, _region);
 
   final String _region;
 
@@ -77,7 +77,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
   int successCode([_i3.PredictOutput? output]) => 200;
   @override
   _i3.PredictOutput buildOutput(
-          _i3.PredictOutput payload, _i8.AWSStreamedHttpResponse response) =>
+          _i3.PredictOutput payload, _i7.AWSStreamedHttpResponse response) =>
       _i3.PredictOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
@@ -135,7 +135,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i8.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
         });
   }
 }

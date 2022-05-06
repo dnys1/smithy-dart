@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library aws_json1_0.json_rpc_10.model.simple_scalar_properties_input;
 

@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.endpoint_with_host_label_operation;
 
 import 'dart:async' as _i8;
 
-import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_1/src/json_protocol/common/endpoint_resolver.dart'
-    as _i6;
+    as _i7;
 import 'package:aws_json1_1/src/json_protocol/common/serializers.dart' as _i5;
 import 'package:aws_json1_1/src/json_protocol/model/host_label_input.dart'
     as _i2;
@@ -39,7 +39,7 @@ class EndpointWithHostLabelOperation extends _i1
               'X-Amz-Target', 'JsonProtocol.EndpointWithHostLabelOperation'),
           _i4.WithSigV4(
               region: _region,
-              serviceName: 'foo',
+              service: _i6.AWSService.iam,
               credentialsProvider: _credentialsProvider),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
@@ -48,7 +48,7 @@ class EndpointWithHostLabelOperation extends _i1
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, _region);
+      _i7.endpointResolver.resolve(_i7.sdkId, _region);
 
   final String _region;
 
@@ -67,7 +67,7 @@ class EndpointWithHostLabelOperation extends _i1
   int successCode([_i1.Unit? output]) => 200;
   @override
   _i1.Unit buildOutput(
-          _i1.Unit payload, _i7.AWSStreamedHttpResponse response) =>
+          _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>
       payload;
   @override
   List<_i1.SmithyError> get errorTypes => const [];
@@ -84,7 +84,7 @@ class EndpointWithHostLabelOperation extends _i1
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
         });
   }
 }

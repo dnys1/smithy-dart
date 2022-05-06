@@ -7,7 +7,7 @@ import 'package:smithy/smithy.dart';
 class WithSigV4 extends HttpRequestInterceptor {
   const WithSigV4({
     required this.region,
-    required this.serviceName,
+    required this.service,
     required this.credentialsProvider,
     this.serviceConfiguration = const BaseServiceConfiguration(),
     this.algorithm = AWSAlgorithm.hmacSha256,
@@ -21,7 +21,7 @@ class WithSigV4 extends HttpRequestInterceptor {
 
   final bool isOptional;
   final String region;
-  final String serviceName;
+  final AWSService service;
   final AWSAlgorithm algorithm;
   final AWSCredentialsProvider credentialsProvider;
   final ServiceConfiguration serviceConfiguration;
@@ -48,7 +48,7 @@ class WithSigV4 extends HttpRequestInterceptor {
       request,
       credentialScope: AWSCredentialScope(
         region: region,
-        service: serviceName,
+        service: service,
       ),
       serviceConfiguration: serviceConfiguration,
     );

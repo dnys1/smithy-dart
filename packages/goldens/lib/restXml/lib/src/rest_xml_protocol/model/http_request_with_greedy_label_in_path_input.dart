@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.model.http_request_with_greedy_label_in_path_input;
 

@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_xml.s3.operation.list_objects_v2_operation;
 
 import 'dart:async' as _i10;
 
-import 'package:aws_common/aws_common.dart' as _i8;
+import 'package:aws_common/aws_common.dart' as _i7;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i5;
-import 'package:rest_xml/src/s3/common/endpoint_resolver.dart' as _i7;
+import 'package:rest_xml/src/s3/common/endpoint_resolver.dart' as _i8;
 import 'package:rest_xml/src/s3/common/serializers.dart' as _i6;
 import 'package:rest_xml/src/s3/model/list_objects_v2_output.dart' as _i3;
 import 'package:rest_xml/src/s3/model/list_objects_v2_request.dart' as _i2;
@@ -47,7 +47,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
         requestInterceptors: [
           _i4.WithSigV4(
               region: _region,
-              serviceName: 's3',
+              service: _i7.AWSService.s3,
               credentialsProvider: _credentialsProvider,
               serviceConfiguration: _s3ClientConfig.signerConfiguration ??
                   _i5.S3ServiceConfiguration()),
@@ -59,7 +59,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i7.endpointResolver.resolve(_i7.sdkId, _region);
+      _i8.endpointResolver.resolve(_i8.sdkId, _region);
 
   final String _region;
 
@@ -112,7 +112,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
   int successCode([_i3.ListObjectsV2Output? output]) => 200;
   @override
   _i3.ListObjectsV2Output buildOutput(_i3.ListObjectsV2Output payload,
-          _i8.AWSStreamedHttpResponse response) =>
+          _i7.AWSStreamedHttpResponse response) =>
       _i3.ListObjectsV2Output.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
@@ -151,7 +151,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i8.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
         });
   }
 
@@ -159,7 +159,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
   String? getToken(_i3.ListObjectsV2Output output) =>
       output.nextContinuationToken;
   @override
-  void getItems(_i3.ListObjectsV2Output output) {}
+  _i3.ListObjectsV2Output getItems(_i3.ListObjectsV2Output output) => output;
   @override
   _i2.ListObjectsV2Request rebuildInput(
           _i2.ListObjectsV2Request input, String token, int? pageSize) =>

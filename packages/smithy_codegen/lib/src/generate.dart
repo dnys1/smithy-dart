@@ -2,9 +2,10 @@ import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/library_visitor.dart';
+import 'package:smithy_codegen/src/version.dart';
 
 /// Header which prefixes all generated files.
-const header = '// Generated code. DO NOT MODIFY.';
+const header = '// Generated with smithy-dart $packageVersion. DO NOT MODIFY.';
 
 /// The default emitter for codegen operations.
 DartEmitter buildEmitter(Allocator allocator) => DartEmitter(

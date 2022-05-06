@@ -22,11 +22,11 @@ class Dependency with AWSEquatable<Dependency> {
 /// All dependencies and the current versions.
 final dependencyVersions = {
   // Dependencies
-  'smithy': Dependency('^0.3.0', DependencyType.smithy),
-  'smithy_aws': Dependency('^0.3.0', DependencyType.smithy),
-  'smithy_codegen': Dependency('^0.3.0', DependencyType.smithy),
-  'aws_common': Dependency('^0.1.0', DependencyType.aws),
-  'aws_signature_v4': Dependency('^0.1.0', DependencyType.aws),
+  'smithy': Dependency('^0.4.0', DependencyType.smithy),
+  'smithy_aws': Dependency('^0.4.0', DependencyType.smithy),
+  'smithy_codegen': Dependency('^0.4.0', DependencyType.smithy),
+  'aws_common': Dependency('^0.2.0', DependencyType.aws),
+  'aws_signature_v4': Dependency('^0.2.0', DependencyType.aws),
   'built_value': Dependency('^8.0.0'),
   'built_collection': Dependency('^5.0.0'),
   'fixnum': Dependency('^1.0.0'),
@@ -37,7 +37,7 @@ final dependencyVersions = {
   'xml': Dependency('^5.3.1'),
 
   // Dev Dependencies
-  'smithy_test': Dependency.dev('^0.3.0', DependencyType.smithy),
+  'smithy_test': Dependency.dev('^0.4.0', DependencyType.smithy),
   'build_runner': Dependency.dev('^2.0.0'),
   'built_value_generator': Dependency.dev('^8.0.0'),
   'lints': Dependency.dev('^1.0.0'),

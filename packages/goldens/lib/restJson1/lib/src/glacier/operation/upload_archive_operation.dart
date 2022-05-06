@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_json1.glacier.operation.upload_archive_operation;
 
 import 'dart:async' as _i2;
 
-import 'package:aws_common/aws_common.dart' as _i9;
+import 'package:aws_common/aws_common.dart' as _i8;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i5;
-import 'package:rest_json1/src/glacier/common/endpoint_resolver.dart' as _i8;
+import 'package:rest_json1/src/glacier/common/endpoint_resolver.dart' as _i9;
 import 'package:rest_json1/src/glacier/common/serializers.dart' as _i7;
 import 'package:rest_json1/src/glacier/model/archive_creation_output.dart'
     as _i4;
@@ -52,7 +52,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
         requestInterceptors: [
           _i6.WithSigV4(
               region: _region,
-              serviceName: 'glacier',
+              service: _i8.AWSService.glacier,
               credentialsProvider: _credentialsProvider),
           const _i6.WithSdkInvocationId(),
           const _i6.WithSdkRequest()
@@ -61,7 +61,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
   ];
 
   late final _i6.AWSEndpoint _awsEndpoint =
-      _i8.endpointResolver.resolve(_i8.sdkId, _region);
+      _i9.endpointResolver.resolve(_i9.sdkId, _region);
 
   final String _region;
 
@@ -90,7 +90,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
   @override
   _i4.ArchiveCreationOutput buildOutput(
           _i4.ArchiveCreationOutputPayload payload,
-          _i9.AWSStreamedHttpResponse response) =>
+          _i8.AWSStreamedHttpResponse response) =>
       _i4.ArchiveCreationOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [
@@ -148,7 +148,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i9.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+          ...{_i8.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
         });
   }
 }

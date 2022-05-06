@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.null_operation;
 
 import 'dart:async' as _i8;
 
-import 'package:aws_common/aws_common.dart' as _i7;
+import 'package:aws_common/aws_common.dart' as _i6;
 import 'package:aws_json1_1/src/json_protocol/common/endpoint_resolver.dart'
-    as _i6;
+    as _i7;
 import 'package:aws_json1_1/src/json_protocol/common/serializers.dart' as _i5;
 import 'package:aws_json1_1/src/json_protocol/model/null_operation_input_output.dart'
     as _i2;
@@ -44,7 +44,7 @@ class NullOperation extends _i1.HttpOperation<
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.NullOperation'),
           _i4.WithSigV4(
               region: _region,
-              serviceName: 'foo',
+              service: _i6.AWSService.iam,
               credentialsProvider: _credentialsProvider),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
@@ -53,7 +53,7 @@ class NullOperation extends _i1.HttpOperation<
   ];
 
   late final _i4.AWSEndpoint _awsEndpoint =
-      _i6.endpointResolver.resolve(_i6.sdkId, _region);
+      _i7.endpointResolver.resolve(_i7.sdkId, _region);
 
   final String _region;
 
@@ -71,7 +71,7 @@ class NullOperation extends _i1.HttpOperation<
   int successCode([_i2.NullOperationInputOutput? output]) => 200;
   @override
   _i2.NullOperationInputOutput buildOutput(_i2.NullOperationInputOutput payload,
-          _i7.AWSStreamedHttpResponse response) =>
+          _i6.AWSStreamedHttpResponse response) =>
       _i2.NullOperationInputOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
@@ -90,7 +90,7 @@ class NullOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
         });
   }
 }

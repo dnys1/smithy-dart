@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.http_payload_with_xml_namespace_and_prefix_operation;
 

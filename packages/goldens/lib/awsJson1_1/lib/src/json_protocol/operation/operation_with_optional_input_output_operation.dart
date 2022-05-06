@@ -1,12 +1,12 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.operation_with_optional_input_output_operation;
 
 import 'dart:async' as _i9;
 
-import 'package:aws_common/aws_common.dart' as _i8;
+import 'package:aws_common/aws_common.dart' as _i7;
 import 'package:aws_json1_1/src/json_protocol/common/endpoint_resolver.dart'
-    as _i7;
+    as _i8;
 import 'package:aws_json1_1/src/json_protocol/common/serializers.dart' as _i6;
 import 'package:aws_json1_1/src/json_protocol/model/operation_with_optional_input_output_input.dart'
     as _i2;
@@ -47,7 +47,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
               'X-Amz-Target', 'JsonProtocol.OperationWithOptionalInputOutput'),
           _i5.WithSigV4(
               region: _region,
-              serviceName: 'foo',
+              service: _i7.AWSService.iam,
               credentialsProvider: _credentialsProvider),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
@@ -56,7 +56,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
   ];
 
   late final _i5.AWSEndpoint _awsEndpoint =
-      _i7.endpointResolver.resolve(_i7.sdkId, _region);
+      _i8.endpointResolver.resolve(_i8.sdkId, _region);
 
   final String _region;
 
@@ -76,7 +76,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
   @override
   _i3.OperationWithOptionalInputOutputOutput buildOutput(
           _i3.OperationWithOptionalInputOutputOutput payload,
-          _i8.AWSStreamedHttpResponse response) =>
+          _i7.AWSStreamedHttpResponse response) =>
       _i3.OperationWithOptionalInputOutputOutput.fromResponse(
           payload, response);
   @override
@@ -96,7 +96,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i8.AWSHeaders.sdkInvocationId: const _i10.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: const _i10.Uuid().v4()}
         });
   }
 }

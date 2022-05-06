@@ -150,11 +150,19 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
         (authTrait != null && authTrait.values.isEmpty);
 
     // SigV4
+    final sdkId = context.service?.getTrait<ServiceTrait>()?.sdkId;
     final sigV4 = context.service?.getTrait<SigV4Trait>()?.name;
-    if (sigV4 != null) {
+    if (sdkId != null && sigV4 != null) {
+      var serviceId = sdkId.camelCase;
+      // There is a test which defines a non-existent AWS service, so swap it
+      // out since it doesn't affect tests but will lead to compile errors.
+      if (serviceId == 'jsonProtocol') {
+        serviceId = 'iam';
+      }
+
       yield DartTypes.smithyAws.withSigV4.newInstance([], {
         'region': refer('_region'),
-        'serviceName': literalString(sigV4),
+        'service': DartTypes.awsCommon.awsService.property(serviceId),
         'credentialsProvider': refer('_credentialsProvider'),
         if (isOptionalAuth) 'isOptional': literalTrue,
         if (sigV4 == 's3')

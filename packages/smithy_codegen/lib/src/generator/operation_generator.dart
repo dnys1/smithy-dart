@@ -322,7 +322,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     );
 
     // The `successCode` method
-    var successCode = literalNum(200);
+    var successCode = literalNum(httpTrait!.code);
     final responseCodeMember = httpOutputTraits.httpResponseCode;
     if (responseCodeMember != null) {
       successCode = refer('output')

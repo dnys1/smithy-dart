@@ -521,7 +521,7 @@ extension OperationShapeUtil on OperationShape {
           ..location = ParameterLocation.constructor
           ..required = true
           ..defaultTo = DartTypes.awsSigV4.awsCredentialsProvider
-              .constInstanceNamed('dartEnvironment', []).code,
+              .constInstanceNamed('environment', []).code,
       );
     }
   }

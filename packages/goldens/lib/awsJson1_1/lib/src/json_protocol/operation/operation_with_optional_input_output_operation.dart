@@ -26,7 +26,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
       {required String region,
       Uri? baseUri,
       _i4.AWSCredentialsProvider credentialsProvider =
-          const _i4.AWSCredentialsProvider.dartEnvironment()})
+          const _i4.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _credentialsProvider = credentialsProvider;

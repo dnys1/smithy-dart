@@ -17,7 +17,7 @@ class _$OmitsNullSerializesEmptyStringInput
           [void Function(OmitsNullSerializesEmptyStringInputBuilder)?
               updates]) =>
       (new OmitsNullSerializesEmptyStringInputBuilder()..update(updates))
-          .build();
+          ._build();
 
   _$OmitsNullSerializesEmptyStringInput._({this.emptyString, this.nullValue})
       : super._();
@@ -86,7 +86,9 @@ class OmitsNullSerializesEmptyStringInputBuilder
   }
 
   @override
-  _$OmitsNullSerializesEmptyStringInput build() {
+  OmitsNullSerializesEmptyStringInput build() => _build();
+
+  _$OmitsNullSerializesEmptyStringInput _build() {
     final _$result = _$v ??
         new _$OmitsNullSerializesEmptyStringInput._(
             emptyString: emptyString, nullValue: nullValue);
@@ -101,7 +103,7 @@ class _$OmitsNullSerializesEmptyStringInputPayload
           [void Function(OmitsNullSerializesEmptyStringInputPayloadBuilder)?
               updates]) =>
       (new OmitsNullSerializesEmptyStringInputPayloadBuilder()..update(updates))
-          .build();
+          ._build();
 
   _$OmitsNullSerializesEmptyStringInputPayload._() : super._();
 
@@ -151,7 +153,9 @@ class OmitsNullSerializesEmptyStringInputPayloadBuilder
   }
 
   @override
-  _$OmitsNullSerializesEmptyStringInputPayload build() {
+  OmitsNullSerializesEmptyStringInputPayload build() => _build();
+
+  _$OmitsNullSerializesEmptyStringInputPayload _build() {
     final _$result =
         _$v ?? new _$OmitsNullSerializesEmptyStringInputPayload._();
     replace(_$result);
@@ -159,4 +163,4 @@ class OmitsNullSerializesEmptyStringInputPayloadBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

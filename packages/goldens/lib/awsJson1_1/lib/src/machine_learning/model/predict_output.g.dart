@@ -11,7 +11,7 @@ class _$PredictOutput extends PredictOutput {
   final _i2.Prediction? prediction;
 
   factory _$PredictOutput([void Function(PredictOutputBuilder)? updates]) =>
-      (new PredictOutputBuilder()..update(updates)).build();
+      (new PredictOutputBuilder()..update(updates))._build();
 
   _$PredictOutput._({this.prediction}) : super._();
 
@@ -69,7 +69,9 @@ class PredictOutputBuilder
   }
 
   @override
-  _$PredictOutput build() {
+  PredictOutput build() => _build();
+
+  _$PredictOutput _build() {
     _$PredictOutput _$result;
     try {
       _$result = _$v ?? new _$PredictOutput._(prediction: _prediction?.build());
@@ -89,4 +91,4 @@ class PredictOutputBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

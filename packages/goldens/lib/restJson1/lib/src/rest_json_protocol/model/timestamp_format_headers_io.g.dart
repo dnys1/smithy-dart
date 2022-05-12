@@ -24,7 +24,7 @@ class _$TimestampFormatHeadersIo extends TimestampFormatHeadersIo {
 
   factory _$TimestampFormatHeadersIo(
           [void Function(TimestampFormatHeadersIoBuilder)? updates]) =>
-      (new TimestampFormatHeadersIoBuilder()..update(updates)).build();
+      (new TimestampFormatHeadersIoBuilder()..update(updates))._build();
 
   _$TimestampFormatHeadersIo._(
       {this.defaultFormat,
@@ -146,7 +146,9 @@ class TimestampFormatHeadersIoBuilder
   }
 
   @override
-  _$TimestampFormatHeadersIo build() {
+  TimestampFormatHeadersIo build() => _build();
+
+  _$TimestampFormatHeadersIo _build() {
     final _$result = _$v ??
         new _$TimestampFormatHeadersIo._(
             defaultFormat: defaultFormat,
@@ -165,7 +167,7 @@ class _$TimestampFormatHeadersIoPayload
     extends TimestampFormatHeadersIoPayload {
   factory _$TimestampFormatHeadersIoPayload(
           [void Function(TimestampFormatHeadersIoPayloadBuilder)? updates]) =>
-      (new TimestampFormatHeadersIoPayloadBuilder()..update(updates)).build();
+      (new TimestampFormatHeadersIoPayloadBuilder()..update(updates))._build();
 
   _$TimestampFormatHeadersIoPayload._() : super._();
 
@@ -212,11 +214,13 @@ class TimestampFormatHeadersIoPayloadBuilder
   }
 
   @override
-  _$TimestampFormatHeadersIoPayload build() {
+  TimestampFormatHeadersIoPayload build() => _build();
+
+  _$TimestampFormatHeadersIoPayload _build() {
     final _$result = _$v ?? new _$TimestampFormatHeadersIoPayload._();
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

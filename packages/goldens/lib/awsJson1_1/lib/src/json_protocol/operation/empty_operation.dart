@@ -19,7 +19,7 @@ class EmptyOperation
       {required String region,
       Uri? baseUri,
       _i2.AWSCredentialsProvider credentialsProvider =
-          const _i2.AWSCredentialsProvider.dartEnvironment()})
+          const _i2.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _credentialsProvider = credentialsProvider;

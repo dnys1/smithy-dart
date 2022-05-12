@@ -15,7 +15,7 @@ class _$MalformedTimestampQueryDefaultInput
           [void Function(MalformedTimestampQueryDefaultInputBuilder)?
               updates]) =>
       (new MalformedTimestampQueryDefaultInputBuilder()..update(updates))
-          .build();
+          ._build();
 
   _$MalformedTimestampQueryDefaultInput._({required this.timestamp})
       : super._() {
@@ -81,7 +81,9 @@ class MalformedTimestampQueryDefaultInputBuilder
   }
 
   @override
-  _$MalformedTimestampQueryDefaultInput build() {
+  MalformedTimestampQueryDefaultInput build() => _build();
+
+  _$MalformedTimestampQueryDefaultInput _build() {
     final _$result = _$v ??
         new _$MalformedTimestampQueryDefaultInput._(
             timestamp: BuiltValueNullFieldError.checkNotNull(
@@ -97,7 +99,7 @@ class _$MalformedTimestampQueryDefaultInputPayload
           [void Function(MalformedTimestampQueryDefaultInputPayloadBuilder)?
               updates]) =>
       (new MalformedTimestampQueryDefaultInputPayloadBuilder()..update(updates))
-          .build();
+          ._build();
 
   _$MalformedTimestampQueryDefaultInputPayload._() : super._();
 
@@ -147,7 +149,9 @@ class MalformedTimestampQueryDefaultInputPayloadBuilder
   }
 
   @override
-  _$MalformedTimestampQueryDefaultInputPayload build() {
+  MalformedTimestampQueryDefaultInputPayload build() => _build();
+
+  _$MalformedTimestampQueryDefaultInputPayload _build() {
     final _$result =
         _$v ?? new _$MalformedTimestampQueryDefaultInputPayload._();
     replace(_$result);
@@ -155,4 +159,4 @@ class MalformedTimestampQueryDefaultInputPayloadBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

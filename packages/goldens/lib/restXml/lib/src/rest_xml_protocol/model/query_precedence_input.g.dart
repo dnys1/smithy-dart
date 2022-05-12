@@ -14,7 +14,7 @@ class _$QueryPrecedenceInput extends QueryPrecedenceInput {
 
   factory _$QueryPrecedenceInput(
           [void Function(QueryPrecedenceInputBuilder)? updates]) =>
-      (new QueryPrecedenceInputBuilder()..update(updates)).build();
+      (new QueryPrecedenceInputBuilder()..update(updates))._build();
 
   _$QueryPrecedenceInput._({this.baz, this.foo}) : super._();
 
@@ -80,7 +80,9 @@ class QueryPrecedenceInputBuilder
   }
 
   @override
-  _$QueryPrecedenceInput build() {
+  QueryPrecedenceInput build() => _build();
+
+  _$QueryPrecedenceInput _build() {
     _$QueryPrecedenceInput _$result;
     try {
       _$result =
@@ -104,7 +106,7 @@ class QueryPrecedenceInputBuilder
 class _$QueryPrecedenceInputPayload extends QueryPrecedenceInputPayload {
   factory _$QueryPrecedenceInputPayload(
           [void Function(QueryPrecedenceInputPayloadBuilder)? updates]) =>
-      (new QueryPrecedenceInputPayloadBuilder()..update(updates)).build();
+      (new QueryPrecedenceInputPayloadBuilder()..update(updates))._build();
 
   _$QueryPrecedenceInputPayload._() : super._();
 
@@ -151,11 +153,13 @@ class QueryPrecedenceInputPayloadBuilder
   }
 
   @override
-  _$QueryPrecedenceInputPayload build() {
+  QueryPrecedenceInputPayload build() => _build();
+
+  _$QueryPrecedenceInputPayload _build() {
     final _$result = _$v ?? new _$QueryPrecedenceInputPayload._();
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

@@ -18,7 +18,7 @@ class _$MalformedFloatInput extends MalformedFloatInput {
 
   factory _$MalformedFloatInput(
           [void Function(MalformedFloatInputBuilder)? updates]) =>
-      (new MalformedFloatInputBuilder()..update(updates)).build();
+      (new MalformedFloatInputBuilder()..update(updates))._build();
 
   _$MalformedFloatInput._(
       {this.floatInBody,
@@ -107,7 +107,9 @@ class MalformedFloatInputBuilder
   }
 
   @override
-  _$MalformedFloatInput build() {
+  MalformedFloatInput build() => _build();
+
+  _$MalformedFloatInput _build() {
     final _$result = _$v ??
         new _$MalformedFloatInput._(
             floatInBody: floatInBody,
@@ -126,7 +128,7 @@ class _$MalformedFloatInputPayload extends MalformedFloatInputPayload {
 
   factory _$MalformedFloatInputPayload(
           [void Function(MalformedFloatInputPayloadBuilder)? updates]) =>
-      (new MalformedFloatInputPayloadBuilder()..update(updates)).build();
+      (new MalformedFloatInputPayloadBuilder()..update(updates))._build();
 
   _$MalformedFloatInputPayload._({this.floatInBody}) : super._();
 
@@ -186,7 +188,9 @@ class MalformedFloatInputPayloadBuilder
   }
 
   @override
-  _$MalformedFloatInputPayload build() {
+  MalformedFloatInputPayload build() => _build();
+
+  _$MalformedFloatInputPayload _build() {
     final _$result =
         _$v ?? new _$MalformedFloatInputPayload._(floatInBody: floatInBody);
     replace(_$result);
@@ -194,4 +198,4 @@ class MalformedFloatInputPayloadBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

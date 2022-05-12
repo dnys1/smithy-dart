@@ -36,7 +36,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
       {required String region,
       Uri? baseUri,
       _i6.AWSCredentialsProvider credentialsProvider =
-          const _i6.AWSCredentialsProvider.dartEnvironment()})
+          const _i6.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _credentialsProvider = credentialsProvider;

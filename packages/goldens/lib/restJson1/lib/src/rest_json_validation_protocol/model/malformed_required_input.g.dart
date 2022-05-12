@@ -16,7 +16,7 @@ class _$MalformedRequiredInput extends MalformedRequiredInput {
 
   factory _$MalformedRequiredInput(
           [void Function(MalformedRequiredInputBuilder)? updates]) =>
-      (new MalformedRequiredInputBuilder()..update(updates)).build();
+      (new MalformedRequiredInputBuilder()..update(updates))._build();
 
   _$MalformedRequiredInput._(
       {required this.string,
@@ -101,7 +101,9 @@ class MalformedRequiredInputBuilder
   }
 
   @override
-  _$MalformedRequiredInput build() {
+  MalformedRequiredInput build() => _build();
+
+  _$MalformedRequiredInput _build() {
     final _$result = _$v ??
         new _$MalformedRequiredInput._(
             string: BuiltValueNullFieldError.checkNotNull(
@@ -121,7 +123,7 @@ class _$MalformedRequiredInputPayload extends MalformedRequiredInputPayload {
 
   factory _$MalformedRequiredInputPayload(
           [void Function(MalformedRequiredInputPayloadBuilder)? updates]) =>
-      (new MalformedRequiredInputPayloadBuilder()..update(updates)).build();
+      (new MalformedRequiredInputPayloadBuilder()..update(updates))._build();
 
   _$MalformedRequiredInputPayload._({required this.string}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -184,7 +186,9 @@ class MalformedRequiredInputPayloadBuilder
   }
 
   @override
-  _$MalformedRequiredInputPayload build() {
+  MalformedRequiredInputPayload build() => _build();
+
+  _$MalformedRequiredInputPayload _build() {
     final _$result = _$v ??
         new _$MalformedRequiredInputPayload._(
             string: BuiltValueNullFieldError.checkNotNull(
@@ -194,4 +198,4 @@ class MalformedRequiredInputPayloadBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

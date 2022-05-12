@@ -28,7 +28,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
       Uri? baseUri,
       _i4.S3ClientConfig s3ClientConfig = const _i4.S3ClientConfig(),
       _i5.AWSCredentialsProvider credentialsProvider =
-          const _i5.AWSCredentialsProvider.dartEnvironment()})
+          const _i5.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _s3ClientConfig = s3ClientConfig,

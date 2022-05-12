@@ -27,7 +27,7 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
       {required String region,
       Uri? baseUri,
       _i3.AWSCredentialsProvider credentialsProvider =
-          const _i3.AWSCredentialsProvider.dartEnvironment()})
+          const _i3.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _credentialsProvider = credentialsProvider;

@@ -15,7 +15,7 @@ class _$TestPayloadStructureInputOutput
 
   factory _$TestPayloadStructureInputOutput(
           [void Function(TestPayloadStructureInputOutputBuilder)? updates]) =>
-      (new TestPayloadStructureInputOutputBuilder()..update(updates)).build();
+      (new TestPayloadStructureInputOutputBuilder()..update(updates))._build();
 
   _$TestPayloadStructureInputOutput._({this.payloadConfig, this.testId})
       : super._();
@@ -85,7 +85,9 @@ class TestPayloadStructureInputOutputBuilder
   }
 
   @override
-  _$TestPayloadStructureInputOutput build() {
+  TestPayloadStructureInputOutput build() => _build();
+
+  _$TestPayloadStructureInputOutput _build() {
     _$TestPayloadStructureInputOutput _$result;
     try {
       _$result = _$v ??
@@ -107,4 +109,4 @@ class TestPayloadStructureInputOutputBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

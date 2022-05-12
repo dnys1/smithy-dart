@@ -34,7 +34,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
       {required String region,
       Uri? baseUri,
       _i5.AWSCredentialsProvider credentialsProvider =
-          const _i5.AWSCredentialsProvider.dartEnvironment()})
+          const _i5.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _credentialsProvider = credentialsProvider;
@@ -86,7 +86,7 @@ class UploadArchiveOperation extends _i1.HttpOperation<
         }
       });
   @override
-  int successCode([_i4.ArchiveCreationOutput? output]) => 200;
+  int successCode([_i4.ArchiveCreationOutput? output]) => 201;
   @override
   _i4.ArchiveCreationOutput buildOutput(
           _i4.ArchiveCreationOutputPayload payload,

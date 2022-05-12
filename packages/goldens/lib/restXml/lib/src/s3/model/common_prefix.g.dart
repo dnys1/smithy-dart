@@ -11,7 +11,7 @@ class _$CommonPrefix extends CommonPrefix {
   final String? prefix;
 
   factory _$CommonPrefix([void Function(CommonPrefixBuilder)? updates]) =>
-      (new CommonPrefixBuilder()..update(updates)).build();
+      (new CommonPrefixBuilder()..update(updates))._build();
 
   _$CommonPrefix._({this.prefix}) : super._();
 
@@ -67,11 +67,13 @@ class CommonPrefixBuilder
   }
 
   @override
-  _$CommonPrefix build() {
+  CommonPrefix build() => _build();
+
+  _$CommonPrefix _build() {
     final _$result = _$v ?? new _$CommonPrefix._(prefix: prefix);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

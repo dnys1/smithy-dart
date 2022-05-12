@@ -16,7 +16,7 @@ class _$ArchiveCreationOutput extends ArchiveCreationOutput {
 
   factory _$ArchiveCreationOutput(
           [void Function(ArchiveCreationOutputBuilder)? updates]) =>
-      (new ArchiveCreationOutputBuilder()..update(updates)).build();
+      (new ArchiveCreationOutputBuilder()..update(updates))._build();
 
   _$ArchiveCreationOutput._({this.archiveId, this.checksum, this.location})
       : super._();
@@ -89,7 +89,9 @@ class ArchiveCreationOutputBuilder
   }
 
   @override
-  _$ArchiveCreationOutput build() {
+  ArchiveCreationOutput build() => _build();
+
+  _$ArchiveCreationOutput _build() {
     final _$result = _$v ??
         new _$ArchiveCreationOutput._(
             archiveId: archiveId, checksum: checksum, location: location);
@@ -101,7 +103,7 @@ class ArchiveCreationOutputBuilder
 class _$ArchiveCreationOutputPayload extends ArchiveCreationOutputPayload {
   factory _$ArchiveCreationOutputPayload(
           [void Function(ArchiveCreationOutputPayloadBuilder)? updates]) =>
-      (new ArchiveCreationOutputPayloadBuilder()..update(updates)).build();
+      (new ArchiveCreationOutputPayloadBuilder()..update(updates))._build();
 
   _$ArchiveCreationOutputPayload._() : super._();
 
@@ -148,11 +150,13 @@ class ArchiveCreationOutputPayloadBuilder
   }
 
   @override
-  _$ArchiveCreationOutputPayload build() {
+  ArchiveCreationOutputPayload build() => _build();
+
+  _$ArchiveCreationOutputPayload _build() {
     final _$result = _$v ?? new _$ArchiveCreationOutputPayload._();
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

@@ -12,7 +12,7 @@ class _$MediaTypeHeaderInput extends MediaTypeHeaderInput {
 
   factory _$MediaTypeHeaderInput(
           [void Function(MediaTypeHeaderInputBuilder)? updates]) =>
-      (new MediaTypeHeaderInputBuilder()..update(updates)).build();
+      (new MediaTypeHeaderInputBuilder()..update(updates))._build();
 
   _$MediaTypeHeaderInput._({this.json}) : super._();
 
@@ -70,7 +70,9 @@ class MediaTypeHeaderInputBuilder
   }
 
   @override
-  _$MediaTypeHeaderInput build() {
+  MediaTypeHeaderInput build() => _build();
+
+  _$MediaTypeHeaderInput _build() {
     final _$result = _$v ?? new _$MediaTypeHeaderInput._(json: json);
     replace(_$result);
     return _$result;
@@ -80,7 +82,7 @@ class MediaTypeHeaderInputBuilder
 class _$MediaTypeHeaderInputPayload extends MediaTypeHeaderInputPayload {
   factory _$MediaTypeHeaderInputPayload(
           [void Function(MediaTypeHeaderInputPayloadBuilder)? updates]) =>
-      (new MediaTypeHeaderInputPayloadBuilder()..update(updates)).build();
+      (new MediaTypeHeaderInputPayloadBuilder()..update(updates))._build();
 
   _$MediaTypeHeaderInputPayload._() : super._();
 
@@ -127,11 +129,13 @@ class MediaTypeHeaderInputPayloadBuilder
   }
 
   @override
-  _$MediaTypeHeaderInputPayload build() {
+  MediaTypeHeaderInputPayload build() => _build();
+
+  _$MediaTypeHeaderInputPayload _build() {
     final _$result = _$v ?? new _$MediaTypeHeaderInputPayload._();
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

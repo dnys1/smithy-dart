@@ -35,7 +35,7 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
       {required String region,
       Uri? baseUri,
       _i5.AWSCredentialsProvider credentialsProvider =
-          const _i5.AWSCredentialsProvider.dartEnvironment()})
+          const _i5.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _credentialsProvider = credentialsProvider;
@@ -88,7 +88,7 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
         }
       });
   @override
-  int successCode([_i4.UploadMultipartPartOutput? output]) => 200;
+  int successCode([_i4.UploadMultipartPartOutput? output]) => 204;
   @override
   _i4.UploadMultipartPartOutput buildOutput(
           _i4.UploadMultipartPartOutputPayload payload,

@@ -25,7 +25,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
       Uri? baseUri,
       _i5.S3ClientConfig s3ClientConfig = const _i5.S3ClientConfig(),
       _i6.AWSCredentialsProvider credentialsProvider =
-          const _i6.AWSCredentialsProvider.dartEnvironment()})
+          const _i6.AWSCredentialsProvider.environment()})
       : _region = region,
         _baseUri = baseUri,
         _s3ClientConfig = s3ClientConfig,

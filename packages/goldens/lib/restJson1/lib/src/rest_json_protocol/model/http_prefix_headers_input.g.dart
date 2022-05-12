@@ -14,7 +14,7 @@ class _$HttpPrefixHeadersInput extends HttpPrefixHeadersInput {
 
   factory _$HttpPrefixHeadersInput(
           [void Function(HttpPrefixHeadersInputBuilder)? updates]) =>
-      (new HttpPrefixHeadersInputBuilder()..update(updates)).build();
+      (new HttpPrefixHeadersInputBuilder()..update(updates))._build();
 
   _$HttpPrefixHeadersInput._({this.foo, this.fooMap}) : super._();
 
@@ -80,7 +80,9 @@ class HttpPrefixHeadersInputBuilder
   }
 
   @override
-  _$HttpPrefixHeadersInput build() {
+  HttpPrefixHeadersInput build() => _build();
+
+  _$HttpPrefixHeadersInput _build() {
     _$HttpPrefixHeadersInput _$result;
     try {
       _$result = _$v ??
@@ -104,7 +106,7 @@ class HttpPrefixHeadersInputBuilder
 class _$HttpPrefixHeadersInputPayload extends HttpPrefixHeadersInputPayload {
   factory _$HttpPrefixHeadersInputPayload(
           [void Function(HttpPrefixHeadersInputPayloadBuilder)? updates]) =>
-      (new HttpPrefixHeadersInputPayloadBuilder()..update(updates)).build();
+      (new HttpPrefixHeadersInputPayloadBuilder()..update(updates))._build();
 
   _$HttpPrefixHeadersInputPayload._() : super._();
 
@@ -151,11 +153,13 @@ class HttpPrefixHeadersInputPayloadBuilder
   }
 
   @override
-  _$HttpPrefixHeadersInputPayload build() {
+  HttpPrefixHeadersInputPayload build() => _build();
+
+  _$HttpPrefixHeadersInputPayload _build() {
     final _$result = _$v ?? new _$HttpPrefixHeadersInputPayload._();
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

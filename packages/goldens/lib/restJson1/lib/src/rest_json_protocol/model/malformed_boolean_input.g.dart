@@ -18,7 +18,7 @@ class _$MalformedBooleanInput extends MalformedBooleanInput {
 
   factory _$MalformedBooleanInput(
           [void Function(MalformedBooleanInputBuilder)? updates]) =>
-      (new MalformedBooleanInputBuilder()..update(updates)).build();
+      (new MalformedBooleanInputBuilder()..update(updates))._build();
 
   _$MalformedBooleanInput._(
       {this.booleanInBody,
@@ -110,7 +110,9 @@ class MalformedBooleanInputBuilder
   }
 
   @override
-  _$MalformedBooleanInput build() {
+  MalformedBooleanInput build() => _build();
+
+  _$MalformedBooleanInput _build() {
     final _$result = _$v ??
         new _$MalformedBooleanInput._(
             booleanInBody: booleanInBody,
@@ -129,7 +131,7 @@ class _$MalformedBooleanInputPayload extends MalformedBooleanInputPayload {
 
   factory _$MalformedBooleanInputPayload(
           [void Function(MalformedBooleanInputPayloadBuilder)? updates]) =>
-      (new MalformedBooleanInputPayloadBuilder()..update(updates)).build();
+      (new MalformedBooleanInputPayloadBuilder()..update(updates))._build();
 
   _$MalformedBooleanInputPayload._({this.booleanInBody}) : super._();
 
@@ -191,7 +193,9 @@ class MalformedBooleanInputPayloadBuilder
   }
 
   @override
-  _$MalformedBooleanInputPayload build() {
+  MalformedBooleanInputPayload build() => _build();
+
+  _$MalformedBooleanInputPayload _build() {
     final _$result = _$v ??
         new _$MalformedBooleanInputPayload._(booleanInBody: booleanInBody);
     replace(_$result);
@@ -199,4 +203,4 @@ class MalformedBooleanInputPayloadBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

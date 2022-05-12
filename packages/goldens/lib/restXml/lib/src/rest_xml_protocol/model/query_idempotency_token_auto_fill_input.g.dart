@@ -15,7 +15,7 @@ class _$QueryIdempotencyTokenAutoFillInput
           [void Function(QueryIdempotencyTokenAutoFillInputBuilder)?
               updates]) =>
       (new QueryIdempotencyTokenAutoFillInputBuilder()..update(updates))
-          .build();
+          ._build();
 
   _$QueryIdempotencyTokenAutoFillInput._({this.token}) : super._();
 
@@ -76,7 +76,9 @@ class QueryIdempotencyTokenAutoFillInputBuilder
   }
 
   @override
-  _$QueryIdempotencyTokenAutoFillInput build() {
+  QueryIdempotencyTokenAutoFillInput build() => _build();
+
+  _$QueryIdempotencyTokenAutoFillInput _build() {
     final _$result =
         _$v ?? new _$QueryIdempotencyTokenAutoFillInput._(token: token);
     replace(_$result);
@@ -90,7 +92,7 @@ class _$QueryIdempotencyTokenAutoFillInputPayload
           [void Function(QueryIdempotencyTokenAutoFillInputPayloadBuilder)?
               updates]) =>
       (new QueryIdempotencyTokenAutoFillInputPayloadBuilder()..update(updates))
-          .build();
+          ._build();
 
   _$QueryIdempotencyTokenAutoFillInputPayload._() : super._();
 
@@ -140,11 +142,13 @@ class QueryIdempotencyTokenAutoFillInputPayloadBuilder
   }
 
   @override
-  _$QueryIdempotencyTokenAutoFillInputPayload build() {
+  QueryIdempotencyTokenAutoFillInputPayload build() => _build();
+
+  _$QueryIdempotencyTokenAutoFillInputPayload _build() {
     final _$result = _$v ?? new _$QueryIdempotencyTokenAutoFillInputPayload._();
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

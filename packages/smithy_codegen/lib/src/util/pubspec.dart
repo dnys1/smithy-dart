@@ -39,7 +39,7 @@ final dependencyVersions = {
   // Dev Dependencies
   'smithy_test': Dependency.dev('^0.4.0', DependencyType.smithy),
   'build_runner': Dependency.dev('^2.0.0'),
-  'built_value_generator': Dependency.dev('^8.0.0'),
+  'built_value_generator': Dependency.dev("'>=8.3.0 <8.4.0'"),
   'lints': Dependency.dev('^1.0.0'),
   'test': Dependency.dev('^1.16.0'),
 };

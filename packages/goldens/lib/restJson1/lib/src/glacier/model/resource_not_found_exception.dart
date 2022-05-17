@@ -56,6 +56,8 @@ abstract class ResourceNotFoundException
   @BuiltValueField(compare: false)
   Map<String, String>? get headers;
   @override
+  Exception? get underlyingException => null;
+  @override
   List<Object?> get props => [code, message, type];
   @override
   String toString() {

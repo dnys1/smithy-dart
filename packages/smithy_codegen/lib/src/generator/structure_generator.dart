@@ -656,6 +656,15 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
         ..type = MethodType.getter
         ..name = 'headers',
     );
+
+    yield Method(
+      (m) => m
+        ..annotations.addAll([DartTypes.core.override])
+        ..returns = DartTypes.core.exception.boxed
+        ..type = MethodType.getter
+        ..name = 'underlyingException'
+        ..body = literalNull.code,
+    );
   }
 
   /// The statements of the output builder.

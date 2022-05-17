@@ -4,6 +4,8 @@ import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/structure_generator.dart';
 import 'package:smithy_test/smithy_test.dart';
 
+import 'common.dart';
+
 void main() {
   test('default value', () {
     const primitiveId = ShapeId(namespace: 'example', shape: 'MyPrimitive');

@@ -53,14 +53,17 @@ class DummyHttpOperation extends HttpOperation<Unit, Unit, Unit, Unit> {
   int successCode([Unit? output]) => 200;
 }
 
-class DummySmithyException implements SmithyException {
-  const DummySmithyException();
+class DummySmithyException implements SmithyHttpException {
+  const DummySmithyException({this.statusCode, this.headers});
 
   factory DummySmithyException.fromResponse(
     DummySmithyException payload,
     AWSStreamedHttpResponse response,
   ) =>
-      payload;
+      DummySmithyException(
+        statusCode: response.statusCode,
+        headers: response.headers,
+      );
 
   static const id = ShapeId(
     namespace: 'com.example',
@@ -76,6 +79,15 @@ class DummySmithyException implements SmithyException {
 
   @override
   ShapeId get shapeId => id;
+
+  @override
+  Exception? get underlyingException => null;
+
+  @override
+  final Map<String, String>? headers;
+
+  @override
+  final int? statusCode;
 }
 
 class _DummySmithyExceptionSerializer

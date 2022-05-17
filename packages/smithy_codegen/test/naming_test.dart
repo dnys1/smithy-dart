@@ -5,6 +5,8 @@ import 'package:smithy_codegen/src/generator/union_generator.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_test/smithy_test.dart';
 
+import 'common.dart';
+
 void main() {
   group('Naming', () {
     group('Struct', () {

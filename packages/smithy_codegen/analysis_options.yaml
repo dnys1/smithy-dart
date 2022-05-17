@@ -4,3 +4,4 @@ analyzer:
   exclude:
     - lib/src/service
     - lib/**/*.g.dart
+    - test/**/*.g.dart

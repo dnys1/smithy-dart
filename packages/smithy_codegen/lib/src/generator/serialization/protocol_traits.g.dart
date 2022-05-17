@@ -21,7 +21,7 @@ class _$ProtocolTraits extends ProtocolTraits {
   final BuiltMap<MemberShape, String> memberWireNames;
 
   factory _$ProtocolTraits([void Function(ProtocolTraitsBuilder)? updates]) =>
-      (new ProtocolTraitsBuilder()..update(updates)).build();
+      (new ProtocolTraitsBuilder()..update(updates))._build();
 
   _$ProtocolTraits._(
       {this.wireName,
@@ -152,7 +152,9 @@ class ProtocolTraitsBuilder
   }
 
   @override
-  _$ProtocolTraits build() {
+  ProtocolTraits build() => _build();
+
+  _$ProtocolTraits _build() {
     _$ProtocolTraits _$result;
     try {
       _$result = _$v ??
@@ -192,7 +194,7 @@ class _$HttpPayload extends HttpPayload {
   final MemberShape? member;
 
   factory _$HttpPayload([void Function(HttpPayloadBuilder)? updates]) =>
-      (new HttpPayloadBuilder()..update(updates)).build();
+      (new HttpPayloadBuilder()..update(updates))._build();
 
   _$HttpPayload._({required this.symbol, this.member}) : super._() {
     BuiltValueNullFieldError.checkNotNull(symbol, 'HttpPayload', 'symbol');
@@ -262,7 +264,9 @@ class HttpPayloadBuilder implements Builder<HttpPayload, HttpPayloadBuilder> {
   }
 
   @override
-  _$HttpPayload build() {
+  HttpPayload build() => _build();
+
+  _$HttpPayload _build() {
     _$HttpPayload _$result;
     try {
       _$result = _$v ??
@@ -294,7 +298,7 @@ class _$HttpPrefixHeaders extends HttpPrefixHeaders {
 
   factory _$HttpPrefixHeaders(
           [void Function(HttpPrefixHeadersBuilder)? updates]) =>
-      (new HttpPrefixHeadersBuilder()..update(updates)).build();
+      (new HttpPrefixHeadersBuilder()..update(updates))._build();
 
   _$HttpPrefixHeaders._({required this.trait, required this.member})
       : super._() {
@@ -369,7 +373,9 @@ class HttpPrefixHeadersBuilder
   }
 
   @override
-  _$HttpPrefixHeaders build() {
+  HttpPrefixHeaders build() => _build();
+
+  _$HttpPrefixHeaders _build() {
     _$HttpPrefixHeaders _$result;
     try {
       _$result = _$v ??
@@ -418,7 +424,7 @@ class _$HttpInputTraits extends HttpInputTraits {
   final HttpPrefixHeaders? httpPrefixHeaders;
 
   factory _$HttpInputTraits([void Function(HttpInputTraitsBuilder)? updates]) =>
-      (new HttpInputTraitsBuilder()..update(updates)).build();
+      (new HttpInputTraitsBuilder()..update(updates))._build();
 
   _$HttpInputTraits._(
       {required this.httpLabels,
@@ -552,7 +558,9 @@ class HttpInputTraitsBuilder
   }
 
   @override
-  _$HttpInputTraits build() {
+  HttpInputTraits build() => _build();
+
+  _$HttpInputTraits _build() {
     _$HttpInputTraits _$result;
     try {
       _$result = _$v ??
@@ -599,7 +607,7 @@ class _$HttpOutputTraits extends HttpOutputTraits {
 
   factory _$HttpOutputTraits(
           [void Function(HttpOutputTraitsBuilder)? updates]) =>
-      (new HttpOutputTraitsBuilder()..update(updates)).build();
+      (new HttpOutputTraitsBuilder()..update(updates))._build();
 
   _$HttpOutputTraits._(
       {this.httpResponseCode,
@@ -693,7 +701,9 @@ class HttpOutputTraitsBuilder
   }
 
   @override
-  _$HttpOutputTraits build() {
+  HttpOutputTraits build() => _build();
+
+  _$HttpOutputTraits _build() {
     _$HttpOutputTraits _$result;
     try {
       _$result = _$v ??
@@ -738,7 +748,7 @@ class _$HttpErrorTraits extends HttpErrorTraits {
   final HttpPrefixHeaders? httpPrefixHeaders;
 
   factory _$HttpErrorTraits([void Function(HttpErrorTraitsBuilder)? updates]) =>
-      (new HttpErrorTraitsBuilder()..update(updates)).build();
+      (new HttpErrorTraitsBuilder()..update(updates))._build();
 
   _$HttpErrorTraits._(
       {required this.shapeId,
@@ -875,7 +885,9 @@ class HttpErrorTraitsBuilder
   }
 
   @override
-  _$HttpErrorTraits build() {
+  HttpErrorTraits build() => _build();
+
+  _$HttpErrorTraits _build() {
     _$HttpErrorTraits _$result;
     try {
       _$result = _$v ??
@@ -919,7 +931,7 @@ class _$PaginationItem extends PaginationItem {
   final Reference symbol;
 
   factory _$PaginationItem([void Function(PaginationItemBuilder)? updates]) =>
-      (new PaginationItemBuilder()..update(updates)).build();
+      (new PaginationItemBuilder()..update(updates))._build();
 
   _$PaginationItem._(
       {required this.member,
@@ -1021,7 +1033,9 @@ class PaginationItemBuilder
   }
 
   @override
-  _$PaginationItem build() {
+  PaginationItem build() => _build();
+
+  _$PaginationItem _build() {
     _$PaginationItem _$result;
     try {
       _$result = _$v ??
@@ -1068,7 +1082,7 @@ class _$PaginatedTraits extends PaginatedTraits {
   final PaginationItem? items;
 
   factory _$PaginatedTraits([void Function(PaginatedTraitsBuilder)? updates]) =>
-      (new PaginatedTraitsBuilder()..update(updates)).build();
+      (new PaginatedTraitsBuilder()..update(updates))._build();
 
   _$PaginatedTraits._(
       {this.inputTokenPath,
@@ -1210,7 +1224,9 @@ class PaginatedTraitsBuilder
   }
 
   @override
-  _$PaginatedTraits build() {
+  PaginatedTraits build() => _build();
+
+  _$PaginatedTraits _build() {
     _$PaginatedTraits _$result;
     try {
       _$result = _$v ??
@@ -1248,4 +1264,4 @@ class PaginatedTraitsBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

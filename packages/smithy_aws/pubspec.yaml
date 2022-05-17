@@ -20,7 +20,7 @@ dependencies:
   path: ^1.8.0
   smithy:
     hosted: https://pub.dillonnys.com
-    version: ^0.4.0
+    version: ^0.5.0
   uuid: ^3.0.6
   xml: ^5.3.1
 

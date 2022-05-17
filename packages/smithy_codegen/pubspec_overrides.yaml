@@ -1,0 +1,5 @@
+dependency_overrides:
+  smithy:
+    path: ../smithy
+  smithy_aws:
+    path: ../smithy_aws

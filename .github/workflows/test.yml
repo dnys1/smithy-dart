@@ -363,7 +363,7 @@ jobs:
         if: "always() && steps.packages_goldens_lib_restXmlWithNamespace_pub_upgrade.conclusion == 'success'"
         working-directory: packages/goldens/lib/restXmlWithNamespace
         run: dart test -p firefox
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -415,7 +415,7 @@ jobs:
         if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
         working-directory: packages/smithy_codegen
         run: dart test -p firefox
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -525,7 +525,7 @@ jobs:
         if: "always() && steps.packages_goldens_lib_restXmlWithNamespace_pub_upgrade.conclusion == 'success'"
         working-directory: packages/goldens/lib/restXmlWithNamespace
         run: dart test -p firefox
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -577,7 +577,7 @@ jobs:
         if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
         working-directory: packages/smithy_codegen
         run: dart test -p firefox
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -629,7 +629,7 @@ jobs:
         if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
         working-directory: packages/smithy_codegen
         run: dart test
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -681,7 +681,7 @@ jobs:
         if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
         working-directory: packages/smithy_codegen
         run: dart test
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -723,7 +723,7 @@ jobs:
         if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
         working-directory: packages/smithy_codegen
         run: dart test
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002
@@ -765,7 +765,7 @@ jobs:
         if: "always() && steps.packages_smithy_codegen_pub_upgrade.conclusion == 'success'"
         working-directory: packages/smithy_codegen
         run: dart test
-    if: github.event.pull_request.merged == true
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     needs:
       - job_001
       - job_002

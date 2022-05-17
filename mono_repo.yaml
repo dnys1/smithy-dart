@@ -15,7 +15,7 @@ github:
 
   stages:
     - name: unit_test_native
-      if: github.event.pull_request.merged == true
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
 self_validate: analyze_and_format
 

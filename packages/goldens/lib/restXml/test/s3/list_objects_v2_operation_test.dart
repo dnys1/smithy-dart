@@ -3,7 +3,7 @@
 // ignore_for_file: unused_element
 library rest_xml.s3.test.list_objects_v2_operation_test_test;
 
-import 'package:aws_signature_v4/aws_signature_v4.dart' as _i11;
+import 'package:aws_signature_v4/aws_signature_v4.dart' as _i10;
 import 'package:built_collection/built_collection.dart' as _i15;
 import 'package:built_value/serializer.dart';
 import 'package:rest_xml/src/s3/model/aws_config.dart' as _i8;
@@ -26,7 +26,7 @@ import 'package:rest_xml/src/s3/model/s3_addressing_style.dart' as _i5;
 import 'package:rest_xml/src/s3/model/s3_config.dart' as _i25;
 import 'package:rest_xml/src/s3/model/scoped_config.dart' as _i20;
 import 'package:rest_xml/src/s3/operation/list_objects_v2_operation.dart'
-    as _i10;
+    as _i11;
 import 'package:smithy/smithy.dart' as _i12;
 import 'package:smithy_aws/smithy_aws.dart' as _i9;
 import 'package:smithy_test/smithy_test.dart' as _i1;
@@ -70,14 +70,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3DefaultAddressing',
@@ -131,14 +133,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3VirtualHostAddressing',
@@ -195,14 +199,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3PathAddressing',
@@ -262,14 +268,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3VirtualHostDualstackAddressing',
@@ -332,14 +340,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3VirtualHostAccelerateAddressing',
@@ -403,14 +413,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3VirtualHostDualstackAccelerateAddressing',
@@ -474,14 +486,16 @@ void main() {
                   false,
           usePathStyle: (config.scopedConfig?.operation?.s3?.addressingStyle ??
                   config.scopedConfig?.client?.s3?.addressingStyle) ==
-              _i5.S3AddressingStyle.path);
+              _i5.S3AddressingStyle.path,
+          signerConfiguration:
+              _i10.S3ServiceConfiguration(signPayload: false, chunked: false));
       await _i1.httpRequestTest(
-          operation: _i10.ListObjectsV2Operation(
+          operation: _i11.ListObjectsV2Operation(
               region: config.scopedConfig?.client?.region ?? 'us-east-1',
               baseUri: Uri.parse('https://s3.us-west-2.amazonaws.com'),
               s3ClientConfig: s3ClientConfig,
-              credentialsProvider: const _i11.AWSCredentialsProvider(
-                  _i11.AWSCredentials(
+              credentialsProvider: const _i10.AWSCredentialsProvider(
+                  _i10.AWSCredentials(
                       'DUMMY-ACCESS-KEY-ID', 'DUMMY-SECRET-ACCESS-KEY'))),
           testCase: const _i1.HttpRequestTestCase(
               id: 'S3OperationAddressingPreferred',

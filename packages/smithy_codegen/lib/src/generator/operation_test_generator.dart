@@ -429,6 +429,11 @@ class OperationTestGenerator extends LibraryGenerator<OperationShape>
                     namespace: 'aws.protocoltests.config',
                     shape: 'S3AddressingStyle'))
                 .property('path')),
+            'signerConfiguration':
+                DartTypes.awsSigV4.s3ServiceConfiguration.newInstance([], {
+              'signPayload': literalFalse,
+              'chunked': literalFalse,
+            })
           }).assignFinal('s3ClientConfig'),
         );
       } else {

@@ -139,6 +139,7 @@ stages:
               - windows
               - macos
           - test: -p chrome
+          - test: -p firefox
 ''');
   }
   File(monoPkgPath).writeAsStringSync(monoPkg.toString());

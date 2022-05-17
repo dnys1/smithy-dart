@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:aws_common/aws_common.dart';
 import 'package:aws_common/src/config/aws_config_value.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
@@ -15,7 +16,7 @@ void main() {
       final httpClient = HttpClient.v1(
         baseClient: MockClient((request) async {
           return Response('{}', 500, headers: {
-            'x-amz-retry-after': '500',
+            AWSHeaders.retryAfter: '500',
           });
         }),
       );

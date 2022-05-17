@@ -189,6 +189,9 @@ class _TransientSmithyException implements SmithyException {
 
   @override
   ShapeId? get shapeId => null;
+
+  @override
+  Exception? get underlyingException => null;
 }
 
 const _standardTestCases = '''

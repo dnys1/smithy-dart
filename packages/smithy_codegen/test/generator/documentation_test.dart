@@ -1,6 +1,3 @@
-// TODO(dnys1): Remove when Dart 2.17 is released
-@TestOn('vm')
-
 import 'package:code_builder/code_builder.dart';
 import 'package:smithy/ast.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';

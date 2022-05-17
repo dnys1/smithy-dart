@@ -1,4 +1,6 @@
 dependency_overrides:
+  aws_common: ^0.1.0
+  aws_signature_v4: ^0.1.0
   smithy:
     path: ../smithy
   smithy_aws:

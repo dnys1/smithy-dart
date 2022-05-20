@@ -117,6 +117,7 @@ analyzer:
 
   // Create mono_pkg for testing
   final monoPkgPath = path.join(outputPath, 'mono_pkg.yaml');
+  final dartTestPath = path.join(outputPath, 'dart_test.yaml');
   final monoPkg = StringBuffer('''
 sdk:
   - stable
@@ -140,6 +141,13 @@ stages:
               - macos
           - test: -p chrome
           - test: -p firefox
+''');
+
+    File(dartTestPath).writeAsStringSync('''
+override_platforms:
+  firefox:
+    settings:
+      arguments: -headless
 ''');
   }
   File(monoPkgPath).writeAsStringSync(monoPkg.toString());

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_xml.rest_xml_protocol.test.http_request_with_labels_and_timestamp_format_operation_test_test;

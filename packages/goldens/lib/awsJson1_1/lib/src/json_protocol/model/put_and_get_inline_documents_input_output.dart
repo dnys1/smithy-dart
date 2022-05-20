@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.model.put_and_get_inline_documents_input_output;
 

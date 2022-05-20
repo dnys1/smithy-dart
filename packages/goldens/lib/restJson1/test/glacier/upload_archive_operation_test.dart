@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_json1.glacier.test.upload_archive_operation_test_test;

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.malformed_short_operation;
 

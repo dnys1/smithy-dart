@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.model.http_payload_with_member_xml_name_input_output;
 

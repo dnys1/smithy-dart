@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.4.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
 
 library generic_json.generic_json.common.serializers;
 

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.no_input_and_no_output_operation;
 
@@ -11,7 +11,6 @@ import 'package:rest_json1/src/rest_json_protocol/common/serializers.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
-import 'package:uuid/uuid.dart' as _i7;
 
 /// The example tests how requests and responses are serialized when there's no request or response payload because the operation has no input or output. While this should be rare, code generators must support this.
 class NoInputAndNoOutputOperation
@@ -69,7 +68,7 @@ class NoInputAndNoOutputOperation
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i5.AWSHeaders.sdkInvocationId: const _i7.Uuid().v4()}
+          ...{_i5.AWSHeaders.sdkInvocationId: _i5.uuid(secure: true)}
         });
   }
 }

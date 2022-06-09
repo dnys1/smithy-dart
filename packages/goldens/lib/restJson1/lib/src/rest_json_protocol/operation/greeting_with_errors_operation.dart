@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.greeting_with_errors_operation;
 
@@ -18,7 +18,6 @@ import 'package:rest_json1/src/rest_json_protocol/model/invalid_greeting.dart'
     as _i9;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
-import 'package:uuid/uuid.dart' as _i11;
 
 /// This operation has four possible return values: 1. A successful response in the form of GreetingWithErrorsOutput 2. An InvalidGreeting error. 3. A BadRequest error. 4. A FooError. Implementations must be able to successfully take a response and properly (de)serialize successful and error responses based on the the presence of the
 class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
@@ -101,7 +100,7 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

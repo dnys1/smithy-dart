@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.s3.operation.list_objects_v2_operation;
 
@@ -13,7 +13,6 @@ import 'package:rest_xml/src/s3/model/list_objects_v2_request.dart' as _i2;
 import 'package:rest_xml/src/s3/model/no_such_bucket.dart' as _i9;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i11;
 
 class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
     _i2.ListObjectsV2RequestPayload,
@@ -151,7 +150,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
         });
   }
 

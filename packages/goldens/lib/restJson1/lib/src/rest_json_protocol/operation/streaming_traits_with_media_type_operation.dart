@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.streaming_traits_with_media_type_operation;
 
@@ -13,7 +13,6 @@ import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_with_me
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i8;
 
 /// This examples serializes a streaming media-typed blob shape in the request body. This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
 class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
@@ -88,7 +87,7 @@ class StreamingTraitsWithMediaTypeOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
         });
   }
 }

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_xml_with_namespace.rest_xml_protocol_namespace.test.simple_scalar_properties_operation_test_test;

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.json_enums_operation;
 
@@ -13,7 +13,6 @@ import 'package:aws_json1_1/src/json_protocol/model/json_enums_input_output.dart
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i9;
 
 /// This example serializes enums as top level properties, in lists, sets, and maps.
 class JsonEnumsOperation extends _i1.HttpOperation<
@@ -87,7 +86,7 @@ class JsonEnumsOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

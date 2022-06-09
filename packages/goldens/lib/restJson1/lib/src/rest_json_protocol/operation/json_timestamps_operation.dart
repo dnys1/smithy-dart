@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.json_timestamps_operation;
 
@@ -13,7 +13,6 @@ import 'package:rest_json1/src/rest_json_protocol/model/json_timestamps_input_ou
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
-import 'package:uuid/uuid.dart' as _i8;
 
 /// This tests how timestamps are serialized, including using the default format of date-time and various @timestampFormat trait values.
 class JsonTimestampsOperation extends _i1.HttpOperation<
@@ -81,7 +80,7 @@ class JsonTimestampsOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

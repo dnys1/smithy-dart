@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library aws_json1_1.machine_learning.operation.predict_operation;
 
@@ -26,7 +26,6 @@ import 'package:aws_json1_1/src/machine_learning/model/resource_not_found_except
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i5;
-import 'package:uuid/uuid.dart' as _i15;
 
 class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
     _i2.PredictInput, _i3.PredictOutput, _i3.PredictOutput> {
@@ -135,7 +134,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
         });
   }
 }

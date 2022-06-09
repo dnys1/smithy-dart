@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.http_payload_with_xml_namespace_and_prefix_operation;
 
@@ -14,7 +14,6 @@ import 'package:rest_xml/src/rest_xml_protocol/model/payload_with_xml_namespace_
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i9;
 
 /// The following example serializes a payload that uses an XML namespace.
 class HttpPayloadWithXmlNamespaceAndPrefixOperation extends _i1.HttpOperation<
@@ -88,7 +87,7 @@ class HttpPayloadWithXmlNamespaceAndPrefixOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
         });
   }
 }

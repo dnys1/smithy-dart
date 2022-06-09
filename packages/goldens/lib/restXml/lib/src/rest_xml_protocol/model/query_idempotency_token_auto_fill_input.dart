@@ -1,13 +1,12 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.model.query_idempotency_token_auto_fill_input;
 
 import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart' as _i4;
+import 'package:meta/meta.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
-import 'package:uuid/uuid.dart' as _i3;
 
 part 'query_idempotency_token_auto_fill_input.g.dart';
 
@@ -24,7 +23,7 @@ abstract class QueryIdempotencyTokenAutoFillInput
     if (const bool.hasEnvironment('SMITHY_TEST')) {
       token ??= '00000000-0000-4000-8000-000000000000';
     } else {
-      token ??= const _i3.Uuid().v4();
+      token ??= _i2.uuid(secure: true);
     }
     return _$QueryIdempotencyTokenAutoFillInput._(token: token);
   }
@@ -54,7 +53,7 @@ abstract class QueryIdempotencyTokenAutoFillInput
     if (const bool.hasEnvironment('SMITHY_TEST')) {
       b.token = '00000000-0000-4000-8000-000000000000';
     } else {
-      b.token = const _i3.Uuid().v4();
+      b.token = _i2.uuid(secure: true);
     }
   }
 
@@ -73,7 +72,7 @@ abstract class QueryIdempotencyTokenAutoFillInput
   }
 }
 
-@_i4.internal
+@_i3.internal
 abstract class QueryIdempotencyTokenAutoFillInputPayload
     with
         _i2.AWSEquatable<QueryIdempotencyTokenAutoFillInputPayload>

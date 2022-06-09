@@ -24,11 +24,11 @@ class _$MalformedRequiredInput extends MalformedRequiredInput {
       required this.stringInQuery})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        string, 'MalformedRequiredInput', 'string');
+        string, r'MalformedRequiredInput', 'string');
     BuiltValueNullFieldError.checkNotNull(
-        stringInHeader, 'MalformedRequiredInput', 'stringInHeader');
+        stringInHeader, r'MalformedRequiredInput', 'stringInHeader');
     BuiltValueNullFieldError.checkNotNull(
-        stringInQuery, 'MalformedRequiredInput', 'stringInQuery');
+        stringInQuery, r'MalformedRequiredInput', 'stringInQuery');
   }
 
   @override
@@ -107,11 +107,11 @@ class MalformedRequiredInputBuilder
     final _$result = _$v ??
         new _$MalformedRequiredInput._(
             string: BuiltValueNullFieldError.checkNotNull(
-                string, 'MalformedRequiredInput', 'string'),
+                string, r'MalformedRequiredInput', 'string'),
             stringInHeader: BuiltValueNullFieldError.checkNotNull(
-                stringInHeader, 'MalformedRequiredInput', 'stringInHeader'),
+                stringInHeader, r'MalformedRequiredInput', 'stringInHeader'),
             stringInQuery: BuiltValueNullFieldError.checkNotNull(
-                stringInQuery, 'MalformedRequiredInput', 'stringInQuery'));
+                stringInQuery, r'MalformedRequiredInput', 'stringInQuery'));
     replace(_$result);
     return _$result;
   }
@@ -127,7 +127,7 @@ class _$MalformedRequiredInputPayload extends MalformedRequiredInputPayload {
 
   _$MalformedRequiredInputPayload._({required this.string}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        string, 'MalformedRequiredInputPayload', 'string');
+        string, r'MalformedRequiredInputPayload', 'string');
   }
 
   @override
@@ -192,10 +192,10 @@ class MalformedRequiredInputPayloadBuilder
     final _$result = _$v ??
         new _$MalformedRequiredInputPayload._(
             string: BuiltValueNullFieldError.checkNotNull(
-                string, 'MalformedRequiredInputPayload', 'string'));
+                string, r'MalformedRequiredInputPayload', 'string'));
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

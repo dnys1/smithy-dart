@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.http_payload_traits_with_media_type_operation;
 
@@ -13,7 +13,6 @@ import 'package:rest_xml/src/rest_xml_protocol/model/http_payload_traits_with_me
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i9;
 
 /// This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
 class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
@@ -91,7 +90,7 @@ class HttpPayloadTraitsWithMediaTypeOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
         });
   }
 }

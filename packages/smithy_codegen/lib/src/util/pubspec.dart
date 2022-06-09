@@ -22,9 +22,9 @@ class Dependency with AWSEquatable<Dependency> {
 /// All dependencies and the current versions.
 final dependencyVersions = {
   // Dependencies
-  'smithy': Dependency('^0.4.0', DependencyType.smithy),
-  'smithy_aws': Dependency('^0.4.0', DependencyType.smithy),
-  'smithy_codegen': Dependency('^0.4.0', DependencyType.smithy),
+  'smithy': Dependency('^0.5.0', DependencyType.smithy),
+  'smithy_aws': Dependency('^0.5.0', DependencyType.smithy),
+  'smithy_codegen': Dependency('^0.5.0', DependencyType.smithy),
   'aws_common': Dependency('^0.1.0'),
   'aws_signature_v4': Dependency('^0.1.0'),
   'built_value': Dependency('^8.0.0'),
@@ -33,11 +33,10 @@ final dependencyVersions = {
   'meta': Dependency('^1.7.0'),
   'shelf': Dependency('^1.1.0'),
   'shelf_router': Dependency('^1.1.0'),
-  'uuid': Dependency('^3.0.0'),
   'xml': Dependency('^5.3.1'),
 
   // Dev Dependencies
-  'smithy_test': Dependency.dev('^0.4.0', DependencyType.smithy),
+  'smithy_test': Dependency.dev('^0.5.0', DependencyType.smithy),
   'build_runner': Dependency.dev('^2.0.0'),
   'built_value_generator': Dependency.dev("'>=8.3.0 <8.4.0'"),
   'lints': Dependency.dev('^1.0.0'),

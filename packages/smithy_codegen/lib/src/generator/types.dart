@@ -18,7 +18,6 @@ import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf_router/shelf_router.dart' as shelf_router;
 import 'package:smithy/smithy.dart' as smithy;
 import 'package:smithy_aws/smithy_aws.dart' as smithy_aws;
-import 'package:uuid/uuid.dart' as _uuid;
 import 'package:xml/xml.dart' as xml;
 
 /// Common type references used throughout code generation.
@@ -72,9 +71,6 @@ abstract class DartTypes {
 
   /// `dart:typed_data` types.
   static const typedData = _TypedData();
-
-  /// `package:uuid` types.
-  static const uuid = _Uuid();
 
   /// `package:xml` types.
   static const xml = _Xml();
@@ -253,6 +249,11 @@ class _AwsCommon {
   /// Creates an [aws_common.AWSStreamedHttpResponse] reference.
   Reference get awsStreamedHttpResponse =>
       const Reference('AWSStreamedHttpResponse', _url);
+
+  /// Creates a secure [aws_common.uuid] instance.
+  Expression uuid() => const Reference('uuid', _url).call([], {
+        'secure': literalTrue,
+      });
 }
 
 /// `package:aws_signature_v4` types.
@@ -931,16 +932,6 @@ class _TypedData {
 
   /// Creates a [Uint8List] reference.
   Reference get uint8List => const Reference('Uint8List', _url);
-}
-
-/// `package:uuid` types
-class _Uuid {
-  const _Uuid();
-
-  static const _url = 'package:uuid/uuid.dart';
-
-  /// Creates a [_uuid.Uuid] reference.
-  Reference get uuid => const Reference('Uuid', _url);
 }
 
 /// `package:xml` types

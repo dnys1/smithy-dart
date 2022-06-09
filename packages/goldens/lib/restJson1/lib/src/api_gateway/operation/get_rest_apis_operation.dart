@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.api_gateway.operation.get_rest_apis_operation;
 
@@ -22,7 +22,6 @@ import 'package:rest_json1/src/api_gateway/model/unauthorized_exception.dart'
     as _i13;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i7;
-import 'package:uuid/uuid.dart' as _i15;
 
 class GetRestApisOperation extends _i1.PaginatedHttpOperation<
     _i2.GetRestApisRequestPayload,
@@ -129,7 +128,7 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i9.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+          ...{_i9.AWSHeaders.sdkInvocationId: _i9.uuid(secure: true)}
         });
   }
 

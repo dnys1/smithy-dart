@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.xml_lists_operation;
 
@@ -12,7 +12,6 @@ import 'package:rest_xml/src/rest_xml_protocol/model/xml_lists_input_output.dart
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
-import 'package:uuid/uuid.dart' as _i8;
 
 /// This test case serializes XML lists for the following cases for both input and output: 1. Normal XML lists. 2. Normal XML sets. 3. XML lists of lists. 4. XML lists with @xmlName on its members 5. Flattened XML lists. 6. Flattened XML lists with @xmlName. 7. Flattened XML lists with @xmlNamespace. 8. Lists of structures. 9. Flattened XML list of structures
 class XmlListsOperation extends _i1.HttpOperation<_i2.XmlListsInputOutput,
@@ -72,7 +71,7 @@ class XmlListsOperation extends _i1.HttpOperation<_i2.XmlListsInputOutput,
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.glacier.operation.upload_multipart_part_operation;
 
@@ -24,7 +24,6 @@ import 'package:rest_json1/src/glacier/model/upload_multipart_part_output.dart'
     as _i4;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i6;
-import 'package:uuid/uuid.dart' as _i15;
 
 class UploadMultipartPartOperation extends _i1.HttpOperation<
     _i2.Stream<List<int>>,
@@ -152,7 +151,7 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i8.AWSHeaders.sdkInvocationId: const _i15.Uuid().v4()}
+          ...{_i8.AWSHeaders.sdkInvocationId: _i8.uuid(secure: true)}
         });
   }
 }

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_xml.rest_xml_protocol.test.http_payload_traits_with_media_type_operation_test_test;

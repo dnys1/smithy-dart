@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.post_union_with_json_name_operation;
 
@@ -15,7 +15,6 @@ import 'package:rest_json1/src/rest_json_protocol/model/post_union_with_json_nam
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i9;
 
 /// This operation defines a union that uses jsonName on some members.
 class PostUnionWithJsonNameOperation extends _i1.HttpOperation<
@@ -83,7 +82,7 @@ class PostUnionWithJsonNameOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i7.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i7.AWSHeaders.sdkInvocationId: _i7.uuid(secure: true)}
         });
   }
 }

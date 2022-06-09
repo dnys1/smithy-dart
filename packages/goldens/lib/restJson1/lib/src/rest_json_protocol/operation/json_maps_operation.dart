@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.json_maps_operation;
 
@@ -13,7 +13,6 @@ import 'package:rest_json1/src/rest_json_protocol/model/json_maps_input_output.d
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
-import 'package:uuid/uuid.dart' as _i8;
 
 /// The example tests basic map serialization.
 class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
@@ -72,7 +71,7 @@ class JsonMapsOperation extends _i1.HttpOperation<_i2.JsonMapsInputOutput,
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

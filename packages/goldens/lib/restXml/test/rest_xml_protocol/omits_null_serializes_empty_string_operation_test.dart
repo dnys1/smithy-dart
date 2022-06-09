@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_xml.rest_xml_protocol.test.omits_null_serializes_empty_string_operation_test_test;

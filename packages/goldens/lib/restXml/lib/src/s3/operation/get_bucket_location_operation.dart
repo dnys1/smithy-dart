@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.s3.operation.get_bucket_location_operation;
 
@@ -13,7 +13,6 @@ import 'package:rest_xml/src/s3/model/get_bucket_location_output.dart' as _i4;
 import 'package:rest_xml/src/s3/model/get_bucket_location_request.dart' as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i5;
-import 'package:uuid/uuid.dart' as _i11;
 
 class GetBucketLocationOperation extends _i1.HttpOperation<
     _i2.GetBucketLocationRequestPayload,
@@ -114,7 +113,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i8.AWSHeaders.sdkInvocationId: const _i11.Uuid().v4()}
+          ...{_i8.AWSHeaders.sdkInvocationId: _i8.uuid(secure: true)}
         });
   }
 }

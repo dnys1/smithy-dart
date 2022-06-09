@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.host_with_path_operation;
 
@@ -11,7 +11,6 @@ import 'package:rest_json1/src/rest_json_protocol/common/serializers.dart'
     as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i2;
-import 'package:uuid/uuid.dart' as _i7;
 
 class HostWithPathOperation
     extends _i1.HttpOperation<_i1.Unit, _i1.Unit, _i1.Unit, _i1.Unit> {
@@ -67,7 +66,7 @@ class HostWithPathOperation
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i5.AWSHeaders.sdkInvocationId: const _i7.Uuid().v4()}
+          ...{_i5.AWSHeaders.sdkInvocationId: _i5.uuid(secure: true)}
         });
   }
 }

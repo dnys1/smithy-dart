@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_json1.rest_json_protocol.test.media_type_header_operation_test_test;

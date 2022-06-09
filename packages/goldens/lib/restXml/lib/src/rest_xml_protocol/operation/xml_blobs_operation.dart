@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.xml_blobs_operation;
 
@@ -12,7 +12,6 @@ import 'package:rest_xml/src/rest_xml_protocol/model/xml_blobs_input_output.dart
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
-import 'package:uuid/uuid.dart' as _i8;
 
 /// Blobs are base64 encoded
 class XmlBlobsOperation extends _i1.HttpOperation<_i2.XmlBlobsInputOutput,
@@ -72,7 +71,7 @@ class XmlBlobsOperation extends _i1.HttpOperation<_i2.XmlBlobsInputOutput,
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

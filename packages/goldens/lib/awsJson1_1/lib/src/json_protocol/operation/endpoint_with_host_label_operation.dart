@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.endpoint_with_host_label_operation;
 
@@ -13,7 +13,6 @@ import 'package:aws_json1_1/src/json_protocol/model/host_label_input.dart'
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i3;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i4;
-import 'package:uuid/uuid.dart' as _i9;
 
 class EndpointWithHostLabelOperation extends _i1
     .HttpOperation<_i2.HostLabelInput, _i2.HostLabelInput, _i1.Unit, _i1.Unit> {
@@ -84,7 +83,7 @@ class EndpointWithHostLabelOperation extends _i1
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i9.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

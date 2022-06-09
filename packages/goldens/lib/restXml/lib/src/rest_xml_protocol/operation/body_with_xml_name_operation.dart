@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.0. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.body_with_xml_name_operation;
 
@@ -12,7 +12,6 @@ import 'package:rest_xml/src/rest_xml_protocol/model/body_with_xml_name_input_ou
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
-import 'package:uuid/uuid.dart' as _i8;
 
 /// The following example serializes a body that uses an XML name, changing the wrapper name.
 class BodyWithXmlNameOperation extends _i1.HttpOperation<
@@ -81,7 +80,7 @@ class BodyWithXmlNameOperation extends _i1.HttpOperation<
         () => super.run(input, client: client, useProtocol: useProtocol),
         zoneValues: {
           ...?_awsEndpoint.credentialScope?.zoneValues,
-          ...{_i6.AWSHeaders.sdkInvocationId: const _i8.Uuid().v4()}
+          ...{_i6.AWSHeaders.sdkInvocationId: _i6.uuid(secure: true)}
         });
   }
 }

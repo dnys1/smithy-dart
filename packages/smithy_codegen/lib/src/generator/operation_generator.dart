@@ -495,10 +495,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   const Code(','),
                   literalMap({
                     DartTypes.awsCommon.awsHeaders.property('sdkInvocationId'):
-                        DartTypes.uuid.uuid
-                            .constInstance([])
-                            .property('v4')
-                            .call([]),
+                        DartTypes.awsCommon.uuid(),
                   }).spread.code,
                   const Code('}'),
                 ])),

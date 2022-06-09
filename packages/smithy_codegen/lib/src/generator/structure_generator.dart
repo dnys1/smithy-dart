@@ -382,9 +382,7 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           literalString('SMITHY_TEST'),
         ])),
         const Code('else {'),
-        assign(
-          DartTypes.uuid.uuid.constInstance([]).property('v4').call([]),
-        ).statement,
+        assign(DartTypes.awsCommon.uuid()).statement,
         const Code('}'),
       ]);
     }

@@ -16,6 +16,10 @@ export 'src/http/retry/aws_retryer.dart';
 // AWS Protocols
 export 'src/protocol/aws_json_1_0.dart';
 export 'src/protocol/aws_json_1_1.dart';
+export 'src/protocol/event_stream_protocol.dart';
 export 'src/protocol/rest_json_1.dart';
 export 'src/protocol/rest_xml.dart';
+
+// S3
 export 'src/s3/s3_client_config.dart';
+export 'src/s3/select_object_content.dart';

@@ -36,15 +36,17 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
       final streamingTraits = inputShape.streamingTraits(context) ??
           outputShape.streamingTraits(context);
       // TODO: h/2
-      if (streamingTraits == null) {
-        baseClass = DartTypes.smithy.httpOperation(
+      if (streamingTraits != null &&
+          streamingTraits.isEventStream &&
+          !context.isS3) {
+        baseClass = DartTypes.smithy.webSocketOperation(
           inputPayload.symbol.unboxed,
           inputSymbol,
           outputPayload.symbol.unboxed,
           outputSymbol,
         );
       } else {
-        baseClass = DartTypes.smithy.webSocketOperation(
+        baseClass = DartTypes.smithy.httpOperation(
           inputPayload.symbol.unboxed,
           inputSymbol,
           outputPayload.symbol.unboxed,
@@ -110,8 +112,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     final uri = httpTrait!.uri;
     // S3 requires special treatment of the path
     // https://awslabs.github.io/smithy/1.0/spec/aws/customizations/s3-customizations.html
-    final isS3 = context.service?.resolvedService?.sdkId == 'S3';
-    if (isS3 && uri.contains(RegExp('^/{Bucket}'))) {
+    if (!context.isS3 && uri.contains(RegExp('^/{Bucket}'))) {
       yield builder
           .property('path')
           .assign(refer('_s3ClientConfig').property('usePathStyle').conditional(
@@ -136,7 +137,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
     }
 
     final hostPrefix = shape.getTrait<EndpointTrait>()?.hostPrefix;
-    if (isS3 && uri.contains(RegExp('^/{Bucket}'))) {
+    if (!context.isS3 && uri.contains(RegExp('^/{Bucket}'))) {
       yield builder
           .property('hostPrefix')
           .assign(
@@ -522,8 +523,8 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
   }
 
   /// The `protocols` override getter.
-  Field get _protocolsGetter => Field(
-        (f) => f
+  Field get _protocolsGetter => Field((f) {
+        f
           ..annotations.add(DartTypes.core.override)
           ..late = true
           ..modifier = FieldModifier.final$
@@ -535,20 +536,33 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
               outputSymbol,
             ),
           )
-          ..name = 'protocols'
-          ..assignment = literalList([
-            for (var protocol in context.serviceProtocols)
+          ..name = 'protocols';
+
+        final protocols = <Expression>[];
+        for (var protocol in context.serviceProtocols) {
+          var protocolInst =
               protocol.instantiableProtocolSymbol.newInstance([], {
-                'serializers': protocol.serializers(context),
-                'builderFactories': context.builderFactoriesRef,
-                'requestInterceptors':
-                    literalList(protocol.requestInterceptors(shape, context)),
-                'responseInterceptors':
-                    literalList(protocol.responseInterceptors(shape, context)),
-                ...protocol.extraParameters(shape, context),
-              }),
-          ]).code,
-      );
+            'serializers': protocol.serializers(context),
+            'builderFactories': context.builderFactoriesRef,
+            'requestInterceptors':
+                literalList(protocol.requestInterceptors(shape, context)),
+            'responseInterceptors':
+                literalList(protocol.responseInterceptors(shape, context)),
+            ...protocol.extraParameters(shape, context),
+          });
+
+          // S3 event streams are wrapped in the special event stream protocol
+          // which allows for customized handling of the body.
+          if (isEventStreamOperation && context.isS3) {
+            protocolInst = DartTypes.smithyAws.eventStreamProtocol.newInstance([
+              protocolInst,
+            ]);
+          }
+          protocols.add(protocolInst);
+        }
+
+        f.assignment = literalList(protocols).code;
+      });
 
   Iterable<Method> get _paginatedMethods sync* {
     final paginatedTraits = this.paginatedTraits;

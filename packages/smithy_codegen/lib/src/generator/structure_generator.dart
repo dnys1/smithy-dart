@@ -544,9 +544,16 @@ class StructureGenerator extends LibraryGenerator<StructureShape>
           ..modifier = FieldModifier.constant
           ..type = DartTypes.core.list(DartTypes.smithy.smithySerializer())
           ..name = 'serializers'
-          ..assignment = literalList(
-            serializerClasses.map((name) => refer(name).newInstance([])),
-          ).code,
+          ..assignment = literalList([
+            ...serializerClasses.map((name) => refer(name).newInstance([])),
+            if (context.isS3 &&
+                shape.shapeId.shape == 'SelectObjectContentOutput')
+              DartTypes.smithyAws
+                  .selectObjectContentEventStreamSerializer(
+                context.symbolFor(payloadShape.shapeId, shape),
+              )
+                  .newInstance([])
+          ]).code,
       );
 
   /// The `built_value` serializer class.

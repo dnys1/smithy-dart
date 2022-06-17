@@ -799,8 +799,8 @@ class _Smithy {
           ..symbol = 'Waiter'
           ..types.addAll([inputType, outputType])
           ..url = _url,
-  );
-  
+      );
+
   /// Creates a [smithy.WebSocketOperation] reference for an operation with
   /// input payload type [inputPayload], input type [input], and output type
   /// [output].
@@ -887,6 +887,10 @@ class _SmithyAws {
   Reference get endpointDefinitionVariant =>
       const Reference('EndpointDefinitionVariant', _url);
 
+  /// Creates a [smithy_aws.EventStreamProtocol] refererence.
+  Reference get eventStreamProtocol =>
+      const Reference('EventStreamProtocol', _url);
+
   /// Creates a [smithy_aws.Partition] refererence.
   Reference get partition => const Reference('Partition', _url);
 
@@ -898,6 +902,41 @@ class _SmithyAws {
 
   /// Creates a [smithy_aws.S3ClientConfig] refererence.
   Reference get s3ClientConfig => const Reference('S3ClientConfig', _url);
+
+  /// Creates a [smithy_aws.SelectObjectContentEventStreamWrapper] refererence.
+  Reference selectObjectContentEventStreamWrapper(Reference eventStreamUnion) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'SelectObjectContentEventStreamWrapper'
+          ..url = _url
+          ..types.add(eventStreamUnion),
+      );
+
+  /// Creates a [smithy_aws.SelectObjectContentEventStreamSerializer] refererence.
+  Reference selectObjectContentEventStreamSerializer(
+    Reference eventStreamUnion,
+  ) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'SelectObjectContentEventStreamSerializer'
+          ..url = _url
+          ..types.add(eventStreamUnion),
+      );
+
+  /// Creates a [smithy_aws.SelectObjectContentException] refererence.
+  Reference get selectObjectContentException =>
+      const Reference('SelectObjectContentException', _url);
+
+  /// Creates a [smithy_aws.SelectObjectContentStreamTransformer] refererence.
+  Reference selectObjectContentStreamTransformer(
+    Reference eventStreamUnion,
+  ) =>
+      TypeReference(
+        (t) => t
+          ..symbol = 'SelectObjectContentStreamTransformer'
+          ..url = _url
+          ..types.add(eventStreamUnion),
+      );
 
   /// Creates a [smithy_aws.WithSdkInvocationId] refererence.
   Reference get withSdkInvocationId =>

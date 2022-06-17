@@ -121,7 +121,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           paginatedTraits.pageSize?.symbol.unboxed ?? DartTypes.core.void$,
         ));
       } else {
-        if (operationContext.isEventStreamOperation) {
+        if (operationContext.isEventStreamOperation && !context.isS3) {
           returnType = DartTypes.smithy.streamConnection(
             operationInput,
             operationOutput,

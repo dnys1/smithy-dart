@@ -5,6 +5,7 @@ import 'package:smithy/ast.dart';
 import 'package:smithy/smithy.dart';
 import 'package:smithy_codegen/smithy_codegen.dart';
 import 'package:smithy_codegen/src/generator/visitors/symbol_visitor.dart';
+import 'package:smithy_codegen/src/util/shape_ext.dart';
 
 /// The context for code generation.
 class CodegenContext {
@@ -188,4 +189,10 @@ class CodegenContext {
     filename: serviceName,
     basePath: basePath,
   );
+
+  /// Whether the current service is S3.
+  ///
+  /// S3 has enough customizations that it deserves special handling in a number
+  /// of situations.
+  bool get isS3 => service?.resolvedService?.sdkId == 'S3';
 }

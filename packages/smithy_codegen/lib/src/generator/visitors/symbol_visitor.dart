@@ -137,7 +137,15 @@ class SymbolVisitor extends CategoryShapeVisitor<Reference> {
 
   @override
   Reference unionShape(UnionShape shape, [Shape? parent]) {
-    return createSymbol(shape);
+    var symbol = createSymbol(shape);
+    if (context.isS3 &&
+        parent is StructureShape &&
+        symbol.symbol == 'SelectObjectContentEventStream') {
+      symbol = DartTypes.smithyAws.selectObjectContentEventStreamWrapper(
+        symbol.unboxed,
+      );
+    }
+    return symbol;
   }
 
   /// Creates a new symbol from shape, with its own definition file.

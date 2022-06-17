@@ -2,9 +2,7 @@
 
 library rest_json1.rest_json_protocol.model.malformed_accept_with_generic_string_input;
 
-import 'dart:typed_data' as _i2;
-
-import 'package:aws_common/aws_common.dart' as _i3;
+import 'package:aws_common/aws_common.dart' as _i2;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:smithy/smithy.dart' as _i1;
@@ -13,13 +11,13 @@ part 'malformed_accept_with_generic_string_input.g.dart';
 
 abstract class MalformedAcceptWithGenericStringInput
     with
-        _i1.HttpInput<_i2.Uint8List>,
-        _i3.AWSEquatable<MalformedAcceptWithGenericStringInput>
+        _i1.HttpInput<String>,
+        _i2.AWSEquatable<MalformedAcceptWithGenericStringInput>
     implements
         Built<MalformedAcceptWithGenericStringInput,
             MalformedAcceptWithGenericStringInputBuilder>,
-        _i1.HasPayload<_i2.Uint8List> {
-  factory MalformedAcceptWithGenericStringInput({_i2.Uint8List? payload}) {
+        _i1.HasPayload<String> {
+  factory MalformedAcceptWithGenericStringInput({String? payload}) {
     return _$MalformedAcceptWithGenericStringInput._(payload: payload);
   }
 
@@ -30,7 +28,7 @@ abstract class MalformedAcceptWithGenericStringInput
   const MalformedAcceptWithGenericStringInput._();
 
   factory MalformedAcceptWithGenericStringInput.fromRequest(
-          _i2.Uint8List? payload, _i3.AWSBaseHttpRequest request,
+          String? payload, _i2.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
       MalformedAcceptWithGenericStringInput.build((b) {
         b.payload = payload;
@@ -42,9 +40,9 @@ abstract class MalformedAcceptWithGenericStringInput
 
   @BuiltValueHook(initializeBuilder: true)
   static void _init(MalformedAcceptWithGenericStringInputBuilder b) {}
-  _i2.Uint8List? get payload;
+  String? get payload;
   @override
-  _i2.Uint8List? getPayload() => payload;
+  String? getPayload() => payload;
   @override
   List<Object?> get props => [payload];
   @override
@@ -70,10 +68,10 @@ class _MalformedAcceptWithGenericStringInputRestJson1Serializer
   Iterable<_i1.ShapeId> get supportedProtocols =>
       const [_i1.ShapeId(namespace: 'aws.protocols', shape: 'restJson1')];
   @override
-  _i2.Uint8List deserialize(Serializers serializers, Object serialized,
+  String deserialize(Serializers serializers, Object serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return (serializers.deserialize(serialized,
-        specifiedType: const FullType(_i2.Uint8List)) as _i2.Uint8List);
+        specifiedType: const FullType(String)) as String);
   }
 
   @override
@@ -81,8 +79,8 @@ class _MalformedAcceptWithGenericStringInputRestJson1Serializer
       {FullType specifiedType = FullType.unspecified}) {
     final payload = object is MalformedAcceptWithGenericStringInput
         ? object.getPayload()
-        : (object as _i2.Uint8List?);
+        : (object as String?);
     return (serializers.serialize(payload!,
-        specifiedType: const FullType(_i2.Uint8List)) as Object);
+        specifiedType: const FullType(String)) as Object);
   }
 }

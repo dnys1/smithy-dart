@@ -154,26 +154,30 @@ import 'package:rest_json1/src/rest_json_protocol/model/query_precedence_input.d
     as _i153;
 import 'package:rest_json1/src/rest_json_protocol/model/recursive_shapes_input_output.dart'
     as _i155;
-import 'package:rest_json1/src/rest_json_protocol/model/simple_scalar_properties_input_output.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/response_code_http_fallback_input_output.dart'
     as _i157;
-import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_input_output.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/response_code_required_output.dart'
     as _i159;
-import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/simple_scalar_properties_input_output.dart'
     as _i161;
-import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_with_media_type_input_output.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_input_output.dart'
     as _i163;
+import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_require_length_input.dart'
+    as _i165;
+import 'package:rest_json1/src/rest_json_protocol/model/streaming_traits_with_media_type_input_output.dart'
+    as _i167;
 import 'package:rest_json1/src/rest_json_protocol/model/string_payload_input.dart'
     as _i50;
 import 'package:rest_json1/src/rest_json_protocol/model/test_body_structure_input_output.dart'
-    as _i165;
-import 'package:rest_json1/src/rest_json_protocol/model/test_no_payload_input_output.dart'
-    as _i167;
-import 'package:rest_json1/src/rest_json_protocol/model/test_payload_blob_input_output.dart'
     as _i169;
-import 'package:rest_json1/src/rest_json_protocol/model/test_payload_structure_input_output.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/test_no_payload_input_output.dart'
     as _i171;
-import 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers_io.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/test_payload_blob_input_output.dart'
     as _i173;
+import 'package:rest_json1/src/rest_json_protocol/model/test_payload_structure_input_output.dart'
+    as _i175;
+import 'package:rest_json1/src/rest_json_protocol/model/timestamp_format_headers_io.dart'
+    as _i177;
 import 'package:rest_json1/src/rest_json_protocol/model/union_input_output.dart'
     as _i66;
 import 'package:rest_json1/src/rest_json_protocol/operation/all_query_string_types_operation.dart'
@@ -330,26 +334,30 @@ import 'package:rest_json1/src/rest_json_protocol/operation/query_precedence_ope
     as _i154;
 import 'package:rest_json1/src/rest_json_protocol/operation/recursive_shapes_operation.dart'
     as _i156;
-import 'package:rest_json1/src/rest_json_protocol/operation/simple_scalar_properties_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/response_code_http_fallback_operation.dart'
     as _i158;
-import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/response_code_required_operation.dart'
     as _i160;
-import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_require_length_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/simple_scalar_properties_operation.dart'
     as _i162;
-import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_with_media_type_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_operation.dart'
     as _i164;
-import 'package:rest_json1/src/rest_json_protocol/operation/test_body_structure_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_require_length_operation.dart'
     as _i166;
-import 'package:rest_json1/src/rest_json_protocol/operation/test_no_payload_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/streaming_traits_with_media_type_operation.dart'
     as _i168;
-import 'package:rest_json1/src/rest_json_protocol/operation/test_payload_blob_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/test_body_structure_operation.dart'
     as _i170;
-import 'package:rest_json1/src/rest_json_protocol/operation/test_payload_structure_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/test_no_payload_operation.dart'
     as _i172;
-import 'package:rest_json1/src/rest_json_protocol/operation/timestamp_format_headers_operation.dart'
+import 'package:rest_json1/src/rest_json_protocol/operation/test_payload_blob_operation.dart'
     as _i174;
+import 'package:rest_json1/src/rest_json_protocol/operation/test_payload_structure_operation.dart'
+    as _i176;
+import 'package:rest_json1/src/rest_json_protocol/operation/timestamp_format_headers_operation.dart'
+    as _i178;
 import 'package:rest_json1/src/rest_json_protocol/operation/unit_input_and_output_operation.dart'
-    as _i175;
+    as _i179;
 import 'package:smithy/smithy.dart' as _i3;
 
 /// A REST JSON service that sends JSON requests and responses.
@@ -943,86 +951,101 @@ class RestJsonProtocolClient {
         .run(input, client: client);
   }
 
-  _i1.Future<_i157.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
-      _i157.SimpleScalarPropertiesInputOutput input,
+  _i1.Future<_i157.ResponseCodeHttpFallbackInputOutput>
+      responseCodeHttpFallback(_i157.ResponseCodeHttpFallbackInputOutput input,
+          {_i3.HttpClient? client}) {
+    return _i158.ResponseCodeHttpFallbackOperation(
+            region: _region, baseUri: _baseUri)
+        .run(input, client: client);
+  }
+
+  _i1.Future<_i159.ResponseCodeRequiredOutput> responseCodeRequired(
       {_i3.HttpClient? client}) {
-    return _i158.SimpleScalarPropertiesOperation(
+    return _i160.ResponseCodeRequiredOperation(
+            region: _region, baseUri: _baseUri)
+        .run(const _i3.Unit(), client: client);
+  }
+
+  _i1.Future<_i161.SimpleScalarPropertiesInputOutput> simpleScalarProperties(
+      _i161.SimpleScalarPropertiesInputOutput input,
+      {_i3.HttpClient? client}) {
+    return _i162.SimpleScalarPropertiesOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This examples serializes a streaming blob shape in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
-  _i1.Future<_i159.StreamingTraitsInputOutput> streamingTraits(
-      _i159.StreamingTraitsInputOutput input,
+  _i1.Future<_i163.StreamingTraitsInputOutput> streamingTraits(
+      _i163.StreamingTraitsInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i160.StreamingTraitsOperation(region: _region, baseUri: _baseUri)
+    return _i164.StreamingTraitsOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This examples serializes a streaming blob shape with a required content length in the request body. In this example, no JSON document is synthesized because the payload is not a structure or a union type.
   _i1.Future<void> streamingTraitsRequireLength(
-      _i161.StreamingTraitsRequireLengthInput input,
+      _i165.StreamingTraitsRequireLengthInput input,
       {_i3.HttpClient? client}) {
-    return _i162.StreamingTraitsRequireLengthOperation(
+    return _i166.StreamingTraitsRequireLengthOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This examples serializes a streaming media-typed blob shape in the request body. This examples uses a `@mediaType` trait on the payload to force a custom content-type to be serialized.
-  _i1.Future<_i163.StreamingTraitsWithMediaTypeInputOutput>
+  _i1.Future<_i167.StreamingTraitsWithMediaTypeInputOutput>
       streamingTraitsWithMediaType(
-          _i163.StreamingTraitsWithMediaTypeInputOutput input,
+          _i167.StreamingTraitsWithMediaTypeInputOutput input,
           {_i3.HttpClient? client}) {
-    return _i164.StreamingTraitsWithMediaTypeOperation(
+    return _i168.StreamingTraitsWithMediaTypeOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This example operation serializes a structure in the HTTP body. It should ensure Content-Type: application/json is used in all requests and that an "empty" body is an empty JSON document ({}).
-  _i1.Future<_i165.TestBodyStructureInputOutput> testBodyStructure(
-      _i165.TestBodyStructureInputOutput input,
+  _i1.Future<_i169.TestBodyStructureInputOutput> testBodyStructure(
+      _i169.TestBodyStructureInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i166.TestBodyStructureOperation(region: _region, baseUri: _baseUri)
+    return _i170.TestBodyStructureOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This example operation serializes a request without an HTTP body. These tests are to ensure we do not attach a body or related headers (Content-Length, Content-Type) to operations that semantically cannot produce an HTTP body.
-  _i1.Future<_i167.TestNoPayloadInputOutput> testNoPayload(
-      _i167.TestNoPayloadInputOutput input,
+  _i1.Future<_i171.TestNoPayloadInputOutput> testNoPayload(
+      _i171.TestNoPayloadInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i168.TestNoPayloadOperation(region: _region, baseUri: _baseUri)
+    return _i172.TestNoPayloadOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This example operation serializes a payload targeting a blob. The Blob shape is not structured content and we cannot make assumptions about what data will be sent. This test ensures only a generic "Content-Type: application/octet-stream" header is used, and that we are not treating an empty body as an empty JSON document.
-  _i1.Future<_i169.TestPayloadBlobInputOutput> testPayloadBlob(
-      _i169.TestPayloadBlobInputOutput input,
+  _i1.Future<_i173.TestPayloadBlobInputOutput> testPayloadBlob(
+      _i173.TestPayloadBlobInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i170.TestPayloadBlobOperation(region: _region, baseUri: _baseUri)
+    return _i174.TestPayloadBlobOperation(region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This example operation serializes a payload targeting a structure. This enforces the same requirements as TestBodyStructure but with the body specified by the @httpPayload trait.
-  _i1.Future<_i171.TestPayloadStructureInputOutput> testPayloadStructure(
-      _i171.TestPayloadStructureInputOutput input,
+  _i1.Future<_i175.TestPayloadStructureInputOutput> testPayloadStructure(
+      _i175.TestPayloadStructureInputOutput input,
       {_i3.HttpClient? client}) {
-    return _i172.TestPayloadStructureOperation(
+    return _i176.TestPayloadStructureOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This example tests how timestamp request and response headers are serialized.
-  _i1.Future<_i173.TimestampFormatHeadersIo> timestampFormatHeaders(
-      _i173.TimestampFormatHeadersIo input,
+  _i1.Future<_i177.TimestampFormatHeadersIo> timestampFormatHeaders(
+      _i177.TimestampFormatHeadersIo input,
       {_i3.HttpClient? client}) {
-    return _i174.TimestampFormatHeadersOperation(
+    return _i178.TimestampFormatHeadersOperation(
             region: _region, baseUri: _baseUri)
         .run(input, client: client);
   }
 
   /// This test is similar to NoInputAndNoOutput, but uses explicit Unit types.
   _i1.Future<void> unitInputAndOutput({_i3.HttpClient? client}) {
-    return _i175.UnitInputAndOutputOperation(region: _region, baseUri: _baseUri)
+    return _i179.UnitInputAndOutputOperation(region: _region, baseUri: _baseUri)
         .run(const _i3.Unit(), client: client);
   }
 }

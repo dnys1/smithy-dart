@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.empty_operation;
 
@@ -30,11 +30,13 @@ class EmptyOperation
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithHeader('X-Amz-Target', 'JsonProtocol.EmptyOperation'),
           _i3.WithSigV4(
               region: _region,
               service: _i5.AWSService.iam,
               credentialsProvider: _credentialsProvider),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

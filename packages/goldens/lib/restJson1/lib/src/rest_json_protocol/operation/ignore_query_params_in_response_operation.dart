@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.ignore_query_params_in_response_operation;
 
@@ -36,8 +36,10 @@ class IgnoreQueryParamsInResponseOperation extends _i1.HttpOperation<
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithNoHeader('Content-Length'),
           const _i1.WithNoHeader('Content-Type'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

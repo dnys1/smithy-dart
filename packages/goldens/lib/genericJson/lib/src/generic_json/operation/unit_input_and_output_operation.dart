@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library generic_json.generic_json.operation.unit_input_and_output_operation;
 
@@ -16,7 +16,7 @@ class UnitInputAndOutputOperation
     _i1.GenericJsonProtocol(
         serializers: _i2.serializers,
         builderFactories: _i2.builderFactories,
-        requestInterceptors: [],
+        requestInterceptors: [const _i1.WithHost()],
         responseInterceptors: [])
   ];
 

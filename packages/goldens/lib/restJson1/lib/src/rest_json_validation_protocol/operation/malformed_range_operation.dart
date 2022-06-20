@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library rest_json1.rest_json_validation_protocol.operation.malformed_range_operation;
 
@@ -30,7 +30,9 @@ class MalformedRangeOperation extends _i1.HttpOperation<_i2.MalformedRangeInput,
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithContentLength(),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

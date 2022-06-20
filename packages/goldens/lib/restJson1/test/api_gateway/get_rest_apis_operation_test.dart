@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_json1.api_gateway.test.get_rest_apis_operation_test_test;

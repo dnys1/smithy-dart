@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.operation_with_optional_input_output_operation;
 
@@ -41,6 +41,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
         serializers: _i6.serializers,
         builderFactories: _i6.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.OperationWithOptionalInputOutput'),
@@ -48,6 +49,7 @@ class OperationWithOptionalInputOutputOperation extends _i1.HttpOperation<
               region: _region,
               service: _i7.AWSService.iam,
               credentialsProvider: _credentialsProvider),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
         ],

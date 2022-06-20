@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.simple_scalar_properties_operation;
 
@@ -39,6 +39,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.SimpleScalarProperties'),
@@ -46,6 +47,7 @@ class SimpleScalarPropertiesOperation extends _i1.HttpOperation<
               region: _region,
               service: _i6.AWSService.iam,
               credentialsProvider: _credentialsProvider),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

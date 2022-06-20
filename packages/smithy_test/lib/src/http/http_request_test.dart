@@ -184,5 +184,6 @@ Future<void> httpRequestTest<InputPayload, Input, OutputPayload, Output>({
     }
   }, zoneValues: {
     zSigningTest: true,
+    zSmithyHttpTest: true,
   });
 }

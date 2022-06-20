@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library rest_json1.api_gateway.operation.get_rest_apis_operation;
 
@@ -48,12 +48,14 @@ class GetRestApisOperation extends _i1.PaginatedHttpOperation<
         serializers: _i8.serializers,
         builderFactories: _i8.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithNoHeader('Content-Length'),
           const _i1.WithNoHeader('Content-Type'),
           _i7.WithSigV4(
               region: _region,
               service: _i9.AWSService.apiGateway,
               credentialsProvider: _credentialsProvider),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i7.WithSdkInvocationId(),
           const _i7.WithSdkRequest(),
           const _i1.WithHeader('Accept', 'application/json')

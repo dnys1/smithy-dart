@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library aws_json1_0.json_rpc_10.test.endpoint_with_host_label_operation_test_test;

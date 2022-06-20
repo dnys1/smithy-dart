@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.http_prefix_headers_operation;
 
@@ -44,8 +44,10 @@ class HttpPrefixHeadersOperation extends _i1.HttpOperation<
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithNoHeader('Content-Length'),
           const _i1.WithNoHeader('Content-Type'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

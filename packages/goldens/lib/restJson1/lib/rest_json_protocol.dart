@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 /// A REST JSON service that sends JSON requests and responses.
 library rest_json1.rest_json_protocol;

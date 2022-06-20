@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.endpoint_with_host_label_operation;
 
@@ -33,6 +33,7 @@ class EndpointWithHostLabelOperation extends _i1
         serializers: _i5.serializers,
         builderFactories: _i5.builderFactories,
         requestInterceptors: [
+          const _i1.WithHost(),
           const _i1.WithContentLength(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonProtocol.EndpointWithHostLabelOperation'),
@@ -40,6 +41,7 @@ class EndpointWithHostLabelOperation extends _i1
               region: _region,
               service: _i6.AWSService.iam,
               credentialsProvider: _credentialsProvider),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

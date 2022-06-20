@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library generic_json.generic_json.model.event_stream_input_output;
 
@@ -14,7 +14,11 @@ abstract class EventStreamInputOutput
     implements
         Built<EventStreamInputOutput, EventStreamInputOutputBuilder>,
         _i1.HasPayload<_i2.Event> {
-  factory EventStreamInputOutput(
+  factory EventStreamInputOutput({_i2.Event? event}) {
+    return _$EventStreamInputOutput._(event: event);
+  }
+
+  factory EventStreamInputOutput.build(
           [void Function(EventStreamInputOutputBuilder) updates]) =
       _$EventStreamInputOutput;
 
@@ -23,14 +27,14 @@ abstract class EventStreamInputOutput
   factory EventStreamInputOutput.fromRequest(
           _i2.Event? payload, _i3.AWSBaseHttpRequest request,
           {Map<String, String> labels = const {}}) =>
-      EventStreamInputOutput((b) {
+      EventStreamInputOutput.build((b) {
         b.event = payload;
       });
 
   /// Constructs a [EventStreamInputOutput] from a [payload] and [response].
   factory EventStreamInputOutput.fromResponse(
           _i2.Event? payload, _i3.AWSBaseHttpResponse response) =>
-      EventStreamInputOutput((b) {
+      EventStreamInputOutput.build((b) {
         b.event = payload;
       });
 

@@ -60,7 +60,8 @@ class _GenericJsonServer extends _i1.HttpServer<GenericJsonServerBase> {
       final output = await service.eventStream(input, context);
       const statusCode = 200;
       final body = _eventStreamProtocol.serialize(output,
-          specifiedType: const FullType(_i4.EventStreamInputOutput));
+          specifiedType: const FullType(
+              _i4.EventStreamInputOutput, [FullType.nullable(_i6.Event)]));
       return _i5.Response(statusCode,
           body: body, headers: context.response.build().headers.toMap());
     } on Object catch (e, st) {

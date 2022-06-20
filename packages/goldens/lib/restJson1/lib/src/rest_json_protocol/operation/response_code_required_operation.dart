@@ -1,6 +1,6 @@
 // Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
-library rest_json1.rest_json_protocol.operation.malformed_accept_with_generic_string_operation;
+library rest_json1.rest_json_protocol.operation.response_code_required_operation;
 
 import 'dart:async' as _i7;
 
@@ -9,27 +9,33 @@ import 'package:rest_json1/src/rest_json_protocol/common/endpoint_resolver.dart'
     as _i5;
 import 'package:rest_json1/src/rest_json_protocol/common/serializers.dart'
     as _i4;
-import 'package:rest_json1/src/rest_json_protocol/model/malformed_accept_with_generic_string_input.dart'
+import 'package:rest_json1/src/rest_json_protocol/model/response_code_required_output.dart'
     as _i2;
 import 'package:smithy/smithy.dart' as _i1;
 import 'package:smithy_aws/smithy_aws.dart' as _i3;
 
-class MalformedAcceptWithGenericStringOperation extends _i1.HttpOperation<
-    String, _i2.MalformedAcceptWithGenericStringInput, _i1.Unit, _i1.Unit> {
-  MalformedAcceptWithGenericStringOperation(
-      {required String region, Uri? baseUri})
+class ResponseCodeRequiredOperation extends _i1.HttpOperation<
+    _i1.Unit,
+    _i1.Unit,
+    _i2.ResponseCodeRequiredOutputPayload,
+    _i2.ResponseCodeRequiredOutput> {
+  ResponseCodeRequiredOperation({required String region, Uri? baseUri})
       : _region = region,
         _baseUri = baseUri;
 
   @override
   late final List<
-      _i1.HttpProtocol<String, _i2.MalformedAcceptWithGenericStringInput,
-          _i1.Unit, _i1.Unit>> protocols = [
+      _i1.HttpProtocol<
+          _i1.Unit,
+          _i1.Unit,
+          _i2.ResponseCodeRequiredOutputPayload,
+          _i2.ResponseCodeRequiredOutput>> protocols = [
     _i3.RestJson1Protocol(
         serializers: _i4.serializers,
         builderFactories: _i4.builderFactories,
         requestInterceptors: [
-          const _i1.WithContentLength(),
+          const _i1.WithNoHeader('Content-Length'),
+          const _i1.WithNoHeader('Content-Type'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],
@@ -44,18 +50,18 @@ class MalformedAcceptWithGenericStringOperation extends _i1.HttpOperation<
   final Uri? _baseUri;
 
   @override
-  _i1.HttpRequest buildRequest(
-          _i2.MalformedAcceptWithGenericStringInput input) =>
-      _i1.HttpRequest((b) {
-        b.method = 'POST';
-        b.path = r'/MalformedAcceptWithGenericString';
+  _i1.HttpRequest buildRequest(_i1.Unit input) => _i1.HttpRequest((b) {
+        b.method = 'GET';
+        b.path = r'/responseCodeRequired';
       });
   @override
-  int successCode([_i1.Unit? output]) => 200;
+  int successCode([_i2.ResponseCodeRequiredOutput? output]) =>
+      output?.responseCode ?? 200;
   @override
-  _i1.Unit buildOutput(
-          _i1.Unit payload, _i6.AWSStreamedHttpResponse response) =>
-      payload;
+  _i2.ResponseCodeRequiredOutput buildOutput(
+          _i2.ResponseCodeRequiredOutputPayload payload,
+          _i6.AWSStreamedHttpResponse response) =>
+      _i2.ResponseCodeRequiredOutput.fromResponse(payload, response);
   @override
   List<_i1.SmithyError> get errorTypes => const [];
   @override
@@ -65,7 +71,7 @@ class MalformedAcceptWithGenericStringOperation extends _i1.HttpOperation<
   @override
   _i1.Endpoint get endpoint => _awsEndpoint.endpoint;
   @override
-  _i7.Future<_i1.Unit> run(_i2.MalformedAcceptWithGenericStringInput input,
+  _i7.Future<_i2.ResponseCodeRequiredOutput> run(_i1.Unit input,
       {_i1.HttpClient? client, _i1.ShapeId? useProtocol}) {
     return _i7.runZoned(
         () => super.run(input, client: client, useProtocol: useProtocol),

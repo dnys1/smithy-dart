@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library generic_json.generic_json.model.event_message;
 
@@ -12,7 +12,11 @@ part 'event_message.g.dart';
 abstract class EventMessage
     with _i1.AWSEquatable<EventMessage>
     implements Built<EventMessage, EventMessageBuilder> {
-  factory EventMessage([void Function(EventMessageBuilder) updates]) =
+  factory EventMessage({required String message}) {
+    return _$EventMessage._(message: message);
+  }
+
+  factory EventMessage.build([void Function(EventMessageBuilder) updates]) =
       _$EventMessage;
 
   const EventMessage._();

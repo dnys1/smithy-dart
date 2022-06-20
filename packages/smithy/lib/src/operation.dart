@@ -4,12 +4,8 @@ import 'package:smithy/smithy.dart';
 ///
 /// See:
 /// - [HttpOperation]
-abstract class Operation<Input, Output, Result extends Object> {
+abstract class Operation<Input, Output, Result> {
   const Operation();
-
-  /// The protocols used by this operation for all serialization/deserialization
-  /// of wire formats.
-  Iterable<Protocol> get protocols;
 
   /// The error types of the operation.
   List<SmithyError> get errorTypes;

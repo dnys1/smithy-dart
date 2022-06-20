@@ -86,7 +86,7 @@ abstract class WebSocketOperation<InputPayload, Input, OutputPayload, Output>
             );
             controller.add(output);
             continue;
-          } on Exception catch (e, st) {
+          } on Object catch (e, st) {
             controller.addError(e, st);
             break;
           }

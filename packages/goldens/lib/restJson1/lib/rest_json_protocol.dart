@@ -134,6 +134,9 @@ export 'package:rest_json1/src/rest_json_protocol/model/recursive_shapes_input_o
 export 'package:rest_json1/src/rest_json_protocol/model/recursive_shapes_input_output_nested1.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/recursive_shapes_input_output_nested2.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/renamed_greeting.dart';
+export 'package:rest_json1/src/rest_json_protocol/model/response_code_http_fallback_input_output.dart';
+export 'package:rest_json1/src/rest_json_protocol/model/response_code_required_output.dart'
+    hide ResponseCodeRequiredOutputPayload;
 export 'package:rest_json1/src/rest_json_protocol/model/retry_config.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/retry_mode.dart';
 export 'package:rest_json1/src/rest_json_protocol/model/s3_addressing_style.dart';

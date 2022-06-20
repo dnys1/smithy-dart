@@ -50,7 +50,8 @@ String expandHostLabel(
 @internal
 abstract class HttpOperationBase<InputPayload, Input, OutputPayload, Output,
     Result extends Object> extends Operation<Input, Output, Result> {
-  @override
+  /// The protocols used by this operation for all serialization/deserialization
+  /// of wire formats.
   Iterable<HttpProtocol<InputPayload, Input, OutputPayload, Output>>
       get protocols;
 

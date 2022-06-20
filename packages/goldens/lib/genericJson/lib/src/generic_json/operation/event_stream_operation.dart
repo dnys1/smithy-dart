@@ -1,4 +1,4 @@
-// Generated code. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.1. DO NOT MODIFY.
 
 library generic_json.generic_json.operation.event_stream_operation;
 

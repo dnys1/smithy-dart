@@ -11,7 +11,7 @@ import 'package:smithy_codegen/src/util/shape_ext.dart';
 import 'package:smithy_codegen/src/util/symbol_ext.dart';
 
 class WaiterGenerator extends LibraryGenerator<OperationShape>
-    with OperationGenerationContext {
+    with OperationGenerationContextMixin {
   WaiterGenerator(
     OperationShape shape,
     CodegenContext context, {

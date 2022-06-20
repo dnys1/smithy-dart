@@ -9,7 +9,7 @@ part of rest_json1.rest_json_protocol.model.malformed_accept_with_generic_string
 class _$MalformedAcceptWithGenericStringInput
     extends MalformedAcceptWithGenericStringInput {
   @override
-  final _i2.Uint8List? payload;
+  final String? payload;
 
   factory _$MalformedAcceptWithGenericStringInput(
           [void Function(MalformedAcceptWithGenericStringInputBuilder)?
@@ -48,9 +48,9 @@ class MalformedAcceptWithGenericStringInputBuilder
             MalformedAcceptWithGenericStringInputBuilder> {
   _$MalformedAcceptWithGenericStringInput? _$v;
 
-  _i2.Uint8List? _payload;
-  _i2.Uint8List? get payload => _$this._payload;
-  set payload(_i2.Uint8List? payload) => _$this._payload = payload;
+  String? _payload;
+  String? get payload => _$this._payload;
+  set payload(String? payload) => _$this._payload = payload;
 
   MalformedAcceptWithGenericStringInputBuilder() {
     MalformedAcceptWithGenericStringInput._init(this);

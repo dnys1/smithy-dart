@@ -13,17 +13,19 @@ abstract class Acceptor<Input, Output> {
   });
 }
 
-abstract class Waiter<Input, Output> implements Operation<Input, Output> {
+abstract class Waiter<Input, Output>
+    implements Operation<Input, Output, Future<Output>> {
   Waiter({
     required this.timeout,
-    required Operation<Input, Output> Function() operationBuilder,
+    required Operation<Input, Output, Future<Output>> Function()
+        operationBuilder,
   }) : _operationBuilder = operationBuilder;
 
   /// The total time to wait for the waiter to complete.
   final Duration timeout;
 
   /// The waiter's state machine builder.
-  final Operation<Input, Output> Function() _operationBuilder;
+  final Operation<Input, Output, Future<Output>> Function() _operationBuilder;
 
   List<Acceptor<Input, Output>> get acceptors;
 
@@ -60,7 +62,7 @@ abstract class Waiter<Input, Output> implements Operation<Input, Output> {
           continue;
       }
     }
-    throw TimeoutException('Operation could not be completed');
+    throw TimeoutException('Operation timed out', timeout);
   }
 
   AcceptorState _nextState({

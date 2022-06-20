@@ -9,6 +9,7 @@ import 'package:smithy_codegen/src/generator/serialization/structure_serializer_
 import 'package:smithy_codegen/src/generator/types.dart';
 import 'package:smithy_codegen/src/model/route_style.dart';
 import 'package:smithy_codegen/src/util/shape_ext.dart';
+import 'package:smithy_codegen/src/version.dart';
 
 extension ProtocolUtils on ProtocolDefinitionTrait {
   /// Whether this protocol supports [traitId].
@@ -84,6 +85,8 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
     OperationShape shape,
     CodegenContext context,
   ) sync* {
+    yield DartTypes.smithy.withHost.constInstance([]);
+
     // HTTP checksum (supported by all)
     if (shape.hasTrait<HttpChecksumRequiredTrait>()) {
       yield DartTypes.smithy.withChecksum.constInstance([]);
@@ -179,6 +182,9 @@ extension ProtocolUtils on ProtocolDefinitionTrait {
     final aws = context.service?.getTrait<ServiceTrait>();
     if (aws != null && serviceId != null) {
       // Common AWS interceptors
+      yield DartTypes.smithy.withUserAgent.constInstance([
+        literalString('aws-sdk-dart/$packageVersion'),
+      ]);
       yield DartTypes.smithyAws.withSdkInvocationId.constInstance([]);
       yield DartTypes.smithyAws.withSdkRequest.constInstance([]);
 

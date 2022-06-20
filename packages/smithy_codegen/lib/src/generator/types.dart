@@ -799,8 +799,14 @@ class _Smithy {
   /// Creates a [smithy.WithHeader] reference.
   Reference get withHeader => const Reference('WithHeader', _url);
 
+  /// Creates a [smithy.WithHost] reference.
+  Reference get withHost => const Reference('WithHost', _url);
+
   /// Creates a [smithy.WithNoHeader] reference.
   Reference get withNoHeader => const Reference('WithNoHeader', _url);
+
+  /// Creates a [smithy.WithUserAgent] reference.
+  Reference get withUserAgent => const Reference('WithUserAgent', _url);
 
   /// Creates a [smithy.XmlBuiltListSerializer] reference.
   Reference get xmlBuiltListSerializer =>

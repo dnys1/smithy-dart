@@ -33,7 +33,7 @@ final dependencyVersions = {
   'meta': Dependency('^1.7.0'),
   'shelf': Dependency('^1.1.0'),
   'shelf_router': Dependency('^1.1.0'),
-  'xml': Dependency('^5.3.1'),
+  'xml': Dependency('6.1.0'),
 
   // Dev Dependencies
   'smithy_test': Dependency.dev('^0.5.0', DependencyType.smithy),

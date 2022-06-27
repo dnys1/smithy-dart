@@ -1,6 +1,6 @@
 name: smithy_test
 description: Test utilities for Smithy packages.
-version: 0.5.3
+version: 0.5.4
 homepage: https://github.com/dnys1/smithy-dart
 publish_to: https://pub.dillonnys.com
 
@@ -17,7 +17,7 @@ dependencies:
   path: ^1.8.0
   smithy:
     hosted: https://pub.dillonnys.com
-    version: ^0.5.3
+    version: ^0.5.4
   test: ^1.16.0
   tuple: ^2.0.0
   xml: 6.1.0

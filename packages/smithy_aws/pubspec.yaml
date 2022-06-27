@@ -22,7 +22,7 @@ dependencies:
     hosted: https://pub.dillonnys.com
     version: ^0.5.2
   uuid: ^3.0.6
-  xml: ^5.3.1
+  xml: 6.1.0
 
 dev_dependencies:
   amplify_lints: ^1.0.0

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.malformed_union_operation;
 
@@ -30,7 +30,7 @@ class MalformedUnionOperation extends _i1.HttpOperation<_i2.MalformedUnionInput,
         requestInterceptors: [
           const _i1.WithHost(),
           const _i1.WithContentLength(),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

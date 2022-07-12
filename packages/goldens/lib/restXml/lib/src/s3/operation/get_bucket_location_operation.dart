@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_xml.s3.operation.get_bucket_location_operation;
 
@@ -48,7 +48,7 @@ class GetBucketLocationOperation extends _i1.HttpOperation<
               credentialsProvider: _credentialsProvider,
               serviceConfiguration: _s3ClientConfig.signerConfiguration ??
                   _i6.S3ServiceConfiguration()),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
         ],

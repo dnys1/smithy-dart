@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.operation.greeting_with_errors_operation;
 
@@ -38,7 +38,7 @@ class GreetingWithErrorsOperation extends _i1.HttpOperation<_i1.Unit, _i1.Unit,
           const _i1.WithHost(),
           const _i1.WithNoHeader('Content-Length'),
           const _i1.WithNoHeader('Content-Type'),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

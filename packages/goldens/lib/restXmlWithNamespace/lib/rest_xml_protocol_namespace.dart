@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 /// A REST XML service that sends XML requests and responses. This service and test case is complementary to the test cases in the \`restXml\` directory, but the service under test here has the \`xmlNamespace\` trait applied to it. See https://github.com/awslabs/smithy/issues/616
 library rest_xml_with_namespace.rest_xml_protocol_namespace;

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library aws_json1_0.json_rpc_10.operation.endpoint_operation;
 
@@ -26,7 +26,7 @@ class EndpointOperation
         requestInterceptors: [
           const _i1.WithHost(),
           const _i1.WithHeader('X-Amz-Target', 'JsonRpc10.EndpointOperation'),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i2.WithSdkInvocationId(),
           const _i2.WithSdkRequest()
         ],

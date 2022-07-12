@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.no_input_and_no_output_operation;
 
@@ -27,7 +27,7 @@ class NoInputAndNoOutputOperation
         builderFactories: _i3.builderFactories,
         requestInterceptors: [
           const _i1.WithHost(),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i2.WithSdkInvocationId(),
           const _i2.WithSdkRequest()
         ],

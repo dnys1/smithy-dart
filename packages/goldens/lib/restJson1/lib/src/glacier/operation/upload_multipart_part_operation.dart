@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_json1.glacier.operation.upload_multipart_part_operation;
 
@@ -55,7 +55,7 @@ class UploadMultipartPartOperation extends _i1.HttpOperation<
               region: _region,
               service: _i8.AWSService.glacier,
               credentialsProvider: _credentialsProvider),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i6.WithSdkInvocationId(),
           const _i6.WithSdkRequest()
         ],

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library rest_xml.rest_xml_protocol.test.flattened_xml_map_with_xml_name_operation_test_test;

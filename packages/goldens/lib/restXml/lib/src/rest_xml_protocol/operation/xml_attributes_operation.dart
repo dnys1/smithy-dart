@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.operation.xml_attributes_operation;
 
@@ -37,7 +37,7 @@ class XmlAttributesOperation extends _i1.HttpOperation<
         requestInterceptors: [
           const _i1.WithHost(),
           const _i1.WithContentLength(),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library aws_json1_0.json_rpc_10.operation.empty_input_and_empty_output_operation;
 
@@ -40,7 +40,7 @@ class EmptyInputAndEmptyOutputOperation extends _i1.HttpOperation<
           const _i1.WithHost(),
           const _i1.WithHeader(
               'X-Amz-Target', 'JsonRpc10.EmptyInputAndEmptyOutput'),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

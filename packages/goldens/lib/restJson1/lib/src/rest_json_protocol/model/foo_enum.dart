@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_json1.rest_json_protocol.model.foo_enum;
 

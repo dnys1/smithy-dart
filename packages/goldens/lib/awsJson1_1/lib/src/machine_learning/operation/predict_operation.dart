@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library aws_json1_1.machine_learning.operation.predict_operation;
 
@@ -53,7 +53,7 @@ class PredictOperation extends _i1.HttpOperation<_i2.PredictInput,
               region: _region,
               service: _i7.AWSService.machineLearning,
               credentialsProvider: _credentialsProvider),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i5.WithSdkInvocationId(),
           const _i5.WithSdkRequest()
         ],

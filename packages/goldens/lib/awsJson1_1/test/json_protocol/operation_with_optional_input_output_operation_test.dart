@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 // ignore_for_file: unused_element
 library aws_json1_1.json_protocol.test.operation_with_optional_input_output_operation_test_test;

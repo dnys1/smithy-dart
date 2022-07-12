@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_xml.rest_xml_protocol.model.query_params_as_string_list_map_input;
 

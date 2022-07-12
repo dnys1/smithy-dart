@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library aws_json1_1.json_protocol.operation.empty_operation;
 
@@ -36,7 +36,7 @@ class EmptyOperation
               region: _region,
               service: _i5.AWSService.iam,
               credentialsProvider: _credentialsProvider),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i3.WithSdkInvocationId(),
           const _i3.WithSdkRequest()
         ],

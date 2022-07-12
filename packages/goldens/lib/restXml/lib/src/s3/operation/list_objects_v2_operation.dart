@@ -1,4 +1,4 @@
-// Generated with smithy-dart 0.5.2. DO NOT MODIFY.
+// Generated with smithy-dart 0.5.5. DO NOT MODIFY.
 
 library rest_xml.s3.operation.list_objects_v2_operation;
 
@@ -51,7 +51,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
               credentialsProvider: _credentialsProvider,
               serviceConfiguration: _s3ClientConfig.signerConfiguration ??
                   _i5.S3ServiceConfiguration()),
-          const _i1.WithUserAgent('aws-sdk-dart/0.5.2'),
+          const _i1.WithUserAgent('aws-sdk-dart/0.5.5'),
           const _i4.WithSdkInvocationId(),
           const _i4.WithSdkRequest()
         ],

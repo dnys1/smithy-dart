@@ -21,7 +21,7 @@ class ListObjectsV2Operation extends _i1.PaginatedHttpOperation<
     _i3.ListObjectsV2Output,
     String,
     int,
-    void> {
+    _i3.ListObjectsV2Output> {
   ListObjectsV2Operation(
       {required String region,
       Uri? baseUri,

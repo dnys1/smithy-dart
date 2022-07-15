@@ -53,7 +53,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
                   paginatedTraits!.pageSize?.symbol.unboxed ??
                       DartTypes.core.void$,
                   paginatedTraits!.items?.symbol.unboxed ??
-                      DartTypes.core.void$,
+                      outputSymbol,
                 )
           ..constructors.add(_constructor)
           ..fields.addAll([
@@ -567,9 +567,10 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
         ..types.clear());
       defaultValue = symbol.newInstance([]);
     }
-    Expression? itemsBody = items?.buildExpression.call(refer('output'));
+    var itemsBody =
+        items?.buildExpression.call(refer('output')) ?? refer('output');
     if (defaultValue != null) {
-      itemsBody = itemsBody?.ifNullThen(defaultValue);
+      itemsBody = itemsBody.ifNullThen(defaultValue);
     }
     yield Method(
       (m) => m
@@ -580,7 +581,7 @@ class OperationGenerator extends LibraryGenerator<OperationShape>
           ..type = outputSymbol
           ..name = 'output'))
         ..lambda = true
-        ..body = itemsBody?.code ?? const Code('output'),
+        ..body = itemsBody.code,
     );
 
     // The `rebuildInput` method.

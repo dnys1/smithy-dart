@@ -120,7 +120,7 @@ class ServiceClientGenerator extends LibraryGenerator<ServiceShape> {
           ])
           ..returns = isPaginated
               ? DartTypes.async.future(DartTypes.smithy.paginatedResult(
-                  paginatedTraits.items?.symbol.unboxed ?? DartTypes.core.void$,
+                  paginatedTraits.items?.symbol.unboxed ?? operationOutput,
                   paginatedTraits.pageSize?.symbol.unboxed ??
                       DartTypes.core.void$,
                 ))

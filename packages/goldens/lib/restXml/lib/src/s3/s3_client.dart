@@ -7,11 +7,12 @@ import 'dart:async' as _i3;
 import 'package:aws_signature_v4/aws_signature_v4.dart' as _i2;
 import 'package:rest_xml/src/s3/model/get_bucket_location_output.dart' as _i4;
 import 'package:rest_xml/src/s3/model/get_bucket_location_request.dart' as _i5;
-import 'package:rest_xml/src/s3/model/list_objects_v2_request.dart' as _i8;
+import 'package:rest_xml/src/s3/model/list_objects_v2_output.dart' as _i8;
+import 'package:rest_xml/src/s3/model/list_objects_v2_request.dart' as _i9;
 import 'package:rest_xml/src/s3/operation/get_bucket_location_operation.dart'
     as _i7;
 import 'package:rest_xml/src/s3/operation/list_objects_v2_operation.dart'
-    as _i9;
+    as _i10;
 import 'package:smithy/smithy.dart' as _i6;
 import 'package:smithy_aws/smithy_aws.dart' as _i1;
 
@@ -45,10 +46,10 @@ class S3Client {
         .run(input, client: client);
   }
 
-  _i3.Future<_i6.PaginatedResult<void, int>> listObjectsV2(
-      _i8.ListObjectsV2Request input,
+  _i3.Future<_i6.PaginatedResult<_i8.ListObjectsV2Output, int>> listObjectsV2(
+      _i9.ListObjectsV2Request input,
       {_i6.HttpClient? client}) {
-    return _i9.ListObjectsV2Operation(
+    return _i10.ListObjectsV2Operation(
             region: _region,
             baseUri: _baseUri,
             s3ClientConfig: _s3ClientConfig,

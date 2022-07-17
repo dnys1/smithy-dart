@@ -3,7 +3,7 @@
 //  source: dart_services.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 
@@ -15,7 +15,7 @@ class CompileRequest extends $pb.GeneratedMessage {
           ? ''
           : 'CompileRequest',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -104,7 +104,7 @@ class CompileDDCRequest extends $pb.GeneratedMessage {
           ? ''
           : 'CompileDDCRequest',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -171,7 +171,7 @@ class SourceRequest extends $pb.GeneratedMessage {
           ? ''
           : 'SourceRequest',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -260,7 +260,7 @@ class AnalysisResults extends $pb.GeneratedMessage {
           ? ''
           : 'AnalysisResults',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -357,7 +357,7 @@ class AnalysisIssue extends $pb.GeneratedMessage {
           ? ''
           : 'AnalysisIssue',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -614,7 +614,7 @@ class DiagnosticMessage extends $pb.GeneratedMessage {
           ? ''
           : 'DiagnosticMessage',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -749,7 +749,7 @@ class VersionRequest extends $pb.GeneratedMessage {
           ? ''
           : 'VersionRequest',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -791,7 +791,7 @@ class CompileResponse extends $pb.GeneratedMessage {
           ? ''
           : 'CompileResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -904,7 +904,7 @@ class CompileDDCResponse extends $pb.GeneratedMessage {
           ? ''
           : 'CompileDDCResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1017,7 +1017,7 @@ class DocumentResponse extends $pb.GeneratedMessage {
           ? ''
           : 'DocumentResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1103,7 +1103,7 @@ class CompleteResponse extends $pb.GeneratedMessage {
           ? ''
           : 'CompleteResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1233,7 +1233,7 @@ class Completion extends $pb.GeneratedMessage {
           ? ''
           : 'Completion',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1294,7 +1294,7 @@ class FixesResponse extends $pb.GeneratedMessage {
           ? ''
           : 'FixesResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1378,7 +1378,7 @@ class ProblemAndFixes extends $pb.GeneratedMessage {
           ? ''
           : 'ProblemAndFixes',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1504,7 +1504,7 @@ class CandidateFix extends $pb.GeneratedMessage {
           ? ''
           : 'CandidateFix',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1623,7 +1623,7 @@ class SourceEdit extends $pb.GeneratedMessage {
           ? ''
           : 'SourceEdit',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1733,7 +1733,7 @@ class LinkedEditGroup extends $pb.GeneratedMessage {
           ? ''
           : 'LinkedEditGroup',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1742,7 +1742,7 @@ class LinkedEditGroup extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'positions',
-        $pb.PbFieldType.P3)
+        $pb.PbFieldType.K3)
     ..a<$core.int>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1828,7 +1828,7 @@ class LinkedEditSuggestion extends $pb.GeneratedMessage {
           ? ''
           : 'LinkedEditSuggestion',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -1917,7 +1917,7 @@ class FormatResponse extends $pb.GeneratedMessage {
           ? ''
           : 'FormatResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -2031,7 +2031,7 @@ class AssistsResponse extends $pb.GeneratedMessage {
           ? ''
           : 'AssistsResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -2115,7 +2115,7 @@ class VersionResponse extends $pb.GeneratedMessage {
           ? ''
           : 'VersionResponse',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -2393,7 +2393,7 @@ class PackageInfo extends $pb.GeneratedMessage {
           ? ''
           : 'PackageInfo',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -2501,7 +2501,7 @@ class BadRequest extends $pb.GeneratedMessage {
           ? ''
           : 'BadRequest',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)
@@ -2570,7 +2570,7 @@ class ErrorMessage extends $pb.GeneratedMessage {
           ? ''
           : 'ErrorMessage',
       package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'dart_services.api'),
       createEmptyInstance: create)

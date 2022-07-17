@@ -20,9 +20,9 @@ class _$TreeNode extends TreeNode {
   _$TreeNode._(
       {required this.content, required this.link, required this.children})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(content, 'TreeNode', 'content');
-    BuiltValueNullFieldError.checkNotNull(link, 'TreeNode', 'link');
-    BuiltValueNullFieldError.checkNotNull(children, 'TreeNode', 'children');
+    BuiltValueNullFieldError.checkNotNull(content, r'TreeNode', 'content');
+    BuiltValueNullFieldError.checkNotNull(link, r'TreeNode', 'link');
+    BuiltValueNullFieldError.checkNotNull(children, r'TreeNode', 'children');
   }
 
   @override
@@ -50,7 +50,7 @@ class _$TreeNode extends TreeNode {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('TreeNode')
+    return (newBuiltValueToStringHelper(r'TreeNode')
           ..add('content', content)
           ..add('link', link)
           ..add('children', children))
@@ -107,9 +107,9 @@ class TreeNodeBuilder implements Builder<TreeNode, TreeNodeBuilder> {
       _$result = _$v ??
           new _$TreeNode._(
               content: BuiltValueNullFieldError.checkNotNull(
-                  content, 'TreeNode', 'content'),
+                  content, r'TreeNode', 'content'),
               link: BuiltValueNullFieldError.checkNotNull(
-                  link, 'TreeNode', 'link'),
+                  link, r'TreeNode', 'link'),
               children: children.build());
     } catch (_) {
       late String _$failedField;
@@ -118,7 +118,7 @@ class TreeNodeBuilder implements Builder<TreeNode, TreeNodeBuilder> {
         children.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'TreeNode', _$failedField, e.toString());
+            r'TreeNode', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -127,4 +127,4 @@ class TreeNodeBuilder implements Builder<TreeNode, TreeNodeBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

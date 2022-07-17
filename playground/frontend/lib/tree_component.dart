@@ -29,7 +29,7 @@ class TreeComponent {
   }
 
   String filename(SmithyLibrary library) {
-    return library.sanitizedFilename + '.dart';
+    return '${library.sanitizedFilename}.dart';
   }
 
   String testPath(SmithyLibrary library) {

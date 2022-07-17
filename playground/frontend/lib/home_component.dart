@@ -76,7 +76,7 @@ class HomeComponent implements AfterContentInit {
             await Future.wait<MapEntry<String, TransformOutput>>(
           libraries.map((lib) async {
             return MapEntry(
-              lib.smithyLibrary.filename + '.dart',
+              '${lib.smithyLibrary.filename}.dart',
               TransformOutput(
                 'dart',
                 await transformService.format(lib.emit(

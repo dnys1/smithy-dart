@@ -1,3 +1,4 @@
+import 'package:aws_common/aws_common.dart';
 import 'package:smithy/smithy.dart';
 
 class Http2Client implements HttpClient {

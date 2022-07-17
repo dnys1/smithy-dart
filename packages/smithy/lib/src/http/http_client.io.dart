@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:aws_common/aws_common.dart';
 import 'package:http2/http2.dart';
 import 'package:smithy/smithy.dart';
 
@@ -33,7 +34,8 @@ class Http2Client implements HttpClient {
 
     final Completer<void> gotHeaders = Completer();
     final Map<String, String> headers = {};
-    final StreamController<List<int>> bodyController = StreamController();
+    final StreamController<List<int>> bodyController =
+        StreamController(sync: true);
     stream.incomingMessages.listen(
       (message) {
         if (message is HeadersStreamMessage) {
@@ -60,7 +62,7 @@ class Http2Client implements HttpClient {
     );
 
     await gotHeaders.future;
-    final statusCode = int.parse(headers[':status:']!);
+    final statusCode = int.parse(headers.remove(':status')!);
     return AWSStreamedHttpResponse(
       statusCode: statusCode,
       body: bodyController.stream,

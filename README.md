@@ -1,6 +1,6 @@
 # Smithy Dart
 
-> **Note**: This is NOT an official AWS product. It is mostly a technical proof-of-concept at the moment.
+> **NOTE**: This project is being worked on as part of the [Amplify Flutter](https://docs.amplify.aws/lib/q/platform/flutter/) project. Further development will take place [here](https://github.com/aws-amplify/amplify-flutter/tree/next/packages/smithy).
 
 Code generator and runtime packages for Smithy models in pure Dart. Check out the [Smithy Playground](https://smithy-playground.dillonnys.com/) to start exploring the code generator!
 
